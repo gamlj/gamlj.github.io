@@ -1,0 +1,14 @@
+---
+title: "nonlinear_chunk"
+output: html_document
+---
+
+Polinomial effects for continuous variables can be added to the model. When a variable is selected in the `Components` field, a little number appears on the right side of the selection. The number indicates the _order_ of the effect. 
+
+<img src="commons/pics/nonlinear1.png" class="img-responsive" alt="">
+
+By increasing that number before dragging the term into the `Model Terms` field, one can include any high order effect.
+
+<img src="commons/pics/nonlinear2.png" class="img-responsive" alt="">
+
+Increasing the order number and combining the selection with other variables allows including interactions involving higher order effect of a variable.

@@ -1,0 +1,14 @@
+# prediction confidence interval for mermod
+https://cran.r-project.org/web/packages/merTools/vignettes/Using_predictInterval.html
+
+# assumption of the poisson model
+https://www.google.it/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwi9r8agtOTXAhUN-6QKHWXZAqAQFggqMAA&url=http%3A%2F%2Fsa-ijas.stat.unipd.it%2Fsites%2Fsa-ijas.stat.unipd.it%2Ffiles%2F23-41_2.pdf&usg=AOvVaw0KtTQON4JsYC9QT85JoVbj
+
+## on not using aic 
+https://stat.ethz.ch/pipermail/r-help/2007-August/138668.html
+
+## compare poisson vs nb
+Vuong, Q. H. (1989). Likelihood ratio tests for model selection and non-nested hypotheses. Econometrica: Journal of the Econometric Society, 307-333.
+
+## on dispersion
+http://www.mun.ca/biology/dschneider/b7932/B7932Final4Mar2008.pdf

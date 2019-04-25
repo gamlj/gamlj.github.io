@@ -1,0 +1,27 @@
+name: "gamlj-website"
+output_dir: "../docs"
+navbar:
+  title: "GAMLj"
+  left:
+  - text: "GLM"
+    href:  glm.html
+  - text: "Mixed"
+    href: mixed.html
+  - text: "Generalized Models"
+    href:  gzlm.html
+  - text: "Examples"
+    href:  examples.html
+  - text: "Rosetta store"
+    href:  rosetta.html
+  - text: "Release notes"
+    href:  release_notes.html
+
+  right: 
+  - text: "View on Github"
+    href: https://github.com/mcfanda/gamlj
+output:
+  html_document:
+    css: style.css
+    theme: flatly
+
+    

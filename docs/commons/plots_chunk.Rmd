@@ -1,0 +1,23 @@
+---
+title: "plots_chunk"
+output: html_document
+---
+
+
+The "plots" menu allows for plotting  main effects and interactions for any combination of types of variables, making it easy to plot interaction means plots, simple slopes, and combinations of them. The best plot is chosen automatically.
+
+By filling in `Horizontal axis` one obtains the group means of the selected factor or the regression line for the selected covariate
+
+By filling in `Horizontal axis` and `Separated lines` one obtains a different plot depending on the type of variables selected:
+
+  - `Horizontal axis` and `Separated lines` are both factors, one obtains the interaction plot of group means.
+  - `Horizontal axis`=factor and `Separated lines`=covariate. One obtains the plot of group means of the factor estimated at three different levels of the covariate. The levels are decided by the `Covariates conditioning` options above.
+  - `Horizontal axis`=covariate and `Separated lines`=covariate. One obtains the simple slopes graph of the simple slope of the variable in horizontal axis estimated at three different levels of the covariate.
+  
+By filling in `Separate plots` one can probe three-way interactions. If the selected variable is a factor, one obtains a two-way graph (as previously defined) for each level of the "Separate plots" variable. If the selected variable is a covariate, one obtains a two-way graph (as previously defined) for the `Separate plots` variable centered to conditioning values selected in the `Covariates conditioning` options.
+
+Flagging the `Display` options add `Confidence intervals` (or confidence bands) or `Standard errors` to the plots.
+
+`Plot` options allow to add observed data to the plot (`Observed scores`) or to fix the range of the plot to the actual range of the dependent variable (`Y-axis observed range`), without the need to plot the actual predicted values. When `Separate plots` are required, in each plot are showed only the observed scores of the moderator level for which the plot is done when the moderator is a categorical one, otherwise all data are plot in each plot. 
+
+
