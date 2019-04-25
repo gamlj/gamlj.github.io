@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="(Marcello Gallucci)" />
+
+
+<title>Mixed: Individual Growth Model</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110344212-1');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples</a>
+</li>
+<li>
+  <a href="rosetta.html">Rosetta store</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/mcfanda/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Mixed: Individual Growth Model</h1>
+<h4 class="author">(Marcello Gallucci)</h4>
+
+</div>
+
+
+<p><span class="keywords"> <span class="keytitle"> keywords </span> Individual Growth Model, Polynomial mixed model, non linear effects, linear model </span></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.5.0 </span></p>
+<p>In this example we work out an example of individual growth model using polynomial effects in the mixed model, using jamovi GAMLj. Data are (simulated data) <a href="https://github.com/mcfanda/gamlj/data/tempdata.csv">here</a>.</p>
+<div id="research-design" class="section level1">
+<h1>Research Design</h1>
+<p>Imagine the following scenario. Two procedures to decrease the body temperature of the experiment participants are tested. The two procedures are administered between-subjects to two different groups. Let’s identify them as condition 1 and condition 2. Each participant’s body temperature is measured for about 6 minutes every 6 seconds. Time is recorded in tenth of minutes (6 seconds=0.1, 12 seconds=0.2, etc.). We wish to establish whether the temperature decreases over time and if the decrease is different in the two conditions.</p>
+</div>
+<div id="individual-growth-model" class="section level1">
+<h1>Individual growth model</h1>
+<p>An individual growth model is a model in which a dependent variable is followed over time. Because the change in time is seldom only linear, the model usually involves non linear effects, such as quadratic and cubic effects. Moreover, the model allows each participant to have an individual trajectory over time, meaning that we allow participants to vary in the way time affects the dependent variable.</p>
+<p>The following plot shows the raw data we intend to model.</p>
+<p><img src="mixed_example_igm_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="the-mixed-model" class="section level1">
+<h1>The mixed model</h1>
+<p>Mixed models are perfectly fit to model the data we are discussing. They allow time to be considered a continuous repeated independent variable for which we can compute polynomial effects (linear and quadratic effects, for instance). We can also estimate individual trajectories by allowing the effects of time to vary from participant to participant, by setting their coefficients as random across the cluster variable <code>subj</code>, that is participant.</p>
+</div>
+<div id="model-1-capturing-the-effect-of-time" class="section level1">
+<h1>Model 1: capturing the effect of time</h1>
+<div id="input" class="section level2">
+<h2>Input</h2>
+<p>We start focusing on the effect of time, so we ignore for the moment the experimental conditions. We need to specify the dependent variable <code>y</code>, then <code>timebin</code> as continuous independent variable (<code>Covariates</code>) and then the cluster variable <code>subj</code>.</p>
+<p><img src="examples/mixed4/variables1.png" class="img-responsive" alt=""></p>
+<p>Then we go to the <code>Fixed Effects</code> panel to specify the fixed effects model. We need the linear effect of time, and (at least) the quadratic effect, so we capture the curvature of the mean trajectory of temperature over time.</p>
+<p><img src="examples/mixed4/fixed1.png" class="img-responsive" alt=""></p>
+<p>The quadratic term is set in the model by selecting the independent variable in the <code>Components</code> list, increasing the order number that appears on the right of the variable, and push it in the <code>Model Terms</code> field. If we want to include the cubic term, for instance, we select <code>timebin</code> again, increase the order number to 3, and push it to the right field.</p>
+<p>We now need to specify the random components. We want each participant to have her/his own intercept, linear trend and quadratic trend, such that each participant has an individual trajectory (individual growth curve). We can simply push each of these coefficients into the <code>Random Coefficients</code> field.</p>
+<p><img src="examples/mixed4/random1.png" class="img-responsive" alt=""></p>
+<p>We can leave the random coefficients as correlated, the default option in <code>Effects correlation</code> options list.</p>
+</div>
+<div id="results-1" class="section level2">
+<h2>Results 1</h2>
+<p>As soon as we define the random components, results are displayed. Before interpreting them, let’s see a plot of the model. We go to <code>Plots</code> and ask for the fixed effect of <code>timebin</code> and for the plot of the random effects.</p>
+<p><img src="examples/mixed4/plotInput1.png" class="img-responsive" alt=""></p>
+<p><img src="examples/mixed4/plot1.png" class="img-responsive" alt=""></p>
+<p>The plot shows the average trajectory of temperature over time (solid line), and the individual trajectories (thin lines). It is clear that temperature goes down on average, but there are individual differences in the pace at which it decreases (variability in the linear effect) and in the way it stabilizes over time or even start to increase back (variability in the quadratic effect). We can notice that the plot x-axis is centered to zero because in GAMLj the independent variables are centered to zero by default. Other transformations, or no transformation, are available in the <code>Covariates Scaling</code> panel.</p>
+<p>The coefficients composing the effect of time, and their associated inferential tests, can be seen in the <code>Parameters Estimates</code> table.</p>
+<p><img src="examples/mixed4/params1.png" class="img-responsive" alt=""></p>
+<p>On average, there is a linear effect of time on temperature, B=-0.076,t(79.1)=-15.85, p.&lt;.001, and a quadratic effect, B=-0.009,t(88.1)=87.8, p.&lt;.001. The negative linear effect indicates a general tendency of the temperature to decrease in time, and the positive quadratic effect indicates that the temperature trend tends to become flat over time.</p>
+<p>Looking at the random effects variances (<code>Random Components</code> table) we can appreciate that participants are indeed different in the averge temperature in the middle of the experiment (variance of the intercepts), in the linear effects (variance of the effect of <code>timebin</code>) and in the bending of the individual curves (variances of othe <code>timebin^2</code> effect). The variance of the quadratic effect seems to be miniscule, but letting the parameter as random makes the model more sensible from a practical point of view: people may differ in the speed their termperature stabilizes and recovers back to normal!</p>
+<p><img src="examples/mixed4/variances1.png" class="img-responsive" alt=""></p>
+<p>This individual variability may be related to the condition, so we now add the condition variable to the model</p>
+</div>
+</div>
+<div id="model-2-establish-the-effect-of-condition" class="section level1">
+<h1>Model 2: Establish the effect of condition</h1>
+<div id="input-1" class="section level2">
+<h2>Input</h2>
+<p>In the variable role panel, we simply add <code>cond</code> as a factor in the model.</p>
+<p><img src="examples/mixed4/variables2.png" class="img-responsive" alt=""></p>
+<p>This will update the <code>Fixed Effects</code> panel by adding the main effect of <code>cond</code> in the model. We need, however, to estimate also the interaction between condition and the effects of time (both linear and quadratic). That lets us check if the general decrease in time is different in the two conditions (<span class="math inline">\(cond \cdot timebin\)</span>) and if the bending is different across groups (<span class="math inline">\(cond \cdot timebin^2\)</span>)</p>
+<p><img src="examples/mixed4/model2.png" class="img-responsive" alt=""></p>
+<p>Because <em>condition</em> is a between-subjects variable, we do not need to update the random effects, they stay as there were in model 1.</p>
+<p><img src="examples/mixed4/random2.png" class="img-responsive" alt=""></p>
+<p>Finally, we update the plot input to add the <em>condition</em> as the moderator of the plot.</p>
+<p><img src="examples/mixed4/plotInput2.png" class="img-responsive" alt=""></p>
+</div>
+<div id="results" class="section level2">
+<h2>Results</h2>
+<p>Let’s look at the plot first.</p>
+<p><img src="examples/mixed4/plot2.png" class="img-responsive" alt=""></p>
+<p>It is clear that the two conditions show an overall different average temperature. The decrease over time seems to be different as well, whereas the difference in bending is not that evident. We turn to the parameter estimates to support what we see in the plot.</p>
+<p><img src="examples/mixed4/params2.png" class="img-responsive" alt=""></p>
+<p>Our interpretation of the plot is supported by the model parameters. We see a main effect of <em>condition</em> and an interaction between <em>condition</em> and <em>timebin</em>. So, the two conditions are different in the average temperature and the decrease over time seems to be different. Furthermore, the significant interaction <em>condition</em> times <span class="math inline">\(timebin^2\)</span> indicates that condition 1 bends more than condition 2, in which the quadratic term is smaller (the interaction B is negative).</p>
+</div>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<p>Individual growth models are pretty simple in GAMLj, or at least so it seems.</p>
+</div>
+<div id="related-examples" class="section level1">
+<h1>Related examples</h1>
+<ul>
+<li>
+<a href="mixed_example1.html">Mixed Models: Random coefficients regression</a>
+</li>
+<li>
+<a href="mixed_example2.html">Mixed Models: Repeated measures designs</a>
+</li>
+<li>
+<a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random effects</a>
+</li>
+<li>
+<a href="mixed_example_igm.html">Mixed: Individual Growth Model</a>
+</li>
+</ul>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on <a href=" https://github.com/mcfanda/gamlj/issues "> GAMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
