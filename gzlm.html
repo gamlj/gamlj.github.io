@@ -436,7 +436,7 @@ div.tocify {
 
 
 <p><strong>Generalized Linear Models</strong> module of the GAMLj suite for jamovi</p>
-<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.5.0 </span></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.6.0 </span></p>
 <p><img src="gzlm/main.png" class="img-responsive" alt=""></p>
 <p>The module estimates generalized linear models with categorial and/or continuous dependent and independent variables, with options to facilitate estimation ofinteractions, simple slopes, simple effects, etc.</p>
 <div id="module" class="section level1">
@@ -450,6 +450,7 @@ div.tocify {
 <li>Logistic model</li>
 <li>Probit model</li>
 <li>Multinomial model</li>
+<li>Custom model with combinations of distribution and link function</li>
 </ul>
 <p><img src="gzlm/variables.png" class="img-responsive" alt=""></p>
 <p>For each model, any combination of categorical and continuous variables can be set as independent variables, thus providing an easy way for multiple regression, ANOVA-like, ANCOVA-like and moderation analysis for categorical and count dependent variables.</p>
@@ -462,13 +463,32 @@ div.tocify {
 <li>Logistic model: logit LF, binomial distribution, modelling dichotomous dependent variables.</li>
 <li><p>Probit model: inverse of the cumulative normal distribution link function, binomial distribution, modelling dichotomous dependent variables.</p></li>
 <li><p>Multinomial model: logit LF, multinomial distribution, modelling categorical dependent variables.</p></li>
+<li><p>Custom model: combination of distribution family and link function.</p>
+<ul>
+<li><p>The available distributions are:</p>
+<ul>
+<li>Gaussian</li>
+<li>Binomial</li>
+<li>Gamma</li>
+<li>Inverse Gaussian</li>
+</ul></li>
+<li>The available link functions are:
+<ul>
+<li>Identity</li>
+<li>Log</li>
+<li>Inverse</li>
+<li>Inverse squared</li>
+</ul></li>
+</ul></li>
 </ul>
+<p>The plausibility of the distribution/link function combination is no checked, but errors are issued if the data do not conform to the chosen custom model.</p>
 </div>
 <div id="estimates" class="section level1">
 <h1>Estimates</h1>
 <p>The module provides Analysis of Deviance tables and parameter estimates for any estimated model. Variables definition follows jamovi standards, with categorical independent variables defined in “factors” and continuous independent variables in “covariates”.</p>
 <p><img src="gzlm/variables.png" class="img-responsive" alt=""></p>
-<p>Effect size indexes are optionally computed by selecting <code>Odd rations (expB)</code>. Odd ratios apply the exponential function to the parameter estimates, thus they make sense in all models where the link function is based on the logarithm.</p>
+<p>Effect size indexes are optionally computed by selecting <code>Odd rations (expB)</code>. Odd ratios apply the exponential function to the parameter estimates, thus they make sense in all models where the link function is based on the logarithm.<code>Relative risk (RR)</code> indexes can be obtained for logistic models.</p>
+<p><img src="gzlm/effectsizes.png" class="img-responsive" alt=""></p>
 </div>
 <div id="model" class="section level1">
 <h1>Model</h1>
