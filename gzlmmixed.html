@@ -11,7 +11,7 @@
 
 
 
-<title>Mixed Models module</title>
+<title>Generalized Mixed Models module</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -431,26 +431,65 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Mixed Models module</h1>
+<h1 class="title toc-ignore">Generalized Mixed Models module</h1>
 
 </div>
 
 
-<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.5.0 </span></p>
-<p><strong>Mixed Linear Models</strong> module of the GAMLj suite for jamovi</p>
-<p><img src="mixed/main.png" class="img-responsive" alt=""></p>
-<p>The module estimates a mixed linear model with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc, etc. In this page you can find some hint to get started with the mixed models module. For more information about how to module works, please check the <a href="mixed_specs.html">technical details</a></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.0.0 </span></p>
+<p><strong>Generalized Mixed Linear Models</strong> module of the GAMLj suite for jamovi</p>
+<p><img src="gzlmmixed/main.png" class="img-responsive" alt=""></p>
+<p>The module estimates generalized mixed linear model with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc, etc. In this page you can find some hint to get started with the mixed models module.</p>
 <div id="module" class="section level1">
 <h1>Module</h1>
-<p>The module can estimates REML and ML linear mixed models for any combination of categorical and continuous variables, thus providing an easy way of obtaining multilevel or hierarchical linear models for any combination of independent variables types.</p>
+<p>The module can estimates generalized linear mixed models for any combination of categorical and continuous variables, thus providing an easy way of obtaining multilevel or hierarchical linear models for any combination of independent variables types and a plethora of dependent variable types.</p>
+<p>The module can estimate several mixed linear models:</p>
+<ul>
+<li>Linear model</li>
+<li>Poisson model</li>
+<li>Poisson overdispersed</li>
+<li>Logistic model</li>
+<li>Probit model</li>
+<li>Custom model with combinations of distribution and link function</li>
+</ul>
+<p><img src="gzlmmixed/variables.png" class="img-responsive" alt=""  height="1020" width="600"></p>
+<p>For each model, any combination of categorical and continuous variables can be set as independent variables, thus providing an easy way for multiple regression, ANOVA-like, ANCOVA-like and moderation analysis for categorical and count dependent variables.</p>
+<p>Models are defined by a link function (LF) and the dependent variable distribution, thus allowing to model different types of dependent variables:</p>
+<ul>
+<li>Linear model: identity LF, gaussian distribution, yielding a general linear model for continuous dependent variables.</li>
+<li>Poisson model: logarithm LF, Poisson distribution, modelling count dependent variables. This model is often called log-linear model when the independent variables are all categorical.</li>
+<li>Overdispersed Poisson model: logarithm LF, Poisson distribution, quasi-maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.</li>
+<li><p>Negative binomial model: logarithm LF, negative binomial distribution, maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.</p></li>
+<li>Logistic model: logit LF, binomial distribution, modelling dichotomous dependent variables.</li>
+<li><p>Probit model: inverse of the cumulative normal distribution link function, binomial distribution, modelling dichotomous dependent variables.</p></li>
+<li><p>Multinomial model: logit LF, multinomial distribution, modelling categorical dependent variables.</p></li>
+<li><p>Custom model: combination of distribution family and link function.</p>
+<ul>
+<li><p>The available distributions are:</p>
+<ul>
+<li>Gaussian</li>
+<li>Binomial</li>
+<li>Gamma</li>
+<li>Inverse Gaussian</li>
+</ul></li>
+<li>The available link functions are:
+<ul>
+<li>Identity</li>
+<li>Log</li>
+<li>Inverse</li>
+<li>Inverse squared</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>The plausibility of the distribution/link function combination is no checked, but errors are issued if the data do not conform to the chosen custom model.</p>
 </div>
 <div id="estimates" class="section level1">
 <h1>Estimates</h1>
 <p>The module provides a parameter estimates of the fixed effects, the random variances and correlation among random coefficients.</p>
 <p>Variables definition follows jamovi standards, with categorical independent variables defined in “fixed factors” and continuous independent variables in “covariates”.</p>
-<p><img src="mixed/variables.png" class="img-responsive" alt=""></p>
+<p><img src="gzlmmixed/estimates.png" class="img-responsive" alt=""></p>
 <p>The grouping variable is simply set by putting the corresponding variable(s) into <code>cluster</code>. In this version, multiple clustering variables are possible, but not combinations of classifications ( see <a href="mixed_specs.html">Technical Details</a> ).</p>
-<p>Confidence intervals for the parameters estimates and REML or ML can be chosen.</p>
+<p>Confidence intervals for the parameters estimates and for the exponential of them (expB).</p>
 <p>The actual estimation occurs when the dependent variable, the clustering variable and at least one random coefficient (random effect) has been selected.</p>
 </div>
 <div id="random-effects" class="section level1">
@@ -459,7 +498,6 @@ div.tocify {
 <p>Random effects across clustering variables are automatically prepared by the module following R lmer() standards: <code>term | cluster</code> indicates that the coefficient associated with <code>term</code> is random across <code>cluster</code>.</p>
 <p>By default the module assumes correlated random effects. All the effects varying across the same cluster variable appearing in the <code>Random coefficients</code> will be correlated. To obtain a <em>variance component</em> model, select <code>Not correlated</code>. A custom pattern of correlation can be obtained by selecting <code>Correlated block</code>. For instance, in Fig. below, a custom structure has been defined by allowing the intercept and the effect of <code>x</code> to be correlated, whereas the effect of <code>wfac</code> is independent from the others.</p>
 <p><img src="mixed/random2.png" class="img-responsive" alt=""></p>
-<p>The option <code>LRT for random effects</code> produces a table of <em>Likelihood Ratio Tests</em> for the random effects. The table is estimated with <code>lmerTest::ranova</code> command, documented <a href="https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf">here</a>. The test basically compares the likelihood of a model with the <code>effect</code> included versus a model with the <code>effect</code> excluded. For example, <code>x in (1+x|cluster)</code> means that the model with <code>(1+x|cluster)</code> random structure is compared with a model with <code>1|cluster)</code> random structure. If significant, the model with random effect <code>x</code> is significantly better (in terms of likelihood) than the model with <code>(1|cluster)</code> structure.</p>
 </div>
 <div id="fixed-effects-model" class="section level1">
 <h1>Fixed effects Model</h1>
@@ -532,12 +570,6 @@ div.tocify {
 <h1>Estimated marginal means</h1>
 <p><img src="commons/pics/emmeans.png" class="img-responsive" alt=""></p>
 <p>Print the estimate expected means, SE, df and confidence intervals of the precicted dependent variable by factors in the model. When <code>Include covariates</code> is selected, factors levels are crossed also with the conditiong levels of the continuous variables (if any). The conditioning values are selected in <code>Covariates Scaling</code> panel.</p>
-</div>
-<div id="more-info" class="section level1">
-<h1>More info</h1>
-<ul>
-<li><a href="mixed_specs.html">Technical Details</a></li>
-</ul>
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
