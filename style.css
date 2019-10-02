@@ -157,3 +157,10 @@ div.littletitle {
   font-weight: bold;
   font-style: normal;
 }
+
+span.jamovi {
+  font-weight: bold;
+  color:   #3E6DA9;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-transform: lowercase;
+}

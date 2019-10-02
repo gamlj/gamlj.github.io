@@ -348,6 +348,8 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -434,11 +436,11 @@ div.tocify {
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, R, SPSS, logistic, generalized mixed, mixed models </span></p>
 <p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.0.0 </span> <span class="draft"> Draft version, mistakes may be around </span></p>
-<p>Here you can find comparisons of results obtained in jamovi GAMLj,R, and SPSS. When not explicitly discussed, the code of different software is written with the aim of obtaining identical results across programs (not necessarily with the most efficient strategy).</p>
+<p>Here you can find comparisons of results obtained in <span class="jamovi">jamovi</span> GAMLj,R, and SPSS. When not explicitly discussed, the code of different software is written with the aim of obtaining identical results across programs (not necessarily with the most efficient strategy).</p>
 <p>In this example we compare GAMLj results with R results obtained by IDRE on their <a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">tutorial web page</a></p>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
-<p>In this example, we are going to explore lung cancer remission using a simulated dataset, which we have posted online. A variety of outcomes were collected on patients, who are nested within doctors, who are in turn nested within hospitals. There are also a few doctor level variables, such as Experience that we will use in our example (<a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">IDRE</a>). Data can be downloaded <a href="https://stats.idre.ucla.edu/stat/data/hdp.csv">here</a></p>
+<p>In this example, we are going to explore lung cancer remission using a simulated dataset. A variety of outcomes were collected on patients, who are nested within doctors, who are in turn nested within hospitals. There are also a few doctor level variables, such as Experience that we will use in our example (<a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">IDRE</a>). Data can be downloaded <a href="https://stats.idre.ucla.edu/stat/data/hdp.csv">here</a></p>
 </div>
 <div id="r" class="section level1">
 <h1>R</h1>
@@ -485,7 +487,7 @@ print(m, corr = FALSE)</code></pre>
 ## CancerStageIV  -2.33704 -2.64683 -2.027241
 ## LengthofStay   -0.12118 -0.18710 -0.055261
 ## Experience      0.12009  0.06628  0.173895</code></pre>
-<p>and finally, the <span class="math inline">\(e^B\)</span> are computed.</p>
+<p>Also the <span class="math inline">\(e^B\)</span> are computed.</p>
 <pre><code>exp(tab)</code></pre>
 <pre><code>
 ##                    Est      LL     UL
