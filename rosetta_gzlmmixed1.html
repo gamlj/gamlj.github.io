@@ -563,12 +563,10 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 </div>
 <div id="spss" class="section level1">
 <h1>SPSS</h1>
-<p>In SPSS we can run a logistic mixed models with <code>Generalized mixed models</code> menu.</p>
-<p><img src="rosetta/gzlmmixed/spss_results.png" class="img-responsive" alt=""></p>
-<p>However, from within the <code>Generalized mixed models</code> module one cannot specify whether a variable is a continuous or categorical one, so we have to define variables types in the <code>Variable view</code> tab of the SPSS spreadsheet window.</p>
+<p>In SPSS we can run a logistic mixed models with <code>Generalized mixed models</code> menu. However, from within the <code>Generalized mixed models</code> module one cannot specify whether a variable is a continuous or categorical one, so we have to define variables types in the <code>Variable view</code> tab of the SPSS spreadsheet window.</p>
 <p><img src="rosetta/gzlmmixed/spss_scale.png" class="img-responsive" alt=""></p>
-<p>We want to be sure that <code>LengthOfStay</code>, <code>IL6</code>, <code>CRP</code> and <code>Experience</code> are set as <code>Scale</code>, whereas <code>DID</code> and <code>CancerStage</code> should be <code>Nominal</code>.</p>
-<p>The we can go to the mixed model menu.</p>
+<p>We want to be sure that <code>LengthOfStay</code>, <code>IL6</code>, <code>CRP</code> and <code>Experience</code> are set as <code>Scale</code> in the <code>measure</code> column, whereas <code>DID</code> and <code>CancerStage</code> should be <code>Nominal</code>.</p>
+<p>Then we can go to the mixed models menu.</p>
 <p><img src="rosetta/gzlmmixed/spss_menu.png" class="img-responsive" alt=""></p>
 <p>First, we should specify the cluster variable, by dragging <code>DID</code> into the <code>Subject</code> field, on the right, in the <code>Canvas</code> panel.</p>
 <p><img src="rosetta/gzlmmixed/spss_cluster.png" class="img-responsive" alt=""></p>
@@ -584,13 +582,13 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 <h2>Results</h2>
 <p><img src="rosetta/gzlmmixed/results_spss_coefs.png" class="img-responsive" alt=""></p>
 <p>As regards the fixed effects coefficients, we notice that the continuous predictors show B’s that are equivalent to R and jamovi estimates, but with opposite sign. The intercept and the categorical predictor are clearly very differ. Those differences are due to way SPSS picks the reference level of the dummy coding for categorical variables. In R and jamovi, the reference level is the first level in the standard ordering of the variable levels (such as the cardinal order or the alphabetical one). SPSS picks the last group! Thus, here we are predicting the probability of <em>not remission</em>, that is <code>remission=0</code>, because SPSS sets <code>remission=1</code> as the reference level. That explains the opposite sign. For the categorical independent variable <code>CancerStage</code>, SPSS picks the group <code>CancerStage=IV</code> as reference group, whereas GAMLj and R pick <code>CancerStage=I</code>. That explains the differences in the parameters.</p>
-<p>In SPSS generalized mixed models we can change the reference group in the <code>Build Options</code> tab, selecting <code>Descending</code> in the <code>Sorting order</code> options.</p>
+<p>In SPSS generalized mixed models we can change the reference level in the <code>Build Options</code> tab, selecting <code>Descending</code> in the <code>Sorting Order</code> options.</p>
 <p><img src="rosetta/gzlmmixed/spss_rescale.png" class="img-responsive" alt=""></p>
 <p>Now the interpretation of the coefficients is equivalent to the one for R and GAMLj estimation, although the numerical estimates are still different in SPSS. Not a big difference, but worth investigating the reason.</p>
 <p><img src="rosetta/gzlmmixed/results_spss_fixed2.png" class="img-responsive" alt=""></p>
-<p>As regards the random coefficients variance is quite different from the R or GAMLj results.</p>
+<p>As regards the random coefficients variance, it is quite different from the R or GAMLj results.</p>
 <p><img src="rosetta/gzlmmixed/results_spss_random.png" class="img-responsive" alt=""></p>
-<p>Finally, as regards the omnibus tests SPSS outputs the F-tests, not the Chi-square. Nevertheless, the p-values associated with the tests are in line with the ones obtained in GAMLj and R.</p>
+<p>Finally, as regards the omnibus tests, SPSS outputs the F-tests, not the Chi-square. Nevertheless, the p-values associated with the tests are in line with the ones obtained in GAMLj and R.</p>
 <p><img src="rosetta/gzlmmixed/results_spss_chi.png" class="img-responsive" alt=""></p>
 <p>Thus, GAMLj and R <code>lme4::glmer</code> produce results that are numerically very close and practically identical. SPSS produces results that are numerically different but substantially equivalent to the other software results.</p>
 <h1>
