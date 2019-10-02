@@ -434,7 +434,7 @@ div.tocify {
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, R, SPSS, logistic, generalized mixed, mixed models </span></p>
 <p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.0.0 </span> <span class="draft"> Draft version, mistakes may be around </span></p>
-<p>Here you can find comparisons ofresults obtained in jamovi GAMLj and R. When not explicitely discussed, the code of different software is written with the aim of obtaing identical results across programs (not necessarely with the most efficient strategy).</p>
+<p>Here you can find comparisons of results obtained in jamovi GAMLj,R, and SPSS. When not explicitly discussed, the code of different software is written with the aim of obtaining identical results across programs (not necessarily with the most efficient strategy).</p>
 <p>In this example we compare GAMLj results with R results obtained by IDRE on their <a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">tutorial web page</a></p>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
@@ -442,7 +442,7 @@ div.tocify {
 </div>
 <div id="r" class="section level1">
 <h1>R</h1>
-<p>The researcher is interested in studying the relationships between cancer remission and both patients and doctors carateristics. The analyst uses the R <code>glmer</code> command from the <code>lme4 Package</code> to estimate a mixed effects logistic regression model with <code>Il6</code>, <code>CRP</code>, and <code>LengthofStay</code> as patient level continuous predictors, <code>CancerStage</code> as a patient level categorical predictor (I, II, III, or IV), <code>Experience</code> as a doctor level continuous predictor, and a random intercept by <code>DID</code>, doctor ID.</p>
+<p>The researcher is interested in studying the relationships between cancer remission and both patients and doctors characteristics. The analyst uses the R <code>glmer</code> command from the <code>lme4 Package</code> to estimate a mixed effects logistic regression model with <code>Il6</code>, <code>CRP</code>, and <code>LengthofStay</code> as patient level continuous predictors, <code>CancerStage</code> as a patient level categorical predictor (I, II, III, or IV), <code>Experience</code> as a doctor level continuous predictor, and a random intercept by <code>DID</code>, doctor ID.</p>
 <div id="results" class="section level2">
 <h2>Results</h2>
 <pre class="r"><code># estimate the model and store results in m
@@ -485,7 +485,7 @@ print(m, corr = FALSE)</code></pre>
 ## CancerStageIV  -2.33704 -2.64683 -2.027241
 ## LengthofStay   -0.12118 -0.18710 -0.055261
 ## Experience      0.12009  0.06628  0.173895</code></pre>
-<p>and finaly, the <span class="math inline">\(e^B\)</span> are computed.</p>
+<p>and finally, the <span class="math inline">\(e^B\)</span> are computed.</p>
 <pre><code>exp(tab)</code></pre>
 <pre><code>
 ##                    Est      LL     UL
@@ -506,7 +506,7 @@ print(m, corr = FALSE)</code></pre>
 <p><img src="rosetta/gzlmmixed/modelpick.png" class="img-responsive" alt=""></p>
 <p>Then we set the variables in the right field depending on their role in the model and their type.</p>
 <p><img src="rosetta/gzlmmixed/variables.png" class="img-responsive" alt=""></p>
-<p>Please note that we put <code>LengthOfStay</code> in covariates because it is a continuous variable, even though jamovi reconizes it a categorical. By putting it in <code>Covariates</code>, we implicitely ask the module to treat it a continuous variable. The opposite holds for <code>DID</code> (doctors ID) which jamovi reconizes as continuous but the module treats as categorical after we put it in the <code>Clusters</code> field.</p>
+<p>Please note that we put <code>LengthOfStay</code> in covariates because it is a continuous variable, even though jamovi recognizes it a categorical. By putting it in <code>Covariates</code>, we implicitly ask the module to treat it a continuous variable. The opposite holds for <code>DID</code> (doctors ID) which jamovi recognizes as continuous but the module treats as categorical after we put it in the <code>Clusters</code> field.</p>
 <p>After the first setup, we need to specify the random effects. Following the IDRE analysis, we specify the intercept as random coefficient across doctors (<code>DID</code>).</p>
 <p><img src="rosetta/gzlmmixed/random.png" class="img-responsive" alt=""></p>
 <p>As soon as we include a random effect, the model is estimated</p>
@@ -526,7 +526,7 @@ IV   0   0  1</code></pre>
 <p>which results in a centered contrast.</p>
 <p><img src="rosetta/gzlmmixed/results_coding.png" class="img-responsive" alt=""></p>
 <p>Continuous variables are centered by default.</p>
-<p>Thus, in GAMLj the intectept is the expected mean of the (transformed) dependent variable, whereas in R is the expected mean of the (trasformed) dependent variable for all continuous independent variables equal to zero and the group scoring all zeros in the categorical variable.</p>
+<p>Thus, in GAMLj the intercept is the expected mean of the (transformed) dependent variable, whereas in R is the expected mean of the (transformed) dependent variable for all continuous independent variables equal to zero and the group scoring all zeros in the categorical variable.</p>
 <p>Also the exp(B) and their confidence intervals are equivalent in the two analyses, apart from rounding.</p>
 <p>As regards the random coefficients variance, <code>lme4::glmer</code> produced a <code>SD</code> of 2.01, thus a variance of 4.0401, which is noticeably different from the GAMLj results.</p>
 <p><img src="rosetta/gzlmmixed/results_random.png" class="img-responsive" alt=""></p>
@@ -537,7 +537,7 @@ IV   0   0  1</code></pre>
 </div>
 <div id="omnibus-tests" class="section level2">
 <h2>Omnibus tests</h2>
-<p>The IDRE analysis did not report the omnibus tests. In R, one can obtain the ominibus tests employing the <code>car::Anova</code> command. The command lets us specify what Type of analysis to do. We can ask of the Type III analysis and we get the Chi-square tests.</p>
+<p>The IDRE analysis did not report the omnibus tests. In R, one can obtain the omnibus tests employing the <code>car::Anova</code> command. The command lets us specify what Type of analysis to do. We can ask of the Type III analysis and we get the Chi-square tests.</p>
 <pre class="r"><code>library(car)
 Anova(mod,type=3)
 </code></pre>
@@ -555,8 +555,8 @@ Experience    19.135  1  1.218e-05 ***
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 </code></pre>
 <p><img src="rosetta/gzlmmixed/results_chi.png" class="img-responsive" alt=""></p>
-<p>Compared with GAMLj results, there’s substantial agreement even though the figures are not the same, apart from rounding. The reason is that the estimation of the deviance of the model, on which the omnibus tests are based, may be sligtly influenced by the scale of the variables. It is well-known that in the general linear model (i.e. regression), the linear coefficients are invariant to linear scaling of the independent variables. That is, if you have centered or not centered variables the B’s are the same (when no interaction is present in the model). In generalized mixed models, the scale may slightly influence the estimation, yielding different results for rescaled variables.</p>
-<p>Thus, the small difference in the omnibus tests obtained with R and with GAMLj are due to the fact that in the R analysis the variables are not rescaled, while in GAMLj they are centered. In fact, if we do not center the variables in GAMLj, results become identical to the R results.</p>
+<p>Compared with GAMLj results, there’s substantial agreement even though the figures are not the same, apart from rounding. The reason is that the estimation of the deviance of the model, on which the omnibus tests are based, may be slightly influenced by the scale of the variables. It is well-known that in the general linear model (i.e. regression), the linear coefficients are invariant to linear scaling of the independent variables. That is, if you have centered or not centered variables the B’s are the same (when no interaction is present in the model). In generalized mixed models, the scale may slightly influence the estimation, yielding different results for re-scaled variables.</p>
+<p>Thus, the small difference in the omnibus tests obtained with R and with GAMLj are due to the fact that in the R analysis the variables are not re-scaled, while in GAMLj they are centered. In fact, if we do not center the variables in GAMLj, results become identical to the R results.</p>
 <p><img src="rosetta/gzlmmixed/results_chi2.png" class="img-responsive" alt=""></p>
 <p>Notice, however, that the conclusion of the analyses are equivalent no matter the scale of the variables.</p>
 </div>
@@ -583,7 +583,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 <div id="results-2" class="section level2">
 <h2>Results</h2>
 <p><img src="rosetta/gzlmmixed/results_spss_coefs.png" class="img-responsive" alt=""></p>
-<p>As regards the fixed effects coefficients, we notice that the continuous predictors show B’s that are equivalent to R and jamovi estimates, but with opposite sign. The intercept and the categorical predictor are clearly differ. Those differences are due to way SPSS picks the reference level of the dummy coding for variables. In R and jamovi, the reference level is the first level, given standard ordering of the variable level (such as the cardinal order or the alphabetical one). SPSS picks the last group! Thus, here we are predicting the probability of <em>not remission</em>, that is <code>remission=0</code>. That explain the opposite sign. For the categorical independent variable <code>CancerStage</code>, SPSS picks the group <code>CancerStage=IV</code> as refrence group, whereas GAMLj and R pick <code>CancerStage=I</code>. That explains the differences in the parameters.</p>
+<p>As regards the fixed effects coefficients, we notice that the continuous predictors show B’s that are equivalent to R and jamovi estimates, but with opposite sign. The intercept and the categorical predictor are clearly differ. Those differences are due to way SPSS picks the reference level of the dummy coding for variables. In R and jamovi, the reference level is the first level, given standard ordering of the variable level (such as the cardinal order or the alphabetical one). SPSS picks the last group! Thus, here we are predicting the probability of <em>not remission</em>, that is <code>remission=0</code>. That explain the opposite sign. For the categorical independent variable <code>CancerStage</code>, SPSS picks the group <code>CancerStage=IV</code> as reference group, whereas GAMLj and R pick <code>CancerStage=I</code>. That explains the differences in the parameters.</p>
 <p>In SPSS generalized mixed models we can change the reference group in the <code>Build Options</code> tab, selecting <code>Descending</code> in the <code>Sorting order</code> options.</p>
 <p><img src="rosetta/gzlmmixed/spss_rescale.png" class="img-responsive" alt=""></p>
 <p>Now the interpretation of the coefficients is equivalent to the one for R and GAMLj estimation, although the numerical estimates are still different in SPSS. Not a big difference, but worth investigating the reason.</p>
