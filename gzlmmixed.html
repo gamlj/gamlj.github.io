@@ -347,8 +347,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -458,13 +456,10 @@ div.tocify {
 <p>For each model, any combination of categorical and continuous variables can be set as independent variables, thus providing an easy way for multiple regression, ANOVA-like, ANCOVA-like and moderation analysis for categorical and count dependent variables.</p>
 <p>Models are defined by a link function (LF) and the dependent variable distribution, thus allowing to model different types of dependent variables:</p>
 <ul>
-<li>Linear model: identity LF, gaussian distribution, yielding a general linear model for continuous dependent variables.</li>
-<li>Poisson model: logarithm LF, Poisson distribution, modelling count dependent variables. This model is often called log-linear model when the independent variables are all categorical.</li>
-<li>Overdispersed Poisson model: logarithm LF, Poisson distribution, quasi-maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.</li>
-<li><p>Negative binomial model: logarithm LF, negative binomial distribution, maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.</p></li>
 <li>Logistic model: logit LF, binomial distribution, modelling dichotomous dependent variables.</li>
 <li><p>Probit model: inverse of the cumulative normal distribution link function, binomial distribution, modelling dichotomous dependent variables.</p></li>
-<li><p>Multinomial model: logit LF, multinomial distribution, modelling categorical dependent variables.</p></li>
+<li>Poisson model: logarithm LF, Poisson distribution, modelling count dependent variables. This model is often called log-linear model when the independent variables are all categorical.</li>
+<li><p>Overdispersed Poisson model: logarithm LF, Poisson distribution, quasi-maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.</p></li>
 <li><p>Custom model: combination of distribution family and link function.</p>
 <ul>
 <li><p>The available distributions are:</p>
