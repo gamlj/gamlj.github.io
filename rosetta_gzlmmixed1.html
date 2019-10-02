@@ -555,22 +555,22 @@ Experience    19.135  1  1.218e-05 ***
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 </code></pre>
 <p><img src="rosetta/gzlmmixed/results_chi.png" class="img-responsive" alt=""></p>
-<p>Compared with GAMLj results, there’s substantial agreement even though the figures are not the same, apart from rounding. The reason is that the estimation of the deviance of the model, on which the omnibus tests are based, may be slightly influenced by the scale of the variables. It is well-known that in the general linear model (i.e. regression), the linear coefficients are invariant to linear scaling of the independent variables. That is, if you have centered or not centered variables the B’s are the same (when no interaction is present in the model). In generalized mixed models, the scale may slightly influence the estimation, yielding different results for re-scaled variables.</p>
+<p>Compared with GAMLj results, there’s substantial agreement even though the figures are not the same, apart from rounding. The reason is that the estimation of the deviance of the model, on which the omnibus tests are based, may be slightly influenced by the scale of the variables. It is well-known that in the general linear model (i.e. regression), the linear coefficients are invariant to linear scaling of the independent variables. That is, if you have centered or not centered the variables, the B’s are the same (when no interaction is present in the model). In generalized mixed models, the scale may slightly influence the estimation, yielding different results for re-scaled variables.</p>
 <p>Thus, the small difference in the omnibus tests obtained with R and with GAMLj are due to the fact that in the R analysis the variables are not re-scaled, while in GAMLj they are centered. In fact, if we do not center the variables in GAMLj, results become identical to the R results.</p>
 <p><img src="rosetta/gzlmmixed/results_chi2.png" class="img-responsive" alt=""></p>
-<p>Notice, however, that the conclusion of the analyses are equivalent no matter the scale of the variables.</p>
+<p>Notice, however, that the conclusions of the analyses are equivalent no matter the scale of the variables.</p>
 </div>
 </div>
 <div id="spss" class="section level1">
 <h1>SPSS</h1>
 <p>In SPSS we can run a logistic mixed models with <code>Generalized mixed models</code> menu.</p>
 <p><img src="rosetta/gzlmmixed/spss_results.png" class="img-responsive" alt=""></p>
-<p>However, the <code>Generalized mixed models</code> module does not allow to specify whether a variable should be considered as continuous or categorical, so we have to define variables types in the <code>Variable view</code> tab of the SPSS spreadsheet window.</p>
+<p>However, from within the <code>Generalized mixed models</code> module one cannot specify whether a variable is a continuous or categorical one, so we have to define variables types in the <code>Variable view</code> tab of the SPSS spreadsheet window.</p>
 <p><img src="rosetta/gzlmmixed/spss_scale.png" class="img-responsive" alt=""></p>
 <p>We want to be sure that <code>LengthOfStay</code>, <code>IL6</code>, <code>CRP</code> and <code>Experience</code> are set as <code>Scale</code>, whereas <code>DID</code> and <code>CancerStage</code> should be <code>Nominal</code>.</p>
 <p>The we can go to the mixed model menu.</p>
 <p><img src="rosetta/gzlmmixed/spss_menu.png" class="img-responsive" alt=""></p>
-<p>First, we should specify the cluster variable, by dragging <code>DID</code> into the <code>Subject</code> field, on the right of the <code>Canvas</code> panel.</p>
+<p>First, we should specify the cluster variable, by dragging <code>DID</code> into the <code>Subject</code> field, on the right, in the <code>Canvas</code> panel.</p>
 <p><img src="rosetta/gzlmmixed/spss_cluster.png" class="img-responsive" alt=""></p>
 <p>Then we can move to the <code>Fields &amp; Effects</code> tab and specify the model type (<code>Binary logistic regression</code>) and the dependent variable (<code>remission</code>).</p>
 <p><img src="rosetta/gzlmmixed/spss_dep.png" class="img-responsive" alt=""></p>
@@ -578,7 +578,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 <p><img src="rosetta/gzlmmixed/spss_fixed.png" class="img-responsive" alt=""></p>
 <p>The random intercept can be specified in the <code>Random Effects</code> tab.</p>
 <p><img src="rosetta/gzlmmixed/spss_random.png" class="img-responsive" alt=""></p>
-<p>Here we need to flag the <code>Include intercept</code> options and select <code>DID</code> from the menu <code>Subject combination</code>. This means <em>allow intercepts to vary across DID</em>.</p>
+<p>Here we need to flag the <code>Include intercept</code> option and select <code>DID</code> from the menu <code>Subject combination</code>. This means <em>allow intercepts to vary across DID</em>.</p>
 <p>We can then run the analysis.</p>
 <div id="results-2" class="section level2">
 <h2>Results</h2>
