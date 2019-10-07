@@ -347,6 +347,8 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -437,7 +439,7 @@ div.tocify {
 
 
 <p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.0.0 </span></p>
-<p><strong>Generalized Mixed Linear Models</strong> module of the GAMLj suite for jamovi</p>
+<p><strong>Generalized Mixed Linear Models</strong> module of the GAMLj suite for <span class="jamovi">jamovi</span></p>
 <p><img src="gzlmmixed/main.png" class="img-responsive" alt=""></p>
 <p>The module estimates generalized mixed linear model with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc, etc. In this page you can find some hint to get started with the mixed models module.</p>
 <div id="module" class="section level1">
@@ -483,7 +485,7 @@ div.tocify {
 <div id="estimates" class="section level1">
 <h1>Estimates</h1>
 <p>The module provides a parameter estimates of the fixed effects, the random variances and correlation among random coefficients.</p>
-<p>Variables definition follows jamovi standards, with categorical independent variables defined in “fixed factors” and continuous independent variables in “covariates”.</p>
+<p>Variables definition follows <span class="jamovi">jamovi</span> standards, with categorical independent variables defined in “fixed factors” and continuous independent variables in “covariates”.</p>
 <p><img src="gzlmmixed/estimates.png" class="img-responsive" alt=""></p>
 <p>The grouping variable is simply set by putting the corresponding variable(s) into <code>cluster</code>. In this version, multiple clustering variables are possible, but not combinations of classifications ( see <a href="mixed_specs.html">Technical Details</a> ).</p>
 <p>Confidence intervals for the parameters estimates and for the exponential of them (expB).</p>
@@ -568,9 +570,15 @@ div.tocify {
 <p><img src="commons/pics/emmeans.png" class="img-responsive" alt=""></p>
 <p>Print the estimate expected means, SE, df and confidence intervals of the precicted dependent variable by factors in the model. When <code>Include covariates</code> is selected, factors levels are crossed also with the conditiong levels of the continuous variables (if any). The conditioning values are selected in <code>Covariates Scaling</code> panel.</p>
 </div>
+<div id="options" class="section level1">
+<h1>Options</h1>
+<p><img src="gzlmmixed/options.png" class="img-responsive" alt=""></p>
+<p>The <code>precision/speed</code> parameter applies to mixed model with one random effect. Higher numbers increase precision in the estimation with a speed cost. It corresponds to the <code>nAGQ</code> parameter of <code>glmer</code> command in R package <a href="https://cran.r-project.org/web/packages/lme4/index.html">lme4</a>. For models with more than</p>
+<p>The <code>CI method</code> decides which method is used for computing confidence intervals. <code>Wald</code> uses Wald statistics and it is less precise than the other methods, but it is significantly faster. <code>Profile</code> is more precise but slower. <code>Boot</code>, bootstrap method, is the slowest. Details of the implementation can be found in <a href="https://cran.r-project.org/web/packages/lme4/lme4.pdf">lme4 manual</a></p>
+</div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
-<p>Some worked out examples of the analyses carried out with jamovi GAMLj Mixed models are posted here (more to come)</p>
+<p>Some worked out examples of the analyses carried out with <span class="jamovi">jamovi</span> GAMLj Mixed models are posted here (more to come)</p>
 <ul>
 </ul>
 </div>
