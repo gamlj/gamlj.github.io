@@ -339,8 +339,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -469,7 +467,7 @@ div.tocify {
 <p>As soon as we fix the variables, the results are there, with the first table showing some info about the model.</p>
 <p><img src="examples/gzlm1/info.results.png" class="img-responsive" alt=""></p>
 <p>Here we can outline the R-squared, that gives information about the goodness of fit of the model (see <a href="gzlm_specs.html">technical details</a> for more info). Our error of approximation of the data decreases of 4% thanks to the <code>ses</code> variable. Put it in another way, our ability to predict <code>prog</code> increases of 4% thanks to <code>ses</code> over using only the observed probabilities.</p>
-<p>The other information in the table helps to interpret the results. In particulat, the raw <code>Direction</code> is useful. It gives the definition of the logit that is used, including which is the reference group of the dependent variable. In the example, it indicates that the there are two logits, one is comparing <code>prog=general</code> against <code>prog=academic</code>, the other <code>prog=general</code> against <code>prog=academic</code>. Thus we know that all the independent variables positively related with the first logit are positively related with the odd of being in program general over the academic one, the independent variables positively related with the rescon logit are positively related with the odd of being in program vocation over the academic one.</p>
+<p>The other information in the table helps to interpret the results. In particulat, the row <code>Direction</code> is useful. It gives the definition of the logit that is used, including which is the reference group of the dependent variable. In the example, it indicates that the there are two logits, one is comparing <code>prog=general</code> against <code>prog=academic</code>, the other <code>prog=general</code> against <code>prog=academic</code>. Thus we know that all the independent variables positively related with the first logit are positively related with the odd of being in program general over the academic one, the independent variables positively related with the rescon logit are positively related with the odd of being in program vocation over the academic one.</p>
 </div>
 <div id="omnibus-test" class="section level2">
 <h2>Omnibus test</h2>
