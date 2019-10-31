@@ -470,17 +470,17 @@ div.tocify {
 </div>
 <div id="random-component" class="section level2">
 <h2>Random component</h2>
-<p>For this model, with only intercepts as random coefficients across schools, the random component table is pretty simply. It shows the variance of the random intercepts. It is non-zero, so we are happy. It also show that the intercepts account for a large portion of variability (<span class="math inline">\(ICC=.50\)</span>), indicating that schools are very different in the students’ average probability of passing the exam.</p>
+<p>For this model, with only intercepts as random coefficients across schools, the random component table is pretty simply. It shows the variance of the random intercepts. It is non-zero, so we are happy. It also shows that the intercepts account for a large portion of variability (<span class="math inline">\(ICC=.50\)</span>), indicating that schools are very different in the students’ average probability of passing the exam.</p>
 </div>
 <div id="omnibus-test" class="section level2">
 <h2>Omnibus test</h2>
 <p><img src="examples/gzlmmixed1/results_omnibus1.png" class="img-responsive" alt=""></p>
-<p>The omnibus (Wald) Chi-Squared test tests the main effects of the independent variables and their interaction. Notice that in GAMLj the continuous variables are centered by default, and thus we can interpret the linear effects of <code>math</code> and <code>activity</code> as <em>average effects</em> or simply <em>main effects</em> . Based on the p-value, our results seem to support an interaction and two main effects.</p>
+<p>The omnibus (Wald) Chi-Squared test tests the main effects of the independent variables and their interaction. Notice that in GAMLj the continuous variables are centered to their mean by default, and thus we can interpret the linear effects of <code>math</code> and <code>activity</code> as <em>average effects</em> or <em>main effects</em> . Based on the p-value, our results seem to support an interaction and two main effects.</p>
 </div>
 <div id="parameter-estimates" class="section level2">
 <h2>Parameter estimates</h2>
-<p>The same information can be extracted from the parameter estimates table.</p>
-<p><img src="examples/gzlmmixed1/results_params1.png" class="img-responsive" alt=""></p>
+<p>The same information can be extracted from the parameters estimates table.</p>
+<p><img src="examples/gzlmmixed1/results_params.png" class="img-responsive" alt=""></p>
 <p>Here we also obtain the <code>odd ratio</code> (exp(B)) of the effects, useful to interpret the effects in terms of rate of change in the dependent variable odd.</p>
 </div>
 <div id="plots" class="section level2">
