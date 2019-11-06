@@ -486,7 +486,7 @@ div.tocify {
 </div>
 <div id="plots" class="section level2">
 <h2>Plots</h2>
-<p>For generalized linear model, mixed included, a good strategy is to visualize the effects by plotting the predicted values. GAMLj plots the predicted values after transforming them back to the original scale of the dependent variable, in this case probability.</p>
+<p>For generalized linear models, mixed included, a good strategy is to visualize the effects by plotting the predicted values. GAMLj plots the predicted values after transforming them back to the original scale of the dependent variable, in this case probability.</p>
 <p>Ask for the plot in the <code>Plots</code> panel. Add <code>math</code> as the variable whose values go in the <code>Horizontal axis</code> and <code>activity</code> as <code>separate lines</code>.</p>
 <p><img src="examples/gzlmmixed1/plot1.png" class="img-responsive" alt=""></p>
 <p>Because <code>activity</code> is a continuous variable, the separated lines will show the effect of <code>math</code> for three <em>interesting</em> values of the moderator <code>activity</code>. The defaul in GAMLj is to show effects for the moderator set at <code>Mean-1SD</code>, <code>Mean</code>, and <code>Mean+1SD</code>. This default can be altered in the <code>Covariates scaling</code> tab.</p>
@@ -495,10 +495,11 @@ div.tocify {
 <p>We can also visualize the random effects by asking them in the imput panel.</p>
 <p><img src="examples/gzlmmixed1/plot2.png" class="img-responsive" alt=""></p>
 <p><img src="examples/gzlmmixed1/results_plot2.png" class="img-responsive" alt=""></p>
-<p>Notice that the random effects depict different curves for different schools, even though the only random effect is the intercept. This is not weird in generalized linear models. The random intercept is estimated for the logit, thus it is the intercept of the straight lines computed for predicting the logit. When the logit is transformed back to probabilities, the function relating Y to X is no longer a straight line, and its shapes changes depending also on the value of the interecpt. If we wish to appreciate how the random linear effects vary, we can ask for the <code>Linear Predictor</code> plot, which plots the effects in the logit scale.</p>
+<p>Notice that the random effects depict different curves for different schools, even though the only random effect is the intercept. This is not weird in generalized linear models. The random intercept is estimated for the logit, thus it is the intercept of the straight lines computed for predicting the logit. When the logit is transformed back to probabilities, the function relating Y to X is no longer a straight line, and its shapes changes depending also on the value of the interecpt. If we wish to appreciate how the random <em>linear</em> effects vary, we can ask for the <code>Linear Predictor</code> plot, which plots the effects in the logit scale.</p>
 <p><img src="examples/gzlmmixed1/plot3.png" class="img-responsive" alt=""></p>
 <p><img src="examples/gzlmmixed1/results_plot3.png" class="img-responsive" alt=""></p>
 <p>As expected, the random effects are all parallel, because we allowed only the intercepts to be random.</p>
+At this point, one can expand the model by allowing also the IVs effects to vary, and evaluate the goodness of the models, comparing them, and further investigate the relationships we observed, with simple effects analysis and additional plots.
 <h1>
 Comments?
 </h1>
