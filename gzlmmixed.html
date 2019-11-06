@@ -442,10 +442,9 @@ div.tocify {
 <p>The module estimates generalized mixed linear model with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc, etc. In this page you can find some hint to get started with the mixed models module.</p>
 <div id="module" class="section level1">
 <h1>Module</h1>
-<p>The module can estimates generalized linear mixed models for any combination of categorical and continuous variables, thus providing an easy way of obtaining multilevel or hierarchical linear models for any combination of independent variables types and a plethora of dependent variable types.</p>
+<p>The module can estimate generalized linear mixed models for any combination of categorical and continuous variables, thus providing an easy way of obtaining multilevel or hierarchical linear models for any combination of independent variables types and a plethora of dependent variable types.</p>
 <p>The module can estimate several mixed linear models:</p>
 <ul>
-<li>Linear model</li>
 <li>Poisson model</li>
 <li>Poisson overdispersed</li>
 <li>Logistic model</li>
@@ -482,7 +481,7 @@ div.tocify {
 </div>
 <div id="estimates" class="section level1">
 <h1>Estimates</h1>
-<p>The module provides a parameter estimates of the fixed effects, the random variances and correlation among random coefficients.</p>
+<p>The module provides parameter estimates of the fixed effects, the random variances and correlation among random coefficients.</p>
 <p>Variables definition follows <span class="jamovi">jamovi</span> standards, with categorical independent variables defined in “fixed factors” and continuous independent variables in “covariates”.</p>
 <p><img src="gzlmmixed/estimates.png" class="img-responsive" alt=""></p>
 <p>The grouping variable is simply set by putting the corresponding variable(s) into <code>cluster</code>. In this version, multiple clustering variables are possible, but not combinations of classifications ( see <a href="mixed_specs.html">Technical Details</a> ).</p>
@@ -493,7 +492,7 @@ div.tocify {
 <h1>Random effects</h1>
 <p><img src="mixed/random.png" class="img-responsive" alt=""></p>
 <p>Random effects across clustering variables are automatically prepared by the module following R lmer() standards: <code>term | cluster</code> indicates that the coefficient associated with <code>term</code> is random across <code>cluster</code>.</p>
-<p>By default the module assumes correlated random effects. All the effects varying across the same cluster variable appearing in the <code>Random coefficients</code> will be correlated. To obtain a <em>variance component</em> model, select <code>Not correlated</code>. A custom pattern of correlation can be obtained by selecting <code>Correlated block</code>. For instance, in Fig. below, a custom structure has been defined by allowing the intercept and the effect of <code>x</code> to be correlated, whereas the effect of <code>wfac</code> is independent from the others.</p>
+<p>By default the module assumes correlated random effects. All the effects varying across the same cluster variable appearing in the <code>Random coefficients</code> will be correlated. To obtain a <em>variance component</em> model, select <code>Not correlated</code>. A custom pattern of correlation can be obtained by selecting <code>Correlated by block</code>. For instance, in Fig. below, a custom structure has been defined by allowing the intercept and the effect of <code>x</code> to be correlated, whereas the effect of <code>wfac</code> is independent from the others.</p>
 <p><img src="mixed/random2.png" class="img-responsive" alt=""></p>
 </div>
 <div id="fixed-effects-model" class="section level1">
@@ -505,7 +504,7 @@ div.tocify {
 <p><img src="commons/pics/nonlinear1.png" class="img-responsive" alt=""></p>
 <p>By increasing that number before dragging the term into the <code>Model Terms</code> field, one can include any high order effect.</p>
 <p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
-<p>Increasing the order number and combining the selection with other variables allows including interactions involving higher order effect of a variable.</p>
+<p>Increasing the order number and combining the selection with other variables allows including interactions involving higher order effects of a variable.</p>
 </div>
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
@@ -520,7 +519,7 @@ div.tocify {
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
 <p><img src="commons/pics/xscoring.png" class="img-responsive" alt=""></p>
-<p>Continuous variables can be centered, standardized, cluster-based centered, cluster-based standardized or used as they are (<code>none</code>). The default is <code>centered</code> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simple select <code>none</code>.</p>
+<p>Continuous variables can be centered, standardized, cluster-based centered, cluster-based standardized or used as they are (<code>none</code>). The default is <code>centered</code> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simply select <code>none</code>.</p>
 <p><code>cluster-based centered</code> and <code>cluster-based standardized</code> center each score using the mean of the cluster in which the score belongs. For <code>cluster-based standardized</code> the score is also divided by the cluster standard deviation.</p>
 <p><code>Covariates conditioning</code> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
 <ul>
@@ -571,7 +570,7 @@ div.tocify {
 <div id="options" class="section level1">
 <h1>Options</h1>
 <p><img src="gzlmmixed/options.png" class="img-responsive" alt=""></p>
-<p>The <code>precision/speed</code> parameter applies to mixed model with one random effect. Higher numbers increase precision in the estimation with a speed cost. It corresponds to the <code>nAGQ</code> parameter of <code>glmer</code> command in R package <a href="https://cran.r-project.org/web/packages/lme4/index.html">lme4</a>. For models with more than</p>
+<p>The <code>precision/speed</code> parameter applies to mixed models with one random effect. Higher numbers increase precision in the estimation with a speed cost. It corresponds to the <code>nAGQ</code> parameter of <code>glmer</code> command in R package <a href="https://cran.r-project.org/web/packages/lme4/index.html">lme4</a>. For models with more than</p>
 <p>The <code>CI method</code> decides which method is used for computing confidence intervals. <code>Wald</code> uses Wald statistics and it is less precise than the other methods, but it is significantly faster. <code>Profile</code> is more precise but slower. <code>Boot</code>, bootstrap method, is the slowest. Details of the implementation can be found in <a href="https://cran.r-project.org/web/packages/lme4/lme4.pdf">lme4 manual</a></p>
 </div>
 <div id="examples" class="section level1">

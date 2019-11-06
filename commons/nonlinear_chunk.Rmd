@@ -11,4 +11,4 @@ By increasing that number before dragging the term into the `Model Terms` field,
 
 <img src="commons/pics/nonlinear2.png" class="img-responsive" alt="">
 
-Increasing the order number and combining the selection with other variables allows including interactions involving higher order effect of a variable.
+Increasing the order number and combining the selection with other variables allows including interactions involving higher order effects of a variable.
