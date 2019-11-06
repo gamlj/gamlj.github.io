@@ -431,13 +431,13 @@ div.tocify {
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, mixed models, generalized linear models, logistic mixed model, multilevel logist, moderated regression, interactions </span></p>
 <p>In this example we estimate a multilevel logistic regression, with interactions, using <span class="jamovi">jamovi</span> GAMLj module.</p>
-<p>One can follow the example by downloading the <a href="https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/data/school_exam.csv">cvs file</a> and open it in <a href="https://www.jamovi.org/download.html">jamovi</a>. Be sure to install the new version of GAMLj module from within jamovi library. Data are similated for educational purposes, and should be used only for exercising.</p>
+<p>One can follow the example by downloading the <a href="https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/data/school_exam.csv">cvs file</a> and open it in <a href="https://www.jamovi.org/download.html">jamovi</a>. Be sure to install the new version of GAMLj module from within jamovi library. Data are simulated for educational purposes, and should be used only for exercising.</p>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
 <p>Imagine a study conducted in 70 schools. In each school the same exam is taken by students of equivalent age and grade. For each student, we recorded whether the student passed the exam, <code>pass</code>, the student’s score in math test, <code>math</code>, and the number of extracurricular activities the student undertook during the semester.</p>
 <p>The researcher wants to estimate the effect of the math test on the probability of passing the exam, and also test whether the amount of extracurricular activities may moderate the math effect.</p>
-<p>Each schools has different number of students, ranging from 51 to 100. Each student presents three variable values: the score in the <code>math</code> test, the number of <code>activity</code> undertaken and whether the exam was passed <code>pass=1</code> or not, <code>pass=0</code>.</p>
-<p>Here are the frequency table for the <code>pass</code> variable and an abridged table for the schools variable. <code>frequencies</code> -&gt; <code>Contingency tables</code>.</p>
+<p>Each school has a different number of students, ranging from 51 to 100. Each student presents three values: the score in the <code>math</code> test, the number of <code>activity</code> undertaken and whether the exam was passed <code>pass=1</code> or not, <code>pass=0</code>.</p>
+<p>Here are the frequency tables for the <code>pass</code> variable and an abridged table for the schools variable. <code>frequencies</code> -&gt; <code>Contingency tables</code>.</p>
 <p><img src="examples/gzlmmixed1/results_freq1.png" class="img-responsive" alt=""></p>
 <p>…</p>
 <p><img src="examples/gzlmmixed1/results_freq2.png" class="img-responsive" alt=""></p>
@@ -452,25 +452,26 @@ div.tocify {
 <p><img src="examples/gzlmmixed1/menu.png" class="img-responsive" alt=""></p>
 <p>Here we can choose which specific model we want to estimate. We can leave the selected option to <code>Logistic</code>, which is the module default.</p>
 <p><img src="examples/gzlmmixed1/models.png" class="img-responsive" alt=""></p>
-<p>We can now define the variables role in the model, by selecting the dependent variable <code>pass</code> and the covariates <code>math</code> and <code>activity</code>. We put the latter ones in <code>Covariates</code> because they are continuous variables. Notice that <span class="jamovi">jamovi</span> recognizes <code>activity</code> as a nominal variable, because it lists only integer values. GAMLj would automatically transform it into a numerical variable and use it as covariate.</p>
+<p>We can now define the variables role in the model, by selecting the dependent variable <code>pass</code> and the covariates <code>math</code> and <code>activity</code>. We put the latter ones in <code>Covariates</code> because they are continuous variables. Notice that <span class="jamovi">jamovi</span> recognizes <code>activity</code> as a nominal variable, because it lists only integer values. GAMLj automatically transforms it into a numerical variable and uses it as covariate.</p>
 <p><img src="examples/gzlmmixed1/variables.png" class="img-responsive" alt=""></p>
 <div id="the-model" class="section level2">
 <h2>The model</h2>
-<p>We need to specify the model, in terms of fixed effects and random effects. First, we expand the <code>Fixed Effects</code> tab and include the interaction into the model terms, by selecting both variables on the left panel and push them on the right.</p>
+<p>We need to specify the model, in terms of fixed effects and random effects. First, we expand the <code>Fixed Effects</code> tab and include the interaction into the model terms, by selecting both variables on the left panel and pushing them on the right.</p>
 <p><img src="examples/gzlmmixed1/fixed.png" class="img-responsive" alt=""></p>
 <p>Then we expand the <code>Random Component</code> tab and fill in the intercept as random effects across school (we will add random terms later on, here we start with the intercept as random for the sake of simplicity).</p>
 <p><img src="examples/gzlmmixed1/random1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
-<p>The first table, <code>Model Info</code> recap the model call (the formula used in R), the description of the model (family and link function), and some overall model index. Here we can look at the R-squared, for datail see <a href="gzlm_specs.html">technical details</a> and <a href="https://cran.r-project.org/web/packages/piecewiseSEM/">R piecewise package implementation</a></p>
+<p>The first table, <code>Model Info</code> recaps the model call (the formula used in R), the description of the model (family and link function), and some overall model index. Here we can look at the R-squared, for datail see <a href="gzlm_specs.html">technical details</a> and <a href="https://cran.r-project.org/web/packages/piecewiseSEM/">R piecewise package implementation</a></p>
 <p><img src="examples/gzlmmixed1/results_modelinfo.png" class="img-responsive" alt=""></p>
-<p>Based on the R-square indexes, we can see that our error of approximation of the data decreases of 4% ( <span class="math inline">\({R^2}_{marg}=.039\)</span> ) thanks to the fixed effects, whereas all effects together decrease our error of approximation of 37% (<span class="math inline">\({R^2}_{cond}=.378\)</span>). Put it in another way, our ability to 37% of the observed probabilities capturing also the variability of the intercepts.</p>
+<p>Based on the R-square indexes, we can see that our error of approximation of the data decreases of 4% ( <span class="math inline">\({R^2}_{marg}=.039\)</span> ) thanks to the fixed effects, whereas all effects together decrease our error of approximation of 37% (<span class="math inline">\({R^2}_{cond}=.378\)</span>).</p>
 <p>The other information in the table helps to interpret the results. In particulat, the row <code>Direction</code> is useful. It gives the definition of the logit that is used, including which is the reference group of the dependent variable. In the example, it indicates that we are predicting <code>pass=1</code> against <code>pass=0</code>. Thus we know that all the independent variables positively related with the logit are positively related with the odd of passing the exam.</p>
 </div>
 <div id="random-component" class="section level2">
 <h2>Random component</h2>
-<p>For this model, with only intercepts as random coefficients across schools, the random component table is pretty simply. It shows the variance of the random intercepts. It is non-zero, so we are happy. It also shows that the intercepts account for a large portion of variability (<span class="math inline">\(ICC=.50\)</span>), indicating that schools are very different in the students’ average probability of passing the exam.</p>
+<p><img src="examples/gzlmmixed1/results_random1.png" class="img-responsive" alt=""></p>
+<p>For this model, with only intercepts as random coefficients across schools, the random component table is pretty simply. It shows the variance of the random intercepts. It is non-zero, so we are happy.</p>
 </div>
 <div id="omnibus-test" class="section level2">
 <h2>Omnibus test</h2>
