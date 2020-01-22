@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="(Marcello Gallucci)" />
@@ -97,7 +97,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -246,6 +245,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -258,48 +258,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -313,6 +274,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -513,7 +480,7 @@ div.tocify {
 <p><img src="examples/mixed1/resultsrimr.png" class="img-responsive" alt=""></p>
 <p>As regards the intercept (which people usually ignore) we should interpret it as the expected number of smiles for the average number of beers drunken. This can be surprising because one expects the intercept to be the expected value of Y when X=0. It is, of course, also here but jamovi mixed model module centers the continuous variables by default. Thus, X=0 means X=mean. Indeed, in the <code>Covariates Scaling</code> tab we see that:</p>
 <p><img src="examples/mixed1/xscaling.png" class="img-responsive" alt=""></p>
-<p>Options are available to scale the covariates, by centering it or standardizing it. The options “cluster-based-*&quot; operate the re-scaling (centering or standardizing) within each cluster rather than on the sample as a whole.</p>
+<p>Options are available to scale the covariates, by centering it or standardizing it. The options &quot;cluster-based-*&quot; operate the re-scaling (centering or standardizing) within each cluster rather than on the sample as a whole.</p>
 <p>The <strong>Random Component</strong> display the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is a good variance of the intercepts (<span class="math inline">\({\sigma_a}^2\)</span>=6.53), thus we did well in letting the intercepts vary from cluster to cluster. (<span class="math inline">\({\sigma_a}^2\)</span>=6.53) can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variance (<span class="math inline">\(\sigma^2\)</span>), that is <span class="math inline">\(v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}\)</span></p>
 </div>
 </div>
@@ -540,6 +507,9 @@ div.tocify {
 <h1>Related examples</h1>
 <ul>
 <li>
+<a href="mixed_example_igm.html">Mixed: Individual Growth Model</a>
+</li>
+<li>
 <a href="mixed_example1.html">Mixed Models: Random coefficients regression</a>
 </li>
 <li>
@@ -547,9 +517,6 @@ div.tocify {
 </li>
 <li>
 <a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random effects</a>
-</li>
-<li>
-<a href="mixed_example_igm.html">Mixed: Individual Growth Model</a>
 </li>
 </ul>
 <h1>
@@ -578,6 +545,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
