@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="(Marcello Gallucci)" />
+
+
+<title>GzLM: Polynomial Gamma regression for coronavirus data</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110344212-1');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="gzlmmixed.html">Generalized Mixed Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples</a>
+</li>
+<li>
+  <a href="rosetta.html">Rosetta store</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/gamlj/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">GzLM: Polynomial Gamma regression for coronavirus data</h1>
+<h4 class="author">(Marcello Gallucci)</h4>
+
+</div>
+
+
+<p>```</p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> Polynomial regression, Gamma distribution, Generalized linear model </span></p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>In this section we look at how to model cumulative distributions over time with the Generalized Linear Model. There are many different ways to model this kind of data, but the purpose here is to show how easy and flexible the generalized linear model is. With <span class="jamovi">jamovi</span> GAMLj things get very easy.</p>
+<p>We are going to use the data from the recent <em>coronavirus</em> (COVID-19) outbreak, available at <a href="https://github.com/CSSEGISandData/COVID-19">CSSEGISandData</a>. Data are updated every day, at the moment ranging from 01-22-2020 to 03-04-2020. As new data arrive, results may change. Data are from different countries. Here we consider only countries were the confirmed cases are more then 1000, so we can fit more robust models.</p>
+<p><em>Please note that no medical or policy-making conclusions should be drawn from these analyses. The only purpose of this page is to show how the Generalized Linear Model may help in understanding some non-linear distributions of data. Here we use the data only to show how the software and the models work. For medical interpretation of the data please look for other sources where these data are analyzed for mediacal purposes and interpreted by medical scientists</em>.</p>
+</div>
+<div id="cumulative-distributions" class="section level1">
+<h1>Cumulative distributions</h1>
+<p>The <em>coronavirus</em> data available to us are in the form of number of confirmed cases for each day. So, each day accumulates also the previous days confirmed cases. Because the outbreak is recent (today is 2020-03-05), we have that the majority of days in several countries show very few cases, whereas a small number of days are associated with many cases. Here is the histogram for Italy and France data (Figure 1).</p>
+<figure>
+<figcaption>
+Figure 1. Distribution of confirmed cases for two countries
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/fig1-1.png">
+</figure>
+A gamma distribution shape depends on the <em>shape</em> parameter and the <em>rate</em> parameter, an example with small shape and rate is in Figure 2.
+<figure>
+<figcaption>
+Figure 2. Theoretical gamma distributions
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/fig2-1.png">
+</figure>
+<p>This distribution can be accomodated with a <em>Poisson distribution</em> or a <em>Gamma distribution</em>. Even though Gamma is a continuous distribution (and number of confirmed cases is not), preliminary analyses showed that the models fits better assuming it, so we will go for it.</p>
+<p>Please note: because we want to model how the dependent variable changes over time, which is the main goal of the analysis, we are not going to deal with the inferential tests associated with the parameter estimates, so the assumed distribution is not crucial here, as long as the model fit. The same applies to the autocorrelation of the data, which is not a concern for our purposes.</p>
+</div>
+<div id="the-model" class="section level1">
+<h1>The model</h1>
+<p>The actual trend of the dependent variable over time may take different shapes. At the onset of the contagion phase, the trend of increase is typically exponential. An example is in Figure 3, in which the Italian data from day 10 (when the first Italian case was confirmed) to day 40 (the end of the fourth week after the Italian outbreak) are depicted.</p>
+<figure>
+<figcaption>
+Figure 3. Confirmed by day for Italy, first 30 days
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/fig3-1.png">
+</figure>
+<p>This shape can be easely captured with a logarithm link-function. That is, the model would simple look like: <span class="math display">\[ \hat{ln(y)}=a+b_1 \cdot x\]</span></p>
+<p>Fitting a linear model like this one would produce predicted values expressed a <span class="math inline">\(ln(y)\)</span>. When we transform them back into the original scale, we obtain an exponential relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>. Let’s do it in <span class="jamovi">jamovi</span>.</p>
+</div>
+<div id="simple-generalized-linear-model" class="section level1">
+<h1>Simple generalized linear model</h1>
+<div id="input" class="section level2">
+<h2>Input</h2>
+<p>As an example, let’s fit a GzLM as discussed above. We are going to use GAMLj <code>Generalized Linear Model</code> command.</p>
+<p><img src="examples/corona/input.menu.png" class="img-responsive" alt=""></p>
+<p>In the input panel, we need to select a <code>custom model</code>, because we need to set the <code>Gamma</code> as the DV distribution and the <code>Log</code> as the link function.</p>
+<p><img src="examples/corona/input.model.png" class="img-responsive" alt=""></p>
+<p>When we have done that, we just set the dependent and the independent variable (covariate) and we have done. To visualize the model, we go to the <code>Plot</code> panel and we select <code>Day</code> as the x-axis variable.</p>
+<p><img src="examples/corona/input.plot.png" class="img-responsive" alt=""></p>
+</div>
+<div id="output" class="section level2">
+<h2>Output</h2>
+As we can see in the recap info table, the <span class="math inline">\(R^2\)</span> would be considered very good (.795)
+<pre class='jamovitable'>
+ Model Info                                                              
+ ─────────────────────────────────────────────────────────────────────── 
+   Info             Value      Comment                                   
+ ─────────────────────────────────────────────────────────────────────── 
+   Model Type       Custom     Model with custom family                  
+   Call             glm        Confirmed ~ 1 + Day                       
+   Link function    log        Coefficients are in the log(y) scale      
+   Distribution     Gamma      Skewed continuous distribution            
+   R-squared          0.795    Proportion of reduction of error          
+   AIC              257.733    Less is better                            
+   Deviance          34.463    Less is better                            
+   Residual DF       29.000                                              
+   Converged        yes        Whether the estimation found a solution   
+ ─────────────────────────────────────────────────────────────────────── 
+
+</pre>
+<p>If we look at the plot and compared the predicted values (the curve) with the actual confirmed cases (cyan dots), we can see how the model fits reasonably well the data.</p>
+<figure>
+<figcaption>
+Figure 4. Model for Italian first 30 days
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/intro_plot1-1.png">
+</figure>
+<p>In many applications our results would be considered as satisfactory, but the model will not work for long. The number of confirmed cases cannot increase exponentialy forever, so the model will start to misfit, sooner or later. Lets’ fit the same model (the input is equivalent so I’m not going to show it again) for the Chinese data, in which the outbreak happened earlier than in Italy. For Mainland China, if we consider the first 40 days we obtain very different results as compared with Italy.</p>
+<figure>
+<figcaption>
+Figure 4. Simple model for Mainland China, first 40 days
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/intro_plot2-1.png">
+</figure>
+<p>If we look at the plot and compared the predicted values (the curve) with the actual confirmed cases (cyan dots), we can see that the model does not really fit, and cannot fit the data well. We should allow the curve to bend down, or to smooth out, in order to follow the evolution of the DV over time.</p>
+Furthermore, as we can see in the recap info table, the <span class="math inline">\(R^2\)</span> is definitely not good for this kind of applications (.648)
+<pre class='jamovitable'>
+ Model Info                                                              
+ ─────────────────────────────────────────────────────────────────────── 
+   Info             Value      Comment                                   
+ ─────────────────────────────────────────────────────────────────────── 
+   Model Type       Custom     Model with custom family                  
+   Call             glm        Confirmed ~ 1 + Day                       
+   Link function    log        Coefficients are in the log(y) scale      
+   Distribution     Gamma      Skewed continuous distribution            
+   R-squared          0.648    Proportion of reduction of error          
+   AIC              966.399    Less is better                            
+   Deviance          17.639    Less is better                            
+   Residual DF       41.000                                              
+   Converged        yes        Whether the estimation found a solution   
+ ─────────────────────────────────────────────────────────────────────── 
+
+</pre>
+<p>The solution is polynomial regression. In polynomial regression, one adds power terms (<span class="math inline">\(x^2\)</span>, <span class="math inline">\(x^3\)</span>, <span class="math inline">\(x^4\)</span> ..) in order to allow the curve to follow different paths along the time line. A squared term, for instance, allows the curve to stay flatter at the begining and stear up quickly. A cubic term allows the curve to smooth. The more polynomial terms one adds, more flexibility one allows to the curve shape.</p>
+<p>For the present data, a polynomial regression up to the 4th grade can be enough (so far). Thus, the model is now:</p>
+<p><span class="math display">\[ \hat{ln(y)}=a+b_1 \cdot x + b_2 \cdot x^2, b_3 \cdot x^3+b_4 \cdot x^4\]</span></p>
+<p>We now review how to run this in <span class="jamovi">jamovi</span> GAMLj.</p>
+</div>
+</div>
+<div id="polynomial-generalized-linear-model" class="section level1">
+<h1>Polynomial Generalized Linear Model</h1>
+<div id="input-1" class="section level2">
+<h2>Input</h2>
+<p>In the input panel of GAMLj, we need to open the <code>Model</code> panel. In the <code>Components</code> fiels, upon selecting the variable <code>Day</code>, we can see a little <code>1</code> on its right.</p>
+<p><img src="examples/corona/input.square.png" class="img-responsive" alt=""></p>
+<p>That is the order of the term we want to include in the model. By clicking the little arrow up, we bring the order to <code>2</code>, and then drag the new term in the <code>Model Terms</code> fiels.</p>
+<p>By repeating the operation for order 3 and 4, we obtained the desired model.</p>
+<p><img src="examples/corona/input.full.png" class="img-responsive" alt=""></p>
+</div>
+</div>
+<div id="output-1" class="section level1">
+<h1>Output</h1>
+<p>If we fit the polynomial generalized model on the data from Mainland Chine, we obtain a <span class="math inline">\(R^2\)</span> pretty close to 1, showing how well the model now fits the data. More clearly, the plot of the new model shows the flexibility of the GzLM in adjusting itself to the data trend.</p>
+<pre class='jamovitable'>
+ Model Info                                                                           
+ ──────────────────────────────────────────────────────────────────────────────────── 
+   Info             Value      Comment                                                
+ ──────────────────────────────────────────────────────────────────────────────────── 
+   Model Type       Custom     Model with custom family                               
+   Call             glm        Confirmed ~ 1 + Day + I(Day^2) + I(Day^3) + I(Day^4)   
+   Link function    log        Coefficients are in the log(y) scale                   
+   Distribution     Gamma      Skewed continuous distribution                         
+   R-squared          0.994    Proportion of reduction of error                       
+   AIC              790.745    Less is better                                         
+   Deviance           0.276    Less is better                                         
+   Residual DF       38.000                                                           
+   Converged        yes        Whether the estimation found a solution                
+ ──────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+<figure>
+<figcaption>
+Figure 4. Polynomial model for Chinese data
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/intro_plot3-1.png">
+</figure>
+<p>We can see that the model really works. But what about the Italian and French data, that were very different? Well, the model works for Italy and France as well, thanks to the model flexibility. Actually, it works well for all countries with available data. All <span class="math inline">\(R^2\)</span> are close to 1, and the predicted values are very close to the observed one. At this point, one can start working on these models and use them to extrapolate information, make comparisons, and do whaterver one usually do with statistical models.</p>
+<p>The fit of the same model estimation (polynomial up to the 4th grade), is shown in the next section for all countries with more than 1000 confirmed cases.</p>
+</div>
+<div id="replications-across-countries" class="section level1">
+<h1>Replications across countries</h1>
+<div id="france" class="section level2">
+<h2>France</h2>
+<p><strong>R^2= 0.9748561 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-1.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                         
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)     Lower      Upper     z          p        
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      5.7560    0.04796    316.067    287.354    346.79    120.027    < .001   
+   Day              0.3923    0.03150      1.480      1.392      1.57     12.455    < .001   
+   Day²             0.0103    0.00460      1.010      1.001      1.02      2.241     0.025   
+   Day³           -1.21e-4    2.16e-4      1.000      0.999      1.00     -0.557     0.577   
+   Day⁴           -5.49e-6    3.14e-6      1.000      1.000      1.00     -1.748     0.081   
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="germany" class="section level2">
+<h2>Germany</h2>
+<p><strong>R^2= 0.9830855 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-2.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                         
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)     Lower      Upper      z         p        
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     5.65042    0.05074    284.410    257.127    313.721    111.36    < .001   
+   Day             0.37607    0.03419      1.457      1.362      1.557     11.00    < .001   
+   Day²            0.00974    0.00525      1.010      0.999      1.020      1.86     0.063   
+   Day³           -2.70e-4    2.65e-4      1.000      0.999      1.000     -1.02     0.309   
+   Day⁴           -9.86e-6    4.18e-6      1.000      1.000      1.000     -2.36     0.018   
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="hong-kong" class="section level2">
+<h2>Hong Kong</h2>
+<p><strong>R^2= 0.9888487 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-3.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper     z         p        
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     4.66825    0.07013    106.51    92.613    121.92    66.569    < .001   
+   Day             0.03894    0.02932      1.04     0.981      1.10     1.328     0.184   
+   Day²            0.00189    0.00348      1.00     0.995      1.01     0.543     0.587   
+   Day³            1.23e-4    1.47e-4      1.00     1.000      1.00     0.833     0.405   
+   Day⁴            1.19e-6    2.00e-6      1.00     1.000      1.00     0.594     0.552   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="iran" class="section level2">
+<h2>Iran</h2>
+<p><strong>R^2= 0.9995268 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-4.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                            
+ ────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)      Lower       Upper       z         p        
+ ────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      7.9863    0.01794    2940.482    2838.322    3045.119    445.16    < .001   
+   Day              0.1693    0.03276       1.184       1.111       1.263      5.17    < .001   
+   Day²            -0.0980    0.01539       0.907       0.880       0.934     -6.37    < .001   
+   Day³            -0.0123    0.00234       0.988       0.983       0.992     -5.24    < .001   
+   Day⁴           -5.00e-4    1.09e-4       1.000       0.999       1.000     -4.60    < .001   
+ ────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="italy" class="section level2">
+<h2>Italy</h2>
+<p><strong>R^2= 0.9952564 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-5.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                             
+ ─────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)      Lower       Upper       z          p        
+ ─────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      8.0069    0.01626    3001.536    2907.009    3098.276    492.566    < .001   
+   Day              0.1305    0.01492       1.139       1.107       1.173      8.751    < .001   
+   Day²            -0.0256    0.00352       0.975       0.968       0.982     -7.274    < .001   
+   Day³           -5.98e-4    2.60e-4       0.999       0.999       1.000     -2.301     0.021   
+   Day⁴            3.68e-6    5.25e-6       1.000       1.000       1.000      0.701     0.483   
+ ─────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="japan" class="section level2">
+<h2>Japan</h2>
+<p><strong>R^2= 0.9873613 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-6.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                          
+ ──────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)     Lower      Upper      z          p        
+ ──────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      5.6970    0.04323    297.966    273.507    324.021    131.778    < .001   
+   Day             -0.0165    0.02056      0.984      0.945      1.024     -0.804     0.422   
+   Day²            -0.0160    0.00268      0.984      0.979      0.989     -5.980    < .001   
+   Day³           -7.08e-4    1.21e-4      0.999      0.999      1.000     -5.858    < .001   
+   Day⁴           -9.83e-6    1.73e-6      1.000      1.000      1.000     -5.697    < .001   
+ ──────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="mainland-china" class="section level2">
+<h2>Mainland China</h2>
+<p><strong>R^2= 0.9953826 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-7.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                
+ ────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)       Lower        Upper        z          p        
+ ────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    11.28746    0.00251    79814.780    79422.773    80208.241    4496.04    < .001   
+   Day             0.00252    0.00102        1.003        1.001        1.005       2.48     0.013   
+   Day²            5.33e-4    1.20e-4        1.001        1.000        1.001       4.44    < .001   
+   Day³            4.37e-5    5.14e-6        1.000        1.000        1.000       8.51    < .001   
+   Day⁴           -8.52e-7    7.16e-8        1.000        1.000        1.000     -11.91    < .001   
+ ────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="others" class="section level2">
+<h2>Others</h2>
+<p><strong>R^2= 0.9875281 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-8.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper     z         p        
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     6.60361    0.02990    737.75    695.45    781.92    220.89    < .001   
+   Day             0.06665    0.01847      1.07      1.03      1.11      3.61    < .001   
+   Day²            0.01676    0.00330      1.02      1.01      1.02      5.08    < .001   
+   Day³            0.00128    2.12e-4      1.00      1.00      1.00      6.01    < .001   
+   Day⁴            2.23e-5    4.42e-6      1.00      1.00      1.00      5.04    < .001   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="singapore" class="section level2">
+<h2>Singapore</h2>
+<p><strong>R^2= 0.9953467 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-9.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper     z         p        
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     4.72495    0.06815    112.72    98.408    128.55    69.327    < .001   
+   Day             0.04209    0.02846      1.04     0.986      1.10     1.479     0.139   
+   Day²            0.00364    0.00340      1.00     0.997      1.01     1.071     0.284   
+   Day³            1.91e-4    1.46e-4      1.00     1.000      1.00     1.312     0.189   
+   Day⁴            1.69e-6    2.01e-6      1.00     1.000      1.00     0.839     0.402   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="south-korea" class="section level2">
+<h2>South Korea</h2>
+<p><strong>R^2= 0.9952967 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-10.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                            
+ ────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)      Lower       Upper       z         p        
+ ────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     8.60023    0.01127    5432.923    5313.874    5553.882    763.14    < .001   
+   Day             0.01316    0.00772       1.013       0.998       1.029      1.71     0.088   
+   Day²           -0.03867    0.00136       0.962       0.959       0.965    -28.41    < .001   
+   Day³           -0.00177    7.52e-5       0.998       0.998       0.998    -23.50    < .001   
+   Day⁴           -2.30e-5    1.24e-6       1.000       1.000       1.000    -18.56    < .001   
+ ────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="thailand" class="section level2">
+<h2>Thailand</h2>
+<p><strong>R^2= 0.985671 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-11.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z         p        
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      3.7852    0.10505    44.042    35.660    53.84    36.032    < .001   
+   Day              0.0168    0.03973     1.017     0.940     1.10     0.423     0.673   
+   Day²           -9.16e-4    0.00431     0.999     0.991     1.01    -0.213     0.832   
+   Day³           -1.02e-4    1.69e-4     1.000     1.000     1.00    -0.602     0.547   
+   Day⁴           -2.58e-6    2.17e-6     1.000     1.000     1.00    -1.190     0.234   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="us" class="section level2">
+<h2>US</h2>
+<p><strong>R^2= 0.9790367 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-12.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                         
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)     Lower      Upper      z         p        
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     4.94106    0.06568    139.919    122.750    158.803    75.233    < .001   
+   Day             0.13258    0.03270      1.142      1.070      1.217     4.054    < .001   
+   Day²           -0.00391    0.00419      0.996      0.988      1.004    -0.932     0.351   
+   Day³           -3.67e-4    1.83e-4      1.000      0.999      1.000    -2.007     0.045   
+   Day⁴           -6.32e-6    2.51e-6      1.000      1.000      1.000    -2.513     0.012   
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+</div>
+<div id="the-mixed-model" class="section level1">
+<h1>The mixed model</h1>
+<p>When enough contries are available, variability across coefficients, and thus differences in trends, can be evaluated with the mixed model. This will be done later on.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
