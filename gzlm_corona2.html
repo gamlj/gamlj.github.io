@@ -424,11 +424,12 @@ div.tocify {
 <div id="extracting-numerical-interesting-info" class="section level1">
 <h1>Extracting numerical interesting info</h1>
 <p>One of the most interesting parameter of the fitted curve is the <em>inflection point</em>, namely the time-point corresponding to the time in which the trend reverses its direction, and begins to slow down (the rate of spread starts to decreases). This is usually defined based on the <em>growth factor</em>,the ratio between the confirmed case at T is equal to the confirmed cases at T+1. Being the outcome a cumulative distribution, one can see that if this ratio is 1, and stay 1 or lower, the number of infected cases is decreasing over time. The growth factor, outside epidemics, is simple the <em>odd ratio</em> of the linear trend of a generalized linear model, computed as some time along the x-axis. It is the rate of change of cases. Formally, the rate of change of the increase (or decrease) is an odd ratio defined (usually called <span class="math inline">\(exp_b\)</span>) as:</p>
-<p><span class="math display">\[ exp_b=exp(log(y_T+1)-log(y_T+1))=y_{T+1)/y_T\]</span></p>
-<p>where T is any time along the x-axis and y is the number of confirmed cases. Th inflextion point (if any) is given by <span class="math inline">\(exp_b=1\)</span>.</p>
-<p>Unfortunately, at the beginning of an outbreak, there is no inflection point. Nonetheless, one can look at the instant rate of change of the infected cases (growth factor or <span class="math inline">\(exp_b\)</span>) at a significant time-points.</p>
-<p>where <span class="math inline">\(y\)</span> is the confirmed cases count. The flext point is where <span class="math inline">\(exp_b=1\)</span>. Here we computed the <span class="math inline">\(exp_b\)</span> for <span class="math inline">\(T=max(T)-3)\)</span>, so we can monitor the rate of the increase in the last few days.</p>
+<p><span class="math display">\[ exp_b=exp(log(y_{T+1})-log(y_{T}))={y_{T+1} \over y_T} \]</span></p>
+<p>where T is any time along the x-axis and y is the expected number of confirmed cases. The inflextion point (if any) is given by <span class="math inline">\(exp_b=1\)</span>. The flext point is where <span class="math inline">\(exp_b=1\)</span>.</p>
+<p>Unfortunately, at the beginning of an outbreak, there is no inflection point. Nonetheless, one can look at the instant rate of change of the infected cases (growth factor or <span class="math inline">\(exp_b\)</span>) at a significant time-points. This parameter can be estimated at any interesting time by centering the time variable to the value we want, and evaluate the <span class="math inline">\(exp_b\)</span> of the linear term.</p>
+<p>Here we computed the <span class="math inline">\(exp_b\)</span> for <span class="math inline">\(T=max(T)-3)\)</span>, so we can monitor the rate of the increase in the last few days.</p>
 <p>The <span class="math inline">\(exp_b\)</span> produced with the graphs tells us the increase in confirmed case each contries is experiencing, on average, in the last three days.</p>
+<p>The coefficients of the models, are computed with standard time scale, so they can be used to predict future outcomes with standard time scale.</p>
 </div>
 <div id="replications-across-countries" class="section level1">
 <h1>Replications across countries</h1>
