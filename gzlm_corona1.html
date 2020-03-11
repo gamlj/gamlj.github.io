@@ -405,7 +405,6 @@ div.tocify {
 </div>
 
 
-<p>```</p>
 <p><span class="keywords"> <span class="keytitle"> keywords </span> Polynomial regression, Gamma distribution, Generalized linear model </span></p>
 <p><span class="draft"> Draft version, mistakes may be around </span></p>
 <div id="introduction" class="section level1">
@@ -483,7 +482,7 @@ Figure 4. Model for Italian first 30 days
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/intro_plot1-1.png">
 </figure>
-<p>In many applications our results would be considered as satisfactory, but in this case we want to do better. First, it is clear that the confirmed cases increase at a faster rate that the predicted one. Second, the model will not work for long. The number of confirmed cases cannot increase exponentialy forever, so the model will start to grossly misfit, sooner or later. Let’s fit the same model (the input is equivalent so I’m not going to show it again) for the Mainland China data, in which the outbreak happened earlier than in Italy. For Mainland China, considering the first 40 days yealds very different results as compared with Italy.</p>
+<p>In many applications our results would be considered as satisfactory, but in this case we want to do better. First, it is clear that the confirmed cases increase at a faster rate that the predicted one. Second, the model will not work for long. The number of confirmed cases cannot increase exponentialy forever, so the model will start to grossly misfit, sooner or later. Let’s fit the same model (the input is equivalent so I’m not going to show it again) for the Mainland China data, in which the outbreak happened earlier than in Italy. For Mainland China, considering the first 40 days yields very different results as compared with Italy.</p>
 <figure>
 <figcaption>
 Figure 4. Simple model for Mainland China, first 40 days
@@ -555,12 +554,19 @@ Figure 4. Polynomial model for Mainland China data
 <p>We can see that the model really works. But what about the Italian and French data, that were very different? Well, the model works for Italy and France as well, thanks to the model flexibility. Actually, it works well for all countries with available data. All <span class="math inline">\(R^2\)</span> are close to 1, and the predicted values are very close to the observed one. At this point, one can start working on these models and use them to extrapolate information, make comparisons, and do whaterver one usually do with statistical models.</p>
 <p>The fit of the same model estimation (polynomial up to the 4th grade) is shown in the next section for all countries with more than 1000 data points.</p>
 </div>
+<div id="interpreting-the-parameters" class="section level1">
+<h1>Interpreting the parameters</h1>
+<p>Two interesting parameters can be examined in the model. One is the intercept <span class="math inline">\(exp_B\)</span>. That is the expected value of <em>confirmed case</em> at a given T(ime), and the <span class="math inline">\(exp_B\)</span> of the linear trend (<code>Day</code>), that gives us the expected <em>growth factor</em> at a given T, that is the expected ratio between the number of cases at T and the number of cases at T-1. Recall, however, that in polynomial regression, all the lower order coefficients are estimated for the independent variable equal to zero, so T=0. When you run a model in GAMLj, the independent variable is centered to its mean, so T=mean(Day). To estimate the following models, we do not center the variables, so T=0 for all the models we estimate below. Those are the coefficients to find in the model.</p>
+<p>Nonetheless, it would be more interesting to obtain the expected cases (EC) for the last day available, and the expected growth factor (GF) for the last day available, so we can monitor what is going on in the model for the latest information available. To do that, one simply needs to re-estimate the model centering the time variable (<code>Day</code>) to the last day available. That is, compute <span class="math inline">\(Day_{c}=Day-max(Day))\)</span> and use it to estimate the model. The new model intercept <span class="math inline">\(exp_B\)</span> is the EC, the linear trend <span class="math inline">\(exp_B\)</span> is the latest GF.</p>
+</div>
 <div id="replications-across-countries" class="section level1">
 <h1>Replications across countries</h1>
 <p>Here are the models fitted for all available countries with more than 1000 data points. Data are update every day. The last update is 2020-03-11.</p>
 <div id="australia" class="section level2">
 <h2>Australia</h2>
 <p><strong>R^2= 0.9885663 </strong></p>
+<p><strong>EC= 107 </strong></p>
+<p><strong>GF= 1.18 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -583,6 +589,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="belgium" class="section level2">
 <h2>Belgium</h2>
 <p><strong>R^2= 0.9915158 </strong></p>
+<p><strong>EC= 265 </strong></p>
+<p><strong>GF= 0.95 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -605,6 +613,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="france" class="section level2">
 <h2>France</h2>
 <p><strong>R^2= 0.9937272 </strong></p>
+<p><strong>EC= 1736 </strong></p>
+<p><strong>GF= 1.23 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -627,6 +637,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="germany" class="section level2">
 <h2>Germany</h2>
 <p><strong>R^2= 0.9957527 </strong></p>
+<p><strong>EC= 1458 </strong></p>
+<p><strong>GF= 1.14 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -649,6 +661,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="hong-kong" class="section level2">
 <h2>Hong Kong</h2>
 <p><strong>R^2= 0.9906541 </strong></p>
+<p><strong>EC= 116 </strong></p>
+<p><strong>GF= 1.03 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -671,6 +685,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="iran" class="section level2">
 <h2>Iran</h2>
 <p><strong>R^2= 0.9989435 </strong></p>
+<p><strong>EC= 7973 </strong></p>
+<p><strong>GF= 1.08 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -693,6 +709,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="italy" class="section level2">
 <h2>Italy</h2>
 <p><strong>R^2= 0.9980056 </strong></p>
+<p><strong>EC= 10567 </strong></p>
+<p><strong>GF= 1.23 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -715,6 +733,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="japan" class="section level2">
 <h2>Japan</h2>
 <p><strong>R^2= 0.9896881 </strong></p>
+<p><strong>EC= 556 </strong></p>
+<p><strong>GF= 1.06 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -737,6 +757,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="mainland-china" class="section level2">
 <h2>Mainland China</h2>
 <p><strong>R^2= 0.9957621 </strong></p>
+<p><strong>EC= 81398 </strong></p>
+<p><strong>GF= 1.01 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -759,6 +781,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="malaysia" class="section level2">
 <h2>Malaysia</h2>
 <p><strong>R^2= 0.9771077 </strong></p>
+<p><strong>EC= 149 </strong></p>
+<p><strong>GF= 1.29 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -781,6 +805,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="netherlands" class="section level2">
 <h2>Netherlands</h2>
 <p><strong>R^2= 0.9972763 </strong></p>
+<p><strong>EC= 377 </strong></p>
+<p><strong>GF= 1.06 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -803,6 +829,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="norway" class="section level2">
 <h2>Norway</h2>
 <p><strong>R^2= 0.9894881 </strong></p>
+<p><strong>EC= 386 </strong></p>
+<p><strong>GF= 1.8 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -825,6 +853,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="others" class="section level2">
 <h2>Others</h2>
 <p><strong>R^2= 0.9834887 </strong></p>
+<p><strong>EC= 727 </strong></p>
+<p><strong>GF= 1.04 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -847,6 +877,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="republic-of-korea" class="section level2">
 <h2>Republic of Korea</h2>
 <p><strong>R^2= Inf </strong></p>
+<p><strong>EC= 7513 </strong></p>
+<p><strong>GF= NA </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -870,6 +902,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="singapore" class="section level2">
 <h2>Singapore</h2>
 <p><strong>R^2= 0.9957925 </strong></p>
+<p><strong>EC= 167 </strong></p>
+<p><strong>GF= 1.1 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -892,6 +926,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="south-korea" class="section level2">
 <h2>South Korea</h2>
 <p><strong>R^2= 0.9947459 </strong></p>
+<p><strong>EC= 6937 </strong></p>
+<p><strong>GF= 0.93 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -914,6 +950,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="spain" class="section level2">
 <h2>Spain</h2>
 <p><strong>R^2= 0.9946194 </strong></p>
+<p><strong>EC= 1605 </strong></p>
+<p><strong>GF= 1.45 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -936,6 +974,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="sweden" class="section level2">
 <h2>Sweden</h2>
 <p><strong>R^2= 0.9937192 </strong></p>
+<p><strong>EC= 343 </strong></p>
+<p><strong>GF= 1.22 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -958,6 +998,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="switzerland" class="section level2">
 <h2>Switzerland</h2>
 <p><strong>R^2= 0.9941565 </strong></p>
+<p><strong>EC= 475 </strong></p>
+<p><strong>GF= 1.12 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -980,6 +1022,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="taiwan" class="section level2">
 <h2>Taiwan</h2>
 <p><strong>R^2= 0.9901642 </strong></p>
+<p><strong>EC= 44 </strong></p>
+<p><strong>GF= 0.97 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -1002,6 +1046,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="thailand" class="section level2">
 <h2>Thailand</h2>
 <p><strong>R^2= 0.9881797 </strong></p>
+<p><strong>EC= 52 </strong></p>
+<p><strong>GF= 1.02 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -1024,6 +1070,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="uk" class="section level2">
 <h2>UK</h2>
 <p><strong>R^2= 0.992905 </strong></p>
+<p><strong>EC= 401 </strong></p>
+<p><strong>GF= 1.22 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -1046,6 +1094,8 @@ Figure 4. Polynomial model for Mainland China data
 <div id="us" class="section level2">
 <h2>US</h2>
 <p><strong>R^2= 0.9943447 </strong></p>
+<p><strong>EC= 937 </strong></p>
+<p><strong>GF= 1.4 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
