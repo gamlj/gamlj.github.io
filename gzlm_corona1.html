@@ -12,7 +12,7 @@
 <meta name="author" content="(Marcello Gallucci)" />
 
 
-<title>GzLM: Polynomial Gamma regression for coronavirus data</title>
+<title>GzLM: Polynomial Poisson regression for coronavirus data</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -399,13 +399,13 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">GzLM: Polynomial Gamma regression for coronavirus data</h1>
+<h1 class="title toc-ignore">GzLM: Polynomial Poisson regression for coronavirus data</h1>
 <h4 class="author">(Marcello Gallucci)</h4>
 
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> Polynomial regression, Gamma distribution, Generalized linear model </span></p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> Polynomial regression, Poisson distribution, Generalized linear model </span></p>
 <p><span class="draft"> Draft version, mistakes may be around </span></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
@@ -422,14 +422,14 @@ Figure 1. Distribution of confirmed cases for two countries
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/fig1-1.png">
 </figure>
-A gamma distribution shape depends on the <em>shape</em> parameter and the <em>rate</em> parameter, an example with small shape and rate is in Figure 2.
+A Poisson distribution shape depends on the <em>mean</em> parameter, an example with small mean is in Figure 2.
 <figure>
 <figcaption>
-Figure 2. Theoretical gamma distributions
+Figure 2. Theoretical Poisson distributions
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/fig2-1.png">
 </figure>
-<p>This distribution can be accomodated with a <em>Poisson distribution</em> or a <em>Gamma distribution</em>. Even though Gamma is a continuous distribution (and number of confirmed cases is not), preliminary analyses showed that the models fits better assuming it, so we will go for it.</p>
+<p>This distribution can be accomodated with a <em>Poisson distribution</em> or a <em>Gamma distribution</em>, even though Gamma is a continuous distribution (and number of confirmed cases is not).</p>
 <p>Please note: because we want to model how the dependent variable changes over time, which is the main goal of the analysis, we are not going to deal with the inferential tests associated with the parameter estimates, so the assumed distribution is not crucial here, as long as the model fit. The same applies to the autocorrelation of the data, which is not a concern for our purposes.</p>
 </div>
 <div id="the-model" class="section level1">
@@ -450,7 +450,7 @@ Figure 3. Confirmed by day for Italy, first 30 days
 <h2>Input</h2>
 <p>As an example, let’s fit a GzLM as discussed above. We are going to use GAMLj <code>Generalized Linear Model</code> command.</p>
 <p><img src="examples/corona/input.menu.png" class="img-responsive" alt=""></p>
-<p>In the input panel, we need to select a <code>custom model</code>, because we need to set the <code>Gamma</code> as the DV distribution and the <code>Log</code> as the link function.</p>
+<p>In the input panel, we need to select a <code>custom model</code>, because we need to set the <code>Poisson</code> as the DV distribution and the <code>Log</code> as the link function.</p>
 <p><img src="examples/corona/input.model.png" class="img-responsive" alt=""></p>
 <p>When we have done that, we just set the dependent and the independent variable (covariate) and we have done. To visualize the model, we go to the <code>Plot</code> panel and we select <code>Day</code> as the x-axis variable.</p>
 <p><img src="examples/corona/input.plot.png" class="img-responsive" alt=""></p>
@@ -466,10 +466,10 @@ As we can see in the recap info table, the <span class="math inline">\(R^2\)</sp
    Model Type       Custom     Model with custom family                  
    Call             glm        Confirmed ~ 1 + Day                       
    Link function    log        Coefficients are in the log(y) scale      
-   Distribution     Gamma      Skewed continuous distribution            
-   R-squared          0.795    Proportion of reduction of error          
-   AIC              257.733    Less is better                            
-   Deviance          34.463    Less is better                            
+   Distribution     Poisson    Model for count data                      
+   R-squared          0.980    Proportion of reduction of error          
+   AIC              471.724    Less is better                            
+   Deviance         331.922    Less is better                            
    Residual DF       29.000                                              
    Converged        yes        Whether the estimation found a solution   
  ─────────────────────────────────────────────────────────────────────── 
@@ -492,20 +492,20 @@ Figure 4. Simple model for Mainland China, first 40 days
 <p>If we look at the plot and compared the predicted values (the curve) with the actual confirmed cases (cyan dots), we can see that the model does not really fit, and cannot fit the data well. We should allow the curve to bend down, or to smooth out, in order to follow the evolution of the DV over time.</p>
 Furthermore, as we can see in the recap info table, the <span class="math inline">\(R^2\)</span> is definitely not good for this kind of applications (&lt;.70)
 <pre class='jamovitable'>
- Model Info                                                               
- ──────────────────────────────────────────────────────────────────────── 
-   Info             Value       Comment                                   
- ──────────────────────────────────────────────────────────────────────── 
-   Model Type       Custom      Model with custom family                  
-   Call             glm         Confirmed ~ 1 + Day                       
-   Link function    log         Coefficients are in the log(y) scale      
-   Distribution     Gamma       Skewed continuous distribution            
-   R-squared           0.568    Proportion of reduction of error          
-   AIC              1119.829    Less is better                            
-   Deviance           22.435    Less is better                            
-   Residual DF        47.000                                              
-   Converged        yes         Whether the estimation found a solution   
- ──────────────────────────────────────────────────────────────────────── 
+ Model Info                                                                 
+ ────────────────────────────────────────────────────────────────────────── 
+   Info             Value         Comment                                   
+ ────────────────────────────────────────────────────────────────────────── 
+   Model Type       Custom        Model with custom family                  
+   Call             glm           Confirmed ~ 1 + Day                       
+   Link function    log           Coefficients are in the log(y) scale      
+   Distribution     Poisson       Model for count data                      
+   R-squared             0.694    Proportion of reduction of error          
+   AIC              379211.439    Less is better                            
+   Deviance         378612.713    Less is better                            
+   Residual DF          47.000                                              
+   Converged        yes           Whether the estimation found a solution   
+ ────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 <p>The solution is polynomial regression. In polynomial regression, one adds power terms (<span class="math inline">\(x^2\)</span>, <span class="math inline">\(x^3\)</span>, <span class="math inline">\(x^4\)</span> ..) in order to allow the curve to follow different paths along the time line. A squared term, for instance, allows the curve to stay flatter at the begining and stear up quickly. A cubic term allows the curve to smooth. The more polynomial terms one adds, more flexibility one allows to the curve shape.</p>
@@ -529,20 +529,20 @@ Furthermore, as we can see in the recap info table, the <span class="math inline
 <h1>Output</h1>
 <p>If we fit the polynomial generalized model on the data from Mainland Chine, we obtain a <span class="math inline">\(R^2\)</span> pretty close to 1, showing how well the model now fits the data. More clearly, the plot of the new model shows the flexibility of the GzLM in adjusting itself to the data trend.</p>
 <pre class='jamovitable'>
- Model Info                                                                           
- ──────────────────────────────────────────────────────────────────────────────────── 
-   Info             Value      Comment                                                
- ──────────────────────────────────────────────────────────────────────────────────── 
-   Model Type       Custom     Model with custom family                               
-   Call             glm        Confirmed ~ 1 + Day + I(Day^2) + I(Day^3) + I(Day^4)   
-   Link function    log        Coefficients are in the log(y) scale                   
-   Distribution     Gamma      Skewed continuous distribution                         
-   R-squared          0.995    Proportion of reduction of error                       
-   AIC              906.679    Less is better                                         
-   Deviance           0.276    Less is better                                         
-   Residual DF       44.000                                                           
-   Converged        yes        Whether the estimation found a solution                
- ──────────────────────────────────────────────────────────────────────────────────── 
+ Model Info                                                                            
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Info             Value       Comment                                                
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Model Type       Custom      Model with custom family                               
+   Call             glm         Confirmed ~ 1 + Day + I(Day^2) + I(Day^3) + I(Day^4)   
+   Link function    log         Coefficients are in the log(y) scale                   
+   Distribution     Poisson     Model for count data                                   
+   R-squared           0.996    Proportion of reduction of error                       
+   AIC              5850.715    Less is better                                         
+   Deviance         5245.989    Less is better                                         
+   Residual DF        44.000                                                           
+   Converged        yes         Whether the estimation found a solution                
+ ───────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 <figure>
