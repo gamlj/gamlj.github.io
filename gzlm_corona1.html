@@ -410,7 +410,7 @@ div.tocify {
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>In this section we look at how to model cumulative distributions over time with the Generalized Linear Model. There are many different ways to model this kind of data, but the purpose here is to show how easy and flexible the generalized linear model is. With <span class="jamovi">jamovi</span> GAMLj things get very easy.</p>
-<p>We are going to use the data from the recent <em>coronavirus</em> (COVID-19) outbreak, available at <a href="https://github.com/CSSEGISandData/COVID-19">CSSEGISandData</a>. Data are updated every day, at the moment ranging from 01-22-2020 to 03-12-2020. As new data arrive, results may change. Data are from different countries. Here we consider only countries where confirmed cases times number of days provides more than 1000 data points, so we can fit more robust models.</p>
+<p>We are going to use the data from the recent <em>coronavirus</em> (COVID-19) outbreak, available at <a href="https://github.com/CSSEGISandData/COVID-19">CSSEGISandData</a>. Data are updated every day, at the moment ranging from 01-22-2020 to 03-13-2020. As new data arrive, results may change. Data are from different countries. Here we consider only countries where data are available for more than 10 days.</p>
 <p><em>Please note that no medical or policy-making conclusions should be drawn from these analyses. The only purpose of this page is to show how the Generalized Linear Model may help in understanding some non-linear distributions of data. Here we use the data only to show how the software and the models work. For medical interpretation of the data please look for other sources where these data are analyzed for mediacal purposes and interpreted by medical scientists</em>.</p>
 </div>
 <div id="data" class="section level1">
@@ -419,7 +419,7 @@ div.tocify {
 </div>
 <div id="cumulative-distributions" class="section level1">
 <h1>Cumulative distributions</h1>
-<p>The <em>coronavirus</em> data available to us are in the form of number of confirmed cases for each day. So, each day accumulates also the previous days confirmed cases. Because the outbreak is recent (today is 2020-03-13), we have that the majority of days in several countries show very few cases, whereas a small number of days are associated with many cases. Here is the histogram for Italy and France data (Figure 1).</p>
+<p>The <em>coronavirus</em> data available to us are in the form of number of confirmed cases for each day. So, each day accumulates also the previous days confirmed cases. Because the outbreak is recent (today is 2020-03-14), we have that the majority of days in several countries show very few cases, whereas a small number of days are associated with many cases. Here is the histogram for Italy and France data (Figure 1).</p>
 <figure>
 <figcaption>
 Figure 1. Distribution of confirmed cases for two countries
@@ -504,10 +504,10 @@ Furthermore, as we can see in the recap info table, the <span class="math inline
    Call             glm           Confirmed ~ 1 + Day                       
    Link function    log           Coefficients are in the log(y) scale      
    Distribution     Poisson       Model for count data                      
-   R-squared             0.675    Proportion of reduction of error          
-   AIC              411919.240    Less is better                            
-   Deviance         411294.236    Less is better                            
-   Residual DF          49.000                                              
+   R-squared             0.666    Proportion of reduction of error          
+   AIC              428045.049    Less is better                            
+   Deviance         427406.905    Less is better                            
+   Residual DF          50.000                                              
    Converged        yes           Whether the estimation found a solution   
  ────────────────────────────────────────────────────────────────────────── 
 
@@ -542,9 +542,9 @@ Furthermore, as we can see in the recap info table, the <span class="math inline
    Link function    log         Coefficients are in the log(y) scale                   
    Distribution     Poisson     Model for count data                                   
    R-squared           0.996    Proportion of reduction of error                       
-   AIC              5893.656    Less is better                                         
-   Deviance         5262.651    Less is better                                         
-   Residual DF        46.000                                                           
+   AIC              5915.339    Less is better                                         
+   Deviance         5271.195    Less is better                                         
+   Residual DF        47.000                                                           
    Converged        yes         Whether the estimation found a solution                
  ───────────────────────────────────────────────────────────────────────────────────── 
 
@@ -556,7 +556,7 @@ Figure 4. Polynomial model for Mainland China data
 <img src="gzlm_corona1_files/figure-html/intro_plot3-1.png">
 </figure>
 <p>We can see that the model really works. But what about the Italian and French data, that were very different? Well, the model works for Italy and France as well, thanks to the model flexibility. Actually, it works well for all countries with available data. All <span class="math inline">\(R^2\)</span> are close to 1, and the predicted values are very close to the observed one. At this point, one can start working on these models and use them to extrapolate information, make comparisons, and do whaterver one usually do with statistical models.</p>
-<p>The fit of the same model estimation (polynomial up to the 4th grade) is shown in the next section for all countries with more than 1000 data points.</p>
+<p>The fit of the same model estimation (polynomial up to the 4th grade) is shown in the next section for all countries with more than 10 days of data.</p>
 </div>
 <div id="interpreting-the-parameters" class="section level1">
 <h1>Interpreting the parameters</h1>
@@ -565,36 +565,36 @@ Figure 4. Polynomial model for Mainland China data
 </div>
 <div id="replications-across-countries" class="section level1">
 <h1>Replications across countries</h1>
-<p>Here are the models fitted for all available countries with more than 1000 data points. Data are update every day. The last update is 2020-03-13.</p>
+<p>Here are the models fitted for all available countries with more than 1000 data points. Data are update every day. The last update is 2020-03-14.</p>
 <div id="afghanistan" class="section level2">
 <h2>Afghanistan</h2>
-<p><strong>R^2= 0.9499972 </strong></p>
+<p><strong>R^2= 0.958108 </strong></p>
 <p><strong>EC= 7 </strong></p>
-<p><strong>GF= 0.98 </strong></p>
+<p><strong>GF= 0.82 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-1.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.6685     1.6909     0.512    0.00919     8.74    -0.395    0.693   
-   Day              0.6419     1.0639     1.900    0.26047    18.84     0.603    0.546   
-   Day²            -0.1606     0.2033     0.852    0.55786     1.26    -0.790    0.430   
-   Day³             0.0138     0.0149     1.014    0.98532     1.05     0.927    0.354   
-   Day⁴           -3.55e-4    3.66e-4     1.000    0.99890     1.00    -0.969    0.333   
- ─────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.5982     1.5893     0.550    0.0128     7.95    -0.376    0.707   
+   Day              0.5811     0.9493     1.788    0.3026    13.71     0.612    0.540   
+   Day²            -0.1466     0.1714     0.864    0.6055     1.20    -0.856    0.392   
+   Day³             0.0126     0.0118     1.013    0.9899     1.04     1.067    0.286   
+   Day⁴           -3.24e-4    2.76e-4     1.000    0.9991     1.00    -1.172    0.241   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
 <div id="algeria" class="section level2">
 <h2>Algeria</h2>
-<p><strong>R^2= 0.983593 </strong></p>
-<p><strong>EC= 24 </strong></p>
-<p><strong>GF= 1.33 </strong></p>
+<p><strong>R^2= 0.9819976 </strong></p>
+<p><strong>EC= 27 </strong></p>
+<p><strong>GF= 1.41 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -605,11 +605,11 @@ Figure 4. Polynomial model for Mainland China data
  ─────────────────────────────────────────────────────────────────────────────────────── 
    Names          Estimate    SE         exp(B)    Lower     Upper     z         p       
  ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      1.3602     1.3655     3.897    0.1515    39.309     0.996    0.319   
-   Day             -1.4585     0.8220     0.233    0.0486     1.318    -1.774    0.076   
-   Day²             0.3624     0.1545     1.437    1.0522     1.945     2.346    0.019   
-   Day³            -0.0270     0.0113     0.973    0.9519     0.995    -2.392    0.017   
-   Day⁴            6.53e-4    2.83e-4     1.001    1.0001     1.001     2.310    0.021   
+   (Intercept)      1.0356    1.32816     2.817    0.1180    26.052     0.780    0.436   
+   Day             -1.1737    0.72715     0.309    0.0791     1.466    -1.614    0.106   
+   Day²             0.3002    0.12772     1.350    1.0402     1.729     2.350    0.019   
+   Day³            -0.0220    0.00880     0.978    0.9616     0.996    -2.498    0.012   
+   Day⁴            5.17e-4    2.08e-4     1.001    1.0001     1.001     2.485    0.013   
  ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
@@ -629,20 +629,20 @@ Figure 4. Polynomial model for Mainland China data
  ──────────────────────────────────────────────────────────────────────────────────────────── 
    Names          Estimate     SE         exp(B)    Lower      Upper     z            p       
  ──────────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     5.13e-18    2.90767      1.00    0.00102    189.95     1.76e-18    1.000   
-   Day            -2.11e-20    3.03607      1.00    0.00237    616.42    -6.96e-21    1.000   
-   Day²            5.53e-21    0.96924      1.00    0.13874      7.09     5.70e-21    1.000   
-   Day³           -5.77e-22    0.11894      1.00    0.78575      1.27    -4.85e-21    1.000   
-   Day⁴            2.07e-23    0.00493      1.00    0.99015      1.01     4.21e-21    1.000   
+   (Intercept)     1.64e-17    2.61020      1.00    0.00200    102.10     6.27e-18    1.000   
+   Day            -7.68e-18    2.53791      1.00    0.00679    220.73    -3.03e-18    1.000   
+   Day²            1.82e-18    0.75137      1.00    0.21459      4.50     2.42e-18    1.000   
+   Day³           -1.73e-19    0.08525      1.00    0.84267      1.19    -2.03e-18    1.000   
+   Day⁴            5.77e-21    0.00326      1.00    0.99344      1.01     1.77e-18    1.000   
  ──────────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="armenia" class="section level2">
-<h2>Armenia</h2>
-<p><strong>R^2= 0.946763 </strong></p>
-<p><strong>EC= 4 </strong></p>
-<p><strong>GF= 3.96 </strong></p>
+<div id="argentina" class="section level2">
+<h2>Argentina</h2>
+<p><strong>R^2= 0.9788588 </strong></p>
+<p><strong>EC= 31 </strong></p>
+<p><strong>GF= 2.13 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -653,140 +653,140 @@ Figure 4. Polynomial model for Mainland China data
  ──────────────────────────────────────────────────────────────────────────────────────── 
    Names          Estimate    SE         exp(B)    Lower      Upper     z         p       
  ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.65986    2.51435     1.935    0.00517    176.04     0.262    0.793   
-   Day            -0.86176    2.45134     0.422    0.00317     71.01    -0.352    0.725   
-   Day²            0.31595    0.71819     1.372    0.32419      5.90     0.440    0.660   
-   Day³           -0.04268    0.08021     0.958    0.81312      1.12    -0.532    0.595   
-   Day⁴            0.00189    0.00301     1.002    0.99603      1.01     0.629    0.529   
+   (Intercept)     0.89499    2.21195     2.447    0.01073    100.57     0.405    0.686   
+   Day            -1.61544    1.84133     0.199    0.00635     11.38    -0.877    0.380   
+   Day²            0.71292    0.50297     2.040    0.71588      5.40     1.417    0.156   
+   Day³           -0.08819    0.05484     0.916    0.82216      1.02    -1.608    0.108   
+   Day⁴            0.00351    0.00207     1.004    0.99937      1.01     1.696    0.090   
  ──────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="australia" class="section level2">
-<h2>Australia</h2>
-<p><strong>R^2= 0.9910663 </strong></p>
-<p><strong>EC= 138 </strong></p>
-<p><strong>GF= 1.16 </strong></p>
+<div id="armenia" class="section level2">
+<h2>Armenia</h2>
+<p><strong>R^2= 0.9675777 </strong></p>
+<p><strong>EC= 8 </strong></p>
+<p><strong>GF= 3.33 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-5.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z        p        
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.7805    0.34514     2.183    1.071    4.154     2.26     0.024   
-   Day              0.3215    0.07458     1.379    1.196    1.603     4.31    < .001   
-   Day²            -0.0191    0.00518     0.981    0.971    0.991    -3.70    < .001   
-   Day³            4.65e-4    1.40e-4     1.000    1.000    1.001     3.32    < .001   
-   Day⁴           -3.51e-6    1.29e-6     1.000    1.000    1.000    -2.72     0.006   
- ───────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                       
+ ───────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper    z           p       
+ ───────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -0.03365    2.29312     0.967    0.00396    51.22    -0.01467    0.988   
+   Day            -0.01533    2.00547     0.985    0.02045    72.32    -0.00765    0.994   
+   Day²            0.03132    0.53257     1.032    0.34478     2.95     0.05880    0.953   
+   Day³           -0.00774    0.05391     0.992    0.89162     1.11    -0.14360    0.886   
+   Day⁴            4.93e-4    0.00184     1.000    0.99683     1.00     0.26819    0.789   
+ ───────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="austria" class="section level2">
-<h2>Austria</h2>
-<p><strong>R^2= 0.9978826 </strong></p>
-<p><strong>EC= 305 </strong></p>
-<p><strong>GF= 1.26 </strong></p>
+<div id="australia" class="section level2">
+<h2>Australia</h2>
+<p><strong>R^2= 0.9909381 </strong></p>
+<p><strong>EC= 183 </strong></p>
+<p><strong>GF= 1.21 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-6.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.39744    1.00753     0.672    0.0724     3.91    -0.394    0.693   
-   Day             0.68517    0.49323     1.984    0.8040     5.64     1.389    0.165   
-   Day²           -0.05097    0.08209     0.950    0.8021     1.11    -0.621    0.535   
-   Day³            0.00307    0.00556     1.003    0.9925     1.01     0.552    0.581   
-   Day⁴           -7.03e-5    1.32e-4     1.000    0.9997     1.00    -0.533    0.594   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                   
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z        p        
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      0.9194    0.33081     2.508    1.269    4.651     2.78     0.005   
+   Day              0.2774    0.07005     1.320    1.154    1.520     3.96    < .001   
+   Day²            -0.0154    0.00475     0.985    0.975    0.994    -3.23     0.001   
+   Day³            3.48e-4    1.25e-4     1.000    1.000    1.001     2.77     0.006   
+   Day⁴           -2.32e-6    1.13e-6     1.000    1.000    1.000    -2.05     0.040   
+ ───────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="azerbaijan" class="section level2">
-<h2>Azerbaijan</h2>
-<p><strong>R^2= 0.9620346 </strong></p>
-<p><strong>EC= 11 </strong></p>
-<p><strong>GF= 1.11 </strong></p>
+<div id="austria" class="section level2">
+<h2>Austria</h2>
+<p><strong>R^2= 0.9972944 </strong></p>
+<p><strong>EC= 492 </strong></p>
+<p><strong>GF= 1.54 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-7.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      1.5357    1.34247     4.645    0.2489    53.00     1.144    0.253   
-   Day             -0.6223    1.21318     0.537    0.0512     6.33    -0.513    0.608   
-   Day²             0.2230    0.33687     1.250    0.6398     2.42     0.662    0.508   
-   Day³            -0.0229    0.03628     0.977    0.9098     1.05    -0.630    0.529   
-   Day⁴            7.60e-4    0.00133     1.001    0.9981     1.00     0.571    0.568   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                   
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     0.28358    0.86391     1.328    0.199     6.08     0.328    0.743   
+   Day             0.22729    0.40122     1.255    0.599     2.92     0.567    0.571   
+   Day²            0.03895    0.06330     1.040    0.913     1.17     0.615    0.538   
+   Day³           -0.00371    0.00405     0.996    0.989     1.00    -0.916    0.360   
+   Day⁴            1.03e-4    9.08e-5     1.000    1.000     1.00     1.140    0.254   
+ ───────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="bahrain" class="section level2">
-<h2>Bahrain</h2>
-<p><strong>R^2= 0.9536991 </strong></p>
-<p><strong>EC= 203 </strong></p>
-<p><strong>GF= 1.19 </strong></p>
+<div id="azerbaijan" class="section level2">
+<h2>Azerbaijan</h2>
+<p><strong>R^2= 0.9705806 </strong></p>
+<p><strong>EC= 15 </strong></p>
+<p><strong>GF= 1.44 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-8.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z        p        
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      1.0637    0.44167     2.897    1.168    6.615     2.41     0.016   
-   Day              1.1437    0.23791     3.138    1.994    5.072     4.81    < .001   
-   Day²            -0.1701    0.04209     0.844    0.776    0.915    -4.04    < .001   
-   Day³             0.0107    0.00295     1.011    1.005    1.017     3.62    < .001   
-   Day⁴           -2.24e-4    7.11e-5     1.000    1.000    1.000    -3.16     0.002   
- ───────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      1.6086     1.2106     4.996    0.3551    44.32     1.329    0.184   
+   Day             -0.7074     1.0127     0.493    0.0699     3.88    -0.698    0.485   
+   Day²             0.2502     0.2606     1.284    0.7645     2.14     0.960    0.337   
+   Day³            -0.0261     0.0260     0.974    0.9256     1.03    -1.005    0.315   
+   Day⁴            8.87e-4    8.81e-4     1.001    0.9992     1.00     1.008    0.314   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="belarus" class="section level2">
-<h2>Belarus</h2>
-<p><strong>R^2= 0.8972237 </strong></p>
-<p><strong>EC= 13 </strong></p>
-<p><strong>GF= 1.78 </strong></p>
+<div id="bahrain" class="section level2">
+<h2>Bahrain</h2>
+<p><strong>R^2= 0.9595608 </strong></p>
+<p><strong>EC= 197 </strong></p>
+<p><strong>GF= 0.97 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-9.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.2731     1.8951     1.314    0.0130    30.83     0.144    0.885   
-   Day             -0.6632     1.3448     0.515    0.0421     9.75    -0.493    0.622   
-   Day²             0.2822     0.3068     1.326    0.7009     2.40     0.920    0.358   
-   Day³            -0.0298     0.0276     0.971    0.9198     1.03    -1.082    0.279   
-   Day⁴            9.90e-4    8.49e-4     1.001    0.9993     1.00     1.167    0.243   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                   
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z        p        
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      0.8712    0.42380     2.390    1.001    5.285     2.06     0.040   
+   Day              1.2813    0.21535     3.601    2.388    5.560     5.95    < .001   
+   Day²            -0.1989    0.03596     0.820    0.763    0.878    -5.53    < .001   
+   Day³             0.0129    0.00238     1.013    1.008    1.018     5.43    < .001   
+   Day⁴           -2.83e-4    5.43e-5     1.000    1.000    1.000    -5.22    < .001   
+ ───────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="belgium" class="section level2">
-<h2>Belgium</h2>
-<p><strong>R^2= 0.9912708 </strong></p>
-<p><strong>EC= 290 </strong></p>
-<p><strong>GF= 0.83 </strong></p>
+<div id="belarus" class="section level2">
+<h2>Belarus</h2>
+<p><strong>R^2= 0.9508537 </strong></p>
+<p><strong>EC= 27 </strong></p>
+<p><strong>GF= 2.74 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -795,22 +795,22 @@ Figure 4. Polynomial model for Mainland China data
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
  ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z        p        
+   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
  ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -1.66036     0.9970     0.190    0.0208    1.075    -1.67     0.096   
-   Day             0.87348     0.2676     2.395    1.4522    4.180     3.26     0.001   
-   Day²           -0.11338     0.0209     0.893    0.8557    0.929    -5.43    < .001   
-   Day³            0.00482    6.40e-4     1.005    1.0036    1.006     7.53    < .001   
-   Day⁴           -6.07e-5    6.79e-6     1.000    0.9999    1.000    -8.95    < .001   
+   (Intercept)      0.2287     1.7464     1.257    0.0181    22.66     0.131    0.896   
+   Day             -0.6204     1.1350     0.538    0.0662     6.48    -0.547    0.585   
+   Day²             0.2709     0.2393     1.311    0.7959     2.07     1.132    0.258   
+   Day³            -0.0287     0.0199     0.972    0.9349     1.01    -1.442    0.149   
+   Day⁴            9.53e-4    5.67e-4     1.001    0.9998     1.00     1.680    0.093   
  ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="brazil" class="section level2">
-<h2>Brazil</h2>
-<p><strong>R^2= 0.9855997 </strong></p>
-<p><strong>EC= 51 </strong></p>
-<p><strong>GF= 1.26 </strong></p>
+<div id="belgium" class="section level2">
+<h2>Belgium</h2>
+<p><strong>R^2= 0.978324 </strong></p>
+<p><strong>EC= 449 </strong></p>
+<p><strong>GF= 1.01 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -819,46 +819,46 @@ Figure 4. Polynomial model for Mainland China data
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
  ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
  ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.64700     1.4187     1.910    0.0684    21.38     0.456    0.648   
-   Day            -0.57271     0.8910     0.564    0.1043     3.71    -0.643    0.520   
-   Day²            0.14683     0.1736     1.158    0.8141     1.62     0.846    0.398   
-   Day³           -0.00935     0.0132     0.991    0.9653     1.02    -0.708    0.479   
-   Day⁴            2.01e-4    3.44e-4     1.000    0.9995     1.00     0.582    0.560   
+   (Intercept)     0.36206     0.7359     1.436    0.283    5.252     0.492     0.623   
+   Day             0.02310     0.2196     1.023    0.667    1.592     0.105     0.916   
+   Day²           -0.02701     0.0174     0.973    0.941    1.007    -1.556     0.120   
+   Day³            0.00172    5.20e-4     1.002    1.001    1.003     3.304    < .001   
+   Day⁴           -2.42e-5    5.34e-6     1.000    1.000    1.000    -4.530    < .001   
  ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="cambodia" class="section level2">
-<h2>Cambodia</h2>
-<p><strong>R^2= 0.9261537 </strong></p>
-<p><strong>EC= 3 </strong></p>
-<p><strong>GF= 1.27 </strong></p>
+<div id="brazil" class="section level2">
+<h2>Brazil</h2>
+<p><strong>R^2= 0.9860797 </strong></p>
+<p><strong>EC= 145 </strong></p>
+<p><strong>GF= 2.76 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-12.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.11703     0.8204     1.124    0.177     4.65     0.143    0.887   
-   Day            -0.05885     0.2328     0.943    0.608     1.53    -0.253    0.800   
-   Day²            0.00704     0.0195     1.007    0.968     1.05     0.362    0.718   
-   Day³           -2.91e-4    6.05e-4     1.000    0.999     1.00    -0.482    0.630   
-   Day⁴            3.85e-6    6.24e-6     1.000    1.000     1.00     0.617    0.537   
- ───────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper     z        p        
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      1.8266    1.19277     6.213    0.3929    48.734     1.53     0.126   
+   Day             -1.6597    0.72892     0.190    0.0466     0.856    -2.28     0.023   
+   Day²             0.3958    0.13496     1.486    1.1359     1.940     2.93     0.003   
+   Day³            -0.0303    0.00962     0.970    0.9518     0.989    -3.15     0.002   
+   Day⁴            7.88e-4    2.35e-4     1.001    1.0003     1.001     3.36    < .001   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="canada" class="section level2">
-<h2>Canada</h2>
-<p><strong>R^2= 0.9962339 </strong></p>
-<p><strong>EC= 118 </strong></p>
-<p><strong>GF= 1.15 </strong></p>
+<div id="cambodia" class="section level2">
+<h2>Cambodia</h2>
+<p><strong>R^2= 0.959132 </strong></p>
+<p><strong>EC= 5 </strong></p>
+<p><strong>GF= 1.35 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -867,278 +867,326 @@ Figure 4. Polynomial model for Mainland China data
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
  ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z        p        
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
  ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.5941    0.58683     0.552    0.159    1.596    -1.01     0.311   
-   Day              0.4271    0.12125     1.533    1.222    1.968     3.52    < .001   
-   Day²            -0.0268    0.00816     0.974    0.958    0.989    -3.28     0.001   
-   Day³            7.04e-4    2.17e-4     1.001    1.000    1.001     3.24     0.001   
-   Day⁴           -5.87e-6    1.98e-6     1.000    1.000    1.000    -2.96     0.003   
+   (Intercept)     0.15463     0.8015     1.167    0.193     4.68     0.193    0.847   
+   Day            -0.07572     0.2218     0.927    0.610     1.47    -0.341    0.733   
+   Day²            0.00880     0.0181     1.009    0.973     1.04     0.488    0.626   
+   Day³           -3.55e-4    5.46e-4     1.000    0.999     1.00    -0.651    0.515   
+   Day⁴            4.59e-6    5.48e-6     1.000    1.000     1.00     0.837    0.403   
  ───────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="croatia" class="section level2">
-<h2>Croatia</h2>
-<p><strong>R^2= 0.9781367 </strong></p>
-<p><strong>EC= 20 </strong></p>
-<p><strong>GF= 1.18 </strong></p>
+<div id="canada" class="section level2">
+<h2>Canada</h2>
+<p><strong>R^2= 0.992308 </strong></p>
+<p><strong>EC= 169 </strong></p>
+<p><strong>GF= 1.23 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-14.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.33859    1.16986     0.713    0.0518     5.42    -0.289    0.772   
-   Day             0.71764    0.67289     2.050    0.5941     8.55     1.067    0.286   
-   Day²           -0.07493    0.12712     0.928    0.7139     1.18    -0.589    0.556   
-   Day³            0.00348    0.00952     1.003    0.9854     1.02     0.366    0.715   
-   Day⁴           -5.19e-5    2.45e-4     1.000    0.9995     1.00    -0.212    0.832   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                   
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.2218    0.54211     0.801    0.254    2.141    -0.409    0.682   
+   Day              0.3159    0.11042     1.371    1.115    1.721     2.860    0.004   
+   Day²            -0.0176    0.00729     0.983    0.968    0.996    -2.409    0.016   
+   Day³            4.24e-4    1.90e-4     1.000    1.000    1.001     2.234    0.026   
+   Day⁴           -3.04e-6    1.69e-6     1.000    1.000    1.000    -1.801    0.072   
+ ───────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="denmark" class="section level2">
-<h2>Denmark</h2>
-<p><strong>R^2= 0.9948079 </strong></p>
-<p><strong>EC= 620 </strong></p>
-<p><strong>GF= 1.1 </strong></p>
+<div id="chile" class="section level2">
+<h2>Chile</h2>
+<p><strong>R^2= 0.9724255 </strong></p>
+<p><strong>EC= 42 </strong></p>
+<p><strong>GF= 1.53 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-15.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                        
- ────────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)     Lower      Upper      z        p        
- ────────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -4.04759     1.8017     0.0175    3.01e-4      0.369    -2.25     0.025   
-   Day             3.22451     0.9358    25.1412      4.766    190.554     3.45    < .001   
-   Day²           -0.64994     0.1648     0.5221      0.369      0.705    -3.94    < .001   
-   Day³            0.05565     0.0119     1.0572      1.034      1.084     4.66    < .001   
-   Day⁴           -0.00157    3.05e-4     0.9984      0.998      0.999    -5.14    < .001   
- ────────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper     z         p       
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.8789    2.13389     0.415    0.00256     14.96    -0.412    0.680   
+   Day              0.9394    1.75327     2.558    0.10321    121.24     0.536    0.592   
+   Day²            -0.1374    0.47530     0.872    0.32001      2.14    -0.289    0.772   
+   Day³             0.0120    0.05162     1.012    0.91659      1.13     0.233    0.816   
+   Day⁴           -3.49e-4    0.00194     1.000    0.99571      1.00    -0.180    0.857   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="dominican-republic" class="section level2">
-<h2>Dominican Republic</h2>
-<p><strong>R^2= 0.9441204 </strong></p>
-<p><strong>EC= 5 </strong></p>
-<p><strong>GF= 0.84 </strong></p>
+<div id="croatia" class="section level2">
+<h2>Croatia</h2>
+<p><strong>R^2= 0.9819066 </strong></p>
+<p><strong>EC= 31 </strong></p>
+<p><strong>GF= 1.48 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-16.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper     z         p       
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.8954    2.24019     2.448    0.01273    133.04     0.400    0.689   
-   Day             -1.0092    2.06718     0.365    0.00594     26.54    -0.488    0.625   
-   Day²             0.2737    0.56941     1.315    0.42174      4.16     0.481    0.631   
-   Day³            -0.0219    0.06055     0.978    0.86557      1.10    -0.361    0.718   
-   Day⁴            5.37e-4    0.00220     1.001    0.99623      1.00     0.245    0.807   
- ──────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.0941    1.06823     0.910    0.0843     5.86    -0.0881    0.930   
+   Day              0.5264    0.58184     1.693    0.5780     5.78     0.9047    0.366   
+   Day²            -0.0321    0.10384     0.968    0.7825     1.18    -0.3092    0.757   
+   Day³           -1.12e-4    0.00733     1.000    0.9859     1.01    -0.0153    0.988   
+   Day⁴            4.86e-5    1.78e-4     1.000    0.9997     1.00     0.2737    0.784   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="ecuador" class="section level2">
-<h2>Ecuador</h2>
-<p><strong>R^2= 0.958096 </strong></p>
-<p><strong>EC= 18 </strong></p>
-<p><strong>GF= 1.17 </strong></p>
+<div id="denmark" class="section level2">
+<h2>Denmark</h2>
+<p><strong>R^2= 0.9946835 </strong></p>
+<p><strong>EC= 784 </strong></p>
+<p><strong>GF= 0.95 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-17.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z          p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     1.59569     0.9801     4.932    0.618    29.84     1.6281    0.104   
-   Day             0.06740     0.8714     1.070    0.200     6.24     0.0774    0.938   
-   Day²            0.05264     0.2435     1.054    0.649     1.69     0.2162    0.829   
-   Day³           -0.00830     0.0265     0.992    0.942     1.05    -0.3129    0.754   
-   Day⁴            3.48e-4    9.83e-4     1.000    0.998     1.00     0.3542    0.723   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper     z        p        
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -1.8399    1.31583     0.159    0.00822     1.518    -1.40     0.162   
+   Day              1.7539    0.66086     5.777    1.74410    23.827     2.65     0.008   
+   Day²            -0.3481    0.11102     0.706    0.56012     0.868    -3.14     0.002   
+   Day³             0.0314    0.00761     1.032    1.01721     1.048     4.13    < .001   
+   Day⁴           -9.04e-4    1.84e-4     0.999    0.99872     0.999    -4.92    < .001   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="egypt" class="section level2">
-<h2>Egypt</h2>
-<p><strong>R^2= 0.9754232 </strong></p>
-<p><strong>EC= 62 </strong></p>
-<p><strong>GF= 0.78 </strong></p>
+<div id="dominican-republic" class="section level2">
+<h2>Dominican Republic</h2>
+<p><strong>R^2= 0.9460526 </strong></p>
+<p><strong>EC= 5 </strong></p>
+<p><strong>GF= 0.98 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-18.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z        p        
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -1.56721    1.24622     0.209    0.0121    1.729    -1.26     0.209   
-   Day             1.01471    0.46317     2.759    1.1737    7.378     2.19     0.028   
-   Day²           -0.16816    0.05208     0.845    0.7591    0.933    -3.23     0.001   
-   Day³            0.00948    0.00228     1.010    1.0051    1.014     4.15    < .001   
-   Day⁴           -1.61e-4    3.43e-5     1.000    0.9998    1.000    -4.69    < .001   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper     z         p       
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      1.0769    2.01373     2.935    0.02565    101.97     0.535    0.593   
+   Day             -1.2248    1.73173     0.294    0.00959     10.71    -0.707    0.479   
+   Day²             0.3421    0.44403     1.408    0.57994      3.44     0.770    0.441   
+   Day³            -0.0299    0.04387     0.971    0.88844      1.06    -0.681    0.496   
+   Day⁴            8.48e-4    0.00148     1.001    0.99795      1.00     0.575    0.565   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="estonia" class="section level2">
-<h2>Estonia</h2>
-<p><strong>R^2= 0.9527987 </strong></p>
+<div id="ecuador" class="section level2">
+<h2>Ecuador</h2>
+<p><strong>R^2= 0.9547691 </strong></p>
 <p><strong>EC= 17 </strong></p>
-<p><strong>GF= 1.3 </strong></p>
+<p><strong>GF= 1.08 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-19.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      1.3163     1.5967     3.730    0.0860    58.60     0.824    0.410   
-   Day             -1.4141     1.1509     0.243    0.0259     2.67    -1.229    0.219   
-   Day²             0.3635     0.2489     1.438    0.8749     2.36     1.460    0.144   
-   Day³            -0.0290     0.0208     0.971    0.9319     1.01    -1.396    0.163   
-   Day⁴            7.66e-4    5.92e-4     1.001    0.9996     1.00     1.295    0.195   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z           p       
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     1.45330     0.8998     4.277    0.633    22.20       1.615    0.106   
+   Day             0.23042     0.7402     1.259    0.305     5.66       0.311    0.756   
+   Day²           -1.04e-4     0.1920     1.000    0.682     1.45    -5.39e-4    1.000   
+   Day³           -0.00194     0.0194     0.998    0.961     1.04      -0.100    0.920   
+   Day⁴            9.46e-5    6.67e-4     1.000    0.999     1.00       0.142    0.887   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="finland" class="section level2">
-<h2>Finland</h2>
-<p><strong>R^2= 0.9923397 </strong></p>
-<p><strong>EC= 65 </strong></p>
-<p><strong>GF= 1.26 </strong></p>
+<div id="egypt" class="section level2">
+<h2>Egypt</h2>
+<p><strong>R^2= 0.9716435 </strong></p>
+<p><strong>EC= 68 </strong></p>
+<p><strong>GF= 0.8 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-20.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.4482     0.8443     0.639    0.0966     2.76    -0.531    0.596   
-   Day              0.2083     0.2172     1.232    0.8199     1.94     0.959    0.337   
-   Day²            -0.0229     0.0167     0.977    0.9449     1.01    -1.372    0.170   
-   Day³            8.12e-4    4.86e-4     1.001    0.9999     1.00     1.670    0.095   
-   Day⁴           -7.86e-6    4.78e-6     1.000    1.0000     1.00    -1.643    0.100   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z         p        
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -0.71668    1.08130     0.488    0.0417    3.113    -0.663     0.507   
+   Day             0.55459    0.40107     1.741    0.8195    4.032     1.383     0.167   
+   Day²           -0.10317    0.04370     0.902    0.8252    0.981    -2.361     0.018   
+   Day³            0.00621    0.00184     1.006    1.0026    1.010     3.370    < .001   
+   Day⁴           -1.07e-4    2.66e-5     1.000    0.9998    1.000    -4.029    < .001   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="france" class="section level2">
-<h2>France</h2>
-<p><strong>R^2= 0.9955247 </strong></p>
-<p><strong>EC= 2398 </strong></p>
-<p><strong>GF= 1.11 </strong></p>
+<div id="estonia" class="section level2">
+<h2>Estonia</h2>
+<p><strong>R^2= 0.9743073 </strong></p>
+<p><strong>EC= 76 </strong></p>
+<p><strong>GF= 4.76 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-21.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p        
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -1.61733    0.50226     0.198    0.0702    0.504     -3.22     0.001   
-   Day             0.84864    0.08952     2.336    1.9718    2.802      9.48    < .001   
-   Day²           -0.06270    0.00516     0.939    0.9296    0.949    -12.16    < .001   
-   Day³            0.00177    1.20e-4     1.002    1.0015    1.002     14.85    < .001   
-   Day⁴           -1.57e-5    9.67e-7     1.000    1.0000    1.000    -16.21    < .001   
- ─────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                       
+ ───────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)     Lower     Upper      z        p        
+ ───────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     2.52178     1.3630    12.4507    0.5197    134.268     1.85     0.064   
+   Day            -2.66125     0.9515     0.0699    0.0107      0.483    -2.80     0.005   
+   Day²            0.67610     0.1942     1.9662    1.3445      2.908     3.48    < .001   
+   Day³           -0.05766     0.0151     0.9440    0.9156      0.972    -3.82    < .001   
+   Day⁴            0.00164    3.98e-4     1.0016    1.0009      1.002     4.12    < .001   
+ ───────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="georgia" class="section level2">
-<h2>Georgia</h2>
-<p><strong>R^2= 0.9576704 </strong></p>
-<p><strong>EC= 24 </strong></p>
-<p><strong>GF= 0.98 </strong></p>
+<div id="finland" class="section level2">
+<h2>Finland</h2>
+<p><strong>R^2= 0.9852396 </strong></p>
+<p><strong>EC= 133 </strong></p>
+<p><strong>GF= 1.55 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-22.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -1.1325     1.7457     0.322    0.00499     5.78    -0.649    0.517   
-   Day              0.9014     1.0494     2.463    0.36621    24.70     0.859    0.390   
-   Day²            -0.1694     0.2036     0.844    0.54965     1.24    -0.832    0.405   
-   Day³             0.0149     0.0156     1.015    0.98523     1.05     0.954    0.340   
-   Day⁴           -4.25e-4    4.13e-4     1.000    0.99873     1.00    -1.027    0.304   
- ─────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                   
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     0.21219     0.7455     1.236    0.235     4.54     0.285    0.776   
+   Day            -0.06125     0.1931     0.941    0.652     1.40    -0.317    0.751   
+   Day²            0.00316     0.0145     1.003    0.974     1.03     0.218    0.827   
+   Day³           -5.97e-5    4.10e-4     1.000    0.999     1.00    -0.146    0.884   
+   Day⁴            1.58e-6    3.91e-6     1.000    1.000     1.00     0.404    0.686   
+ ───────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="germany" class="section level2">
-<h2>Germany</h2>
-<p><strong>R^2= 0.9967613 </strong></p>
-<p><strong>EC= 2048 </strong></p>
-<p><strong>GF= 1.08 </strong></p>
+<div id="france" class="section level2">
+<h2>France</h2>
+<p><strong>R^2= 0.9940686 </strong></p>
+<p><strong>EC= 3306 </strong></p>
+<p><strong>GF= 1.17 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-23.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.41890    0.37093     0.658    0.308    1.319     -1.13     0.259   
-   Day             0.78078    0.07547     2.183    1.890    2.541     10.35    < .001   
-   Day²           -0.06463    0.00492     0.937    0.928    0.946    -13.13    < .001   
-   Day³            0.00203    1.28e-4     1.002    1.002    1.002     15.87    < .001   
-   Day⁴           -1.98e-5    1.15e-6     1.000    1.000    1.000    -17.18    < .001   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z          p        
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -0.34391    0.41552     0.709    0.300    1.533     -0.828     0.408   
+   Day             0.53214    0.07483     1.703    1.477    1.981      7.111    < .001   
+   Day²           -0.04019    0.00428     0.961    0.952    0.969     -9.381    < .001   
+   Day³            0.00118    9.78e-5     1.001    1.001    1.001     12.027    < .001   
+   Day⁴           -1.04e-5    7.77e-7     1.000    1.000    1.000    -13.330    < .001   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="greece" class="section level2">
-<h2>Greece</h2>
-<p><strong>R^2= 0.9774462 </strong></p>
-<p><strong>EC= 98 </strong></p>
-<p><strong>GF= 0.98 </strong></p>
+<div id="georgia" class="section level2">
+<h2>Georgia</h2>
+<p><strong>R^2= 0.9639917 </strong></p>
+<p><strong>EC= 24 </strong></p>
+<p><strong>GF= 0.87 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-24.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     1.02848    0.96606     2.797    0.328    15.28     1.065    0.287   
-   Day            -0.31314    0.56326     0.731    0.254     2.36    -0.556    0.578   
-   Day²            0.12088    0.10671     1.128    0.909     1.39     1.133    0.257   
-   Day³           -0.00790    0.00803     0.992    0.977     1.01    -0.984    0.325   
-   Day⁴            1.52e-4    2.09e-4     1.000    1.000     1.00     0.729    0.466   
- ───────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.9373     1.5979     0.392    0.00892     5.58    -0.587    0.557   
+   Day              0.7426     0.9062     2.101    0.40286    15.17     0.819    0.413   
+   Day²            -0.1330     0.1655     0.875    0.61883     1.20    -0.804    0.422   
+   Day³             0.0118     0.0120     1.012    0.98902     1.04     0.986    0.324   
+   Day⁴           -3.36e-4    2.98e-4     1.000    0.99906     1.00    -1.126    0.260   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="germany" class="section level2">
+<h2>Germany</h2>
+<p><strong>R^2= 0.9911545 </strong></p>
+<p><strong>EC= 3165 </strong></p>
+<p><strong>GF= 1.21 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-25.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     0.94688    0.29926     2.578    1.397    4.521      3.16     0.002   
+   Day             0.37941    0.06202     1.461    1.297    1.655      6.12    < .001   
+   Day²           -0.03204    0.00403     0.968    0.961    0.976     -7.95    < .001   
+   Day³            0.00106    1.03e-4     1.001    1.001    1.001     10.26    < .001   
+   Day⁴           -1.02e-5    9.11e-7     1.000    1.000    1.000    -11.16    < .001   
+ ────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="greece" class="section level2">
+<h2>Greece</h2>
+<p><strong>R^2= 0.9757254 </strong></p>
+<p><strong>EC= 179 </strong></p>
+<p><strong>GF= 1.65 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-26.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper     z        p        
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      1.9598    0.82250     7.098    1.162    30.499     2.38     0.017   
+   Day             -1.1051    0.46066     0.331    0.138     0.855    -2.40     0.016   
+   Day²             0.2981    0.08317     1.347    1.140     1.583     3.58    < .001   
+   Day³            -0.0227    0.00591     0.978    0.966     0.989    -3.84    < .001   
+   Day⁴            5.68e-4    1.45e-4     1.001    1.000     1.001     3.92    < .001   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
@@ -1150,7 +1198,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-25.png">
+<img src="gzlm_corona1_files/figure-html/out-27.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1168,337 +1216,361 @@ Figure 4. Polynomial model for Mainland China data
 </div>
 <div id="iceland" class="section level2">
 <h2>Iceland</h2>
-<p><strong>R^2= 0.9924012 </strong></p>
-<p><strong>EC= 106 </strong></p>
-<p><strong>GF= 1.44 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-26.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -2.09200     1.7559     0.123    0.00214     2.28    -1.191    0.233   
-   Day             1.28814     0.9748     3.626    0.66009    31.48     1.321    0.186   
-   Day²           -0.05975     0.1898     0.942    0.62635     1.33    -0.315    0.753   
-   Day³           -0.00320     0.0154     0.997    0.96894     1.03    -0.208    0.835   
-   Day⁴            2.40e-4    4.40e-4     1.000    0.99933     1.00     0.545    0.585   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="india" class="section level2">
-<h2>India</h2>
-<p><strong>R^2= 0.9607406 </strong></p>
-<p><strong>EC= 70 </strong></p>
-<p><strong>GF= 1.05 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-27.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z        p        
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -1.29128     0.7619     0.275    0.0531    1.069    -1.69     0.090   
-   Day             0.68951     0.1810     1.993    1.4238    2.903     3.81    < .001   
-   Day²           -0.06031     0.0137     0.941    0.9155    0.966    -4.40    < .001   
-   Day³            0.00194    4.04e-4     1.002    1.0012    1.003     4.79    < .001   
-   Day⁴           -1.95e-5    4.06e-6     1.000    1.0000    1.000    -4.80    < .001   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="indonesia" class="section level2">
-<h2>Indonesia</h2>
-<p><strong>R^2= 0.9847634 </strong></p>
-<p><strong>EC= 33 </strong></p>
-<p><strong>GF= 0.7 </strong></p>
+<p><strong>R^2= 0.9931014 </strong></p>
+<p><strong>EC= 137 </strong></p>
+<p><strong>GF= 1.43 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-28.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.82986    1.68764     2.293    0.0533    47.95     0.4917    0.623   
-   Day            -0.05604    1.56650     0.945    0.0445    23.35    -0.0358    0.971   
-   Day²           -0.05789    0.44340     0.944    0.3903     2.27    -0.1306    0.896   
-   Day³            0.02286    0.04902     1.023    0.9281     1.13     0.4664    0.641   
-   Day⁴           -0.00138    0.00186     0.999    0.9950     1.00    -0.7386    0.460   
- ─────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper    z          p       
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -2.70125     1.6725    0.0671    0.00153     1.13    -1.6151    0.106   
+   Day             1.70653     0.8580    5.5098    1.21896    35.94     1.9889    0.047   
+   Day²           -0.15247     0.1545    0.8586    0.61772     1.14    -0.9868    0.324   
+   Day³            0.00501     0.0116    1.0050    0.98376     1.03     0.4321    0.666   
+   Day⁴           -1.13e-5    3.08e-4    1.0000    0.99935     1.00    -0.0366    0.971   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="iran" class="section level2">
-<h2>Iran</h2>
-<p><strong>R^2= 0.9991632 </strong></p>
-<p><strong>EC= 10046 </strong></p>
-<p><strong>GF= 1.13 </strong></p>
+<div id="india" class="section level2">
+<h2>India</h2>
+<p><strong>R^2= 0.966861 </strong></p>
+<p><strong>EC= 78 </strong></p>
+<p><strong>GF= 1.03 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-29.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper     z          p        
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     2.10237    0.27656     8.186    4.658    13.787      7.602    < .001   
-   Day            -0.02913    0.08612     0.971    0.824     1.156     -0.338     0.735   
-   Day²            0.08233    0.00963     1.086    1.065     1.106      8.547    < .001   
-   Day³           -0.00489    4.53e-4     0.995    0.994     0.996    -10.794    < .001   
-   Day⁴            8.48e-5    7.61e-6     1.000    1.000     1.000     11.146    < .001   
- ──────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z        p        
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -1.16488     0.7294     0.312    0.0649    1.148    -1.60     0.110   
+   Day             0.64740     0.1693     1.911    1.3939    2.714     3.82    < .001   
+   Day²           -0.05640     0.0125     0.945    0.9215    0.968    -4.52    < .001   
+   Day³            0.00180    3.58e-4     1.002    1.0011    1.003     5.04    < .001   
+   Day⁴           -1.80e-5    3.51e-6     1.000    1.0000    1.000    -5.14    < .001   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="iraq" class="section level2">
-<h2>Iraq</h2>
-<p><strong>R^2= 0.9886018 </strong></p>
-<p><strong>EC= 71 </strong></p>
-<p><strong>GF= 0.97 </strong></p>
+<div id="indonesia" class="section level2">
+<h2>Indonesia</h2>
+<p><strong>R^2= 0.9723459 </strong></p>
+<p><strong>EC= 66 </strong></p>
+<p><strong>GF= 1.76 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-30.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z        p       
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -1.39430    1.13408     0.248    0.0203     1.79    -1.23    0.219   
-   Day             1.20638    0.53015     3.341    1.2781    10.34     2.28    0.023   
-   Day²           -0.12258    0.08519     0.885    0.7409     1.04    -1.44    0.150   
-   Day³            0.00642    0.00561     1.006    0.9959     1.02     1.15    0.252   
-   Day⁴           -1.31e-4    1.29e-4     1.000    0.9996     1.00    -1.02    0.310   
- ───────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper     z        p       
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     2.52232    1.39630    12.457    0.5831    159.25     1.81    0.071   
+   Day            -2.10106    1.24595     0.122    0.0103      1.48    -1.69    0.092   
+   Day²            0.60520    0.32711     1.832    0.9675      3.54     1.85    0.064   
+   Day³           -0.05716    0.03313     0.944    0.8835      1.01    -1.73    0.085   
+   Day⁴            0.00186    0.00115     1.002    0.9996      1.00     1.62    0.106   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="ireland" class="section level2">
-<h2>Ireland</h2>
-<p><strong>R^2= 0.9622415 </strong></p>
-<p><strong>EC= 46 </strong></p>
-<p><strong>GF= 1.27 </strong></p>
+<div id="iran" class="section level2">
+<h2>Iran</h2>
+<p><strong>R^2= 0.9992652 </strong></p>
+<p><strong>EC= 11403 </strong></p>
+<p><strong>GF= 1.16 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-31.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.9342     2.0384     0.393    0.00263    10.62    -0.458    0.647   
-   Day              0.3441     1.3316     1.411    0.13283    28.89     0.258    0.796   
-   Day²             0.0791     0.2954     1.082    0.57207     1.87     0.268    0.789   
-   Day³            -0.0110     0.0266     0.989    0.94052     1.05    -0.414    0.679   
-   Day⁴            3.90e-4    8.39e-4     1.000    0.99866     1.00     0.465    0.642   
- ─────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                       
+ ───────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper     z           p        
+ ───────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     2.02922    0.26526     7.608    4.436    12.558      7.6498    < .001   
+   Day             0.00220    0.07827     1.002    0.863     1.173      0.0281     0.978   
+   Day²            0.07818    0.00832     1.081    1.063     1.099      9.3985    < .001   
+   Day³           -0.00467    3.73e-4     0.995    0.995     0.996    -12.5239    < .001   
+   Day⁴            8.09e-5    5.99e-6     1.000    1.000     1.000     13.5030    < .001   
+ ───────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="israel" class="section level2">
-<h2>Israel</h2>
-<p><strong>R^2= 0.9871311 </strong></p>
-<p><strong>EC= 141 </strong></p>
-<p><strong>GF= 1.63 </strong></p>
+<div id="iraq" class="section level2">
+<h2>Iraq</h2>
+<p><strong>R^2= 0.9851556 </strong></p>
+<p><strong>EC= 95 </strong></p>
+<p><strong>GF= 1.18 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-32.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.85025    1.35578     0.427    0.0175     4.03    -0.627    0.531   
-   Day             0.27456    0.55996     1.316    0.4830     4.51     0.490    0.624   
-   Day²            0.01285    0.07772     1.013    0.8594     1.17     0.165    0.869   
-   Day³           -0.00169    0.00435     0.998    0.9901     1.01    -0.389    0.697   
-   Day⁴            5.15e-5    8.46e-5     1.000    0.9999     1.00     0.609    0.542   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -0.77052    0.98785     0.463    0.0529     2.62    -0.7800    0.435   
+   Day             0.82134    0.44266     2.274    1.0132     5.81     1.8555    0.064   
+   Day²           -0.04974    0.06804     0.951    0.8265     1.08    -0.7311    0.465   
+   Day³            0.00106    0.00427     1.001    0.9930     1.01     0.2493    0.803   
+   Day⁴            2.89e-6    9.37e-5     1.000    0.9998     1.00     0.0308    0.975   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="italy" class="section level2">
-<h2>Italy</h2>
-<p><strong>R^2= 0.9976203 </strong></p>
-<p><strong>EC= 13291 </strong></p>
-<p><strong>GF= 1.14 </strong></p>
+<div id="ireland" class="section level2">
+<h2>Ireland</h2>
+<p><strong>R^2= 0.9762184 </strong></p>
+<p><strong>EC= 88 </strong></p>
+<p><strong>GF= 2.09 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-33.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper     z         p        
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     1.84784    0.43576     6.346    2.466    13.816      4.24    < .001   
-   Day            -0.67101    0.07417     0.511    0.445     0.596     -9.05    < .001   
-   Day²            0.06204    0.00463     1.064    1.054     1.073     13.41    < .001   
-   Day³           -0.00148    1.18e-4     0.999    0.998     0.999    -12.46    < .001   
-   Day⁴            1.15e-5    1.07e-6     1.000    1.000     1.000     10.76    < .001   
- ─────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.2710     1.7357     0.763    0.0114    13.07    -0.156    0.876   
+   Day             -0.2386     1.0555     0.788    0.1191     8.36    -0.226    0.821   
+   Day²             0.2296     0.2181     1.258    0.7899     1.89     1.053    0.293   
+   Day³            -0.0260     0.0183     0.974    0.9411     1.01    -1.423    0.155   
+   Day⁴            8.96e-4    5.34e-4     1.001    0.9998     1.00     1.678    0.093   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="japan" class="section level2">
-<h2>Japan</h2>
-<p><strong>R^2= 0.9913677 </strong></p>
-<p><strong>EC= 645 </strong></p>
-<p><strong>GF= 1.05 </strong></p>
+<div id="israel" class="section level2">
+<h2>Israel</h2>
+<p><strong>R^2= 0.9872831 </strong></p>
+<p><strong>EC= 170 </strong></p>
+<p><strong>GF= 1.36 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-34.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z        p        
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.70201    0.32216     2.018    1.040    3.683     2.18     0.029   
-   Day             0.21820    0.05531     1.244    1.120    1.391     3.94    < .001   
-   Day²           -0.00647    0.00320     0.994    0.987    1.000    -2.02     0.044   
-   Day³            1.56e-4    7.49e-5     1.000    1.000    1.000     2.08     0.038   
-   Day⁴           -1.36e-6    6.10e-7     1.000    1.000    1.000    -2.22     0.026   
- ───────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -1.78553    1.43493     0.168    0.00594     1.81    -1.244    0.213   
+   Day             0.79549    0.54282     2.216    0.84770     7.33     1.465    0.143   
+   Day²           -0.07164    0.06973     0.931    0.80254     1.06    -1.027    0.304   
+   Day³            0.00354    0.00365     1.004    0.99674     1.01     0.972    0.331   
+   Day⁴           -5.82e-5    6.68e-5     1.000    0.99980     1.00    -0.873    0.383   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="kuwait" class="section level2">
-<h2>Kuwait</h2>
-<p><strong>R^2= 0.9436765 </strong></p>
-<p><strong>EC= 75 </strong></p>
-<p><strong>GF= 0.95 </strong></p>
+<div id="italy" class="section level2">
+<h2>Italy</h2>
+<p><strong>R^2= 0.9976146 </strong></p>
+<p><strong>EC= 16958 </strong></p>
+<p><strong>GF= 1.21 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-35.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.1630    0.53728     1.177    0.387    3.191     0.303     0.762   
-   Day              1.5019    0.28194     4.490    2.633    7.964     5.327    < .001   
-   Day²            -0.2110    0.04961     0.810    0.733    0.891    -4.252    < .001   
-   Day³             0.0125    0.00350     1.013    1.006    1.020     3.583    < .001   
-   Day⁴           -2.64e-4    8.53e-5     1.000    1.000    1.000    -3.092     0.002   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper     z         p        
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     2.56344    0.37403    12.980    5.805    25.439      6.85    < .001   
+   Day            -0.94732    0.06318     0.388    0.344     0.441    -14.99    < .001   
+   Day²            0.08375    0.00394     1.087    1.079     1.096     21.27    < .001   
+   Day³           -0.00210    9.97e-5     0.998    0.998     0.998    -21.06    < .001   
+   Day⁴            1.76e-5    8.83e-7     1.000    1.000     1.000     19.87    < .001   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="latvia" class="section level2">
-<h2>Latvia</h2>
-<p><strong>R^2= 0.9773205 </strong></p>
-<p><strong>EC= 10 </strong></p>
-<p><strong>GF= 0.64 </strong></p>
+<div id="japan" class="section level2">
+<h2>Japan</h2>
+<p><strong>R^2= 0.9921197 </strong></p>
+<p><strong>EC= 689 </strong></p>
+<p><strong>GF= 1.05 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-36.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                        
- ────────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper     z           p       
- ────────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.00469    2.51014     0.995    0.00268     88.88    -0.00187    0.999   
-   Day             0.22077    2.42519     1.247    0.00996    200.46     0.09103    0.927   
-   Day²           -0.18804    0.70535     0.829    0.19991      3.45    -0.26659    0.790   
-   Day³            0.03924    0.07961     1.040    0.88575      1.22     0.49293    0.622   
-   Day⁴           -0.00202    0.00307     0.998    0.99192      1.00    -0.65896    0.510   
- ────────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                   
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z        p        
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     0.74300    0.31366     2.102    1.103    3.779     2.37     0.018   
+   Day             0.20792    0.05266     1.231    1.114    1.369     3.95    < .001   
+   Day²           -0.00574    0.00298     0.994    0.988    1.000    -1.92     0.054   
+   Day³            1.36e-4    6.83e-5     1.000    1.000    1.000     1.99     0.046   
+   Day⁴           -1.18e-6    5.45e-7     1.000    1.000    1.000    -2.17     0.030   
+ ───────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="lebanon" class="section level2">
-<h2>Lebanon</h2>
-<p><strong>R^2= 0.9797818 </strong></p>
-<p><strong>EC= 67 </strong></p>
-<p><strong>GF= 1.35 </strong></p>
+<div id="jordan" class="section level2">
+<h2>Jordan</h2>
+<p><strong>R^2= NaN </strong></p>
+<p><strong>EC= 1 </strong></p>
+<p><strong>GF= 1 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-37.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.04204    1.25896     0.959    0.0488     7.79    -0.0334    0.973   
-   Day            -0.22161    0.55133     0.801    0.2929     2.66    -0.4020    0.688   
-   Day²            0.08530    0.07959     1.089    0.9227     1.27     1.0717    0.284   
-   Day³           -0.00546    0.00457     0.995    0.9859     1.00    -1.1955    0.232   
-   Day⁴            1.13e-4    9.08e-5     1.000    0.9999     1.00     1.2398    0.215   
- ─────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                          
+ ──────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate     SE         exp(B)    Lower      Upper     z            p       
+ ──────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     5.13e-18    2.90767      1.00    0.00102    189.95     1.76e-18    1.000   
+   Day            -2.11e-20    3.03607      1.00    0.00237    616.42    -6.96e-21    1.000   
+   Day²            5.53e-21    0.96924      1.00    0.13874      7.09     5.70e-21    1.000   
+   Day³           -5.77e-22    0.11894      1.00    0.78575      1.27    -4.85e-21    1.000   
+   Day⁴            2.07e-23    0.00493      1.00    0.99015      1.01     4.21e-21    1.000   
+ ──────────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="lithuania" class="section level2">
-<h2>Lithuania</h2>
-<p><strong>R^2= 0.8516776 </strong></p>
-<p><strong>EC= 3 </strong></p>
-<p><strong>GF= 1.71 </strong></p>
+<div id="kuwait" class="section level2">
+<h2>Kuwait</h2>
+<p><strong>R^2= 0.9450396 </strong></p>
+<p><strong>EC= 77 </strong></p>
+<p><strong>GF= 0.93 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-38.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z          p       
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.15309    2.15892     0.858    0.00485    34.96    -0.0709    0.943   
-   Day             0.14122    1.78951     1.152    0.03710    53.56     0.0789    0.937   
-   Day²           -0.02945    0.45043     0.971    0.38358     2.35    -0.0654    0.948   
-   Day³            0.00129    0.04321     1.001    0.91937     1.09     0.0298    0.976   
-   Day⁴            4.21e-5    0.00139     1.000    0.99725     1.00     0.0302    0.976   
- ──────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      0.2891    0.49889     1.335    0.477    3.379     0.580     0.562   
+   Day              1.4153    0.25018     4.118    2.562    6.839     5.657    < .001   
+   Day²            -0.1930    0.04197     0.825    0.758    0.894    -4.598    < .001   
+   Day³             0.0111    0.00282     1.011    1.006    1.017     3.946    < .001   
+   Day⁴           -2.26e-4    6.53e-5     1.000    1.000    1.000    -3.462    < .001   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="luxembourg" class="section level2">
-<h2>Luxembourg</h2>
-<p><strong>R^2= 0.9903323 </strong></p>
-<p><strong>EC= 19 </strong></p>
-<p><strong>GF= 2.93 </strong></p>
+<div id="latvia" class="section level2">
+<h2>Latvia</h2>
+<p><strong>R^2= 0.9602647 </strong></p>
+<p><strong>EC= 16 </strong></p>
+<p><strong>GF= 1.3 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-39.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.79424    2.05338     2.213    0.0173    81.29     0.387    0.699   
-   Day            -0.90939    1.75680     0.403    0.0127    15.84    -0.518    0.605   
-   Day²            0.26833    0.44767     1.308    0.5317     3.21     0.599    0.549   
-   Day³           -0.02762    0.04371     0.973    0.8910     1.06    -0.632    0.527   
-   Day⁴            0.00103    0.00145     1.001    0.9982     1.00     0.709    0.478   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper     z         p       
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      1.4062    2.11742     4.080    0.03048    189.15     0.664    0.507   
+   Day             -1.5257    1.95595     0.217    0.00413     11.58    -0.780    0.435   
+   Day²             0.3957    0.52512     1.485    0.53010      4.37     0.754    0.451   
+   Day³            -0.0328    0.05418     0.968    0.86593      1.08    -0.606    0.544   
+   Day⁴            9.38e-4    0.00191     1.001    0.99724      1.00     0.492    0.623   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="lebanon" class="section level2">
+<h2>Lebanon</h2>
+<p><strong>R^2= 0.9828948 </strong></p>
+<p><strong>EC= 80 </strong></p>
+<p><strong>GF= 1.31 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-40.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -0.33331    1.24421     0.717    0.0383     5.67    -0.2679    0.789   
+   Day            -0.03715    0.50596     0.964    0.3855     2.91    -0.0734    0.941   
+   Day²            0.05375    0.06865     1.055    0.9139     1.20     0.7829    0.434   
+   Day³           -0.00344    0.00373     0.997    0.9895     1.00    -0.9231    0.356   
+   Day⁴            6.91e-5    7.03e-5     1.000    0.9999     1.00     0.9823    0.326   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="lithuania" class="section level2">
+<h2>Lithuania</h2>
+<p><strong>R^2= 0.9493669 </strong></p>
+<p><strong>EC= 6 </strong></p>
+<p><strong>GF= 1.95 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-41.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper    z          p       
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -0.17084     1.9820     0.843    0.00733    24.66    -0.0862    0.931   
+   Day             0.16053     1.5255     1.174    0.06411    31.04     0.1052    0.916   
+   Day²           -0.03516     0.3555     0.965    0.46338     1.93    -0.0989    0.921   
+   Day³            0.00190     0.0315     1.002    0.94184     1.07     0.0603    0.952   
+   Day⁴            2.09e-5    9.39e-4     1.000    0.99813     1.00     0.0223    0.982   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="luxembourg" class="section level2">
+<h2>Luxembourg</h2>
+<p><strong>R^2= 0.9905571 </strong></p>
+<p><strong>EC= 35 </strong></p>
+<p><strong>GF= 2.3 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-42.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      0.0216     1.9249     1.022    0.0102    27.15     0.0112    0.991   
+   Day             -0.0597     1.4585     0.942    0.0580    21.30    -0.0409    0.967   
+   Day²             0.0190     0.3363     1.019    0.5114     1.97     0.0565    0.955   
+   Day³           -9.00e-4     0.0299     0.999    0.9420     1.06    -0.0301    0.976   
+   Day⁴            8.11e-5    9.06e-4     1.000    0.9983     1.00     0.0895    0.929   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
@@ -1510,7 +1582,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-40.png">
+<img src="gzlm_corona1_files/figure-html/out-43.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -1528,121 +1600,121 @@ Figure 4. Polynomial model for Mainland China data
 </div>
 <div id="mainland-china" class="section level2">
 <h2>Mainland China</h2>
-<p><strong>R^2= 0.9958478 </strong></p>
-<p><strong>EC= 81567 </strong></p>
-<p><strong>GF= 1.01 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-41.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                        
- ────────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)     Lower      Upper      z        p        
- ────────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      5.7238    0.01614    306.062    296.514    315.880    354.6    < .001   
-   Day              0.4825    0.00269      1.620      1.612      1.629    179.3    < .001   
-   Day²            -0.0155    1.56e-4      0.985      0.984      0.985    -99.3    < .001   
-   Day³            2.16e-4    3.71e-6      1.000      1.000      1.000     58.3    < .001   
-   Day⁴           -1.11e-6    3.10e-8      1.000      1.000      1.000    -35.6    < .001   
- ────────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="malaysia" class="section level2">
-<h2>Malaysia</h2>
-<p><strong>R^2= 0.9750101 </strong></p>
-<p><strong>EC= 175 </strong></p>
-<p><strong>GF= 1.2 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-42.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.3299    0.38883     1.391    0.622    2.862     0.848     0.396   
-   Day              0.3638    0.07975     1.439    1.237    1.691     4.562    < .001   
-   Day²            -0.0192    0.00535     0.981    0.971    0.991    -3.582    < .001   
-   Day³            4.22e-4    1.42e-4     1.000    1.000    1.001     2.979     0.003   
-   Day⁴           -2.85e-6    1.29e-6     1.000    1.000    1.000    -2.218     0.027   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="mexico" class="section level2">
-<h2>Mexico</h2>
-<p><strong>R^2= 0.8927364 </strong></p>
-<p><strong>EC= 11 </strong></p>
-<p><strong>GF= 1.2 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-43.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.3255     1.3653     0.722    0.0339     7.82    -0.238    0.812   
-   Day              1.0466     1.0007     2.848    0.4438    23.60     1.046    0.296   
-   Day²            -0.1889     0.2369     0.828    0.5089     1.30    -0.797    0.425   
-   Day³             0.0140     0.0220     1.014    0.9721     1.06     0.636    0.524   
-   Day⁴           -3.47e-4    6.98e-4     1.000    0.9983     1.00    -0.498    0.619   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="monaco" class="section level2">
-<h2>Monaco</h2>
-<p><strong>R^2= 0.9026386 </strong></p>
-<p><strong>EC= 2 </strong></p>
-<p><strong>GF= 1.82 </strong></p>
+<p><strong>R^2= 0.9958859 </strong></p>
+<p><strong>EC= 81573 </strong></p>
+<p><strong>GF= 1 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-44.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.2916    2.32932     1.339    0.00529    80.50     0.125    0.900   
-   Day             -0.3607    2.11952     0.697    0.01087    61.54    -0.170    0.865   
-   Day²             0.1238    0.58147     1.132    0.34723     3.63     0.213    0.831   
-   Day³            -0.0156    0.06081     0.985    0.87101     1.11    -0.256    0.798   
-   Day⁴            6.41e-4    0.00214     1.001    0.99641     1.00     0.300    0.764   
- ─────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                         
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)     Lower      Upper      z         p        
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      5.7138    0.01579    303.017    293.764    312.527     361.8    < .001   
+   Day              0.4847    0.00259      1.624      1.616      1.632     187.4    < .001   
+   Day²            -0.0156    1.47e-4      0.985      0.984      0.985    -106.2    < .001   
+   Day³            2.20e-4    3.44e-6      1.000      1.000      1.000      64.1    < .001   
+   Day⁴           -1.14e-6    2.82e-8      1.000      1.000      1.000     -40.5    < .001   
+ ─────────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="morocco" class="section level2">
-<h2>Morocco</h2>
-<p><strong>R^2= 0.9398535 </strong></p>
-<p><strong>EC= 6 </strong></p>
-<p><strong>GF= 1.55 </strong></p>
+<div id="malaysia" class="section level2">
+<h2>Malaysia</h2>
+<p><strong>R^2= 0.9797219 </strong></p>
+<p><strong>EC= 202 </strong></p>
+<p><strong>GF= 1.19 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-45.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                       
- ───────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper     z          p       
- ───────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.64639    2.68717     0.524    7.51e-4     52.35    -0.2405    0.810   
-   Day             0.58389    2.51451     1.793     0.0150    439.67     0.2322    0.816   
-   Day²           -0.11053    0.74477     0.895     0.1894      3.84    -0.1484    0.882   
-   Day³            0.00947    0.08622     1.010     0.8517      1.20     0.1098    0.913   
-   Day⁴           -2.16e-4    0.00341     1.000     0.9930      1.01    -0.0633    0.950   
- ───────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      0.2824    0.38283     1.326    0.601    2.702     0.738     0.461   
+   Day              0.3777    0.07649     1.459    1.262    1.703     4.939    < .001   
+   Day²            -0.0203    0.00500     0.980    0.970    0.989    -4.062    < .001   
+   Day³            4.57e-4    1.29e-4     1.000    1.000    1.001     3.538    < .001   
+   Day⁴           -3.20e-6    1.14e-6     1.000    1.000    1.000    -2.799     0.005   
+ ────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="mexico" class="section level2">
+<h2>Mexico</h2>
+<p><strong>R^2= 0.9178376 </strong></p>
+<p><strong>EC= 12 </strong></p>
+<p><strong>GF= 1.08 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-46.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.3875     1.2686     0.679    0.0401     6.22    -0.305    0.760   
+   Day              1.1062     0.8692     3.023    0.6030    18.92     1.273    0.203   
+   Day²            -0.2054     0.1923     0.814    0.5486     1.17    -1.069    0.285   
+   Day³             0.0157     0.0167     1.016    0.9839     1.05     0.943    0.346   
+   Day⁴           -4.06e-4    4.93e-4     1.000    0.9986     1.00    -0.823    0.411   
+ ────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="monaco" class="section level2">
+<h2>Monaco</h2>
+<p><strong>R^2= 0.8503433 </strong></p>
+<p><strong>EC= 2 </strong></p>
+<p><strong>GF= 1.47 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-47.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper    z          p       
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -0.03924    2.16462     0.962    0.00543    40.22    -0.0181    0.986   
+   Day             0.02569    1.81817     1.026    0.03077    50.02     0.0141    0.989   
+   Day²            4.06e-4    0.46254     1.000    0.38664     2.49    8.78e-4    0.999   
+   Day³           -0.00123    0.04484     0.999    0.91381     1.09    -0.0274    0.978   
+   Day⁴            9.74e-5    0.00146     1.000    0.99717     1.00     0.0667    0.947   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="morocco" class="section level2">
+<h2>Morocco</h2>
+<p><strong>R^2= 0.9558354 </strong></p>
+<p><strong>EC= 7 </strong></p>
+<p><strong>GF= 1.13 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-48.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper     z         p       
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.9597    2.43020     0.383    0.00103     22.88    -0.395    0.693   
+   Day              0.9536    2.06811     2.595    0.05443    246.56     0.461    0.645   
+   Day²            -0.2361    0.55899     0.790    0.24378      2.31    -0.422    0.673   
+   Day³             0.0254    0.05914     1.026    0.91433      1.16     0.430    0.667   
+   Day⁴           -8.88e-4    0.00214     0.999    0.99479      1.00    -0.416    0.678   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
@@ -1654,162 +1726,162 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-46.png">
+<img src="gzlm_corona1_files/figure-html/out-49.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                       
  ───────────────────────────────────────────────────────────────────────────────────────── 
    Names          Estimate     SE         exp(B)    Lower    Upper    z            p       
  ───────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     5.94e-18     0.8221      1.00    0.158     4.15     7.23e-18    1.000   
-   Day             2.85e-21     0.2274      1.00    0.652     1.61     1.25e-20    1.000   
-   Day²           -1.99e-22     0.0186      1.00    0.963     1.04    -1.07e-20    1.000   
-   Day³            5.36e-24    5.67e-4      1.00    0.999     1.00     9.45e-21    1.000   
-   Day⁴           -4.90e-26    5.75e-6      1.00    1.000     1.00    -8.53e-21    1.000   
+   (Intercept)    -2.35e-18     0.8115      1.00    0.162     4.08    -2.90e-18    1.000   
+   Day             1.24e-18     0.2200      1.00    0.661     1.58     5.64e-18    1.000   
+   Day²           -8.47e-20     0.0176      1.00    0.965     1.03    -4.80e-18    1.000   
+   Day³            2.23e-21    5.28e-4      1.00    0.999     1.00     4.23e-18    1.000   
+   Day⁴           -1.99e-23    5.24e-6      1.00    1.000     1.00    -3.80e-18    1.000   
  ───────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
 <div id="netherlands" class="section level2">
 <h2>Netherlands</h2>
-<p><strong>R^2= 0.9966477 </strong></p>
-<p><strong>EC= 513 </strong></p>
-<p><strong>GF= 1.06 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-47.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.45048    1.05187     0.637    0.0623     3.99    -0.428    0.668   
-   Day             0.60445    0.53284     1.830    0.6959     5.71     1.134    0.257   
-   Day²            0.01935    0.09467     1.020    0.8371     1.22     0.204    0.838   
-   Day³           -0.00297    0.00699     0.997    0.9840     1.01    -0.425    0.671   
-   Day⁴            6.51e-5    1.83e-4     1.000    0.9997     1.00     0.356    0.722   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="new-zealand" class="section level2">
-<h2>New Zealand</h2>
-<p><strong>R^2= 0.9644888 </strong></p>
-<p><strong>EC= 5 </strong></p>
-<p><strong>GF= 1.13 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-48.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.7543    1.87496     2.126    0.0242    53.10     0.402    0.687   
-   Day             -0.9370    1.45739     0.392    0.0236     8.59    -0.643    0.520   
-   Day²             0.2865    0.34699     1.332    0.6589     2.64     0.826    0.409   
-   Day³            -0.0260    0.03200     0.974    0.9143     1.04    -0.811    0.417   
-   Day⁴            7.57e-4    0.00101     1.001    0.9988     1.00     0.752    0.452   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="nigeria" class="section level2">
-<h2>Nigeria</h2>
-<p><strong>R^2= 0.8873915 </strong></p>
-<p><strong>EC= 2 </strong></p>
-<p><strong>GF= 0.86 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-49.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.3813    2.16996     0.683    0.00375    28.06    -0.176    0.861   
-   Day              0.4462    1.79007     1.562    0.05103    73.75     0.249    0.803   
-   Day²            -0.1413    0.44954     0.868    0.34182     2.09    -0.314    0.753   
-   Day³             0.0157    0.04319     1.016    0.93346     1.11     0.363    0.716   
-   Day⁴           -5.35e-4    0.00140     0.999    0.99662     1.00    -0.382    0.702   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="north-macedonia" class="section level2">
-<h2>North Macedonia</h2>
-<p><strong>R^2= 0.935941 </strong></p>
-<p><strong>EC= 7 </strong></p>
-<p><strong>GF= 0.97 </strong></p>
+<p><strong>R^2= 0.9951229 </strong></p>
+<p><strong>EC= 779 </strong></p>
+<p><strong>GF= 1.48 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-50.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.06414     1.7550     0.938    0.0145    18.60    -0.0365    0.971   
-   Day             0.11778     1.2371     1.125    0.1060    15.63     0.0952    0.924   
-   Day²           -0.05371     0.2618     0.948    0.5544     1.58    -0.2052    0.837   
-   Day³            0.00743     0.0212     1.007    0.9664     1.05     0.3500    0.726   
-   Day⁴           -2.52e-4    5.84e-4     1.000    0.9986     1.00    -0.4324    0.665   
- ─────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      0.7819    0.83637     2.186    0.350    9.560     0.935     0.350   
+   Day             -0.2464    0.40344     0.782    0.373    1.833    -0.611     0.541   
+   Day²             0.1974    0.06832     1.218    1.058    1.385     2.889     0.004   
+   Day³            -0.0176    0.00478     0.983    0.974    0.992    -3.675    < .001   
+   Day⁴            4.77e-4    1.18e-4     1.000    1.000    1.001     4.036    < .001   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="norway" class="section level2">
-<h2>Norway</h2>
-<p><strong>R^2= 0.9910681 </strong></p>
-<p><strong>EC= 729 </strong></p>
-<p><strong>GF= 1.28 </strong></p>
+<div id="new-zealand" class="section level2">
+<h2>New Zealand</h2>
+<p><strong>R^2= 0.9634176 </strong></p>
+<p><strong>EC= 5 </strong></p>
+<p><strong>GF= 1.18 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-51.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper     z        p        
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -2.5477    1.14029    0.0783    0.00670     0.592    -2.23     0.025   
-   Day              2.0853    0.53591    8.0467    3.02994    24.874     3.89    < .001   
-   Day²            -0.2738    0.08796    0.7605    0.63384     0.895    -3.11     0.002   
-   Day³             0.0177    0.00601    1.0179    1.00646     1.030     2.95     0.003   
-   Day⁴           -4.09e-4    1.46e-4    0.9996    0.99930     1.000    -2.80     0.005   
- ──────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      0.6048     1.7570     1.831    0.0273    36.13     0.344    0.731   
+   Day             -0.7808     1.2647     0.458    0.0412     6.80    -0.617    0.537   
+   Day²             0.2432     0.2818     1.275    0.7177     2.21     0.863    0.388   
+   Day³            -0.0215     0.0244     0.979    0.9328     1.03    -0.884    0.377   
+   Day⁴            6.06e-4    7.18e-4     1.001    0.9992     1.00     0.845    0.398   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="oman" class="section level2">
-<h2>Oman</h2>
-<p><strong>R^2= 0.9600325 </strong></p>
-<p><strong>EC= 18 </strong></p>
-<p><strong>GF= 1.09 </strong></p>
+<div id="nigeria" class="section level2">
+<h2>Nigeria</h2>
+<p><strong>R^2= 0.8919483 </strong></p>
+<p><strong>EC= 2 </strong></p>
+<p><strong>GF= 0.8 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-52.png">
 </figure>
 <pre class='jamovitable'>
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.2558    1.99987     0.774    0.00650    23.52    -0.128    0.898   
+   Day              0.3098    1.55745     1.363    0.06980    38.52     0.199    0.842   
+   Day²            -0.1009    0.36708     0.904    0.42309     1.85    -0.275    0.783   
+   Day³             0.0114    0.03305     1.011    0.94819     1.08     0.344    0.731   
+   Day⁴           -3.83e-4    0.00100     1.000    0.99758     1.00    -0.382    0.703   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="north-macedonia" class="section level2">
+<h2>North Macedonia</h2>
+<p><strong>R^2= 0.9478714 </strong></p>
+<p><strong>EC= 13 </strong></p>
+<p><strong>GF= 1.46 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-53.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     0.49461     1.5679     1.640    0.0409    24.11     0.315    0.752   
+   Day            -0.42527     1.0570     0.654    0.0849     5.99    -0.402    0.687   
+   Day²            0.08289     0.2102     1.086    0.7105     1.64     0.394    0.693   
+   Day³           -0.00496     0.0159     0.995    0.9642     1.03    -0.311    0.756   
+   Day⁴            1.16e-4    4.09e-4     1.000    0.9993     1.00     0.284    0.777   
+ ────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="norway" class="section level2">
+<h2>Norway</h2>
+<p><strong>R^2= 0.9936854 </strong></p>
+<p><strong>EC= 987 </strong></p>
+<p><strong>GF= 1.26 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-54.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper     z        p        
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -2.0348    0.97770     0.131    0.0161     0.752    -2.08     0.037   
+   Day              1.7867    0.43327     5.970    2.6948    14.781     4.12    < .001   
+   Day²            -0.2178    0.06700     0.804    0.7007     0.912    -3.25     0.001   
+   Day³             0.0135    0.00431     1.014    1.0054     1.023     3.14     0.002   
+   Day⁴           -2.99e-4    9.84e-5     1.000    0.9995     1.000    -3.04     0.002   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="oman" class="section level2">
+<h2>Oman</h2>
+<p><strong>R^2= 0.9621452 </strong></p>
+<p><strong>EC= 19 </strong></p>
+<p><strong>GF= 1.12 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-55.png">
+</figure>
+<pre class='jamovitable'>
  Parameter Estimates                                                                   
  ───────────────────────────────────────────────────────────────────────────────────── 
    Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
  ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.90690    0.94593     2.477    0.306    13.13     0.959    0.338   
-   Day            -0.14474    0.54421     0.865    0.311     2.68    -0.266    0.790   
-   Day²            0.07936    0.09977     1.083    0.885     1.31     0.796    0.426   
-   Day³           -0.00636    0.00716     0.994    0.980     1.01    -0.888    0.374   
-   Day⁴            1.52e-4    1.76e-4     1.000    1.000     1.00     0.867    0.386   
+   (Intercept)     0.85686    0.90277     2.356    0.322    11.58     0.949    0.343   
+   Day            -0.10419    0.48946     0.901    0.359     2.49    -0.213    0.831   
+   Day²            0.07054    0.08502     1.073    0.903     1.26     0.830    0.407   
+   Day³           -0.00565    0.00579     0.994    0.983     1.01    -0.976    0.329   
+   Day⁴            1.33e-4    1.35e-4     1.000    1.000     1.00     0.989    0.323   
  ───────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
@@ -1822,7 +1894,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-53.png">
+<img src="gzlm_corona1_files/figure-html/out-56.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                      
@@ -1840,105 +1912,33 @@ Figure 4. Polynomial model for Mainland China data
 </div>
 <div id="pakistan" class="section level2">
 <h2>Pakistan</h2>
-<p><strong>R^2= 0.9303691 </strong></p>
-<p><strong>EC= 22 </strong></p>
-<p><strong>GF= 1.3 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-54.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.3185     1.2853     0.727    0.0400     6.73    -0.248    0.804   
-   Day              0.8109     0.8199     2.250    0.4924    12.78     0.989    0.323   
-   Day²            -0.1389     0.1674     0.870    0.6168     1.20    -0.830    0.407   
-   Day³             0.0101     0.0134     1.010    0.9846     1.04     0.759    0.448   
-   Day⁴           -2.38e-4    3.65e-4     1.000    0.9990     1.00    -0.652    0.514   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="philippines" class="section level2">
-<h2>Philippines</h2>
-<p><strong>R^2= 0.9697017 </strong></p>
-<p><strong>EC= 64 </strong></p>
-<p><strong>GF= 1.7 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-55.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z          p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.33737     0.7397     0.714    0.141     2.62    -0.4561    0.648   
-   Day             0.22517     0.1843     1.253    0.890     1.84     1.2217    0.222   
-   Day²           -0.00893     0.0146     0.991    0.962     1.02    -0.6119    0.541   
-   Day³           -9.84e-6    4.44e-4     1.000    0.999     1.00    -0.0221    0.982   
-   Day⁴            3.54e-6    4.57e-6     1.000    1.000     1.00     0.7757    0.438   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="portugal" class="section level2">
-<h2>Portugal</h2>
-<p><strong>R^2= 0.9866182 </strong></p>
-<p><strong>EC= 61 </strong></p>
-<p><strong>GF= 1.14 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-56.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z           p       
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.2893    1.61149     0.749    0.0190    12.05    -0.17950    0.858   
-   Day              0.7256    1.28183     2.066    0.1955    32.37     0.56610    0.571   
-   Day²            -0.0304    0.34163     0.970    0.4774     1.85    -0.08911    0.929   
-   Day³           -3.07e-4    0.03679     1.000    0.9316     1.08    -0.00833    0.993   
-   Day⁴            3.50e-5    0.00138     1.000    0.9973     1.00     0.02539    0.980   
- ──────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="qatar" class="section level2">
-<h2>Qatar</h2>
-<p><strong>R^2= 0.9419233 </strong></p>
-<p><strong>EC= 284 </strong></p>
-<p><strong>GF= 0.86 </strong></p>
+<p><strong>R^2= 0.9545374 </strong></p>
+<p><strong>EC= 28 </strong></p>
+<p><strong>GF= 1.24 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-57.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                              
- ──────────────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)      Lower       Upper          z        p        
- ──────────────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -9.53819     2.6032     7.20e-5     2.53e-7        0.00680    -3.66    < .001   
-   Day             8.09458     1.5778    3276.649    190.9235    92214.69971     5.13    < .001   
-   Day²           -1.90819     0.3264       0.148      0.0752        0.27014    -5.85    < .001   
-   Day³            0.17840     0.0278       1.195      1.1352        1.26564     6.43    < .001   
-   Day⁴           -0.00559    8.30e-4       0.994      0.9927        0.99598    -6.73    < .001   
- ──────────────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.3167     1.1974     0.729    0.0496     5.82    -0.265    0.791   
+   Day              0.8094     0.7157     2.247    0.5963    10.19     1.131    0.258   
+   Day²            -0.1385     0.1368     0.871    0.6574     1.13    -1.012    0.311   
+   Day³             0.0101     0.0102     1.010    0.9905     1.03     0.988    0.323   
+   Day⁴           -2.37e-4    2.62e-4     1.000    0.9992     1.00    -0.906    0.365   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="romania" class="section level2">
-<h2>Romania</h2>
-<p><strong>R^2= 0.9824244 </strong></p>
-<p><strong>EC= 51 </strong></p>
-<p><strong>GF= 1.25 </strong></p>
+<div id="philippines" class="section level2">
+<h2>Philippines</h2>
+<p><strong>R^2= 0.9658117 </strong></p>
+<p><strong>EC= 77 </strong></p>
+<p><strong>GF= 1.54 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -1949,140 +1949,140 @@ Figure 4. Polynomial model for Mainland China data
  ────────────────────────────────────────────────────────────────────────────────────── 
    Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
  ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.7843     1.4572     0.456    0.0157     5.39    -0.538    0.590   
-   Day              0.8814     0.8682     2.414    0.4925    15.67     1.015    0.310   
-   Day²            -0.1554     0.1673     0.856    0.6044     1.17    -0.929    0.353   
-   Day³             0.0128     0.0128     1.013    0.9885     1.04     1.006    0.314   
-   Day⁴           -3.38e-4    3.35e-4     1.000    0.9990     1.00    -1.009    0.313   
+   (Intercept)     -0.7966     0.7712     0.451    0.0835     1.75    -1.033    0.302   
+   Day              0.3906     0.1829     1.478    1.0538     2.17     2.136    0.033   
+   Day²            -0.0250     0.0139     0.975    0.9480     1.00    -1.799    0.072   
+   Day³            5.49e-4    4.07e-4     1.001    0.9998     1.00     1.350    0.177   
+   Day⁴           -2.80e-6    4.04e-6     1.000    1.0000     1.00    -0.694    0.488   
  ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="russia" class="section level2">
-<h2>Russia</h2>
-<p><strong>R^2= 0.9528067 </strong></p>
-<p><strong>EC= 30 </strong></p>
-<p><strong>GF= 1.34 </strong></p>
+<div id="portugal" class="section level2">
+<h2>Portugal</h2>
+<p><strong>R^2= 0.9893173 </strong></p>
+<p><strong>EC= 110 </strong></p>
+<p><strong>GF= 1.92 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-59.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.3171     0.6515     1.373    0.334     4.38     0.487    0.626   
-   Day              0.1635     0.1908     1.178    0.821     1.74     0.857    0.391   
-   Day²            -0.0163     0.0168     0.984    0.951     1.02    -0.970    0.332   
-   Day³            5.05e-4    5.54e-4     1.001    0.999     1.00     0.912    0.362   
-   Day⁴           -3.92e-6    6.10e-6     1.000    1.000     1.00    -0.643    0.520   
- ───────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     0.43043     1.3536     1.538    0.0725    16.14     0.3180    0.750   
+   Day            -0.01946     0.9938     0.981    0.1561     8.12    -0.0196    0.984   
+   Day²            0.19808     0.2441     1.219    0.7374     1.94     0.8114    0.417   
+   Day³           -0.02727     0.0242     0.973    0.9289     1.02    -1.1291    0.259   
+   Day⁴            0.00111    8.31e-4     1.001    0.9994     1.00     1.3414    0.180   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="san-marino" class="section level2">
-<h2>San Marino</h2>
-<p><strong>R^2= 0.9756358 </strong></p>
-<p><strong>EC= 72 </strong></p>
-<p><strong>GF= 1.24 </strong></p>
+<div id="qatar" class="section level2">
+<h2>Qatar</h2>
+<p><strong>R^2= 0.9517641 </strong></p>
+<p><strong>EC= 307 </strong></p>
+<p><strong>GF= 0.6 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-60.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -2.36173     1.9687    0.0943    8.78e-4     2.28    -1.200    0.230   
-   Day             1.33332     1.0473    3.7936      0.621    40.27     1.273    0.203   
-   Day²           -0.12447     0.1934    0.8830      0.580     1.25    -0.644    0.520   
-   Day³            0.00573     0.0147    1.0057      0.979     1.04     0.389    0.697   
-   Day⁴           -9.30e-5    3.96e-4    0.9999      0.999     1.00    -0.235    0.814   
- ─────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                           
+ ───────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)       Lower      Upper       z        p        
+ ───────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -5.10791     1.7426      0.00605    1.33e-4       0.125    -2.93     0.003   
+   Day             4.88302     1.0132    132.02885     21.132    1131.165     4.82    < .001   
+   Day²           -1.15236     0.1972      0.31589      0.210       0.455    -5.84    < .001   
+   Day³            0.10831     0.0157      1.11440      1.082       1.151     6.90    < .001   
+   Day⁴           -0.00335    4.39e-4      0.99665      0.996       0.997    -7.64    < .001   
+ ───────────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="saudi-arabia" class="section level2">
-<h2>Saudi Arabia</h2>
-<p><strong>R^2= 0.972341 </strong></p>
-<p><strong>EC= 44 </strong></p>
-<p><strong>GF= 2.17 </strong></p>
+<div id="romania" class="section level2">
+<h2>Romania</h2>
+<p><strong>R^2= 0.9874471 </strong></p>
+<p><strong>EC= 86 </strong></p>
+<p><strong>GF= 1.52 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-61.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.23891    2.17953     1.270    0.00649    50.19     0.110    0.913   
-   Day            -0.59709    1.82361     0.550    0.01833    29.84    -0.327    0.743   
-   Day²            0.35221    0.49745     1.422    0.50417     3.71     0.708    0.479   
-   Day³           -0.04498    0.05406     0.956    0.86024     1.07    -0.832    0.405   
-   Day⁴            0.00187    0.00203     1.002    0.99779     1.01     0.919    0.358   
- ─────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -0.22825    1.27707     0.796    0.0427     7.06    -0.179    0.858   
+   Day             0.42886    0.72030     1.536    0.4058     7.13     0.595    0.552   
+   Day²           -0.05229    0.13045     0.949    0.7253     1.22    -0.401    0.689   
+   Day³            0.00407    0.00932     1.004    0.9863     1.02     0.436    0.662   
+   Day⁴           -8.96e-5    2.29e-4     1.000    0.9994     1.00    -0.391    0.696   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="senegal" class="section level2">
-<h2>Senegal</h2>
-<p><strong>R^2= 0.9677176 </strong></p>
-<p><strong>EC= 4 </strong></p>
-<p><strong>GF= 0.89 </strong></p>
+<div id="russia" class="section level2">
+<h2>Russia</h2>
+<p><strong>R^2= 0.9697427 </strong></p>
+<p><strong>EC= 43 </strong></p>
+<p><strong>GF= 1.4 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-62.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper     z         p       
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -1.55661    2.34489     0.211    8.06e-4     11.02    -0.664    0.507   
-   Day             1.89361    2.08595     6.643      0.147    659.15     0.908    0.364   
-   Day²           -0.42721    0.61225     0.652      0.179      2.07    -0.698    0.485   
-   Day³            0.04050    0.07147     1.041      0.908      1.21     0.567    0.571   
-   Day⁴           -0.00137    0.00287     0.999      0.993      1.00    -0.479    0.632   
- ──────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                   
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      0.3753     0.6309     1.455    0.371     4.49     0.595    0.552   
+   Day              0.1376     0.1794     1.148    0.817     1.66     0.767    0.443   
+   Day²            -0.0134     0.0153     0.987    0.957     1.02    -0.880    0.379   
+   Day³            3.97e-4    4.88e-4     1.000    0.999     1.00     0.814    0.416   
+   Day⁴           -2.61e-6    5.21e-6     1.000    1.000     1.00    -0.500    0.617   
+ ───────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="singapore" class="section level2">
-<h2>Singapore</h2>
-<p><strong>R^2= 0.9955311 </strong></p>
-<p><strong>EC= 190 </strong></p>
-<p><strong>GF= 1.1 </strong></p>
+<div id="san-marino" class="section level2">
+<h2>San Marino</h2>
+<p><strong>R^2= 0.9799544 </strong></p>
+<p><strong>EC= 81 </strong></p>
+<p><strong>GF= 1.14 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-63.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.27862    0.35827     1.321    0.632     2.58     0.778     0.437   
-   Day             0.29948    0.06385     1.349    1.195     1.54     4.690    < .001   
-   Day²           -0.00659    0.00389     0.993    0.986     1.00    -1.695     0.090   
-   Day³            2.50e-5    9.60e-5     1.000    1.000     1.00     0.260     0.795   
-   Day⁴            5.36e-7    8.24e-7     1.000    1.000     1.00     0.650     0.515   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -2.62577     1.8419    0.0724    9.89e-4     1.49    -1.426    0.154   
+   Day             1.51087     0.9127    4.5307      0.928    34.62     1.655    0.098   
+   Day²           -0.16216     0.1572    0.8503      0.606     1.13    -1.032    0.302   
+   Day³            0.00889     0.0112    1.0089      0.988     1.03     0.794    0.427   
+   Day⁴           -1.84e-4    2.81e-4    0.9998      0.999     1.00    -0.654    0.513   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="south-korea" class="section level2">
-<h2>South Korea</h2>
-<p><strong>R^2= 0.9939834 </strong></p>
-<p><strong>EC= 7249 </strong></p>
-<p><strong>GF= 0.94 </strong></p>
+<div id="saudi-arabia" class="section level2">
+<h2>Saudi Arabia</h2>
+<p><strong>R^2= 0.9865368 </strong></p>
+<p><strong>EC= 87 </strong></p>
+<p><strong>GF= 2.47 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -2091,94 +2091,94 @@ Figure 4. Polynomial model for Mainland China data
 <pre class='jamovitable'>
  Parameter Estimates                                                                      
  ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper     z         p        
+   Names          Estimate    SE         exp(B)    Lower      Upper    z          p       
  ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      3.4359    0.19667    31.059    20.754    44.934     17.47    < .001   
-   Day             -0.6236    0.03666     0.536     0.499     0.576    -17.01    < .001   
-   Day²             0.0403    0.00216     1.041     1.037     1.046     18.64    < .001   
-   Day³           -6.72e-4    4.88e-5     0.999     0.999     0.999    -13.78    < .001   
-   Day⁴            3.19e-6    3.77e-7     1.000     1.000     1.000      8.45    < .001   
+   (Intercept)     -0.3353    1.99567     0.715    0.00570    19.54    -0.1680    0.867   
+   Day              0.0187    1.47265     1.019    0.06961    26.70     0.0127    0.990   
+   Day²             0.1617    0.36032     1.175    0.54855     2.32     0.4486    0.654   
+   Day³            -0.0225    0.03537     0.978    0.91355     1.05    -0.6362    0.525   
+   Day⁴            9.73e-4    0.00121     1.001    0.99853     1.00     0.8074    0.419   
  ──────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="spain" class="section level2">
-<h2>Spain</h2>
-<p><strong>R^2= 0.9944232 </strong></p>
-<p><strong>EC= 2500 </strong></p>
-<p><strong>GF= 1.23 </strong></p>
+<div id="senegal" class="section level2">
+<h2>Senegal</h2>
+<p><strong>R^2= 0.9336972 </strong></p>
+<p><strong>EC= 9 </strong></p>
+<p><strong>GF= 2.21 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-65.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.17736     0.7033     0.837    0.178    2.882    -0.252     0.801   
-   Day             0.14420     0.1569     1.155    0.860    1.598     0.919     0.358   
-   Day²           -0.01933     0.0108     0.981    0.960    1.002    -1.784     0.074   
-   Day³            0.00103    2.94e-4     1.001    1.000    1.002     3.495    < .001   
-   Day⁴           -1.28e-5    2.77e-6     1.000    1.000    1.000    -4.628    < .001   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper    z          p       
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      -0.759    1.98599     0.468    0.00448    13.76    -0.3822    0.702   
+   Day               0.988    1.65217     2.686    0.12765    97.05     0.5981    0.550   
+   Day²             -0.120    0.44889     0.887    0.34778     2.08    -0.2666    0.790   
+   Day³            8.29e-4    0.04813     1.001    0.91195     1.10     0.0172    0.986   
+   Day⁴            3.35e-4    0.00176     1.000    0.99679     1.00     0.1900    0.849   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="sri-lanka" class="section level2">
-<h2>Sri Lanka</h2>
-<p><strong>R^2= 0.7122356 </strong></p>
-<p><strong>EC= 2 </strong></p>
-<p><strong>GF= 1.16 </strong></p>
+<div id="singapore" class="section level2">
+<h2>Singapore</h2>
+<p><strong>R^2= 0.9957446 </strong></p>
+<p><strong>EC= 205 </strong></p>
+<p><strong>GF= 1.1 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-66.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.12935     0.8245     1.138    0.178     4.74     0.157    0.875   
-   Day            -0.06058     0.2374     0.941    0.601     1.54    -0.255    0.799   
-   Day²            0.00671     0.0201     1.007    0.967     1.05     0.333    0.739   
-   Day³           -2.57e-4    6.34e-4     1.000    0.999     1.00    -0.405    0.685   
-   Day⁴            3.14e-6    6.63e-6     1.000    1.000     1.00     0.474    0.636   
- ───────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     0.24270    0.35259     1.275    0.617    2.463     0.688     0.491   
+   Day             0.30845    0.06144     1.361    1.211    1.542     5.020    < .001   
+   Day²           -0.00725    0.00366     0.993    0.986    1.000    -1.982     0.048   
+   Day³            4.36e-5    8.84e-5     1.000    1.000    1.000     0.493     0.622   
+   Day⁴            3.60e-7    7.44e-7     1.000    1.000    1.000     0.484     0.629   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="sweden" class="section level2">
-<h2>Sweden</h2>
-<p><strong>R^2= 0.9959405 </strong></p>
-<p><strong>EC= 593 </strong></p>
-<p><strong>GF= 1.19 </strong></p>
+<div id="south-korea" class="section level2">
+<h2>South Korea</h2>
+<p><strong>R^2= 0.9938255 </strong></p>
+<p><strong>EC= 7397 </strong></p>
+<p><strong>GF= 0.95 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
 <img src="gzlm_corona1_files/figure-html/out-67.png">
 </figure>
 <pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.46119     0.8006     0.631    0.107    2.553    -0.576     0.565   
-   Day             0.27866     0.1991     1.321    0.906    1.992     1.399     0.162   
-   Day²           -0.03794     0.0144     0.963    0.935    0.990    -2.643     0.008   
-   Day³            0.00160    4.00e-4     1.002    1.001    1.002     4.002    < .001   
-   Day⁴           -1.82e-5    3.84e-6     1.000    1.000    1.000    -4.740    < .001   
- ────────────────────────────────────────────────────────────────────────────────────── 
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower     Upper     z        p        
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      3.7322    0.18573    41.770    28.551    59.220     20.1    < .001   
+   Day             -0.7519    0.03415     0.471     0.441     0.504    -22.0    < .001   
+   Day²             0.0492    0.00200     1.050     1.046     1.055     24.7    < .001   
+   Day³           -8.93e-4    4.44e-5     0.999     0.999     0.999    -20.1    < .001   
+   Day⁴            5.02e-6    3.38e-7     1.000     1.000     1.000     14.9    < .001   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
-<div id="switzerland" class="section level2">
-<h2>Switzerland</h2>
-<p><strong>R^2= 0.9944942 </strong></p>
-<p><strong>EC= 671 </strong></p>
-<p><strong>GF= 1.09 </strong></p>
+<div id="spain" class="section level2">
+<h2>Spain</h2>
+<p><strong>R^2= 0.9913777 </strong></p>
+<p><strong>EC= 4744 </strong></p>
+<p><strong>GF= 1.53 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
@@ -2187,14 +2187,86 @@ Figure 4. Polynomial model for Mainland China data
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
  ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
+   Names          Estimate    SE         exp(B)    Lower    Upper     z        p        
  ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.58771    0.86877     0.556    0.0851     2.61    -0.676    0.499   
-   Day             0.85314    0.39087     2.347    1.1454     5.34     2.183    0.029   
-   Day²           -0.04557    0.06153     0.955    0.8416     1.07    -0.741    0.459   
-   Day³            0.00198    0.00402     1.002    0.9944     1.01     0.492    0.623   
-   Day⁴           -4.75e-5    9.31e-5     1.000    0.9998     1.00    -0.510    0.610   
+   (Intercept)     2.07221    0.49128     7.942    2.727    19.112     4.22    < .001   
+   Day            -0.81811    0.13317     0.441    0.340     0.574    -6.14    < .001   
+   Day²            0.06315    0.00974     1.065    1.045     1.086     6.48    < .001   
+   Day³           -0.00151    2.65e-4     0.998    0.998     0.999    -5.71    < .001   
+   Day⁴            1.33e-5    2.44e-6     1.000    1.000     1.000     5.43    < .001   
  ────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="sri-lanka" class="section level2">
+<h2>Sri Lanka</h2>
+<p><strong>R^2= 0.8183143 </strong></p>
+<p><strong>EC= 4 </strong></p>
+<p><strong>GF= 1.45 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-69.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                   
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      0.3452     0.7821     1.412    0.244     5.49     0.441    0.659   
+   Day             -0.1598     0.2214     0.852    0.560     1.35    -0.722    0.470   
+   Day²             0.0172     0.0183     1.017    0.981     1.05     0.944    0.345   
+   Day³           -6.42e-4    5.58e-4     0.999    0.998     1.00    -1.151    0.250   
+   Day⁴            7.62e-6    5.64e-6     1.000    1.000     1.00     1.351    0.177   
+ ───────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="sweden" class="section level2">
+<h2>Sweden</h2>
+<p><strong>R^2= 0.9964129 </strong></p>
+<p><strong>EC= 780 </strong></p>
+<p><strong>GF= 1.2 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-70.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z          p        
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -0.04854     0.7346     0.953    0.188    3.457    -0.0661     0.947   
+   Day             0.11994     0.1820     1.127    0.796    1.635     0.6590     0.510   
+   Day²           -0.02356     0.0128     0.977    0.952    1.001    -1.8411     0.066   
+   Day³            0.00114    3.46e-4     1.001    1.000    1.002     3.2952    < .001   
+   Day⁴           -1.33e-5    3.21e-6     1.000    1.000    1.000    -4.1418    < .001   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="switzerland" class="section level2">
+<h2>Switzerland</h2>
+<p><strong>R^2= 0.9926145 </strong></p>
+<p><strong>EC= 1092 </strong></p>
+<p><strong>GF= 1.52 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-71.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z          p        
+ ─────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     0.82289    0.67816     2.277    0.531    7.694     1.2134     0.225   
+   Day            -0.01177    0.29422     0.988    0.573    1.824    -0.0400     0.968   
+   Day²            0.11570    0.04462     1.123    1.025    1.222     2.5928     0.010   
+   Day³           -0.00980    0.00279     0.990    0.985    0.996    -3.5100    < .001   
+   Day⁴            2.48e-4    6.16e-5     1.000    1.000    1.000     4.0282    < .001   
+ ─────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
@@ -2206,7 +2278,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-69.png">
+<img src="gzlm_corona1_files/figure-html/out-72.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -2224,24 +2296,24 @@ Figure 4. Polynomial model for Mainland China data
 </div>
 <div id="thailand" class="section level2">
 <h2>Thailand</h2>
-<p><strong>R^2= 0.9854148 </strong></p>
-<p><strong>EC= 63 </strong></p>
-<p><strong>GF= 1.05 </strong></p>
+<p><strong>R^2= 0.9854218 </strong></p>
+<p><strong>EC= 70 </strong></p>
+<p><strong>GF= 1.07 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-70.png">
+<img src="gzlm_corona1_files/figure-html/out-73.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
  ───────────────────────────────────────────────────────────────────────────────────── 
    Names          Estimate    SE         exp(B)    Lower    Upper    z        p        
  ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.7898    0.31434     2.203    1.156    3.970     2.51     0.012   
-   Day              0.3077    0.06219     1.360    1.208    1.542     4.95    < .001   
-   Day²            -0.0127    0.00406     0.987    0.979    0.995    -3.13     0.002   
-   Day³            2.25e-4    1.05e-4     1.000    1.000    1.000     2.14     0.032   
-   Day⁴           -1.35e-6    9.27e-7     1.000    1.000    1.000    -1.46     0.146   
+   (Intercept)      0.8357    0.30654     2.306    1.231    4.099     2.73     0.006   
+   Day              0.2946    0.05951     1.343    1.198    1.514     4.95    < .001   
+   Day²            -0.0117    0.00381     0.988    0.981    0.996    -3.06     0.002   
+   Day³            1.94e-4    9.65e-5     1.000    1.000    1.000     2.01     0.045   
+   Day⁴           -1.04e-6    8.36e-7     1.000    1.000    1.000    -1.25     0.212   
  ───────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
@@ -2254,7 +2326,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-71.png">
+<img src="gzlm_corona1_files/figure-html/out-74.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -2270,75 +2342,99 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
+<div id="ukraine" class="section level2">
+<h2>Ukraine</h2>
+<p><strong>R^2= 0.9505738 </strong></p>
+<p><strong>EC= 3 </strong></p>
+<p><strong>GF= 3.23 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-75.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                      
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower      Upper     z         p       
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     0.54787    2.83169     1.730    0.00223    300.81     0.193    0.847   
+   Day            -0.75471    2.95981     0.470    0.00122    226.63    -0.255    0.799   
+   Day²            0.29731    0.93679     1.346    0.20566      9.15     0.317    0.751   
+   Day³           -0.04349    0.11353     0.957    0.75789      1.20    -0.383    0.702   
+   Day⁴            0.00210    0.00464     1.002    0.99308      1.01     0.453    0.651   
+ ──────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
 <div id="united-arab-emirates" class="section level2">
 <h2>United Arab Emirates</h2>
-<p><strong>R^2= 0.9870486 </strong></p>
-<p><strong>EC= 88 </strong></p>
-<p><strong>GF= 1.2 </strong></p>
+<p><strong>R^2= 0.9865241 </strong></p>
+<p><strong>EC= 94 </strong></p>
+<p><strong>GF= 1.16 </strong></p>
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-72.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z          p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     1.18627    0.39458     3.275    1.436     6.78     3.0064    0.003   
-   Day             0.08755    0.09889     1.091    0.904     1.33     0.8853    0.376   
-   Day²           -0.00328    0.00769     0.997    0.982     1.01    -0.4265    0.670   
-   Day³            7.36e-5    2.30e-4     1.000    1.000     1.00     0.3206    0.748   
-   Day⁴           -1.28e-7    2.32e-6     1.000    1.000     1.00    -0.0551    0.956   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="us" class="section level2">
-<h2>US</h2>
-<p><strong>R^2= 0.9968567 </strong></p>
-<p><strong>EC= 1717 </strong></p>
-<p><strong>GF= 1.39 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-73.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.1702    0.43451     0.843    0.341    1.880    -0.392     0.695   
-   Day              0.3468    0.07546     1.415    1.227    1.650     4.597    < .001   
-   Day²            -0.0169    0.00433     0.983    0.975    0.991    -3.903    < .001   
-   Day³            3.65e-4    9.95e-5     1.000    1.000    1.001     3.671    < .001   
-   Day⁴           -2.15e-6    7.93e-7     1.000    1.000    1.000    -2.716     0.007   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="vietnam" class="section level2">
-<h2>Vietnam</h2>
-<p><strong>R^2= 0.965963 </strong></p>
-<p><strong>EC= 43 </strong></p>
-<p><strong>GF= 1.27 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-74.png">
+<img src="gzlm_corona1_files/figure-html/out-76.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
  ───────────────────────────────────────────────────────────────────────────────────── 
    Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
  ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.07949    0.53518     1.083    0.346     2.85     0.149    0.882   
-   Day             0.13773    0.10715     1.148    0.939     1.43     1.285    0.199   
-   Day²            0.00420    0.00716     1.004    0.990     1.02     0.587    0.557   
-   Day³           -3.18e-4    1.90e-4     1.000    0.999     1.00    -1.676    0.094   
-   Day⁴            4.21e-6    1.72e-6     1.000    1.000     1.00     2.439    0.015   
+   (Intercept)     1.07689    0.39358     2.936    1.291     6.07     2.736    0.006   
+   Day             0.12943    0.09539     1.138    0.949     1.38     1.357    0.175   
+   Day²           -0.00731    0.00720     0.993    0.979     1.01    -1.015    0.310   
+   Day³            2.12e-4    2.09e-4     1.000    1.000     1.00     1.012    0.312   
+   Day⁴           -1.67e-6    2.06e-6     1.000    1.000     1.00    -0.812    0.417   
  ───────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="us" class="section level2">
+<h2>US</h2>
+<p><strong>R^2= 0.9974595 </strong></p>
+<p><strong>EC= 2248 </strong></p>
+<p><strong>GF= 1.37 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-77.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.4373    0.43915     0.646    0.259    1.454    -0.996     0.319   
+   Day              0.4119    0.07344     1.510    1.314    1.753     5.609    < .001   
+   Day²            -0.0214    0.00407     0.979    0.971    0.986    -5.264    < .001   
+   Day³            4.83e-4    9.06e-5     1.000    1.000    1.001     5.330    < .001   
+   Day⁴           -3.18e-6    7.02e-7     1.000    1.000    1.000    -4.531    < .001   
+ ────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="vietnam" class="section level2">
+<h2>Vietnam</h2>
+<p><strong>R^2= 0.9690738 </strong></p>
+<p><strong>EC= 51 </strong></p>
+<p><strong>GF= 1.28 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona1_files/figure-html/out-78.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE         exp(B)    Lower    Upper    z          p       
+ ────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)    -0.00665    0.53205     0.993    0.320     2.60    -0.0125    0.990   
+   Day             0.16322    0.10362     1.177    0.970     1.46     1.5752    0.115   
+   Day²            0.00211    0.00674     1.002    0.989     1.02     0.3133    0.754   
+   Day³           -2.54e-4    1.74e-4     1.000    0.999     1.00    -1.4595    0.144   
+   Day⁴            3.57e-6    1.55e-6     1.000    1.000     1.00     2.3065    0.021   
+ ────────────────────────────────────────────────────────────────────────────────────── 
 
 </pre>
 </div>
@@ -2353,6 +2449,7 @@ Figure 4. Polynomial model for Mainland China data
 <p><a href="/data/corona/data_Afghanistan.csv">Afghanistan</a></p>
 <p><a href="/data/corona/data_Algeria.csv">Algeria</a></p>
 <p><a href="/data/corona/data_Andorra.csv">Andorra</a></p>
+<p><a href="/data/corona/data_Argentina.csv">Argentina</a></p>
 <p><a href="/data/corona/data_Armenia.csv">Armenia</a></p>
 <p><a href="/data/corona/data_Australia.csv">Australia</a></p>
 <p><a href="/data/corona/data_Austria.csv">Austria</a></p>
@@ -2363,6 +2460,7 @@ Figure 4. Polynomial model for Mainland China data
 <p><a href="/data/corona/data_Brazil.csv">Brazil</a></p>
 <p><a href="/data/corona/data_Cambodia.csv">Cambodia</a></p>
 <p><a href="/data/corona/data_Canada.csv">Canada</a></p>
+<p><a href="/data/corona/data_Chile.csv">Chile</a></p>
 <p><a href="/data/corona/data_China.csv">China</a></p>
 <p><a href="/data/corona/data_Croatia.csv">Croatia</a></p>
 <p><a href="/data/corona/data_Cruise%20Ship.csv">Cruise Ship</a></p>
@@ -2387,6 +2485,7 @@ Figure 4. Polynomial model for Mainland China data
 <p><a href="/data/corona/data_Israel.csv">Israel</a></p>
 <p><a href="/data/corona/data_Italy.csv">Italy</a></p>
 <p><a href="/data/corona/data_Japan.csv">Japan</a></p>
+<p><a href="/data/corona/data_Jordan.csv">Jordan</a></p>
 <p><a href="/data/corona/data_Korea,%20South.csv">Korea, South</a></p>
 <p><a href="/data/corona/data_Kuwait.csv">Kuwait</a></p>
 <p><a href="/data/corona/data_Latvia.csv">Latvia</a></p>
@@ -2426,6 +2525,7 @@ Figure 4. Polynomial model for Mainland China data
 <p><a href="/data/corona/data_Taiwan.csv">Taiwan</a></p>
 <p><a href="/data/corona/data_Thailand.csv">Thailand</a></p>
 <p><a href="/data/corona/data_UK.csv">UK</a></p>
+<p><a href="/data/corona/data_Ukraine.csv">Ukraine</a></p>
 <p><a href="/data/corona/data_United%20Arab%20Emirates.csv">United Arab Emirates</a></p>
 <p><a href="/data/corona/data_US.csv">US</a></p>
 <p><a href="/data/corona/data_Vietnam.csv">Vietnam</a></p>
