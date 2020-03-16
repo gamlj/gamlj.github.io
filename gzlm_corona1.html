@@ -410,7 +410,7 @@ div.tocify {
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>In this section we look at how to model cumulative distributions over time with the Generalized Linear Model. There are many different ways to model this kind of data, but the purpose here is to show how easy and flexible the generalized linear model is. With <span class="jamovi">jamovi</span> GAMLj things get very easy.</p>
-<p>We are going to use the data from the recent <em>coronavirus</em> (COVID-19) outbreak, available at <a href="https://github.com/CSSEGISandData/COVID-19">CSSEGISandData</a>. Data are updated every day, at the moment ranging from 01-22-2020 to 03-15-2020. As new data arrive, results may change. Data are from different countries. Here we consider only countries where data are available for more than 10 days.</p>
+<p>We are going to use the data from the recent <em>coronavirus</em> (COVID-19) outbreak, available at <a href="https://github.com/CSSEGISandData/COVID-19">CSSEGISandData</a>. Data are updated every day, at the moment ranging from 01-22-2020 to 03-15-2020. As new data arrive, results may change. Data are from different countries. Here we consider only countries where data are available for more than 10 days and the number of confirmed cases is larger than 50.</p>
 <p><em>Please note that no medical or policy-making conclusions should be drawn from these analyses. The only purpose of this page is to show how the Generalized Linear Model may help in understanding some non-linear distributions of data. Here we use the data only to show how the software and the models work. For medical interpretation of the data please look for other sources where these data are analyzed for mediacal purposes and interpreted by medical scientists</em>.</p>
 </div>
 <div id="data" class="section level1">
@@ -556,7 +556,7 @@ Figure 4. Polynomial model for Mainland China data
 <img src="gzlm_corona1_files/figure-html/intro_plot3-1.png">
 </figure>
 <p>We can see that the model really works. But what about the Italian and French data, that were very different? Well, the model works for Italy and France as well, thanks to the model flexibility. Actually, it works well for all countries with available data. All <span class="math inline">\(R^2\)</span> are close to 1, and the predicted values are very close to the observed one. At this point, one can start working on these models and use them to extrapolate information, make comparisons, and do whaterver one usually do with statistical models.</p>
-<p>The fit of the same model estimation (polynomial up to the 4th grade) is shown in the next section for all countries with more than 10 days of data.</p>
+<p>The fit of the same model estimation (polynomial up to the 4th grade) is shown in the next section for all countries with more than 50 cases across 10 or more days of data.</p>
 </div>
 <div id="interpreting-the-parameters" class="section level1">
 <h1>Interpreting the parameters</h1>
@@ -566,126 +566,6 @@ Figure 4. Polynomial model for Mainland China data
 <div id="replications-across-countries" class="section level1">
 <h1>Replications across countries</h1>
 <p>Here are the models fitted for all available countries with more than 1000 data points. Data are update every day. The last update is 2020-03-16.</p>
-<div id="afghanistan" class="section level2">
-<h2>Afghanistan</h2>
-<p><strong>R^2= 0.9560851 </strong></p>
-<p><strong>EC= 15 </strong></p>
-<p><strong>GF= 1.23 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-1.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.3043    1.31136     1.356    0.0638    12.70     0.2321    0.816   
-   Day             -0.1719    0.72941     0.842    0.2085     3.87    -0.2357    0.814   
-   Day²             0.0143    0.11864     1.014    0.7979     1.28     0.1203    0.904   
-   Day³            3.72e-4    0.00733     1.000    0.9861     1.02     0.0508    0.960   
-   Day⁴           -1.93e-5    1.53e-4     1.000    0.9997     1.00    -0.1260    0.900   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="algeria" class="section level2">
-<h2>Algeria</h2>
-<p><strong>R^2= 0.9821016 </strong></p>
-<p><strong>EC= 51 </strong></p>
-<p><strong>GF= 1.76 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-2.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper     z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.3778    1.28807     1.459    0.0670    12.279     0.293    0.769   
-   Day             -0.6737    0.58866     0.510    0.1745     1.850    -1.144    0.252   
-   Day²             0.2016    0.09005     1.223    1.0138     1.451     2.239    0.025   
-   Day³            -0.0147    0.00550     0.985    0.9750     0.996    -2.683    0.007   
-   Day⁴            3.40e-4    1.16e-4     1.000    1.0001     1.001     2.931    0.003   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="andorra" class="section level2">
-<h2>Andorra</h2>
-<p><strong>R^2= NaN </strong></p>
-<p><strong>EC= 1 </strong></p>
-<p><strong>GF= 1 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-3.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                         
- ─────────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate     SE         exp(B)    Lower      Upper    z            p       
- ─────────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     5.09e-18    2.19276      1.00    0.00531    44.50     2.32e-18    1.000   
-   Day             5.25e-26    1.87311      1.00    0.02672    54.68     2.80e-26    1.000   
-   Day²           -1.09e-26    0.48419      1.00    0.36901     2.60    -2.25e-26    1.000   
-   Day³            9.05e-28    0.04773      1.00    0.90977     1.10     1.90e-26    1.000   
-   Day⁴           -2.61e-29    0.00158      1.00    0.99679     1.00    -1.65e-26    1.000   
- ─────────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="argentina" class="section level2">
-<h2>Argentina</h2>
-<p><strong>R^2= 0.971602 </strong></p>
-<p><strong>EC= 46 </strong></p>
-<p><strong>GF= 1.51 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-4.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -1.33766     2.1015     0.262    0.00153     7.74    -0.637    0.524   
-   Day             0.66053     1.3559     1.936    0.17919    42.45     0.487    0.626   
-   Day²            0.03134     0.2994     1.032    0.53838     1.79     0.105    0.917   
-   Day³           -0.00958     0.0270     0.990    0.94168     1.05    -0.355    0.722   
-   Day⁴            4.32e-4    8.50e-4     1.000    0.99867     1.00     0.508    0.612   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="armenia" class="section level2">
-<h2>Armenia</h2>
-<p><strong>R^2= 0.9863803 </strong></p>
-<p><strong>EC= 27 </strong></p>
-<p><strong>GF= 1.48 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-5.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -1.36175     2.0407     0.256    0.00188     7.66    -0.667    0.505   
-   Day             1.39213     1.4439     4.023    0.27823    95.13     0.964    0.335   
-   Day²           -0.38060     0.3156     0.683    0.35115     1.24    -1.206    0.228   
-   Day³            0.03597     0.0266     1.037    0.98536     1.10     1.353    0.176   
-   Day⁴           -0.00103    7.58e-4     0.999    0.99742     1.00    -1.355    0.175   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="australia" class="section level2">
 <h2>Australia</h2>
 <p><strong>R^2= 0.9944647 </strong></p>
@@ -694,7 +574,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-6.png">
+<img src="gzlm_corona1_files/figure-html/out-1.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -718,7 +598,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-7.png">
+<img src="gzlm_corona1_files/figure-html/out-2.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -734,30 +614,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="azerbaijan" class="section level2">
-<h2>Azerbaijan</h2>
-<p><strong>R^2= 0.9745312 </strong></p>
-<p><strong>EC= 23 </strong></p>
-<p><strong>GF= 1.61 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-8.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      1.2924     1.0438     3.641    0.369    23.44     1.238    0.216   
-   Day             -0.3605     0.7436     0.697    0.169     3.22    -0.485    0.628   
-   Day²             0.1467     0.1653     1.158    0.831     1.60     0.887    0.375   
-   Day³            -0.0147     0.0143     0.985    0.958     1.01    -1.029    0.303   
-   Day⁴            4.70e-4    4.19e-4     1.000    1.000     1.00     1.122    0.262   
- ───────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="bahrain" class="section level2">
 <h2>Bahrain</h2>
 <p><strong>R^2= 0.9665359 </strong></p>
@@ -766,7 +622,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-9.png">
+<img src="gzlm_corona1_files/figure-html/out-3.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -782,30 +638,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="belarus" class="section level2">
-<h2>Belarus</h2>
-<p><strong>R^2= 0.9221745 </strong></p>
-<p><strong>EC= 30 </strong></p>
-<p><strong>GF= 1.1 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-10.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z        p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -2.3611     1.9317    0.0943    9.34e-4     2.16    -1.22    0.222   
-   Day              1.4759     1.0055    4.3749      0.753    41.70     1.47    0.142   
-   Day²            -0.2204     0.1758    0.8022      0.549     1.10    -1.25    0.210   
-   Day³             0.0150     0.0124    1.0151      0.992     1.04     1.20    0.228   
-   Day⁴           -3.48e-4    3.05e-4    0.9997      0.999     1.00    -1.14    0.253   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="belgium" class="section level2">
 <h2>Belgium</h2>
 <p><strong>R^2= 0.9823811 </strong></p>
@@ -814,7 +646,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-11.png">
+<img src="gzlm_corona1_files/figure-html/out-4.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -830,30 +662,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="bosnia-and-herzegovina" class="section level2">
-<h2>Bosnia and Herzegovina</h2>
-<p><strong>R^2= 0.9917769 </strong></p>
-<p><strong>EC= 24 </strong></p>
-<p><strong>GF= 1.25 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-12.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.76510    1.71327     2.149    0.0465    46.17     0.4466    0.655   
-   Day            -0.09138    1.59783     0.913    0.0417    24.72    -0.0572    0.954   
-   Day²            0.04766    0.46277     1.049    0.4145     2.61     0.1030    0.918   
-   Day³           -0.00102    0.05234     0.999    0.9009     1.11    -0.0194    0.985   
-   Day⁴           -6.88e-5    0.00203     1.000    0.9959     1.00    -0.0339    0.973   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="brazil" class="section level2">
 <h2>Brazil</h2>
 <p><strong>R^2= 0.9706381 </strong></p>
@@ -862,7 +670,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-13.png">
+<img src="gzlm_corona1_files/figure-html/out-5.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -878,30 +686,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="cambodia" class="section level2">
-<h2>Cambodia</h2>
-<p><strong>R^2= 0.974049 </strong></p>
-<p><strong>EC= 8 </strong></p>
-<p><strong>GF= 1.41 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-14.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.08665     0.7824     1.091    0.189     4.24     0.111    0.912   
-   Day            -0.04698     0.2040     0.954    0.649     1.46    -0.230    0.818   
-   Day²            0.00598     0.0157     1.006    0.975     1.04     0.381    0.703   
-   Day³           -2.60e-4    4.49e-4     1.000    0.999     1.00    -0.579    0.563   
-   Day⁴            3.56e-6    4.26e-6     1.000    1.000     1.00     0.835    0.403   
- ───────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="canada" class="section level2">
 <h2>Canada</h2>
 <p><strong>R^2= 0.9951605 </strong></p>
@@ -910,7 +694,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-15.png">
+<img src="gzlm_corona1_files/figure-html/out-6.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -934,7 +718,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-16.png">
+<img src="gzlm_corona1_files/figure-html/out-7.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -950,30 +734,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="croatia" class="section level2">
-<h2>Croatia</h2>
-<p><strong>R^2= 0.9884621 </strong></p>
-<p><strong>EC= 50 </strong></p>
-<p><strong>GF= 1.38 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-17.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.48181    0.98768     0.618    0.0700     3.49    -0.488    0.626   
-   Day             0.80457    0.47348     2.236    0.9344     6.06     1.699    0.089   
-   Day²           -0.08934    0.07475     0.915    0.7843     1.05    -1.195    0.232   
-   Day³            0.00430    0.00468     1.004    0.9954     1.01     0.919    0.358   
-   Day⁴           -6.49e-5    1.01e-4     1.000    0.9997     1.00    -0.643    0.520   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="denmark" class="section level2">
 <h2>Denmark</h2>
 <p><strong>R^2= 0.9920492 </strong></p>
@@ -982,7 +742,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-18.png">
+<img src="gzlm_corona1_files/figure-html/out-8.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -998,54 +758,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="dominican-republic" class="section level2">
-<h2>Dominican Republic</h2>
-<p><strong>R^2= 0.9285776 </strong></p>
-<p><strong>EC= 12 </strong></p>
-<p><strong>GF= 1.77 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-19.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.8032     1.7166     2.233    0.0371    41.67     0.468    0.640   
-   Day             -0.9723     1.2336     0.378    0.0355     5.16    -0.788    0.431   
-   Day²             0.2857     0.2713     1.331    0.7679     2.27     1.053    0.292   
-   Day³            -0.0256     0.0231     0.975    0.9311     1.02    -1.112    0.266   
-   Day⁴            7.62e-4    6.68e-4     1.001    0.9994     1.00     1.141    0.254   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="ecuador" class="section level2">
-<h2>Ecuador</h2>
-<p><strong>R^2= 0.9476822 </strong></p>
-<p><strong>EC= 30 </strong></p>
-<p><strong>GF= 1.34 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-20.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z          p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      1.3578     0.7696     3.888    0.760    15.84     1.7643    0.078   
-   Day              0.3136     0.5466     1.368    0.483     4.16     0.5736    0.566   
-   Day²            -0.0189     0.1228     0.981    0.767     1.24    -0.1541    0.878   
-   Day³           -5.29e-4     0.0107     0.999    0.979     1.02    -0.0492    0.961   
-   Day⁴            6.67e-5    3.19e-4     1.000    0.999     1.00     0.2092    0.834   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="egypt" class="section level2">
 <h2>Egypt</h2>
 <p><strong>R^2= 0.96773 </strong></p>
@@ -1054,7 +766,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-21.png">
+<img src="gzlm_corona1_files/figure-html/out-9.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1078,7 +790,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-22.png">
+<img src="gzlm_corona1_files/figure-html/out-10.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -1102,7 +814,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-23.png">
+<img src="gzlm_corona1_files/figure-html/out-11.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -1126,7 +838,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-24.png">
+<img src="gzlm_corona1_files/figure-html/out-12.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -1142,30 +854,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="georgia" class="section level2">
-<h2>Georgia</h2>
-<p><strong>R^2= 0.9677164 </strong></p>
-<p><strong>EC= 31 </strong></p>
-<p><strong>GF= 0.98 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-25.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.08330    1.29551     0.920    0.0449     8.20    -0.0643    0.949   
-   Day             0.07805    0.67028     1.081    0.3128     4.54     0.1164    0.907   
-   Day²            0.00865    0.11061     1.009    0.8030     1.25     0.0782    0.938   
-   Day³            5.63e-4    0.00718     1.001    0.9868     1.02     0.0783    0.938   
-   Day⁴           -3.79e-5    1.60e-4     1.000    0.9996     1.00    -0.2361    0.813   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="germany" class="section level2">
 <h2>Germany</h2>
 <p><strong>R^2= 0.9942693 </strong></p>
@@ -1174,7 +862,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-26.png">
+<img src="gzlm_corona1_files/figure-html/out-13.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -1198,7 +886,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-27.png">
+<img src="gzlm_corona1_files/figure-html/out-14.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1222,7 +910,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-28.png">
+<img src="gzlm_corona1_files/figure-html/out-15.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1238,30 +926,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="hungary" class="section level2">
-<h2>Hungary</h2>
-<p><strong>R^2= 0.9730196 </strong></p>
-<p><strong>EC= 34 </strong></p>
-<p><strong>GF= 1.33 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-29.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.0452    1.60373     1.046    0.0267    16.82     0.0282    0.978   
-   Day              0.4020    1.27454     1.495    0.1385    22.47     0.3154    0.752   
-   Day²            -0.0112    0.32836     0.989    0.5037     1.86    -0.0341    0.973   
-   Day³           -4.52e-4    0.03355     1.000    0.9366     1.07    -0.0135    0.989   
-   Day⁴            5.04e-5    0.00118     1.000    0.9977     1.00     0.0426    0.966   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="iceland" class="section level2">
 <h2>Iceland</h2>
 <p><strong>R^2= 0.9933975 </strong></p>
@@ -1270,7 +934,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-30.png">
+<img src="gzlm_corona1_files/figure-html/out-16.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                       
@@ -1294,7 +958,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-31.png">
+<img src="gzlm_corona1_files/figure-html/out-17.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -1318,7 +982,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-32.png">
+<img src="gzlm_corona1_files/figure-html/out-18.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1342,7 +1006,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-33.png">
+<img src="gzlm_corona1_files/figure-html/out-19.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1366,7 +1030,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-34.png">
+<img src="gzlm_corona1_files/figure-html/out-20.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1390,7 +1054,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-35.png">
+<img src="gzlm_corona1_files/figure-html/out-21.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -1414,7 +1078,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-36.png">
+<img src="gzlm_corona1_files/figure-html/out-22.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1438,7 +1102,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-37.png">
+<img src="gzlm_corona1_files/figure-html/out-23.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -1462,7 +1126,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-38.png">
+<img src="gzlm_corona1_files/figure-html/out-24.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -1478,30 +1142,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="jordan" class="section level2">
-<h2>Jordan</h2>
-<p><strong>R^2= 0.9567741 </strong></p>
-<p><strong>EC= 8 </strong></p>
-<p><strong>GF= 7.19 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-39.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper     z         p       
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.98115    2.23968     2.668    0.01375    143.98     0.438    0.661   
-   Day            -1.22134    2.05358     0.295    0.00494     21.15    -0.595    0.552   
-   Day²            0.41850    0.55914     1.520    0.49666      4.73     0.748    0.454   
-   Day³           -0.05246    0.05771     0.949    0.84321      1.06    -0.909    0.363   
-   Day⁴            0.00215    0.00200     1.002    0.99828      1.01     1.077    0.281   
- ──────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="kuwait" class="section level2">
 <h2>Kuwait</h2>
 <p><strong>R^2= 0.9455016 </strong></p>
@@ -1510,7 +1150,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-40.png">
+<img src="gzlm_corona1_files/figure-html/out-25.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -1526,30 +1166,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="latvia" class="section level2">
-<h2>Latvia</h2>
-<p><strong>R^2= 0.9779611 </strong></p>
-<p><strong>EC= 31 </strong></p>
-<p><strong>GF= 1.39 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-41.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.9609     1.7416     2.614    0.0422    52.83     0.552    0.581   
-   Day             -1.0511     1.3115     0.350    0.0272     5.43    -0.801    0.423   
-   Day²             0.2675     0.2966     1.307    0.7207     2.36     0.902    0.367   
-   Day³            -0.0202     0.0260     0.980    0.9304     1.03    -0.778    0.437   
-   Day⁴            5.25e-4    7.77e-4     1.001    0.9990     1.00     0.675    0.500   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="lebanon" class="section level2">
 <h2>Lebanon</h2>
 <p><strong>R^2= 0.9882455 </strong></p>
@@ -1558,7 +1174,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-42.png">
+<img src="gzlm_corona1_files/figure-html/out-26.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1574,54 +1190,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="liechtenstein" class="section level2">
-<h2>Liechtenstein</h2>
-<p><strong>R^2= 0.8570733 </strong></p>
-<p><strong>EC= 4 </strong></p>
-<p><strong>GF= 1.61 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-43.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper     z         p       
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.5933    2.57702     0.553    0.00110     48.03    -0.230    0.818   
-   Day              0.6874    2.38853     1.989    0.02000    349.53     0.288    0.774   
-   Day²            -0.2136    0.68109     0.808    0.19620      3.08    -0.314    0.754   
-   Day³             0.0228    0.07451     1.023    0.88308      1.19     0.306    0.760   
-   Day⁴           -7.13e-4    0.00275     0.999    0.99375      1.00    -0.259    0.795   
- ──────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="lithuania" class="section level2">
-<h2>Lithuania</h2>
-<p><strong>R^2= 0.9822468 </strong></p>
-<p><strong>EC= 12 </strong></p>
-<p><strong>GF= 1.43 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-44.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.5257     1.7472     0.591    0.00919    11.16    -0.301    0.764   
-   Day              0.5187     1.1556     1.680    0.19201    20.24     0.449    0.654   
-   Day²            -0.1326     0.2318     0.876    0.54121     1.37    -0.572    0.567   
-   Day³             0.0114     0.0177     1.012    0.97742     1.05     0.645    0.519   
-   Day⁴           -2.84e-4    4.58e-4     1.000    0.99879     1.00    -0.620    0.535   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="luxembourg" class="section level2">
 <h2>Luxembourg</h2>
 <p><strong>R^2= 0.9936698 </strong></p>
@@ -1630,7 +1198,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-45.png">
+<img src="gzlm_corona1_files/figure-html/out-27.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -1646,30 +1214,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="macau" class="section level2">
-<h2>Macau</h2>
-<p><strong>R^2= 0.9415334 </strong></p>
-<p><strong>EC= 9 </strong></p>
-<p><strong>GF= 0.96 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-46.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.0872    0.49158     1.091    0.388    2.680     0.177    0.859   
-   Day              0.3362    0.11033     1.400    1.137    1.754     3.048    0.002   
-   Day²            -0.0181    0.00805     0.982    0.966    0.997    -2.244    0.025   
-   Day³            4.09e-4    2.30e-4     1.000    1.000    1.001     1.780    0.075   
-   Day⁴           -3.31e-6    2.23e-6     1.000    1.000    1.000    -1.487    0.137   
- ───────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="mainland-china" class="section level2">
 <h2>Mainland China</h2>
 <p><strong>R^2= 0.9959581 </strong></p>
@@ -1678,7 +1222,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-47.png">
+<img src="gzlm_corona1_files/figure-html/out-28.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                         
@@ -1702,7 +1246,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-48.png">
+<img src="gzlm_corona1_files/figure-html/out-29.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1718,102 +1262,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="mexico" class="section level2">
-<h2>Mexico</h2>
-<p><strong>R^2= 0.9759216 </strong></p>
-<p><strong>EC= 41 </strong></p>
-<p><strong>GF= 1.83 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-49.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z          p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.06734    1.04764     1.070    0.106     6.77     0.0643    0.949   
-   Day             0.68625    0.63395     1.986    0.609     7.48     1.0825    0.279   
-   Day²           -0.09474    0.12273     0.910    0.708     1.15    -0.7720    0.440   
-   Day³            0.00490    0.00926     1.005    0.987     1.02     0.5286    0.597   
-   Day⁴           -5.62e-5    2.38e-4     1.000    0.999     1.00    -0.2360    0.813   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="monaco" class="section level2">
-<h2>Monaco</h2>
-<p><strong>R^2= 0.869219 </strong></p>
-<p><strong>EC= 2 </strong></p>
-<p><strong>GF= 0.95 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-50.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.34800     1.9097     0.706    0.00732    17.92    -0.182    0.855   
-   Day             0.36044     1.4036     1.434    0.10063    29.47     0.257    0.797   
-   Day²           -0.09829     0.3130     0.906    0.47334     1.66    -0.314    0.753   
-   Day³            0.00931     0.0266     1.009    0.95846     1.07     0.350    0.726   
-   Day⁴           -2.69e-4    7.60e-4     1.000    0.99819     1.00    -0.355    0.723   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="morocco" class="section level2">
-<h2>Morocco</h2>
-<p><strong>R^2= 0.9862538 </strong></p>
-<p><strong>EC= 28 </strong></p>
-<p><strong>GF= 1.95 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-51.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.59410     1.9334     0.552    0.00531    14.03    -0.307    0.759   
-   Day             0.52079     1.3939     1.683    0.12660    35.20     0.374    0.709   
-   Day²           -0.09046     0.3173     0.914    0.47081     1.68    -0.285    0.776   
-   Day³            0.00730     0.0282     1.007    0.95385     1.07     0.259    0.796   
-   Day⁴           -1.47e-4    8.57e-4     1.000    0.99812     1.00    -0.172    0.864   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="nepal" class="section level2">
-<h2>Nepal</h2>
-<p><strong>R^2= NaN </strong></p>
-<p><strong>EC= 1 </strong></p>
-<p><strong>GF= 1 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-52.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                       
- ───────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate     SE         exp(B)    Lower    Upper    z            p       
- ───────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     9.64e-19     0.7913      1.00    0.170     3.95     1.22e-18    1.000   
-   Day             5.45e-19     0.2065      1.00    0.678     1.54     2.64e-18    1.000   
-   Day²           -3.38e-20     0.0159      1.00    0.968     1.03    -2.12e-18    1.000   
-   Day³            8.40e-22    4.58e-4      1.00    0.999     1.00     1.83e-18    1.000   
-   Day⁴           -7.28e-24    4.37e-6      1.00    1.000     1.00    -1.66e-18    1.000   
- ───────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="netherlands" class="section level2">
 <h2>Netherlands</h2>
 <p><strong>R^2= 0.9946604 </strong></p>
@@ -1822,7 +1270,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-53.png">
+<img src="gzlm_corona1_files/figure-html/out-30.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1838,78 +1286,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="new-zealand" class="section level2">
-<h2>New Zealand</h2>
-<p><strong>R^2= 0.9702193 </strong></p>
-<p><strong>EC= 8 </strong></p>
-<p><strong>GF= 1.61 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-54.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z         p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.4191     1.5626     1.521    0.0362    20.88     0.268    0.789   
-   Day             -0.6038     0.9720     0.547    0.0885     4.42    -0.621    0.534   
-   Day²             0.1986     0.1906     1.220    0.8244     1.76     1.042    0.297   
-   Day³            -0.0174     0.0145     0.983    0.9552     1.01    -1.195    0.232   
-   Day⁴            4.78e-4    3.78e-4     1.000    0.9997     1.00     1.265    0.206   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="nigeria" class="section level2">
-<h2>Nigeria</h2>
-<p><strong>R^2= 0.8733526 </strong></p>
-<p><strong>EC= 2 </strong></p>
-<p><strong>GF= 0.83 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-55.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z           p       
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.04891     1.7266     1.050    0.0175    19.92     0.02833    0.977   
-   Day            -0.00166     1.2143     0.998    0.0982    13.20    -0.00137    0.999   
-   Day²           -0.01598     0.2553     0.984    0.5827     1.62    -0.06258    0.950   
-   Day³            0.00301     0.0204     1.003    0.9637     1.05     0.14724    0.883   
-   Day⁴           -1.15e-4    5.51e-4     1.000    0.9988     1.00    -0.20804    0.835   
- ──────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
-<div id="north-macedonia" class="section level2">
-<h2>North Macedonia</h2>
-<p><strong>R^2= 0.9639835 </strong></p>
-<p><strong>EC= 15 </strong></p>
-<p><strong>GF= 1.02 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-56.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower     Upper    z          p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.05748    1.44443     1.059    0.0352    12.20     0.0398    0.968   
-   Day            -0.03071    0.83991     0.970    0.1973     5.74    -0.0366    0.971   
-   Day²           -0.00779    0.14669     0.992    0.7357     1.32    -0.0531    0.958   
-   Day³            0.00256    0.00985     1.003    0.9834     1.02     0.2595    0.795   
-   Day⁴           -8.84e-5    2.25e-4     1.000    0.9995     1.00    -0.3930    0.694   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="norway" class="section level2">
 <h2>Norway</h2>
 <p><strong>R^2= 0.9955911 </strong></p>
@@ -1918,7 +1294,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-57.png">
+<img src="gzlm_corona1_files/figure-html/out-31.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -1934,30 +1310,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="oman" class="section level2">
-<h2>Oman</h2>
-<p><strong>R^2= 0.9652478 </strong></p>
-<p><strong>EC= 22 </strong></p>
-<p><strong>GF= 1.19 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-58.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z          p       
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.72864    0.83334     2.072    0.333     9.04     0.8744    0.382   
-   Day            -0.00677    0.40394     0.993    0.466     2.30    -0.0168    0.987   
-   Day²            0.05058    0.06337     1.052    0.925     1.19     0.7982    0.425   
-   Day³           -0.00414    0.00391     0.996    0.988     1.00    -1.0585    0.290   
-   Day⁴            9.52e-5    8.24e-5     1.000    1.000     1.00     1.1546    0.248   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="others" class="section level2">
 <h2>Others</h2>
 <p><strong>R^2= 0.9834887 </strong></p>
@@ -1966,7 +1318,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-59.png">
+<img src="gzlm_corona1_files/figure-html/out-32.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                      
@@ -1990,7 +1342,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-60.png">
+<img src="gzlm_corona1_files/figure-html/out-33.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -2014,7 +1366,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-61.png">
+<img src="gzlm_corona1_files/figure-html/out-34.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -2038,7 +1390,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-62.png">
+<img src="gzlm_corona1_files/figure-html/out-35.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -2062,7 +1414,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-63.png">
+<img src="gzlm_corona1_files/figure-html/out-36.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -2086,7 +1438,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-64.png">
+<img src="gzlm_corona1_files/figure-html/out-37.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -2110,7 +1462,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-65.png">
+<img src="gzlm_corona1_files/figure-html/out-38.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -2134,7 +1486,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-66.png">
+<img src="gzlm_corona1_files/figure-html/out-39.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -2158,7 +1510,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-67.png">
+<img src="gzlm_corona1_files/figure-html/out-40.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -2182,7 +1534,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-68.png">
+<img src="gzlm_corona1_files/figure-html/out-41.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                      
@@ -2198,30 +1550,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="senegal" class="section level2">
-<h2>Senegal</h2>
-<p><strong>R^2= 0.9656758 </strong></p>
-<p><strong>EC= 23 </strong></p>
-<p><strong>GF= 2.07 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-69.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                     
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z         p       
- ─────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -1.0649     1.6507     0.345    0.00767     5.71    -0.645    0.519   
-   Day              1.3434     1.1656     3.832    0.45645    47.67     1.153    0.249   
-   Day²            -0.2408     0.2682     0.786    0.44863     1.30    -0.898    0.369   
-   Day³             0.0163     0.0243     1.016    0.97041     1.07     0.670    0.503   
-   Day⁴           -3.14e-4    7.52e-4     1.000    0.99816     1.00    -0.418    0.676   
- ─────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="singapore" class="section level2">
 <h2>Singapore</h2>
 <p><strong>R^2= 0.9958551 </strong></p>
@@ -2230,7 +1558,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-70.png">
+<img src="gzlm_corona1_files/figure-html/out-42.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -2254,7 +1582,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-71.png">
+<img src="gzlm_corona1_files/figure-html/out-43.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -2278,7 +1606,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-72.png">
+<img src="gzlm_corona1_files/figure-html/out-44.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -2302,7 +1630,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-73.png">
+<img src="gzlm_corona1_files/figure-html/out-45.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -2326,7 +1654,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-74.png">
+<img src="gzlm_corona1_files/figure-html/out-46.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -2342,30 +1670,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="sri-lanka" class="section level2">
-<h2>Sri Lanka</h2>
-<p><strong>R^2= 0.9686082 </strong></p>
-<p><strong>EC= 17 </strong></p>
-<p><strong>GF= 1.91 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-75.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p       
- ───────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)      0.5154     0.7332     1.674    0.325    6.003     0.703    0.482   
-   Day             -0.2376     0.1968     0.789    0.542    1.182    -1.208    0.227   
-   Day²             0.0252     0.0153     1.026    0.995    1.056     1.649    0.099   
-   Day³           -9.21e-4    4.37e-4     0.999    0.998    1.000    -2.106    0.035   
-   Day⁴            1.07e-5    4.15e-6     1.000    1.000    1.000     2.588    0.010   
- ───────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="sweden" class="section level2">
 <h2>Sweden</h2>
 <p><strong>R^2= 0.9976148 </strong></p>
@@ -2374,7 +1678,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-76.png">
+<img src="gzlm_corona1_files/figure-html/out-47.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                     
@@ -2398,7 +1702,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-77.png">
+<img src="gzlm_corona1_files/figure-html/out-48.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -2414,30 +1718,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="taiwan" class="section level2">
-<h2>Taiwan</h2>
-<p><strong>R^2= 0.9901642 </strong></p>
-<p><strong>EC= 44 </strong></p>
-<p><strong>GF= 0.97 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-78.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                    
- ────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower    Upper    z         p        
- ────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     -0.0805    0.45892     0.923    0.354    2.147    -0.175     0.861   
-   Day              0.3869    0.09345     1.472    1.234    1.782     4.140    < .001   
-   Day²            -0.0202    0.00630     0.980    0.968    0.992    -3.202     0.001   
-   Day³            4.90e-4    1.69e-4     1.000    1.000    1.001     2.899     0.004   
-   Day⁴           -4.22e-6    1.56e-6     1.000    1.000    1.000    -2.706     0.007   
- ────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="thailand" class="section level2">
 <h2>Thailand</h2>
 <p><strong>R^2= 0.9814526 </strong></p>
@@ -2446,7 +1726,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-79.png">
+<img src="gzlm_corona1_files/figure-html/out-49.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -2462,30 +1742,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="tunisia" class="section level2">
-<h2>Tunisia</h2>
-<p><strong>R^2= 0.9775349 </strong></p>
-<p><strong>EC= 18 </strong></p>
-<p><strong>GF= 0.89 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-80.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper    z          p       
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)     0.11243    2.15968     1.119    0.00626    45.73     0.0521    0.958   
-   Day            -0.17872    1.81233     0.836    0.02565    40.42    -0.0986    0.921   
-   Day²            0.04370    0.47105     1.045    0.39864     2.65     0.0928    0.926   
-   Day³            0.00370    0.04794     1.004    0.91262     1.11     0.0771    0.939   
-   Day⁴           -3.74e-4    0.00168     1.000    0.99630     1.00    -0.2228    0.824   
- ──────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="uk" class="section level2">
 <h2>UK</h2>
 <p><strong>R^2= 0.991481 </strong></p>
@@ -2494,7 +1750,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-81.png">
+<img src="gzlm_corona1_files/figure-html/out-50.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                    
@@ -2510,30 +1766,6 @@ Figure 4. Polynomial model for Mainland China data
 
 </pre>
 </div>
-<div id="ukraine" class="section level2">
-<h2>Ukraine</h2>
-<p><strong>R^2= 0.8739437 </strong></p>
-<p><strong>EC= 3 </strong></p>
-<p><strong>GF= 0.95 </strong></p>
-<figure>
-<figcaption>
-</figcaption>
-<img src="gzlm_corona1_files/figure-html/out-82.png">
-</figure>
-<pre class='jamovitable'>
- Parameter Estimates                                                                      
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   Names          Estimate    SE         exp(B)    Lower      Upper     z         p       
- ──────────────────────────────────────────────────────────────────────────────────────── 
-   (Intercept)    -0.70874    2.36318     0.492    0.00164     28.11    -0.300    0.764   
-   Day             0.82743    2.03889     2.287    0.04692    190.53     0.406    0.685   
-   Day²           -0.26294    0.54025     0.769    0.24917      2.20    -0.487    0.626   
-   Day³            0.02944    0.05493     1.030    0.92504      1.15     0.536    0.592   
-   Day⁴           -0.00102    0.00189     0.999    0.99515      1.00    -0.541    0.588   
- ──────────────────────────────────────────────────────────────────────────────────────── 
-
-</pre>
-</div>
 <div id="united-arab-emirates" class="section level2">
 <h2>United Arab Emirates</h2>
 <p><strong>R^2= 0.9870867 </strong></p>
@@ -2542,7 +1774,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-83.png">
+<img src="gzlm_corona1_files/figure-html/out-51.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                  
@@ -2566,7 +1798,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-84.png">
+<img src="gzlm_corona1_files/figure-html/out-52.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
@@ -2590,7 +1822,7 @@ Figure 4. Polynomial model for Mainland China data
 <figure>
 <figcaption>
 </figcaption>
-<img src="gzlm_corona1_files/figure-html/out-85.png">
+<img src="gzlm_corona1_files/figure-html/out-53.png">
 </figure>
 <pre class='jamovitable'>
  Parameter Estimates                                                                   
