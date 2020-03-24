@@ -463,20 +463,20 @@ Figure 3. Confirmed by day for Italy, first 30 days
 <h2>Output</h2>
 As we can see in the recap info table, the <span class="math inline">\(R^2\)</span> would be considered very good (&gt;.70)
 <pre class='jamovitable'>
- Model Info                                                               
- ──────────────────────────────────────────────────────────────────────── 
-   Info             Value       Comment                                   
- ──────────────────────────────────────────────────────────────────────── 
-   Model Type       Custom      Model with custom family                  
-   Call             glm         Confirmed ~ 1 + Day                       
-   Link function    log         Coefficients are in the log(y) scale      
-   Distribution     Poisson     Model for count data                      
-   R-squared           0.988    Proportion of reduction of error          
-   AIC              1948.126    Less is better                            
-   Deviance         1715.669    Less is better                            
-   Residual DF        38.000                                              
-   Converged        yes         Whether the estimation found a solution   
- ──────────────────────────────────────────────────────────────────────── 
+ Model Info                                                              
+ ─────────────────────────────────────────────────────────────────────── 
+   Info             Value      Comment                                   
+ ─────────────────────────────────────────────────────────────────────── 
+   Model Type       Custom     Model with custom family                  
+   Call             glm        Confirmed ~ 1 + Day                       
+   Link function    log        Coefficients are in the log(y) scale      
+   Distribution     Gamma      Skewed continuous distribution            
+   R-squared          0.863    Proportion of reduction of error          
+   AIC              429.541    Less is better                            
+   Deviance          36.983    Less is better                            
+   Residual DF       38.000                                              
+   Converged        yes        Whether the estimation found a solution   
+ ─────────────────────────────────────────────────────────────────────── 
 
 </pre>
 <p>If we look at the plot and compared the predicted values (the curve) with the actual confirmed cases (cyan dots), we can see how the model fits reasonably well the data.</p>
@@ -496,20 +496,20 @@ Figure 4. Simple model for Mainland China, first 40 days
 <p>If we look at the plot and compared the predicted values (the curve) with the actual confirmed cases (cyan dots), we can see that the model does not really fit, and cannot fit the data well. We should allow the curve to bend down, or to smooth out, in order to follow the evolution of the DV over time.</p>
 Furthermore, as we can see in the recap info table, the <span class="math inline">\(R^2\)</span> is definitely not good for this kind of applications (&lt;.70)
 <pre class='jamovitable'>
- Model Info                                                                 
- ────────────────────────────────────────────────────────────────────────── 
-   Info             Value         Comment                                   
- ────────────────────────────────────────────────────────────────────────── 
-   Model Type       Custom        Model with custom family                  
-   Call             glm           Confirmed ~ 1 + Day                       
-   Link function    log           Coefficients are in the log(y) scale      
-   Distribution     Poisson       Model for count data                      
-   R-squared             0.593    Proportion of reduction of error          
-   AIC              563364.868    Less is better                            
-   Deviance         562608.447    Less is better                            
-   Residual DF          59.000                                              
-   Converged        yes           Whether the estimation found a solution   
- ────────────────────────────────────────────────────────────────────────── 
+ Model Info                                                               
+ ──────────────────────────────────────────────────────────────────────── 
+   Info             Value       Comment                                   
+ ──────────────────────────────────────────────────────────────────────── 
+   Model Type       Custom      Model with custom family                  
+   Call             glm         Confirmed ~ 1 + Day                       
+   Link function    log         Coefficients are in the log(y) scale      
+   Distribution     Gamma       Skewed continuous distribution            
+   R-squared           0.441    Proportion of reduction of error          
+   AIC              1422.207    Less is better                            
+   Deviance           30.370    Less is better                            
+   Residual DF        59.000                                              
+   Converged        yes         Whether the estimation found a solution   
+ ──────────────────────────────────────────────────────────────────────── 
 
 </pre>
 <p>The solution is polynomial regression. In polynomial regression, one adds power terms (<span class="math inline">\(x^2\)</span>, <span class="math inline">\(x^3\)</span>, <span class="math inline">\(x^4\)</span> ..) in order to allow the curve to follow different paths along the time line. A squared term, for instance, allows the curve to stay flatter at the begining and stear up quickly. A cubic term allows the curve to smooth. The more polynomial terms one adds, more flexibility one allows to the curve shape.</p>
@@ -540,10 +540,10 @@ Furthermore, as we can see in the recap info table, the <span class="math inline
    Model Type       Custom      Model with custom family                               
    Call             glm         Confirmed ~ 1 + Day + I(Day^2) + I(Day^3) + I(Day^4)   
    Link function    log         Coefficients are in the log(y) scale                   
-   Distribution     Poisson     Model for count data                                   
-   R-squared           0.996    Proportion of reduction of error                       
-   AIC              6063.396    Less is better                                         
-   Deviance         5300.976    Less is better                                         
+   Distribution     Gamma       Skewed continuous distribution                         
+   R-squared           0.995    Proportion of reduction of error                       
+   AIC              1136.667    Less is better                                         
+   Deviance            0.277    Less is better                                         
    Residual DF        56.000                                                           
    Converged        yes         Whether the estimation found a solution                
  ───────────────────────────────────────────────────────────────────────────────────── 
