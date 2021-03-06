@@ -4,7 +4,7 @@ output: html_document
 ---
 
 
-`Covariates conditioning` rules how the model is conditioned to different values of the continuous independent variables in the _simple effects_ estimation and in the _plots_ when there is an interaction in the model.
+__`Covariates conditioning`__ rules how the model is conditioned to different values of the continuous independent variables in the _simple effects_ estimation and in the _plots_ when there is an interaction in the model.
 
 * `Mean+SD`: means that the IV is conditioned to the $mean$,  to $mean+k \cdot sd$, and to  $mean-k\cdot sd$, where $k$ is ruled by the white field below the option. Default is 1 SD.
 
@@ -20,7 +20,7 @@ The offset should be within 5 and 50.
 
 Note that with either of these two options, one can estimate simple effects and plots for any value of the continuous IV.
 
-`Covariates labeling` decides which label should be associated with the estimates and plots of simple effects as follows:
+__`Covariates labeling`__ decides which label should be associated with the estimates and plots of simple effects as follows:
 
 * `Labels` produces strings of the form $Mean \pm SD$
 

@@ -414,7 +414,7 @@ div.tocify {
 
 
 <p><strong>General Linear Model</strong> module of the GAMLj suite for jamovi</p>
-<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.5.0 </span></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.4.0 </span></p>
 <p><img src="glm/main.png  " class="img-responsive" alt=""></p>
 <p>The module estimates a general linear model with categorial and/or continuous variables, with options to facilitate estimation ofinteractions, simple slopes, simple effects, etc.</p>
 <div id="module" class="section level1">
@@ -423,15 +423,16 @@ div.tocify {
 </div>
 <div id="estimates" class="section level1">
 <h1>Estimates</h1>
-<p>The module provides ANOVA tables and parameters estimates for any estimated model. Effect size indices (eta, omega, and beta) are optionally computed.</p>
+<p>The module provides ANOVA tables and parameters estimates for any estimated model. Effect size indices (eta, partial eta, partial omega, partial epsilon, and beta) are optionally computed.</p>
 <p>Variables definition follows jamovi standards, with categorical independent variables defined in “factors” and continuous independent variables in “covariates”.</p>
 <p><img src="glm/variables.png" class="img-responsive" alt=""></p>
-<p>Effect size indices are optionally computed by selecting the following options:</p>
+<p>Effect size indices are optionally computed by selecting the following options (see <a href="extra_glm_effectsize.html">Details: GLM effect size indexes</a>):</p>
 <ul>
 <li><strong>beta</strong> : standardized regression coefficients. Continuous variables are standardized and categorical ones are contrast coded (-1 0 1) before estimating the parameters.</li>
-<li><strong>eta^2</strong>: “semi-partial” eta-squared computed as the sum-of-squares of the effect divided by the total sum-of-square.</li>
-<li>partial <strong>eta^2</strong>: partial eta-squared computed as the sum-of-squares of the effect divided by the sum-of-squares of the effect plus the sum-of-squares of error.</li>
-<li><strong>omega^2</strong>: omega-squared</li>
+<li><span class="math inline">\(\eta^2\)</span>: “semi-partial” eta-squared</li>
+<li><span class="math inline">\(\eta^2\)</span>p : partial eta-squared</li>
+<li><span class="math inline">\(\omega^2\)</span>p : partial omega-squared</li>
+<li><span class="math inline">\(\epsilon^2\)</span>p : partial epsilon-squared</li>
 </ul>
 <p>Confidence intervals of the parameters can be also selected.</p>
 </div>
@@ -459,9 +460,9 @@ div.tocify {
 </div>
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
-<p><img src="commons/pics/xscoring.png" class="img-responsive" alt=""></p>
-<p>Continuous variables can be centered, standardized or used as they are (<code>none</code>). The default is <code>centered</code> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simply select <code>none</code>.</p>
-<p><code>Covariates conditioning</code> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
+<p><img src="glm/xscoring.png" class="img-responsive" alt=""></p>
+<p>Continuous variables can be centered, standardized (<code>z-scores</code>), log-transformed (<code>Log</code>) or used as they are (<code>none</code>). The default is <code>centered</code> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simply select <code>none</code>.</p>
+<p><strong><code>Covariates conditioning</code></strong> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
 <ul>
 <li><p><code>Mean+SD</code>: means that the IV is conditioned to the <span class="math inline">\(mean\)</span>, to <span class="math inline">\(mean+k \cdot sd\)</span>, and to <span class="math inline">\(mean-k\cdot sd\)</span>, where <span class="math inline">\(k\)</span> is ruled by the white field below the option. Default is 1 SD.</p></li>
 <li><p><code>Percentile 50 +offset</code>: means that the IV is conditioned to the <span class="math inline">\(median\)</span>, the <span class="math inline">\(median+k P\)</span>, and the <span class="math inline">\(median-k\cdot P\)</span>, where <span class="math inline">\(P\)</span> is the offset of percentile one needs. Again, the <span class="math inline">\(P\)</span> is ruled by the white field below the option. Default is 25%. The default conditions the model to:</p>
@@ -473,12 +474,13 @@ div.tocify {
 </ul>
 <p>The offset should be within 5 and 50.</p>
 <p>Note that with either of these two options, one can estimate simple effects and plots for any value of the continuous IV.</p>
-<p><code>Covariates labeling</code> decides which label should be associated with the estimates and plots of simple effects as follows:</p>
+<p><strong><code>Covariates labeling</code></strong> decides which label should be associated with the estimates and plots of simple effects as follows:</p>
 <ul>
 <li><p><code>Labels</code> produces strings of the form <span class="math inline">\(Mean \pm SD\)</span></p></li>
 <li><p><code>Values</code> uses the actual values of the variables</p></li>
 <li><p><code>Labels+Values</code> produces labels of the form <span class="math inline">\(Mean \pm SD=XXXX\)</span>, where <code>XXXX</code> is the actual value.</p></li>
 </ul>
+<p>The option <strong>Dependent variable</strong> <code>score</code> allows to transform the dependent variable. The dependent variable can be centered, standardized (<code>z-scores</code>), log-transformed (<code>Log</code>) or used as they are (<code>none</code>). The default is <code>none</code>, so no transformation is applied.</p>
 </div>
 <div id="post-hocs" class="section level1">
 <h1>Post-hocs</h1>
@@ -512,7 +514,22 @@ div.tocify {
 <ul>
 <li><p><code>Homogeneity tests</code> provides <a href="https://biostats.w.uib.no/test-for-homogeneity-of-variances-levenes-test/" target="_blank">Levene’s test</a> for equal variances across groups defined by factors (homoschedasticity).</p></li>
 <li><p><code>Normality of residuals</code> provides <a href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test" target="_blank">Klomogorov-Smirnov</a> and <a href="https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation" target="_blank">Shapiro-Wilk</a> tests for normality of residuals.</p></li>
-<li><p><code>Q-Q</code> plot outputs a Q-Q plot (observed residual quantiles on expected residual quantiles). More general info <a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot" target="_blank">here</a></p></li>
+<li><p><code>Q-Q plot</code> outputs a Q-Q plot (observed residual quantiles on expected residual quantiles). More general info <a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot" target="_blank">here</a></p></li>
+<li><p><code>Residuals histogram</code> outputs the histogram of the distribution of the residuals, with an overlaying ideal normal distribution with mean and variance equal to the residuals distribution parameters.</p></li>
+<li><p><code>Residuals-Predicted plot</code> produces a scatterplot with the residuals on the Y-axis and the predicted in the X-axis. It can be usufull to assess heteroschdasticity.</p></li>
+</ul>
+</div>
+<div id="options" class="section level1">
+<h1>Options</h1>
+<p><img src="glm/options.png" class="img-responsive" alt=""></p>
+<p>Additional options that do not fit elsewhere.</p>
+<ul>
+<li><p><strong><code>Additional Info</code></strong></p>
+<ul>
+<li><code>On intercept</code>_ provides effect size for the intercept</li>
+<li><code>On Effect sizes</code>: outputs a new table with all effect sizes available, with confidence intervals</li>
+<li>see <a href="extra_glm_effectsize.html">Details: GLM effect size indexes</a></li>
+</ul></li>
 </ul>
 </div>
 <div id="examples" class="section level1">
