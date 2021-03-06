@@ -1,0 +1,223 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Details: GLM effect size indices},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{Details: GLM effect size indices}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+{ { keywords } jamovi, GLM, effect size indices, omega-sqaured,
+eta-squared, epsilon-squared }
+
+{ { GALMj version ≥ } 2.4.0 }
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Standardized Effect size indices produced by GLM module are the
+following:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\beta\) : standardized regression coefficients
+\item
+  \(\eta^2\): ``semi-partial'' eta-squared
+\item
+  \(\eta^2\)p : partial eta-squared
+\item
+  \(\omega^2\)p : partial omega-squared
+\item
+  \(\epsilon^2\)p : partial epsilon-squared
+\end{itemize}
+
+All coefficients but the betas are computed with the approapriate
+function of the R package
+\href{https://cran.r-project.org/web/packages/effectsize/index.html}{effectsize}
+
+\hypertarget{beta-beta}{%
+\section{\texorpdfstring{\(\beta\) :
+beta}{\textbackslash{}beta : beta}}\label{beta-beta}}
+
+For continuous variables, it simply corresponds to the B coefficient
+obtained after standardizing all variables in the model. The
+standardization of the continuous variables is done before any
+transformation is applied, so if a complex model requires interaction or
+polynomial terms, the terms are computed after standardization, and the
+\(\beta\) are consistent.
+
+For categorical variables, however, some comments are in order:
+Categorical variables are not standardized in {GAMLj}, so the \(\beta\)
+should be interpreted in terms of standardized differences in the
+dependent variable between the levels contrasted by the corresponding
+contrast. Consider the following example: Two groups (variable
+\texttt{groups}) of size 20 and 10 respectively, are compared on a
+variable Y. If one uses {GAMLj} default contrast coding
+(\texttt{simple}), the B is the difference in groups means. The
+\(\beta\) is the difference between the average z-scores of the
+dependent variable between the two groups. Assume these are the results:
+
+The beta is 0.352, so it means that if we compute the mean difference
+between groups in the standardized \emph{y}, we obtain 0.352. In fact.
+
+However, the \(\beta\) you obtain is not the correlation between
+\emph{zy} and \emph{groups}. The correlation is 0.169:
+
+Why is there this discrepancy? Because the groups are not balanced, so
+when the correlation is computed, the variable \emph{groups} is
+standardized, so the contrast coding values depend on the relative size
+of the groups. The actual groups coding values used by the Pearson's
+correlations are the following:
+
+Thus, the correlation corresponds to running a regression with \emph{zy}
+as dependent variables and a continuous variable featuring either -.695
+or 1.390 as values. The \(\beta\) yielded by {GAMLj}, instead, is the
+mean difference between X levels on the standardized Y. Please notice
+that other software may yield different \(\beta\)'s for categorical
+variables.
+
+If the groups are balanced and homeschedastic, the \(\beta\) associated
+with a \texttt{simple} contrast corresponds to the fully standardized
+coefficient.
+
+\hypertarget{eta2-semi-partial-eta-squared}{%
+\section{\texorpdfstring{\(\eta^2\): ``semi-partial''
+eta-squared}{\textbackslash{}eta\^{}2: ``semi-partial'' eta-squared}}\label{eta2-semi-partial-eta-squared}}
+
+This is the proportion of total variance uniquely explained by the
+associated effect. Being \(SS_{eff}\) the sum of squares of the effect
+and \(SS_{res}\) the sum of squares residuals or of error, and
+\(SS_{other}\) the sum of sum of squares associated with any other
+effect in the model other than \(eff\), we have:
+
+\[\eta^2={{SS_{eff} \over {SS_{eff}+SS_{other}+SS_{res}}}}\]
+
+where \(SS_{eff}+SS_{other}+SS_{res}=SS_{total}\)
+
+\hypertarget{eta2p-partial-eta-squared}{%
+\section{\texorpdfstring{\(\eta^2\)p : partial
+eta-squared}{\textbackslash{}eta\^{}2p : partial eta-squared}}\label{eta2p-partial-eta-squared}}
+
+This is the proportion of partial variance uniquely explained by the
+associated effect. That is, the variance uniquely explained by the
+effect expressed as the proportion of variance not explained by the
+other effects. Here the variance explained by the other effects in the
+model is completely partialed out. Its formula is:
+
+\[\eta^2p={{SS_{eff} \over {SS_{eff}+SS_{res}}}}\]
+
+clearly, if there is only one independent variable, \(\eta^2=\eta^2p\)
+
+\hypertarget{omega2p-partial-omega-squared}{%
+\section{\texorpdfstring{\(\omega^2\)p : partial
+omega-squared}{\textbackslash{}omega\^{}2p : partial omega-squared}}\label{omega2p-partial-omega-squared}}
+
+This is the \emph{expected value in the population} of the proportion of
+partial variance uniquely explained by the associated effect. In other
+words,it is the unbiased version of \(\eta^2p\). There are different
+formulas to visualize its computation, here is one. If \(df_{res}\) are
+the degrees of freedon of the residual variance, \(df_{eff}\) are the
+degrees of freedom of the effect, and N is the sample size, we have:
+
+\[\omega^2p={{SS_{eff}-SS_{res} \cdot ({df_{eff}/df_{res}) \cdot }}\over{ SS_{eff}+SS_{res} \cdot [({N-df_{eff})/df_{res}}]
+}}\]
+
+It's clear that omega is similat to \(\eta^2p\), but applies a
+correction for the degress of freedom. In fact, as N increases, the two
+indices converge.
+
+\hypertarget{epsilon2p-partial-epsilon-squared}{%
+\section{\texorpdfstring{\(\epsilon^2\)p : partial
+epsilon-squared}{\textbackslash{}epsilon\^{}2p : partial epsilon-squared}}\label{epsilon2p-partial-epsilon-squared}}
+
+Partial Epsilon-squared is also a correction of \(\eta^2p\), but the
+correction involves only the estimation of the sum of squares of the
+effect, not the partial variance on which the effect is compared
+
+\[\epsilon^2p={{SS_{eff}-SS_{res} \cdot ({df_{eff}/df_{res}) \cdot }}\over{ SS_{eff}+SS_{res}}}\]
+
+\hypertarget{confidence-intervals}{%
+\section{Confidence intervals}\label{confidence-intervals}}
+
+In option tab \texttt{Options} it is possible to ask additional tables
+for the effect size indices, containing the effect size indices and
+their confidence intervals
+
+Details for the confidence intervals computation can be found in
+\href{https://github.com/easystats/effectsize}{Ben-Shachar, Makowski \&
+Lüdecke (2020). Compute and interpret indices of effect size. CRAN}
+
+Comments?
+
+Got comments, issues or spotted a bug? Please open an issue on GAMLj at
+github`` or send me an email
+
+\end{document}

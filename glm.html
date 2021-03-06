@@ -426,7 +426,7 @@ div.tocify {
 <p>The module provides ANOVA tables and parameters estimates for any estimated model. Effect size indices (eta, partial eta, partial omega, partial epsilon, and beta) are optionally computed.</p>
 <p>Variables definition follows jamovi standards, with categorical independent variables defined in “factors” and continuous independent variables in “covariates”.</p>
 <p><img src="glm/variables.png" class="img-responsive" alt=""></p>
-<p>Effect size indices are optionally computed by selecting the following options (see <a href="extra_glm_effectsize.html">Details: GLM effect size indexes</a>):</p>
+<p>Effect size indices are optionally computed by selecting the following options (see <a href="details_glm_effectsize.html">Details: GLM effect size indices</a>):</p>
 <ul>
 <li><strong>beta</strong> : standardized regression coefficients. Continuous variables are standardized and categorical ones are contrast coded (-1 0 1) before estimating the parameters.</li>
 <li><span class="math inline">\(\eta^2\)</span>: “semi-partial” eta-squared</li>
@@ -434,7 +434,8 @@ div.tocify {
 <li><span class="math inline">\(\omega^2\)</span>p : partial omega-squared</li>
 <li><span class="math inline">\(\epsilon^2\)</span>p : partial epsilon-squared</li>
 </ul>
-<p>Confidence intervals of the parameters can be also selected.</p>
+<p>Confidence intervals of the parameters can be also selected in <code>Options</code> tab.</p>
+<p><img src="glm/effectsize1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="model" class="section level1">
 <h1>Model</h1>
@@ -528,21 +529,14 @@ div.tocify {
 <ul>
 <li><code>On intercept</code>_ provides effect size for the intercept</li>
 <li><code>On Effect sizes</code>: outputs a new table with all effect sizes available, with confidence intervals</li>
-<li>see <a href="extra_glm_effectsize.html">Details: GLM effect size indexes</a></li>
+<li>see <a href="details_glm_effectsize.html">Details: GLM effect size indices</a></li>
 </ul></li>
 </ul>
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
 <p>Some worked out examples of the analyses carried out with jamovi GAMLj are posted here (more to come)</p>
-<ul>
-<li>
-<a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a>
-</li>
-<li>
-<a href="glm_example2.html">Polynomial Effects</a>
-</li>
-</ul>
+<p>GLM: Multiple regression, moderated regression, and simple slopes, Polynomial Effects</p>
 <h1>
 Comments?
 </h1>
