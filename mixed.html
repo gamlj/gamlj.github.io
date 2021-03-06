@@ -464,7 +464,7 @@ div.tocify {
 <p><img src="commons/pics/xscoring.png" class="img-responsive" alt=""></p>
 <p>Continuous variables can be centered, standardized, cluster-based centered, cluster-based standardized or used as they are (<code>none</code>). The default is <code>centered</code> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simple select <code>none</code>.</p>
 <p><code>cluster-based centered</code> and <code>cluster-based standardized</code> center each score using the mean of the cluster in which the score belongs. For <code>cluster-based standardized</code> the score is also divided by the cluster standard deviation.</p>
-<p><code>Covariates conditioning</code> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
+<p><strong><code>Covariates conditioning</code></strong> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
 <ul>
 <li><p><code>Mean+SD</code>: means that the IV is conditioned to the <span class="math inline">\(mean\)</span>, to <span class="math inline">\(mean+k \cdot sd\)</span>, and to <span class="math inline">\(mean-k\cdot sd\)</span>, where <span class="math inline">\(k\)</span> is ruled by the white field below the option. Default is 1 SD.</p></li>
 <li><p><code>Percentile 50 +offset</code>: means that the IV is conditioned to the <span class="math inline">\(median\)</span>, the <span class="math inline">\(median+k P\)</span>, and the <span class="math inline">\(median-k\cdot P\)</span>, where <span class="math inline">\(P\)</span> is the offset of percentile one needs. Again, the <span class="math inline">\(P\)</span> is ruled by the white field below the option. Default is 25%. The default conditions the model to:</p>
@@ -476,7 +476,7 @@ div.tocify {
 </ul>
 <p>The offset should be within 5 and 50.</p>
 <p>Note that with either of these two options, one can estimate simple effects and plots for any value of the continuous IV.</p>
-<p><code>Covariates labeling</code> decides which label should be associated with the estimates and plots of simple effects as follows:</p>
+<p><strong><code>Covariates labeling</code></strong> decides which label should be associated with the estimates and plots of simple effects as follows:</p>
 <ul>
 <li><p><code>Labels</code> produces strings of the form <span class="math inline">\(Mean \pm SD\)</span></p></li>
 <li><p><code>Values</code> uses the actual values of the variables</p></li>
@@ -519,20 +519,7 @@ div.tocify {
 <div id="examples" class="section level1">
 <h1>Examples</h1>
 <p>Some worked out examples of the analyses carried out with jamovi GAMLj Mixed models are posted here (more to come)</p>
-<ul>
-<li>
-<a href="mixed_example_igm.html">Mixed: Individual Growth Model</a>
-</li>
-<li>
-<a href="mixed_example1.html">Mixed Models: Random coefficients regression</a>
-</li>
-<li>
-<a href="mixed_example2.html">Mixed Models: Repeated measures designs</a>
-</li>
-<li>
-<a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random effects</a>
-</li>
-</ul>
+<p>Mixed: Individual Growth Model, Mixed Models: Random coefficients regression, Mixed Models: Repeated measures designs, Mixed Models: Subjects by Stimuli random effects</p>
 </div>
 
 
