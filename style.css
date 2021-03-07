@@ -21,6 +21,12 @@ h1 {
 
 }
 
+.section h1 {
+  padding-top: 155px !important; 
+  margin-top: -155px !important; 
+  
+}
+
 .section h2 {
   font-size: 20px;
   font-weight: bold;
