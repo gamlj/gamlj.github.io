@@ -27,9 +27,6 @@ h1 {
   
 }
 
-code {
-  color: black;  
-}
 .section h2 {
   font-size: 20px;
   font-weight: bold;
@@ -200,10 +197,24 @@ figcaption {
   
 }
 
+span.option {
+    white-space: pre;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 2px 4px;
+    font-size: 90%;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: bold;
+    font-family: Helvetica;
+}
 
 .return{
   font-size: 1.2em;
   padding-top: 10px;
   padding-bottom: 10px;
   font-weight:  bold;
+}
+
+code {
+  color: black;
 }
