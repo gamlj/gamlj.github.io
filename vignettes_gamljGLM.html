@@ -350,9 +350,6 @@ div.tocify {
   <a href="examples.html">Examples</a>
 </li>
 <li>
-  <a href="rosetta.html">Rosetta store</a>
-</li>
-<li>
   <a href="release_notes.html">Release notes</a>
 </li>
 <li>
@@ -473,7 +470,7 @@ mod2$main$anova</code></pre>
    Residuals     23810    242                                                          
    Total        202073    245                                                          
  ───────────────────────────────────────────────────────────────────────────────────── </code></pre>
-<p>The same analysis can be done by updating the model with the <code>gamlj_update()</code> function. Almost all the options available in <code>gamljGLM()</code> can be added to a model by running <code>gamlj_update(mod,...)</code> where <code>...</code> is any option or options accepted by <code>gamlj_update()</code>.</p>
+<p>The same analysis can be done by updating the model with the <code>gamlj_update()</code> function. Almost all the options available in <code>gamljGLM()</code> can be added to a model by running <code>gamlj_update(mod,...)</code> where <code>...</code> is any option or options accepted by <code>gamljGLM()</code>.</p>
 <pre class="r"><code>mod2_2&lt;-gamlj_update(mod1,effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;partEta&quot;,&quot;omega&quot;,&quot;epsilon&quot;))
 mod2_2$main$anova</code></pre>
 <pre><code>
@@ -534,7 +531,7 @@ mod3</code></pre>
  ─────────────────────────────────────────────────────────────────────────────────────────────── </code></pre>
 <div id="results-1" class="section level2">
 <h2>Results</h2>
-<p>Because variables are centered to their means, the first-order coefficients can be interpreted as “average” effects. One can also report the betas (last column in the <code>Model Coefficients</code> table). The estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.</p>
+<p>Because variables are centered to their means, the first-order coefficients can be interpreted as “average” effects. One can also report the betas (<span class="math inline">\(\beta\)</span>). The estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.</p>
 </div>
 <div id="simple-slopes" class="section level2">
 <h2>Simple Slopes</h2>
@@ -591,7 +588,7 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
      75%      -0.105    0.0777    -0.257     0.0485    241    -1.35     0.180   
  ────────────────────────────────────────────────────────────────────────────── </code></pre>
 <p>The simple effects are now changed, because they are estimated for a different set of values of the moderator.</p>
-<p>One can further tweak the appearance of the tables by selecting a different value/labels in <code>simpleScaleLabels</code> option. Options are “labels”, “values” and “values_labels”. The latter output the values and the labels of the conditioning values.</p>
+<p>One can further tweak the appearance of the tables by selecting a different value/labels in <code>simpleScaleLabels</code> option. Options are “labels”, “values” and “values_labels”. The latter outputs the values and the labels of the conditioning values.</p>
 <pre class="r"><code>gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;,
                     simpleScale=&quot;percent&quot;, 
                     simpleScaleLabels=&quot;values_labels&quot;)</code></pre>
@@ -631,6 +628,10 @@ mod4$descPlot</code></pre>
                plotHAxis = &quot;xage&quot;,plotSepLines = &quot;zexer&quot;,plotError = &quot;ci&quot;,plotRaw = TRUE)
 mod4$descPlot</code></pre>
 <p><img src="vignettes_gamljGLM_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Any plot produced by <code>gamljGLM</code> can be obtained as a ggplot2 object for futher manipolations or usage. For instance, one can change the theme of the plot:</p>
+<pre class="r"><code>myplot&lt;-gamlj_ggplot(mod4)
+myplot+ggplot2::theme_grey()</code></pre>
+<p><img src="vignettes_gamljGLM_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p><a href="#linear-models-in-gamlj">back to top</a></p>
 </div>
 </div>

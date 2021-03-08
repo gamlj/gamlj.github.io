@@ -342,9 +342,6 @@ div.tocify {
   <a href="examples.html">Examples</a>
 </li>
 <li>
-  <a href="rosetta.html">Rosetta store</a>
-</li>
-<li>
   <a href="release_notes.html">Release notes</a>
 </li>
 <li>
@@ -455,25 +452,25 @@ summary(model)</code></pre>
 ## lm(formula = Score ~ Group, data = dat)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+##     Min      1Q  Median      3Q     Max 
+## -2.0631 -0.2795 -0.0011  0.2853  1.6573 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
-## Group1      -0.24675    0.07193  -3.430 0.000760 ***
-## Group2       0.09692    0.06670   1.453 0.148092    
-## Group3       0.29647    0.06670   4.445  1.6e-05 ***
+## (Intercept)   0.1562     0.0394    3.97  0.00011 ***
+## Group1       -0.2467     0.0719   -3.43  0.00076 ***
+## Group2        0.0969     0.0667    1.45  0.14809    
+## Group3        0.2965     0.0667    4.44  1.6e-05 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.5109 on 166 degrees of freedom
-## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
-## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
+## Residual standard error: 0.511 on 166 degrees of freedom
+## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
+## F-statistic: 9.56 on 3 and 166 DF,  p-value: 7.4e-06</code></pre>
 <pre class="r"><code>## means
 (mm&lt;-tapply(dat$Score, dat$Group, mean))</code></pre>
-<pre><code>##            1            2            3            4 
-##  0.009545455 -0.090555556  0.253111111  0.452666667</code></pre>
+<pre><code>##        1        2        3        4 
+##  0.00955 -0.09056  0.25311  0.45267</code></pre>
 </div>
 <div id="r-emmeans" class="section level2">
 <h2>R emmeans</h2>
@@ -484,10 +481,10 @@ model&lt;-lm(Score~Group,data=dat)
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;eff&quot;,reverse=T,adjust = &quot;none&quot;)</code></pre>
 <pre><code>##  contrast estimate     SE  df t.ratio p.value
-##  1 effect  -0.1466 0.0672 166 -2.183  0.0305 
+##  1 effect  -0.1466 0.0672 166 -2.180  0.0305 
 ##  2 effect  -0.2467 0.0719 166 -3.430  0.0008 
-##  3 effect   0.0969 0.0667 166  1.453  0.1481 
-##  4 effect   0.2965 0.0667 166  4.445  &lt;.0001</code></pre>
+##  3 effect   0.0969 0.0667 166  1.450  0.1481 
+##  4 effect   0.2965 0.0667 166  4.440  &lt;.0001</code></pre>
 <p>Please notice that <code>emmeans</code> computes all possible comparisons: group 1 against the grand mean, group 2 against the grand mean, etc.</p>
 </div>
 </div>
@@ -546,21 +543,21 @@ summary(model)</code></pre>
 ## lm(formula = Score ~ Group, data = dat)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+##     Min      1Q  Median      3Q     Max 
+## -2.0631 -0.2795 -0.0011  0.2853  1.6573 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
-## Group2      -0.10010    0.11481  -0.872 0.384538    
-## Group3       0.24357    0.10831   2.249 0.025846 *  
-## Group4       0.44312    0.10831   4.091 6.68e-05 ***
+## (Intercept)   0.1562     0.0394    3.97  0.00011 ***
+## Group2       -0.1001     0.1148   -0.87  0.38454    
+## Group3        0.2436     0.1083    2.25  0.02585 *  
+## Group4        0.4431     0.1083    4.09  6.7e-05 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.5109 on 166 degrees of freedom
-## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
-## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
+## Residual standard error: 0.511 on 166 degrees of freedom
+## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
+## F-statistic: 9.56 on 3 and 166 DF,  p-value: 7.4e-06</code></pre>
 <p>If one need the uncentered <em>dummy</em> coding, it can be obtained in R using <code>contr.treatment(k)</code>.</p>
 </div>
 <div id="r-emmeans-1" class="section level2">
@@ -570,9 +567,9 @@ summary(model)</code></pre>
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;dunnett&quot;,adjust = &quot;none&quot;)</code></pre>
 <pre><code>##  contrast estimate    SE  df t.ratio p.value
-##  2 - 1      -0.100 0.115 166 -0.872  0.3845 
-##  3 - 1       0.244 0.108 166  2.249  0.0258 
-##  4 - 1       0.443 0.108 166  4.091  0.0001</code></pre>
+##  2 - 1      -0.100 0.115 166 -0.870  0.3850 
+##  3 - 1       0.244 0.108 166  2.250  0.0260 
+##  4 - 1       0.443 0.108 166  4.090  &lt;.0001</code></pre>
 </div>
 <div id="simple-vs-dummy" class="section level2">
 <h2>Simple vs Dummy</h2>
@@ -623,21 +620,21 @@ summary(lm(Score~Group,data=dat))</code></pre>
 ## lm(formula = Score ~ Group, data = dat)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+##     Min      1Q  Median      3Q     Max 
+## -2.0631 -0.2795 -0.0011  0.2853  1.6573 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
-## Group2-1     0.10010    0.11481   0.872 0.384538    
-## Group3-2    -0.34367    0.11424  -3.008 0.003036 ** 
-## Group4-3    -0.19956    0.10770  -1.853 0.065681 .  
+## (Intercept)   0.1562     0.0394    3.97  0.00011 ***
+## Group2-1      0.1001     0.1148    0.87  0.38454    
+## Group3-2     -0.3437     0.1142   -3.01  0.00304 ** 
+## Group4-3     -0.1996     0.1077   -1.85  0.06568 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.5109 on 166 degrees of freedom
-## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
-## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
+## Residual standard error: 0.511 on 166 degrees of freedom
+## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
+## F-statistic: 9.56 on 3 and 166 DF,  p-value: 7.4e-06</code></pre>
 <p>… and we’re just fine.</p>
 </div>
 <div id="r-emmeans-2" class="section level2">
@@ -647,9 +644,9 @@ summary(lm(Score~Group,data=dat))</code></pre>
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;consec&quot;,adjust = &quot;none&quot;,reverse=T)</code></pre>
 <pre><code>##  contrast estimate    SE  df t.ratio p.value
-##  1 - 2       0.100 0.115 166  0.872  0.3845 
+##  1 - 2       0.100 0.115 166  0.872  0.3850 
 ##  2 - 3      -0.344 0.114 166 -3.008  0.0030 
-##  3 - 4      -0.200 0.108 166 -1.853  0.0657</code></pre>
+##  3 - 4      -0.200 0.108 166 -1.853  0.0660</code></pre>
 </div>
 </div>
 <div id="contrast-polynomial" class="section level1">
@@ -688,21 +685,21 @@ summary(lm(Score~Group,data=dat))</code></pre>
 ## lm(formula = Score ~ Group, data = dat)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+##     Min      1Q  Median      3Q     Max 
+## -2.0631 -0.2795 -0.0011  0.2853  1.6573 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
-## Group.L      0.37410    0.07702   4.857 2.73e-06 ***
-## Group.Q      0.14983    0.07871   1.904 0.058702 .  
-## Group.C     -0.13145    0.08037  -1.636 0.103809    
+## (Intercept)   0.1562     0.0394    3.97  0.00011 ***
+## Group.L       0.3741     0.0770    4.86  2.7e-06 ***
+## Group.Q       0.1498     0.0787    1.90  0.05870 .  
+## Group.C      -0.1315     0.0804   -1.64  0.10381    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.5109 on 166 degrees of freedom
-## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
-## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
+## Residual standard error: 0.511 on 166 degrees of freedom
+## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
+## F-statistic: 9.56 on 3 and 166 DF,  p-value: 7.4e-06</code></pre>
 <p>… and we can sleep like babies.</p>
 </div>
 <div id="r-emmeans-3" class="section level2">
@@ -712,9 +709,9 @@ summary(lm(Score~Group,data=dat))</code></pre>
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;poly&quot;,adjust = &quot;none&quot;)</code></pre>
 <pre><code>##  contrast  estimate    SE  df t.ratio p.value
-##  linear       1.673 0.344 166  4.857  &lt;.0001 
-##  quadratic    0.300 0.157 166  1.904  0.0587 
-##  cubic       -0.588 0.359 166 -1.636  0.1038</code></pre>
+##  linear       1.673 0.344 166  4.860  &lt;.0001 
+##  quadratic    0.300 0.157 166  1.900  0.0587 
+##  cubic       -0.588 0.359 166 -1.640  0.1038</code></pre>
 </div>
 </div>
 <div id="contrast-difference" class="section level1">
@@ -763,39 +760,39 @@ summary(model)</code></pre>
 ## lm(formula = Score ~ Group, data = dat)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+##     Min      1Q  Median      3Q     Max 
+## -2.0631 -0.2795 -0.0011  0.2853  1.6573 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
-## Group1      -0.05005    0.05741  -0.872 0.384538    
-## Group2       0.09787    0.03179   3.079 0.002433 ** 
-## Group3       0.09882    0.02223   4.445  1.6e-05 ***
+## (Intercept)   0.1562     0.0394    3.97  0.00011 ***
+## Group1       -0.0501     0.0574   -0.87  0.38454    
+## Group2        0.0979     0.0318    3.08  0.00243 ** 
+## Group3        0.0988     0.0222    4.44  1.6e-05 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.5109 on 166 degrees of freedom
-## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
-## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
+## Residual standard error: 0.511 on 166 degrees of freedom
+## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
+## F-statistic: 9.56 on 3 and 166 DF,  p-value: 7.4e-06</code></pre>
 <p>To obtain the jamovi/SPSS estimate values in R, we should multiply the coefficients obtained in R by the index of the column of the contrasts (starting from 2 because 1 is for the intercept). To make things a bit more general, we can define a <em>conversion vector</em> that works both for deviation and helmert contrasts. Let the <em>conversion vector</em> be <span class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, where <span class="math inline">\(c_i\)</span> is a column of the contrast matrix.</p>
 <pre class="r"><code>cv&lt;-apply(contr.helmert(4),2,max)+1
 cv</code></pre>
 <pre><code>## [1] 2 3 4</code></pre>
 <p>To obtain the same coefficients in R and in jamovi/SPSS, we can multiply the model coefficients by <span class="math inline">\(\mathbf{cv}\)</span></p>
 <pre class="r"><code>coef(model)[c(2:4)]*cv</code></pre>
-<pre><code>##     Group1     Group2     Group3 
-## -0.1001010  0.2936162  0.3952997</code></pre>
+<pre><code>## Group1 Group2 Group3 
+## -0.100  0.294  0.395</code></pre>
 <p>Or divide the contrast weights by <span class="math inline">\(\mathbf{cv}\)</span></p>
 <pre class="r"><code>### make a diagonal matrix with cv in the diagonal ##########
 diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
 contrasts(dat$Group)&lt;-contr.helmert(4)/diag_cv
 contrasts(dat$Group)</code></pre>
-<pre><code>##   [,1]       [,2]  [,3]
-## 1 -0.5 -0.3333333 -0.25
-## 2  0.5 -0.3333333 -0.25
-## 3  0.0  0.6666667 -0.25
-## 4  0.0  0.0000000  0.75</code></pre>
+<pre><code>##   [,1]   [,2]  [,3]
+## 1 -0.5 -0.333 -0.25
+## 2  0.5 -0.333 -0.25
+## 3  0.0  0.667 -0.25
+## 4  0.0  0.000  0.75</code></pre>
 <pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
 summary(model)</code></pre>
 <pre><code>## 
@@ -803,21 +800,21 @@ summary(model)</code></pre>
 ## lm(formula = Score ~ Group, data = dat)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+##     Min      1Q  Median      3Q     Max 
+## -2.0631 -0.2795 -0.0011  0.2853  1.6573 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
-## Group1      -0.10010    0.11481  -0.872 0.384538    
-## Group2       0.29362    0.09537   3.079 0.002433 ** 
-## Group3       0.39530    0.08893   4.445  1.6e-05 ***
+## (Intercept)   0.1562     0.0394    3.97  0.00011 ***
+## Group1       -0.1001     0.1148   -0.87  0.38454    
+## Group2        0.2936     0.0954    3.08  0.00243 ** 
+## Group3        0.3953     0.0889    4.44  1.6e-05 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.5109 on 166 degrees of freedom
-## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
-## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
+## Residual standard error: 0.511 on 166 degrees of freedom
+## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
+## F-statistic: 9.56 on 3 and 166 DF,  p-value: 7.4e-06</code></pre>
 <p>… and we get the same values, t-tests and p-values as in jamovi and SPSS.</p>
 </div>
 <div id="r-emmeans-4" class="section level2">
@@ -850,9 +847,9 @@ round(difference.emmc(levels(dat$Group)),digits = 3)</code></pre>
 <pre class="r"><code>#### results ##############
 contrast(emm,&quot;difference&quot;,adjust=&quot;none&quot;)</code></pre>
 <pre><code>##  contrast      estimate     SE  df t.ratio p.value
-##  2 vs previous   -0.100 0.1148 166 -0.872  0.3845 
-##  3 vs previous    0.294 0.0954 166  3.079  0.0024 
-##  4 vs previous    0.395 0.0889 166  4.445  &lt;.0001</code></pre>
+##  2 vs previous   -0.100 0.1148 166 -0.870  0.3850 
+##  3 vs previous    0.294 0.0954 166  3.080  0.0020 
+##  4 vs previous    0.395 0.0889 166  4.440  &lt;.0001</code></pre>
 <p>Same results as before.</p>
 </div>
 </div>
@@ -901,28 +898,28 @@ summary(model)</code></pre>
 ## lm(formula = Score ~ Group, data = dat)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+##     Min      1Q  Median      3Q     Max 
+## -2.0631 -0.2795 -0.0011  0.2853  1.6573 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
-## Group1      -0.04888    0.02240  -2.183 0.030477 *  
-## Group2      -0.14781    0.03358  -4.402 1.92e-05 ***
-## Group3      -0.09978    0.05385  -1.853 0.065681 .  
+## (Intercept)   0.1562     0.0394    3.97  0.00011 ***
+## Group1       -0.0489     0.0224   -2.18  0.03048 *  
+## Group2       -0.1478     0.0336   -4.40  1.9e-05 ***
+## Group3       -0.0998     0.0539   -1.85  0.06568 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.5109 on 166 degrees of freedom
-## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
-## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
+## Residual standard error: 0.511 on 166 degrees of freedom
+## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
+## F-statistic: 9.56 on 3 and 166 DF,  p-value: 7.4e-06</code></pre>
 <p>To obtain the jamovi/SPSS values in R, we should compute <span class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, and multiply it by the model coefficients.</p>
 <pre class="r"><code>cv&lt;-apply(con_weights,2,max)+1
 cv</code></pre>
 <pre><code>## [1] 4 3 2</code></pre>
 <pre class="r"><code>coef(model)[c(2:4)]*cv</code></pre>
-<pre><code>##     Group1     Group2     Group3 
-## -0.1955286 -0.4434444 -0.1995556</code></pre>
+<pre><code>## Group1 Group2 Group3 
+## -0.196 -0.443 -0.200</code></pre>
 <p>or divide the contrast weights by <span class="math inline">\(\mathbf{cv}\)</span></p>
 <pre class="r"><code>### make a diagonal matrix with cv in the diagonal ##########
 diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
@@ -931,11 +928,11 @@ helm&lt;-con_weights/diag_cv
 
 ### scaled contrast weights ############
 helm</code></pre>
-<pre><code>##    [,1]       [,2] [,3]
-## 1  0.75  0.0000000  0.0
-## 2 -0.25  0.6666667  0.0
-## 3 -0.25 -0.3333333  0.5
-## 4 -0.25 -0.3333333 -0.5</code></pre>
+<pre><code>##    [,1]   [,2] [,3]
+## 1  0.75  0.000  0.0
+## 2 -0.25  0.667  0.0
+## 3 -0.25 -0.333  0.5
+## 4 -0.25 -0.333 -0.5</code></pre>
 <pre class="r"><code>contrasts(dat$Group)&lt;-helm
 model&lt;-lm(Score~Group,data=dat)
 summary(model)</code></pre>
@@ -944,21 +941,21 @@ summary(model)</code></pre>
 ## lm(formula = Score ~ Group, data = dat)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+##     Min      1Q  Median      3Q     Max 
+## -2.0631 -0.2795 -0.0011  0.2853  1.6573 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
-## Group1      -0.19553    0.08959  -2.183 0.030477 *  
-## Group2      -0.44344    0.10075  -4.402 1.92e-05 ***
-## Group3      -0.19956    0.10770  -1.853 0.065681 .  
+## (Intercept)   0.1562     0.0394    3.97  0.00011 ***
+## Group1       -0.1955     0.0896   -2.18  0.03048 *  
+## Group2       -0.4434     0.1007   -4.40  1.9e-05 ***
+## Group3       -0.1996     0.1077   -1.85  0.06568 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.5109 on 166 degrees of freedom
-## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
-## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
+## Residual standard error: 0.511 on 166 degrees of freedom
+## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
+## F-statistic: 9.56 on 3 and 166 DF,  p-value: 7.4e-06</code></pre>
 <p>… and we’re happy campers.</p>
 </div>
 <div id="r-emmeans-5" class="section level2">
@@ -983,15 +980,15 @@ helmert.emmc&lt;-function(levs) {
 
 helmert.emmc(levels(dat$Group))</code></pre>
 <pre><code>##   1 vs subsequent 2 vs subsequent 3 vs subsequent
-## 1       1.0000000   -6.343273e-17   -1.098687e-16
-## 2      -0.3333333    1.000000e+00   -1.256066e-16
-## 3      -0.3333333   -5.000000e-01    1.000000e+00
-## 4      -0.3333333   -5.000000e-01   -1.000000e+00</code></pre>
+## 1           1.000       -6.34e-17       -1.10e-16
+## 2          -0.333        1.00e+00       -1.26e-16
+## 3          -0.333       -5.00e-01        1.00e+00
+## 4          -0.333       -5.00e-01       -1.00e+00</code></pre>
 <pre class="r"><code>contrast(emm,&quot;helmert&quot;,adjust=&quot;none&quot;)</code></pre>
 <pre><code>##  contrast        estimate     SE  df t.ratio p.value
-##  1 vs subsequent   -0.196 0.0896 166 -2.183  0.0305 
-##  2 vs subsequent   -0.443 0.1007 166 -4.402  &lt;.0001 
-##  3 vs subsequent   -0.200 0.1077 166 -1.853  0.0657</code></pre>
+##  1 vs subsequent   -0.196 0.0896 166 -2.180  0.0305 
+##  2 vs subsequent   -0.443 0.1007 166 -4.400  &lt;.0001 
+##  3 vs subsequent   -0.200 0.1077 166 -1.850  0.0657</code></pre>
 <p>Same results!</p>
 </div>
 </div>
@@ -1038,21 +1035,21 @@ summary(model)</code></pre>
 ## lm(formula = Score ~ Group, data = dat)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+##     Min      1Q  Median      3Q     Max 
+## -2.0631 -0.2795 -0.0011  0.2853  1.6573 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
-## Group1      -0.19553    0.08959  -2.183 0.030477 *  
-## Group2      -0.44344    0.10075  -4.402 1.92e-05 ***
-## Group3      -0.19956    0.10770  -1.853 0.065681 .  
+## (Intercept)   0.1562     0.0394    3.97  0.00011 ***
+## Group1       -0.1955     0.0896   -2.18  0.03048 *  
+## Group2       -0.4434     0.1007   -4.40  1.9e-05 ***
+## Group3       -0.1996     0.1077   -1.85  0.06568 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.5109 on 166 degrees of freedom
-## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
-## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
+## Residual standard error: 0.511 on 166 degrees of freedom
+## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
+## F-statistic: 9.56 on 3 and 166 DF,  p-value: 7.4e-06</code></pre>
 <p>The reason of this discrepancy is that the LMATRIX is the contrast matrix, a matrix that shows the linear hypotheses implied by the contrast and represents the starting point of the coding system, not the model matrix itself. Thus, the constrast matrix (SPSS LMATRIX) is useful to understand what is going on in the comparisons: by inspecting the contrast matrix one can easily see that in column 1 groups 1 and 2 are compared, in column 2 groups 2 vs 3, and so on.</p>
 <p>A clear technical explanation is provided in <a href="https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf">Venables 2017</a>, where you find the definition of the contrast matrix (<strong><span class="math inline">\(C\)</span></strong> in the Venable’s vignette) and the model matrix (<strong><span class="math inline">\(B\)</span></strong> in the vignette).</p>
 <p>Ok, but what is the relation between the contrast matrix and the R model matrix? or even better: How do I get from the contrast matrix to the R model matrix? Just <strong>take the inverse of the contrast matrix and traspose it</strong>. In R, one can take the inverse of a matrix by using <code>MASS::ginv()</code> function. Let’s see:</p>
@@ -1108,19 +1105,19 @@ round(t(ilmat),digits = 3)</code></pre>
 <p>SPSS LMATRIX is: <img src="rosetta/contrasts/r.c7.spss3.png" class="img-responsive" alt=""></p>
 <p>R model matrix:</p>
 <pre class="r"><code>(polynom&lt;-contr.poly(4))</code></pre>
-<pre><code>##              .L   .Q         .C
-## [1,] -0.6708204  0.5 -0.2236068
-## [2,] -0.2236068 -0.5  0.6708204
-## [3,]  0.2236068 -0.5 -0.6708204
-## [4,]  0.6708204  0.5  0.2236068</code></pre>
+<pre><code>##          .L   .Q     .C
+## [1,] -0.671  0.5 -0.224
+## [2,] -0.224 -0.5  0.671
+## [3,]  0.224 -0.5 -0.671
+## [4,]  0.671  0.5  0.224</code></pre>
 <p>They are the same this time! Does it means that in this case the “inversion” does not apply? Well, it does apply, but because the polynomial contrast codes are orthogonal, the inverse of the contrast matrix is equal to the transpose of the contrast matrix, thus taking the inverse and then transpose it gives back the same matrix (cf <a href="https://en.wikipedia.org/wiki/Orthogonal_matrix">orthogonal matrix</a>)</p>
 <pre class="r"><code>ipoly&lt;-ginv(polynom)
 t(ipoly)</code></pre>
-<pre><code>##            [,1] [,2]       [,3]
-## [1,] -0.6708204  0.5 -0.2236068
-## [2,] -0.2236068 -0.5  0.6708204
-## [3,]  0.2236068 -0.5 -0.6708204
-## [4,]  0.6708204  0.5  0.2236068</code></pre>
+<pre><code>##        [,1] [,2]   [,3]
+## [1,] -0.671  0.5 -0.224
+## [2,] -0.224 -0.5  0.671
+## [3,]  0.224 -0.5 -0.671
+## [4,]  0.671  0.5  0.224</code></pre>
 <div id="building-custom-contrast-in-emmeans" class="section level2">
 <h2>Building custom contrast in emmeans</h2>
 <p>We have seen that <code>emmeans</code> allows to define custom contrast coding. When we do that, we should remember that we need to define the contrast matrix, <strong>not</strong> the model matrix. Thus, for repeated contrast, in R we used <code>(-1)*contr.sdif(n)</code>:</p>
@@ -1162,18 +1159,18 @@ cv&lt;-apply(con_weights,2,max)+1
 diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
 helm&lt;-con_weights/diag_cv
 helm</code></pre>
-<pre><code>##       [,1]       [,2] [,3]
-## [1,]  0.75  0.0000000  0.0
-## [2,] -0.25  0.6666667  0.0
-## [3,] -0.25 -0.3333333  0.5
-## [4,] -0.25 -0.3333333 -0.5</code></pre>
+<pre><code>##       [,1]   [,2] [,3]
+## [1,]  0.75  0.000  0.0
+## [2,] -0.25  0.667  0.0
+## [3,] -0.25 -0.333  0.5
+## [4,] -0.25 -0.333 -0.5</code></pre>
 <p>Take the inverse of the transpose of it</p>
 <pre class="r"><code>(contr_mat&lt;-ginv(t(helm)))</code></pre>
-<pre><code>##            [,1]          [,2]          [,3]
-## [1,]  1.0000000 -6.343273e-17 -1.098687e-16
-## [2,] -0.3333333  1.000000e+00 -1.256066e-16
-## [3,] -0.3333333 -5.000000e-01  1.000000e+00
-## [4,] -0.3333333 -5.000000e-01 -1.000000e+00</code></pre>
+<pre><code>##        [,1]      [,2]      [,3]
+## [1,]  1.000 -6.34e-17 -1.10e-16
+## [2,] -0.333  1.00e+00 -1.26e-16
+## [3,] -0.333 -5.00e-01  1.00e+00
+## [4,] -0.333 -5.00e-01 -1.00e+00</code></pre>
 <p>This is the contrast matrix we can pass to <code>emmeans</code>. We just need to wrap it up in a function with <code>.emmc()</code> reference class and <code>levels</code> as input.</p>
 <pre class="r"><code>helmert.emmc&lt;-function(levs) {
   n&lt;-length(levs)
@@ -1189,15 +1186,15 @@ helm</code></pre>
 }
 helmert.emmc(levels(dat$Group))</code></pre>
 <pre><code>##   1 vs subsequent 2 vs subsequent 3 vs subsequent
-## 1       1.0000000   -6.343273e-17   -1.098687e-16
-## 2      -0.3333333    1.000000e+00   -1.256066e-16
-## 3      -0.3333333   -5.000000e-01    1.000000e+00
-## 4      -0.3333333   -5.000000e-01   -1.000000e+00</code></pre>
+## 1           1.000       -6.34e-17       -1.10e-16
+## 2          -0.333        1.00e+00       -1.26e-16
+## 3          -0.333       -5.00e-01        1.00e+00
+## 4          -0.333       -5.00e-01       -1.00e+00</code></pre>
 <pre class="r"><code>contrast(emm,&quot;helmert&quot;,adjust=&quot;none&quot;)</code></pre>
 <pre><code>##  contrast        estimate     SE  df t.ratio p.value
-##  1 vs subsequent   -0.196 0.0896 166 -2.183  0.0305 
-##  2 vs subsequent   -0.443 0.1007 166 -4.402  &lt;.0001 
-##  3 vs subsequent   -0.200 0.1077 166 -1.853  0.0657</code></pre>
+##  1 vs subsequent   -0.196 0.0896 166 -2.180  0.0305 
+##  2 vs subsequent   -0.443 0.1007 166 -4.400  &lt;.0001 
+##  3 vs subsequent   -0.200 0.1077 166 -1.850  0.0657</code></pre>
 <p>and we get the contrast estimates as expected. For the <code>difference</code> contrast we can use <code>con_weights&lt;-contr.helmert(n)</code> in the function and we get the correct codes.</p>
 </div>
 </div>
