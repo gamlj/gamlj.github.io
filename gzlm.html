@@ -387,14 +387,14 @@ div.tocify {
 <p>For each model, any combination of categorical and continuous variables can be set as independent variables, thus providing an easy way for multiple regression, ANOVA-like, ANCOVA-like and moderation analysis for categorical and count dependent variables.</p>
 <p>Models are defined by a link function (LF) and the dependent variable distribution, thus allowing to model different types of dependent variables:</p>
 <ul>
-<li>Linear model: identity LF, gaussian distribution, yielding a general linear model for continuous dependent variables.</li>
-<li>Poisson model: logarithm LF, Poisson distribution, modelling count dependent variables. This model is often called log-linear model when the independent variables are all categorical.</li>
-<li>Overdispersed Poisson model: logarithm LF, Poisson distribution, quasi-maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.</li>
-<li><p>Negative binomial model: logarithm LF, negative binomial distribution, maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.</p></li>
-<li>Logistic model: logit LF, binomial distribution, modelling dichotomous dependent variables.</li>
-<li><p>Probit model: inverse of the cumulative normal distribution link function, binomial distribution, modelling dichotomous dependent variables.</p></li>
-<li><p>Multinomial model: logit LF, multinomial distribution, modelling categorical dependent variables.</p></li>
-<li><p>Custom model: combination of distribution family and link function.</p>
+<li><span class="option">Linear</span> model: identity LF, gaussian distribution, yielding a general linear model for continuous dependent variables.</li>
+<li><span class="option">Poisson</span> model: logarithm LF, Poisson distribution, modelling count dependent variables. This model is often called log-linear model when the independent variables are all categorical.</li>
+<li><span class="option">Poisson (overdispersion)</span> model: Overdispersed Poisson model: logarithm LF, Poisson distribution, quasi-maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.</li>
+<li><p><span class="option">Negative binomial</span> model: logarithm LF, negative binomial distribution, maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.</p></li>
+<li><span class="option">Logistic</span> model: logit LF, binomial distribution, modelling dichotomous dependent variables.</li>
+<li><p><span class="option">Probit</span> model: inverse of the cumulative normal distribution link function, binomial distribution, modelling dichotomous dependent variables.</p></li>
+<li><p><span class="option">Multinomial</span> model: logit LF, multinomial distribution, modelling categorical dependent variables.</p></li>
+<li><p><span class="option">Custom</span> model: combination of distribution family and link function.</p>
 <ul>
 <li><p>The available distributions are:</p>
 <ul>
@@ -431,7 +431,7 @@ div.tocify {
 <p>By increasing that number before dragging the term into the <span class="option">Model Terms</span> field, one can include any high order effect.</p>
 <p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
 <p>Increasing the order number and combining the selection with other variables allows including interactions involving higher order effects of a variable.</p>
-<p>The option <code>Fixed Intercept</code> includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see <a href="https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/">here</a> before you do it ).</p>
+<p>The option <span class="option">Fixed Intercept</span> includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see <a href="https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/">here</a> before you do it ).</p>
 </div>
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
@@ -445,7 +445,7 @@ div.tocify {
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
 <p><img src="commons/pics/xscoring.png" class="img-responsive" alt=""></p>
-<p>Continuous variables can be centered, standardized or used as they are (<code>none</code>). The default is <code>centered</code> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercepts, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simply select <code>none</code>.</p>
+<p>Continuous variables can be centered, standardized (<span class="option">z-scores</span>), log-transformed (<span class="option">Log</span>) or used as they are (<span class="option">none</span>). The default is <span class="option">centered</span> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simply select <span class="option">none</span>.</p>
 <p><span class="option">Covariates conditioning</span> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
 <ul>
 <li><p><span class="option">Mean+SD</span>: means that the IV is conditioned to the <span class="math inline">\(mean\)</span>, to <span class="math inline">\(mean+k \cdot sd\)</span>, and to <span class="math inline">\(mean-k\cdot sd\)</span>, where <span class="math inline">\(k\)</span> is ruled by the white field below the option. Default is 1 SD.</p></li>

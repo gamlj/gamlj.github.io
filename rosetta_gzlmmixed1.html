@@ -364,11 +364,11 @@ div.tocify {
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, R, SPSS, logistic, generalized mixed, mixed models </span></p>
 <p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.0.0 </span> <span class="draft"> Draft version, mistakes may be around </span></p>
-<p>Here you can find comparisons of results obtained in <span class="jamovi">jamovi</span> GAMLj,R, and SPSS. When not explicitly discussed, the code of different software is written with the aim of obtaining identical results across programs (not necessarily with the most efficient strategy).</p>
-<p>In this example we compare GAMLj results with R results obtained by IDRE on their <a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">tutorial web page</a></p>
+<p>Here you can find comparisons of results obtained in <span class="jamovi">jamovi</span> <span class="gamlj">GAMLj</span>, R, and SPSS. When not explicitly discussed, the code of different software is written with the aim of obtaining identical results across programs (not necessarily with the most efficient strategy).</p>
+<p>In this example we compare <span class="gamlj">GAMLj</span> results with R results obtained by IDRE on their <a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">tutorial web page</a>, and with SPSS results.</p>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
-<p>In this example, we are going to explore lung cancer remission using a simulated dataset. A variety of outcomes were collected on patients, who are nested within doctors, who are in turn nested within hospitals. There are also a few doctor level variables, such as Experience that we will use in our example (<a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">IDRE</a>). Data can be downloaded <a href="https://stats.idre.ucla.edu/stat/data/hdp.csv">here</a></p>
+<p>In this example, we are going to explore lung cancer remission using a simulated dataset. A variety of outcomes were collected on patients, who are nested within doctors, who are in turn nested within hospitals. There are also a few doctor level variables, such as <em>Experience</em>, that we will use in our example (<a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">IDRE</a>). Data can be downloaded <a href="https://stats.idre.ucla.edu/stat/data/hdp.csv">here</a></p>
 </div>
 <div id="r" class="section level1">
 <h1>R</h1>
@@ -432,11 +432,11 @@ print(m, corr = FALSE)</code></pre>
 </div>
 <div id="gamlj" class="section level1">
 <h1>GAMLj</h1>
-<p><span class="jamovi">jamovi</span> GAMLj module for <code>Generalized mixed models</code> can be used to estimate a random coefficient mixed model. First, it requires choose the specific model we want to run: the <code>Logistic</code> model.</p>
+<p><span class="jamovi">jamovi</span> <span class="gamlj">GAMLj</span> module for <code>Generalized mixed models</code> can be used to estimate a random coefficient mixed model. First, it requires choose the specific model we want to run: the <code>Logistic</code> model.</p>
 <p><img src="rosetta/gzlmmixed/modelpick.png" class="img-responsive" alt=""></p>
 <p>Then we set the variables in the right field depending on their role in the model and their type.</p>
 <p><img src="rosetta/gzlmmixed/variables.png" class="img-responsive" alt=""></p>
-<p>Please note that we put <code>LengthOfStay</code> in covariates because it is a continuous variable, even though <span class="jamovi">jamovi</span> recognizes it a categorical. By putting it in <code>Covariates</code>, we implicitly ask the module to treat it a continuous variable. The opposite holds for <code>DID</code> (doctors ID) which <span class="jamovi">jamovi</span> recognizes as continuous but the module treats as categorical after we put it in the <code>Clusters</code> field.</p>
+<p>Please note that we put <code>LengthOfStay</code> in covariates because it is a continuous variable, even though <span class="jamovi">jamovi</span> recognizes it a categorical. By putting it in <code>&lt;span class=&quot;option&quot;&gt;Covariates&lt;/span&gt;, we implicitly ask the module to treat it a continuous variable. The opposite holds for</code>DID` (doctors ID) which <span class="jamovi">jamovi</span> recognizes as continuous but the module treats as categorical after we put it in the <span class="option">Clusters</span> field.</p>
 <p>After the first setup, we need to specify the random effects. Following the IDRE analysis, we specify the intercept as random coefficient across doctors (<code>DID</code>).</p>
 <p><img src="rosetta/gzlmmixed/random.png" class="img-responsive" alt=""></p>
 <p>As soon as we include a random effect, the model is estimated</p>
@@ -444,14 +444,14 @@ print(m, corr = FALSE)</code></pre>
 <h2>Results</h2>
 <p>Let’s us first focus on the fixed parameters estimates, the B coefficients.</p>
 <p><img src="rosetta/gzlmmixed/results_estimates.png" class="img-responsive" alt=""></p>
-<p>For the predictors coefficients we have substantially the same results as in R, apart from rounding. For the intercept we have different results. The reason is the different default coding of the variables in GAMLj and in R. In R default, factors are coded with the <em>dummy coding scheme</em>, that is</p>
+<p>For the predictors coefficients we have substantially the same results as in R, apart from rounding. For the intercept we have different results. The reason is the different default coding of the variables in <span class="gamlj">GAMLj</span> and in R. In R default, factors are coded with the <em>dummy coding scheme</em>, that is</p>
 <pre><code>&gt; contrasts(hdp$CancerStage)
     II III IV
 I    0   0  0
 II   1   0  0
 III  0   1  0
 IV   0   0  1</code></pre>
-<p>and continuous independent variables are not scaled. In GAMLj the default coding system for categorical variable is <code>simple</code></p>
+<p>and continuous independent variables are not scaled. In <span class="gamlj">GAMLj</span> the default coding system for categorical variable is `<span class="option">simple</span>.</p>
 <p><img src="rosetta/gzlmmixed/coding.png" class="img-responsive" alt=""></p>
 <p>which results in a centered contrast.</p>
 <p><img src="rosetta/gzlmmixed/results_coding.png" class="img-responsive" alt=""></p>
