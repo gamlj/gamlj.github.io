@@ -382,6 +382,257 @@ div.tocify {
 <pre class="r"><code>library(gamlj)</code></pre>
 <div id="linear-models-in-gamlj" class="section level1">
 <h1>Linear models in GAMLj</h1>
+<p>In this example we run a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from <a href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a> and can be downloaded <a href="https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv">here</a>.</p>
+</div>
+<div id="the-research-design" class="section level1">
+<h1>The research design</h1>
+<p>The research is about physical endurance associated with age and physical exercise. 245 participants were measured while jogging on a treadmill. Endurance was measured in minutes (‘yendu’ in the file). Participants’ age (<code>xage</code> in years) and number of years of physical exercise (<code>zexer</code> in years) were recorded as well</p>
+<pre class="r"><code>data&lt;-read.csv(&quot;https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/data/exercise.csv&quot;)
+summary(data[,c(&quot;xage&quot;,&quot;zexer&quot;,&quot;yendu&quot;)])</code></pre>
+<pre><code>      xage          zexer          yendu     
+ Min.   :20.0   Min.   : 0.0   Min.   : 0.0  
+ 1st Qu.:43.0   1st Qu.: 7.0   1st Qu.:19.0  
+ Median :48.0   Median :11.0   Median :27.0  
+ Mean   :49.2   Mean   :10.7   Mean   :26.5  
+ 3rd Qu.:56.0   3rd Qu.:14.0   3rd Qu.:33.0  
+ Max.   :82.0   Max.   :26.0   Max.   :55.0  </code></pre>
+<p>The researcher is interested in studying the relationships between endurance, age, and exercising, with the hypothesis that the effect of age (expected to be negative) is moderated by exercise, such that the more participants work out (higher levels of <code>exer</code>) the less age negatively affects endurance.</p>
+</div>
+<div id="understanding-the-problem" class="section level1">
+<h1>Understanding the problem</h1>
+<p>We can think about this analytic problem as a multiple regression, where the effect of age and exercise can be estimated while keeping constant the other variable. However, the researcher puts forward a <em>moderation hypothesis</em>, because s/he expects the effect of age to change for different levels of exercising. We than need an interaction between age and exercise.</p>
+<p>We first run a multiple regression (to warm up), then we estimate a multiple regression with an interaction (moderated regression) and we probe the interaction with a simple slope analysis and simple slope graphs. Technical details can be found in <a href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a>, or in <a href="http://quantpsy.org/interact/interactions.htm">Preacher website</a>.</p>
+</div>
+<div id="multiple-regression" class="section level1">
+<h1>Multiple regression</h1>
+<p>GAMLj GML function minimum setup only requires to specify the formula of the model and the dataframe. The formula interface is the same one uses in <code>lm()</code> function.</p>
+<pre class="r"><code>mod1&lt;-gamljGLM(formula = yendu~xage+zexer, data=data)
+mod1</code></pre>
+<pre><code>
+ GENERAL LINEAR MODEL
+
+ Model Info                                     
+ ────────────────────────────────────────────── 
+   Info                                         
+ ────────────────────────────────────────────── 
+   Estimate          Linear model fit by OLS    
+   Call              yendu ~ 1 + xage + zexer   
+   R-squared                            0.166   
+   Adj. R-squared                       0.159   
+ ────────────────────────────────────────────── 
+
+
+ MODEL RESULTS
+
+ ANOVA Omnibus tests                                       
+ ───────────────────────────────────────────────────────── 
+                SS        df     F       p         η²p     
+ ───────────────────────────────────────────────────────── 
+   Model          5814      2    24.1    &lt; .001    0.166   
+   xage           1516      1    15.4    &lt; .001    0.019   
+   zexer          4298      1    43.7    &lt; .001    0.153   
+   Residuals     23810    242                              
+   Total        202073    245                              
+ ───────────────────────────────────────────────────────── 
+
+
+ Fixed Effects Parameter Estimates                                                             
+ ───────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE        Lower     Upper     β         df     t        p        
+ ───────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      26.531    0.6337    25.282    27.779     0.000    242    41.87    &lt; .001   
+   xage             -0.257    0.0655    -0.386    -0.128    -0.240    242    -3.93    &lt; .001   
+   zexer             0.916    0.1386     0.643     1.189     0.404    242     6.61    &lt; .001   
+ ───────────────────────────────────────────────────────────────────────────────────────────── </code></pre>
+<p>The object `mod’ is an R6 object which contains all the results tables and some additional function that can be used in subsequent analyses. Tables are pretty printed, but they can be modified or manipulated by trasforming them in dataframes as follows:</p>
+<pre class="r"><code>anofaDF&lt;-mod1$main$anova$asDF
+anofaDF</code></pre>
+<pre><code>       name     ss  df    f        p etaSqP
+1     Model   5814   2 24.1 2.75e-10 0.1663
+2      xage   1516   1 15.4 1.13e-04 0.0186
+3     zexer   4298   1 43.7 2.44e-10 0.1529
+4 Residuals  23810 242   NA       NA     NA
+5     Total 202073 245   NA       NA     NA</code></pre>
+<div id="results" class="section level2">
+<h2>Results</h2>
+<p>Results show three tables. Table info contains information about the overall model. The Anova omnibus tests table contains the results of the <code>car:Anova()</code> function, with the addition of the partial <span class="math inline">\(\eta^2\)</span> index for each effect and the inferential test for the whole model. The <code>Fixed effect parameter estimates</code> table contains the <code>summary()</code> results. For each coefficient the confidence interval is also reported.</p>
+<p>A special note should be made for the intercept. The intercept is the expected value (the mean) of the dependent variable, estimated for all independent variables equal to their means. This is because in gamljGLM(), continuous variables are centered to their mean by default. In case one wants the independent variables not to be centered, one can select a different scaling with the option <code>scaling</code>.</p>
+<p>Additional effect size indexes can be asked with the option <code>effectSize</code>.</p>
+<pre class="r"><code>mod2&lt;-gamljGLM(formula = yendu~xage+zexer, 
+              data=data,
+              effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;partEta&quot;,&quot;omega&quot;,&quot;epsilon&quot;))
+mod2$main$anova</code></pre>
+<pre><code>
+ ANOVA Omnibus tests                                                                   
+ ───────────────────────────────────────────────────────────────────────────────────── 
+                SS        df     F       p         η²        η²p      ω²p      ε²p     
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Model          5814      2    24.1    &lt; .001    0.1663    0.166    0.159    0.159   
+   xage           1516      1    15.4    &lt; .001    0.0158    0.019    0.014    0.015   
+   zexer          4298      1    43.7    &lt; .001    0.1505    0.153    0.148    0.149   
+   Residuals     23810    242                                                          
+   Total        202073    245                                                          
+ ───────────────────────────────────────────────────────────────────────────────────── </code></pre>
+<p>The same analysis can be done by updating the model with the <code>gamlj_update()</code> function. Almost all the options available in <code>gamljGLM()</code> can be added to a model by running <code>gamlj_update(mod,...)</code> where <code>...</code> is any option or options accepted by <code>gamlj_update()</code>.</p>
+<pre class="r"><code>mod2_2&lt;-gamlj_update(mod1,effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;partEta&quot;,&quot;omega&quot;,&quot;epsilon&quot;))
+mod2_2$main$anova</code></pre>
+<pre><code>
+ ANOVA Omnibus tests                                                                   
+ ───────────────────────────────────────────────────────────────────────────────────── 
+                SS        df     F       p         η²        η²p      ω²p      ε²p     
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   Model          5814      2    24.1    &lt; .001    0.1663    0.166    0.159    0.159   
+   xage           1516      1    15.4    &lt; .001    0.0158    0.019    0.014    0.015   
+   zexer          4298      1    43.7    &lt; .001    0.1505    0.153    0.148    0.149   
+   Residuals     23810    242                                                          
+   Total        202073    245                                                          
+ ───────────────────────────────────────────────────────────────────────────────────── </code></pre>
+</div>
+</div>
+<div id="moderated-regression" class="section level1">
+<h1>Moderated regression</h1>
+<p>To include the interaction we simply add the interaction effect in the formula.</p>
+<pre class="r"><code>mod3&lt;-gamljGLM(formula = yendu~xage*zexer, data=data)
+mod3</code></pre>
+<pre><code>
+ GENERAL LINEAR MODEL
+
+ Model Info                                                  
+ ─────────────────────────────────────────────────────────── 
+   Info                                                      
+ ─────────────────────────────────────────────────────────── 
+   Estimate          Linear model fit by OLS                 
+   Call              yendu ~ 1 + xage + zexer + xage:zexer   
+   R-squared                                         0.206   
+   Adj. R-squared                                    0.196   
+ ─────────────────────────────────────────────────────────── 
+
+
+ MODEL RESULTS
+
+ ANOVA Omnibus tests                                        
+ ────────────────────────────────────────────────────────── 
+                 SS        df     F       p         η²p     
+ ────────────────────────────────────────────────────────── 
+   Model           7482      3    20.9    &lt; .001    0.206   
+   xage            1570      1    16.7    &lt; .001    0.020   
+   zexer           4775      1    50.8    &lt; .001    0.159   
+   xage:zexer      1137      1    12.1    &lt; .001    0.048   
+   Residuals      22674    241                              
+   Total         180966    245                              
+ ────────────────────────────────────────────────────────── 
+
+
+ Fixed Effects Parameter Estimates                                                               
+ ─────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE        Lower      Upper      β         df     t        p        
+ ─────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     25.8887    0.6466    24.6150    27.1625     0.000    241    40.04    &lt; .001   
+   xage            -0.2617    0.0641    -0.3879    -0.1355    -0.244    241    -4.08    &lt; .001   
+   zexer            0.9727    0.1365     0.7038     1.2417     0.429    241     7.12    &lt; .001   
+   xage:zexer       0.0472    0.0136     0.0205     0.0740     0.211    241     3.48    &lt; .001   
+ ─────────────────────────────────────────────────────────────────────────────────────────────── </code></pre>
+<div id="results-1" class="section level2">
+<h2>Results</h2>
+<p>Because variables are centered to their means, the first-order coefficients can be interpreted as “average” effects. One can also report the betas (last column in the <code>Model Coefficients</code> table). The estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.</p>
+</div>
+<div id="simple-slopes" class="section level2">
+<h2>Simple Slopes</h2>
+<p>We can now probe the interaction. One can re-run the model adding the appropriate options to ask for simple effects or one can use the <code>gamlj_simpleffects()</code> function, which is a convenience function to add simple effects to a pre-existing model. The function <code>gamlj_simpleffects()</code>, however, only returns the simple effects tables, not the full model.</p>
+<pre class="r"><code>#mod4&lt;-gamljGLM(formula = yendu~xage*zexer,
+#               data=data,
+#               simpleVariable = &quot;xage&quot;,
+#               simpleModerator = &quot;zexer&quot;)
+### equivalent results :
+gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;)</code></pre>
+<pre><code>
+ SIMPLE EFFECTS
+
+ Simple effects of xage : Omnibus Tests                         
+ ────────────────────────────────────────────────────────────── 
+   zexer        F         Num df    Den df    p         η²p     
+ ────────────────────────────────────────────────────────────── 
+   Mean-1·SD    27.972      1.00       241    &lt; .001    0.104   
+        Mean    16.686      1.00       241    &lt; .001    0.065   
+   Mean+1·SD     0.160      1.00       241     0.690    0.001   
+ ────────────────────────────────────────────────────────────── 
+
+
+ Simple effects of xage : Parameter estimates                                       
+ ────────────────────────────────────────────────────────────────────────────────── 
+   zexer        Estimate    SE        Lower     Upper     df     t         p        
+ ────────────────────────────────────────────────────────────────────────────────── 
+   Mean-1·SD     -0.4873    0.0921    -0.669    -0.306    241    -5.289    &lt; .001   
+        Mean     -0.2617    0.0641    -0.388    -0.135    241    -4.085    &lt; .001   
+   Mean+1·SD     -0.0361    0.0903    -0.214     0.142    241    -0.400     0.690   
+ ────────────────────────────────────────────────────────────────────────────────── </code></pre>
+<p>In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to its mean) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average). <code>gamlGLM()</code> produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
+<p>One can change the conditioning levels of the moderators with the <code>simpleScale</code> option (defaul is <code>mean_sd</code> for mean plus/minus one SD), either added to the <code>gamljGLM()</code> function or to the <code>gamlj_simpleEffects()</code> function. If one wants to use the percentiles (25%,50%,75%), for instance, one can run the following.</p>
+<pre class="r"><code>gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;,simpleScale=&quot;percent&quot;)</code></pre>
+<pre><code>
+ SIMPLE EFFECTS
+
+ Simple effects of xage : Omnibus Tests                    
+ ───────────────────────────────────────────────────────── 
+   zexer    F        Num df    Den df    p         η²p     
+ ───────────────────────────────────────────────────────── 
+     25%    28.15      1.00       241    &lt; .001    0.105   
+     50%    14.74      1.00       241    &lt; .001    0.058   
+     75%     1.81      1.00       241     0.180    0.007   
+ ───────────────────────────────────────────────────────── 
+
+
+ Simple effects of xage : Parameter estimates                                   
+ ────────────────────────────────────────────────────────────────────────────── 
+   zexer    Estimate    SE        Lower     Upper      df     t        p        
+ ────────────────────────────────────────────────────────────────────────────── 
+     25%      -0.435    0.0820    -0.597    -0.2736    241    -5.31    &lt; .001   
+     50%      -0.246    0.0641    -0.373    -0.1199    241    -3.84    &lt; .001   
+     75%      -0.105    0.0777    -0.257     0.0485    241    -1.35     0.180   
+ ────────────────────────────────────────────────────────────────────────────── </code></pre>
+<p>The simple effects are now changed, because they are estimated for a different set of values of the moderator.</p>
+<p>One can further tweak the appearance of the tables by selecting a different value/labels in <code>simpleScaleLabels</code> option. Options are “labels”, “values” and “values_labels”. The latter output the values and the labels of the conditioning values.</p>
+<pre class="r"><code>gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;,
+                    simpleScale=&quot;percent&quot;, 
+                    simpleScaleLabels=&quot;values_labels&quot;)</code></pre>
+<pre><code>
+ SIMPLE EFFECTS
+
+ Simple effects of xage : Omnibus Tests                         
+ ────────────────────────────────────────────────────────────── 
+   zexer         F        Num df    Den df    p         η²p     
+ ────────────────────────────────────────────────────────────── 
+   25%=-3.673    28.15      1.00       241    &lt; .001    0.105   
+    50%=0.327    14.74      1.00       241    &lt; .001    0.058   
+    75%=3.327     1.81      1.00       241     0.180    0.007   
+ ────────────────────────────────────────────────────────────── 
+
+
+ Simple effects of xage : Parameter estimates                                        
+ ─────────────────────────────────────────────────────────────────────────────────── 
+   zexer         Estimate    SE        Lower     Upper      df     t        p        
+ ─────────────────────────────────────────────────────────────────────────────────── 
+   25%=-3.673      -0.435    0.0820    -0.597    -0.2736    241    -5.31    &lt; .001   
+    50%=0.327      -0.246    0.0641    -0.373    -0.1199    241    -3.84    &lt; .001   
+    75%=3.327      -0.105    0.0777    -0.257     0.0485    241    -1.35     0.180   
+ ─────────────────────────────────────────────────────────────────────────────────── </code></pre>
+</div>
+<div id="simple-slopes-plot" class="section level2">
+<h2>Simple Slopes Plot</h2>
+<p>We can get a clear picture of the interaction by asking for a plot. Also the plot module takes care of centering the variables in a way that makes the plot clearly understandable.</p>
+<p>The options needed in <code>gamljGLM()</code> are <code>plotHAxis</code> for the x-axis variable and <code>plotSepLines</code> for the moderator. At which three levels of the moderator the separate lines are computed is decided by the option <code>simpleScale</code> as for the simple effects.</p>
+<pre class="r"><code>mod4&lt;-gamljGLM(formula = yendu~xage*zexer, data=data, 
+               plotHAxis = &quot;xage&quot;,plotSepLines = &quot;zexer&quot;,plotError = &quot;ci&quot;)
+mod4$descPlot</code></pre>
+<p><img src="vignettes_gamljGLM_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>The nice plot we get shows the simple effects (simple equations to be precise) with the prediction confidence intervals indicated by the colored shades around the lines. If needed, the confidence intervals can be substituted with the standard errors of the estimates or they can be removed completely.</p>
+<p>Finally, in order to give a more honest account of the model fit, we can visualize the simple slopes over the the actual data.</p>
+<pre class="r"><code>mod4&lt;-gamljGLM(formula = yendu~xage*zexer, data=data, 
+               plotHAxis = &quot;xage&quot;,plotSepLines = &quot;zexer&quot;,plotError = &quot;ci&quot;,plotRaw = TRUE)
+mod4$descPlot</code></pre>
+<p><img src="vignettes_gamljGLM_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><a href="#linear-models-in-gamlj">back to top</a></p>
+</div>
 </div>
 
 
