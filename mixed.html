@@ -416,7 +416,7 @@ div.tocify {
 <h1>Covariates Scaling</h1>
 <p><img src="commons/pics/dscoring.png" class="img-responsive" alt=""></p>
 <p>Continuous variables can be centered, standardized, cluster-based centered, cluster-based standardized, log-transformed or used as they are (<code>none</code>). The default is <span class="option">centered</span> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simple select <span class="option">none</span>.</p>
-<p><span class="option">Centered clusterwise</span> and <span class="option">z-scores clusterwise</span> center each score using the mean of the cluster in which the score belongs. For <span class="option">z-scores clusterwise</span> the score is also divided by the cluster standard deviation. <span class="option">Log</span> apply a simple natural logarithm transformation to the variable.</p>
+<p><span class="option">Centered clusterwise</span> and <span class="option">z-scores clusterwise</span> center each score using the mean of the cluster in which the score belongs. For <span class="option">z-scores clusterwise</span> the score is also divided by the cluster standard deviation. <span class="option">Log</span> applies a simple natural logarithm transformation to the variable.</p>
 <p>The same transformations can be applied to the dependent variable by selecting an option in <span class="option">Dependent variable</span> <em>scale</em>.</p>
 <p><span class="option">Covariates conditioning</span> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
 <ul>
@@ -440,7 +440,7 @@ div.tocify {
 <div id="post-hocs" class="section level1">
 <h1>Post-hocs</h1>
 <p><img src="mixed/posthoc.png" class="img-responsive" alt=""></p>
-<p>Major post-hoc tests can be accomplished for the categorical variables groups by selecting the appropriated factor and flag the required tests</p>
+<p>Post-hoc tests can be accomplished for the categorical variables groups by selecting the appropriated factor and flag the required tests</p>
 <p>Post-hoc tests are implemented based on R package <em>emmeans</em>. All tecnical info can be found <a href="https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#pairwise">here</a></p>
 </div>
 <div id="plots" class="section level1">
