@@ -441,7 +441,7 @@ mod1</code></pre>
    xage             -0.257    0.0655    -0.386    -0.128    -0.240    242    -3.93    &lt; .001   
    zexer             0.916    0.1386     0.643     1.189     0.404    242     6.61    &lt; .001   
  ───────────────────────────────────────────────────────────────────────────────────────────── </code></pre>
-<p>The object `mod’ is an R6 object which contains all the results tables and some additional function that can be used in subsequent analyses. Tables are pretty printed, but they can be modified or manipulated by transforming them in dataframes as follows:</p>
+<p>The object `mod’ is an R6 object which contains all the results tables and some additional function that can be used in subsequent analyses. Tables are pretty printed, but they can be modified or manipulated by trasforming them in dataframes as follows:</p>
 <pre class="r"><code>anofaDF&lt;-mod1$main$anova$asDF
 anofaDF</code></pre>
 <pre><code>       name     ss  df    f        p etaSqP
@@ -564,7 +564,7 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
    Mean+1·SD     -0.0361    0.0903    -0.214     0.142    241    -0.400     0.690   
  ────────────────────────────────────────────────────────────────────────────────── </code></pre>
 <p>In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to its mean) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average). <code>gamlGLM()</code> produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
-<p>One can change the conditioning levels of the moderators with the <code>simpleScale</code> option (default is <code>mean_sd</code> for mean plus/minus one SD), either added to the <code>gamljGlm()</code> function or to the <code>gamlj_simpleEffects()</code> function. If one wants to use the percentiles (25%,50%,75%), for instance, one can run the following.</p>
+<p>One can change the conditioning levels of the moderators with the <code>simpleScale</code> option (defaul is <code>mean_sd</code> for mean plus/minus one SD), either added to the <code>gamljGlm()</code> function or to the <code>gamlj_simpleEffects()</code> function. If one wants to use the percentiles (25%,50%,75%), for instance, one can run the following.</p>
 <pre class="r"><code>gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;,simpleScale=&quot;percent&quot;)</code></pre>
 <pre><code>
  SIMPLE EFFECTS
@@ -627,7 +627,7 @@ plot(mod4)</code></pre>
 <p>For instance, if we want to give a more honest account of the model fit, we can visualize the simple slopes over the the actual data. The function <code>plot()</code> produces a new plot after adding any options accepted by <code>gamljGlm()</code></p>
 <pre class="r"><code>plot(mod4,plotRaw=T)</code></pre>
 <p><img src="vignettes_gamljGlm_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>Any plot produced by <code>gamljGlm</code> or <code>plot()</code> can be obtained as a ggplot2 object for further manipulations or usage. For instance, one can change the theme of the plot:</p>
+<p>Any plot produced by <code>gamljGlm</code> or <code>plot()</code> can be obtained as a ggplot2 object for futher manipolations or usage. For instance, one can change the theme of the plot:</p>
 <pre class="r"><code>myplot&lt;-plot(mod4)
 myplot+ggplot2::theme_grey()</code></pre>
 <p><img src="vignettes_gamljGlm_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;" /></p>
