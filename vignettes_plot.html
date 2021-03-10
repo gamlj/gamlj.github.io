@@ -9,9 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Marcello Gallucci" />
 
+<meta name="date" content="2021-03-10" />
 
-<title>GAMLj in R</title>
+<title>Plots in GAMLj</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -367,41 +369,99 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">GAMLj in R</h1>
+<h1 class="title toc-ignore">Plots in GAMLj</h1>
+<h4 class="author">Marcello Gallucci</h4>
+<h4 class="date">2021-03-10</h4>
 
 </div>
 
 
-<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.4.0 </span></p>
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>GAMLj module can be installed and used in R as a standard R packages. Please check the R help for details. Here we provide some appliactions of the package in R.</p>
-</div>
-<div id="installation" class="section level1">
-<h1>Installation</h1>
-<p>At the moment, <span class="gamlj">GAMLj</span> is not in CRAN yet, so you need to install it via <code>devtools</code></p>
-<pre><code>devtools::install_github(&quot;gamlj/gamlj&quot;)</code></pre>
-</div>
-<div id="examples" class="section level1">
-<h1>Examples</h1>
+<pre class="r"><code>library(gamlj)</code></pre>
+<div id="obtaining-a-plot" class="section level1">
+<h1>Obtaining a plot</h1>
+<p><code>gamlj</code> functions (<code>gamljGlm()</code>,<code>gamljGzlm()</code>,<code>gamljMixed()</code> and <code>gamljGlmMixed()</code>) can produce plots including up to three variables. The plots portrait the model predicted values in the Y-axis. Using the functions, one can obtain the plots by using the following options:</p>
 <ul>
-<li>
-<h2 class="vignettes">
-<a href="vignettes_gamljGlm.html">Examples of gamljGlm()</a>
-</h2>
-</li>
-<li>
-<h2 class="vignettes">
-<a href="vignettes_plot.html">Plots in GAMLj</a>
-</h2>
-</li>
+<li><code>plotHAxis</code> defining the variable in the X-axis</li>
+<li><code>plotSepLines</code> defining the variable whose levels define the way the effect of the variable in the X-axis is broken down (the moderator)</li>
+<li><code>plotSepPlots</code> defining the variable whose levels define the way the two-way interaction is broken down</li>
 </ul>
-<h1>
-Comments?
-</h1>
-<p>
-Got comments, issues or spotted a bug? Please open an issue on <a href=" https://github.com/mcfanda/gamlj/issues "> GAMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
-</p>
+</div>
+<div id="example" class="section level1">
+<h1>Example</h1>
+<p>We use the <code>iris</code> R dataframe. Assume we want to plot the influence of <code>Sepal.Width</code>, <code>Petal.Length</code> and <code>Petal.Width</code> on <code>Sepal.Length</code>, and their interactions. We use <code>gamljGlm()</code> to estimate the model and ask for the plots.</p>
+<p>First we ask for the plot of the main effect of <code>Sepal.Width</code>. We use <code>plot()</code> without any option to extract the plot from the galmj results object.</p>
+<pre class="r"><code>mod&lt;-gamljGlm(formula=Sepal.Length~Sepal.Width*Petal.Length*Petal.Width, 
+              data=iris,
+              plotHAxis = &quot;Sepal.Width&quot;
+              )
+plot(mod)</code></pre>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>To have additional plots, we can re-estimate the model using the options described above or to use <code>plot()</code>. The function <code>plot()</code> accepts either a formula or character options. The formula is a right hand side formula specifying the x-axis variable, the (optional) moderators.</p>
+<p>Examples are:</p>
+<div id="one-way-plots" class="section level2">
+<h2>One-way plots</h2>
+<pre class="r"><code>plot(mod,formula = ~Petal.Length)</code></pre>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="two-way-plots" class="section level2">
+<h2>Two-way plots</h2>
+<pre class="r"><code>plot(mod,formula = ~Sepal.Width*Petal.Length)</code></pre>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Because the moderator variable <code>Petal.Length</code> is a continuous variable, the command plots the independent variable effect at three different levels of the moderator. By default the three levels are the mean and mean plus one standard deviation and the mean minus one standard deviation. The conditioning values can be changed with the option <code>simpleScale</code>. The option accepts mean_sd’ (default) and ‘percent’.</p>
+<pre class="r"><code>plot(mod,formula = ~Sepal.Width*Petal.Length, simpleScale=&quot;percent&quot;)</code></pre>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="three-way-plots" class="section level2">
+<h2>Three-way plots</h2>
+<p>A three-way plot produces three plots, one for each level of the last moderator.</p>
+<pre class="r"><code>plot(mod,formula = ~Sepal.Width*Petal.Length*Petal.Width)</code></pre>
+<pre><code>[[1]]</code></pre>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" /></p>
+<pre><code>
+[[2]]</code></pre>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-2.png" width="576" style="display: block; margin: auto;" /></p>
+<pre><code>
+[[3]]</code></pre>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-3.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="character-options" class="section level1">
+<h1>Character options</h1>
+<p>Alternatively, the function accepts three charcater options. The three options are:</p>
+<ul>
+<li><code>haxis</code> defining the variable in the X-axis</li>
+<li><code>sepLines</code> defining the variable whose levels define the way the effect of the variable in the X-axis is broken down (the moderator)</li>
+<li><code>sepPlots</code> defining the variable whose levels define the way the two-way interaction is broken down</li>
+</ul>
+<p>A two-way plot, for instance, can be obtained as follows:</p>
+<pre class="r"><code>plot(mod,haxis=&quot;Sepal.Width&quot;, sepLines=&quot;Petal.Length&quot;)</code></pre>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="other-options" class="section level1">
+<h1>Other options</h1>
+<p>The function <code>plot</code> accepts any option which is accepted by <code>gaml*</code> functions. The most relevant for producing plots are:</p>
+<ul>
+<li><code>plotRaw</code> (logical) to plot the observed scores along the predicted values</li>
+<li><code>plotDvScale</code> (logical) to set the range of the Y-axis equal to the actual range of the dependent variable</li>
+<li><code>plotError</code> to add confidence intervals bars (<code>ci</code>) or error bars <code>se</code> along the predicted values. Default is <code>none</code>.</li>
+</ul>
+<pre class="r"><code>p&lt;-plot(mod,haxis=&quot;Sepal.Width&quot;, sepLines=&quot;Petal.Length&quot;, plotRaw=T,plotError=&quot;ci&quot;)
+p</code></pre>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>In addition, the plot can be saved in a variable an manipulated as any other ggplot object, for instance to change the theme or add a title.</p>
+<pre class="r"><code>p&lt;-plot(mod,haxis=&quot;Sepal.Width&quot;, sepLines=&quot;Petal.Length&quot;, plotRaw=T,plotError=&quot;ci&quot;)
+p+ggplot2::ggtitle(&quot;A nice plot&quot;)+ggplot2::theme_minimal()</code></pre>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="other-gamlj-functions" class="section level1">
+<h1>Other GAMLj functions</h1>
+<p>All model functions in GAMLj (<code>gamljGlm()</code>,<code>gamljGzlm()</code>,<code>gamljMixed()</code> and <code>gamljGlmMixed()</code>) can produce plots using the options and functions described above. Here an example with a generalized (logistic) mixed model in which we plot the fixed and random effects predicted values.</p>
+<pre class="r"><code>data(&quot;schoolexam&quot;)
+mod&lt;-gamljGlmMixed(formula=pass~math+(1|school),data=schoolexam,plotHAxis = &quot;math&quot;,plotRandomEffects=T)
+p&lt;-plot(mod, haxis = &quot;math&quot;,plotRandomEffects=T)</code></pre>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>…</p>
+<p><a href="#plots-in-gamlj">back to top</a></p>
 </div>
 
 
