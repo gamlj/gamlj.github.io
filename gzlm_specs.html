@@ -363,11 +363,12 @@ div.tocify {
 </div>
 
 
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.5.0 </span></p>
 <p>In this page some details about the GAMLj GZLM (Generalized linear model) implementation are given. When the code is showed, it is meant to be R code underlying the GAMLj module.</p>
 <div id="model-info" class="section level1">
 <h1>Model info</h1>
-<div id="r-square" class="section level2">
-<h2>R-square</h2>
+<div id="r-squared" class="section level2">
+<h2>R-squared</h2>
 <p>R-squared corresponds to McFadden’s R squared <a href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/">ref info</a> for logistic regression. However, it is not computed as McFadden’s R, because of some oddities arising when computed across different generalized models.</p>
 <p>It is implemented by taking the model deviance and compare it with the null-model deviance:</p>
 <pre><code>    1- (model$deviance/model$null.deviance)</code></pre>
@@ -376,7 +377,11 @@ div.tocify {
 </div>
 <div id="aic" class="section level2">
 <h2>AIC</h2>
-<p>Aikake Information Criterion: it can be used for model comparisons. A model has a better fit than another when its AIC is smaller. It is implemented by simply estracting it from the R <code>glm</code> estimated model: <code>model$aic</code> for all GZLM model but the multinomial, which is <code>model$AIC</code></p>
+<p>Aikake Information Criterion: it can be used for model comparisons. A model has a better fit than another when its AIC is smaller. It is implemented by simply estracting it from the R <code>glm</code> estimated model: <code>stats::extractAIC(model)</code></p>
+</div>
+<div id="bic" class="section level2">
+<h2>BIC</h2>
+<p>Bayesian Information Criterion: it can be used for model comparisons. A model has a better fit than another when its BIC is smaller. It is implemented by simply estracting it from the R <code>glm</code> estimated model: <code>stats::BIC(model)</code></p>
 </div>
 <div id="deviance" class="section level2">
 <h2>Deviance</h2>
