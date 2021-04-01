@@ -378,20 +378,20 @@ div.tocify {
 </div>
 <div id="deviance" class="section level2">
 <h2>Deviance</h2>
-<p>The implementation follows exactly the indication of R package <code>lme4</code> <span class="citation">(Douglas Bates <a href="#ref-lme4cran">2020</a>)</span>. In generalized mixed model, deviance can be defined in different ways. One dichotomy is the deviance. The absolute deviance of the model vs the deviance resulting from subtracting the deviance of a saturated model. These two may be called absolute vs relative variance. A crossing factor is whether the deviance is conditional to the random effect (all effects affect the deviance) or it is not conditional to them (only the fixed effects affect the deviance). GAMLj computes two cell of the potential 2x2 table of possible deviance definitions:</p>
+<p>The implementation follows exactly the indication of R package <code>lme4</code> <span class="citation">(Douglas Bates <a href="#ref-lme4cran">2020</a>)</span>. In generalized mixed models, deviance can be defined in different ways. One dichotomy is the reference to a saturated model. The <em>absolute deviance</em> of the model is simply the model deviance, the <em>relative deviance</em> is the deviance resulting from subtracting the deviance of a saturated model from the model deviance. A crossing factor is whether the deviance is conditional to the random effects (all effects affect the deviance) or it is not conditional to them (only the fixed effects affect the deviance). GAMLj computes two cells of the potential 2x2 table of possible deviance definitions:</p>
 <ul>
 <li><code>-2*LogLikel.</code>, <code>Unconditioal absolute deviance</code>: Computed by <code>-2*logLik(model)</code></li>
 <li><code>Deviance</code>, <code>Conditional relative deviance</code> : Computed by <code>stats::deviance(model)</code></li>
 </ul>
-<p>Furthermore, GAMLj outputs also the logLikelyhood (<code>logLik</code>), which is simply the absolute likelihood computed as <code>stats::logLik(model)</code>.</p>
+<p>Furthermore, GAMLj outputs also the logLikelihood (<code>logLik</code>), which is simply the absolute log likelihood computed as <code>stats::logLik(model)</code>.</p>
 </div>
 <div id="aic" class="section level2">
 <h2>AIC</h2>
-<p>Aikake Information Criterion: it can be used for model comparisons. A model has a better fit than another when its AIC is smaller. It is implemented by simply estracting it from the R <code>glm</code> estimated model: <code>stats::extractAIC(model)</code>. Details in <span class="citation">(Bates et al. <a href="#ref-lme4">2015</a>; Douglas Bates <a href="#ref-lme4cran">2020</a>)</span>. The AIC is computed based on the Uncoditional absolute deviance.</p>
+<p>Aikake Information Criterion: it can be used for model comparison. A model has a better fit than another when its AIC is smaller than the other’s. It is implemented by simply estracting it from the R <code>glmer</code> estimated model: <code>stats::extractAIC(model)</code>. Details in <span class="citation">(Bates et al. <a href="#ref-lme4">2015</a>; Douglas Bates <a href="#ref-lme4cran">2020</a>)</span>. The AIC is computed based on the uncoditional absolute deviance.</p>
 </div>
 <div id="bic" class="section level2">
 <h2>BIC</h2>
-<p>Bayesian Information Criterion: it can be used for model comparisons. A model has a better fit than another when its BIC is smaller. It is implemented by simply estracting it from the R <code>glm</code> estimated model: <code>stats::BIC(model)</code>. Details in <span class="citation">(Bates et al. <a href="#ref-lme4">2015</a>; Douglas Bates <a href="#ref-lme4cran">2020</a>)</span>. The BIC is computed based on the Uncoditional absolute deviance.</p>
+<p>Bayesian Information Criterion: it can be used for model comparisons. A model has a better fit than another when its BIC is smaller. It is implemented by simply estracting it from the R <code>glm</code> estimated model: <code>stats::BIC(model)</code>. Details in <span class="citation">(Bates et al. <a href="#ref-lme4">2015</a>; Douglas Bates <a href="#ref-lme4cran">2020</a>)</span>. The BIC is computed based on the uncoditional absolute deviance.</p>
 </div>
 <div id="residual-df" class="section level2">
 <h2>Residual DF</h2>
