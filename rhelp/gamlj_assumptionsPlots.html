@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Extract assumptions checking plots from a GAMLj results...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head><body>
+
+<table width="100%" summary="page for gamlj_assumptionsPlots"><tr><td>gamlj_assumptionsPlots</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Extract assumptions checking plots from a GAMLj results object</h2>
+
+<h3>Description</h3>
+
+<p>This function returns a list of plots as a ggplot objects produced by the assumptions checking options, such
+as 'residPlot', 'normPlot' (for continuous dependent variable models), 'randHist' and 'clusterBoxplot' (for mixed models).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+gamlj_assumptionsPlots(object)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>object</code></td>
+<td>
+<p>a gamlj results object of the class 'gamlj*Results&ldquo;</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a list of lists with titles and ggplot objects
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Marcello Gallucci
+</p>
+
+
+</body></html>

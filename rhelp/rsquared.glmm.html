@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: R-squared and pseudo-rsquared for a list of (generalized)...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head><body>
+
+<table width="100%" summary="page for rsquared.glmm"><tr><td>rsquared.glmm</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>R-squared and pseudo-rsquared for a list of (generalized) linear (mixed) models</h2>
+
+<h3>Description</h3>
+
+<p>This function calls the generic <code>r.squared</code> function for each of the
+models in the list and rbinds the outputs into one data frame
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+rsquared.glmm(obj)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>obj</code></td>
+<td>
+<p>single model or a list of fitted (generalized) linear (mixed) model objects</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a dataframe with one row per model, and &quot;Class&quot;,
+&quot;Family&quot;, &quot;Marginal&quot;, &quot;Conditional&quot; and &quot;AIC&quot; columns
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>: Jon Lefcheck
+</p>
+
+
+<h3>References</h3>
+
+<p>Lefcheck, Jonathan S. (2015) piecewiseSEM: Piecewise structural equation modeling in R for ecology, evolution, and systematics. Methods in Ecology and Evolution. 7(5): 573-579. DOI: 10.1111/2041-210X.12512
+</p>
+
+
+</body></html>

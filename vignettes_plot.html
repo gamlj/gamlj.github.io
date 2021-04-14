@@ -11,7 +11,7 @@
 
 <meta name="author" content="Marcello Gallucci" />
 
-<meta name="date" content="2021-03-11" />
+<meta name="date" content="2021-04-14" />
 
 <title>Plots in GAMLj</title>
 
@@ -371,7 +371,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Plots in GAMLj</h1>
 <h4 class="author">Marcello Gallucci</h4>
-<h4 class="date">2021-03-11</h4>
+<h4 class="date">2021-04-14</h4>
 
 </div>
 
@@ -452,7 +452,7 @@ plot(mod2,formula=~Species)</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>plot(mod2,formula=~Species,plotRaw=T,plotError=&quot;ci&quot;)</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-9-2.png" width="576" style="display: block; margin: auto;" /></p>
-<p>In addition, the plot can be saved in a variable an manipulated as any other ggplot object, for instance to change the theme or add a title. s</p>
+<p>In addition, the plot can be saved in a variable and manipulated as any other ggplot object, for instance to change the theme or add a title.</p>
 <pre class="r"><code>p&lt;-plot(mod,plotHAxis=&quot;Sepal.Width&quot;, plotSepLines=&quot;Petal.Length&quot;, plotRaw=T,plotError=&quot;ci&quot;)
 p+ggplot2::ggtitle(&quot;A nice plot&quot;)+ggplot2::theme_minimal()</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" /></p>

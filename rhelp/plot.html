@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: GAMLj plot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head><body>
+
+<table width="100%" summary="page for plot.gamlj"><tr><td>plot.gamlj</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>GAMLj plot</h2>
+
+<h3>Description</h3>
+
+<p>This function re-estimates a GAMLj model adding a new plot. If no options is passed, extracts the 
+plots present in the 'gamlj*Results' object. If one plot is present, it is returned as a ggplot2 object,
+if more than one is present, a list of plots is returned. FALSE is returned if no plot is present or defined.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+## S3 method for class 'gamlj'
+plot(x, formula = NULL, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>a gamlj results object of the class 'gamlj'</p>
+</td></tr>
+<tr valign="top"><td><code>formula</code></td>
+<td>
+<p>a right hand side formula specifying the effect to plot, of the form '~x', '~x*z' or '~x*z*w'. 
+It has prevalence on other options defining a plot.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>all options accepted by a gamlj model function. Relevant for new plots are 'plotHAxis', 'plotSepLines' and 'plotSepPlots'</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an object of class ggplot or a list of ggplot objects
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Marcello Gallucci
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(qsport)
+gmod&lt;-gamlj::gamljGlm(
+  formula = performance ~ hours,
+  data = qsport)
+
+plot(gmod,plotHAxis = 'hours')
+plot(gmod,formula=~hours)
+</pre>
+
+
+</body></html>

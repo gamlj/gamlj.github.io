@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Post-hoc test on GAMLj results</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head><body>
+
+<table width="100%" summary="page for posthoc"><tr><td>posthoc</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Post-hoc test on GAMLj results</h2>
+
+<h3>Description</h3>
+
+<p>This is a convenience function to re-estimates a GAMLj model adding posthoc tests. If no options is passed, extracts the 
+post-hoc tests tables already in the model results (if any). If new post-hoc are defined, the post-hoc tests tables 
+are returned.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+posthoc(object, ...)
+
+## S3 method for class 'gamlj'
+posthoc(object, formula = NULL, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>object</code></td>
+<td>
+<p>a gamlj results object of the class 'gamlj'</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>all options accepted by a gamlj model function. Relevant for new tests are 
+'postHoc' (a list of list of terms), 'postHocCorr', a list of correction to apply:
+one or more of 'none', 'bonf', or 'holm'; provide no, Bonferroni, and Holm Post Hoc corrections respectively.</p>
+</td></tr>
+<tr valign="top"><td><code>formula</code></td>
+<td>
+<p>a right hand side formula specifying the factors or factors combinations to test, of the form '~x+z', '~x:z' or '~x*z'. 
+It has prevalence on other options defining a post-hoc test via character options.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an object of class ggplot or a list of ggplot objects
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Marcello Gallucci
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(fivegroups)
+fivegroups$Group&lt;-factor(fivegroups$Group)
+gmod&lt;-gamlj::gamljGlm(
+  formula = Score ~Group,
+  data = fivegroups)
+
+posthoc(gmod,formula =~Group)
+</pre>
+
+
+</body></html>

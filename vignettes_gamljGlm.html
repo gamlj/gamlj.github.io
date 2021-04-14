@@ -11,7 +11,7 @@
 
 <meta name="author" content="Marcello Gallucci" />
 
-<meta name="date" content="2021-03-11" />
+<meta name="date" content="2021-04-14" />
 
 <title>Examples of gamljGlm()</title>
 
@@ -371,7 +371,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Examples of gamljGlm()</h1>
 <h4 class="author">Marcello Gallucci</h4>
-<h4 class="date">2021-03-11</h4>
+<h4 class="date">2021-04-14</h4>
 
 </div>
 
@@ -549,9 +549,9 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
  ────────────────────────────────────────────────────────────── 
    zexer        F         Num df    Den df    p         η²p     
  ────────────────────────────────────────────────────────────── 
-   Mean-1·SD    27.972      1.00       241    &lt; .001    0.104   
+   Mean-1-SD    27.972      1.00       241    &lt; .001    0.104   
         Mean    16.686      1.00       241    &lt; .001    0.065   
-   Mean+1·SD     0.160      1.00       241     0.690    0.001   
+   Mean+1-SD     0.160      1.00       241     0.690    0.001   
  ────────────────────────────────────────────────────────────── 
 
 
@@ -559,9 +559,9 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
  ────────────────────────────────────────────────────────────────────────────────── 
    zexer        Estimate    SE        Lower     Upper     df     t         p        
  ────────────────────────────────────────────────────────────────────────────────── 
-   Mean-1·SD     -0.4873    0.0921    -0.669    -0.306    241    -5.289    &lt; .001   
+   Mean-1-SD     -0.4873    0.0921    -0.669    -0.306    241    -5.289    &lt; .001   
         Mean     -0.2617    0.0641    -0.388    -0.135    241    -4.085    &lt; .001   
-   Mean+1·SD     -0.0361    0.0903    -0.214     0.142    241    -0.400     0.690   
+   Mean+1-SD     -0.0361    0.0903    -0.214     0.142    241    -0.400     0.690   
  ────────────────────────────────────────────────────────────────────────────────── </code></pre>
 <p>In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to its mean) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average). <code>gamlGLM()</code> produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
 <p>One can change the conditioning levels of the moderators with the <code>simpleScale</code> option (default is <code>mean_sd</code> for mean plus/minus one SD), either added to the <code>gamljGlm()</code> function or to the <code>gamlj_simpleEffects()</code> function. If one wants to use the percentiles (25%,50%,75%), for instance, one can run the following.</p>
@@ -573,9 +573,9 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
  ───────────────────────────────────────────────────────── 
    zexer    F        Num df    Den df    p         η²p     
  ───────────────────────────────────────────────────────── 
-     25%    28.15      1.00       241    &lt; .001    0.105   
-     50%    14.74      1.00       241    &lt; .001    0.058   
-     75%     1.81      1.00       241     0.180    0.007   
+   25xxx    28.15      1.00       241    &lt; .001    0.105   
+    50xx    14.74      1.00       241    &lt; .001    0.058   
+   75xxx     1.81      1.00       241     0.180    0.007   
  ───────────────────────────────────────────────────────── 
 
 
@@ -583,9 +583,9 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
  ────────────────────────────────────────────────────────────────────────────── 
    zexer    Estimate    SE        Lower     Upper      df     t        p        
  ────────────────────────────────────────────────────────────────────────────── 
-     25%      -0.435    0.0820    -0.597    -0.2736    241    -5.31    &lt; .001   
-     50%      -0.246    0.0641    -0.373    -0.1199    241    -3.84    &lt; .001   
-     75%      -0.105    0.0777    -0.257     0.0485    241    -1.35     0.180   
+   25xxx      -0.435    0.0820    -0.597    -0.2736    241    -5.31    &lt; .001   
+    50xx      -0.246    0.0641    -0.373    -0.1199    241    -3.84    &lt; .001   
+   75xxx      -0.105    0.0777    -0.257     0.0485    241    -1.35     0.180   
  ────────────────────────────────────────────────────────────────────────────── </code></pre>
 <p>The simple effects are now changed, because they are estimated for a different set of values of the moderator.</p>
 <p>One can further tweak the appearance of the tables by selecting a different value/labels in <code>simpleScaleLabels</code> option. Options are “labels”, “values” and “values_labels”. The latter outputs the values and the labels of the conditioning values.</p>
@@ -595,24 +595,24 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
 <pre><code>
  SIMPLE EFFECTS
 
- Simple effects of xage : Omnibus Tests                         
- ────────────────────────────────────────────────────────────── 
-   zexer         F        Num df    Den df    p         η²p     
- ────────────────────────────────────────────────────────────── 
-   25%=-3.673    28.15      1.00       241    &lt; .001    0.105   
-    50%=0.327    14.74      1.00       241    &lt; .001    0.058   
-    75%=3.327     1.81      1.00       241     0.180    0.007   
- ────────────────────────────────────────────────────────────── 
+ Simple effects of xage : Omnibus Tests                           
+ ──────────────────────────────────────────────────────────────── 
+   zexer           F        Num df    Den df    p         η²p     
+ ──────────────────────────────────────────────────────────────── 
+   25xxx=-3.673    28.15      1.00       241    &lt; .001    0.105   
+     50xx=0.327    14.74      1.00       241    &lt; .001    0.058   
+    75xxx=3.327     1.81      1.00       241     0.180    0.007   
+ ──────────────────────────────────────────────────────────────── 
 
 
- Simple effects of xage : Parameter estimates                                        
- ─────────────────────────────────────────────────────────────────────────────────── 
-   zexer         Estimate    SE        Lower     Upper      df     t        p        
- ─────────────────────────────────────────────────────────────────────────────────── 
-   25%=-3.673      -0.435    0.0820    -0.597    -0.2736    241    -5.31    &lt; .001   
-    50%=0.327      -0.246    0.0641    -0.373    -0.1199    241    -3.84    &lt; .001   
-    75%=3.327      -0.105    0.0777    -0.257     0.0485    241    -1.35     0.180   
- ─────────────────────────────────────────────────────────────────────────────────── </code></pre>
+ Simple effects of xage : Parameter estimates                                          
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   zexer           Estimate    SE        Lower     Upper      df     t        p        
+ ───────────────────────────────────────────────────────────────────────────────────── 
+   25xxx=-3.673      -0.435    0.0820    -0.597    -0.2736    241    -5.31    &lt; .001   
+     50xx=0.327      -0.246    0.0641    -0.373    -0.1199    241    -3.84    &lt; .001   
+    75xxx=3.327      -0.105    0.0777    -0.257     0.0485    241    -1.35     0.180   
+ ───────────────────────────────────────────────────────────────────────────────────── </code></pre>
 </div>
 <div id="simple-slopes-plot" class="section level2">
 <h2>Simple Slopes Plot</h2>

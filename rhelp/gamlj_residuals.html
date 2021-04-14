@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Residuals values of a GAMLj model</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head><body>
+
+<table width="100%" summary="page for gamlj_residuals"><tr><td>gamlj_residuals</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Residuals values of a GAMLj model</h2>
+
+<h3>Description</h3>
+
+<p>Deprecated. Please use 'residuals()'
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+gamlj_residuals(gobj, type = "response")
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>gobj</code></td>
+<td>
+<p>a gamlj results object of the class 'gamlj*Results'</p>
+</td></tr>
+<tr valign="top"><td><code>type</code></td>
+<td>
+<p>the type of the residuals for generalized models. The alternatives are: 'deviance' (default), 'pearson', 'working', 'response', and 'partial'. Can be abbreviated., 
+cf.  <code>stats::residuals.lm()</code></p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p><code>stats::predict()</code>, <code>stats::residuals.lm()</code>, <code>stats::residuals.glm()</code>
+</p>
+
+
+<h3>Value</h3>
+
+<p>a list of value
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Marcello Gallucci
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data('qsport')
+gmod&lt;-gamlj::gamljGlm(
+   formula = performance ~ hours,
+   data = qsport)
+ preds&lt;-gamlj_residuals(gmod)
+ 
+</pre>
+
+
+</body></html>
