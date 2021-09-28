@@ -486,10 +486,10 @@ summary(model)</code></pre>
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;eff&quot;,reverse=T,adjust = &quot;none&quot;)</code></pre>
 <pre><code>##  contrast estimate     SE  df t.ratio p.value
-##  1 effect  -0.1466 0.0672 166 -2.183  0.0305 
-##  2 effect  -0.2467 0.0719 166 -3.430  0.0008 
-##  3 effect   0.0969 0.0667 166  1.453  0.1481 
-##  4 effect   0.2965 0.0667 166  4.445  &lt;.0001</code></pre>
+##  1 effect  -0.1466 0.0672 166  -2.183  0.0305
+##  2 effect  -0.2467 0.0719 166  -3.430  0.0008
+##  3 effect   0.0969 0.0667 166   1.453  0.1481
+##  4 effect   0.2965 0.0667 166   4.445  &lt;.0001</code></pre>
 <p>Please notice that <code>emmeans</code> computes all possible comparisons: group 1 against the grand mean, group 2 against the grand mean, etc.</p>
 </div>
 </div>
@@ -572,9 +572,9 @@ summary(model)</code></pre>
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;dunnett&quot;,adjust = &quot;none&quot;)</code></pre>
 <pre><code>##  contrast estimate    SE  df t.ratio p.value
-##  2 - 1      -0.100 0.115 166 -0.872  0.3845 
-##  3 - 1       0.244 0.108 166  2.249  0.0258 
-##  4 - 1       0.443 0.108 166  4.091  0.0001</code></pre>
+##  2 - 1      -0.100 0.115 166  -0.872  0.3845
+##  3 - 1       0.244 0.108 166   2.249  0.0258
+##  4 - 1       0.443 0.108 166   4.091  0.0001</code></pre>
 </div>
 <div id="simple-vs-dummy" class="section level2">
 <h2>Simple vs Dummy</h2>
@@ -654,9 +654,9 @@ summary(lm(Score~Group,data=dat))</code></pre>
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;consec&quot;,adjust = &quot;none&quot;,reverse=T)</code></pre>
 <pre><code>##  contrast estimate    SE  df t.ratio p.value
-##  1 - 2       0.100 0.115 166  0.872  0.3845 
-##  2 - 3      -0.344 0.114 166 -3.008  0.0030 
-##  3 - 4      -0.200 0.108 166 -1.853  0.0657</code></pre>
+##  1 - 2       0.100 0.115 166   0.872  0.3845
+##  2 - 3      -0.344 0.114 166  -3.008  0.0030
+##  3 - 4      -0.200 0.108 166  -1.853  0.0657</code></pre>
 </div>
 </div>
 <div id="contrast-polynomial" class="section level1">
@@ -719,9 +719,9 @@ summary(lm(Score~Group,data=dat))</code></pre>
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;poly&quot;,adjust = &quot;none&quot;)</code></pre>
 <pre><code>##  contrast  estimate    SE  df t.ratio p.value
-##  linear       1.673 0.344 166  4.857  &lt;.0001 
-##  quadratic    0.300 0.157 166  1.904  0.0587 
-##  cubic       -0.588 0.359 166 -1.636  0.1038</code></pre>
+##  linear       1.673 0.344 166   4.857  &lt;.0001
+##  quadratic    0.300 0.157 166   1.904  0.0587
+##  cubic       -0.588 0.359 166  -1.636  0.1038</code></pre>
 </div>
 </div>
 <div id="contrast-difference" class="section level1">
@@ -857,9 +857,9 @@ round(difference.emmc(levels(dat$Group)),digits = 3)</code></pre>
 <pre class="r"><code>#### results ##############
 contrast(emm,&quot;difference&quot;,adjust=&quot;none&quot;)</code></pre>
 <pre><code>##  contrast      estimate     SE  df t.ratio p.value
-##  2 vs previous   -0.100 0.1148 166 -0.872  0.3845 
-##  3 vs previous    0.294 0.0954 166  3.079  0.0024 
-##  4 vs previous    0.395 0.0889 166  4.445  &lt;.0001</code></pre>
+##  2 vs previous   -0.100 0.1148 166  -0.872  0.3845
+##  3 vs previous    0.294 0.0954 166   3.079  0.0024
+##  4 vs previous    0.395 0.0889 166   4.445  &lt;.0001</code></pre>
 <p>Same results as before.</p>
 </div>
 </div>
@@ -996,9 +996,9 @@ helmert.emmc(levels(dat$Group))</code></pre>
 ## 4      -0.3333333   -5.000000e-01   -1.000000e+00</code></pre>
 <pre class="r"><code>contrast(emm,&quot;helmert&quot;,adjust=&quot;none&quot;)</code></pre>
 <pre><code>##  contrast        estimate     SE  df t.ratio p.value
-##  1 vs subsequent   -0.196 0.0896 166 -2.183  0.0305 
-##  2 vs subsequent   -0.443 0.1007 166 -4.402  &lt;.0001 
-##  3 vs subsequent   -0.200 0.1077 166 -1.853  0.0657</code></pre>
+##  1 vs subsequent   -0.196 0.0896 166  -2.183  0.0305
+##  2 vs subsequent   -0.443 0.1007 166  -4.402  &lt;.0001
+##  3 vs subsequent   -0.200 0.1077 166  -1.853  0.0657</code></pre>
 <p>Same results!</p>
 </div>
 </div>
@@ -1202,9 +1202,9 @@ helmert.emmc(levels(dat$Group))</code></pre>
 ## 4      -0.3333333   -5.000000e-01   -1.000000e+00</code></pre>
 <pre class="r"><code>contrast(emm,&quot;helmert&quot;,adjust=&quot;none&quot;)</code></pre>
 <pre><code>##  contrast        estimate     SE  df t.ratio p.value
-##  1 vs subsequent   -0.196 0.0896 166 -2.183  0.0305 
-##  2 vs subsequent   -0.443 0.1007 166 -4.402  &lt;.0001 
-##  3 vs subsequent   -0.200 0.1077 166 -1.853  0.0657</code></pre>
+##  1 vs subsequent   -0.196 0.0896 166  -2.183  0.0305
+##  2 vs subsequent   -0.443 0.1007 166  -4.402  &lt;.0001
+##  3 vs subsequent   -0.200 0.1077 166  -1.853  0.0657</code></pre>
 <p>and we get the contrast estimates as expected. For the <code>difference</code> contrast we can use <code>con_weights&lt;-contr.helmert(n)</code> in the function and we get the correct codes.</p>
 </div>
 </div>

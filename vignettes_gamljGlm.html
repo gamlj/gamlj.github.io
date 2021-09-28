@@ -11,7 +11,7 @@
 
 <meta name="author" content="Marcello Gallucci" />
 
-<meta name="date" content="2021-05-11" />
+<meta name="date" content="2021-09-28" />
 
 <title>Examples of gamljGlm()</title>
 
@@ -371,7 +371,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Examples of gamljGlm()</h1>
 <h4 class="author">Marcello Gallucci</h4>
-<h4 class="date">2021-05-11</h4>
+<h4 class="date">2021-09-28</h4>
 
 </div>
 
@@ -421,16 +421,16 @@ mod1</code></pre>
 
  MODEL RESULTS
 
- ANOVA Omnibus tests                                       
- ───────────────────────────────────────────────────────── 
-                SS        df     F       p         η²p     
- ───────────────────────────────────────────────────────── 
-   Model          5814      2    24.1    &lt; .001    0.166   
-   xage           1516      1    15.4    &lt; .001    0.019   
-   zexer          4298      1    43.7    &lt; .001    0.153   
-   Residuals     23810    242                              
-   Total        202073    245                              
- ───────────────────────────────────────────────────────── 
+ ANOVA Omnibus tests                                      
+ ──────────────────────────────────────────────────────── 
+                SS       df     F       p         η²p     
+ ──────────────────────────────────────────────────────── 
+   Model         5814      2    24.1    &lt; .001    0.166   
+   xage          1516      1    15.4    &lt; .001    0.019   
+   zexer         4298      1    43.7    &lt; .001    0.153   
+   Residuals    23810    242                              
+   Total        29624    244                              
+ ──────────────────────────────────────────────────────── 
 
 
  Fixed Effects Parameter Estimates                                                             
@@ -444,12 +444,12 @@ mod1</code></pre>
 <p>The object `mod’ is an R6 object which contains all the results tables and some additional function that can be used in subsequent analyses. Tables are pretty printed, but they can be modified or manipulated by transforming them in dataframes as follows:</p>
 <pre class="r"><code>anofaDF&lt;-mod1$main$anova$asDF
 anofaDF</code></pre>
-<pre><code>       name     ss  df    f        p etaSqP
-1     Model   5814   2 24.1 2.75e-10 0.1663
-2      xage   1516   1 15.4 1.13e-04 0.0186
-3     zexer   4298   1 43.7 2.44e-10 0.1529
-4 Residuals  23810 242   NA       NA     NA
-5     Total 202073 245   NA       NA     NA</code></pre>
+<pre><code>       name    ss  df    f        p etaSqP
+1     Model  5814   2 24.1 2.75e-10 0.1663
+2      xage  1516   1 15.4 1.13e-04 0.0186
+3     zexer  4298   1 43.7 2.44e-10 0.1529
+4 Residuals 23810 242   NA       NA     NA
+5     Total 29624 244   NA       NA     NA</code></pre>
 <div id="results" class="section level2">
 <h2>Results</h2>
 <p>Results show three tables. The <em>Model Info</em> table contains information about the overall model. The <em>ANOVA omnibus tests</em> table contains the results of the <code>car:Anova()</code> function, with the addition of the partial <span class="math inline">\(\eta^2\)</span> index for each effect and the inferential test for the whole model. The <em>Fixed Effecta Parameter Estimates</em> table contains the <code>summary()</code> results. For each coefficient the confidence interval is also reported.</p>
@@ -460,30 +460,30 @@ anofaDF</code></pre>
               effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;partEta&quot;,&quot;omega&quot;,&quot;epsilon&quot;))
 mod2$main$anova</code></pre>
 <pre><code>
- ANOVA Omnibus tests                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-                SS        df     F       p         η²        η²p      ω²p      ε²p     
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Model          5814      2    24.1    &lt; .001    0.1663    0.166    0.159    0.159   
-   xage           1516      1    15.4    &lt; .001    0.0158    0.019    0.014    0.015   
-   zexer          4298      1    43.7    &lt; .001    0.1505    0.153    0.148    0.149   
-   Residuals     23810    242                                                          
-   Total        202073    245                                                          
- ───────────────────────────────────────────────────────────────────────────────────── </code></pre>
+ ANOVA Omnibus tests                                                                  
+ ──────────────────────────────────────────────────────────────────────────────────── 
+                SS       df     F       p         η²        η²p      ω²p      ε²p     
+ ──────────────────────────────────────────────────────────────────────────────────── 
+   Model         5814      2    24.1    &lt; .001    0.1663    0.166    0.159    0.159   
+   xage          1516      1    15.4    &lt; .001    0.0158    0.019    0.014    0.015   
+   zexer         4298      1    43.7    &lt; .001    0.1505    0.153    0.148    0.149   
+   Residuals    23810    242                                                          
+   Total        29624    244                                                          
+ ──────────────────────────────────────────────────────────────────────────────────── </code></pre>
 <p>The same analysis can be done by updating the model with the <code>update()</code> function. Almost all the options available in <code>gamljGlm()</code> can be added to a model by running <code>update(mod,...)</code> where <code>...</code> is any option or options accepted by <code>gamljGlm()</code>.</p>
 <pre class="r"><code>mod2_2&lt;-update(mod1,effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;partEta&quot;,&quot;omega&quot;,&quot;epsilon&quot;))
 mod2_2$main$anova</code></pre>
 <pre><code>
- ANOVA Omnibus tests                                                                   
- ───────────────────────────────────────────────────────────────────────────────────── 
-                SS        df     F       p         η²        η²p      ω²p      ε²p     
- ───────────────────────────────────────────────────────────────────────────────────── 
-   Model          5814      2    24.1    &lt; .001    0.1663    0.166    0.159    0.159   
-   xage           1516      1    15.4    &lt; .001    0.0158    0.019    0.014    0.015   
-   zexer          4298      1    43.7    &lt; .001    0.1505    0.153    0.148    0.149   
-   Residuals     23810    242                                                          
-   Total        202073    245                                                          
- ───────────────────────────────────────────────────────────────────────────────────── </code></pre>
+ ANOVA Omnibus tests                                                                  
+ ──────────────────────────────────────────────────────────────────────────────────── 
+                SS       df     F       p         η²        η²p      ω²p      ε²p     
+ ──────────────────────────────────────────────────────────────────────────────────── 
+   Model         5814      2    24.1    &lt; .001    0.1663    0.166    0.159    0.159   
+   xage          1516      1    15.4    &lt; .001    0.0158    0.019    0.014    0.015   
+   zexer         4298      1    43.7    &lt; .001    0.1505    0.153    0.148    0.149   
+   Residuals    23810    242                                                          
+   Total        29624    244                                                          
+ ──────────────────────────────────────────────────────────────────────────────────── </code></pre>
 </div>
 </div>
 <div id="moderated-regression" class="section level1">
@@ -507,17 +507,17 @@ mod3</code></pre>
 
  MODEL RESULTS
 
- ANOVA Omnibus tests                                        
- ────────────────────────────────────────────────────────── 
-                 SS        df     F       p         η²p     
- ────────────────────────────────────────────────────────── 
-   Model           7482      3    20.9    &lt; .001    0.206   
-   xage            1570      1    16.7    &lt; .001    0.020   
-   zexer           4775      1    50.8    &lt; .001    0.159   
-   xage:zexer      1137      1    12.1    &lt; .001    0.048   
-   Residuals      22674    241                              
-   Total         180966    245                              
- ────────────────────────────────────────────────────────── 
+ ANOVA Omnibus tests                                       
+ ───────────────────────────────────────────────────────── 
+                 SS       df     F       p         η²p     
+ ───────────────────────────────────────────────────────── 
+   Model          7482      3    20.9    &lt; .001    0.206   
+   xage           1570      1    16.7    &lt; .001    0.020   
+   zexer          4775      1    50.8    &lt; .001    0.159   
+   xage:zexer     1137      1    12.1    &lt; .001    0.048   
+   Residuals     22674    241                              
+   Total         30156    244                              
+ ───────────────────────────────────────────────────────── 
 
 
  Fixed Effects Parameter Estimates                                                               

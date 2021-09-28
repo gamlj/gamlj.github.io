@@ -442,7 +442,7 @@ print(m, corr = FALSE)</code></pre>
 <p><img src="rosetta/gzlmmixed/modelpick.png" class="img-responsive" alt=""></p>
 <p>Then we set the variables in the right field depending on their role in the model and their type.</p>
 <p><img src="rosetta/gzlmmixed/variables.png" class="img-responsive" alt=""></p>
-<p>Please note that we put <code>LengthOfStay</code> in covariates because it is a continuous variable, even though <span class="jamovi">jamovi</span> recognizes it a categorical. By putting it in <code>&lt;span class=&quot;option&quot;&gt;Covariates&lt;/span&gt;, we implicitly ask the module to treat it a continuous variable. The opposite holds for</code>DID` (doctors ID) which <span class="jamovi">jamovi</span> recognizes as continuous but the module treats as categorical after we put it in the <span class="option">Clusters</span> field.</p>
+<p>Please note that we put <code>LengthOfStay</code> in covariates because it is a continuous variable, even though <span class="jamovi">jamovi</span> recognizes it a categorical. By putting it in <span class="option">Covariates</span>, we implicitly ask the module to treat it a continuous variable. The opposite holds for <code>DID</code> (doctors ID) which <span class="jamovi">jamovi</span> recognizes as continuous but the module treats as categorical after we put it in the <span class="option">Clusters</span> field.</p>
 <p>After the first setup, we need to specify the random effects. Following the IDRE analysis, we specify the intercept as random coefficient across doctors (<code>DID</code>).</p>
 <p><img src="rosetta/gzlmmixed/random.png" class="img-responsive" alt=""></p>
 <p>As soon as we include a random effect, the model is estimated</p>
