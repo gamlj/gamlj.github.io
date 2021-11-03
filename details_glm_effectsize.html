@@ -436,7 +436,7 @@ div.tocify {
 <p><span class="math display">\[\omega^2p={{SS_{eff}-SS_{res} \cdot ({df_{eff}/df_{res}) \cdot }}\over{ SS_{eff}+SS_{res} \cdot [{(N-df_{eff}+1)/df_{res}}]
 }}\]</span></p>
 <p>It’s clear that omega is similat to <span class="math inline">\(\eta^2p\)</span>, but applies a correction for the degress of freedom. In fact, as N increases, the two indices converge.</p>
-<p>Notice that this formula, which is used by <a href="https://github.com/easystats/effectsize"><code>effectsize</code> R package</a> is defined in <span class="citation">Maxwell, Delaney, and Kelley (<a href="#ref-maxwell2017">2017</a>)</span> and other sources, and it is slightly different from the one defined by <span class="citation">Olejnik and Algina (<a href="#ref-olejnik2003generalized">2003</a>)</span> . The difference is that in the denominator the residuals SS is multiplied by <span class="math inline">\((N-df_{eff}+1)/df_{res}\)</span> whereas in <span class="citation">Olejnik and Algina (<a href="#ref-olejnik2003generalized">2003</a>)</span> it is multiplied by <span class="math inline">\((N-df_{eff})/df_{res}\)</span>. Obviously, the two formulas gives appreciable different results on for vary small samples.</p>
+<p>Notice that this formula, which is used by <a href="https://github.com/easystats/effectsize"><code>effectsize</code> R package</a> is defined in <span class="citation">Maxwell, Delaney, and Kelley (<a href="#ref-maxwell2017">2017</a>)</span> and other sources, and it is slightly different from the one defined by <span class="citation">Olejnik and Algina (<a href="#ref-olejnik2003generalized">2003</a>)</span> . The difference is that in the denominator the residuals SS is multiplied by <span class="math inline">\((N-df_{eff}+1)/df_{res}\)</span> whereas in <span class="citation">Olejnik and Algina (<a href="#ref-olejnik2003generalized">2003</a>)</span> it is multiplied by <span class="math inline">\((N-df_{eff})/df_{res}\)</span>. Obviously, the two formulas gives appreciable different results only for very small samples.</p>
 </div>
 <div id="epsilon2p-epsilon-squared" class="section level1">
 <h1><span class="math inline">\(\epsilon^2\)</span>p : epsilon-squared</h1>
@@ -460,6 +460,9 @@ Comments?
 <p>
 Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj/issues"> GAMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
 </p>
+</div>
+<div id="additional-references" class="section level1 unnumbered">
+<h1>Additional references</h1>
 <div id="refs" class="references">
 <div id="ref-cohen2014applied">
 <p>Cohen, Patricia, Stephen G West, and Leona S Aiken. 2014. <em>Applied Multiple Regression/Correlation Analysis for the Behavioral Sciences</em>. Psychology press.</p>
