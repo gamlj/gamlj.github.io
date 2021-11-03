@@ -11,7 +11,7 @@
 
 <meta name="author" content="Marcello Gallucci" />
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-11-03" />
 
 <title>Plots in GAMLj</title>
 
@@ -371,7 +371,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Plots in GAMLj</h1>
 <h4 class="author">Marcello Gallucci</h4>
-<h4 class="date">2021-10-25</h4>
+<h4 class="date">2021-11-03</h4>
 
 </div>
 
@@ -393,30 +393,54 @@ div.tocify {
 <pre class="r"><code>mod&lt;-gamljGlm(formula=Sepal.Length~Sepal.Width*Petal.Length*Petal.Width, 
               data=iris,
               plotHAxis = &quot;Sepal.Width&quot;
-              )
-
-plot(mod)</code></pre>
+              )</code></pre>
+<pre><code>[1] &quot;init&quot;
+[1] &quot;run&quot;
+[1] &quot;Parameters have been estimated&quot;
+[1] &quot;computing betas...&quot;
+[1] &quot;...done&quot;</code></pre>
+<pre class="r"><code>plot(mod)</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>To have additional plots, we can re-estimate the model using the options described above or using <code>plot()</code>. The function <code>plot()</code> accepts either a formula or character options. The formula is a right hand side formula specifying the X-axis variable and the (optional) moderators.</p>
 <p>Examples are:</p>
 <div id="one-way-plots" class="section level2">
 <h2>One-way plots</h2>
 <pre class="r"><code>plot(mod,formula = ~Petal.Length)</code></pre>
+<pre><code>[1] &quot;init&quot;
+[1] &quot;run&quot;
+[1] &quot;Parameters have been estimated&quot;
+[1] &quot;computing betas...&quot;
+[1] &quot;...done&quot;</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="two-way-plots" class="section level2">
 <h2>Two-way plots</h2>
 <pre class="r"><code>plot(mod,formula = ~Sepal.Width:Petal.Length)</code></pre>
+<pre><code>[1] &quot;init&quot;
+[1] &quot;run&quot;
+[1] &quot;Parameters have been estimated&quot;
+[1] &quot;computing betas...&quot;
+[1] &quot;...done&quot;</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Because the moderator variable <code>Petal.Length</code> is a continuous variable, the function plots the independent variable effect at three different levels of the moderator. By default, the three levels are the mean, the mean plus one standard deviation and the mean minus one standard deviation. The conditioning values can be changed with the option <code>simpleScale</code>. The option accepts <code>mean_sd</code> (default) and <code>percent</code>, for 25th,50th, and 75th percentiles.</p>
 <pre class="r"><code>plot(mod,formula = ~Sepal.Width:Petal.Length, simpleScale=&quot;percent&quot;)</code></pre>
+<pre><code>[1] &quot;init&quot;
+[1] &quot;run&quot;
+[1] &quot;Parameters have been estimated&quot;
+[1] &quot;computing betas...&quot;
+[1] &quot;...done&quot;</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="three-way-plots" class="section level2">
 <h2>Three-way plots</h2>
 <p>A three-way plot produces one plot for each level of the last moderator, in this case three plots.</p>
-<pre class="r"><code>plots&lt;-plot(mod,formula = ~Sepal.Width:Petal.Length:Petal.Width)
-print&lt;-lapply(plots,print)</code></pre>
+<pre class="r"><code>plots&lt;-plot(mod,formula = ~Sepal.Width:Petal.Length:Petal.Width)</code></pre>
+<pre><code>[1] &quot;init&quot;
+[1] &quot;run&quot;
+[1] &quot;Parameters have been estimated&quot;
+[1] &quot;computing betas...&quot;
+[1] &quot;...done&quot;</code></pre>
+<pre class="r"><code>print&lt;-lapply(plots,print)</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" /><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-2.png" width="576" style="display: block; margin: auto;" /><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-3.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Because the formula is expanded, one can obtain all main effects and interactions plots in one call by passing <code>formula=~Sepal.Width*Petal.Length*Petal.Width</code></p>
 </div>
@@ -424,8 +448,18 @@ print&lt;-lapply(plots,print)</code></pre>
 <div id="factors" class="section level1">
 <h1>Factors</h1>
 <p>When the X-axis variable is a factor, a plot of means is produced.</p>
-<pre class="r"><code>mod2&lt;-gamljGlm(formula=Sepal.Length~Species,  data=iris)
-plot(mod2,formula=~Species)</code></pre>
+<pre class="r"><code>mod2&lt;-gamljGlm(formula=Sepal.Length~Species,  data=iris)</code></pre>
+<pre><code>[1] &quot;init&quot;
+[1] &quot;run&quot;
+[1] &quot;Parameters have been estimated&quot;
+[1] &quot;computing betas...&quot;
+[1] &quot;...done&quot;</code></pre>
+<pre class="r"><code>plot(mod2,formula=~Species)</code></pre>
+<pre><code>[1] &quot;init&quot;
+[1] &quot;run&quot;
+[1] &quot;Parameters have been estimated&quot;
+[1] &quot;computing betas...&quot;
+[1] &quot;...done&quot;</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="character-options" class="section level1">
@@ -438,6 +472,11 @@ plot(mod2,formula=~Species)</code></pre>
 </ul>
 <p>A two-way plot, for instance, can be obtained as follows:</p>
 <pre class="r"><code>plot(mod,plotHAxis=&quot;Sepal.Width&quot;, plotSepLines=&quot;Petal.Length&quot;)</code></pre>
+<pre><code>[1] &quot;init&quot;
+[1] &quot;run&quot;
+[1] &quot;Parameters have been estimated&quot;
+[1] &quot;computing betas...&quot;
+[1] &quot;...done&quot;</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="other-options" class="section level1">
@@ -449,12 +488,27 @@ plot(mod2,formula=~Species)</code></pre>
 <li><code>plotError</code> to add confidence intervals bars (<code>ci</code>) or error bars <code>se</code> along the predicted values. Default is <code>none</code>.</li>
 </ul>
 <pre class="r"><code>plot(mod,plotHAxis=&quot;Sepal.Width&quot;, plotSepLines=&quot;Petal.Length&quot;, plotRaw=T,plotError=&quot;ci&quot;)</code></pre>
+<pre><code>[1] &quot;init&quot;
+[1] &quot;run&quot;
+[1] &quot;Parameters have been estimated&quot;
+[1] &quot;computing betas...&quot;
+[1] &quot;...done&quot;</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>plot(mod2,formula=~Species,plotRaw=T,plotError=&quot;ci&quot;)</code></pre>
+<pre><code>[1] &quot;init&quot;
+[1] &quot;run&quot;
+[1] &quot;Parameters have been estimated&quot;
+[1] &quot;computing betas...&quot;
+[1] &quot;...done&quot;</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-9-2.png" width="576" style="display: block; margin: auto;" /></p>
 <p>In addition, the plot can be saved in a variable and manipulated as any other ggplot object, for instance to change the theme or add a title.</p>
-<pre class="r"><code>p&lt;-plot(mod,plotHAxis=&quot;Sepal.Width&quot;, plotSepLines=&quot;Petal.Length&quot;, plotRaw=T,plotError=&quot;ci&quot;)
-p+ggplot2::ggtitle(&quot;A nice plot&quot;)+ggplot2::theme_minimal()</code></pre>
+<pre class="r"><code>p&lt;-plot(mod,plotHAxis=&quot;Sepal.Width&quot;, plotSepLines=&quot;Petal.Length&quot;, plotRaw=T,plotError=&quot;ci&quot;)</code></pre>
+<pre><code>[1] &quot;init&quot;
+[1] &quot;run&quot;
+[1] &quot;Parameters have been estimated&quot;
+[1] &quot;computing betas...&quot;
+[1] &quot;...done&quot;</code></pre>
+<pre class="r"><code>p+ggplot2::ggtitle(&quot;A nice plot&quot;)+ggplot2::theme_minimal()</code></pre>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>In case of multiple plots produced, the ggplot objects are contained in a list returned by <code>plot()</code>.</p>
 </div>
