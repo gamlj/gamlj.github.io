@@ -373,7 +373,7 @@ div.tocify {
 
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, GLM, effect size indices, omega-squared, eta-squared, epsilon-squared </span></p>
-<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.4.0 </span></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.6.0 </span></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Standardized Effect size indices produced by GLM module are the following:</p>
@@ -407,7 +407,21 @@ div.tocify {
 <p>This is the proportion of total variance uniquely explained by the associated effect. Being <span class="math inline">\(SS_{eff}\)</span> the sum of squares of the effect and <span class="math inline">\(SS_{res}\)</span> the sum of squares residuals or of error, and <span class="math inline">\(SS_{model}\)</span> the sum of sum of squares of the whole model, we have:</p>
 <p><span class="math display">\[\eta^2={{SS_{eff} \over {SS_{model}+SS_{res}}}}\]</span></p>
 <p>where <span class="math inline">\(SS_{model}+SS_{res}=SS_{total}\)</span> and <span class="math inline">\(SS_{total}=\sum(y_i-\bar{y})^2\)</span> and <span class="math inline">\(SS_{model}=\sum(\hat{y_i}-\bar{\hat{y}})^2\)</span>.</p>
-<p>Please notice that although the computation of the effect size indexes is carried out employing <a href="https://github.com/easystats/effectsize">effectsize R package</a>, <span class="gamlj">GAMLj</span> makes a correction to the computation of <span class="math inline">\(\eta^2\)</span> and the other non-partial indices. <code>effectsize</code> R package, infact, defines the total sum of squares as <span class="math inline">\(SS_{total}^*=\sum{SS_{eff}+SS_{res}}\)</span>, where <span class="math inline">\(eff\)</span> is any effect in the model. For balanced designs and other models, <span class="math inline">\(SS_{total}^*=SS_{total}\)</span>, so no issue arises. However, there are certain models in which <span class="math inline">\(SS_{total}^*\ne SS_{total}\)</span>, and so the index looses some of its proporties when computed based on <span class="math inline">\(SS_{total}^*\)</span>. <span class="gamlj">GAMLj</span> operates a correction such that all the non-partial indeces are always computed based on <span class="math inline">\(SS_{total}=SS_{model}+SS_{res}\)</span>.</p>
+<p>Please notice that although the computation of the effect size indexes is carried out employing <a href="https://github.com/easystats/effectsize">effectsize R package</a>, <span class="gamlj">GAMLj</span> makes a correction to the computation of <span class="math inline">\(\eta^2\)</span> and the other non-partial indices. <code>effectsize</code> R package, infact, defines the total sum of squares as <span class="math inline">\(SS_{total}^*=\sum{SS_{eff}+SS_{res}}\)</span>, where <span class="math inline">\(eff\)</span> is any effect in the model. For balanced designs and other models, <span class="math inline">\(SS_{total}^*=SS_{total}\)</span>, so no issue arises. However, there are certain models in which <span class="math inline">\(SS_{total}^*\ne SS_{total}\)</span>, and so the index looses some of its properties when computed based on <span class="math inline">\(SS_{total}^*\)</span>. <span class="gamlj">GAMLj</span> operates a correction such that all the non-partial indeces are always computed based on <span class="math inline">\(SS_{total}=SS_{model}+SS_{res}\)</span>.</p>
+<p>With the correction, one property <span class="math inline">\(\eta^2\)</span> retains even when <span class="math inline">\(SS_{total}^*\ne SS_{total}\)</span> is that <span class="math inline">\(\eta^2=r_{sp}^2\)</span>, where <span class="math inline">\(r_{sp}^2\)</span> is the semi-partial correlation <span class="citation">(Cohen, West, and Aiken <a href="#ref-cohen2014applied">2014</a>)</span>. We can use the <code>exercise</code> dataset from <span class="citation">(Cohen, West, and Aiken <a href="#ref-cohen2014applied">2014</a>)</span> to see this in practice (refer to <a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a> for a complete analysis). If we run a multiple regression <code>yendu~xage+zexer</code> and ask for the <span class="math inline">\(\eta^2\)</span>’s, we obtain the following results:</p>
+<p><img src="details/glm/eta1.png" class="img-responsive" alt=""></p>
+<p>Going in <span class="jamovi">jamovi</span>, <span class="option">Regression-&gt;Partial correlation</span> we can compute the semi-partial correlation of each IV coviariating the other. This gives:</p>
+<p><img src="details/glm/eta2.png" class="img-responsive" alt=""></p>
+<p>Squaring it gives <span class="math inline">\(r_{yx.z}^2=-0.230^2=0.0529\)</span>, which is equal to the corrisponding <span class="math inline">\(\eta^2=.053\)</span>.</p>
+<p><img src="details/glm/eta3.png" class="img-responsive" alt=""></p>
+<p>Squaring the second <span class="math inline">\(r_{sp}^2\)</span> gives <span class="math inline">\(r_{yz.x}^2=0.388^2=0.150544\)</span>, which is equal to the corrisponding <span class="math inline">\(\eta^2=.150\)</span>.</p>
+<p>If we used <span class="math inline">\(SS_{total}^*=\sum{SS_{eff}}+SS_{res}\)</span>, results would be:</p>
+<ul>
+<li><span class="math inline">\(SS_{total}^*=1516+4298+23810=29624\)</span></li>
+<li><span class="math inline">\(SS_{yx.z}^*=1516/29624 =0.0511747\)</span></li>
+<li><span class="math inline">\(SS_{yz.x}^*=4298/29624 =0.1450851\)</span></li>
+</ul>
+<p>that are clearly not corresponding to the <span class="math inline">\(r_{sp}^2\)</span>, as they should be.</p>
 </div>
 <div id="eta2p-partial-eta-squared" class="section level1">
 <h1><span class="math inline">\(\eta^2\)</span>p : partial eta-squared</h1>
@@ -446,6 +460,9 @@ Comments?
 Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj/issues"> GAMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
 </p>
 <div id="refs" class="references">
+<div id="ref-cohen2014applied">
+<p>Cohen, Patricia, Stephen G West, and Leona S Aiken. 2014. <em>Applied Multiple Regression/Correlation Analysis for the Behavioral Sciences</em>. Psychology press.</p>
+</div>
 <div id="ref-maxwell2017">
 <p>Maxwell, Scott E, Harold D Delaney, and Ken Kelley. 2017. <em>Designing Experiments and Analyzing Data: A Model Comparison Perspective</em>. Routledge.</p>
 </div>

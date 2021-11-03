@@ -433,20 +433,20 @@ dat$xage&lt;-dat$xage-mean(dat$xage)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -21.165  -6.939   0.269   6.299  21.299 
+## -21.165  -6.939   0.269   6.300  21.299 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  25.8887     0.6466   40.04  &lt; 2e-16 ***
-## xage         -0.2617     0.0641   -4.08  6.0e-05 ***
-## zexer         0.9727     0.1365    7.12  1.2e-11 ***
-## xage:zexer    0.0472     0.0136    3.48    6e-04 ***
+## (Intercept) 25.88872    0.64662  40.037  &lt; 2e-16 ***
+## xage        -0.26169    0.06406  -4.085 6.01e-05 ***
+## zexer        0.97272    0.13653   7.124 1.20e-11 ***
+## xage:zexer   0.04724    0.01359   3.476 0.000604 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 9.7 on 241 degrees of freedom
-## Multiple R-squared:  0.206,  Adjusted R-squared:  0.196 
-## F-statistic: 20.9 on 3 and 241 DF,  p-value: 4.76e-12</code></pre>
+## Multiple R-squared:  0.2061, Adjusted R-squared:  0.1962 
+## F-statistic: 20.86 on 3 and 241 DF,  p-value: 4.764e-12</code></pre>
 <p>If one requires the standardized solution, the same procedure can be done after standardizing the variables</p>
 <pre class="r"><code>dat$zexer_z&lt;-scale(dat$zexer)
 dat$xage_z&lt;-scale(dat$xage)
@@ -459,21 +459,21 @@ summary(model_z)</code></pre>
 ## lm(formula = yendu_z ~ xage_z * zexer_z, data = dat)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.9563 -0.6414  0.0249  0.5823  1.9687 
+##      Min       1Q   Median       3Q      Max 
+## -1.95626 -0.64141  0.02486  0.58225  1.96869 
 ## 
 ## Coefficients:
 ##                Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)     -0.0593     0.0598   -0.99   0.3219    
-## xage_z          -0.2445     0.0598   -4.08  6.0e-05 ***
-## zexer_z          0.4293     0.0603    7.12  1.2e-11 ***
-## xage_z:zexer_z   0.2108     0.0606    3.48   0.0006 ***
+## (Intercept)    -0.05933    0.05977  -0.993 0.321857    
+## xage_z         -0.24446    0.05985  -4.085 6.01e-05 ***
+## zexer_z         0.42933    0.06026   7.124 1.20e-11 ***
+## xage_z:zexer_z  0.21075    0.06064   3.476 0.000604 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.897 on 241 degrees of freedom
-## Multiple R-squared:  0.206,  Adjusted R-squared:  0.196 
-## F-statistic: 20.9 on 3 and 241 DF,  p-value: 4.76e-12</code></pre>
+## Residual standard error: 0.8965 on 241 degrees of freedom
+## Multiple R-squared:  0.2061, Adjusted R-squared:  0.1962 
+## F-statistic: 20.86 on 3 and 241 DF,  p-value: 4.764e-12</code></pre>
 <div id="simple-slope" class="section level2">
 <h2>Simple Slope</h2>
 <p>Recall that in a linear model with interaction, the simple slope (the B coefficient one gets from the model associated with the IV) is the effect of one independent variable estimated for the other variable equal to zero. Thus, by centering the moderator at different values, we can obtain the slope of a variable for any value of the moderator by centering the moderator to that value.</p>
@@ -490,20 +490,20 @@ model_zh&lt;-lm(yendu~xage*zexer_high,data=dat)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -21.165  -6.939   0.269   6.299  21.299 
+## -21.165  -6.939   0.269   6.300  21.299 
 ## 
 ## Coefficients:
 ##                 Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)      30.5337     0.9025   33.83  &lt; 2e-16 ***
-## xage             -0.0361     0.0903   -0.40   0.6896    
-## zexer_high        0.9727     0.1365    7.12  1.2e-11 ***
-## xage:zexer_high   0.0472     0.0136    3.48   0.0006 ***
+## (Intercept)     30.53366    0.90253  33.831  &lt; 2e-16 ***
+## xage            -0.03609    0.09025  -0.400 0.689641    
+## zexer_high       0.97272    0.13653   7.124  1.2e-11 ***
+## xage:zexer_high  0.04724    0.01359   3.476 0.000604 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 9.7 on 241 degrees of freedom
-## Multiple R-squared:  0.206,  Adjusted R-squared:  0.196 
-## F-statistic: 20.9 on 3 and 241 DF,  p-value: 4.76e-12</code></pre>
+## Multiple R-squared:  0.2061, Adjusted R-squared:  0.1962 
+## F-statistic: 20.86 on 3 and 241 DF,  p-value: 4.764e-12</code></pre>
 <pre class="r"><code>model_zl&lt;-lm(yendu~xage*zexer_low,data=dat)
 (sumr_zl&lt;-summary(model_zl))</code></pre>
 <pre><code>## 
@@ -512,30 +512,30 @@ model_zh&lt;-lm(yendu~xage*zexer_high,data=dat)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -21.165  -6.939   0.269   6.299  21.299 
+## -21.165  -6.939   0.269   6.300  21.299 
 ## 
 ## Coefficients:
 ##                Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)     21.2438     0.9337   22.75  &lt; 2e-16 ***
-## xage            -0.4873     0.0921   -5.29  2.8e-07 ***
-## zexer_low        0.9727     0.1365    7.12  1.2e-11 ***
-## xage:zexer_low   0.0472     0.0136    3.48    6e-04 ***
+## (Intercept)    21.24379    0.93371  22.752  &lt; 2e-16 ***
+## xage           -0.48729    0.09214  -5.289 2.76e-07 ***
+## zexer_low       0.97272    0.13653   7.124 1.20e-11 ***
+## xage:zexer_low  0.04724    0.01359   3.476 0.000604 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 9.7 on 241 degrees of freedom
-## Multiple R-squared:  0.206,  Adjusted R-squared:  0.196 
-## F-statistic: 20.9 on 3 and 241 DF,  p-value: 4.76e-12</code></pre>
+## Multiple R-squared:  0.2061, Adjusted R-squared:  0.1962 
+## F-statistic: 20.86 on 3 and 241 DF,  p-value: 4.764e-12</code></pre>
 <p>we can extract only the slopes we are interested in and show them in a table.</p>
 <pre class="r"><code>## in the summary object, the effect of age is in the second row. ##
 
 mat&lt;-rbind(sumr_zl$coefficients[2,],sumr$coefficients[2,],sumr_zh$coefficients[2,])
 rownames(mat)&lt;-c(&quot;exer at -SD&quot;,&quot;exer at mean&quot;,&quot;exer at +SD&quot;)
 mat</code></pre>
-<pre><code>##              Estimate Std. Error t value Pr(&gt;|t|)
-## exer at -SD   -0.4873     0.0921   -5.29 2.76e-07
-## exer at mean  -0.2617     0.0641   -4.08 6.01e-05
-## exer at +SD   -0.0361     0.0903   -0.40 6.90e-01</code></pre>
+<pre><code>##                Estimate Std. Error   t value     Pr(&gt;|t|)
+## exer at -SD  -0.4872940 0.09213609 -5.288851 2.761221e-07
+## exer at mean -0.2616898 0.06406384 -4.084828 6.007479e-05
+## exer at +SD  -0.0360855 0.09025369 -0.399823 6.896411e-01</code></pre>
 </div>
 <div id="simple-slopes-plot-1" class="section level2">
 <h2>Simple slopes plot</h2>
@@ -564,9 +564,9 @@ zlevels&lt;-c(-sd(dat$zexer),mean(dat$zexer),+sd(dat$zexer))
 ### then we run emtrends where specs is the moderator, var= the IV, and &quot;at&quot; the levels ##
 emmeans::emtrends(model,specs = &quot;zexer&quot;,var = &quot;xage&quot;,at=list(zexer=zlevels))</code></pre>
 <pre><code>##  zexer xage.trend     SE  df lower.CL upper.CL
-##  -4.78     -0.487 0.0921 241   -0.669   -0.306
-##   0.00     -0.262 0.0641 241   -0.388   -0.136
-##   4.78     -0.036 0.0903 241   -0.214    0.142
+##  -4.78    -0.4873 0.0921 241   -0.669   -0.306
+##   0.00    -0.2617 0.0641 241   -0.388   -0.135
+##   4.78    -0.0361 0.0903 241   -0.214    0.142
 ## 
 ## Confidence level used: 0.95</code></pre>
 <p>Pretty sleek!</p>
@@ -575,16 +575,16 @@ emmeans::emtrends(model,specs = &quot;zexer&quot;,var = &quot;xage&quot;,at=list
 ### define the levels at which we want the simple slope #####
 ### in this case, 0, 25th, 50th, and 75th and 10oth percentile
 (perc&lt;-quantile(dat$zexer))</code></pre>
-<pre><code>##      0%     25%     50%     75%    100% 
-## -10.673  -3.673   0.327   3.327  15.327</code></pre>
+<pre><code>##          0%         25%         50%         75%        100% 
+## -10.6734698  -3.6734698   0.3265302   3.3265302  15.3265302</code></pre>
 <pre class="r"><code>### then we run emtrends where specs is the moderator, var= the IV, and &quot;at&quot; the levels ##
 emmeans::emtrends(model,specs = &quot;zexer&quot;,var = &quot;xage&quot;,at=list(zexer=perc))</code></pre>
-<pre><code>##   zexer xage.trend     SE  df lower.CL upper.CL
-##  -10.67     -0.766 0.1598 241   -1.081   -0.451
-##   -3.67     -0.435 0.0820 241   -0.597   -0.274
-##    0.33     -0.246 0.0641 241   -0.373   -0.120
-##    3.33     -0.105 0.0776 241   -0.257    0.048
-##   15.33      0.462 0.2167 241    0.036    0.889
+<pre><code>##    zexer xage.trend     SE  df lower.CL upper.CL
+##  -10.673     -0.766 0.1598 241  -1.0807  -0.4512
+##   -3.673     -0.435 0.0820 241  -0.5968  -0.2736
+##    0.327     -0.246 0.0641 241  -0.3726  -0.1199
+##    3.327     -0.105 0.0776 241  -0.2575   0.0484
+##   15.327      0.462 0.2167 241   0.0356   0.8893
 ## 
 ## Confidence level used: 0.95</code></pre>
 </div>
