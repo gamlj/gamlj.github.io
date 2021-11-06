@@ -11,11 +11,11 @@
 
 <meta name="author" content="Marcello Gallucci" />
 
-<meta name="date" content="2021-11-04" />
+<meta name="date" content="2021-11-06" />
 
 <title>Examples of gamljGlm()</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -312,12 +312,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -371,7 +371,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Examples of gamljGlm()</h1>
 <h4 class="author">Marcello Gallucci</h4>
-<h4 class="date">2021-11-04</h4>
+<h4 class="date">2021-11-06</h4>
 
 </div>
 
@@ -429,7 +429,7 @@ mod1</code></pre>
    xage          1516      1    15.4    &lt; .001    0.060   
    zexer         4298      1    43.7    &lt; .001    0.153   
    Residuals    23810    242                              
-   Total        28561      2                              
+   Total        28561    244                              
  ──────────────────────────────────────────────────────── 
 
 
@@ -449,7 +449,7 @@ anofaDF</code></pre>
 2      xage  1516   1 15.4 0.000113055878 0.0599
 3     zexer  4298   1 43.7 0.000000000244 0.1529
 4 Residuals 23810 242   NA             NA     NA
-5     Total 28561   2   NA             NA     NA</code></pre>
+5     Total 28561 244   NA             NA     NA</code></pre>
 <div id="results" class="section level2">
 <h2>Results</h2>
 <p>Results show three tables. The <em>Model Info</em> table contains information about the overall model. The <em>ANOVA omnibus tests</em> table contains the results of the <code>car:Anova()</code> function, with the addition of the partial <span class="math inline">\(\eta^2\)</span> index for each effect and the inferential test for the whole model. The <em>Fixed Effecta Parameter Estimates</em> table contains the <code>summary()</code> results. For each coefficient the confidence interval is also reported.</p>
@@ -468,7 +468,7 @@ mod2$main$anova</code></pre>
    xage          1516      1    15.4    &lt; .001    0.053    0.060    0.049    0.050   
    zexer         4298      1    43.7    &lt; .001    0.150    0.153    0.147    0.147   
    Residuals    23810    242                                                         
-   Total        28561      2                                                         
+   Total        28561    244                                                         
  ─────────────────────────────────────────────────────────────────────────────────── </code></pre>
 <p>The same analysis can be done by updating the model with the <code>update()</code> function. Almost all the options available in <code>gamljGlm()</code> can be added to a model by running <code>update(mod,...)</code> where <code>...</code> is any option or options accepted by <code>gamljGlm()</code>.</p>
 <pre class="r"><code>mod2_2&lt;-update(mod1,effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;etap&quot;,&quot;omega&quot;,&quot;epsilon&quot;))
@@ -482,7 +482,7 @@ mod2_2$main$anova</code></pre>
    xage          1516      1    15.4    &lt; .001    0.053    0.060    0.049    0.050   
    zexer         4298      1    43.7    &lt; .001    0.150    0.153    0.147    0.147   
    Residuals    23810    242                                                         
-   Total        28561      2                                                         
+   Total        28561    244                                                         
  ─────────────────────────────────────────────────────────────────────────────────── </code></pre>
 </div>
 </div>
@@ -516,7 +516,7 @@ mod3</code></pre>
    zexer          4775      1    50.8    &lt; .001    0.174   
    xage:zexer     1137      1    12.1    &lt; .001    0.048   
    Residuals     22674    241                              
-   Total         28561      3                              
+   Total         28561    244                              
  ───────────────────────────────────────────────────────── 
 
 
@@ -545,48 +545,48 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
 <pre><code>
  SIMPLE EFFECTS
 
- Simple effects of xage : Omnibus Tests                
- ───────────────────────────────────────────────────── 
-   zexer        F         Num df    Den df    p        
- ───────────────────────────────────────────────────── 
-   Mean-1-SD    27.972      1.00       241    &lt; .001   
-        Mean    16.686      1.00       241    &lt; .001   
-   Mean+1-SD     0.160      1.00       241     0.690   
- ───────────────────────────────────────────────────── 
+ Simple effects of xage : Omnibus Tests                         
+ ────────────────────────────────────────────────────────────── 
+   zexer        F         Num df    Den df    p         η²p     
+ ────────────────────────────────────────────────────────────── 
+   Mean-1-SD    27.972      1.00       241    &lt; .001    0.104   
+        Mean    16.686      1.00       241    &lt; .001    0.065   
+   Mean+1-SD     0.160      1.00       241     0.690    0.001   
+ ────────────────────────────────────────────────────────────── 
 
 
- Simple effects of xage : Parameter estimates                                       
- ────────────────────────────────────────────────────────────────────────────────── 
-   zexer        Estimate    SE        Lower     Upper     df     t         p        
- ────────────────────────────────────────────────────────────────────────────────── 
-   Mean-1-SD     -0.4873    0.0921    -0.669    -0.306    241    -5.289    &lt; .001   
-        Mean     -0.2617    0.0641    -0.388    -0.135    241    -4.085    &lt; .001   
-   Mean+1-SD     -0.0361    0.0903    -0.214     0.142    241    -0.400     0.690   
- ────────────────────────────────────────────────────────────────────────────────── </code></pre>
+ Simple effects of xage : Parameter estimates                                                  
+ ───────────────────────────────────────────────────────────────────────────────────────────── 
+   zexer        Estimate    SE        Lower     Upper     β          df     t         p        
+ ───────────────────────────────────────────────────────────────────────────────────────────── 
+   Mean-1-SD     -0.4873    0.0921    -0.669    -0.306    -0.4552    241    -5.289    &lt; .001   
+        Mean     -0.2617    0.0641    -0.388    -0.135    -0.2445    241    -4.085    &lt; .001   
+   Mean+1-SD     -0.0361    0.0903    -0.214     0.142    -0.0337    241    -0.400     0.690   
+ ───────────────────────────────────────────────────────────────────────────────────────────── </code></pre>
 <p>In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to its mean) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average). <code>gamlGLM()</code> produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
 <p>One can change the conditioning levels of the moderators with the <code>simpleScale</code> option (default is <code>mean_sd</code> for mean plus/minus one SD), either added to the <code>gamljGlm()</code> function or to the <code>gamlj_simpleEffects()</code> function. If one wants to use the percentiles (25%,50%,75%), for instance, one can run the following.</p>
 <pre class="r"><code>gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;,simpleScale=&quot;percent&quot;)</code></pre>
 <pre><code>
  SIMPLE EFFECTS
 
- Simple effects of xage : Omnibus Tests           
- ──────────────────────────────────────────────── 
-   zexer    F        Num df    Den df    p        
- ──────────────────────────────────────────────── 
-   25xxx    28.15      1.00       241    &lt; .001   
-    50xx    14.74      1.00       241    &lt; .001   
-   75xxx     1.81      1.00       241     0.180   
- ──────────────────────────────────────────────── 
+ Simple effects of xage : Omnibus Tests                    
+ ───────────────────────────────────────────────────────── 
+   zexer    F        Num df    Den df    p         η²p     
+ ───────────────────────────────────────────────────────── 
+   25xxx    28.15      1.00       241    &lt; .001    0.105   
+    50xx    14.74      1.00       241    &lt; .001    0.058   
+   75xxx     1.81      1.00       241     0.180    0.007   
+ ───────────────────────────────────────────────────────── 
 
 
- Simple effects of xage : Parameter estimates                                   
- ────────────────────────────────────────────────────────────────────────────── 
-   zexer    Estimate    SE        Lower     Upper      df     t        p        
- ────────────────────────────────────────────────────────────────────────────── 
-   25xxx      -0.435    0.0820    -0.597    -0.2736    241    -5.31    &lt; .001   
-    50xx      -0.246    0.0641    -0.373    -0.1199    241    -3.84    &lt; .001   
-   75xxx      -0.105    0.0777    -0.257     0.0485    241    -1.35     0.180   
- ────────────────────────────────────────────────────────────────────────────── </code></pre>
+ Simple effects of xage : Parameter estimates                                              
+ ───────────────────────────────────────────────────────────────────────────────────────── 
+   zexer    Estimate    SE        Lower     Upper      β          df     t        p        
+ ───────────────────────────────────────────────────────────────────────────────────────── 
+   25xxx      -0.435    0.0820    -0.597    -0.2736    -0.4066    241    -5.31    &lt; .001   
+    50xx      -0.246    0.0641    -0.373    -0.1199    -0.2300    241    -3.84    &lt; .001   
+   75xxx      -0.105    0.0777    -0.257     0.0485    -0.0976    241    -1.35     0.180   
+ ───────────────────────────────────────────────────────────────────────────────────────── </code></pre>
 <p>The simple effects are now changed, because they are estimated for a different set of values of the moderator.</p>
 <p>One can further tweak the appearance of the tables by selecting a different value/labels in <code>simpleScaleLabels</code> option. Options are “labels”, “values” and “values_labels”. The latter outputs the values and the labels of the conditioning values.</p>
 <pre class="r"><code>gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;,
@@ -595,24 +595,24 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
 <pre><code>
  SIMPLE EFFECTS
 
- Simple effects of xage : Omnibus Tests                  
- ─────────────────────────────────────────────────────── 
-   zexer           F        Num df    Den df    p        
- ─────────────────────────────────────────────────────── 
-   25xxx=-3.673    28.15      1.00       241    &lt; .001   
-     50xx=0.327    14.74      1.00       241    &lt; .001   
-    75xxx=3.327     1.81      1.00       241     0.180   
- ─────────────────────────────────────────────────────── 
+ Simple effects of xage : Omnibus Tests                           
+ ──────────────────────────────────────────────────────────────── 
+   zexer           F        Num df    Den df    p         η²p     
+ ──────────────────────────────────────────────────────────────── 
+   25xxx=-3.673    28.15      1.00       241    &lt; .001    0.105   
+     50xx=0.327    14.74      1.00       241    &lt; .001    0.058   
+    75xxx=3.327     1.81      1.00       241     0.180    0.007   
+ ──────────────────────────────────────────────────────────────── 
 
 
- Simple effects of xage : Parameter estimates                                          
- ───────────────────────────────────────────────────────────────────────────────────── 
-   zexer           Estimate    SE        Lower     Upper      df     t        p        
- ───────────────────────────────────────────────────────────────────────────────────── 
-   25xxx=-3.673      -0.435    0.0820    -0.597    -0.2736    241    -5.31    &lt; .001   
-     50xx=0.327      -0.246    0.0641    -0.373    -0.1199    241    -3.84    &lt; .001   
-    75xxx=3.327      -0.105    0.0777    -0.257     0.0485    241    -1.35     0.180   
- ───────────────────────────────────────────────────────────────────────────────────── </code></pre>
+ Simple effects of xage : Parameter estimates                                                     
+ ──────────────────────────────────────────────────────────────────────────────────────────────── 
+   zexer           Estimate    SE        Lower     Upper      β          df     t        p        
+ ──────────────────────────────────────────────────────────────────────────────────────────────── 
+   25xxx=-3.673      -0.435    0.0820    -0.597    -0.2736    -0.4066    241    -5.31    &lt; .001   
+     50xx=0.327      -0.246    0.0641    -0.373    -0.1199    -0.2300    241    -3.84    &lt; .001   
+    75xxx=3.327      -0.105    0.0777    -0.257     0.0485    -0.0976    241    -1.35     0.180   
+ ──────────────────────────────────────────────────────────────────────────────────────────────── </code></pre>
 </div>
 <div id="simple-slopes-plot" class="section level2">
 <h2>Simple Slopes Plot</h2>
@@ -673,6 +673,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

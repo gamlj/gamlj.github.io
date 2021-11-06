@@ -13,7 +13,7 @@
 
 <title>Details: GLM effect size indices</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -310,12 +310,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -373,7 +373,7 @@ div.tocify {
 
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, GLM, effect size indices, omega-squared, eta-squared, epsilon-squared </span></p>
-<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.6.0 </span></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.6.1 </span></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Standardized Effect size indices produced by GLM module are the following:</p>
@@ -421,7 +421,7 @@ div.tocify {
 <li><span class="math inline">\(SS_{yx.z}^*=1516/29624 =0.051\)</span></li>
 <li><span class="math inline">\(SS_{yz.x}^*=4298/29624 =0.145\)</span></li>
 </ul>
-<p>that are clearly not corresponding to the <span class="math inline">\(r_{sp}^2\)</span>, as they should be. We should note, however, that the two methods of estimation usually give very similar results, even when <span class="math inline">\(SS_{total}^*=SS_{total}\)</span>.</p>
+<p>that are clearly not corresponding to the <span class="math inline">\(r_{sp}^2\)</span>, as they should be. We should note, however, that the two methods of estimation usually give very similar results, even when <span class="math inline">\(SS_{total}^* \ne SS_{total}\)</span> and exact the same results when <span class="math inline">\(SS_{total}^*=SS_{total}\)</span>.</p>
 <p>The same reasoning holds for all the non-partial indices.</p>
 </div>
 <div id="eta2p-partial-eta-squared" class="section level1">
@@ -452,6 +452,15 @@ div.tocify {
 <h1><span class="math inline">\(\epsilon^2\)</span>p : partial epsilon-squared</h1>
 <p>As for the non-partial Epsilon, the partial Epsilon-squared is a correction of <span class="math inline">\(\eta^2p\)</span>, but the correction involves only the estimation of the sum of squares of the effect, not the partial variance on which the effect is compared</p>
 <p><span class="math display">\[\epsilon^2p={{SS_{eff}-SS_{res} \cdot ({df_{eff}/df_{res}) \cdot }}\over{ SS_{eff}+SS_{res}}}\]</span></p>
+</div>
+<div id="simple-effects" class="section level1">
+<h1>Simple Effects</h1>
+<p>From version 2.6.1 on, all the effect size indices are available also for the simple effects. To compute them, <span class="gamlj">GAMLj</span> extracts the SS of the simple effect from <code>R emmeans</code> F-tests. The SS residuals and SS model is extracted from the model summary, given that both SS do not change when simple effects are computed. Then the indices are computed using the previously described formulas.</p>
+<p>In particular, if the simple effect is <span class="math inline">\(se\)</span>: <span class="math display">\[SS_{res}=\sigma^2\cdot df_{res}\]</span></p>
+<p>where <span class="math inline">\(\sigma\)</span> is extracted as <code>sigma(model)</code>.</p>
+<p><span class="math display">\[SS_{model}={{F_{model}\cdot df_{model}} \cdot {SS_{res} \over {df_{res}}}}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[SS_{se}={{F_{se}\cdot df_{se}} \cdot {SS_{res} \over {df_{res}}}}\]</span></p>
 </div>
 <div id="confidence-intervals" class="section level1">
 <h1>Confidence intervals</h1>
@@ -513,6 +522,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
