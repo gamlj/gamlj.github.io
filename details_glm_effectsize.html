@@ -13,6 +13,7 @@
 
 <title>Details: GLM effect size indices</title>
 
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -67,6 +68,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
@@ -345,7 +368,7 @@ div.tocify {
   <a href="gzlmmixed.html">Generalized Mixed Models</a>
 </li>
 <li>
-  <a href="examples.html">Examples</a>
+  <a href="examples.html">Examples and Details</a>
 </li>
 <li>
   <a href="release_notes.html">Release notes</a>
@@ -408,21 +431,31 @@ div.tocify {
 <p><span class="math display">\[\eta^2={{SS_{eff} \over {SS_{model}+SS_{res}}}}\]</span></p>
 <p>where <span class="math inline">\(SS_{model}+SS_{res}=SS_{total}\)</span> and <span class="math inline">\(SS_{total}=\sum(y_i-\bar{y})^2\)</span> and <span class="math inline">\(SS_{model}=\sum(\hat{y_i}-\bar{\hat{y}})^2\)</span>.</p>
 <p>Please notice that although the computation of the effect size indexes and their confidence intervals is carried out employing <a href="https://github.com/easystats/effectsize">effectsize R package</a>, <span class="gamlj">GAMLj</span> makes a correction to the computation of <span class="math inline">\(\eta^2\)</span> and of the other non-partial indices. <code>effectsize</code> R package, infact, defines the total sum of squares as <span class="math inline">\(SS_{total}^*=\sum{SS_{f}+SS_{res}}\)</span>, where <span class="math inline">\(f\)</span> is any effect in the model. For balanced designs and many other models, <span class="math inline">\(SS_{total}^*=SS_{total}\)</span>, so no issue arises. However, there are certain models in which <span class="math inline">\(SS_{total}^*\ne SS_{total}\)</span>, and so the index looses some of its properties when computed based on <span class="math inline">\(SS_{total}^*\)</span>. <span class="gamlj">GAMLj</span> operates a correction such that all the non-partial indeces are always computed based on <span class="math inline">\(SS_{total}=SS_{model}+SS_{res}\)</span>.</p>
-<p>With the correction, one property <span class="math inline">\(\eta^2\)</span> retains even when <span class="math inline">\(SS_{total}^*\ne SS_{total}\)</span> is that <span class="math inline">\(\eta^2=r_{sp}^2\)</span>, where <span class="math inline">\(r_{sp}\)</span> is the semi-partial correlation <span class="citation">(Cohen, West, and Aiken <a href="#ref-cohen2014applied">2014</a>)</span>. We can use the <code>exercise</code> dataset from <span class="citation">(Cohen, West, and Aiken <a href="#ref-cohen2014applied">2014</a>)</span> to see this in practice (refer to <a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a> for a complete analysis). If we run a multiple regression <code>yendu~xage+zexer</code> and ask for the <span class="math inline">\(\eta^2\)</span>’s, we obtain the following results:</p>
+<p>With the correction, one property <span class="math inline">\(\eta^2\)</span> retains even when <span class="math inline">\(SS_{total}^*\ne SS_{total}\)</span> is that <span class="math inline">\(\eta^2=r_{sp}^2\)</span>, where <span class="math inline">\(r_{sp}\)</span> is the semi-partial correlation <span class="citation">(<a href="#ref-cohen2014applied" role="doc-biblioref">Cohen, West, and Aiken 2014</a>)</span>. We can use the <code>exercise</code> dataset from <span class="citation">(<a href="#ref-cohen2014applied" role="doc-biblioref">Cohen, West, and Aiken 2014</a>)</span> to see this in practice (refer to for a complete analysis). If we run a multiple regression <code>yendu~xage+zexer</code> and ask for the <span class="math inline">\(\eta^2\)</span>’s, we obtain the following results:</p>
 <p><img src="details/glm/eta1.png" class="img-responsive" alt=""></p>
 <p>Going in <span class="jamovi">jamovi</span>, <span class="option">Regression-&gt;Partial correlation</span> we can compute the semi-partial correlation of each IV coviariating the other. This gives:</p>
 <p><img src="details/glm/eta2.png" class="img-responsive" alt=""></p>
-<p>Squaring it gives <span class="math inline">\(r_{yx.z}^2=-0.230^2=0.053\)</span>, which is equal to the corrisponding <span class="math inline">\(\eta^2=.053\)</span>.</p>
+<p>Squaring it gives <span class="math inline">\(r_{yx.z}^2=-0.230^2=0.0529\)</span>, which is equal to the corrisponding <span class="math inline">\(\eta^2=.053\)</span>.</p>
 <p><img src="details/glm/eta3.png" class="img-responsive" alt=""></p>
-<p>Squaring the second <span class="math inline">\(r_{sp}^2\)</span> gives <span class="math inline">\(r_{yz.x}^2=0.388^2=0.15\)</span>, considering rounding, which is equal to the corrisponding <span class="math inline">\(\eta^2=.150\)</span>.</p>
+<p>Squaring the second <span class="math inline">\(r_{sp}^2\)</span> gives <span class="math inline">\(r_{yz.x}^2=0.388^2=0.1504664\)</span>, considering rounding, which is equal to the corrisponding <span class="math inline">\(\eta^2=.150\)</span>.</p>
 <p>If we used <span class="math inline">\(SS_{total}^*=\sum{SS_{f}}+SS_{res}\)</span>, results would be:</p>
 <ul>
 <li><span class="math inline">\(SS_{total}^*=1516+4298+23810=29624\)</span></li>
-<li><span class="math inline">\(SS_{yx.z}^*=1516/29624 =0.051\)</span></li>
-<li><span class="math inline">\(SS_{yz.x}^*=4298/29624 =0.145\)</span></li>
+<li><span class="math inline">\(SS_{yx.z}^*=1516/29624 =0.0511747\)</span></li>
+<li><span class="math inline">\(SS_{yz.x}^*=4298/29624 =0.1450851\)</span></li>
 </ul>
 <p>that are clearly not corresponding to the <span class="math inline">\(r_{sp}^2\)</span>, as they should be. We should note, however, that the two methods of estimation usually give very similar results, even when <span class="math inline">\(SS_{total}^* \ne SS_{total}\)</span> and exact the same results when <span class="math inline">\(SS_{total}^*=SS_{total}\)</span>.</p>
 <p>The same reasoning holds for all the non-partial indices.</p>
+<div id="isnt-this-weird-technical-stuff" class="section level2">
+<h2>Isn’t this weird (technical stuff)?</h2>
+<p>For many people, the fact that <span class="math inline">\(\sum{SS_{f}} \ne SS_{model}\)</span> may come as a surprise. Maybe because in the ANOVA tradition, with balanced designs, <span class="math inline">\(\sum{SS_{f}}\)</span> is always equal to <span class="math inline">\(SS_{model}\)</span>, or maybe because it would be nicer if it was always like in the ANOVA. Since we have to accept that in the GLM <span class="math inline">\(\sum{SS_{f}}\)</span> is not necessarily equal to <span class="math inline">\(SS_{model}\)</span>, let us see when this happens.</p>
+<p>There are two cases: The easiest to understand is when <span class="math inline">\(\sum{SS_{f}} \lt SS_{model}\)</span>. This case happens when the independent variables are correlated so each variable explains a unique part of the variance, but the model sum of square involves also some shared variance, which ends up in <span class="math inline">\(SS_{model}\)</span> but not in <span class="math inline">\(\sum{SS_{f}}\)</span>.</p>
+<p>A little trickier is the case when <span class="math inline">\(\sum{SS_{f}} \gt SS_{model}\)</span>, because it seems strange that the sum of effects is larger than the overall combined effect.</p>
+<p>Consider a regression <span class="math inline">\(y=a+b_{yx.z}x+b_{yz.x}z\)</span>. Recall the the <span class="math inline">\(SS_{yx.z}\)</span> (<span class="math inline">\(x\)</span> explains <span class="math inline">\(y\)</span> keeping constant <span class="math inline">\(z\)</span>) is computed as <span class="math inline">\(SS_{total}-SS_{yz}\)</span>, where <span class="math inline">\(SS_{yz}\)</span> is the sum of squares explained by <span class="math inline">\(x\)</span> without <span class="math inline">\(z\)</span> in the model, and <span class="math inline">\(SS_{yz.x}=SS_{total}-SS_{yx}\)</span>. It follows that the <span class="math inline">\(\sum{SS_f}=2\cdot SS_{total}-SS_{yx}-SS_{yz}\)</span> is larger than <span class="math inline">\(SS_{total}\)</span> when <span class="math inline">\(SS_{total} &gt; SS_{yx}+SS_{yz}\)</span>. This necessarily means that at least one variable explains more variance while keeping constant the other than alone.</p>
+<p>Indeed, in the example above about exercising, the SS of <em>age</em> alone is 452, and <em>exer</em> alone is 3234, which sum to 3686, less than 4751, the multiple regression model SS.</p>
+<p>The question is now: when does this happen? Well, it happens when the <span class="math inline">\(B_{yx}\)</span>, the coefficient associated with <span class="math inline">\(x\)</span> in simple regression, is smaller (in absolute value) than the partial coefficient of <span class="math inline">\(B_{yx.z}\)</span> of a multiple regression. Because <span class="math inline">\(B_{yx.z}=B_{yx} - B_{yz.x}\cdot B_{xz}\)</span>, this happens when <span class="math inline">\(B_{yx}\)</span> and <span class="math inline">\(B_{yz.x}\cdot B_{zx}\)</span> have different signs: therefore, we have a suppression effect!</p>
+<p>In the example above, focusing on <em>age</em>, we have <span class="math inline">\(B_{yx.z}=-.257\)</span>, <span class="math inline">\(B_{yz.x}=.916\)</span> and <span class="math inline">\(B_{zx}=.134\)</span>, thus <span class="math inline">\(B_{yz.x}\cdot B_{zx}=.916*.134=0.122744\)</span>, which has a different sign than <span class="math inline">\(B_{yx.z}=-.257\)</span>.</p>
+</div>
 </div>
 <div id="eta2p-partial-eta-squared" class="section level1">
 <h1><span class="math inline">\(\eta^2\)</span>p : partial eta-squared</h1>
@@ -476,10 +509,10 @@ Got comments, issues or spotted a bug? Please open an issue on <a href="https://
 </p>
 </div>
 <div id="additional-references" class="section level1 unnumbered">
-<h1>Additional references</h1>
-<div id="refs" class="references">
-<div id="ref-cohen2014applied">
-<p>Cohen, Patricia, Stephen G West, and Leona S Aiken. 2014. <em>Applied Multiple Regression/Correlation Analysis for the Behavioral Sciences</em>. Psychology press.</p>
+<h1 class="unnumbered">Additional references</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-cohen2014applied" class="csl-entry">
+Cohen, Patricia, Stephen G West, and Leona S Aiken. 2014. <em>Applied Multiple Regression/Correlation Analysis for the Behavioral Sciences</em>. Psychology press.
 </div>
 </div>
 </div>
