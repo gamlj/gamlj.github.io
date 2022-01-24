@@ -13,6 +13,7 @@
 
 <title>General Linear Model</title>
 
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -345,7 +346,7 @@ div.tocify {
   <a href="gzlmmixed.html">Generalized Mixed Models</a>
 </li>
 <li>
-  <a href="examples.html">Examples</a>
+  <a href="examples.html">Examples and Details</a>
 </li>
 <li>
   <a href="release_notes.html">Release notes</a>
@@ -385,7 +386,7 @@ div.tocify {
 <p>The module provides ANOVA tables and parameters estimates for any estimated model. Effect size indices (eta, partial eta, partial omega, partial epsilon, and beta) are optionally computed.</p>
 <p>Variables definition follows jamovi standards, with categorical independent variables defined in <span class="option">Factors</span> and continuous independent variables in <span class="option">Covariates</span>.</p>
 <p><img src="glm/variables.png" class="img-responsive" alt=""></p>
-<p>Effect size indices are optionally computed by selecting the following options (see <a href="details_glm_effectsize.html">Details: GLM effect size indices</a>):</p>
+<p>Effect size indices are optionally computed by selecting the following options (see ):</p>
 <ul>
 <li><span class="math inline">\(\beta\)</span> : standardized regression coefficients</li>
 <li><span class="math inline">\(\eta^2\)</span>: (semi-partial) eta-squared</li>
@@ -397,7 +398,7 @@ div.tocify {
 </ul>
 <p>Confidence intervals of the parameters can be also selected in <span class="option">Options</span> tab.</p>
 <p><img src="glm/effectsize1.png" class="img-responsive" alt=""></p>
-<p>Please check the details in <a href="details_glm_effectsize.html">Details: GLM effect size indices</a></p>
+<p>Please check the details in</p>
 </div>
 <div id="model" class="section level1">
 <h1>Model</h1>
@@ -419,7 +420,7 @@ div.tocify {
 <p>Contrasts definitions are provided in the estimates table. More detailed definitions of the comparisons operated by the contrasts can be obtained by selecting <span class="option">Show contrast definition table</span>.</p>
 <p>Differently to standard R naming system, contrasts variables are always named with the name of the factor and progressive numbers from 1 to K-1, where K is the number of levels of the factor.</p>
 <p>In reading the contrast labels, one should interpret the <code>(1,2,3)</code> code as meaning “the mean of the levels 1,2, and 3 pooled toghether”. If factor levels 1,2 and 3 are all levels of the factor in the samples, <code>(1,2,3)</code> is equivalent to “the mean of the sample”. For example, for a three levels factor, a contrast labeled <code>1-(1,2,3)</code> means that the contrast is comparing the mean of level 1 against the mean of the sample. For the same factor, a contrast labeled <code>1-(2,3)</code> indicates a comparison between level 1 mean and the subsequent levels means pooled together.</p>
-<p>More details and examples <a href="rosetta_contrasts.html">Rosetta store: contrasts</a>.</p>
+<p>More details and examples .</p>
 </div>
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
@@ -491,7 +492,7 @@ div.tocify {
 <ul>
 <li><span class="option">On intercept</span>_ provides effect size for the intercept</li>
 <li><span class="option">On Effect sizes</span>: outputs a new table with all effect sizes available, with confidence intervals</li>
-<li>see <a href="details_glm_effectsize.html">Details: GLM effect size indices</a></li>
+<li>see</li>
 </ul></li>
 </ul>
 </div>
@@ -499,24 +500,12 @@ div.tocify {
 <h1>Examples</h1>
 <p>Some worked out examples of the analyses carried out with jamovi GAMLj are posted here (more to come)</p>
 <ul>
-<li>
-<a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a>
-</li>
-<li>
-<a href="glm_example2.html">Polynomial Effects</a>
-</li>
 </ul>
 </div>
 <div id="details" class="section level1">
 <h1>Details</h1>
 <p>Some more information about the module specs can be found here # Specs</p>
 <ul>
-<li>
-<a href="details_glm_effectsize.html">Details: GLM effect size indices</a>
-</li>
-<li>
-<a href="posthoc_specs.html">Post-hocs Details</a>
-</li>
 </ul>
 <h1>
 Comments?
