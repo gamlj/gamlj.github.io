@@ -14,32 +14,19 @@ output:
         collapsed: false
 topic: glm
 category: details
-
+editor_options: 
+  chunk_output_type: console
 ---
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
+library(fontawesome)
+
 ```
 
 
-<script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-} 
-</script>
 
 ```{r echo=FALSE,results='hide'}
 source("../R/functions.R")
@@ -101,6 +88,8 @@ where $SS_{model}+SS_{res}=SS_{total}$ and $SS_{total}=\sum(y_i-\bar{y})^2$ and 
 
 Please notice that although the computation of the effect size indexes and their confidence intervals is carried out employing [effectsize R package](https://github.com/easystats/effectsize), `r gamlj()` makes a correction to the computation of $\eta^2$ and of the other non-partial indices. `effectsize` R package, infact, defines the total sum of squares as $SS_{total}^*=\sum{SS_{f}+SS_{res}}$, where $f$ is any effect in the model. For balanced designs and many other models, $SS_{total}^*=SS_{total}$, so no issue arises. However, there are certain models in which $SS_{total}^*\ne SS_{total}$, and so the index looses some of its properties when computed based on  $SS_{total}^*$. `r gamlj()` operates a correction such that all the non-partial indeces are always computed based on $SS_{total}=SS_{model}+SS_{res}$.
 
+`r foldable_title("Why this correction?",comment="technical stuff")`
+
 With the correction, one property $\eta^2$ retains even when $SS_{total}^*\ne SS_{total}$ is that $\eta^2=r_{sp}^2$, where $r_{sp}$ is the semi-partial correlation [@cohen2014applied]. We can use the `exercise` dataset from [@cohen2014applied] to see this in practice (refer to `r link_pages(nickname="exercise")` for a complete analysis). If we run a multiple regression `yendu~xage+zexer` and ask for the $\eta^2$'s, we obtain the following results:
 
 <img src="details/glm/eta1.png" class="img-responsive" alt="">
@@ -125,10 +114,9 @@ that are clearly not corresponding to the $r_{sp}^2$, as they should be. We shou
 
 The same reasoning holds for all the non-partial indices.
 
-<button type="button" class="collapsible">Open Collapsible</button>
-<div class="collapsecontent">
-  <p>Lorem ipsum...</p>
-</div> 
+</div>
+
+`r foldable_title("Isn't this weird?",comment="technical stuff")`
 
 For many people, the fact that $SS_{model}^* \ne SS_{model}$ may come as a surprise. Maybe because in the ANOVA tradition, with balanced designs, $\sum{SS_{f}}$ is always equal to $SS_{model}$, or maybe because it would be nicer if it was always like in the ANOVA. Since we have to accept that in the GLM $\sum{SS_{f}}$ is not necessarily equal to $SS_{model}$, let us see when this happens. 
 
@@ -148,9 +136,7 @@ The question is now: when does this happen? Well, it happens when the $B_{yz}$, 
 
 In the example above, focusing on _exer_ (the z variable), we have $B_{yz.x}=.961$, $B_{yx.z}=-.257$ and $B_{xz}=.762$, thus  $B_{yx.z}\cdot B_{xz}=-.257*.762=`r -.257*.762`$, which has a different sign than $B_{yz}=.762$. Thus, the effect of _exercising_ is stronger when keeping constant _age_ than alone: _age_ suppresses the effect of _exercising_ on _endurance_.
 
-
-
-
+</div> 
 
 # $\eta^2$p : partial eta-squared
 
@@ -221,5 +207,8 @@ Details for the confidence intervals computation can be found in [Ben-Shachar, M
 
 
 `r issues()`
+
+<script type="text/javascript" src="local.js"></script>
+
 
 # Additional references
