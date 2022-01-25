@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="(by Marcello Gallucci)" />
+
+
+<title>Poisson and Negative Binomial mixed models in jamovi</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="gzlmmixed.html">Generalized Mixed Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples and Details</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+<li>
+  <a href="vignettes.html">GAMLj in R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/gamlj/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Poisson and Negative Binomial mixed models in jamovi</h1>
+<h4 class="author">(by Marcello Gallucci)</h4>
+
+</div>
+
+
+<p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, mixed models, generalized linear models, Poisson mixed model, multilevel logist, Negative Binomial </span></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.1.2 </span> <span class="draft"> Draft version, mistakes may be around </span> <span class="incomplete"> Work in progress: incomplete version </span></p>
+<p>In this example we estimate a (multilevel) mixed Poisson model and a Negative Binomial mixed model using <span class="jamovi">jamovi</span> GAMLj module.</p>
+<p>One can follow the example by downloading the <a href="https://github.com/gamlj/gamlj.github.io/blob/master/data//phdpubs.csv">cvs file</a> and open it in <a href="https://raw.githubusercontent.com/gamlj/gamlj_docsource/master/data/phdpubs.csv" class="uri">https://raw.githubusercontent.com/gamlj/gamlj_docsource/master/data/phdpubs.csv</a> <a href="https://www.jamovi.org/download.html">jamovi</a>. Be sure to install the new version of GAMLj module from within jamovi library. We use data from Long (1990) on the number of publications produced by Ph.D. biochemists to illustrate the application of Poisson. R analsyes of these data (not considering the mixed model) can be found in <a href="https://data.princeton.edu/wws509/r/overdispersion">Rodiguez page</a>. We slightly modified the data by defining a new variable, <code>program</code>, that clusters together students in the same phd program.</p>
+<div id="the-research-design" class="section level1">
+<h1>The research design</h1>
+<p>The data contain information about the number of publications of 915 PhD students in biochemestry. Varables are:</p>
+<ul>
+<li><code>art</code>: articles in last three years of Ph.D.</li>
+<li><code>fem</code>: coded one for females</li>
+<li><code>mar</code>: coded one if married</li>
+<li><code>kid5</code>: number of children under age six</li>
+<li><code>ment</code>: articles by mentor in last three years</li>
+<li><code>program</code>: program in which the student is enrolled</li>
+</ul>
+<p>We would like to predict the number of articles published in the last three years based on the available predictors.</p>
+</div>
+<div id="understanding-the-problem" class="section level1">
+<h1>Understanding the problem</h1>
+<p>This may look like a simple linear model task, but there are two issues to take into the account to decide which linear model to use: The dependent variable distribution and the structure of the data.</p>
+<p>The distribition of the dependent variable is as follows:</p>
+<p><img src="glmmixed_example2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Glancing at the histogram makes it clear that the distribution is not normal, but it roughly resembles the Poisson distribution. Here is an example of Poisson distribution with equivalent mean.</p>
+<p><img src="glmmixed_example2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>We can see that the shape of our distribution is not qualitatively very different as compared with a theoretical Poisson distribution, so a Generalized Linear Model with Poisson distribition may work. However, we can check wheather our distribution is in line with the features of the Poisson dist by checking its mean and variance. The Poisson distribution has variance equal to the mean, in fact the simulated distribution in the histogram has <span class="math inline">\(\bar{x}=1.77\)</span> and <span class="math inline">\(s^2=1.821\)</span>. The <code>art</code> variable distribution has <span class="math inline">\(\bar{x}=1.693\)</span> and <span class="math inline">\(s^2=3.71\)</span>, with a ratio variance/mean of 2.191, which does not really qualify for Poisson dist. This looks like a case of <strong>overdispersion</strong>, <a href="http://bbolker.github.io/mixedmodels-misc/glmmFAQ.html#overdispersion">cf. here for details</a>. We will than consider a Negative Binomial model to account for possible overdispersion.</p>
+<p>An example of Negative Binomial distribution with equivalent mean and variance is here.</p>
+<p><img src="glmmixed_example2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The second issue one needs to deal with is the structure of the data. We have seen that the students are not a random sample of students drawn independently one each other, but they are grouped by the program they are enrolled in. There are 83 programs, in each program there are on average 11 students. Because students in the same program may be more similar one each other than across programs, <code>programs</code> may cluster the scores of the dependent variable and create dependency in the data. To take dependency into the account, we will use a random intercepts model estimated with a Generalized Mixed Model.</p>
+<p>To recap: we are going to estimate a Negative Binomial Mixed Model using GAMLj module.</p>
+</div>
+<div id="the-model" class="section level1">
+<h1>The model</h1>
+<p>Setting up the model is straightforward. After selecting <code>Generalized Mixed Models</code> in the <code>Linear Models</code> menu, we select the <code>Negative Binomial</code> type at the top of the input interface, we put the dependent variable <code>art</code> in the <code>Dependent Variable</code> field, <code>fem</code> (gender) and <code>mar</code> (marital status) as factors, and kids5 (number of kids) and <code>ment</code> (# of pubs of the mentor) as covariates (continuous independent variables). Crucially, we select <code>program</code> as the clustering variable by moving it to the <code>Cluster Variables</code> field.</p>
+<p><img src=" examples/gzlmmixed2/input_model1.png " class="img-responsive" alt=""></p>
+<p>Fixed effects are defined automatically, with all main effects and the interactions between the factors.</p>
+<p><img src=" examples/gzlmmixed2/input_fixed1.png " class="img-responsive" alt=""></p>
+<p>As for the random effects, we need to move the intercepts in the field of <code>Random Coefficients</code>.</p>
+<p><img src=" examples/gzlmmixed2/input_random1.png " class="img-responsive" alt=""></p>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<div id="general-info" class="section level2">
+<h2>General Info</h2>
+<p>We first have a look at the model info table.</p>
+<p><img src=" examples/gzlmmixed2/output_info1.png " class="img-responsive" alt=""></p>
+<p>The first four rows tell us info about the model set up, which should be as we intended (those are useful if we share our results, the reader understands what we have done). The remaning rows inform us about the general fit of the model. Please notice that the <span class="math inline">\(R^2\)</span> are not computed. It is not an error. At the moment (version 2.1.2) the indexes are not implemented for the negative binomial model. In the future we hope to fix this.</p>
+<p>An interesting statistics is the <span class="math inline">\(Chi^2/DF\)</span>. This is an approximation of the overdispersion of the model ( <a href="http://bbolker.github.io/mixedmodels-misc/glmmFAQ.html#overdispersion">cf. here for details</a> ). A value of 1 means no overdispersion, so it looks like our concerns about overdispersion were a bit exagerated. We can check (we do later on down this page) a Poisson model to see if we can improve the fit. We will compare the AIC and BIC of the present model with the Poisson model’s and see whether we can do better.</p>
+</div>
+<div id="random-component" class="section level2">
+<h2>Random component</h2>
+<p>The second table we need to evaluate is the random component. Here we find the variance of the random effects, in this case the intercept varying across <code>program</code>.</p>
+<p><img src=" examples/gzlmmixed2/output_random1.png " class="img-responsive" alt=""></p>
+<p>We can see that there are 915 students clustered in 83 different programs. Programs intercepts show a tiny variance, corresponding to a ICC (intra-class correlation) of .048, about 5% of the variance. Tiny as it may be, it is not zero, so we keep the intercepts as a random coefficient.</p>
+<p>We can now look at the overall effects.</p>
+<p><img src=" examples/gzlmmixed2/output_anova1.png " class="img-responsive" alt=""></p>
+<p>We found a main effect of gender (<code>fem</code>), of kids (<code>kid5</code>) and mentor productivity (<code>ment</code>). To interpret the effects, for gender we can explore the means of the two genders in the expected number of articles, for the other two independent variables we can look at the coefficients to understand the direction and size of the effects.</p>
+<p>Means can be obtained in the <code>Estimated Marginal Means</code> panel.</p>
+<p><img src=" examples/gzlmmixed2/output_means1.png " class="img-responsive" alt=""></p>
+<p>We should recall that in GAMLj Generalized models, the expected means are always reported transformed back in the original scale of the dependent variable, so we can see that <code>Men</code> show a higher expected number of publications (1.75) than <code>Women</code> (1.38).</p>
+<p>As for the continuous independent variables, we look at the fixed effects coefficients.</p>
+<p><img src=" examples/gzlmmixed2/output_fixed1.png " class="img-responsive" alt=""></p>
+<p>We can look at the <code>exp(B)</code> coefficients because they are easier to interpret than the <code>Estimate</code>s. The latter are the liner coefficients, and are expressed in the scale of the liner predictor, in this case <span class="math inline">\(log(art)\)</span>. The <code>exp(B)</code> , on the other hand, get rid of the logarithm, and infor us on the rate of change of the dependent variable as we move the independent variable of one unit. Thus, expected number of articles increases 1.028 times for each article published by the mentor (<code>ment</code> effect), whereas it decreases <span class="math inline">\(1/.834=1.199\)</span> times for one kid more. Recall that the <code>exp(b)</code> is the rate of change. If <code>exp(B)</code> is less than 1, we should say that <em>the expected value increases .834 times</em>, which means that it decreases and sounds awkward, so we take the reciprocal to express how much the expected value <em>decreases</em>.</p>
+<p>As a final touch, we can visualize the results by asking the plot of the expected number of articles by number of kids or number of mentor’s papers.</p>
+<p><img src=" examples/gzlmmixed2/output_plot1.png " class="img-responsive" alt=""></p>
+<p><img src=" examples/gzlmmixed2/output_plot2.png " class="img-responsive" alt=""></p>
+</div>
+</div>
+<div id="related-example" class="section level1">
+<h1>Related example</h1>
+<ul>
+<li>
+<a href="glmmixed_example1.html">Logistic mixed model in jamovi</a>
+</li>
+<li>
+<a href="glmmixed_example2.html">Poisson and Negative Binomial mixed models in jamovi</a>
+</li>
+</ul>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj/issues"> GAMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

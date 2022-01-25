@@ -113,16 +113,18 @@ issues<-function() {
   
 }
 
-backto<-function(topic) {
-  a<-'<p class="return"> Return to main help page: ' 
-  p<-get_pages(topic=topic,category = "help")[[1]]
-  link<-paste0(p$filename,".html")
-  b<-paste0('<a href="',link,'">',p$title,'</a>')
-  d<-paste(a,b,"</p>")
-  return(d)
-  
-}
+backto<-function(...) {
+  a<-'<div class="return"> Return to : ' 
 
+  b<-lapply(list(...), function(topic) {
+      p<-get_pages(topic=topic,category = "help")[[1]]
+      link<-paste0(p$filename,".html")
+      paste0('<span class="little"><a href="',link,'">',p$title,'</a></span>')
+  })
+  b<-paste(b,collapse = ", ")
+  a<-paste(a,b,"</div>")
+  return(a)
+}
 
 write_commits<-function() {
   wd<-getwd()

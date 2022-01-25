@@ -11,7 +11,7 @@
 
 
 
-<title>Mixed Models module technical details</title>
+<title>GAMLj: General Analyses for the Linear Model in Jamovi</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -231,75 +228,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
 
 </head>
 
@@ -307,16 +235,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -368,49 +286,196 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Mixed Models module technical details</h1>
+<h1 class="title toc-ignore">GAMLj: General Analyses for the Linear Model in Jamovi</h1>
 
 </div>
 
 
-<div id="degrees-of-freedom" class="section level1">
-<h1>Degrees of freedom</h1>
-<p>As far as it is possible, inferential tests are based on an automatic selection of the degrees of freedom for the t-tests and the F-tests.</p>
+<p>General, Mixed and Generalized Models module for <span class="jamovi">jamovi</span></p>
+<p><img src="commons/pics/ui.png" class="img-responsive" alt="commons/pics/ui.png" width="400"></p>
+<p>GAMLj offers tools to estimate, visualize, and interpret General Linear Models, Mixed Linear Models and Generalized Linear Models with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc tests, etc.</p>
 <ul>
-<li><p>For the t-tests the module relies on the Satterthwaite approximation of degrees of freedom as it is implemented by the <a href="https://cran.r-project.org/web/packages/lmerTest/index.html">lmerTest package</a>. <code>Lmertest::summary()</code> produces t-test DF and p-values in the majority of cases. When the model does not converge, or some problem with the model occurs, the DF cannot be estimated and thus the p-values are not reported in the parameter estimates table. A warning note is displayed in those cases. See details in <a href="https://cran.r-project.org/web/packages/lmerTest/index.html">lmerTest package</a>.</p></li>
-<li><p>For the F-tests of the main model (“Fixed Effects ANOVA”), the module relies again on the Satterthwaite approximation of degrees of freedom as it is implemented by the <a href="https://cran.r-project.org/web/packages/lmerTest/index.html">lmerTest package</a>. <code>Lmertest::anova()</code> has difficulties in calculating F-test DF and p-values when the model does not converge, there are problems with the model random variances, or when numerical independent variables appear in complex interactions. When the <code>lmerTest::anova()</code> does not produce the DF and p-values, the module switches to <code>car::Anova(..,type=3, test="F")</code> function of the R <a href="https://cran.r-project.org/web/packages/car/index.html">car package</a>. <code>car::Anova(..,type=3, test="F")</code> implements the Kenward-Roger method for degrees of freedom. A warning note is displayed in those cases.</p></li>
-<li><p>For F-tests of simple effects, the <code>car::Anova(..,type=3, test="F")</code> is always used, thus the the Kenward-Roger method for degrees of freedom is employed. This is because the <code>lmertest::anova()</code> requires the factor contrast to be <code>contr.sum()</code>, which does not allow to estimate simple effects. <code>car::Anova(..,type=3, test="F")</code> has not such a limitations, so it works fine for the purpose.</p></li>
+<li>ANOVA and Regression approach</li>
+<li>Continuous and categorical independent variables</li>
+<li>F-test and parameter estimates</li>
+<li>Confidence intervals</li>
+<li>Moderation made easy</li>
+<li>Simple slopes analysis</li>
+<li>Simple effects</li>
+<li>post-hocs analysis</li>
+<li>Plots for up to three-way interactions</li>
+<li>Automatic selection of best estimation methods and degrees of freedom selection</li>
+<li>Type III estimation</li>
+</ul>
+<p>Available models are:</p>
+<ul>
+<li>OLS Regression (GLM)</li>
+<li>OLS ANOVA (GLM)</li>
+<li>OLS ANCOVA (GLM)</li>
+<li>Random coefficients regression (Mixed)</li>
+<li>Random coefficients ANOVA-ANCOVA (Mixed)</li>
+<li>Logistic regression (GZLM)</li>
+<li>Logistic ANOVA-like model (GZLM)</li>
+<li>Probit regression (GZLM)</li>
+<li>Probit ANOVA-like model (GZLM)</li>
+<li>Multinomial regression (GZLM)</li>
+<li>Multinomial ANOVA-like model (GZLM)</li>
+<li>Poisson regression (GZLM)</li>
+<li>Poisson ANOVA-like model (GZLM)</li>
+<li>Overdispersed Poisson regression (GZLM)</li>
+<li>Overdispersed Poisson ANOVA-like model (GZLM)</li>
+<li>Negative binomial regression (GZLM)</li>
+<li>Negative binomail ANOVA-like model (GZLM)</li>
+<li>Random coefficients logistic model (GlmMixed)</li>
+<li>Random coefficients poisson model (GlmMixed)</li>
+</ul>
+<p>Please visit the sub-modules pages for details:</p>
+<ul>
+<li><a href="glm.html">GAMLj GLM</a></li>
+<li><a href="mixed.html">GAMLj Mixed models</a></li>
+<li><a href="gzlm.html">GAMLj Generalized Models</a></li>
+<li><a href="gzlmmixed.html">GAMLj Generalized Mixed Models</a></li>
+</ul>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<p>Some worked out examples of the analyses carried out with jamovi GAMLj are posted here (more to come)</p>
+<div class="littletitle">
+General Linear Model
+</div>
+<ul>
+<li>
+<a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a>
+</li>
+<li>
+<a href="glm_example2.html">Polynomial Effects</a>
+</li>
+</ul>
+<div class="littletitle">
+Mixed models
+</div>
+<ul>
+<li>
+<a href="mixed_example1.html">Mixed Models: Random coefficients regression</a>
+</li>
+<li>
+<a href="mixed_example2.html">Mixed Models: Repeated measures designs</a>
+</li>
+<li>
+<a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random effects</a>
+</li>
+</ul>
+<div class="littletitle">
+Generalized Linear Models
+</div>
+<ul>
+<li>
+<a href="gzlm_example1.html">Multinomial analysis in jamovi</a>
+</li>
+<li>
+<a href="gzlm_example2.html">Logistic analysis in jamovi</a>
+</li>
+<li>
+<a href="gzlm_example4.html">Frequencies analysis with overdispersed models</a>
+</li>
+</ul>
+<div class="littletitle">
+Generalized Mixed Models
+</div>
+<ul>
+<li>
+<a href="glmmixed_example1.html">Logistic mixed model in jamovi</a>
+</li>
+<li>
+<a href="glmmixed_example2.html">Poisson and Negative Binomial mixed models in jamovi</a>
+</li>
 </ul>
 </div>
-<div id="post-hocs" class="section level1">
-<h1>Post Hocs</h1>
-<p>Post-hocs tests are performed as implemented in the <a href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans package</a>. In particular, the actual implementation is as follows (for any given model term selected by the user) :</p>
-<pre><code>      formula &lt;- as.formula(paste(&#39;~&#39;, term))
-      referenceGrid &lt;- emmeans::emmeans(private$.model, formula)
-      bonferroni &lt;- summary(pairs(referenceGrid, adjust=&#39;bonferroni&#39;))
-      holm &lt;- summary(pairs(referenceGrid, adjust=&#39;holm&#39;))
-      tukey&lt;-summary(pairs(referenceGrid, adjust=&#39;tukey&#39;))</code></pre>
-<p>In <code>Mixed</code> module only <code>bonferroni</code> and <code>holm</code> methods are implemented yet, because I did not find enough evidence in the literature in support of other methods.</p>
+<div id="details" class="section level1">
+<h1>Details</h1>
+<ul>
+<li>
+<a href="details_glm_effectsize.html">Details: GLM effect size indices</a>
+</li>
+<li>
+<a href="gmixed_specs.html">Generalized mixed model module technical details</a>
+</li>
+<li>
+<a href="gzlm_specs.html">Generalized linear model module technical details</a>
+</li>
+<li>
+<a href="mixed_specs.html">Mixed Models module technical details</a>
+</li>
+<li>
+<a href="posthoc_specs.html">Post-hocs Details</a>
+</li>
+</ul>
 </div>
-<div id="cross-classifications" class="section level1">
-<h1>Cross-classifications</h1>
-<p>Assume one has schools and classes, coded as follows:</p>
-<p><img src=" commons/pics/compute_unique_clusters_0.png " class="img-responsive" alt=""></p>
-<p>We want to use school as a clustering variable, but the way <code>Class</code> is coded would pool together cases of different classes, because class 1, for instance, appears in all three schools, even if they are actually three different classes.</p>
-<p>To overcome this problem, some software allows specifying the clustering variable as <code>School:Class</code>, so classes can be distinguished. <span class="gamlj">GAMLj</span> does not allow that, because there’s really no reason to it and it may be confusing. The solution in <span class="gamlj">GAMLj</span> is to recode the classes such that they all have a unique code. In <span class="jamovi">jamovi</span> one can simply compute a new variable as follows:</p>
-<p><img src=" commons/pics/compute_unique_clusters_1.png " class="img-responsive" alt=""></p>
-<p>and obtains unique codes for the classes.</p>
-<p><img src=" commons/pics/compute_unique_clusters_2.png " class="img-responsive" alt=""></p>
-These unique codes can now be used in mixed models to define class as unique clusters in the clustering variable.
-<div class="return">
-Return to : <span class="little"><a href="mixed.html">Mixed Models module</a></span>, <span class="little"><a href="gzlmmixed.html">Generalized Mixed Models module</a></span>
+<div id="installation" class="section level1">
+<h1>Installation</h1>
+<p>If you didn’t already, install <a href="https://www.jamovi.org/download.html">jamovi</a> and run it. Select the jamovi modules library and install GAMLj from there</p>
+<p><img src="glm/install.png" class="img-responsive" alt=""></p>
+<div id="linux" class="section level2">
+<h2>Linux</h2>
+<p>If you are working in linux you can download <a href="https://www.jamovi.org/download.html">Jamovi</a>, then download the .jmo from this link <a href="https://github.com/mcfanda/binaries/blob/master/gamlj_linux.jmo">gamlj binaries</a>.</p>
 </div>
+<div id="others" class="section level2">
+<h2>Others</h2>
+<p>You will first need to download <a href="https://www.jamovi.org/download.html">Jamovi</a>.</p>
+<p>You can clone this repository and compile the module within R with</p>
+<pre><code>library(jmvtools)
+
+jmvtools::install()
+</code></pre>
+</div>
+</div>
+<div id="install-in-r" class="section level1">
+<h1>Install in R</h1>
+<p>To install it in R, simple use:</p>
+<pre><code>
+devtools::install_github(&quot;gamlj/gamlj&quot;)
+</code></pre>
+</div>
+<div id="troubleshooting" class="section level1">
+<h1>Troubleshooting</h1>
+<p>Please check out the <a href="https://mcfanda.github.io/gamlj_docs/troubles.html">troubleshooting page</a>.</p>
+</div>
+<div id="release-notes" class="section level1">
+<h1>Release notes</h1>
+<p>Please check out the <a href="release_notes.html">Release notes</a>.</p>
+</div>
+<div id="quality-control" class="section level1">
+<h1>Quality control</h1>
+<p>Please check the <a href="rosetta.html">rosetta store</a> for alignment with other software results and possible discrepancies.</p>
+</div>
+<div id="specs" class="section level1">
+<h1>Specs</h1>
+<ul>
+<li>
+<a href="details_glm_effectsize.html">Details: GLM effect size indices</a>
+</li>
+<li>
+<a href="gmixed_specs.html">Generalized mixed model module technical details</a>
+</li>
+<li>
+<a href="gzlm_specs.html">Generalized linear model module technical details</a>
+</li>
+<li>
+<a href="mixed_specs.html">Mixed Models module technical details</a>
+</li>
+<li>
+<a href="posthoc_specs.html">Post-hocs Details</a>
+</li>
+</ul>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj/issues"> GAMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+</p>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -443,35 +508,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
