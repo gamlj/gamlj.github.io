@@ -4,7 +4,7 @@ MODULE_FOLDER="/home/marcello/Skinner/Forge/jamovi/gamlj"
 SOURCE_FOLDER="pubs"
 TARGET_FOLDER="../gamlj.github.io"
 #DATALINK<-"https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/data"
-DATALINK="https://raw.githubusercontent.com/gamlj/gamlj_docsource/master/data"
+DATALINK="https://github.com/gamlj/gamlj.github.io/blob/master/data/"
 # These handle the release notes from commits
 MODULE_REPO="gamlj"
 MODULE_REPO_OWNER="gamlj"
