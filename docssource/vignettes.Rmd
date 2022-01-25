@@ -1,0 +1,79 @@
+---
+title: "GAMLj in R"
+topic: r
+category: help
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r echo=FALSE,results='hide'}
+source("../R/constants.R")
+source("../R/functions.R")
+
+
+```
+
+`r version("2.4.0")` 
+
+# Introduction
+
+GAMLj module can be installed and used in R as a standard R packages. Please check the R help for details. Here we provide some appliactions of the package in R.
+
+# Installation
+
+At the moment, `r gamlj()` is not in CRAN yet, so you need to install it via `devtools`
+
+```
+devtools::install_github("gamlj/gamlj")
+```
+
+```{r, echo=FALSE,results='hide'}
+
+pkg<-"gamlj"
+fn<-NULL
+
+extract_help<-function(pkg) {
+  rdbfile <- file.path(find.package(pkg), "help", pkg)
+  rdb <- tools:::fetchRdDB(rdbfile, key = fn)
+  convertor <- function(a) tools::Rd2HTML(a,fragment = F)
+  f <- function(x) {
+     if (length(Rdpack::Rdo_locate_core_section(rdo = x, sec = "\\value"))==0)
+        return(NULL)
+    good<-""
+     y<-fixRd(x)
+     res<-capture.output(convertor(y))
+     res<-res[8:(length(res)-1)]
+     for (a in res)
+        if(a!="")
+           good<-paste(good,a,"\n")
+    good
+  }
+  if(is.null(fn)) lapply(rdb, f) else f(rdb)
+}
+
+
+res<-extract_help(pkg) 
+
+```
+
+```{r, echo=FALSE,results='asis'}
+
+for (r in res)
+   cat(r)
+
+```
+
+# Examples 
+
+`r link_vignettes()`
+
+
+`r issues()`

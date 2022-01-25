@@ -1,0 +1,12 @@
+---
+  title: "About"
+---
+  
+GALMj is awesome. 
+
+# Acronym
+
+The offical acronym of GAMLj is
+`substr(c("General", "Analysis", "for", "Linear", "Models", "in", "jamovi")[c(1,2,5,4,7)],1,1)"`
+
+but General Analysis for Linear Models in jamovi will do just fine

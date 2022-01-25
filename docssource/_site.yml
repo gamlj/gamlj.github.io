@@ -1,0 +1,29 @@
+name: "gamlj-website"
+output_dir: "../docs"
+navbar:
+  title: "GAMLj"
+  left:
+  - text: "GLM"
+    href:  glm.html
+  - text: "Mixed"
+    href: mixed.html
+  - text: "Generalized Models"
+    href:  gzlm.html
+  - text: "Generalized Mixed Models"
+    href:  gzlmmixed.html
+  - text: "Examples and Details"
+    href:  examples.html
+  - text: "Release notes"
+    href:  release_notes.html
+  - text: "GAMLj in R"
+    href:  vignettes.html
+
+  right: 
+  - text: "View on Github"
+    href: https://github.com/gamlj/gamlj
+output:
+  html_document:
+    css: style.css
+    theme: flatly
+
+    

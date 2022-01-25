@@ -1,0 +1,411 @@
+---
+title: "GzLM:  Generalized Polynomial Regression for coronavirus data"
+author: "(Marcello Gallucci)"
+nickname: corona
+topic: gzlm
+category: example
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+knitr::opts_chunk$set(echo = FALSE)
+
+knitr::knit_hooks$set(plot = function(x, options) {
+  paste('<figure><figcaption>', options$fig.cap, '</figcaption><img src="',
+        knitr::opts_knit$get('base.url'), paste(x, collapse = '.'),
+        '"></figure>',
+        sep = '')
+})
+```
+
+
+```{r setup, include=FALSE}
+
+folder<-"/home/marcello/Skinner/Stat/data/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/"
+ff<-list.files(folder)
+ff<-ff[grep("20",ff,fixed = T)]
+data<-read.csv(paste0(folder,ff[1]))
+nn<-names(data)
+
+#data<-read.csv(paste0(folder,"03-11-2020.csv"))
+#data[data$Country.Region=="Italy",]
+
+data$Date<-"ok"
+data$Day<-0
+data<-data[0,]
+
+d<-0
+f<-"ok"
+for (f in ff) {
+   d<-d+1
+   data0<-read.csv(paste0(folder,f))
+   names(data0)<-gsub("_",".",names(data0),fixed=T)
+   data0<-data0[,nn]
+   date<-gsub(".csv","",f,fixed = T)
+   data0$Date<-date
+   data0$Day<-d
+   data<-rbind(data,data0)
+}
+data<-data[data$Day<80,]
+data$Confirmed<-ifelse(is.na(data$Confirmed),0,data$Confirmed)
+data$Deaths<-ifelse(is.na(data$Deaths),0,data$Deaths)
+data$Recovered<-ifelse(is.na(data$Recovered),0,data$Recovered)
+
+ii<-grep("United Kingdom",data$Country.Region,fixed=T)
+data$Country.Region[ii]<-"UK"
+
+ii<-grep("Islamic Republic",data$Country.Region,fixed=T)
+data$Country.Region[ii]<-"Iran"
+
+ii<-grep("Korea",data$Country.Region,fixed=T)
+data$Country.Region[ii]<-"South Korea"
+
+ii<-grep("China",data$Country.Region,fixed=T)
+data$Country.Region[ii]<-"Mainland China"
+
+
+data<-data[data$Confirmed>0,]
+
+tdata<-aggregate(data$Confirmed,list(data$Country),sum)
+
+adata<-aggregate(data[,c("Confirmed","Deaths","Recovered")],list(data$Country,data$Day),sum)
+names(adata)<-c("Country","Day","Confirmed","Deaths","Recovered")
+
+
+library(gamlj)
+form<-Confirmed ~ Day + I(Day^2) + I(Day^3)+I(Day^4)
+tt<-tapply(data$Confirmed,data$Country.Region,length)
+su<-tapply(data$Confirmed,data$Country.Region,max)
+
+u1000<-names(which(tt>10 & su>50))
+
+u1000<-u1000[order(u1000)]
+
+for (u in u1000) {
+  idata<-adata[adata$Country==u,]
+  adata[adata$Country==u,"Day"]<-1:length(idata$Day)
+}
+```
+
+
+`r keywords("Polynomial regression,Gamma regression, Poisson distribution, Generalized linear model")`
+
+`r draft` 
+
+```{r res, include=F}
+
+unlink("../data/corona/*")
+
+res<-list()
+for (u in u1000) {
+ddata1<-adata[adata$Country==u,]
+write.csv(ddata1,file=paste0("../data/corona/data_",u,".csv"),row.names=F)
+mod1<-gamlj::gamljGzlm(
+  scaling = list(list(var="Day",type="none")),
+  formula = form,
+  data = ddata1,
+  plotHAxis = Day,
+  plotRaw = TRUE,
+  modelSelection = "custom",
+  custom_family = "poisson",
+  custom_link = "log")
+ddata1$Day<-ddata1$Day-max(ddata1$Day)
+mod2<-gamlj::gamljGzlm(
+  scaling = list(list(var="Day",type="none")),
+  formula = form,
+  data = ddata1,
+  plotHAxis = Day,
+  plotRaw = TRUE,
+  modelSelection = "custom",
+  custom_family = "poisson",
+  custom_link = "log")
+ec<-round(mod2$main$fixed$asDF[1,4],digit=0)
+gf<-round(mod2$main$fixed$asDF[2,4],digit=2)
+ac<-max(ddata1$Confirmed)
+r2<-as.numeric(as.character(mod1$info$asDF[5,2]))
+res0<-list(u,r2,mod1$descPlot,mod1$main$fixed,ec,gf,ac)
+res[[u]]<-res0
+}
+res
+today<-Sys.Date()
+firstday<-unique(data$Date[which.min(data$Day)])
+lastday<-unique(data$Date[which.max(data$Day)])
+
+```
+
+# Introduction
+
+In this section we look at how to model cumulative distributions over time with the Generalized Linear Model. There are many different ways to model this kind of data, but the purpose here is to show how easy and flexible the generalized linear model is. With `r jamovi()` GAMLj things get very easy.
+
+We are going to use the data from the recent _coronavirus_ (COVID-19) outbreak, available at [CSSEGISandData](https://github.com/CSSEGISandData/COVID-19). Data are updated every day, at the moment ranging from `r firstday` to `r lastday`. As new data arrive, results may change. Data are from different countries. Here we consider only countries where data are available for more than 10 days and the number of confirmed cases is larger than 50.
+
+
+# Data
+
+The data we analyze here are the confirmed cases over time per country. Time is rescaled in each country such that Day=0 is the first day in which the country showed one or more confirmed cases. 
+
+# Cumulative distributions
+
+
+The _coronavirus_ data available to us are in the form of number of confirmed cases for each day. So, each day accumulates also the previous days confirmed cases. Because the outbreak is recent (today is `r today`), we have that the majority of days in several countries show very few cases, whereas a small number of days are associated with many cases. Here is the histogram for Italy and France data (Figure 1). 
+
+```{r fig1, results="asis", fig.cap="Figure 1. Distribution of confirmed cases for two countries"}
+par(mfrow=c(1,2))
+
+datai<-adata[adata$Country=="Italy" & adata$Day<41,]
+hist(datai$Confirmed, main="Italy",freq = T, breaks=100,xlab = "Confirmed cases")
+dataf<-adata[adata$Country=="France" & adata$Day<41,]
+hist(dataf$Confirmed, main="France",freq = T, breaks=100,xlab = "Confirmed cases")
+
+datac<-adata[adata$Country=="Mainland China",]
+
+
+```
+
+A Poisson distribution shape depends on the _mean_ parameter, an example with small mean  is in Figure 2.
+```{r fig2, results="asis",fig.cap="Figure 2. Theoretical Poisson distributions"}
+par(mfrow=c(1,2))
+
+
+x <- rpois(1000,1)
+hist(x,main="mean=1", breaks = 100 )
+
+x <- round(rpois(1000, 10),1)
+hist(x,main="shape=1,rate=.5", breaks = 100 )
+
+```
+
+This distribution can be accomodated with a _Poisson distribution_ or a _Gamma distribution_, even though Gamma is a continuous distribution (and number of confirmed cases is not). 
+
+Please note: because we want to model how the dependent variable changes over time, which is the main goal of the analysis, we are not going to deal with the inferential tests associated with the parameter estimates, so the assumed distribution is not crucial here, as long as the model fit. The same applies to the autocorrelation of the data, which is not a concern for our purposes.
+
+
+# The model
+
+The actual trend of the dependent variable over time may take different shapes. At the onset of the contagion phase, the trend of increase is typically exponential. An example is in Figure 3, in which the Italian data from day 10 (when the first Italian case was confirmed) to day 40 (the end of the fourth week after the Italian outbreak) are depicted.
+
+```{r fig3, fig.cap="Figure 3. Confirmed by day for Italy, first 30 days",fig.hight=100}
+plot(datai$Confirmed~datai$Day,ylab = "Confirmed",xlab="Day",pch=21,bg=5)
+
+```
+
+This shape can be easely captured with a logarithm link-function. That is, the model would simple look like:
+$$ \hat{ln(y)}=a+b_1 \cdot x$$
+
+Fitting a linear model like this one would produce predicted values expressed a $ln(y)$. When we transform them back into the original scale, we obtain an exponential relationship between $y$ and $x$. Let's do it in `r jamovi()`.
+
+# Simple generalized linear model
+
+## Input
+
+As an example, let's fit a GzLM as discussed above. We are going to use GAMLj `Generalized Linear Model` command.
+
+<img src="examples/corona/input.menu.png" class="img-responsive" alt="">
+
+In the input panel, we need to select a `custom model`, because we need to set the `Gamma` as the DV distribution and the `Log` as the link function. If you want to try out, you can select `poisson` as the distribution. As long as the link function is `Log`, the models will not change much.
+
+<img src="examples/corona/input.model.png" class="img-responsive" alt="">
+
+When we have done that, we just set the dependent and the independent variable (covariate) and we have done. To visualize the model, we go to the `Plot` panel and we select `Day` as the x-axis variable.
+
+<img src="examples/corona/input.plot.png" class="img-responsive" alt="">
+
+## Output
+
+```{r intro_hide1, include=FALSE}
+modi<-gamlj::gamljGzlm(
+  scaling = list(list(var="Day",type="none")),
+  formula = Confirmed~Day,
+  data = datai,
+  plotHAxis = Day,
+  plotRaw = TRUE,
+  modelSelection = "custom",
+  custom_family = "poisson",
+  custom_link = "log")
+modi
+```
+As we can see in the recap info table, the $R^2$ would be considered very good (>.70) 
+```{r intro_res1, results="asis",warning=FALSE,echo=FALSE}
+
+  cat("<pre class='jamovitable'>")
+  print(modi$info)
+  cat("</pre>")
+
+```
+
+If we look at the plot and compared the predicted values (the curve) with the actual confirmed cases (cyan dots), we can see how the model fits reasonably well the data.
+
+```{r intro_plot1, results="asis",warning=FALSE,echo=FALSE,fig.cap="Figure 4. Model for Italian first 30 days"}
+
+  print(modi$descPlot)
+
+```
+
+In many applications our results would be considered as satisfactory, but in this case we want to do better. First, it is clear that the confirmed cases increase at a faster rate that the predicted one. Second, the model will not work for long. The number of confirmed cases cannot increase exponentialy forever, so the model will start to grossly misfit, sooner or later. Let's fit the same model (the input is equivalent so I'm not going to show it again) for the Mainland China data, in which the outbreak happened earlier than in Italy. For Mainland China, considering the first 40 days yields very different results as compared with Italy.
+
+```{r intro_hide2, include=FALSE}
+#datac<-datac[datac$Day<40,]
+
+modc<-gamlj::gamljGzlm(
+  scaling = list(list(var="Day",type="none")),
+  formula = Confirmed~Day,
+  data = datac,
+  plotHAxis = Day,
+  plotRaw = TRUE,
+  modelSelection = "custom",
+  custom_family = "poisson",
+  custom_link = "log")
+modc
+
+```
+
+
+```{r intro_plot2, results="asis",warning=FALSE,echo=FALSE,fig.cap="Figure 4. Simple model for Mainland China, first 40 days"}
+
+  modc$descPlot
+
+```
+
+If we look at the plot and compared the predicted values (the curve) with the actual confirmed cases (cyan dots), we can see that the model does not really fit, and cannot fit the data well. We should allow the curve to bend down, or to smooth out, in order to follow the evolution of the DV over time.
+
+
+Furthermore, as we can see in the recap info table, the $R^2$ is definitely not  good for this kind of applications (<.70) 
+```{r intro_res2, results="asis",warning=FALSE,echo=FALSE}
+
+  cat("<pre class='jamovitable'>")
+  print(modc$info)
+  cat("</pre>")
+
+```
+
+
+
+The solution is  polynomial regression. In polynomial regression, one adds power terms ($x^2$, $x^3$, $x^4$ ..) in order to allow the curve to follow different paths along the time line. A squared term, for instance, allows the curve to stay flatter at the begining and stear up quickly. A cubic term allows the curve to smooth. The more polynomial terms one adds, more flexibility one allows to the curve shape. 
+
+For the present data, a polynomial regression up to the 4th grade can be enough (so far). Thus, the model is now:
+
+$$ \hat{ln(y)}=a+b_1 \cdot x + b_2 \cdot x^2, b_3 \cdot x^3+b_4 \cdot x^4$$
+
+We now review how to run this in `r jamovi()` GAMLj.
+
+# Polynomial Generalized Linear Model
+
+## Input 
+
+In the input panel of GAMLj, we need to open the `Model` panel. In the `Components` fiels, upon selecting the variable `Day`, we can see a little `1` on its right. 
+
+<img src="examples/corona/input.square.png" class="img-responsive" alt="">
+
+That is the order of the term we want to include in the model. By clicking the little arrow up, we bring the order to `2`, and then drag the new term in the `Model Terms` fiels. 
+
+By repeating the operation for order 3 and 4, we obtained the desired model.
+
+<img src="examples/corona/input.full.png" class="img-responsive" alt="">
+
+# Output
+
+If we fit the polynomial generalized model on the data from Mainland China, we obtain a $R^2$ pretty close to 1, showing how well the model now fits the data. More clearly, the plot of the new model shows the flexibility of the GzLM in adjusting itself to the data trend.
+
+```{r intro_hide3, include=FALSE}
+modc<-gamlj::gamljGzlm(
+  scaling = list(list(var="Day",type="none")),
+  formula = form,
+  data = datac,
+  plotHAxis = Day,
+  plotRaw = TRUE,
+  modelSelection = "custom",
+  custom_family = "poisson",
+  custom_link = "log")
+
+# rr<-NULL
+# datax<-datai
+# for (i in 1:length(datax$Day)) {
+#   datal<-datax
+#   datal$Day<-datax$Day-i
+#   mod<-glm(form,data=datal,family = Gamma("log"))
+#   pp<-predict(mod)
+#   ss<-exp(mod$coefficients[[2]])
+#   rr<-c(rr,ss)
+# }
+# plot(pp)
+#plot(rr)
+```
+
+```{r intro_res3, results="asis",warning=FALSE,echo=FALSE}
+
+  cat("<pre class='jamovitable'>")
+  print(modc$info)
+  cat("</pre>")
+
+```
+
+
+```{r intro_plot3, results="asis",warning=FALSE,echo=FALSE,fig.cap="Figure 4. Polynomial model for Mainland China data"}
+
+  modc$descPlot
+
+```
+
+We can see that the model really works. But what about the Italian and French data, that were very different? Well, the model works for Italy and France as well, thanks to the model flexibility. Actually, it works well for all countries with available data. All $R^2$ are close to 1, and the predicted values are very close to the observed one. At this point, one can start working on these models and use them to extrapolate information, make comparisons, and do whaterver one usually do with statistical models. 
+
+The fit of the same model estimation (polynomial up to the 4th grade) is shown in the next section for all countries with more than 50 cases across 10 or more days of data. 
+
+# Interpreting the parameters
+
+Two interesting parameters can be examined in the model. One is the intercept $exp_B$. That is the expected value of _confirmed case_ at a given T(ime), and the $exp_B$ of the linear trend (`Day`), that gives us the expected _growth factor_ at a given T, that is the expected ratio between the number of cases at T and the number of cases at T-1. Recall, however, that in polynomial regression, all the lower order coefficients are estimated for the independent variable equal to zero, so T=0. When you run a model in GAMLj, the independent variable is centered to its mean, so T=mean(Day). To estimate the following models, we do not center the variables, so T=0 for all the models we estimate below. Those are the coefficients you find in the model table.
+
+Nonetheless, it would be more interesting to obtain the expected cases (EC) for the last day available, and the expected growth factor (GF) for the last day available, so we can monitor what is going on in the model for the latest information available. To do that, one simply needs to re-estimate the model centering the time variable (`Day`) to the last day available. That is, compute $Day_{c}=Day-max(Day))$ and use it to estimate the model.  The new model intercept $exp_B$ is the EC, the linear trend $exp_B$ is the latest GF. These two parameters are printed, for each country, before the plot.
+
+# Replications across countries
+
+Here are the models fitted for all available countries with more than 1000 data points. Data are update every day. The last update was april 2020.
+
+```{r out, results="asis"}
+
+for (a in res) {
+  cat("##",a[[1]],"\n\n")
+  cat("**R^2=",a[[2]],"**\n\n")
+  cat("**EC=",a[[5]],"**\n\n")
+  cat("**AC=",a[[7]],"**\n\n")
+  cat("**GF=",a[[6]],"**\n\n")
+
+  print(a[[3]])
+  cat("\n\n")
+  cat("<pre class='jamovitable'>")
+  print(a[[4]])
+  cat("</pre>")
+  
+  cat("\n\n")
+
+}
+
+```
+# The mixed model
+
+When enough contries are available, variability across coefficients, and thus differences in trends, can be evaluated with the mixed model. This will be done later on.
+
+# Data
+
+Here are the data downloaded from the [CSSEGISandData](https://github.com/CSSEGISandData/COVID-19) and preprocessed to obtain the same results, divided by contries. You can import them in  `r jamovi()` and exercise with them.
+
+
+```{r files, results="asis"}
+base<-"https://github.com/gamlj/gamlj_docsource/tree/master/data/corona/"
+
+ff<-list.files("../data/corona/")
+for (f in ff) {
+nname<-gsub("data_","",f,fixed=T)
+nname<-gsub(".csv","",nname,fixed=T)
+cat(paste0('[',nname,'](',base,f,')\n\n'))
+}
+```
+

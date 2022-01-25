@@ -1,0 +1,102 @@
+---
+title: "Generalized mixed model module technical details"
+output: 
+  html_document:
+     toc: true
+     toc_float:
+        collapsed: false
+
+topic: gzlm
+category: details
+bibliography: 
+     - bib.bib
+     - bib.yaml
+link-citations: true
+---
+
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
+
+`r version("2.4.4")` 
+
+
+In this page some details about the GAMLj GMixed (Generalized mixed model)  implementation are given. When the code is showed, it is meant to be R code underlying the GAMLj module.
+
+# Model info
+
+## R-squared
+R-squared corresponds pseudo R-squared implemented  [here](http://jslefche.github.io/piecewiseSEM/) and described in [@lefcheck] and in [@nagawa2] 
+
+Two R-squares values are reported:
+
+* Conditional: It is the estimated proportion of reduced error of the model as compared with a null-model without fixed and random effects. It corresponds to the goodness of fit of the model due to fixed and random effects.  In other words, conditional $R^2$ indicates the variance explained by the fixed and random effects as a proportion of the sum of all the variance components [@nagawa2]
+
+
+* Marginal: It is the estimated proportion of reduced error of the model as compared with a null-model without fixed effects. It corresponds to the goodness of fit of the model due to the fixed effects. In other words, marginal $R^2$ indicates the variance explained by the fixed effects as a proportion of the sum of all the variance components [@nagawa2]
+
+
+
+## Deviance
+
+The implementation follows exactly the indication of R package `lme4` [@lme4cran]. In generalized mixed models, deviance can be defined in different ways. One dichotomy is the reference to a saturated model. The _absolute deviance_ of the model is simply the model deviance, the _relative deviance_ is the deviance resulting from subtracting the deviance of a saturated model from the model deviance. A crossing factor is whether the deviance is conditional to the random effects (all effects affect the deviance) or it is not conditional to them (only the fixed effects affect the deviance). GAMLj computes two cells of the potential 2x2 table of possible deviance definitions:
+
+* `-2*LogLikel.`, `Unconditioal absolute deviance`: Computed by `-2*logLik(model)`
+*  `Deviance`, `Conditional relative deviance` : Computed by `stats::deviance(model)`
+
+Furthermore, GAMLj outputs also the logLikelihood (`logLik`), which is simply the absolute log likelihood computed as `stats::logLik(model)`.
+
+
+## AIC
+
+Aikake Information Criterion: it can be used for model comparison. A model has a better fit than another when its AIC is smaller than the other's. It is implemented by simply estracting it from the R `glmer` estimated model: `stats::extractAIC(model)`. Details in [@lme4; @lme4cran]. The AIC is computed based on the uncoditional absolute deviance.
+
+## BIC
+
+Bayesian Information Criterion: it can be used for model comparisons. A model has a better fit than another when its BIC is smaller. It is implemented by simply estracting it from the R `glm` estimated model: `stats::BIC(model)`. Details in [@lme4; @lme4cran]. The BIC is computed based on the uncoditional absolute deviance.
+
+
+
+## Residual DF
+
+Residual variance degrees of freedom: $DF_{M_s} -DF_{M_e}$, where $M_s$ is the saturated model and $M_e$ is the estimated model.
+
+## Value/DF
+
+a measure of dispersion for Poisson-like model and binomial models. It is given by the Pearson $\chi^2$ statistics divided by the residual degrees of freedom. It is expected to be 1, thus larger number (usually > 3) indicate overdispersion. Values smaller than 1 (usually < .333) indicate underdispersion. It is useful to decide whether the Poisson model is presenting overdispersion, in which case `Quasipoisson` or `negative binomial` models may be preferred. 
+
+It is implemented as follows:
+
+```
+  value <- sum(residuals(model, type = "pearson")^2)
+  result <- value/model$df.residual
+
+```
+
+
+# Post-Hocs
+
+Post-hoc tests are model-based: Each comparison comparares two groups means using the standard error derived from the model error. This means that the comparisons are consisistent to the model they belong to and that different models may produce different results for the same set of comparisons.
+
+Post-hocs tests are performed as implemented in the [emmeans package](https://cran.r-project.org/web/packages/emmeans/index.html). For all GZLM models estimated with [glm function](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html) (all but the multinomial model) post hoc are implemented as follows (for any given  `model` and `term` selected by the user) :
+
+```
+          referenceGrid <- emmeans::emmeans(model, formula)
+          none <- summary(pairs(referenceGrid, adjust='none'))
+          tukey <- summary(pairs(referenceGrid, adjust='tukey'))
+          scheffe <- summary(pairs(referenceGrid, adjust='scheffe'))
+          bonferroni <- summary(pairs(referenceGrid, adjust='bonferroni'))
+          holm <- summary(pairs(referenceGrid, adjust='holm'))
+      
+```
+
+
+
+
+`r backto("gmixed")`
+
+
+`r issues()`
+
+# Reference

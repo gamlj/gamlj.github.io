@@ -1,0 +1,144 @@
+---
+title: "Releases Notes"
+output: 
+  html_document:
+    includes:
+         in_header: ganalytics.txt
+    toc: true
+    toc_float:
+         collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+#Releases and changes
+
+```{r, echo=FALSE,results='asis'}
+where<-"../"
+#where=""
+source(paste0(where,"R/constants.R"))
+source(paste0(where,"R/secrets.R"))
+source(paste0(where,"R/functions.R"))
+#source("../R/functions.R")
+#source("../R/functions.R")
+write_commits2()
+
+```
+
+
+#  version 1.0.5 
+
+* polynomial effects
+* Update graphs when model terms are changed
+* Fix the R-squared for not binomial GZLM 
+* added datasets
+
+#  version 1.0.4 
+
+* Fix bug in simple effects display in Windows 10
+* Fix simple effects for "dummy" coded factors
+
+#  version 1.0.3 
+* add R interface command to obtain a ggplot object
+* fix some characters in Windows
+
+#  version 1.0.1 
+
+## Common
+
+* bug fix regarding recycling results with very large datasets
+* Estimated marginal means for conditioned covariates
+* contrasts labels in the simple effects parameters table
+* contrasts labels in the plots
+* custom levels for conditioning of continuous variables involved in interactions
+* labels or values in simple effects tables and plots for continuous covariates
+* fix interaction disappearing from model declaration
+* fix variables name with spaces and weired characters 
+* Improved description of contrast coding
+* add dummy coding (0 and 1) with intercept equal to reference group
+* Fix interaction symbol in windows 10
+* Restructuring of simple effects and posthoc table for better reading
+* Improved compatibility with R when loaded as R package
+* Helper functions to interact with the results in R
+* Recycle of table results to speed up results updating
+* Fix for factor levels labels with spaces and other weired characters
+* Fix for variable names with spaces and other weired characters
+* Improved plots
+
+## Mixed models
+
+
+* Intra-class correlation for random intercepts
+* Random effects plots
+* LRT for random effects
+* Fix for models without fixed intercept
+* Fix for random intercept only models 
+* Wider range of estimation techniques when model does not converge at first run
+* Improved warnings and comments
+* More flexible estimation of simple effects
+
+## GLM models
+
+* Added Kolmogorov-Smirnov and Shapiro-Wilk tests for normality of residuals
+* Added Adjusted R-squared
+
+## GLZM models
+
+* Several small bug fixes
+* Improved info table regarding model implementation
+
+#  version 0.9.7 
+
+* fix cluster-based centering and standardizing
+
+#  version 0.9.6 
+
+* Fix multinomial plot axes
+
+
+#  version 0.9.4 
+
+## New features
+
+* Probit model
+* Over-dispersed Poisson model
+* Negative binomial model
+
+## Bug fixes
+
+* Plot without confidence intervals 
+* Contrasts coding in line wiht ANOVA module
+
+  
+#  version 0.9.3 
+
+
+* Plotting raw data along with predicted effects
+
+* Y-axis range can be set to the range of the dependent variable 
+
+* Confidence intervals for all models in the plots
+
+* Catching several errors with degenerated or non-estimable multinomial models
+
+  
+
+#  version 0.9.2 
+
+
+* Fixed a bug in the GZLM R-squared. Now the R-squared corresponds to McFadden’s R squared [ref info](https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/)
+
+* Fix errors with  non-standard names of variables
+
+* Better warnings when emmeans fails to estimate the post-hocs in GZLM
+
+* Labels in multinomial plots for separate lines variable
+
+* Uncorrelated random effects option now works
+
+# version 0.0.9
+
+* First release to go public
+
+
+`r #¯issues()`

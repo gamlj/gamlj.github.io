@@ -1,0 +1,60 @@
+---
+title: "Infos"
+author: (Marcello Gallucci)
+output: 
+  html_document:
+    includes:
+      in_header: ganalytics.txt
+    toc: true
+    toc_float:
+      collapsed: false
+
+---
+
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
+
+
+# Details
+
+Here you can find some explanation about how GALMj module does things.
+
+`r  include_details(NULL)`
+
+
+# Examples
+Here you can find some applications of GALMj module.
+
+
+## GLM
+
+`r  include_examples("glm")`
+
+## Mixed model
+
+`r include_examples("mixed")`
+
+## Generalized Linear Model
+
+`r include_examples("gzlm")`
+
+## Generalized Mixed Models
+
+`r include_examples("gmixed")`
+
+# Rosetta store: results across software
+
+Comparisons with other software: Here you can find comparisons of  results obtained in jamovi GAMLj,  and other software, usually jamovi (jmv), pure R, and SPSS. The pages are primarily meant to test convergence between GAMLj and well-established packages, but they can be useful also to check how to get equivalent results across different programs.
+
+
+`r list_pages(category="rosetta")`
+
+# Specs
+
+`r list_pages(category="details")`
+
+
+
+`r issues()`

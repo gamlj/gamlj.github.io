@@ -1,0 +1,23 @@
+"Country","Day","Confirmed","Deaths","Recovered"
+"El Salvador",1,1,0,0
+"El Salvador",2,1,0,0
+"El Salvador",3,3,0,0
+"El Salvador",4,3,0,0
+"El Salvador",5,3,0,0
+"El Salvador",6,5,0,0
+"El Salvador",7,9,0,0
+"El Salvador",8,13,0,0
+"El Salvador",9,13,0,0
+"El Salvador",10,19,0,0
+"El Salvador",11,24,0,0
+"El Salvador",12,30,0,0
+"El Salvador",13,32,1,0
+"El Salvador",14,32,1,0
+"El Salvador",15,41,2,0
+"El Salvador",16,46,2,0
+"El Salvador",17,56,3,2
+"El Salvador",18,62,3,2
+"El Salvador",19,69,4,5
+"El Salvador",20,78,4,5
+"El Salvador",21,93,5,9
+"El Salvador",22,103,6,14

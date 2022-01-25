@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="(Marcello Gallucci)" />
+
+
+<title>Rosetta store: Generalized Mixed</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110344212-1');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="gzlmmixed.html">Generalized Mixed Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples and Details</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+<li>
+  <a href="vignettes.html">GAMLj in R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/gamlj/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Rosetta store: Generalized Mixed</h1>
+<h4 class="author">(Marcello Gallucci)</h4>
+
+</div>
+
+
+<p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, R, SPSS, logistic, generalized mixed, mixed models </span></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.0.0 </span> <span class="draft"> Draft version, mistakes may be around </span></p>
+<p>Here you can find comparisons of results obtained in <span class="jamovi">jamovi</span> <span class="gamlj">GAMLj</span>, R, and SPSS. When not explicitly discussed, the code of different software is written with the aim of obtaining identical results across programs (not necessarily with the most efficient strategy).</p>
+<p>In this example we compare <span class="gamlj">GAMLj</span> results with R results obtained by IDRE on their <a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">tutorial web page</a>, and with SPSS results.</p>
+<div id="the-research-design" class="section level1">
+<h1>The research design</h1>
+<p>In this example, we are going to explore lung cancer remission using a simulated dataset. A variety of outcomes were collected on patients, who are nested within doctors, who are in turn nested within hospitals. There are also a few doctor level variables, such as <em>Experience</em>, that we will use in our example (<a href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">IDRE</a>). Data can be downloaded <a href="https://stats.idre.ucla.edu/stat/data/hdp.csv">here</a></p>
+</div>
+<div id="r" class="section level1">
+<h1>R</h1>
+<p>The researcher is interested in studying the relationships between cancer remission and both patients and doctors characteristics. The analyst uses the R <code>glmer</code> command from the <code>lme4 Package</code> to estimate a mixed effects logistic regression model with <code>Il6</code>, <code>CRP</code>, and <code>LengthofStay</code> as patient level continuous predictors, <code>CancerStage</code> as a patient level categorical predictor (I, II, III, or IV), <code>Experience</code> as a doctor level continuous predictor, and a random intercept by <code>DID</code>, doctor ID.</p>
+<div id="results" class="section level2">
+<h2>Results</h2>
+<pre class="r"><code># estimate the model and store results in m
+m &lt;- glmer(remission ~ IL6 + CRP + CancerStage + LengthofStay + Experience +
+    (1 | DID), data = hdp, family = binomial, control = glmerControl(optimizer = &quot;bobyqa&quot;),
+    nAGQ = 10)
+
+# print the mod results without correlations among fixed effects
+print(m, corr = FALSE)</code></pre>
+<pre class="r"><code>
+## Generalized linear mixed model fit by maximum likelihood (Adaptive
+##   Gauss-Hermite Quadrature, nAGQ = 10) [glmerMod]
+##  Family: binomial ( logit )
+## Formula: 
+## remission ~ IL6 + CRP + CancerStage + LengthofStay + Experience +  
+##     (1 | DID)
+##    Data: hdp
+##      AIC      BIC   logLik deviance df.resid 
+##     7397     7461    -3690     7379     8516 
+## Random effects:
+##  Groups Name        Std.Dev.
+##  DID    (Intercept) 2.01    
+## Number of obs: 8525, groups: DID, 407
+## Fixed Effects:
+##    (Intercept)             IL6             CRP   CancerStageII  
+##        -2.0527         -0.0568         -0.0215         -0.4139  
+## CancerStageIII   CancerStageIV    LengthofStay      Experience  
+##        -1.0035         -2.3370         -0.1212          0.1201
+</code></pre>
+<p>The analyst goes on in computing the confidence intervals of the estimates applying the simple formula <span class="math inline">\(\theta \pm 1.96 \cdot SE_{\theta}\)</span>.</p>
+<pre class="r"><code>se &lt;- sqrt(diag(vcov(m)))
+# table of estimates with 95% CI
+(tab &lt;- cbind(Est = fixef(m), LL = fixef(m) - 1.96 * se, UL = fixef(m) + 1.96 *se))</code></pre>
+<pre class="r"><code>##                     Est       LL        UL
+## (Intercept)    -2.05269 -3.09435 -1.011025
+## IL6            -0.05677 -0.07935 -0.034196
+## CRP            -0.02148 -0.04151 -0.001455
+## CancerStageII  -0.41393 -0.56243 -0.265436
+## CancerStageIII -1.00346 -1.19610 -0.810828
+## CancerStageIV  -2.33704 -2.64683 -2.027241
+## LengthofStay   -0.12118 -0.18710 -0.055261
+## Experience      0.12009  0.06628  0.173895</code></pre>
+<p>Also the <span class="math inline">\(e^B\)</span> are computed.</p>
+<pre><code>exp(tab)</code></pre>
+<pre><code>
+##                    Est      LL     UL
+## (Intercept)    0.12839 0.04530 0.3638
+## IL6            0.94481 0.92372 0.9664
+## CRP            0.97875 0.95934 0.9985
+## CancerStageII  0.66104 0.56982 0.7669
+## CancerStageIII 0.36661 0.30237 0.4445
+## CancerStageIV  0.09661 0.07088 0.1317
+## LengthofStay   0.88587 0.82936 0.9462
+## Experience     1.12760 1.06853 1.1899
+</code></pre>
+</div>
+</div>
+<div id="gamlj" class="section level1">
+<h1>GAMLj</h1>
+<p><span class="jamovi">jamovi</span> <span class="gamlj">GAMLj</span> module for <code>Generalized mixed models</code> can be used to estimate a random coefficient mixed model. First, it requires choose the specific model we want to run: the <code>Logistic</code> model.</p>
+<p><img src="rosetta/gzlmmixed/modelpick.png" class="img-responsive" alt=""></p>
+<p>Then we set the variables in the right field depending on their role in the model and their type.</p>
+<p><img src="rosetta/gzlmmixed/variables.png" class="img-responsive" alt=""></p>
+<p>Please note that we put <code>LengthOfStay</code> in covariates because it is a continuous variable, even though <span class="jamovi">jamovi</span> recognizes it a categorical. By putting it in <span class="option">Covariates</span>, we implicitly ask the module to treat it a continuous variable. The opposite holds for <code>DID</code> (doctors ID) which <span class="jamovi">jamovi</span> recognizes as continuous but the module treats as categorical after we put it in the <span class="option">Clusters</span> field.</p>
+<p>After the first setup, we need to specify the random effects. Following the IDRE analysis, we specify the intercept as random coefficient across doctors (<code>DID</code>).</p>
+<p><img src="rosetta/gzlmmixed/random.png" class="img-responsive" alt=""></p>
+<p>As soon as we include a random effect, the model is estimated</p>
+<div id="results-1" class="section level2">
+<h2>Results</h2>
+<p>Let’s us first focus on the fixed parameters estimates, the B coefficients.</p>
+<p><img src="rosetta/gzlmmixed/results_estimates.png" class="img-responsive" alt=""></p>
+<p>For the predictors coefficients we have substantially the same results as in R, apart from rounding. For the intercept we have different results. The reason is the different default coding of the variables in <span class="gamlj">GAMLj</span> and in R. In R default, factors are coded with the <em>dummy coding scheme</em>, that is</p>
+<pre><code>&gt; contrasts(hdp$CancerStage)
+    II III IV
+I    0   0  0
+II   1   0  0
+III  0   1  0
+IV   0   0  1</code></pre>
+<p>and continuous independent variables are not scaled. In <span class="gamlj">GAMLj</span> the default coding system for categorical variable is `<span class="option">simple</span>.</p>
+<p><img src="rosetta/gzlmmixed/coding.png" class="img-responsive" alt=""></p>
+<p>which results in a centered contrast.</p>
+<p><img src="rosetta/gzlmmixed/results_coding.png" class="img-responsive" alt=""></p>
+<p>Continuous variables are centered by default.</p>
+<p>Thus, in GAMLj the intercept is the expected mean of the (transformed) dependent variable, whereas in R is the expected mean of the (transformed) dependent variable for all continuous independent variables equal to zero and the group scoring all zeros in the categorical variable.</p>
+<p>Also the exp(B) and their confidence intervals are equivalent in the two analyses, apart from rounding.</p>
+<p>As regards the random coefficients variance, <code>lme4::glmer</code> produced a <code>SD</code> of 2.01, thus a variance of 4.04, which is noticeably different from the GAMLj results.</p>
+<p><img src="rosetta/gzlmmixed/results_random.png" class="img-responsive" alt=""></p>
+<p>The reason of this difference is in the precision of the estimation. <code>lme4::glmer</code> estimates the model parameters evaluating the adaptive Gauss-Hermite approximation to the log-likelihood. How good the approximation will be is decided by the option <code>nAGQ</code>, specified in the <code>glmer</code> command above. The higher the number, the better the approximation, with a penalty in speed. Also GAMLj lets the user decide the precision level of the estimation with the equivalent parameter <code>precision/speed</code> in the <code>Options</code> tab.</p>
+<p><img src="rosetta/gzlmmixed/precision.png" class="img-responsive" alt=""></p>
+<p>GAMLj default is a value of 1 (fast but not highly precise estimation). If we set the <code>precision/speed</code> parameter to 10, we obtain exactly the same results obtained in R. The estimation will take some time, however.</p>
+<p><img src="rosetta/gzlmmixed/results_precision.png" class="img-responsive" alt=""></p>
+</div>
+<div id="omnibus-tests" class="section level2">
+<h2>Omnibus tests</h2>
+<p>The IDRE analysis did not report the omnibus tests. In R, one can obtain the omnibus tests employing the <code>car::Anova</code> command. The command lets us specify what Type of analysis to do. We can ask of the Type III analysis and we get the Chi-square tests.</p>
+<pre class="r"><code>library(car)
+Anova(mod,type=3)
+</code></pre>
+<pre class="r"><code>Analysis of Deviance Table (Type III Wald chisquare tests)
+
+Response: remission
+               Chisq Df Pr(&gt;Chisq)    
+(Intercept)   14.918  1  0.0001123 ***
+IL6           24.293  1  8.273e-07 ***
+CRP            4.420  1  0.0355197 *  
+CancerStage  256.523  3  &lt; 2.2e-16 ***
+LengthofStay  12.982  1  0.0003145 ***
+Experience    19.135  1  1.218e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</code></pre>
+<p><img src="rosetta/gzlmmixed/results_chi.png" class="img-responsive" alt=""></p>
+<p>Compared with GAMLj results, there’s substantial agreement even though the figures are not the same, apart from rounding. The reason is that the estimation of the deviance of the model, on which the omnibus tests are based, may be slightly influenced by the scale of the variables. It is well-known that in the general linear model (i.e. regression), the linear coefficients are invariant to linear scaling of the independent variables. That is, if you have centered or not centered the variables, the B’s are the same (when no interaction is present in the model). In generalized mixed models, the scale may slightly influence the estimation, yielding different results for re-scaled variables.</p>
+<p>Thus, the small difference in the omnibus tests obtained with R and with GAMLj are due to the fact that in the R analysis the variables are not re-scaled, while in GAMLj they are centered. In fact, if we do not center the variables in GAMLj, results become identical to the R results.</p>
+<p><img src="rosetta/gzlmmixed/results_chi2.png" class="img-responsive" alt=""></p>
+<p>Notice, however, that the conclusions of the analyses are equivalent no matter the scale of the variables.</p>
+</div>
+</div>
+<div id="spss" class="section level1">
+<h1>SPSS</h1>
+<p>In SPSS we can run a logistic mixed models with <code>Generalized mixed models</code> menu. However, from within the <code>Generalized mixed models</code> module one cannot specify whether a variable is a continuous or categorical one, so we have to define variables types in the <code>Variable view</code> tab of the SPSS spreadsheet window.</p>
+<p><img src="rosetta/gzlmmixed/spss_scale.png" class="img-responsive" alt=""></p>
+<p>We want to be sure that <code>LengthOfStay</code>, <code>IL6</code>, <code>CRP</code> and <code>Experience</code> are set as <code>Scale</code> in the <code>measure</code> column, whereas <code>DID</code> and <code>CancerStage</code> should be <code>Nominal</code>.</p>
+<p>Then we can go to the mixed models menu.</p>
+<p><img src="rosetta/gzlmmixed/spss_menu.png" class="img-responsive" alt=""></p>
+<p>First, we should specify the cluster variable, by dragging <code>DID</code> into the <code>Subject</code> field, on the right, in the <code>Canvas</code> panel.</p>
+<p><img src="rosetta/gzlmmixed/spss_cluster.png" class="img-responsive" alt=""></p>
+<p>Then we can move to the <code>Fields &amp; Effects</code> tab and specify the model type (<code>Binary logistic regression</code>) and the dependent variable (<code>remission</code>).</p>
+<p><img src="rosetta/gzlmmixed/spss_dep.png" class="img-responsive" alt=""></p>
+<p>On the <code>Select an item</code> field we can then move to <code>Fixed Effects</code>, and set the independent variables.</p>
+<p><img src="rosetta/gzlmmixed/spss_fixed.png" class="img-responsive" alt=""></p>
+<p>The random intercept can be specified in the <code>Random Effects</code> tab.</p>
+<p><img src="rosetta/gzlmmixed/spss_random.png" class="img-responsive" alt=""></p>
+<p>Here we need to flag the <code>Include intercept</code> option and select <code>DID</code> from the menu <code>Subject combination</code>. This means <em>allow intercepts to vary across DID</em>.</p>
+<p>We can then run the analysis.</p>
+<div id="results-2" class="section level2">
+<h2>Results</h2>
+<p><img src="rosetta/gzlmmixed/results_spss_coefs.png" class="img-responsive" alt=""></p>
+<p>As regards the fixed effects coefficients, we notice that the continuous predictors show B’s that are equivalent to R and <span class="jamovi">jamovi</span> estimates, but with opposite sign. The intercept and the categorical predictor are clearly very differ. Those differences are due to way SPSS picks the reference level of the dummy coding for categorical variables. In R and <span class="jamovi">jamovi</span>, the reference level is the first level in the standard ordering of the variable levels (such as the cardinal order or the alphabetical one). SPSS picks the last group! Thus, here we are predicting the probability of <em>not remission</em>, that is <code>remission=0</code>, because SPSS sets <code>remission=1</code> as the reference level. That explains the opposite sign. For the categorical independent variable <code>CancerStage</code>, SPSS picks the group <code>CancerStage=IV</code> as reference group, whereas GAMLj and R pick <code>CancerStage=I</code>. That explains the differences in the parameters.</p>
+<p>In SPSS generalized mixed models we can change the reference level in the <code>Build Options</code> tab, selecting <code>Descending</code> in the <code>Sorting Order</code> options.</p>
+<p><img src="rosetta/gzlmmixed/spss_rescale.png" class="img-responsive" alt=""></p>
+<p>Now the interpretation of the coefficients is equivalent to the one for R and GAMLj estimation, although the numerical estimates are still different in SPSS. Not a big difference, but worth investigating the reason.</p>
+<p><img src="rosetta/gzlmmixed/results_spss_fixed2.png" class="img-responsive" alt=""></p>
+<p>As regards the random coefficients variance, it is quite different from the R or GAMLj results.</p>
+<p><img src="rosetta/gzlmmixed/results_spss_random.png" class="img-responsive" alt=""></p>
+<p>Finally, as regards the omnibus tests, SPSS outputs the F-tests, not the Chi-square. Nevertheless, the p-values associated with the tests are in line with the ones obtained in GAMLj and R.</p>
+<p><img src="rosetta/gzlmmixed/results_spss_chi.png" class="img-responsive" alt=""></p>
+<p>Thus, GAMLj and R <code>lme4::glmer</code> produce results that are numerically very close and practically identical. SPSS produces results that are numerically different but substantially equivalent to the other software results.</p>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj/issues"> GAMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

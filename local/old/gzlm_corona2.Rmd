@@ -1,0 +1,154 @@
+---
+title: "GzLM:  Generalized Polynomial Regression for coronavirus italian data"
+author: "(Marcello Gallucci)"
+nickname: coronait
+topic: gzlm
+category: example
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+knitr::opts_chunk$set(echo = FALSE)
+
+knitr::knit_hooks$set(plot = function(x, options) {
+  paste('<figure><figcaption>', options$fig.cap, '</figcaption><img src="',
+        knitr::opts_knit$get('base.url'), paste(x, collapse = '.'),
+        '"></figure>',
+        sep = '')
+})
+```
+
+
+```{r setup, include=FALSE}
+
+folder<-"/home/marcello/Skinner/Stat/data/COVID-ITA/COVID-19/dati-regioni/"
+ff<-list.files(folder)
+ff<-ff[grep("20",ff,fixed = T)]
+data<-read.csv(paste0(folder,ff[1]))
+nn<-names(data)
+
+#data<-read.csv(paste0(folder,"03-11-2020.csv"))
+#data[data$Country.Region=="Italy",]
+
+data$Date<-"ok"
+data$Day<-0
+data<-data[0,]
+
+d<-0
+f<-"ok"
+for (f in ff) {
+   d<-d+1
+   data0<-read.csv(paste0(folder,f))
+   data0<-data0[,nn]
+   date<-gsub(".csv","",f,fixed = T)
+   data0$Date<-date
+   data0$Day<-d
+   data<-rbind(data,data0)
+}
+data$Confirmed<-data$totale_casi
+data$Deaths<-data$deceduti
+data$Recovered<-data$dimessi_guariti
+data<-data[data$Confirmed>0,]
+data<-data[data$Day<80,]
+
+
+library(gamlj)
+form<-Confirmed ~ Day + I(Day^2) + I(Day^3)+I(Day^4)
+
+```
+
+
+`r keywords("Polynomial regression,Gamma regression, Poisson distribution, Generalized linear model")`
+
+`r draft` 
+
+```{r res, include=F}
+data0<-data[data$denominazione_regione=="Lombardia",]
+plot(data0$deceduti/data0$totale_casi~data0$Day)
+plot(data0$deceduti~data0$tamponi)
+mod<-glm(totale_casi~I(totale_casi/tamponi),data=data0,family = gaussian())
+mod
+plot(mod$fitted.values~data0$tamponi)
+
+data0<-data[data$denominazione_regione=="Veneto",]
+plot(data0$totale_casi~data0$tamponi)
+plot(data0$deceduti~data0$totale_casi)
+
+
+res<-list()
+for (u in unique(data$codice_regione)) {
+ddata1<-data[data$codice_regione==u,]
+mod1<-gamlj::gamljGzlm(
+  scaling = list(list(var="Day",type="none")),
+  formula = form,
+  data = ddata1,
+  plotHAxis = Day,
+  plotRaw = TRUE,
+  modelSelection = "custom",
+  custom_family = "poisson",
+  custom_link = "log")
+ddata1$Day<-ddata1$Day-max(ddata1$Day)
+mod2<-gamlj::gamljGzlm(
+  scaling = list(list(var="Day",type="none")),
+  formula = form,
+  data = ddata1,
+  plotHAxis = Day,
+  plotRaw = TRUE,
+  modelSelection = "custom",
+  custom_family = "poisson",
+  custom_link = "log")
+ec<-round(mod2$main$fixed$asDF[1,4],digit=0)
+gf<-round(mod2$main$fixed$asDF[2,4],digit=2)
+ac<-max(ddata1$Confirmed)
+r2<-as.numeric(as.character(mod1$info$asDF[5,2]))
+dr<-as.character(ddata1$denominazione_regione[[1]])
+res0<-list(dr,r2,mod1$descPlot,mod1$main$fixed,ec,gf,ac)
+res[[u]]<-res0
+}
+
+today<-Sys.Date()
+firstday<-unique(data$Date[which.min(data$Day)])
+lastday<-unique(data$Date[which.max(data$Day)])
+
+```
+
+# Introduction
+
+This is a follow up of the overall page about these data, but for Italian regions.
+
+_Please note that no medical or policy-making conclusions should be drawn from these analyses. The only purpose of this page is to show how the Generalized Linear Model may help in understanding some non-linear distributions of data. Here we use the data only to show how the software and the models work. For medical interpretation of the data please look for other sources where these data are analyzed for medical purposes and interpreted by medical scientists_.
+
+
+# Replications across Italian regions
+
+Here are the models fitted for all available Italian regions. Data are update every day. The last update was april 2020.
+
+```{r out, results="asis"}
+
+for (a in res) {
+  cat("##",a[[1]],"\n\n")
+  cat("**R^2=",a[[2]],"**\n\n")
+  cat("**EC=",a[[5]],"**\n\n")
+  cat("**AC=",a[[7]],"**\n\n")
+  cat("**GF=",a[[6]],"**\n\n")
+
+  print(a[[3]])
+  cat("\n\n")
+  cat("<pre class='jamovitable'>")
+  print(a[[4]])
+  cat("</pre>")
+  
+  cat("\n\n")
+
+}
+
+```

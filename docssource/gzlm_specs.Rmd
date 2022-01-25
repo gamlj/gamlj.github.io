@@ -1,0 +1,107 @@
+---
+title: "Generalized linear model module technical details"
+output: 
+  html_document:
+     toc: true
+     toc_float:
+        collapsed: false
+
+topic: gzlm
+category: details
+
+---
+
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
+
+`r version("2.5.0")` 
+
+
+In this page some details about the GAMLj GZLM (Generalized linear model)  implementation are given. When the code is showed, it is meant to be R code underlying the GAMLj module.
+
+# Model info
+
+## R-squared
+R-squared corresponds to McFadden’s R squared [ref info](https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/) for logistic regression. However, it is not computed as McFadden’s R, because of some oddities arising when computed across different generalized models. 
+
+It is implemented by taking the model deviance and compare it with the null-model deviance:
+
+```   
+    1- (model$deviance/model$null.deviance)
+```
+
+When the $R^2$ is computed like this, it corresponds to McFadden’s R in logistic regression, and to the OLS $R^2$ for guassian models. It also yields a result for Poisson models. 
+
+It can be considered a measure of fit, or, equivalently, a measure of reduction of error. 
+
+## AIC
+
+Aikake Information Criterion: it can be used for model comparisons. A model has a better fit than another when its AIC is smaller. It is implemented by simply estracting it from the R `glm` estimated model: `stats::extractAIC(model)`
+
+## BIC
+
+Bayesian Information Criterion: it can be used for model comparisons. A model has a better fit than another when its BIC is smaller. It is implemented by simply estracting it from the R `glm` estimated model: `stats::BIC(model)`
+
+
+
+## Deviance
+This is the residual deviance of the model, usefull to judge goodness of fit in comparison with alternative (usually nested) models. It is  
+
+$2 ( \ell (M_s)  - \ell (M_e) )$
+
+Where $\ell$ is the log-likelihood, $M_s$ is the saturated model and $M_e$ is the estimated model.
+
+## Residual DF
+
+Residual variance degrees of freedom: $DF_{M_s} -DF_{M_e}$, where $M_s$ is the saturated model and $M_e$ is the estimated model.
+
+## Value/DF
+
+a measure of dispersion for Poisson-like model and binomial models. It is given by the Pearson $\chi^2$ statistics divided by the residual degrees of freedom. It is expected to be 1, thus larger number (usually > 3) indicate overdispersion. Values smaller than 1 (usually < .333) indicate underdispersion. It is useful to decide whether the Poisson model is presenting overdispersion, in which case `Quasipoisson` or `negative binomial` models may be preferred. 
+
+It is implemented as follows:
+
+```
+  value <- sum(residuals(model, type = "pearson")^2)
+  result <- value/model$df.residual
+
+```
+
+
+# Post-Hocs
+
+Post-hoc tests are model-based: Each comparison comparares two groups means using the standard error derived from the model error. This means that the comparisons are consisistent to the model they belong to and that different models may produce different results for the same set of comparisons.
+
+Post-hocs tests are performed as implemented in the [emmeans package](https://cran.r-project.org/web/packages/emmeans/index.html). For all GZLM models estimated with [glm function](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html) (all but the multinomial model) post hoc are implemented as follows (for any given  `model` and `term` selected by the user) :
+
+```
+          referenceGrid <- emmeans::emmeans(model, formula)
+          none <- summary(pairs(referenceGrid, adjust='none'))
+          tukey <- summary(pairs(referenceGrid, adjust='tukey'))
+          scheffe <- summary(pairs(referenceGrid, adjust='scheffe'))
+          bonferroni <- summary(pairs(referenceGrid, adjust='bonferroni'))
+          holm <- summary(pairs(referenceGrid, adjust='holm'))
+      
+```
+
+
+For the multinomial model, the estimation is slightly different. Following [emmeans package](https://cran.r-project.org/web/packages/emmeans/index.html) docs, the comparisons are carried out on the linear predictor recentered so that it averages to zero over the levels of the response variable (similar to sum-to-zero contrasts). Thus, each latent variable can be regarded as the log probability at one level minus the average log probability over all levels.
+
+The comparisons are implemented as follows:
+```
+
+model<-multinom(dependent ~term*otherterms, data = data, model = TRUE)
+lsm = emmeans::emmeans(model, ~ dependent|term, mode = "latent")
+cmp = pairs(lsm,  by="dependent",interaction=F) 
+
+
+```
+
+[emmeans package](https://cran.r-project.org/web/packages/emmeans/index.html) manual explains that because dependent variable categories probabilities sum to 1 (recall that the latent values sum to 0) over the multivariate-response levels, all sensible results from emmeans must involve dependent variable as one of the factors.
+
+`r backto("gzlm")`
+
+
+`r issues()`

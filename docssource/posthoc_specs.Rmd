@@ -1,0 +1,28 @@
+---
+title: "Post-hocs Details"
+author: "Marcello Gallucci"
+output: 
+  html_document:
+     toc: true
+     toc_float:
+        collapsed: false
+
+topic: glm
+category: details
+
+---
+
+# Post Hocs
+
+Post-hocs tests are performed as implemented in the [emmeans package](https://cran.r-project.org/web/packages/emmeans/index.html). In particular, the actual implementation is as follows (for any given model term selected by the user) :
+
+```
+      formula <- as.formula(paste('~', term))
+      referenceGrid <- emmeans::emmeans(private$.model, formula)
+      bonferroni <- summary(pairs(referenceGrid, adjust='bonferroni'))
+      holm <- summary(pairs(referenceGrid, adjust='holm'))
+      tukey<-summary(pairs(referenceGrid, adjust='tukey'))
+```
+
+In `Mixed` module only `bonferroni` and `holm` methods are implemented yet, because I did not find enough evidence in the literature in support of other methods. 
+

@@ -1,0 +1,373 @@
+"Subject","Gender","Region","Education","Disgust","Fright","Rating"
+1,"Female","North America","some","Low","Low",6
+1,"Female","North America","some","Low","High",6
+1,"Female","North America","some","High","Low",9
+1,"Female","North America","some","High","High",10
+2,"Female","North America","advance","Low","Low",10
+2,"Female","North America","advance","Low","High",NA
+2,"Female","North America","advance","High","Low",10
+2,"Female","North America","advance","High","High",10
+3,"Female","Europe","college","Low","Low",5
+3,"Female","Europe","college","Low","High",10
+3,"Female","Europe","college","High","Low",10
+3,"Female","Europe","college","High","High",10
+4,"Female","North America","college","Low","Low",6
+4,"Female","North America","college","Low","High",9
+4,"Female","North America","college","High","Low",6
+4,"Female","North America","college","High","High",9
+5,"Female","North America","some","Low","Low",3
+5,"Female","North America","some","Low","High",6.5
+5,"Female","North America","some","High","Low",5.5
+5,"Female","North America","some","High","High",8.5
+6,"Female","Europe","some","Low","Low",2
+6,"Female","Europe","some","Low","High",0.5
+6,"Female","Europe","some","High","Low",7.5
+6,"Female","Europe","some","High","High",3
+7,"Female","North America","some","Low","Low",10
+7,"Female","North America","some","Low","High",10
+7,"Female","North America","some","High","Low",10
+7,"Female","North America","some","High","High",10
+8,"Female","North America","high","Low","Low",10
+8,"Female","North America","high","Low","High",10
+8,"Female","North America","high","High","Low",9
+8,"Female","North America","high","High","High",10
+9,"Female","North America","high","Low","Low",9.5
+9,"Female","North America","high","Low","High",9.5
+9,"Female","North America","high","High","Low",6
+9,"Female","North America","high","High","High",10
+10,"Female","Other","high","Low","Low",8.5
+10,"Female","Other","high","Low","High",10
+10,"Female","Other","high","High","Low",7
+10,"Female","Other","high","High","High",NA
+11,"Male","North America","some","Low","Low",0
+11,"Male","North America","some","Low","High",2.5
+11,"Male","North America","some","High","Low",0
+11,"Male","North America","some","High","High",0
+12,"Male","North America","some","Low","Low",9.5
+12,"Male","North America","some","Low","High",7.5
+12,"Male","North America","some","High","Low",8.5
+12,"Male","North America","some","High","High",10
+13,"Female","North America","less","Low","Low",7
+13,"Female","North America","less","Low","High",8.5
+13,"Female","North America","less","High","Low",6.5
+13,"Female","North America","less","High","High",8.5
+14,"Female","North America","some","Low","Low",3
+14,"Female","North America","some","Low","High",8
+14,"Female","North America","some","High","Low",4
+14,"Female","North America","some","High","High",8.5
+15,"Male","North America","some","Low","Low",4
+15,"Male","North America","some","Low","High",5
+15,"Male","North America","some","High","Low",6
+15,"Male","North America","some","High","High",7
+16,"Male","North America","high","Low","Low",7
+16,"Male","North America","high","Low","High",8.5
+16,"Male","North America","high","High","Low",8.5
+16,"Male","North America","high","High","High",9
+17,"Male","North America","some","Low","Low",2
+17,"Male","North America","some","Low","High",6
+17,"Male","North America","some","High","Low",10
+17,"Male","North America","some","High","High",10
+18,"Female","North America","high","Low","Low",7.5
+18,"Female","North America","high","Low","High",6
+18,"Female","North America","high","High","Low",7.5
+18,"Female","North America","high","High","High",10
+19,"Female","North America","some","Low","Low",6.5
+19,"Female","North America","some","Low","High",6
+19,"Female","North America","some","High","Low",10
+19,"Female","North America","some","High","High",10
+20,"Female","North America","some","Low","Low",7
+20,"Female","North America","some","Low","High",9
+20,"Female","North America","some","High","Low",8.5
+20,"Female","North America","some","High","High",9.5
+22,"Female","North America","some","Low","Low",3
+22,"Female","North America","some","Low","High",4.5
+22,"Female","North America","some","High","Low",5
+22,"Female","North America","some","High","High",9.5
+23,"Female","Australia","some","Low","Low",2.5
+23,"Female","Australia","some","Low","High",9.5
+23,"Female","Australia","some","High","Low",4.5
+23,"Female","Australia","some","High","High",7.5
+24,"Female","North America","less","Low","Low",10
+24,"Female","North America","less","Low","High",10
+24,"Female","North America","less","High","Low",9
+24,"Female","North America","less","High","High",10
+25,"Male","Europe","high","Low","Low",0
+25,"Male","Europe","high","Low","High",1.5
+25,"Male","Europe","high","High","Low",4
+25,"Male","Europe","high","High","High",1.5
+26,"Female","Europe","some","Low","Low",0.5
+26,"Female","Europe","some","Low","High",0.5
+26,"Female","Europe","some","High","Low",4.5
+26,"Female","Europe","some","High","High",5.5
+27,"Female","North America","less","Low","Low",5
+27,"Female","North America","less","Low","High",7.5
+27,"Female","North America","less","High","Low",3.5
+27,"Female","North America","less","High","High",10
+29,"Female","Other","some","Low","Low",6.5
+29,"Female","Other","some","Low","High",5
+29,"Female","Other","some","High","Low",10
+29,"Female","Other","some","High","High",10
+30,"Female","North America","some","Low","Low",8
+30,"Female","North America","some","Low","High",9
+30,"Female","North America","some","High","Low",8
+30,"Female","North America","some","High","High",8
+31,"Female","North America","some","Low","Low",3
+31,"Female","North America","some","Low","High",10
+31,"Female","North America","some","High","Low",7.5
+31,"Female","North America","some","High","High",6
+32,"Male","Europe","some","Low","Low",7.5
+32,"Male","Europe","some","Low","High",7
+32,"Male","Europe","some","High","Low",6.5
+32,"Male","Europe","some","High","High",10
+33,"Male","North America","some","Low","Low",6.5
+33,"Male","North America","some","Low","High",10
+33,"Male","North America","some","High","Low",10
+33,"Male","North America","some","High","High",4
+34,"Male","Europe","college","Low","Low",4.5
+34,"Male","Europe","college","Low","High",8.5
+34,"Male","Europe","college","High","Low",8.5
+34,"Male","Europe","college","High","High",6
+35,"Male","North America","some","Low","Low",3
+35,"Male","North America","some","Low","High",2
+35,"Male","North America","some","High","Low",8
+35,"Male","North America","some","High","High",4
+36,"Male","North America","some","Low","Low",6
+36,"Male","North America","some","Low","High",10
+36,"Male","North America","some","High","Low",2
+36,"Male","North America","some","High","High",4.5
+37,"Female","North America","some","Low","Low",4
+37,"Female","North America","some","Low","High",10
+37,"Female","North America","some","High","Low",7
+37,"Female","North America","some","High","High",10
+38,"Female","North America","some","Low","Low",4.5
+38,"Female","North America","some","Low","High",7
+38,"Female","North America","some","High","Low",10
+38,"Female","North America","some","High","High",10
+39,"Male","North America","some","Low","Low",7
+39,"Male","North America","some","Low","High",7
+39,"Male","North America","some","High","Low",10
+39,"Male","North America","some","High","High",9
+40,NA,NA,NA,"Low","Low",8
+40,NA,NA,NA,"Low","High",8.5
+40,NA,NA,NA,"High","Low",8
+40,NA,NA,NA,"High","High",9.5
+41,"Female","North America","some","Low","Low",5
+41,"Female","North America","some","Low","High",7.5
+41,"Female","North America","some","High","Low",7.5
+41,"Female","North America","some","High","High",7.5
+42,"Female","North America","high","Low","Low",5
+42,"Female","North America","high","Low","High",8.5
+42,"Female","North America","high","High","Low",NA
+42,"Female","North America","high","High","High",9.5
+43,"Female","North America","some","Low","Low",2
+43,"Female","North America","some","Low","High",2
+43,"Female","North America","some","High","Low",0
+43,"Female","North America","some","High","High",5.5
+45,"Male","North America","partial","Low","Low",7.5
+45,"Male","North America","partial","Low","High",7
+45,"Male","North America","partial","High","Low",6.5
+45,"Male","North America","partial","High","High",8
+46,"Female","North America","less","Low","Low",3.5
+46,"Female","North America","less","Low","High",4
+46,"Female","North America","less","High","Low",1
+46,"Female","North America","less","High","High",10
+47,"Female","North America","advance","Low","Low",5
+47,"Female","North America","advance","Low","High",7.5
+47,"Female","North America","advance","High","Low",0.5
+47,"Female","North America","advance","High","High",2.5
+48,"Male","North America","some","Low","Low",2
+48,"Male","North America","some","Low","High",3.5
+48,"Male","North America","some","High","Low",9.5
+48,"Male","North America","some","High","High",5.5
+49,"Male","North America","some","Low","Low",4
+49,"Male","North America","some","Low","High",8
+49,"Male","North America","some","High","Low",1.5
+49,"Male","North America","some","High","High",9.5
+50,"Female","North America","some","Low","Low",5
+50,"Female","North America","some","Low","High",6
+50,"Female","North America","some","High","Low",4.5
+50,"Female","North America","some","High","High",3.5
+51,"Female","North America","some","Low","Low",5.5
+51,"Female","North America","some","Low","High",2.5
+51,"Female","North America","some","High","Low",8
+51,"Female","North America","some","High","High",9
+52,"Female","North America","less","Low","Low",10
+52,"Female","North America","less","Low","High",10
+52,"Female","North America","less","High","Low",10
+52,"Female","North America","less","High","High",10
+53,"Female","North America","some","Low","Low",7
+53,"Female","North America","some","Low","High",8.5
+53,"Female","North America","some","High","Low",4
+53,"Female","North America","some","High","High",9
+54,"Female","Other","some","Low","Low",5.5
+54,"Female","Other","some","Low","High",10
+54,"Female","Other","some","High","Low",6
+54,"Female","Other","some","High","High",10
+56,"Female","North America","some","Low","Low",10
+56,"Female","North America","some","Low","High",10
+56,"Female","North America","some","High","Low",10
+56,"Female","North America","some","High","High",10
+57,"Female","South America","some","Low","Low",9.5
+57,"Female","South America","some","Low","High",10
+57,"Female","South America","some","High","Low",10
+57,"Female","South America","some","High","High",10
+58,"Male","North America","some","Low","Low",6
+58,"Male","North America","some","Low","High",4.5
+58,"Male","North America","some","High","Low",7.5
+58,"Male","North America","some","High","High",6
+59,"Female","North America","less","Low","Low",7.5
+59,"Female","North America","less","Low","High",6.5
+59,"Female","North America","less","High","Low",10
+59,"Female","North America","less","High","High",8.5
+60,"Male","North America","less","Low","Low",3.5
+60,"Male","North America","less","Low","High",7.5
+60,"Male","North America","less","High","Low",8
+60,"Male","North America","less","High","High",8
+61,"Female","North America","college","Low","Low",2.5
+61,"Female","North America","college","Low","High",7.5
+61,"Female","North America","college","High","Low",5
+61,"Female","North America","college","High","High",7.5
+62,"Male","North America","less","Low","Low",3.5
+62,"Male","North America","less","Low","High",9.5
+62,"Male","North America","less","High","Low",3.5
+62,"Male","North America","less","High","High",8
+64,"Female","Europe","some","Low","Low",8.5
+64,"Female","Europe","some","Low","High",6
+64,"Female","Europe","some","High","Low",NA
+64,"Female","Europe","some","High","High",5
+65,"Female","North America","less","Low","Low",3
+65,"Female","North America","less","Low","High",8.5
+65,"Female","North America","less","High","Low",10
+65,"Female","North America","less","High","High",2.5
+66,"Male","North America","less","Low","Low",6
+66,"Male","North America","less","Low","High",10
+66,"Male","North America","less","High","Low",3
+66,"Male","North America","less","High","High",8.5
+67,"Male","North America","high","Low","Low",5.5
+67,"Male","North America","high","Low","High",8
+67,"Male","North America","high","High","Low",4.5
+67,"Male","North America","high","High","High",9.5
+68,"Male","North America","high","Low","Low",3
+68,"Male","North America","high","Low","High",8
+68,"Male","North America","high","High","Low",10
+68,"Male","North America","high","High","High",7
+69,"Male","North America","college","Low","Low",2
+69,"Male","North America","college","Low","High",8.5
+69,"Male","North America","college","High","Low",4
+69,"Male","North America","college","High","High",6
+70,"Female","North America","less","Low","Low",4
+70,"Female","North America","less","Low","High",9
+70,"Female","North America","less","High","Low",2.5
+70,"Female","North America","less","High","High",10
+71,"Female","North America","less","Low","Low",9
+71,"Female","North America","less","Low","High",10
+71,"Female","North America","less","High","Low",8.5
+71,"Female","North America","less","High","High",10
+72,"Female","North America","some","Low","Low",10
+72,"Female","North America","some","Low","High",10
+72,"Female","North America","some","High","Low",10
+72,"Female","North America","some","High","High",10
+73,"Female","North America","some","Low","Low",5.5
+73,"Female","North America","some","Low","High",6
+73,"Female","North America","some","High","Low",1
+73,"Female","North America","some","High","High",5.5
+74,"Male","North America","less","Low","Low",6
+74,"Male","North America","less","Low","High",8.5
+74,"Male","North America","less","High","Low",8.5
+74,"Male","North America","less","High","High",9
+76,"Female","North America","some","Low","Low",9
+76,"Female","North America","some","Low","High",9
+76,"Female","North America","some","High","Low",9
+76,"Female","North America","some","High","High",9
+77,"Female","North America","some","Low","Low",6
+77,"Female","North America","some","Low","High",6
+77,"Female","North America","some","High","Low",7.5
+77,"Female","North America","some","High","High",6
+78,"Female","North America","less","Low","Low",5
+78,"Female","North America","less","Low","High",6.5
+78,"Female","North America","less","High","Low",0.5
+78,"Female","North America","less","High","High",5.5
+79,"Male","North America","less","Low","Low",6
+79,"Male","North America","less","Low","High",8
+79,"Male","North America","less","High","Low",9
+79,"Male","North America","less","High","High",7
+80,"Female","North America","less","Low","Low",1.5
+80,"Female","North America","less","Low","High",NA
+80,"Female","North America","less","High","Low",9
+80,"Female","North America","less","High","High",9.5
+81,"Male","North America","high","Low","Low",5.5
+81,"Male","North America","high","Low","High",4
+81,"Male","North America","high","High","Low",10
+81,"Male","North America","high","High","High",5.5
+82,"Female","North America","high","Low","Low",9.5
+82,"Female","North America","high","Low","High",9.5
+82,"Female","North America","high","High","Low",9.5
+82,"Female","North America","high","High","High",8.5
+83,"Female","North America","high","Low","Low",8
+83,"Female","North America","high","Low","High",8
+83,"Female","North America","high","High","Low",8.5
+83,"Female","North America","high","High","High",10
+84,"Female","North America","some","Low","Low",0
+84,"Female","North America","some","Low","High",5
+84,"Female","North America","some","High","Low",0
+84,"Female","North America","some","High","High",5
+85,"Female","North America","high","Low","Low",3
+85,"Female","North America","high","Low","High",3
+85,"Female","North America","high","High","Low",0.5
+85,"Female","North America","high","High","High",7
+86,"Male","North America","less","Low","Low",7
+86,"Male","North America","less","Low","High",7
+86,"Male","North America","less","High","Low",8.5
+86,"Male","North America","less","High","High",7.5
+87,"Female","North America","partial","Low","Low",5
+87,"Female","North America","partial","Low","High",4
+87,"Female","North America","partial","High","Low",3.5
+87,"Female","North America","partial","High","High",5.5
+88,"Female","North America","high","Low","Low",10
+88,"Female","North America","high","Low","High",10
+88,"Female","North America","high","High","Low",10
+88,"Female","North America","high","High","High",10
+89,"Male","North America","less","Low","Low",7.5
+89,"Male","North America","less","Low","High",8
+89,"Male","North America","less","High","Low",9.5
+89,"Male","North America","less","High","High",10
+90,"Male","North America","less","Low","Low",6
+90,"Male","North America","less","Low","High",8
+90,"Male","North America","less","High","Low",4.5
+90,"Male","North America","less","High","High",6.5
+91,"Female","Other","some","Low","Low",7
+91,"Female","Other","some","Low","High",7.5
+91,"Female","Other","some","High","Low",8.5
+91,"Female","Other","some","High","High",8
+92,"Female","Europe","less","Low","Low",6.5
+92,"Female","Europe","less","Low","High",9.5
+92,"Female","Europe","less","High","Low",4
+92,"Female","Europe","less","High","High",8.5
+93,"Female","North America","less","Low","Low",6.5
+93,"Female","North America","less","Low","High",10
+93,"Female","North America","less","High","Low",10
+93,"Female","North America","less","High","High",10
+95,"Female","North America","less","Low","Low",3
+95,"Female","North America","less","Low","High",4
+95,"Female","North America","less","High","Low",2
+95,"Female","North America","less","High","High",2
+96,"Male","North America","high","Low","Low",10
+96,"Male","North America","high","Low","High",10
+96,"Male","North America","high","High","Low",10
+96,"Male","North America","high","High","High",10
+97,"Female","North America",NA,"Low","Low",8.5
+97,"Female","North America",NA,"Low","High",10
+97,"Female","North America",NA,"High","Low",8.5
+97,"Female","North America",NA,"High","High",10
+98,"Female","North America","some","Low","Low",1.5
+98,"Female","North America","some","Low","High",10
+98,"Female","North America","some","High","Low",8.5
+98,"Female","North America","some","High","High",10
+99,"Female","North America","some","Low","Low",9
+99,"Female","North America","some","Low","High",10
+99,"Female","North America","some","High","Low",10
+99,"Female","North America","some","High","High",10
+100,"Female","Europe","some","Low","Low",5.5
+100,"Female","Europe","some","Low","High",5.5
+100,"Female","Europe","some","High","Low",2
+100,"Female","Europe","some","High","High",3

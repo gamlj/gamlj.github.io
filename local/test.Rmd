@@ -1,0 +1,34 @@
+---
+title: "q"
+author: "marcello gallucci"
+date: "5/13/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = F)
+library(jmv)
+
+
+```
+
+
+```{r out, echo=FALSE,results="asis"}
+#ttest<-jmv::ttestIS(extra,group,data = sleep)
+#save(ttest,file="test.Rd")
+load("test.Rd")
+  cat("<pre>")
+  print(ttest)
+  cat("</pre>")
+  
+atest<-jmv::anovaOneW(deps = extra,group = group,data = sleep,desc = T)
+
+  cat("<pre >")
+  print(atest$anova)
+  cat("</pre>")
+
+  cat("<pre>")
+  print(atest$desc)
+  cat("</pre>")
+
+```
