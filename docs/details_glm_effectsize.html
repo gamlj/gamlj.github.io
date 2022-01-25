@@ -395,6 +395,22 @@ div.tocify {
 </div>
 
 
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+} 
+</script>
 <p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, GLM, effect size indices, omega-squared, eta-squared, epsilon-squared </span></p>
 <p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.6.1 </span></p>
 <div id="introduction" class="section level1">
@@ -435,27 +451,33 @@ div.tocify {
 <p><img src="details/glm/eta1.png" class="img-responsive" alt=""></p>
 <p>Going in <span class="jamovi">jamovi</span>, <span class="option">Regression-&gt;Partial correlation</span> we can compute the semi-partial correlation of each IV coviariating the other. This gives:</p>
 <p><img src="details/glm/eta2.png" class="img-responsive" alt=""></p>
-<p>Squaring it gives <span class="math inline">\(r_{yx.z}^2=-0.230^2=0.053\)</span>, which is equal to the corrisponding <span class="math inline">\(\eta^2=.053\)</span>.</p>
+<p>Squaring it gives <span class="math inline">\(r_{yx.z}^2=-0.230^2=0.0529\)</span>, which is equal to the corrisponding <span class="math inline">\(\eta^2=.053\)</span>.</p>
 <p><img src="details/glm/eta3.png" class="img-responsive" alt=""></p>
-<p>Squaring the second <span class="math inline">\(r_{sp}^2\)</span> gives <span class="math inline">\(r_{yz.x}^2=0.388^2=0.15\)</span>, considering rounding, which is equal to the corrisponding <span class="math inline">\(\eta^2=.150\)</span>.</p>
+<p>Squaring the second <span class="math inline">\(r_{sp}^2\)</span> gives <span class="math inline">\(r_{yz.x}^2=0.388^2=0.1504664\)</span>, considering rounding, which is equal to the corrisponding <span class="math inline">\(\eta^2=.150\)</span>.</p>
 <p>If we used <span class="math inline">\(SS_{total}^*=\sum{SS_{f}}+SS_{res}\)</span>, results would be:</p>
 <ul>
 <li><span class="math inline">\(SS_{total}^*=1516+4298+23810=29624\)</span></li>
-<li><span class="math inline">\(SS_{yx.z}^*=1516/29624 =0.051\)</span></li>
-<li><span class="math inline">\(SS_{yz.x}^*=4298/29624 =0.145\)</span></li>
+<li><span class="math inline">\(SS_{yx.z}^*=1516/29624 =0.0511747\)</span></li>
+<li><span class="math inline">\(SS_{yz.x}^*=4298/29624 =0.1450851\)</span></li>
 </ul>
-<p>that are clearly not corresponding to the <span class="math inline">\(r_{sp}^2\)</span>, as they should be. We should note, however, that the two methods of estimation usually give very similar results, even when <span class="math inline">\(SS_{total}^* \ne SS_{total}\)</span> and exact the same results when <span class="math inline">\(SS_{total}^*=SS_{total}\)</span>.</p>
+<p>that are clearly not corresponding to the <span class="math inline">\(r_{sp}^2\)</span>, as they should be. We should note, however, that the two methods of estimation usually give very similar results, even when <span class="math inline">\(SS_{total}^* \ne SS_{total}\)</span> and exactly the same results when <span class="math inline">\(SS_{total}^*=SS_{total}\)</span>.</p>
 <p>The same reasoning holds for all the non-partial indices.</p>
-<div id="isnt-this-weird-technical-stuff" class="section level2">
-<h2>Isn’t this weird (technical stuff)?</h2>
-<p>For many people, the fact that <span class="math inline">\(\sum{SS_{f}} \ne SS_{model}\)</span> may come as a surprise. Maybe because in the ANOVA tradition, with balanced designs, <span class="math inline">\(\sum{SS_{f}}\)</span> is always equal to <span class="math inline">\(SS_{model}\)</span>, or maybe because it would be nicer if it was always like in the ANOVA. Since we have to accept that in the GLM <span class="math inline">\(\sum{SS_{f}}\)</span> is not necessarily equal to <span class="math inline">\(SS_{model}\)</span>, let us see when this happens.</p>
-<p>There are two cases: The easiest to understand is when <span class="math inline">\(\sum{SS_{f}} \lt SS_{model}\)</span>. This case happens when the independent variables are correlated so each variable explains a unique part of the variance, but the model sum of square involves also some shared variance, which ends up in <span class="math inline">\(SS_{model}\)</span> but not in <span class="math inline">\(\sum{SS_{f}}\)</span>.</p>
+<button type="button" class="collapsible">
+Open Collapsible
+</button>
+<div class="collapsecontent">
+<p>
+Lorem ipsum…
+</p>
+</div>
+<p>For many people, the fact that <span class="math inline">\(SS_{model}^* \ne SS_{model}\)</span> may come as a surprise. Maybe because in the ANOVA tradition, with balanced designs, <span class="math inline">\(\sum{SS_{f}}\)</span> is always equal to <span class="math inline">\(SS_{model}\)</span>, or maybe because it would be nicer if it was always like in the ANOVA. Since we have to accept that in the GLM <span class="math inline">\(\sum{SS_{f}}\)</span> is not necessarily equal to <span class="math inline">\(SS_{model}\)</span>, let us see when this happens.</p>
+<p>There are two cases: The easiest to understand is when <span class="math inline">\(\sum{SS_{f}} \lt SS_{model}\)</span>. This case happens when the independent variables are positively (or all negatively) correlated so each variable explains a unique part of the variance, but the model sum of square involves also some shared variance, which ends up in <span class="math inline">\(SS_{model}\)</span> but not in <span class="math inline">\(\sum{SS_{f}}\)</span>.</p>
 <p>A little trickier is the case when <span class="math inline">\(\sum{SS_{f}} \gt SS_{model}\)</span>, because it seems strange that the sum of effects is larger than the overall combined effect.</p>
 <p>Consider a regression <span class="math inline">\(y=a+b_{yx.z}x+b_{yz.x}z\)</span>. Recall the the <span class="math inline">\(SS_{yx.z}\)</span> (<span class="math inline">\(x\)</span> explains <span class="math inline">\(y\)</span> keeping constant <span class="math inline">\(z\)</span>) is computed as <span class="math inline">\(SS_{total}-SS_{yz}\)</span>, where <span class="math inline">\(SS_{yz}\)</span> is the sum of squares explained by <span class="math inline">\(x\)</span> without <span class="math inline">\(z\)</span> in the model, and <span class="math inline">\(SS_{yz.x}=SS_{total}-SS_{yx}\)</span>. It follows that the <span class="math inline">\(\sum{SS_f}=2\cdot SS_{total}-SS_{yx}-SS_{yz}\)</span> is larger than <span class="math inline">\(SS_{total}\)</span> when <span class="math inline">\(SS_{total} &gt; SS_{yx}+SS_{yz}\)</span>. This necessarily means that at least one variable explains more variance while keeping constant the other than alone.</p>
 <p>Indeed, in the example above about exercising, the SS of <em>age</em> alone is 452, and <em>exer</em> alone is 3234, which sum to 3686, less than 4751, the multiple regression model SS.</p>
-<p>The question is now: when does this happen? Well, it happens when the <span class="math inline">\(B_{yx}\)</span>, the coefficient associated with <span class="math inline">\(x\)</span> in simple regression, is smaller (in absolute value) than the partial coefficient of <span class="math inline">\(B_{yx.z}\)</span> of a multiple regression. Because <span class="math inline">\(B_{yx.z}=B_{yx} - B_{yz.x}\cdot B_{xz}\)</span>, this happens when <span class="math inline">\(B_{yx}\)</span> and <span class="math inline">\(B_{yz.x}\cdot B_{zx}\)</span> have different signs: therefore, we have a suppression effect!</p>
-<p>In the example above, focusing on <em>age</em>, we have <span class="math inline">\(B_{yx.z}=-.257\)</span>, <span class="math inline">\(B_{yz.x}=.916\)</span> and <span class="math inline">\(B_{zx}=.134\)</span>, thus <span class="math inline">\(B_{yz.x}\cdot B_{zx}=.916*.134=0.123\)</span>, which has a different sign than <span class="math inline">\(B_{yx.z}=-.257\)</span>.</p>
-</div>
+<p>The question is now: when does this happen? Well, it happens when the <span class="math inline">\(B_{yz}\)</span>, the coefficient associated with <span class="math inline">\(z\)</span> in simple regression, is smaller (in absolute value) than the partial coefficient of <span class="math inline">\(B_{yz.x}\)</span> of a multiple regression. Because <span class="math inline">\(B_{yz.x}=B_{yz} - B_{yx.z}\cdot B_{zx}\)</span>, this happens when <span class="math inline">\(B_{yz}\)</span> and <span class="math inline">\(B_{yx.z}\cdot B_{xz}\)</span> have different signs: therefore, we have a suppression effect!</p>
+<p><img src="details/glm/simplez.png" class="img-responsive" alt=""> <img src="details/glm/multiplez.png" class="img-responsive" alt=""></p>
+<p>In the example above, focusing on <em>exer</em> (the z variable), we have <span class="math inline">\(B_{yz.x}=.961\)</span>, <span class="math inline">\(B_{yx.z}=-.257\)</span> and <span class="math inline">\(B_{xz}=.762\)</span>, thus <span class="math inline">\(B_{yx.z}\cdot B_{xz}=-.257*.762=-0.195834\)</span>, which has a different sign than <span class="math inline">\(B_{yz}=.762\)</span>. Thus, the effect of <em>exercising</em> is stronger when keeping constant <em>age</em> than alone: <em>age</em> suppresses the effect of <em>exercising</em> on <em>endurance</em>.</p>
 </div>
 <div id="eta2p-partial-eta-squared" class="section level1">
 <h1><span class="math inline">\(\eta^2\)</span>p : partial eta-squared</h1>
