@@ -2,6 +2,7 @@
 title: "Mixed Models module technical details"
 topic: mixed
 category: details
+nickname: mixed_specs
 output: 
   html_document:
      includes:

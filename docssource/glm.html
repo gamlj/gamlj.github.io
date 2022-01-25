@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>General Linear Model</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110344212-1');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="gzlmmixed.html">Generalized Mixed Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples and Details</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+<li>
+  <a href="vignettes.html">GAMLj in R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/gamlj/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">General Linear Model</h1>
+
+</div>
+
+
+<p><strong>General Linear Model</strong> module of the GAMLj suite for jamovi</p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 2.6.0 </span></p>
+<p><img src="glm/main.png  " class="img-responsive" alt=""></p>
+<p>The module estimates a general linear model with categorical and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, etc.</p>
+<div id="module" class="section level1">
+<h1>Module</h1>
+<p>The module can estimate OLS linear models for any combination of categorical and continuous variables, thus providing an easy way for multiple regression, ANOVA, ANCOVA and moderation analysis.</p>
+</div>
+<div id="estimates" class="section level1">
+<h1>Estimates</h1>
+<p>The module provides ANOVA tables and parameters estimates for any estimated model. Effect size indices (eta, partial eta, partial omega, partial epsilon, and beta) are optionally computed.</p>
+<p>Variables definition follows jamovi standards, with categorical independent variables defined in <span class="option">Factors</span> and continuous independent variables in <span class="option">Covariates</span>.</p>
+<p><img src="glm/variables.png" class="img-responsive" alt=""></p>
+<p>Effect size indices are optionally computed by selecting the following options (see <a href="details_glm_effectsize.html">Details: GLM effect size indices</a>):</p>
+<ul>
+<li><span class="math inline">\(\beta\)</span> : standardized regression coefficients</li>
+<li><span class="math inline">\(\eta^2\)</span>: (semi-partial) eta-squared</li>
+<li><span class="math inline">\(\eta^2\)</span>p : partial eta-squared</li>
+<li><span class="math inline">\(\omega^2\)</span> : omega-squared</li>
+<li><span class="math inline">\(\omega^2\)</span>p : partial omega-squared</li>
+<li><span class="math inline">\(\epsilon^2\)</span> : epsilon-squared</li>
+<li><span class="math inline">\(\epsilon^2\)</span>p : partial epsilon-squared</li>
+</ul>
+<p>Confidence intervals of the parameters can be also selected in <span class="option">Options</span> tab.</p>
+<p><img src="glm/effectsize1.png" class="img-responsive" alt=""></p>
+<p>Please check the details in <a href="details_glm_effectsize.html">Details: GLM effect size indices</a></p>
+</div>
+<div id="model" class="section level1">
+<h1>Model</h1>
+<p>By default, the model terms are filled in automatically for main effects and for interactions with categorical variables.</p>
+<p><img src="glm/model.png" class="img-responsive" alt=""></p>
+<p>Interactions between continuous variables or categorical and continuous variables can be set by clicking the second arrow icon.</p>
+<p>Polinomial effects for continuous variables can be added to the model. When a variable is selected in the <span class="option">Components</span> field, a little number appears on the right side of the selection. The number indicates the <em>order</em> of the effect.</p>
+<p><img src="commons/pics/nonlinear1.png" class="img-responsive" alt=""></p>
+<p>By increasing that number before dragging the term into the <span class="option">Model Terms</span> field, one can include any high order effect.</p>
+<p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
+<p>Increasing the order number and combining the selection with other variables allows including interactions involving higher order effects of a variable.</p>
+<p>The option <span class="option">Fixed Intercept</span> includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see <a href="https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/">here</a> before you do it ).</p>
+</div>
+<div id="factors-coding" class="section level1">
+<h1>Factors coding</h1>
+<p><img src="commons/pics/factorCoding.png" class="img-responsive" alt=""></p>
+<p>It allows to code the categorical variables according to different coding schemas. The coding schema applies to all parameters estimates. The default coding schema is <span class="option">simple</span>, which is centered to zero and compares each means with the reference category mean. The reference category is the first appearing in the variable levels.</p>
+<p>Note that all contrasts but <span class="option">dummy</span> guarantee to be centered to zero (intercept being the grand mean), so when involved in interactions the other variables coefficients can be interpret as (main) average effects. If contrast <span class="option">dummy</span> is set, the intercept and the effects of other variables in interactions are estimated for the first group of the categorical IV.</p>
+<p>Contrasts definitions are provided in the estimates table. More detailed definitions of the comparisons operated by the contrasts can be obtained by selecting <span class="option">Show contrast definition table</span>.</p>
+<p>Differently to standard R naming system, contrasts variables are always named with the name of the factor and progressive numbers from 1 to K-1, where K is the number of levels of the factor.</p>
+<p>In reading the contrast labels, one should interpret the <code>(1,2,3)</code> code as meaning “the mean of the levels 1,2, and 3 pooled toghether”. If factor levels 1,2 and 3 are all levels of the factor in the samples, <code>(1,2,3)</code> is equivalent to “the mean of the sample”. For example, for a three levels factor, a contrast labeled <code>1-(1,2,3)</code> means that the contrast is comparing the mean of level 1 against the mean of the sample. For the same factor, a contrast labeled <code>1-(2,3)</code> indicates a comparison between level 1 mean and the subsequent levels means pooled together.</p>
+<p>More details and examples <a href="rosetta_contrasts.html">Rosetta store: contrasts</a>.</p>
+</div>
+<div id="covariates-scaling" class="section level1">
+<h1>Covariates Scaling</h1>
+<p><img src="glm/dscoring.png" class="img-responsive" alt=""></p>
+<p>Continuous variables can be centered, standardized (<span class="option">z-scores</span>), log-transformed (<span class="option">Log</span>) or used as they are (<span class="option">none</span>). The default is <span class="option">centered</span> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simply select <span class="option">none</span>.</p>
+<p><span class="option">Covariates conditioning</span> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
+<ul>
+<li><p><span class="option">Mean+SD</span>: means that the IV is conditioned to the <span class="math inline">\(mean\)</span>, to <span class="math inline">\(mean+k \cdot sd\)</span>, and to <span class="math inline">\(mean-k\cdot sd\)</span>, where <span class="math inline">\(k\)</span> is ruled by the white field below the option. Default is 1 SD.</p></li>
+<li><p><span class="option">Percentile 50 +offset</span>: means that the IV is conditioned to the <span class="math inline">\(median\)</span>, the <span class="math inline">\(median+k P\)</span>, and the <span class="math inline">\(median-k\cdot P\)</span>, where <span class="math inline">\(P\)</span> is the offset of percentile one needs. Again, the <span class="math inline">\(P\)</span> is ruled by the white field below the option. Default is 25%. The default conditions the model to:</p>
+<ul>
+<li><p><span class="math inline">\(50^{th}-25^{th}=25^{th}\)</span> percentile</p></li>
+<li><p><span class="math inline">\(50^{th}\)</span> percentile</p></li>
+<li><p><span class="math inline">\(50^{th}+25^{th}=75^{th}\)</span> percentile</p></li>
+</ul></li>
+</ul>
+<p>The offset should be within 5 and 50.</p>
+<p>Note that with either of these two options, one can estimate simple effects and plots for any value of the continuous IV.</p>
+<p><span class="option">Covariates labeling</span> decides which label should be associated with the estimates and plots of simple effects as follows:</p>
+<ul>
+<li><p><span class="option">Labels</span> produces strings of the form <span class="math inline">\(Mean \pm SD\)</span></p></li>
+<li><p><span class="option">Values</span> uses the actual values of the variables</p></li>
+<li><p><span class="option">Labels+Values</span> produces labels of the form <span class="math inline">\(Mean \pm SD=XXXX\)</span>, where <code>XXXX</code> is the actual value.</p></li>
+</ul>
+<p>The option <span class="option">Dependent variable</span> scale allows to transform the dependent variable. The dependent variable can be centered, standardized (<span class="option">z-scores</span>), log-transformed (<span class="option">Log</span>) or used as they are (<span class="option">none</span>). The default is <span class="option">none</span>, so no transformation is applied.</p>
+</div>
+<div id="post-hocs" class="section level1">
+<h1>Post-hocs</h1>
+<p><img src="commons/pics/posthoc.png" class="img-responsive" alt=""></p>
+<p>Post-hoc tests can be accomplished for the categorical variables groups by selecting the appropriated factor and flag the required tests</p>
+<p>Post-hoc tests are implemented based on R package <em>emmeans</em>. All tecnical info can be found <a href="https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#pairwise">here</a></p>
+</div>
+<div id="plots" class="section level1">
+<h1>Plots</h1>
+<p><img src="glm/plots.png" class="img-responsive" alt=""></p>
+<p>The “plots” menu allows for plotting main effects and interactions for any combination of types of variables, making it easy to plot interaction means plots, simple slopes, and combinations of them. The best plot is chosen automatically.</p>
+<p>By filling in <span class="option">Horizontal axis</span> one obtains the group means of the selected factor or the regression line for the selected covariate</p>
+<p>By filling in <span class="option">Horizontal axis</span> and <span class="option">Separated lines</span> one obtains a different plot depending on the type of variables selected:</p>
+<ul>
+<li><span class="option">Horizontal axis</span> and <span class="option">Separated lines</span> are both factors, one obtains the interaction plot of group means.</li>
+<li><span class="option">Horizontal axis</span> is a factor and <span class="option">Separated lines</span> is a covariate. One obtains the plot of group means of the factor estimated at three different levels of the covariate. The levels are decided by the <span class="option">Covariates conditioning</span> options above.</li>
+<li><span class="option">Horizontal axis</span> and <span class="option">Separated lines</span> are covariates. One obtains the simple slopes graph of the simple slopes of the variable in horizontal axis estimated at three different levels of the covariate.</li>
+</ul>
+<p>By filling in <span class="option">Separate plots</span> one can probe three-way interactions. If the selected variable is a factor, one obtains a two-way graph (as previously defined) for each level of the “Separate plots” variable. If the selected variable is a covariate, one obtains a two-way graph (as previously defined) for the <code>Separate plots</code> variable centered to conditioning values selected in the <span class="option">Covariates conditioning</span> options.</p>
+<p>Flagging the <span class="option">Display</span> options add <span class="option">Confidence intervals</span> (or confidence bands) or <span class="option">Standard errors</span> to the plots.</p>
+<p><span class="option">Plot</span> options allows to add observed data to the plot (<span class="option">Observed scores</span>) or to fix the range of the plot to the actual range of the dependent variable (<span class="option">Y-axis observed range</span>), without the need to plot the actual predicted values. When <code>Separate plots</code> are required, in each plot are showed only the observed scores of the moderator level for which the plot is done when the moderator is a categorical one, otherwise all data are plot in each plot.</p>
+</div>
+<div id="estimated-marginal-means" class="section level1">
+<h1>Estimated marginal means</h1>
+<p><img src="commons/pics/emmeans.png" class="img-responsive" alt=""></p>
+<p>Print the estimate expected means, SE, df and confidence intervals of the precicted dependent variable by factors in the model. When `<span class="option">Include covariates</span> is selected, factors levels are crossed also with the conditiong levels of the continuous variables (if any). The conditioning values are selected in <span class="option">Covariates Scaling</span> panel.</p>
+</div>
+<div id="assumptions-checks" class="section level1">
+<h1>Assumptions checks</h1>
+<p><img src="glm/assumptions.png" class="img-responsive" alt=""></p>
+<ul>
+<li><p><span class="option">Homogeneity tests</span> provides <a href="https://biostats.w.uib.no/test-for-homogeneity-of-variances-levenes-test/" target="_blank">Levene’s test</a> for equal variances across groups defined by factors (homoschedasticity).</p></li>
+<li><p><span class="option">Test normality of residuals</span> provides <a href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test" target="_blank">Kolmogorov-Smirnov</a> and <a href="https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation" target="_blank">Shapiro-Wilk</a> tests for normality of residuals.</p></li>
+<li><p><span class="option">Q-Q plot of residuals</span> outputs a Q-Q plot (observed residual quantiles on expected residual quantiles). More general info <a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot" target="_blank">here</a></p></li>
+<li><p><span class="option">Residuals histogram</span> outputs the histogram of the distribution of the residuals, with an overlaying ideal normal distribution with mean and variance equal to the residuals distribution parameters.</p></li>
+<li><p><span class="option">Residuals-Predicted plot</span> produces a scatterplot with the residuals on the Y-axis and the predicted in the X-axis. It can be usufull to assess heteroschdasticity.</p></li>
+</ul>
+</div>
+<div id="options" class="section level1">
+<h1>Options</h1>
+<p><img src="glm/options.png" class="img-responsive" alt=""></p>
+<p>Additional options that do not fit elsewhere.</p>
+<ul>
+<li><p><strong><code>Additional Info</code></strong></p>
+<ul>
+<li><span class="option">On intercept</span>_ provides effect size for the intercept</li>
+<li><span class="option">On Effect sizes</span>: outputs a new table with all effect sizes available, with confidence intervals</li>
+<li>see <a href="details_glm_effectsize.html">Details: GLM effect size indices</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<p>Some worked out examples of the analyses carried out with jamovi GAMLj are posted here (more to come)</p>
+<ul>
+<li>
+<a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a>
+</li>
+<li>
+<a href="glm_example2.html">Polynomial Effects</a>
+</li>
+</ul>
+</div>
+<div id="details" class="section level1">
+<h1>Details</h1>
+<p>Some more information about the module specs can be found here # Specs</p>
+<ul>
+<li>
+<a href="details_glm_effectsize.html">Details: GLM effect size indices</a>
+</li>
+<li>
+<a href="posthoc_specs.html">Post-hocs Details</a>
+</li>
+</ul>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj/issues"> GAMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+</p>
+<p>’</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
