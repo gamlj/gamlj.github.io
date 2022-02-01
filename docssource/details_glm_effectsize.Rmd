@@ -131,10 +131,11 @@ Indeed, in the example above about exercising, the SS of _age_ alone is 452, and
 
 The question is now: when does this happen? Well, it happens when the $B_{yz}$, the coefficient associated with $z$ in simple regression, is smaller (in absolute value) than the partial coefficient of $B_{yz.x}$ of a multiple regression. Because $B_{yz.x}=B_{yz} - B_{yx.z}\cdot B_{zx}$, this happens when $B_{yz}$ and $B_{yx.z}\cdot B_{xz}$ have different signs: therefore, we have a suppression effect!
 
-<img src="details/glm/simplez.png" class="img-responsive" alt="">
-<img src="details/glm/multiplez.png" class="img-responsive" alt="">
+<img src="details/glm/simplezony.png" class="img-responsive" alt="">
+<img src="details/glm/simplezonx.png" class="img-responsive" alt="">
+<img src="details/glm/mutiplezxony.png" class="img-responsive" alt="">
 
-In the example above, focusing on _exer_ (the z variable), we have $B_{yz.x}=.961$, $B_{yx.z}=-.257$ and $B_{xz}=.762$, thus  $B_{yx.z}\cdot B_{xz}=-.257*.762=`r -.257*.762`$, which has a different sign than $B_{yz}=.762$. Thus, the effect of _exercising_ is stronger when keeping constant _age_ than alone: _age_ suppresses the effect of _exercising_ on _endurance_.
+In the example above, focusing on _exer_ (the z variable), we have $B_{yz.x}=.916$, $B_{yx.z}=-.257$ and $B_{xz}=.598$, thus  $B_{yx.z}\cdot B_{xz}=-.257*.598=`r -.257*.598`$, which has a different sign than $B_{yz}=.762$. Thus, the effect of _exercising_ is stronger when keeping constant _age_ than alone: _age_ suppresses the effect of _exercising_ on _endurance_.
 
 </div> 
 
