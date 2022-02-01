@@ -424,7 +424,7 @@ div.tocify {
 </div>
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
-<p><img src="glm/dscoring.png" class="img-responsive" alt=""></p>
+<p><img src="glm/xscoring.png" class="img-responsive" alt=""></p>
 <p>Continuous variables can be centered, standardized (<span class="option">z-scores</span>), log-transformed (<span class="option">Log</span>) or used as they are (<span class="option">none</span>). The default is <span class="option">centered</span> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simply select <span class="option">none</span>.</p>
 <p><span class="option">Covariates conditioning</span> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
 <ul>
