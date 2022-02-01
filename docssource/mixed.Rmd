@@ -67,7 +67,7 @@ By default, the model fixed effects terms are filled in automatically for main e
 Interactions between continuous variables or categorical and continuous can be set by clicking the second arrow icon.
 
 
-```{Call_child, child='commons/nonlinear_chunk.Rmd'}
+```{r child1, child='commons/nonlinear_chunk.Rmd'}
 ```
 
 
@@ -76,7 +76,7 @@ Interactions between continuous variables or categorical and continuous can be s
 
 <img src="commons/pics/factorCoding.png" class="img-responsive" alt="">
 
-```{Call_child, child='commons/factorCoding_chunk.Rmd'}
+```{r child2, child='commons/factorCoding_chunk.Rmd'}
 ```
 
 More details and examples `r link_pages("ros_contrasts")`.
@@ -92,14 +92,14 @@ Continuous variables can be centered, standardized, cluster-based centered, clus
 The same transformations can be applied to the dependent variable by selecting an option in `r opt("Dependent variable")` _scale_.
 
 
-```{Call_child, child='commons/covariateScaling_chunk.Rmd'}
+```{r child3, child='commons/covariateScaling_chunk.Rmd'}
 ```
 
 # Post-hocs
 <img src="mixed/posthoc.png" class="img-responsive" alt="">
 
 
-```{Call_child, child='commons/posthoc_chunk.Rmd'}
+```{r child4, child='commons/posthoc_chunk.Rmd'}
 ```
 
 
@@ -109,7 +109,7 @@ The same transformations can be applied to the dependent variable by selecting a
 <img src="mixed/plots.png" class="img-responsive" alt="">
 
 
-```{Call_child, child='commons/plots_chunk.Rmd'}
+```{r child5, child='commons/plots_chunk.Rmd'}
 ```
 
 By flagging `Random effects` one obtains the random effects estimated values in the plot along with the fixed effects. In case of multiple cluster variables, the first cluster variable in the `cluster` field of "variable role" panel is used (if it is included in the model). To change the cluster variable used to plot the random effects, change the order of the variables in the "variable role" definition.
@@ -118,7 +118,7 @@ By flagging `Random effects` one obtains the random effects estimated values in 
 
 <img src="commons/pics/emmeans.png" class="img-responsive" alt="">
 
-```{Call_child, child='commons/emm_chunk.Rmd'}
+```{r child6, child='commons/emm_chunk.Rmd'}
 ```
 
 

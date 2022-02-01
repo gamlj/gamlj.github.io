@@ -89,7 +89,7 @@ By default, the model terms are filled in automatically for main effects and for
 
 Interactions between continuous variables or categorical and continuous ones can be set by selecting one or more variables and clicking the second arrow icon.
 
-```{Call_child, child='commons/nonlinear_chunk.Rmd'}
+```{r child1, child='commons/nonlinear_chunk.Rmd'}
 ```
 
 
@@ -100,7 +100,7 @@ The option `r opt("Fixed Intercept")` includes an intercept in the model. Unflag
 
 <img src="commons/pics/factorCoding.png" class="img-responsive" alt="">
 
-```{Call_child, child='commons/factorCoding_chunk.Rmd'}
+```{r child2, child='commons/factorCoding_chunk.Rmd'}
 ```
 
 # Covariates Scaling
@@ -109,14 +109,14 @@ The option `r opt("Fixed Intercept")` includes an intercept in the model. Unflag
 Continuous variables can be centered, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as they are (`r opt("none")`). The default is `r opt("centered")` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simply select `r opt("none")`.
 
 
-```{Call_child, child='commons/covariateScaling_chunk.Rmd'}
+```{r child3, child='commons/covariateScaling_chunk.Rmd'}
 ```
 
 # Post-hocs
 <img src="commons/pics/posthoc.png" class="img-responsive" alt="">
 
 
-```{Call_child, child='commons/posthoc_chunk.Rmd'}
+```{r child4, child='commons/posthoc_chunk.Rmd'}
 ```
 
 
@@ -126,7 +126,7 @@ Continuous variables can be centered, standardized (`r opt("z-scores")`), log-tr
 <img src="commons/pics/plots.png" class="img-responsive" alt="">
 
 
-```{Call_child, child='commons/plots_chunk.Rmd'}
+```{r child5, child='commons/plots_chunk.Rmd'}
 ```
 
 Plots interpretation varies depending on the model being estimated. All plots are, however, depicting predicted values in the response original scale (usually probabilities). See details and interpretation discussion.
@@ -136,7 +136,7 @@ Plots interpretation varies depending on the model being estimated. All plots ar
 
 <img src="commons/pics/emmeans.png" class="img-responsive" alt="">
 
-```{Call_child, child='commons/emm_chunk.Rmd'}
+```{r child6, child='commons/emm_chunk.Rmd'}
 ```
 
 
