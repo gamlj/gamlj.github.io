@@ -442,14 +442,14 @@ div.tocify {
 <p><img src="details/glm/eta1.png" class="img-responsive" alt=""></p>
 <p>Going in <span class="jamovi">jamovi</span>, <span class="option">Regression-&gt;Partial correlation</span> we can compute the semi-partial correlation of each IV coviariating the other. This gives:</p>
 <p><img src="details/glm/eta2.png" class="img-responsive" alt=""></p>
-<p>Squaring it gives <span class="math inline">\(r_{yx.z}^2=-0.230^2=0.0529\)</span>, which is equal to the corrisponding <span class="math inline">\(\eta^2=.053\)</span>.</p>
+<p>Squaring it gives <span class="math inline">\(r_{yx.z}^2=-0.230^2=0.053\)</span>, which is equal to the corrisponding <span class="math inline">\(\eta^2=.053\)</span>.</p>
 <p><img src="details/glm/eta3.png" class="img-responsive" alt=""></p>
-<p>Squaring the second <span class="math inline">\(r_{sp}^2\)</span> gives <span class="math inline">\(r_{yz.x}^2=0.388^2=0.1504664\)</span>, considering rounding, which is equal to the corrisponding <span class="math inline">\(\eta^2=.150\)</span>.</p>
+<p>Squaring the second <span class="math inline">\(r_{sp}^2\)</span> gives <span class="math inline">\(r_{yz.x}^2=0.388^2=0.15\)</span>, considering rounding, which is equal to the corrisponding <span class="math inline">\(\eta^2=.150\)</span>.</p>
 <p>If we used <span class="math inline">\(SS_{total}^*=\sum{SS_{f}}+SS_{res}\)</span>, results would be:</p>
 <ul>
 <li><span class="math inline">\(SS_{total}^*=1516+4298+23810=29624\)</span></li>
-<li><span class="math inline">\(SS_{yx.z}^*=1516/29624 =0.0511747\)</span></li>
-<li><span class="math inline">\(SS_{yz.x}^*=4298/29624 =0.1450851\)</span></li>
+<li><span class="math inline">\(SS_{yx.z}^*=1516/29624 =0.051\)</span></li>
+<li><span class="math inline">\(SS_{yz.x}^*=4298/29624 =0.145\)</span></li>
 </ul>
 <p>that are clearly not corresponding to the <span class="math inline">\(r_{sp}^2\)</span>, as they should be. We should note, however, that the two methods of estimation usually give very similar results, even when <span class="math inline">\(SS_{total}^* \ne SS_{total}\)</span> and exactly the same results when <span class="math inline">\(SS_{total}^*=SS_{total}\)</span>.</p>
 <p>The same reasoning holds for all the non-partial indices.</p>
@@ -468,7 +468,7 @@ div.tocify {
 <p>Indeed, in the example above about exercising, the SS of <em>age</em> alone is 452, and <em>exer</em> alone is 3234, which sum to 3686, less than 4751, the multiple regression model SS.</p>
 <p>The question is now: when does this happen? Well, it happens when the <span class="math inline">\(B_{yz}\)</span>, the coefficient associated with <span class="math inline">\(z\)</span> in simple regression, is smaller (in absolute value) than the partial coefficient of <span class="math inline">\(B_{yz.x}\)</span> of a multiple regression. Because <span class="math inline">\(B_{yz.x}=B_{yz} - B_{yx.z}\cdot B_{zx}\)</span>, this happens when <span class="math inline">\(B_{yz}\)</span> and <span class="math inline">\(B_{yx.z}\cdot B_{xz}\)</span> have different signs: therefore, we have a suppression effect!</p>
 <p><img src="details/glm/simplezony.png" class="img-responsive" alt=""> <img src="details/glm/simplezonx.png" class="img-responsive" alt=""> <img src="details/glm/mutiplezxony.png" class="img-responsive" alt=""></p>
-<p>In the example above, focusing on <em>exer</em> (the z variable), we have <span class="math inline">\(B_{yz.x}=.916\)</span>, <span class="math inline">\(B_{yx.z}=-.257\)</span> and <span class="math inline">\(B_{xz}=.598\)</span>, thus <span class="math inline">\(B_{yx.z}\cdot B_{xz}=-.257*.598=-0.153686\)</span>, which has a different sign than <span class="math inline">\(B_{yz}=.762\)</span>. Thus, the effect of <em>exercising</em> is stronger when keeping constant <em>age</em> than alone: <em>age</em> suppresses the effect of <em>exercising</em> on <em>endurance</em>.</p>
+<p>In the example above, focusing on <em>exer</em> (the z variable), we have <span class="math inline">\(B_{yz.x}=.916\)</span>, <span class="math inline">\(B_{yx.z}=-.257\)</span> and <span class="math inline">\(B_{xz}=.598\)</span>, thus <span class="math inline">\(B_{yx.z}\cdot B_{xz}=-.257*.598=-0.154\)</span>, which has a different sign than <span class="math inline">\(B_{yz}=.762\)</span>. Thus, the effect of <em>exercising</em> is stronger when keeping constant <em>age</em> than alone: <em>age</em> suppresses the effect of <em>exercising</em> on <em>endurance</em>.</p>
 </div>
 </div>
 <div id="eta2p-partial-eta-squared" class="section level1">
