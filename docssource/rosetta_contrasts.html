@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Rosetta store: contrasts</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110344212-1');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="gzlmmixed.html">Generalized Mixed Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples and Details</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+<li>
+  <a href="vignettes.html">GAMLj in R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/gamlj/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Rosetta store: contrasts</h1>
+
+</div>
+
+
+<p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, SPSS, R, contrasts, comparisons, planned comparisons, LMATRIX, contr.sum, emmeans </span></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 0.9.5 </span></p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Here you can find comparisons of results obtained in jamovi GAMLj, jamovi (jmv), pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing identical results across programs.</p>
+<p>Example data are <a href="https://github.com/mcfanda/gamlj_docs/blob/master/data/rosetta.contrasts.csv">here</a>. One continuous dependent variable, one factor with 4 groups.</p>
+<p>Unfortunately, contrasts coding schemes get different names in different publications and they are implemented in different ways across software. Things can get a bit confusing because of this. For partially overlapping coding scheme definitions see <a href="https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">UCLA idre web site</a>, <a href="https://www.ibm.com/support/knowledgecenter/en/SSLVMB_20.0.0/com.ibm.spss.statistics.help/contrasts.htm">SPSS manual</a> and <em>Cohen, J., Cohen, P., West, S. G., &amp; Aiken, L. S. (2013). Applied multiple regression/correlation analysis for the behavioral sciences. Routledge.</em> If you have familiarity with python, you can compare results also with <a href="http://www.statsmodels.org/dev/contrasts.html">python statmodels results</a></p>
+</div>
+<div id="software" class="section level1">
+<h1>Software</h1>
+<p>We use jamovi, SPSS and R. In jamovi we compare the ANOVA module in jamovi <code>jmv</code> and the <code>GAMLj</code> module. In R we use <em>pure R</em>, meaning that we estimate the contrast comparisons by estimating a linear model (<code>lm()</code> in particular), with the categorical variable properly coded. For more straigthforward estimation we employ <code>emmeans</code> R module. In SPSS we use the <code>UNIVARIATE</code> module.</p>
+</div>
+<div id="more-technical-details" class="section level1">
+<h1>More technical details</h1>
+<p>Contrasts can be computed in two different ways:</p>
+<ul>
+<li><p>As the coefficients of a model where the categorical variable(s) is coded accordingly to a coding scheme. Jamovi GAMLj and standard R use this strategy. Understanding this approach opens to the possibility to test contrasts-based hypotheses in complex models, such as when interactions are involved, mediatiated effects or simple effects are of interest.</p></li>
+<li><p>As a comparison between sets of means tested with model-derived standard errors. jamovi ANOVA, <code>emmeans</code> R and SPSS use this approach. This approach is simpler and straightforward. In simple models, it works perfectly fine.</p></li>
+<li><p>As a comparison between groups means, with group specific standard errors. None of the software used here uses this approach, so we do not deal with it here.</p></li>
+</ul>
+<p>The first two approaches give the same results if the contrasts are defined in the same way. However, the contrast coding displayed by the software may be different. The majority of software prints out the <strong>contrast matrix</strong>, which contains the coding scheme describing the tested comparisons. R model estimation requires the <strong>model matrix</strong>, which is generally different from the contrast matrix and represents the weights associated with the dummy variables needed to cast a categorical variable into the linear model estimating the contrasts. How they are related and how to obtain one from the other is explained in <a href="#contrast_matrix_and_model_matrix_details">contrast vs model matrix details</a></p>
+<p>Furthermore, in simple models (such as one-way ANOVA), the two first approaches give exactly the same results. When models get more complex, results may diverge across software because they estimate different things. <strong>The present results apply to one-way ANOVA, balanced factorial ANOVA with centered coding scheme, ANCOVA models with continuous covariates centered to their means</strong>.</p>
+</div>
+<div id="terminology" class="section level1">
+<h1>Terminology</h1>
+<p>To interpret a contrast, it is often necessary to refer to “the first group” or “subsequent groups”. The order is always defined as the alphanumeric order.</p>
+<p>Furthermore, different software packages have different rounding rules, so we say “the same results” when results agree apart for decimal rounding.</p>
+</div>
+<div id="contrast-deviation" class="section level1">
+<h1>Contrast: Deviation</h1>
+<div id="meaning" class="section level2">
+<h2>Meaning</h2>
+<p><b>Definition:</b><i> Compares each group mean to the grand mean. The grand mean is the mean of the groups means. The first group is omitted</i></p>
+</div>
+<div id="jamovi-anova" class="section level2">
+<h2>Jamovi ANOVA</h2>
+<p><img src="rosetta/contrasts/c1.anova1.png" class="img-responsive" alt=""></p>
+<p>Setting the contrasts to <code>deviation</code></p>
+<p><img src="rosetta/contrasts/c1.anova2.png" class="img-responsive" alt=""></p>
+<p>Results:</p>
+<p><img src="rosetta/contrasts/r.c1.anova1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="jamovi-gamlj-glm" class="section level2">
+<h2>Jamovi GAMLj GLM</h2>
+<p><img src="rosetta/contrasts/c1.anova2.png" class="img-responsive" alt=""></p>
+<p>Results:</p>
+<p><img src="rosetta/contrasts/r.c1.gamlj1.png" class="img-responsive" alt=""></p>
+<p>The expected means of the four groups are:</p>
+<p><img src="rosetta/contrasts/r.c1.gamlj2.png" class="img-responsive" alt=""></p>
+</div>
+<div id="spss" class="section level2">
+<h2>SPSS</h2>
+<p>Please note that SPSS default sets the last group as reference group (the omitted group), thus to obtain the same results as before, we should set <code>/CONTRAST(Group)=Deviation(1)</code>, mind the “1”“, which corresponds to”first” in the GUI options.</p>
+<p><img src="rosetta/contrasts/c1.spss1.png" class="img-responsive" alt=""></p>
+<pre><code>UNIANOVA Score BY Group
+  /CONTRAST(Group)=Deviation(1)
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+</code></pre>
+<p><img src="rosetta/contrasts/r.c1.spss1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="r" class="section level2">
+<h2>R</h2>
+<p>In R, deviation contrast is called <code>contr.sum</code>. The function defaults to omitting the last group, so we reverse it to omit the first.</p>
+<pre class="r"><code>file&lt;-&quot;../data/rosetta.contrasts.csv&quot;
+dat&lt;-read.csv2(file,stringsAsFactors = F)
+dat$Group&lt;-factor(dat$Group)
+dat$Score&lt;-as.numeric(dat$Score)
+### reverse contrast sum ###
+contrasts(dat$Group)&lt;-matrix(rev(contr.sum(4)),ncol=3)
+contrasts(dat$Group)</code></pre>
+<pre><code>##   [,1] [,2] [,3]
+## 1   -1   -1   -1
+## 2    1    0    0
+## 3    0    1    0
+## 4    0    0    1</code></pre>
+<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Score ~ Group, data = dat)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
+## Group1      -0.24675    0.07193  -3.430 0.000760 ***
+## Group2       0.09692    0.06670   1.453 0.148092    
+## Group3       0.29647    0.06670   4.445 0.000016 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5109 on 166 degrees of freedom
+## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
+## F-statistic: 9.557 on 3 and 166 DF,  p-value: 0.000007399</code></pre>
+<pre class="r"><code>## means
+(mm&lt;-tapply(dat$Score, dat$Group, mean))</code></pre>
+<pre><code>##            1            2            3            4 
+##  0.009545455 -0.090555556  0.253111111  0.452666667</code></pre>
+</div>
+<div id="r-emmeans" class="section level2">
+<h2>R emmeans</h2>
+<p>To employ <code>emmeans</code> package, we first estimate the model (which conding we use does not matter), then we run the function <code>emm&lt;-emmeans(model,specs)</code>, where <code>specs</code> is the factor for which we want to compare the means, and then we apply <code>contrast(emm,contrast_type)</code> to the emmeans object. <code>contrast_type</code> is a string equal to the contrast function we want to use. We add <code>adjust="none"</code> to obtain the same p-values as in the previous analyses, but any adjustment supported by <code>emmeans</code> can be applied here. If we omit the <code>adjust</code> option, the default multiplicity adjustment method is “fdr” , cf. <a href="https://www.google.it/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;ved=0ahUKEwjqpImqvYLYAhVQpKQKHTcMBtUQFggqMAA&amp;url=https%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2Femmeans%2Femmeans.pdf&amp;usg=AOvVaw1kHsWAafZ1Rhf3b-f7uruS">emmeans package</a>.</p>
+<p>The <code>deviation</code> contrast it is named <code>eff</code> in emmeans.</p>
+<pre class="r"><code>library(emmeans)
+model&lt;-lm(Score~Group,data=dat)
+emm&lt;-emmeans(model,~Group)
+contrast(emm,&quot;eff&quot;,reverse=T,adjust = &quot;none&quot;)</code></pre>
+<pre><code>##  contrast estimate     SE  df t.ratio p.value
+##  1 effect  -0.1466 0.0672 166  -2.183  0.0305
+##  2 effect  -0.2467 0.0719 166  -3.430  0.0008
+##  3 effect   0.0969 0.0667 166   1.453  0.1481
+##  4 effect   0.2965 0.0667 166   4.445  &lt;.0001</code></pre>
+<p>Please notice that <code>emmeans</code> computes all possible comparisons: group 1 against the grand mean, group 2 against the grand mean, etc.</p>
+</div>
+</div>
+<div id="contrast-simple-dummy" class="section level1">
+<h1>Contrast: Simple &amp; Dummy</h1>
+<div id="meaning-1" class="section level2">
+<h2>Meaning</h2>
+<p><b>Definition:</b><i> Compares each group with the first group.</i></p>
+</div>
+<div id="jamovi-anova-1" class="section level2">
+<h2>Jamovi ANOVA</h2>
+<p>We set the contrasts to <code>simple</code></p>
+<p><img src="rosetta/contrasts/c2.anova1.png" class="img-responsive" alt=""></p>
+<p>Results:</p>
+<p><img src="rosetta/contrasts/r.c2.anova1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="jamovi-gamlj-glm-1" class="section level2">
+<h2>Jamovi GAMLj GLM</h2>
+<p>This is GAMLj default (since version 1.5). The contrasts in GAMLj is identical to the ANOVA module.</p>
+<p><img src="rosetta/contrasts/c2.anova1.png" class="img-responsive" alt=""></p>
+<p><img src="rosetta/contrasts/r.c2.gamlj1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="spss-1" class="section level2">
+<h2>SPSS</h2>
+<p>Please note that SPSS default sets the last group as reference group, thus to obtain the same results as before, we should set <code>/CONTRAST(Group)=Simple(1)</code>, mind the “1”“, which corresponds to”first” in the GUI options.</p>
+<p><img src="rosetta/contrasts/c2.spss1.png" class="img-responsive" alt=""></p>
+<pre><code>UNIANOVA Score BY Group
+  /CONTRAST(Group)=Simple(1)
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+
+</code></pre>
+<p>Results:</p>
+<p><img src="rosetta/contrasts/r.c2.spss1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="r-1" class="section level2">
+<h2>R</h2>
+<p>In R, simple contrast can be obtained as follows:</p>
+<pre class="r"><code>#### contrast=simple #######
+dat$Group&lt;-factor(dat$Group)
+k&lt;-4 # number of levels
+contrasts(dat$Group)&lt;-contr.treatment(k)-(1/k)
+contrasts(dat$Group)</code></pre>
+<pre><code>##       2     3     4
+## 1 -0.25 -0.25 -0.25
+## 2  0.75 -0.25 -0.25
+## 3 -0.25  0.75 -0.25
+## 4 -0.25 -0.25  0.75</code></pre>
+<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Score ~ Group, data = dat)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+## 
+## Coefficients:
+##             Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept)  0.15619    0.03936   3.969  0.000107 ***
+## Group2      -0.10010    0.11481  -0.872  0.384538    
+## Group3       0.24357    0.10831   2.249  0.025846 *  
+## Group4       0.44312    0.10831   4.091 0.0000668 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5109 on 166 degrees of freedom
+## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
+## F-statistic: 9.557 on 3 and 166 DF,  p-value: 0.000007399</code></pre>
+<p>If one need the uncentered <em>dummy</em> coding, it can be obtained in R using <code>contr.treatment(k)</code>.</p>
+</div>
+<div id="r-emmeans-1" class="section level2">
+<h2>R emmeans</h2>
+<p>The <code>simple</code> contrast can be achieved in emmeans with <code>dunnett</code>.</p>
+<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
+emm&lt;-emmeans(model,~Group)
+contrast(emm,&quot;dunnett&quot;,adjust = &quot;none&quot;)</code></pre>
+<pre><code>##  contrast estimate    SE  df t.ratio p.value
+##  2 - 1      -0.100 0.115 166  -0.872  0.3845
+##  3 - 1       0.244 0.108 166   2.249  0.0258
+##  4 - 1       0.443 0.108 166   4.091  0.0001</code></pre>
+</div>
+<div id="simple-vs-dummy" class="section level2">
+<h2>Simple vs Dummy</h2>
+<p>GAMLj distinguishes between <em>simple</em> and <em>dummy</em> coding schemes. They give equivalent results in means comparisons, simple effects, and contrast coefficients. The only difference is that the <code>Dummy</code> is not centered, and so when the codes are involved in interactions, the effects of the other variables have different meaning. In the presence of interactions, when <em>simple</em> is used, the other variables effects are computed averaging across the sample; when <em>dummy</em> is used, the other variables effects are computed for the reference group (the first group) defined by the <em>dummy</em> coding.</p>
+</div>
+</div>
+<div id="contrast-repeated" class="section level1">
+<h1>Contrast: Repeated</h1>
+<p><b>Definition:</b><i> Compares each group with the subsequent group</i></p>
+<div id="jamovi-anova-2" class="section level2">
+<h2>Jamovi ANOVA</h2>
+<p><img src="rosetta/contrasts/c5.anova1.png" class="img-responsive" alt=""></p>
+<p>Results:</p>
+<p><img src="rosetta/contrasts/r.c5.anova1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="jamovi-gamlj-glm-2" class="section level2">
+<h2>Jamovi GAMLj GLM</h2>
+<p><img src="rosetta/contrasts/r.c5.gamlj1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="spss-2" class="section level2">
+<h2>SPSS</h2>
+<pre><code>UNIANOVA Score BY Group
+  /CONTRAST(Group)=REPEATED
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+
+</code></pre>
+<p><img src="rosetta/contrasts/r.c5.spss1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="r-2" class="section level2">
+<h2>R</h2>
+<p>R does not have an out-of-the-box contrast equivalent to <code>repeated</code> contrast. One can, howerver, uses the <code>contr.sdif()</code> function in <code>MASS</code> package. As compared with jamovi and SPSS the comparisons are in the opposite direction, so we simply multiply the code by -1 (t-tests and p-values do not depend on this):</p>
+<pre class="r"><code>library(MASS)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:Rsearchable&#39;:
+## 
+##     select</code></pre>
+<pre class="r"><code>repeated&lt;-(-1)*contr.sdif(4) 
+repeated</code></pre>
+<pre><code>##     2-1  3-2   4-3
+## 1  0.75  0.5  0.25
+## 2 -0.25  0.5  0.25
+## 3 -0.25 -0.5  0.25
+## 4 -0.25 -0.5 -0.75</code></pre>
+<pre class="r"><code>contrasts(dat$Group)&lt;-repeated
+summary(lm(Score~Group,data=dat))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Score ~ Group, data = dat)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
+## Group2-1     0.10010    0.11481   0.872 0.384538    
+## Group3-2    -0.34367    0.11424  -3.008 0.003036 ** 
+## Group4-3    -0.19956    0.10770  -1.853 0.065681 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5109 on 166 degrees of freedom
+## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
+## F-statistic: 9.557 on 3 and 166 DF,  p-value: 0.000007399</code></pre>
+<p>… and we’re just fine.</p>
+</div>
+<div id="r-emmeans-2" class="section level2">
+<h2>R emmeans</h2>
+<p>The <code>repeated</code> contrast can be achieved in emmeans with <code>consec</code>. To align the results to the jamovi SPSS, we should reverse the contrast coding, with the option <code>reverse</code>.</p>
+<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
+emm&lt;-emmeans(model,~Group)
+contrast(emm,&quot;consec&quot;,adjust = &quot;none&quot;,reverse=T)</code></pre>
+<pre><code>##  contrast estimate    SE  df t.ratio p.value
+##  1 - 2       0.100 0.115 166   0.872  0.3845
+##  2 - 3      -0.344 0.114 166  -3.008  0.0030
+##  3 - 4      -0.200 0.108 166  -1.853  0.0657</code></pre>
+</div>
+</div>
+<div id="contrast-polynomial" class="section level1">
+<h1>Contrast: Polynomial</h1>
+<p><b>Definition:</b><i> Test polynomial (linear, quadratic, cubic, etc.) trends in the means pattern</i></p>
+<div id="jamovi-anova-3" class="section level2">
+<h2>Jamovi ANOVA</h2>
+<p><img src="rosetta/contrasts/c6.anova1.png" class="img-responsive" alt=""></p>
+<p>Results:</p>
+<p><img src="rosetta/contrasts/r.c6.anova1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="jamovi-gamlj-glm-3" class="section level2">
+<h2>Jamovi GAMLj GLM</h2>
+<p><img src="rosetta/contrasts/r.c6.gamlj1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="spss-3" class="section level2">
+<h2>SPSS</h2>
+<pre><code>UNIANOVA Score BY Group
+  /CONTRAST(Group)=POLYNOMIAL
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+
+</code></pre>
+<p><img src="rosetta/contrasts/r.c6.spss1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="r-3" class="section level2">
+<h2>R</h2>
+<p>R has an out-of-the-box contrast named <code>contr.poly()</code> contrast. It works like a sharm.</p>
+<pre class="r"><code>contrasts(dat$Group)&lt;-contr.poly(4)
+summary(lm(Score~Group,data=dat))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Score ~ Group, data = dat)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+## 
+## Coefficients:
+##             Estimate Std. Error t value   Pr(&gt;|t|)    
+## (Intercept)  0.15619    0.03936   3.969   0.000107 ***
+## Group.L      0.37410    0.07702   4.857 0.00000273 ***
+## Group.Q      0.14983    0.07871   1.904   0.058702 .  
+## Group.C     -0.13145    0.08037  -1.636   0.103809    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5109 on 166 degrees of freedom
+## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
+## F-statistic: 9.557 on 3 and 166 DF,  p-value: 0.000007399</code></pre>
+<p>… and we can sleep like babies.</p>
+</div>
+<div id="r-emmeans-3" class="section level2">
+<h2>R emmeans</h2>
+<p>The <code>poly</code> contrast has a direct implementation in <code>emmeans</code> with <code>poly</code>.</p>
+<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
+emm&lt;-emmeans(model,~Group)
+contrast(emm,&quot;poly&quot;,adjust = &quot;none&quot;)</code></pre>
+<pre><code>##  contrast  estimate    SE  df t.ratio p.value
+##  linear       1.673 0.344 166   4.857  &lt;.0001
+##  quadratic    0.300 0.157 166   1.904  0.0587
+##  cubic       -0.588 0.359 166  -1.636  0.1038</code></pre>
+</div>
+</div>
+<div id="contrast-difference" class="section level1">
+<h1>Contrast: Difference</h1>
+<p>Difference and helmert contrasts are great source of confusion when one is comparing different software results. SPSS and jamovi use the same definition for them, but R has a different implementation. Different authors uses different definitions, so be aware of which comparisons are implemented.</p>
+<p><b>Definition:</b><i>Compares each group with the average of previous groups.</i></p>
+<p>This is sometimes named <em>Reverse Helmert Coding</em> , cf. <a href="https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">UCLA idre web site</a>.</p>
+<div id="jamovi-anova-4" class="section level2">
+<h2>Jamovi ANOVA</h2>
+<p><img src="rosetta/contrasts/c3.anova1.png" class="img-responsive" alt=""></p>
+<p>Results:</p>
+<p><img src="rosetta/contrasts/r.c3.anova1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="jamovi-gamlj-glm-4" class="section level2">
+<h2>Jamovi GAMLj GLM</h2>
+<p><img src="rosetta/contrasts/r.c3.gamlj1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="spss-4" class="section level2">
+<h2>SPSS</h2>
+<pre><code>UNIANOVA Score BY Group
+  /CONTRAST(Group)=DIFFERENCE
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+
+</code></pre>
+<p><img src="rosetta/contrasts/r.c3.spss1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="r-4" class="section level2">
+<h2>R</h2>
+<p>The t-tests and p-values associated with the <em>difference contrast</em> can be obtained in R using the <code>contr.helmert()</code> function. Despite the name, <code>contr.helmert()</code> implements what is usually named “Reversed Helmert contrast”. Obviously, this is perfectly fine (cf. <a href="http://www.amazon.com/gp/product/0761922806/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0761922806&amp;linkCode=as2&amp;tag=curiousanduseful">An R and S-Plus Companion to Applied Regression</a>), but one should be aware of this difference. The contrast weights in R are scaled differently than in SPSS or jamovi, thus the contrast values (the coefficients) are not identical to the ones obtained in jamovi and SPSS, but they are proportional to them (that is why the t-tests are the same).</p>
+<pre class="r"><code>dat$Group&lt;-factor(dat$Group)
+contrasts(dat$Group)&lt;-contr.helmert(4)
+contrasts(dat$Group)</code></pre>
+<pre><code>##   [,1] [,2] [,3]
+## 1   -1   -1   -1
+## 2    1   -1   -1
+## 3    0    2   -1
+## 4    0    0    3</code></pre>
+<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Score ~ Group, data = dat)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
+## Group1      -0.05005    0.05741  -0.872 0.384538    
+## Group2       0.09787    0.03179   3.079 0.002433 ** 
+## Group3       0.09882    0.02223   4.445 0.000016 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5109 on 166 degrees of freedom
+## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
+## F-statistic: 9.557 on 3 and 166 DF,  p-value: 0.000007399</code></pre>
+<p>To obtain the jamovi/SPSS estimate values in R, we should multiply the coefficients obtained in R by the index of the column of the contrasts (starting from 2 because 1 is for the intercept). To make things a bit more general, we can define a <em>conversion vector</em> that works both for deviation and helmert contrasts. Let the <em>conversion vector</em> be <span class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, where <span class="math inline">\(c_i\)</span> is a column of the contrast matrix.</p>
+<pre class="r"><code>cv&lt;-apply(contr.helmert(4),2,max)+1
+cv</code></pre>
+<pre><code>## [1] 2 3 4</code></pre>
+<p>To obtain the same coefficients in R and in jamovi/SPSS, we can multiply the model coefficients by <span class="math inline">\(\mathbf{cv}\)</span></p>
+<pre class="r"><code>coef(model)[c(2:4)]*cv</code></pre>
+<pre><code>##     Group1     Group2     Group3 
+## -0.1001010  0.2936162  0.3952997</code></pre>
+<p>Or divide the contrast weights by <span class="math inline">\(\mathbf{cv}\)</span></p>
+<pre class="r"><code>### make a diagonal matrix with cv in the diagonal ##########
+diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
+contrasts(dat$Group)&lt;-contr.helmert(4)/diag_cv
+contrasts(dat$Group)</code></pre>
+<pre><code>##   [,1]       [,2]  [,3]
+## 1 -0.5 -0.3333333 -0.25
+## 2  0.5 -0.3333333 -0.25
+## 3  0.0  0.6666667 -0.25
+## 4  0.0  0.0000000  0.75</code></pre>
+<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Score ~ Group, data = dat)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
+## Group1      -0.10010    0.11481  -0.872 0.384538    
+## Group2       0.29362    0.09537   3.079 0.002433 ** 
+## Group3       0.39530    0.08893   4.445 0.000016 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5109 on 166 degrees of freedom
+## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
+## F-statistic: 9.557 on 3 and 166 DF,  p-value: 0.000007399</code></pre>
+<p>… and we get the same values, t-tests and p-values as in jamovi and SPSS.</p>
+</div>
+<div id="r-emmeans-4" class="section level2">
+<h2>R emmeans</h2>
+<p>Difference and helmert are not implemented in emmeans package, but <code>emmeans</code> has a very clever way to implement custom contrast codings. We need to define a funtion whose name ends with <code>.emmc</code> and returns the coding as a data.frame, and then pass it to <code>emmeans</code> <code>contrasts</code> function. The coding weights are the one of the contrast matrix used in SPSS (see <a href="#contrast_matrix_and_model_matrix_details">contrast matrix vs model matrix</a> for details).</p>
+<pre class="r"><code>library(MASS) ## needed for ginv(), see below 
+
+difference.emmc&lt;-function(levs) {
+  n&lt;-length(levs)
+  #### model matrix ########
+  con_weights&lt;-contr.helmert(n)
+  cv&lt;-apply(con_weights,2,max)+1
+  diag_cv&lt;-matrix(rep(cv,each=n),ncol=n-1)
+  model_mat&lt;-con_weights/diag_cv
+
+  ##### contrast matrix ########
+  cont_mat&lt;-ginv(t(model_mat))
+  M &lt;- as.data.frame(cont_mat)
+  names(M) &lt;- paste(levs[-1],&quot;vs previous&quot;)
+  attr(M, &quot;desc&quot;) &lt;- &quot;Helmert contrasts&quot;
+  M
+}
+#### contrast matrix #########
+round(difference.emmc(levels(dat$Group)),digits = 3)</code></pre>
+<pre><code>##   2 vs previous 3 vs previous 4 vs previous
+## 1            -1          -0.5        -0.333
+## 2             1          -0.5        -0.333
+## 3             0           1.0        -0.333
+## 4             0           0.0         1.000</code></pre>
+<pre class="r"><code>#### results ##############
+contrast(emm,&quot;difference&quot;,adjust=&quot;none&quot;)</code></pre>
+<pre><code>##  contrast      estimate     SE  df t.ratio p.value
+##  2 vs previous   -0.100 0.1148 166  -0.872  0.3845
+##  3 vs previous    0.294 0.0954 166   3.079  0.0024
+##  4 vs previous    0.395 0.0889 166   4.445  &lt;.0001</code></pre>
+<p>Same results as before.</p>
+</div>
+</div>
+<div id="contrast-helmert" class="section level1">
+<h1>Contrast: Helmert</h1>
+<p><b>Definition:</b><i>Compares each group with the average of subsequent groups</i></p>
+<div id="jamovi-anova-5" class="section level2">
+<h2>Jamovi ANOVA</h2>
+<p><img src="rosetta/contrasts/c4.anova1.png" class="img-responsive" alt=""></p>
+<p>Results:</p>
+<p><img src="rosetta/contrasts/r.c4.anova1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="jamovi-gamlj-glm-5" class="section level2">
+<h2>Jamovi GAMLj GLM</h2>
+<p><img src="rosetta/contrasts/r.c4.gamlj1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="spss-5" class="section level2">
+<h2>SPSS</h2>
+<pre><code>UNIANOVA Score BY Group
+  /CONTRAST(Group)=HELMERT
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+</code></pre>
+<p><img src="rosetta/contrasts/r.c4.spss1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="r-5" class="section level2">
+<h2>R</h2>
+<p>R defines helmert contrast in the reverse order as compared with jamovi and SPSS, and uses a different scaling. To obtain the helmert contrast as it is was defined above, we should reverse <code>contr.helmert()</code> and rescale the coding as we did for the <code>difference</code> contrasts. Without rescaling, the t-test and p-values are the same as in jamovi/spss, but the estimated values are different (but proportional).</p>
+<pre class="r"><code>dat$Group&lt;-factor(dat$Group)
+contrasts(dat$Group)&lt;-matrix(rev(contr.helmert(4)),ncol=3)
+con_weights&lt;-contrasts(dat$Group)
+#### not scaled contrast weights ######
+con_weights</code></pre>
+<pre><code>##   [,1] [,2] [,3]
+## 1    3    0    0
+## 2   -1    2    0
+## 3   -1   -1    1
+## 4   -1   -1   -1</code></pre>
+<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Score ~ Group, data = dat)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+## 
+## Coefficients:
+##             Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept)  0.15619    0.03936   3.969  0.000107 ***
+## Group1      -0.04888    0.02240  -2.183  0.030477 *  
+## Group2      -0.14781    0.03358  -4.402 0.0000192 ***
+## Group3      -0.09978    0.05385  -1.853  0.065681 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5109 on 166 degrees of freedom
+## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
+## F-statistic: 9.557 on 3 and 166 DF,  p-value: 0.000007399</code></pre>
+<p>To obtain the jamovi/SPSS values in R, we should compute <span class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, and multiply it by the model coefficients.</p>
+<pre class="r"><code>cv&lt;-apply(con_weights,2,max)+1
+cv</code></pre>
+<pre><code>## [1] 4 3 2</code></pre>
+<pre class="r"><code>coef(model)[c(2:4)]*cv</code></pre>
+<pre><code>##     Group1     Group2     Group3 
+## -0.1955286 -0.4434444 -0.1995556</code></pre>
+<p>or divide the contrast weights by <span class="math inline">\(\mathbf{cv}\)</span></p>
+<pre class="r"><code>### make a diagonal matrix with cv in the diagonal ##########
+diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
+########  divide the contrast weights ##########
+helm&lt;-con_weights/diag_cv
+
+### scaled contrast weights ############
+helm</code></pre>
+<pre><code>##    [,1]       [,2] [,3]
+## 1  0.75  0.0000000  0.0
+## 2 -0.25  0.6666667  0.0
+## 3 -0.25 -0.3333333  0.5
+## 4 -0.25 -0.3333333 -0.5</code></pre>
+<pre class="r"><code>contrasts(dat$Group)&lt;-helm
+model&lt;-lm(Score~Group,data=dat)
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Score ~ Group, data = dat)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+## 
+## Coefficients:
+##             Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept)  0.15619    0.03936   3.969  0.000107 ***
+## Group1      -0.19553    0.08959  -2.183  0.030477 *  
+## Group2      -0.44344    0.10075  -4.402 0.0000192 ***
+## Group3      -0.19956    0.10770  -1.853  0.065681 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5109 on 166 degrees of freedom
+## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
+## F-statistic: 9.557 on 3 and 166 DF,  p-value: 0.000007399</code></pre>
+<p>… and we’re happy campers.</p>
+</div>
+<div id="r-emmeans-5" class="section level2">
+<h2>R emmeans</h2>
+<p>We need to define a funtion whose name ends with <code>.emmc</code> which returns the contrast matrix, and then pass it to emmeans <code>contrasts</code>. The contrast matrix is the same used in SPSS and can be obtained from the model matrix used in standard R (see <a href="#contrast_matrix_vs_model_matrix">contrast matrix vs model matrix</a> for details).</p>
+<pre class="r"><code>library(MASS) # needed for ginv(), see below
+helmert.emmc&lt;-function(levs) {
+  n&lt;-length(levs)
+  #### build model matricx ######
+  con_weights&lt;-matrix(rev(contr.helmert(n)),ncol=n-1)
+  cv&lt;-apply(con_weights,2,max)+1
+  diag_cv&lt;-matrix(rep(cv,each=n),ncol=n-1)
+  model_mat&lt;-con_weights/diag_cv
+  #### obtain contrast matrix #######
+  cont_mat&lt;-ginv(t(model_mat))
+  
+  M &lt;- as.data.frame(cont_mat)
+  names(M) &lt;- paste(levs[1:(length(levs)-1)],&quot;vs subsequent&quot;)
+  attr(M, &quot;desc&quot;) &lt;- &quot;Helmert contrasts&quot;
+  M
+}
+
+helmert.emmc(levels(dat$Group))</code></pre>
+<pre><code>##   1 vs subsequent            2 vs subsequent           3 vs subsequent
+## 1       1.0000000 -0.00000000000000006343273 -0.0000000000000001098687
+## 2      -0.3333333  1.00000000000000000000000 -0.0000000000000001256066
+## 3      -0.3333333 -0.50000000000000011102230  0.9999999999999995559108
+## 4      -0.3333333 -0.50000000000000011102230 -0.9999999999999997779554</code></pre>
+<pre class="r"><code>contrast(emm,&quot;helmert&quot;,adjust=&quot;none&quot;)</code></pre>
+<pre><code>##  contrast        estimate     SE  df t.ratio p.value
+##  1 vs subsequent   -0.196 0.0896 166  -2.183  0.0305
+##  2 vs subsequent   -0.443 0.1007 166  -4.402  &lt;.0001
+##  3 vs subsequent   -0.200 0.1077 166  -1.853  0.0657</code></pre>
+<p>Same results!</p>
+</div>
+</div>
+<div id="contrast-matrix-vs-model-matrix" class="section level1">
+<h1>Contrast matrix vs model matrix</h1>
+<p>We have seen that Jamovi, SPSS and <code>emmeans</code> provide descriptions of the comparisons being estimated as labels of the contrast. However, if one needs to deepen the understanding of the contrast at hand, one needs to examine the contrast coding scheme. SPSS and <code>emmeans</code> can show the coding scheme in the form of <strong>contrast matrix</strong>.</p>
+<p>To visualize the contrast matrix in in SPSS one uses the option <code>/PRINT=TEST(LMATRIX)</code> , and in <code>emmeans</code> one can use the function <code>coef()</code> on the contrast object output by the <code>contrast()</code> function.</p>
+<p>Let’s see an example using the <code>repeated</code> contrast:</p>
+<p>This is the <code>LMATRIX</code> one gets in SPSS</p>
+<p><img src="rosetta/contrasts/r.c7.spss1.png" class="img-responsive" alt=""></p>
+<p>and this is the contrast matrix one gets from <code>emmeans</code>:</p>
+<pre class="r"><code>library(emmeans)
+model&lt;-lm(Score~Group,data=dat)
+emm&lt;-emmeans(model,~Group)
+cont&lt;-contrast(emm,&quot;consec&quot;,reverse=T,adjust = &quot;none&quot;)
+coef(cont)</code></pre>
+<pre><code>##   Group c.1 c.2 c.3
+## 1     1   1   0   0
+## 2     2  -1   1   0
+## 3     3   0  -1   1
+## 4     4   0   0  -1</code></pre>
+<p>When it comes to R model estimation ( <code>lm()</code>, <code>lmer()</code>, <code>glm()</code> ), however, we should notice that to obtain the same comparisons obtained by the other packages, one needs to code the comparisons in form of the <strong>model matrix</strong>, not the contrast matrix. This may be confusing, but that’s the way it is.</p>
+<p>In fact, upon inspecting the coding scheme generated by the <code>contr.*</code> functions, one see that the coding does not correspond to the <em>contrast matrix</em> seen before.</p>
+<p>For <code>repeated</code> contrasts in R we use:</p>
+<pre class="r"><code>(-1)*contr.sdif(4)</code></pre>
+<pre><code>##     2-1  3-2   4-3
+## 1  0.75  0.5  0.25
+## 2 -0.25  0.5  0.25
+## 3 -0.25 -0.5  0.25
+## 4 -0.25 -0.5 -0.75</code></pre>
+<p>Recall (cf. the repeated contrast results above) that the results are identical between the R, SPSS and <code>emmeans</code>, even thought the coding seems different.</p>
+<p>Now, if you try to use the SPSS LMATRIX in R, you are not going to get the results expected by the <code>repeated</code> contrast. Indeed (coefficients were <code>.100,-.344,-.200</code>) :</p>
+<pre class="r"><code>ones&lt;-matrix(c(1,-1,0,0,0,1,-1,0,0,0,1,-1),ncol=3)
+ones</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    0    0
+## [2,]   -1    1    0
+## [3,]    0   -1    1
+## [4,]    0    0   -1</code></pre>
+<pre class="r"><code>contrasts(dat$Group)&lt;-ones
+summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Score ~ Group, data = dat)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.06311 -0.27955 -0.00111  0.28531  1.65733 
+## 
+## Coefficients:
+##             Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept)  0.15619    0.03936   3.969  0.000107 ***
+## Group1      -0.19553    0.08959  -2.183  0.030477 *  
+## Group2      -0.44344    0.10075  -4.402 0.0000192 ***
+## Group3      -0.19956    0.10770  -1.853  0.065681 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5109 on 166 degrees of freedom
+## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
+## F-statistic: 9.557 on 3 and 166 DF,  p-value: 0.000007399</code></pre>
+<p>The reason of this discrepancy is that the LMATRIX is the contrast matrix, a matrix that shows the linear hypotheses implied by the contrast and represents the starting point of the coding system, not the model matrix itself. Thus, the constrast matrix (SPSS LMATRIX) is useful to understand what is going on in the comparisons: by inspecting the contrast matrix one can easily see that in column 1 groups 1 and 2 are compared, in column 2 groups 2 vs 3, and so on.</p>
+<p>A clear technical explanation is provided in <a href="https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf">Venables 2017</a>, where you find the definition of the contrast matrix (<strong><span class="math inline">\(C\)</span></strong> in the Venable’s vignette) and the model matrix (<strong><span class="math inline">\(B\)</span></strong> in the vignette).</p>
+<p>Ok, but what is the relation between the contrast matrix and the R model matrix? or even better: How do I get from the contrast matrix to the R model matrix? Just <strong>take the inverse of the contrast matrix and traspose it</strong>. In R, one can take the inverse of a matrix by using <code>MASS::ginv()</code> function. Let’s see:</p>
+<pre class="r"><code>##### SPSS LMATRIX ####
+ones</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    0    0
+## [2,]   -1    1    0
+## [3,]    0   -1    1
+## [4,]    0    0   -1</code></pre>
+<pre class="r"><code>### take the inverse ####
+iones&lt;-ginv(ones)
+### transpose it ###
+t(iones)</code></pre>
+<pre><code>##       [,1] [,2]  [,3]
+## [1,]  0.75  0.5  0.25
+## [2,] -0.25  0.5  0.25
+## [3,] -0.25 -0.5  0.25
+## [4,] -0.25 -0.5 -0.75</code></pre>
+<p>and there you are: the R model matrix.</p>
+<p>Does it work in general? Yes! Take <code>deviation</code> contrast, with group 1 omitted.</p>
+<p>SPSS LMATRIX is: <img src="rosetta/contrasts/r.c7.spss2.png" class="img-responsive" alt=""></p>
+<p>and R model matrix we have seen before:</p>
+<pre class="r"><code>(deviation&lt;-matrix(rev(contr.sum(4)),ncol=3))</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   -1   -1   -1
+## [2,]    1    0    0
+## [3,]    0    1    0
+## [4,]    0    0    1</code></pre>
+<p>They seem different, but taking the inverse of the LMATRIX and transposing it, we get the R coding system.</p>
+<pre class="r"><code>##### SPSS LMATRIX ####
+lmat&lt;-matrix(rep(-.25,12),ncol=3)
+lmat[2,1]&lt;-.75
+lmat[3,2]&lt;-.75
+lmat[4,3]&lt;-.75
+lmat</code></pre>
+<pre><code>##       [,1]  [,2]  [,3]
+## [1,] -0.25 -0.25 -0.25
+## [2,]  0.75 -0.25 -0.25
+## [3,] -0.25  0.75 -0.25
+## [4,] -0.25 -0.25  0.75</code></pre>
+<pre class="r"><code>### take the inverse ####
+ilmat&lt;-ginv(lmat)
+### transpose it ###
+round(t(ilmat),digits = 3)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   -1   -1   -1
+## [2,]    1    0    0
+## [3,]    0    1    0
+## [4,]    0    0    1</code></pre>
+<p>There you have the actual model matrix.</p>
+<p>Let us be sure and check polynomial contrasts.</p>
+<p>SPSS LMATRIX is: <img src="rosetta/contrasts/r.c7.spss3.png" class="img-responsive" alt=""></p>
+<p>R model matrix:</p>
+<pre class="r"><code>(polynom&lt;-contr.poly(4))</code></pre>
+<pre><code>##              .L   .Q         .C
+## [1,] -0.6708204  0.5 -0.2236068
+## [2,] -0.2236068 -0.5  0.6708204
+## [3,]  0.2236068 -0.5 -0.6708204
+## [4,]  0.6708204  0.5  0.2236068</code></pre>
+<p>They are the same this time! Does it means that in this case the “inversion” does not apply? Well, it does apply, but because the polynomial contrast codes are orthogonal, the inverse of the contrast matrix is equal to the transpose of the contrast matrix, thus taking the inverse and then transpose it gives back the same matrix (cf <a href="https://en.wikipedia.org/wiki/Orthogonal_matrix">orthogonal matrix</a>)</p>
+<pre class="r"><code>ipoly&lt;-ginv(polynom)
+t(ipoly)</code></pre>
+<pre><code>##            [,1] [,2]       [,3]
+## [1,] -0.6708204  0.5 -0.2236068
+## [2,] -0.2236068 -0.5  0.6708204
+## [3,]  0.2236068 -0.5 -0.6708204
+## [4,]  0.6708204  0.5  0.2236068</code></pre>
+<div id="building-custom-contrast-in-emmeans" class="section level2">
+<h2>Building custom contrast in emmeans</h2>
+<p>We have seen that <code>emmeans</code> allows to define custom contrast coding. When we do that, we should remember that we need to define the contrast matrix, <strong>not</strong> the model matrix. Thus, for repeated contrast, in R we used <code>(-1)*contr.sdif(n)</code>:</p>
+<pre class="r"><code>(rcodes&lt;-(-1)*contr.sdif(4))</code></pre>
+<pre><code>##     2-1  3-2   4-3
+## 1  0.75  0.5  0.25
+## 2 -0.25  0.5  0.25
+## 3 -0.25 -0.5  0.25
+## 4 -0.25 -0.5 -0.75</code></pre>
+<p>and <code>emmeans</code> uses:</p>
+<pre class="r"><code>cont&lt;-contrast(emm,&quot;consec&quot;,referse=T,adjust = &quot;none&quot;)
+(weigths&lt;-coef(cont)[,2:4])</code></pre>
+<pre><code>##   c.1 c.2 c.3
+## 1  -1   0   0
+## 2   1  -1   0
+## 3   0   1  -1
+## 4   0   0   1</code></pre>
+<p>To get the contrast matrix from the model matrix we neet to get the <strong>inverse of the transpose</strong>:</p>
+<pre class="r"><code>#### model matrix ######
+rcodes</code></pre>
+<pre><code>##     2-1  3-2   4-3
+## 1  0.75  0.5  0.25
+## 2 -0.25  0.5  0.25
+## 3 -0.25 -0.5  0.25
+## 4 -0.25 -0.5 -0.75</code></pre>
+<pre class="r"><code>#### transpose the R model matrix ######
+tcodes&lt;-t(rcodes)
+#### invert it #####
+round(ginv(tcodes),digits = 3)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    0    0
+## [2,]   -1    1    0
+## [3,]    0   -1    1
+## [4,]    0    0   -1</code></pre>
+<p>Now we can build a custom contrast function for <code>emmeans</code>: let’s do <code>helmert</code> as we defined above.</p>
+<p>Let’s start with the model matrix used in R.</p>
+<pre class="r"><code>con_weights&lt;-matrix(rev(contr.helmert(4)),ncol=3)
+cv&lt;-apply(con_weights,2,max)+1
+diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
+helm&lt;-con_weights/diag_cv
+helm</code></pre>
+<pre><code>##       [,1]       [,2] [,3]
+## [1,]  0.75  0.0000000  0.0
+## [2,] -0.25  0.6666667  0.0
+## [3,] -0.25 -0.3333333  0.5
+## [4,] -0.25 -0.3333333 -0.5</code></pre>
+<p>Take the inverse of the transpose of it</p>
+<pre class="r"><code>(contr_mat&lt;-ginv(t(helm)))</code></pre>
+<pre><code>##            [,1]                       [,2]                      [,3]
+## [1,]  1.0000000 -0.00000000000000006343273 -0.0000000000000001098687
+## [2,] -0.3333333  1.00000000000000000000000 -0.0000000000000001256066
+## [3,] -0.3333333 -0.50000000000000011102230  0.9999999999999995559108
+## [4,] -0.3333333 -0.50000000000000011102230 -0.9999999999999997779554</code></pre>
+<p>This is the contrast matrix we can pass to <code>emmeans</code>. We just need to wrap it up in a function with <code>.emmc()</code> reference class and <code>levels</code> as input.</p>
+<pre class="r"><code>helmert.emmc&lt;-function(levs) {
+  n&lt;-length(levs)
+  con_weights&lt;-matrix(rev(contr.helmert(n)),ncol=n-1)
+  cv&lt;-apply(con_weights,2,max)+1
+  diag_cv&lt;-matrix(rep(cv,each=n),ncol=n-1)
+  helm&lt;-con_weights/diag_cv
+  model_mat&lt;-ginv(t(helm))
+  M &lt;- as.data.frame(model_mat)
+  names(M) &lt;- paste(levs[1:(length(levs)-1)],&quot;vs subsequent&quot;)
+  attr(M, &quot;desc&quot;) &lt;- &quot;Helmert contrasts&quot;
+  M
+}
+helmert.emmc(levels(dat$Group))</code></pre>
+<pre><code>##   1 vs subsequent            2 vs subsequent           3 vs subsequent
+## 1       1.0000000 -0.00000000000000006343273 -0.0000000000000001098687
+## 2      -0.3333333  1.00000000000000000000000 -0.0000000000000001256066
+## 3      -0.3333333 -0.50000000000000011102230  0.9999999999999995559108
+## 4      -0.3333333 -0.50000000000000011102230 -0.9999999999999997779554</code></pre>
+<pre class="r"><code>contrast(emm,&quot;helmert&quot;,adjust=&quot;none&quot;)</code></pre>
+<pre><code>##  contrast        estimate     SE  df t.ratio p.value
+##  1 vs subsequent   -0.196 0.0896 166  -2.183  0.0305
+##  2 vs subsequent   -0.443 0.1007 166  -4.402  &lt;.0001
+##  3 vs subsequent   -0.200 0.1077 166  -1.853  0.0657</code></pre>
+<p>and we get the contrast estimates as expected. For the <code>difference</code> contrast we can use <code>con_weights&lt;-contr.helmert(n)</code> in the function and we get the correct codes.</p>
+</div>
+</div>
+<div id="rosettas-files" class="section level1">
+<h1>Rosetta’s files</h1>
+<ul>
+<li>
+<a href="rosetta_contrasts.html">Rosetta store: contrasts</a>
+</li>
+<li>
+<a href="rosetta_gzlmmixed1.html">Rosetta store: Generalized Mixed</a>
+</li>
+<li>
+<a href="rosetta_moderation.html">Rosetta store: moderation</a>
+</li>
+</ul>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj/issues"> GAMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
