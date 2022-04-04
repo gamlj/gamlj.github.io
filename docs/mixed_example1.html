@@ -387,7 +387,7 @@ div.tocify {
 <p><img src="examples/mixed1/freq.png" class="img-responsive" alt=""></p>
 <p>Number of beers and number of smiles are recorded in the dataset as <code>beer</code> and <code>smile</code>, respectively, with the following descriptives and distributions.</p>
 <p><img src="examples/mixed1/desc.png" class="img-responsive" alt=""></p>
-<p><img src="examples/mixed1/dist.png" class="img-responsive" alt=""></p>
+<p><img src="examples/mixed1/dist1.png" class="img-responsive" alt=""> <img src="examples/mixed1/dist2.png" class="img-responsive" alt=""></p>
 </div>
 <div id="understanding-the-problem" class="section level1">
 <h1>Understanding the problem</h1>
@@ -398,7 +398,7 @@ div.tocify {
 <p><img src="examples/mixed1/glm.png" class="img-responsive" alt=""> <img src="examples/mixed1/glmplot.png" class="img-responsive" alt=""></p>
 <p>The problem with this analysis is that it does not consider the clustering of the data, that is, that customers are grouped within bars. If customers within a bar are more similar in their scores than customers across bars, data show dependency and thus the GLM we ran would be biased. We have to take clustering into the account.</p>
 <p>To get the feeling of possible effects of clustering, let’s first look at the distributions of <code>smile</code> and <code>beer</code> within each bar (in jamovi <code>Exploration</code> -&gt; <code>Descriptives</code>, put <code>bar</code> in <code>split by</code> field).</p>
-<p><img src="examples/mixed1/dist3.png" class="img-responsive" alt=""> <img src="examples/mixed1/dist2.png" class="img-responsive" alt=""></p>
+<p><img src="examples/mixed1/distbar1.png" class="img-responsive" alt=""> <img src="examples/mixed1/distbar2.png" class="img-responsive" alt=""></p>
 <p>We can notice that bars tend to have different means both in the <code>smile</code> and in the <code>beer</code> variables, pointing to possible dependency in the data.</p>
 <p>Furthermore, a scatterplot highlighting the bars classification seems to suggest that the points representing scores (# of smiles given the # of beers) are clustered within bars, and also reveals that a model in which each bar is allowed to express a different regression line would fit the data much better than a model with only one regression line, fixed for every bar.</p>
 <p><img src="examples/mixed1/scat2.png" class="img-responsive" alt=""></p>
@@ -414,8 +414,7 @@ div.tocify {
 <h1>Random Intercepts Model</h1>
 <div id="set-up" class="section level2">
 <h2>Set up</h2>
-<p>We start simply by allowing only the intercepts to vary. This model captures the situation depicted in the scatter-plot by bars. <img src="examples/mixed1/scat2.png" class="img-responsive" alt=""></p>
-<p>We can see that the regression lines plotted in the graph have different intercepts but they are all perfectly parallel, meaning that they have the same (fixed) slope. This model is called __random intercepts_ model to signal that only the intercepts are allowed to vary from cluster to cluster.</p>
+<p>We start simply by allowing only the intercepts to vary. This model is called __random intercepts_ model to signal that only the intercepts are allowed to vary from cluster to cluster.</p>
 <p>In order to estimate the model with jamovi, we first need to set each variable in the right field.</p>
 <p><img src="examples/mixed1/variables.png" class="img-responsive" alt=""></p>
 <p>First we put <code>smile</code> in the <code>Dependent Variable</code> field and <code>beer</code> in the <code>Covariates</code> field. When a variable is put in the <code>Covariates</code> field, it is treated as a continuous quantitative variable (<code>as.numeric()</code> in R). Had we had a categorical independent variable, we would have put it in “Factors”, so that proper coding of the groups would be obtained (<code>as.factor()</code> in R).</p>
@@ -431,7 +430,6 @@ div.tocify {
 <p>At this point, the model is estimated and the results appear in the results panel. Before inspecting the results, we have a look at the fixed effects definition, by expanding the `Fixed Effects’ tab.</p>
 <p><img src="examples/mixed1/fixedeffects.png" class="img-responsive" alt=""></p>
 <p>Although we did not do anything about the fixed effects, jamovi automatically includes all independent variables defined in <code>Covariates</code> or in <code>Factor</code> in the fixed effects model. Obviously, when the models are complex, one can tweak the model terms to suit the analysis aims.</p>
-<p><img src="examples/mixed1/output.model1.info.png" class="img-responsive" alt=""> <img src="examples/mixed1/output.model1.results.png" class="img-responsive" alt=""></p>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
@@ -441,18 +439,21 @@ div.tocify {
 <ul>
 <li>The <code>Call</code> row displays the model in <a href="https://cran.r-project.org/web/packages/lme4/index.html">lme4 R package</a> formulation. This can be useful to re-run the same analysis in R (not using GAMLj module).</li>
 <li>The <code>AIC</code> row displays the Aikeke Information Criterion, which can be useful to evaluate the model, especially in comparison with other models. Details can be found in <a href="mixed_specs.html">Mixed Models module technical details</a> in [Zuur et. al , 2009] al.](<a href="http://www.springer.com/la/book/9780387874579" class="uri">http://www.springer.com/la/book/9780387874579</a>)</li>
-<li>R-marginal and R-conditional are proportion of reduced error, or pseudo-<span class="math inline">\(R^2\)</span>. They are described in <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12225/abstract;jsessionid=2018A0141FC9ABFF1B654117812A8FCA.f03t01">Johnson (2014)</a> and implemented in <a href="https://github.com/jslefche/piecewiseSEM/blob/master/README.md#get-r2-for-individual-models">piecewiseSEM</a>. For our purposes, we can interpret them as follows: <strong>R-marginal</strong> is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The <strong>R-conditional</strong> is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects do not explain much (.107), but the overall model (fixed+random) captures a fairly big share of the variance (.853).</li>
+<li>R-marginal and R-conditional are proportion of reduced error, or pseudo-<span class="math inline">\(R^2\)</span>. They are described in <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12225/abstract;jsessionid=2018A0141FC9ABFF1B654117812A8FCA.f03t01">Johnson (2014)</a> and implemented in <a href="https://github.com/jslefche/piecewiseSEM/blob/master/README.md#get-r2-for-individual-models">piecewiseSEM</a>. For our purposes, we can interpret them as follows: <strong>R-marginal</strong> is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The <strong>R-conditional</strong> is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects do not explain much (.090), but the overall model (fixed+random) captures a fairly big share of the variance (.818).</li>
 </ul>
 <p><img src="examples/mixed1/output.model1.anova.png" class="img-responsive" alt=""></p>
 <p><code>Fixed effects ANOVA</code> gives the F-tests associated with the model fixed effects. Here we see that <code>beer</code> has a statistical significant effect (on average) on number of smiles.</p>
-<p><img src="examples/mixed1/resultsrimp.png" class="img-responsive" alt=""></p>
 <p>As regards the degrees of freedom (nobody cares about them, I know), jamovi mixed model tries to use Satterthwaite approximation as much as possible, but for complex models it may fail. When that happens, Kenword-Roger approximation is used and, if the latter does not fail, F-tests are computed. A note signals which approximation is used.</p>
-<p><code>Fixed effects Parameters Estimates</code> gives the fixed B coefficients, the fixed (average) intercept, t-tests associated with the model fixed effects. Accordingly, we can say that averaging across bars, <code>beer</code> has a statistical significant effect on number of smiles, such that for each beer more, people smiles 0.548 smiles more.</p>
-<p><img src="examples/mixed1/resultsrimr.png" class="img-responsive" alt=""></p>
+<p><img src="examples/mixed1/output.model1.params.png" class="img-responsive" alt=""></p>
+<p><code>Fixed effects Parameters Estimates</code> gives the fixed B coefficients, the fixed (average) intercept, t-tests associated with the model fixed effects. Accordingly, we can say that averaging across bars, <code>beer</code> has a statistical significant effect on number of smiles, such that for each beer more, people smiles 0.553 smiles more.</p>
 <p>As regards the intercept (which people usually ignore) we should interpret it as the expected number of smiles for the average number of beers drunken. This can be surprising because one expects the intercept to be the expected value of Y when X=0. It is, of course, also here but jamovi mixed model module centers the continuous variables by default. Thus, X=0 means X=mean. Indeed, in the <code>Covariates Scaling</code> tab we see that:</p>
 <p><img src="examples/mixed1/xscaling.png" class="img-responsive" alt=""></p>
 <p>Options are available to scale the covariates, by centering it or standardizing it. The options “cluster-based-*” operate the re-scaling (centering or standardizing) within each cluster rather than on the sample as a whole.</p>
+<p><img src="examples/mixed1/output.model1.random.png" class="img-responsive" alt=""></p>
 <p>The <strong>Random Components</strong> table displays the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is a good variance of the intercepts (<span class="math inline">\({\sigma_a}^2\)</span>=6.53), thus we did well in letting the intercepts vary from cluster to cluster. (<span class="math inline">\({\sigma_a}^2\)</span>=6.53) can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variance (<span class="math inline">\(\sigma^2\)</span>), that is <span class="math inline">\(v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}\)</span></p>
+<p>Finally, we can ask for the plot of the fixed and random effects together.</p>
+<p><img src="examples/mixed1/output.model1.plot.png" class="img-responsive" alt=""></p>
+<p>As expected, the random regression lines have different intercepts (different heights) but the all share the same slope (they are forced to be parallel).</p>
 </div>
 </div>
 <div id="random-slopes-model" class="section level1">
@@ -467,12 +468,11 @@ div.tocify {
 <h2>Results</h2>
 <p><img src="examples/mixed1/output.model2.info.png" class="img-responsive" alt=""></p>
 <p><img src="examples/mixed1/output.model2.results.png" class="img-responsive" alt=""></p>
-<p>Results are substantially the same, showing that the variability of the slopes do no influence the interpretation of the results in a substantial way. We can notice, however, that the DF of the tests are different as compared with the random intercepts model. This is due to the fact that now the fixed slope 0.642 is computed as the average of the random slopes, and thus its inferential sample is much smaller.</p>
-<p>In the ‘Random Components’ table we see a small variance of beer <span class="math inline">\({\sigma_b}^2\)</span>=0.035, indicating that slopes do not vary much. Nonetheless, their variability it is not null, so allowing them to be random increases our model fit. As they say: <em>if it ain’t broken, don’t fix it</em>.</p>
-<p>Finally, a correlation between intercepts and slopes can be observed, <span class="math inline">\(r\)</span>=-.681, indicating that bars where people smile more on average (intercept) are the bars were the effect of beer is smaller.</p>
+<p>Results are substantially the same, showing that the variability of the slopes do no influence the interpretation of the results in a substantial way. We can notice, however, that the DF of the tests are different as compared with the random intercepts model. This is due to the fact that now the fixed slope 0.555 is computed as the average of the random slopes, and thus its inferential sample is much smaller.</p>
+<p>In the ‘Random Components’ table we see a small variance of beer <span class="math inline">\({\sigma_b}^2\)</span>=0.028, indicating that slopes do not vary much. Nonetheless, their variability it is not null, so allowing them to be random increases our model fit. As they say: <em>if it ain’t broken, don’t fix it</em>.</p>
+<p>Finally, a correlation between intercepts and slopes can be observed, <span class="math inline">\(r\)</span>=-.766, indicating that bars where people smile more on average (intercept) are the bars were the effect of beer is smaller.</p>
 <p>The final model, with random intercepts and slopes, captures the data with very different intercepts and slightly variable slopes.</p>
-<p><img src="examples/mixed1/plots2.png" class="img-responsive" alt=""></p>
-<p><img src="examples/mixed1/plots2.results.png" class="img-responsive" alt=""></p>
+<p><img src="examples/mixed1/output.model2.plot.png" class="img-responsive" alt=""></p>
 </div>
 </div>
 <div id="related-examples" class="section level1">
