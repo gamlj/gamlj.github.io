@@ -129,7 +129,7 @@ $SS_{model} > SS_{yx}+SS_{yz}$. This necessarily means that at least one variabl
 
 Indeed, in the example above about exercising, the SS of _age_ alone is 452, and _exer_ alone is 3234, which sum to `r 3234+452`, less than 4751, the multiple regression model SS. 
 
-The question is now: when does this happen? Well, it happens when $B_{yz}$, the coefficient associated with $z$ in simple regression, is smaller (in absolute value) than the partial coefficient of $B_{yz.x}$ of a multiple regression. Because $B_{yz.x}=B_{yz} - B_{yx.z}\cdot B_{zx}$, this happens when $B_{yz}$ and $B_{yx.z}\cdot B_{xz}$ have different signs: therefore, we have a suppression effect!
+The question is now: when does this happen? Well, it happens when $B_{yz}$, the coefficient associated with $z$ in simple regression, is smaller (in absolute value) than the partial coefficient of $B_{yz.x}$ of a multiple regression. Because $B_{yz.x}=B_{yz} - B_{yx.z}\cdot B_{xz}$, this happens when $B_{yz}$ and $B_{yx.z}\cdot B_{xz}$ have different signs: therefore, we have a suppression effect!
 
 <img src="details/glm/simplezony.png" class="img-responsive" alt="">
 <img src="details/glm/simplezonx.png" class="img-responsive" alt="">
