@@ -124,8 +124,8 @@ There are two cases: The easiest to understand is when $\sum{SS_{f}} \lt SS_{mod
 
 A little trickier is the case when $\sum{SS_{f}} \gt SS_{model}$, because it seems strange that the sum of effects is larger than the overall combined effect.
 
-Consider a regression $y=a+b_{yx.z}x+b_{yz.x}z$. Recall the the $SS_{yx.z}$ ($x$ explains $y$ keeping constant $z$) is computed as $SS_{total}-SS_{yz}$, where $SS_{yz}$ is the sum of squares explained by $z$ without $x$ in the model, and $SS_{yz.x}=SS_{total}-SS_{yx}$. It follows that the   $\sum{SS_f}=2\cdot SS_{total}-SS_{yx}-SS_{yz}$ is larger than $SS_{total}$ when 
-$SS_{total} > SS_{yx}+SS_{yz}$. This necessarily means that at least one variable explains more variance while keeping constant the other than alone. 
+Consider a regression $y=a+b_{yx.z}x+b_{yz.x}z$. Recall the the $SS_{yx.z}$ ($x$ explains $y$ keeping constant $z$) is computed as $SS_{model}-SS_{yz}$, where $SS_{yz}$ is the sum of squares explained by $z$ without $x$ in the model, and $SS_{yz.x}=SS_{model}-SS_{yx}$. It follows that the   $\sum{SS_f}=2\cdot SS_{model}-SS_{yx}-SS_{yz}$ is larger than $SS_{model}$ when 
+$SS_{model} > SS_{yx}+SS_{yz}$. This necessarily means that at least one variable explains more variance while keeping constant the other than alone. 
 
 Indeed, in the example above about exercising, the SS of _age_ alone is 452, and _exer_ alone is 3234, which sum to `r 3234+452`, less than 4751, the multiple regression model SS. 
 
