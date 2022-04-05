@@ -423,7 +423,7 @@ div.tocify {
 <p>Why is there this discrepancy? Because the groups are not balanced, so when the correlation is computed, the variable <em>groups</em> is standardized, so the contrast coding values depend on the relative size of the groups. The actual groups coding values used by the Pearson’s correlations are the following:</p>
 <p><img src=" details/glm/effectsize_example1_4.png " class="img-responsive" alt=""></p>
 <p>Thus, the correlation corresponds to running a regression with <em>zy</em> as dependent variables and a continuous variable featuring either -.695 or 1.390 as values. The <span class="math inline">\(\beta\)</span> yielded by <span class="gamlj">GAMLj</span>, instead, is the mean difference between X levels on the standardized Y. Please notice that other software may yield different <span class="math inline">\(\beta\)</span>’s for categorical variables.</p>
-<p>If the groups are balanced and homeschedastic, the <span class="math inline">\(\beta\)</span> associated with a <code>simple</code> contrast corresponds to the fully standardized coefficient.</p>
+<p>If tow groups are balanced and homeschedastic, the <span class="math inline">\(\beta\)</span> associated with a <code>deviation</code> contrast corresponds to the fully standardized coefficient.</p>
 </div>
 <div id="eta2-semi-partial-eta-squared" class="section level1">
 <h1><span class="math inline">\(\eta^2\)</span>: (semi-partial) eta-squared</h1>

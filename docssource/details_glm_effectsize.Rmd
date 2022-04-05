@@ -75,7 +75,7 @@ Why is there this discrepancy? Because the groups are not balanced, so when the 
 
 Thus, the correlation corresponds to running a regression with _zy_ as dependent variables and a continuous variable featuring either -.695 or 1.390 as values. The $\beta$ yielded by `r gamlj()`, instead, is the mean difference between X levels on the standardized Y. Please notice that other software may yield different  $\beta$'s for categorical variables. 
 
-If the groups are balanced and homeschedastic, the $\beta$ associated with a `simple` contrast corresponds to the fully standardized coefficient.
+If tow groups are balanced and homeschedastic, the $\beta$ associated with a `deviation` contrast corresponds to the fully standardized coefficient.
 
 
 # $\eta^2$: (semi-partial) eta-squared 
