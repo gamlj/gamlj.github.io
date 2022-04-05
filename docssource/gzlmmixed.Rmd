@@ -160,7 +160,7 @@ By flagging `r opt("Random effects")` one obtains the random effects estimated v
 
 <img src="gzlmmixed/options.png" class="img-responsive" alt="">
 
-The `r opt("precision/speed")` parameter applies to mixed models with one random effect. Higher numbers increase precision in the estimation with a speed cost. It corresponds to the `nAGQ` parameter of `glmer` command in R package [lme4](https://cran.r-project.org/web/packages/lme4/index.html). For models with more than
+The `r opt("precision/speed")` parameter applies to mixed models with one random effect. Higher numbers increase precision in the estimation with a speed cost. It corresponds to the `nAGQ` parameter of `glmer` command in R package [lme4](https://cran.r-project.org/web/packages/lme4/index.html).
 
 The `r opt("CI method")` decides which method is used for computing confidence intervals. `r opt("Wald")` uses Wald statistics and it is less precise than the other methods, but it is significantly faster. `r opt("Profile")` is more precise but slower. `r opt("Boot")`, bootstrap method, is the slowest. Details of the implementation can be found in [lme4 manual](https://cran.r-project.org/web/packages/lme4/lme4.pdf)
 
