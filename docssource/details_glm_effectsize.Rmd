@@ -124,12 +124,12 @@ There are two cases: The easiest to understand is when $\sum{SS_{f}} \lt SS_{mod
 
 A little trickier is the case when $\sum{SS_{f}} \gt SS_{model}$, because it seems strange that the sum of effects is larger than the overall combined effect.
 
-Consider a regression $y=a+b_{yx.z}x+b_{yz.x}z$. Recall the the $SS_{yx.z}$ ($x$ explains $y$ keeping constant $z$) is computed as $SS_{total}-SS_{yz}$, where $SS_{yz}$ is the sum of squares explained by $x$ without $z$ in the model, and $SS_{yz.x}=SS_{total}-SS_{yx}$. It follows that the   $\sum{SS_f}=2\cdot SS_{total}-SS_{yx}-SS_{yz}$ is larger than $SS_{total}$ when 
+Consider a regression $y=a+b_{yx.z}x+b_{yz.x}z$. Recall the the $SS_{yx.z}$ ($x$ explains $y$ keeping constant $z$) is computed as $SS_{total}-SS_{yz}$, where $SS_{yz}$ is the sum of squares explained by $z$ without $x$ in the model, and $SS_{yz.x}=SS_{total}-SS_{yx}$. It follows that the   $\sum{SS_f}=2\cdot SS_{total}-SS_{yx}-SS_{yz}$ is larger than $SS_{total}$ when 
 $SS_{total} > SS_{yx}+SS_{yz}$. This necessarily means that at least one variable explains more variance while keeping constant the other than alone. 
 
 Indeed, in the example above about exercising, the SS of _age_ alone is 452, and _exer_ alone is 3234, which sum to `r 3234+452`, less than 4751, the multiple regression model SS. 
 
-The question is now: when does this happen? Well, it happens when the $B_{yz}$, the coefficient associated with $z$ in simple regression, is smaller (in absolute value) than the partial coefficient of $B_{yz.x}$ of a multiple regression. Because $B_{yz.x}=B_{yz} - B_{yx.z}\cdot B_{zx}$, this happens when $B_{yz}$ and $B_{yx.z}\cdot B_{xz}$ have different signs: therefore, we have a suppression effect!
+The question is now: when does this happen? Well, it happens when $B_{yz}$, the coefficient associated with $z$ in simple regression, is smaller (in absolute value) than the partial coefficient of $B_{yz.x}$ of a multiple regression. Because $B_{yz.x}=B_{yz} - B_{yx.z}\cdot B_{zx}$, this happens when $B_{yz}$ and $B_{yx.z}\cdot B_{xz}$ have different signs: therefore, we have a suppression effect!
 
 <img src="details/glm/simplezony.png" class="img-responsive" alt="">
 <img src="details/glm/simplezonx.png" class="img-responsive" alt="">
