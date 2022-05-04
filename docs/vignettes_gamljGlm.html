@@ -11,11 +11,11 @@
 
 <meta name="author" content="Marcello Gallucci" />
 
-<meta name="date" content="2022-04-05" />
+<meta name="date" content="2022-05-04" />
 
 <title>Examples of gamljGlm()</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -71,6 +71,7 @@ if (window.hljs) {
 
 
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 
 
@@ -95,6 +96,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -326,7 +330,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -372,7 +376,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Examples of gamljGlm()</h1>
 <h4 class="author">Marcello Gallucci</h4>
-<h4 class="date">2022-04-05</h4>
+<h4 class="date">2022-05-04</h4>
 
 </div>
 
@@ -404,13 +408,8 @@ summary(data[,c(&quot;xage&quot;,&quot;zexer&quot;,&quot;yendu&quot;)])</code></
 <div id="multiple-regression" class="section level1">
 <h1>Multiple regression</h1>
 <p>GAMLj GML function minimum setup only requires to specify the formula of the model and the dataframe. The formula interface is the same one uses in <code>lm()</code> function.</p>
-<pre class="r"><code>mod1&lt;-gamljGlm(formula = yendu~xage+zexer, data=data)</code></pre>
-<pre><code>[1] &quot;init&quot;
-[1] &quot;run&quot;
-[1] &quot;Parameters have been estimated&quot;
-[1] &quot;computing betas...&quot;
-[1] &quot;...done&quot;</code></pre>
-<pre class="r"><code>mod1</code></pre>
+<pre class="r"><code>mod1&lt;-gamljGlm(formula = yendu~xage+zexer, data=data)
+mod1</code></pre>
 <pre><code>
  GENERAL LINEAR MODEL
 
@@ -463,13 +462,8 @@ anofaDF</code></pre>
 <p>Additional effect size indexes can be asked with the option <code>effectSize</code>.</p>
 <pre class="r"><code>mod2&lt;-gamljGlm(formula = yendu~xage+zexer, 
               data=data,
-              effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;etap&quot;,&quot;omega&quot;,&quot;epsilon&quot;))</code></pre>
-<pre><code>[1] &quot;init&quot;
-[1] &quot;run&quot;
-[1] &quot;Parameters have been estimated&quot;
-[1] &quot;computing betas...&quot;
-[1] &quot;...done&quot;</code></pre>
-<pre class="r"><code>mod2$main$anova</code></pre>
+              effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;etap&quot;,&quot;omega&quot;,&quot;epsilon&quot;))
+mod2$main$anova</code></pre>
 <pre><code>
  ANOVA Omnibus tests                                                                 
  ─────────────────────────────────────────────────────────────────────────────────── 
@@ -482,13 +476,8 @@ anofaDF</code></pre>
    Total        28561    244                                                         
  ─────────────────────────────────────────────────────────────────────────────────── </code></pre>
 <p>The same analysis can be done by updating the model with the <code>update()</code> function. Almost all the options available in <code>gamljGlm()</code> can be added to a model by running <code>update(mod,...)</code> where <code>...</code> is any option or options accepted by <code>gamljGlm()</code>.</p>
-<pre class="r"><code>mod2_2&lt;-update(mod1,effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;etap&quot;,&quot;omega&quot;,&quot;epsilon&quot;))</code></pre>
-<pre><code>[1] &quot;init&quot;
-[1] &quot;run&quot;
-[1] &quot;Parameters have been estimated&quot;
-[1] &quot;computing betas...&quot;
-[1] &quot;...done&quot;</code></pre>
-<pre class="r"><code>mod2_2$main$anova</code></pre>
+<pre class="r"><code>mod2_2&lt;-update(mod1,effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;etap&quot;,&quot;omega&quot;,&quot;epsilon&quot;))
+mod2_2$main$anova</code></pre>
 <pre><code>
  ANOVA Omnibus tests                                                                 
  ─────────────────────────────────────────────────────────────────────────────────── 
@@ -505,13 +494,8 @@ anofaDF</code></pre>
 <div id="moderated-regression" class="section level1">
 <h1>Moderated regression</h1>
 <p>To include the interaction we simply add the interaction effect in the formula.</p>
-<pre class="r"><code>mod3&lt;-gamljGlm(formula = yendu~xage*zexer, data=data)</code></pre>
-<pre><code>[1] &quot;init&quot;
-[1] &quot;run&quot;
-[1] &quot;Parameters have been estimated&quot;
-[1] &quot;computing betas...&quot;
-[1] &quot;...done&quot;</code></pre>
-<pre class="r"><code>mod3</code></pre>
+<pre class="r"><code>mod3&lt;-gamljGlm(formula = yendu~xage*zexer, data=data)
+mod3</code></pre>
 <pre><code>
  GENERAL LINEAR MODEL
 
@@ -563,16 +547,6 @@ anofaDF</code></pre>
 #               simpleModerator = &quot;zexer&quot;)
 ### equivalent results :
 gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;)</code></pre>
-<pre><code>[1] &quot;init&quot;
-[1] &quot;Init simple effects&quot;
-[1] &quot;run&quot;
-[1] &quot;Parameters have been estimated&quot;
-[1] &quot;computing betas...&quot;
-[1] &quot;...done&quot;
-[1] &quot;Populate simple effects&quot;
-[1] &quot;simple effects estimation for lm model on&quot;
-[1] &quot;simple effects estimation for generic model on lm&quot;
-[1] &quot;simple effects have been computed&quot;</code></pre>
 <pre><code>
  SIMPLE EFFECTS
 
@@ -597,16 +571,6 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
 <p>In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to its mean) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average). <code>gamlGLM()</code> produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
 <p>One can change the conditioning levels of the moderators with the <code>simpleScale</code> option (default is <code>mean_sd</code> for mean plus/minus one SD), either added to the <code>gamljGlm()</code> function or to the <code>gamlj_simpleEffects()</code> function. If one wants to use the percentiles (25%,50%,75%), for instance, one can run the following.</p>
 <pre class="r"><code>gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;,simpleScale=&quot;percent&quot;)</code></pre>
-<pre><code>[1] &quot;init&quot;
-[1] &quot;Init simple effects&quot;
-[1] &quot;run&quot;
-[1] &quot;Parameters have been estimated&quot;
-[1] &quot;computing betas...&quot;
-[1] &quot;...done&quot;
-[1] &quot;Populate simple effects&quot;
-[1] &quot;simple effects estimation for lm model on&quot;
-[1] &quot;simple effects estimation for generic model on lm&quot;
-[1] &quot;simple effects have been computed&quot;</code></pre>
 <pre><code>
  SIMPLE EFFECTS
 
@@ -633,16 +597,6 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
 <pre class="r"><code>gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;,
                     simpleScale=&quot;percent&quot;, 
                     simpleScaleLabels=&quot;values_labels&quot;)</code></pre>
-<pre><code>[1] &quot;init&quot;
-[1] &quot;Init simple effects&quot;
-[1] &quot;run&quot;
-[1] &quot;Parameters have been estimated&quot;
-[1] &quot;computing betas...&quot;
-[1] &quot;...done&quot;
-[1] &quot;Populate simple effects&quot;
-[1] &quot;simple effects estimation for lm model on&quot;
-[1] &quot;simple effects estimation for generic model on lm&quot;
-[1] &quot;simple effects have been computed&quot;</code></pre>
 <pre><code>
  SIMPLE EFFECTS
 
@@ -670,23 +624,13 @@ gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quo
 <p>We can get a clear picture of the interaction by asking for a plot. Also the plot module takes care of centering the variables in a way that makes the plot clearly understandable.</p>
 <p>The options needed in <code>gamljGlm()</code> are <code>plotHAxis</code> for the x-axis variable and <code>plotSepLines</code> for the moderator. At which three levels of the moderator the separate lines are computed is decided by the option <code>simpleScale</code> as for the simple effects.</p>
 <pre class="r"><code>mod4&lt;-gamljGlm(formula = yendu~xage*zexer, data=data, 
-               plotHAxis = &quot;xage&quot;,plotSepLines = &quot;zexer&quot;,plotError = &quot;ci&quot;)</code></pre>
-<pre><code>[1] &quot;init&quot;
-[1] &quot;run&quot;
-[1] &quot;Parameters have been estimated&quot;
-[1] &quot;computing betas...&quot;
-[1] &quot;...done&quot;</code></pre>
-<pre class="r"><code>plot(mod4)</code></pre>
+               plotHAxis = &quot;xage&quot;,plotSepLines = &quot;zexer&quot;,plotError = &quot;ci&quot;)
+plot(mod4)</code></pre>
 <p><img src="vignettes_gamljGlm_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>The nice plot we get shows the simple effects (simple equations to be precise) with the prediction confidence intervals indicated by the colored shades around the lines. If needed, the confidence intervals can be substituted with the standard errors of the estimates or they can be removed completely.</p>
 <p>We use the<code>plot()</code> function. The function, applied to a <code>gamlj</code> results object, returns one plot if it is present in the model, returned as a ggplot2 object. If more than one plot is present, a list of plots is returned. FALSE is returned if no plot is present or defined. The function <code>plot()</code> can also be use to add new plots or to add options to the plots.</p>
 <p>For instance, if we want to give a more honest account of the model fit, we can visualize the simple slopes over the the actual data. The function <code>plot()</code> produces a new plot after adding any options accepted by <code>gamljGlm()</code></p>
 <pre class="r"><code>plot(mod4,plotRaw=T)</code></pre>
-<pre><code>[1] &quot;init&quot;
-[1] &quot;run&quot;
-[1] &quot;Parameters have been estimated&quot;
-[1] &quot;computing betas...&quot;
-[1] &quot;...done&quot;</code></pre>
 <p><img src="vignettes_gamljGlm_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Any plot produced by <code>gamljGlm</code> or <code>plot()</code> can be obtained as a ggplot2 object for further manipulations or usage. For instance, one can change the theme of the plot:</p>
 <pre class="r"><code>myplot&lt;-plot(mod4)

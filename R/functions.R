@@ -126,162 +126,154 @@ backto<-function(...) {
   return(a)
 }
 
-write_commits<-function() {
-  wd<-getwd()
-  setwd(MODULE_FOLDER)
-### With dates ...  a<-system("git log --pretty=format:'%cd %s' --date=short",intern = T)
-  a<-system("git log --pretty=format:'%s' --date=short",intern = T)
-  test<-grep("initialize",a,fixed=T)
-  if (length(test)==0)
-      return(FALSE)
-  coms<-a[1:(grep("initialize",a,fixed=T)-1)]
-  coms<-rev(unique(coms))
-  sel<-list()
-  j<-1
-  version="none"
-  versions<-character()
-  for (i in seq_along(coms)) {
-    test<-grep("!",coms[[i]],fixed=T)
-    if (length(test)>0) next()
-    test<-grep("Merge",coms[[i]],fixed=T)
-    if (length(test)>0) next()
-    test<-grep("§",coms[[i]],fixed=T)
-    if (length(test)>0) coms[[i]]<-paste("<b>",coms[[i]],"</b>")
-    
-    test<-grep("#",coms[[i]],fixed=T)
-    if (length(test)>0) {
-      version<-strsplit(coms[[i]],"#",fixed = T)[[1]][2]
-      versions<-c(versions,version)
-      next()
+get_current<-function() {
+  
+  query<-"/repos/:owner/:repo/pulls?state=closed"
+  pulls<-gh::gh(query,
+                owner = MODULE_REPO_OWNER, 
+                repo = MODULE_REPO,
+                .limit=Inf,
+                .token=API_TOKEN)
+  cv<-pulls[[1]]
+  cv$head$ref
+}
+
+get_all_commits<-function() {
+    query<-"/repos/:owner/:repo/pulls?state=closed"
+    pulls<-gh::gh(query,
+              owner = MODULE_REPO_OWNER, 
+              repo = MODULE_REPO,
+              .limit=Inf,
+              .token=API_TOKEN)
+    vers<-sapply(pulls, function(p) if(p$head$ref!="develop") p$head$ref else NULL) 
+    vers<-vers[!sapply(vers,is.null)]
+    nvers<-as.numeric(unlist(sapply(vers,function(v) 
+    gsub("version","",
+         gsub(".","",
+              gsub("Version","",v,fixed = T),fixed=T)))))
+
+    nfirst<-as.numeric(gsub(".","",gsub("Version","",FIRST_VERSION,fixed=T),fixed=T))
+    sel<-nvers>=nfirst
+    nvers<-nvers[sel]
+    vers<-vers[sel]
+
+    vers<-rev(vers[order(nvers)])
+    pulls<-pulls[sel]
+    pulls<-rev(pulls[order(nvers)])
+
+    commits<-list()
+
+      for (pull in pulls) {
+          cu<-pull$commits_url
+          query<-gsub("https://api.github.com","",cu,fixed = T)
+  
+          coms<-gh::gh(query,
+                 .limit=Inf,
+                 .token=API_TOKEN)
+          for (com in coms) {
+              if (length(com)==0)
+                  next
+          one<-list(sha=com$sha,msg=com$commit$message,version=pull$head$ref)
+          commits[[length(commits)+1]]<-one
+        }
     }
-    sel[[j]]<-c(coms[[i]],version)
-    j<-j+1
+   commits<-as.data.frame(do.call(rbind,commits))
+   commits
+}
+save_commits<-function() {
+
+  test<-file.exists("../resources/commitsdata.Rda")
+  if (test) {
+    load("../resources/commitsdata.Rda")
+    print(commits)  
+  } else {
+    commits<-get_all_commits()
+    save(commits,file="../resources/commitsdata.Rda")
   }
-  sel<-rev(sel)
-  versions<-rev(versions)
-  coms<-do.call("rbind",sel)
-  for (i in seq_along(versions)) {
-    rel<-""
-    if (i==1) rel<-"(future)"
-    if (i==2) rel<-"(current)"
-    
-    cat(paste("#",versions[i],rel,"\n\n"))
-    cs<-rev(coms[coms[,2]==versions[i],1])
-    for (j in cs)
-      cat(paste("*",j,"\n\n"))
-  }
-  setwd(wd)
-  #coms
+  
 }
 
 get_commits<-function() {
   
-  query<-paste0("/repos/:owner/:repo/branches")
-  vers<-gh::gh(query, owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
-  vernames<-sapply(vers,function(a) a$name)
-  ord<-order(vernames)
-  vernames<-vernames[ord]
-  vers<-vers[ord]
-  vernames<-rev(vernames)
-  rvers<-rev(vers)
-  nvers<-1:(which(vernames==FIRST_VERSION)+1)
-  rvers<-rvers[nvers]
-  vers<-rev(rvers)
-  vernames<-sapply(vers,function(a) a$name)
-  r<-vers[[1]]
-  query<-paste0("/repos/:owner/:repo/commits")
-  coms<-gh::gh(query,sha=r$name, owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
-  date<-coms[[1]]$commit$author$date
-  vers<-vers[2:length(vernames)]
-  j<-1
-  r<-vers[[2]]
-  results<-list()
-  for (r in vers) {
-    query<-paste0("/repos/:owner/:repo/commits")
-    coms<-gh::gh(query, sha=r$name, since=date,owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
-    if (length(coms)==0)
-       next()
-    for (com in coms) {
-      results[[j]]<-c(sha=com$sha,msg=com$commit$message,version=r$name)
-      j<-j+1
-    }
-    date<-coms[[1]]$commit$author$date
-  }
-    data<-data.frame(do.call("rbind",results),stringsAsFactors = FALSE)
-  data<-data[!duplicated(data$sha),]
-  data<-data[!duplicated(data$msg),]
-  data  
-}
+  load(file="../resources/commitsdata.Rda")
+  present<-unique(unlist(commits$version))
 
+  query<-"/repos/:owner/:repo/pulls?state=closed"
+  pulls<-gh::gh(query,
+                owner = MODULE_REPO_OWNER, 
+                repo = MODULE_REPO,
+                .limit=Inf,
+                .token=API_TOKEN)
+  vers<-sapply(pulls, function(p) if(p$head$ref!="develop") p$head$ref else NULL) 
+  vers<-vers[!sapply(vers,is.null)]
+  nvers<-as.numeric(unlist(sapply(vers,function(v) 
+    gsub("version","",
+         gsub(".","",
+              gsub("Version","",v,fixed = T),fixed=T)))))
+  
+  nfirst<-as.numeric(gsub(".","",gsub("Version","",FIRST_VERSION,fixed=T),fixed=T))
+  sel<-nvers>=nfirst
+  nvers<-nvers[sel]
+  vers<-vers[sel]
 
-write_commits2_old<-function() {
-  commits<-get_commits()
-  sel<-list()
-  j<-1
-  for (i in 1:dim(commits)[1]) {
-    msg<-commits[i,"msg"]
-    test<-grep("#",msg,fixed=T)
-    if (length(test)>0) next()
-    test<-grep("!",msg,fixed=T)
-    if (length(test)>0) next()
-    test<-grep("Merge",msg,fixed=T)
-    if (length(test)>0) next()
-    test<-grep("§",msg,fixed=T)
-    if (length(test)>0) msg<-paste("<b>",msg,"</b>")
-    test<-grep("#",msg,fixed=T)
-    if (length(test)>0) {
-      next()
-    }
-    sel[[j]]<-c(msg,commits[i,"version"])
-    j<-j+1
-  }
-  sel<-rev(sel)
-  versions<-rev(unique(commits$version))
-  coms<-do.call("rbind",sel)
-  for (i in seq_along(versions)) {
-    rel<-""
-    if (i==1) rel<-"(future)"
-    if (i==2) rel<-"(current)"
+  new<-setdiff(unlist(vers),present)
+  sel<-sapply(pulls, function(p) (p$head$ref %in% new)) 
+  pulls<-pulls[sel]
+
+  for (pull in pulls) {
+    cu<-pull$commits_url
+    query<-gsub("https://api.github.com","",cu,fixed = T)
     
-    cat(paste("#",versions[i],rel,"\n\n"))
-    cs<-coms[coms[,2]==versions[i],1]
-    for (j in cs)
-      cat(paste("*",j,"\n\n"))
+    coms<-gh::gh(query,
+                 .limit=Inf,
+                 .token=API_TOKEN)
+    for (com in coms) {
+      if (length(com)==0)
+        next
+      one<-c(sha=com$sha,msg=com$commit$message,version=pull$head$ref)
+      commits[length(commits)+1,]<-one
+    }
   }
-  #coms
+  commits
+    
 }
 
-write_commits2<-function() {
-  commits<-get_commits()
+write_commits<-function(commits, current=NULL) {
+  
   sel<-list()
   j<-1
   for (i in 1:dim(commits)[1]) {
     msg<-trimws(commits[i,"msg"])
     gonext=FALSE
-    for (rule in BANNED_COMMITS) {
-      if (msg==rule)
-        gonext=TRUE
-    }
+    try({
+      if (!is.null(BANNED_COMMITS))
+        for (rule in BANNED_COMMITS) {
+          if (msg==rule)
+            gonext=TRUE
+        }
+    })
     for (rule in BANNED_COMMITS_GREP) {
       if (length(grep(rule,msg)))
-           gonext=TRUE
+        gonext=TRUE
     }
     
     if (gonext)
       next()
     test<-grep("§",msg,fixed=T)
     if (length(test)>0) msg<-paste("<b>",msg,"</b>")
-    sel[[j]]<-c(msg,commits[i,"version"])
+    sel[[j]]<-c(msg=msg,version=commits[i,"version"])
     j<-j+1
   }
   sel<-rev(sel)
-  versions<-rev(unique(commits$version))
-  coms<-do.call("rbind",sel)
+  coms<-as.data.frame(do.call("rbind",sel))
+  versions<-unlist(rev(unique(coms$version)))
+  cv<-ifelse(!is.null(current),current,".x.x.x.")
+  
+  
   for (i in seq_along(versions)) {
     rel<-""
-    if (i==1) rel<-"(future)"
-    if (i==2) rel<-"(current)"
-    
+    if (versions[i]==cv)
+        rel<-"(Current)"
     cat(paste("#",versions[i],rel,"\n\n"))
     cs<-coms[coms[,2]==versions[i],1]
     for (j in cs)
@@ -289,6 +281,8 @@ write_commits2<-function() {
   }
   #coms
 }
+
+
 
 jtable<-function(jobject,digits=3) {
   snames<-sapply(jobject$columns,function(a) a$title)

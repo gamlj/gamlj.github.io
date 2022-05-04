@@ -13,7 +13,7 @@ editor_options:
 
 #Releases and changes
 
-```{r, echo=FALSE,results='asis'}
+```{r, echo=FALSE,results='hide',warning=FALSE,message=FALSE}
 where<-"../"
 #where=""
 source(paste0(where,"R/constants.R"))
@@ -21,11 +21,22 @@ source(paste0(where,"R/secrets.R"))
 source(paste0(where,"R/functions.R"))
 #source("../R/functions.R")
 #source("../R/functions.R")
-write_commits2()
-
+## fist time exec 
+# save_commits()
+newcommits<-get_commits()
+#load(paste0(where,"resources/commits.Rda"))
+#write_commits(commits,fresh = FALSE)
+cv<-get_current()
 
 ```
 
+```{r, echo=FALSE,results='asis',warning=FALSE,message=FALSE}
+
+ write_commits(newcommits,cv)
+
+```
+
+# First versions
 
 #  version 1.0.5 
 
