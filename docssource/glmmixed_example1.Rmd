@@ -13,8 +13,12 @@ output:
 ---
 
 ```{r echo=FALSE,results='hide'}
-source("../R/constants.R")
-source("../R/functions.R")
+library(mcdocs)
+mcdocs_init()
+```
+
+
+```{r echo=FALSE,results='hide'}
 data<-read.csv2("../data/school_exam.csv")
 ```
 

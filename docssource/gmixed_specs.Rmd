@@ -16,7 +16,8 @@ link-citations: true
 
 
 ```{r echo=FALSE,results='hide'}
-source("../R/functions.R")
+library(mcdocs)
+mcdocs_init()
 ```
 
 `r version("2.4.4")` 

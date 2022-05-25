@@ -15,7 +15,8 @@ output:
 ---
 
 ```{r echo=FALSE,results='hide'}
-source("../R/functions.R")
+library(mcdocs)
+mcdocs_init()
 ```
 
 `r keywords("jamovi, Poisson models, generalized linear models, odd-ratios, regression, frequencies, count data, log-linear models, overdispersion")`

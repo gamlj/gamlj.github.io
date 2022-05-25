@@ -12,8 +12,9 @@ output:
 ---
 
 
-```{r first, echo=FALSE,results='hide'}
-source("../R/functions.R")
+```{r echo=FALSE,results='hide'}
+library(mcdocs)
+mcdocs_init()
 ```
 
 **General Linear Model** module of the GAMLj suite for jamovi

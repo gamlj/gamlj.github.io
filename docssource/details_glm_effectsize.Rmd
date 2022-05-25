@@ -23,14 +23,15 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 library(fontawesome)
+options(scipen=999)
 
 ```
 
 
 
 ```{r echo=FALSE,results='hide'}
-source("../R/functions.R")
-options(scipen=999)
+library(mcdocs)
+mcdocs_init()
 ```
 
 `r keywords("jamovi, GLM, effect size indices, omega-squared, eta-squared, epsilon-squared")`

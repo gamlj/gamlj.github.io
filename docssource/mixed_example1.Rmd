@@ -16,8 +16,8 @@ output:
 
 
 ```{r echo=FALSE,results='hide'}
-source("../R/constants.R")
-source("../R/functions.R")
+library(mcdocs)
+mcdocs_init()
 ```
 
 
