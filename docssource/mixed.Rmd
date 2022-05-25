@@ -15,9 +15,11 @@ output:
 ---
 
 
-```{r echo=FALSE,results='hide'}
-source("../R/functions.R")
+```{r setup, echo=FALSE,results='hide'}
+library(mcdocs)
+mcdocs_init()
 ```
+
 
 `r version("1.5.0")` 
 

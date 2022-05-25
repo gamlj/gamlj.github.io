@@ -13,7 +13,7 @@ output:
 ---
 
 
-```{r echo=FALSE,results='hide'}
+```{r setup, echo=FALSE,results='hide'}
 library(mcdocs)
 mcdocs_init()
 ```
@@ -21,7 +21,7 @@ mcdocs_init()
 `r version("2.0.0")` 
 
 
-**Generalized Mixed Linear Models** module of the GAMLj suite for `r jamovi()`
+**Generalized Mixed Linear Models** module of the GAMLj suite for `r jamovi`
 
 <img src="gzlmmixed/main.png" class="img-responsive" alt="">
 
@@ -73,7 +73,7 @@ The plausibility of the distribution/link function combination is no checked, bu
 # Estimates
 The module provides parameter estimates of the fixed effects, the random variances and correlation among random coefficients.
 
-Variables definition follows `r jamovi()` standards, with categorical independent variables defined in "fixed factors" and continuous independent variables in "covariates".
+Variables definition follows `r jamovi` standards, with categorical independent variables defined in "fixed factors" and continuous independent variables in "covariates".
 
 <img src="gzlmmixed/estimates.png" class="img-responsive" alt="">
 
@@ -166,7 +166,7 @@ The `r opt("CI method")` decides which method is used for computing confidence i
 
 # Examples
 
-Some worked out examples of the analyses carried out with `r jamovi()` GAMLj Mixed models are posted here (more to come)
+Some worked out examples of the analyses carried out with `r jamovi` GAMLj Mixed models are posted here (more to come)
 
 `r include_examples("gmixed")`
 

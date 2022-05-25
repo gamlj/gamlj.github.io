@@ -15,7 +15,8 @@ output:
 
 
 ```{r echo=FALSE,results='hide'}
-source("../R/functions.R")
+library(mcdocs)
+mcdocs_init()
 ```
 
 
@@ -40,7 +41,7 @@ Assume one has schools and classes, coded as follows:
 
 We want to use school as a clustering variable, but the way `Class` is coded would pool together cases of different classes, because class 1, for instance, appears in all three schools, even if they are actually three different classes. 
 
-To overcome this problem, some software allows specifying the clustering variable as `School:Class`, so classes can be distinguished. `r gamlj()` does not allow that, because there's really no reason to it and it may be confusing. The solution in `r gamlj()` is to recode the classes such that they all have a unique code. In `r jamovi()` one can simply compute a new variable as follows:
+To overcome this problem, some software allows specifying the clustering variable as `School:Class`, so classes can be distinguished. `r modulename()` does not allow that, because there's really no reason to it and it may be confusing. The solution in `r modulename()` is to recode the classes such that they all have a unique code. In `r jamovi` one can simply compute a new variable as follows:
 
 `r pic("commons/pics/compute_unique_clusters_1.png")`
 

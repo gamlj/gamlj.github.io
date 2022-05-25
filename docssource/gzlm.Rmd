@@ -14,7 +14,9 @@ output:
 
 ```{r echo=FALSE,results='hide'}
 library(mcdocs)
+get_pages
 mcdocs_init()
+
 ```
 
 **Generalized Linear Models** module of the GAMLj suite for jamovi

@@ -14,7 +14,7 @@ mcdocs_init()
 ```
   
 
-General, Mixed and Generalized Models module for `r jamovi()`
+General, Mixed and Generalized Models module for `r jamovi`
 
 <img src="commons/pics/ui.png" class="img-responsive" alt="commons/pics/ui.png" width="400">
 
@@ -64,7 +64,7 @@ Please visit the sub-modules pages for details:
 
 # Examples
 
-Some worked out examples of the analyses carried out with jamovi GAMLj are posted here (more to come)
+Some worked out examples of the analyses carried out with `r jamovi` `r modulename()` are posted here (more to come)
 
 <div class="littletitle">General Linear Model</div>
 `r list_pages(topic="glm",category = "example")`

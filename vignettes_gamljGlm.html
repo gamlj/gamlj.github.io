@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Marcello Gallucci" />
+
+<meta name="date" content="2022-05-25" />
+
+<title>Examples of gamljGlm()</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110344212-1');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="gzlmmixed.html">Generalized Mixed Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples and Details</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+<li>
+  <a href="vignettes.html">GAMLj in R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/gamlj/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Examples of gamljGlm()</h1>
+<h4 class="author">Marcello Gallucci</h4>
+<h4 class="date">2022-05-25</h4>
+
+</div>
+
+
+<pre class="r"><code>library(gamlj)</code></pre>
+<div id="linear-models-in-gamlj" class="section level1">
+<h1>Linear models in GAMLj</h1>
+<p>In this example we run a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from <a href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a> and can be downloaded <a href="https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv">here</a>.</p>
+</div>
+<div id="the-research-design" class="section level1">
+<h1>The research design</h1>
+<p>The research is about physical endurance associated with age and physical exercise. 245 participants were measured while jogging on a treadmill. Endurance was measured in minutes (‘yendu’ in the file). Participants’ age (<code>xage</code> in years) and number of years of physical exercise (<code>zexer</code> in years) were recorded as well</p>
+<pre class="r"><code>data&lt;-read.csv(&quot;https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/data/exercise.csv&quot;)
+summary(data[,c(&quot;xage&quot;,&quot;zexer&quot;,&quot;yendu&quot;)])</code></pre>
+<pre><code>      xage          zexer          yendu     
+ Min.   :20.0   Min.   : 0.0   Min.   : 0.0  
+ 1st Qu.:43.0   1st Qu.: 7.0   1st Qu.:19.0  
+ Median :48.0   Median :11.0   Median :27.0  
+ Mean   :49.2   Mean   :10.7   Mean   :26.5  
+ 3rd Qu.:56.0   3rd Qu.:14.0   3rd Qu.:33.0  
+ Max.   :82.0   Max.   :26.0   Max.   :55.0  </code></pre>
+<p>The researcher is interested in studying the relationships between endurance, age, and exercising, with the hypothesis that the effect of age (expected to be negative) is moderated by exercise, such that the more participants work out (higher levels of <code>exer</code>) the less age negatively affects endurance.</p>
+</div>
+<div id="understanding-the-problem" class="section level1">
+<h1>Understanding the problem</h1>
+<p>We can think about this analytic problem as a multiple regression, where the effect of age and exercise can be estimated while keeping constant the other variable. However, the researcher puts forward a <em>moderation hypothesis</em>, because s/he expects the effect of age to change for different levels of exercising. We than need an interaction between age and exercise.</p>
+<p>We first run a multiple regression (to warm up), then we estimate a multiple regression with an interaction (moderated regression) and we probe the interaction with a simple slope analysis and simple slope graphs. Technical details can be found in <a href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a>, or in <a href="http://quantpsy.org/interact/interactions.htm">Preacher website</a>.</p>
+</div>
+<div id="multiple-regression" class="section level1">
+<h1>Multiple regression</h1>
+<p>GAMLj GML function minimum setup only requires to specify the formula of the model and the dataframe. The formula interface is the same one uses in <code>lm()</code> function.</p>
+<pre class="r"><code>mod1&lt;-gamljGlm(formula = yendu~xage+zexer, data=data)
+mod1</code></pre>
+<pre><code>
+ GENERAL LINEAR MODEL
+
+ Model Info                                     
+ ────────────────────────────────────────────── 
+   Info                                         
+ ────────────────────────────────────────────── 
+   Estimate          Linear model fit by OLS    
+   Call              yendu ~ 1 + xage + zexer   
+   R-squared                            0.166   
+   Adj. R-squared                       0.159   
+ ────────────────────────────────────────────── 
+
+
+ MODEL RESULTS
+
+ ANOVA Omnibus tests                                      
+ ──────────────────────────────────────────────────────── 
+                SS       df     F       p         η²p     
+ ──────────────────────────────────────────────────────── 
+   Model         4751      2    24.1    &lt; .001    0.166   
+   xage          1516      1    15.4    &lt; .001    0.060   
+   zexer         4298      1    43.7    &lt; .001    0.153   
+   Residuals    23810    242                              
+   Total        28561    244                              
+ ──────────────────────────────────────────────────────── 
+
+
+ Fixed Effects Parameter Estimates                                                             
+ ───────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE        Lower     Upper     β         df     t        p        
+ ───────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      26.531    0.6337    25.282    27.779     0.000    242    41.87    &lt; .001   
+   xage             -0.257    0.0655    -0.386    -0.128    -0.240    242    -3.93    &lt; .001   
+   zexer             0.916    0.1386     0.643     1.189     0.404    242     6.61    &lt; .001   
+ ───────────────────────────────────────────────────────────────────────────────────────────── </code></pre>
+<p>The object `mod’ is an R6 object which contains all the results tables and some additional function that can be used in subsequent analyses. Tables are pretty printed, but they can be modified or manipulated by transforming them in dataframes as follows:</p>
+<pre class="r"><code>anofaDF&lt;-mod1$main$anova$asDF
+anofaDF</code></pre>
+<pre><code>       name    ss  df    f              p etaSqP
+1     Model  4751   2 24.1 0.000000000275 0.1663
+2      xage  1516   1 15.4 0.000113055878 0.0599
+3     zexer  4298   1 43.7 0.000000000244 0.1529
+4 Residuals 23810 242   NA             NA     NA
+5     Total 28561 244   NA             NA     NA</code></pre>
+<div id="results" class="section level2">
+<h2>Results</h2>
+<p>Results show three tables. The <em>Model Info</em> table contains information about the overall model. The <em>ANOVA omnibus tests</em> table contains the results of the <code>car:Anova()</code> function, with the addition of the partial <span class="math inline">\(\eta^2\)</span> index for each effect and the inferential test for the whole model. The <em>Fixed Effecta Parameter Estimates</em> table contains the <code>summary()</code> results. For each coefficient the confidence interval is also reported.</p>
+<p>A special note should be made for the intercept. The intercept is the expected value (the mean) of the dependent variable, estimated for all independent variables equal to their means. This is because in gamljGlm(), continuous variables are centered to their mean by default. In case one wants the independent variables not to be centered, one can select a different scaling with the option <code>scaling</code>.</p>
+<p>Additional effect size indexes can be asked with the option <code>effectSize</code>.</p>
+<pre class="r"><code>mod2&lt;-gamljGlm(formula = yendu~xage+zexer, 
+              data=data,
+              effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;etap&quot;,&quot;omega&quot;,&quot;epsilon&quot;))
+mod2$main$anova</code></pre>
+<pre><code>
+ ANOVA Omnibus tests                                                                 
+ ─────────────────────────────────────────────────────────────────────────────────── 
+                SS       df     F       p         η²       η²p      ω²       ε²      
+ ─────────────────────────────────────────────────────────────────────────────────── 
+   Model         4751      2    24.1    &lt; .001    0.166    0.166    0.159    0.159   
+   xage          1516      1    15.4    &lt; .001    0.053    0.060    0.049    0.050   
+   zexer         4298      1    43.7    &lt; .001    0.150    0.153    0.147    0.147   
+   Residuals    23810    242                                                         
+   Total        28561    244                                                         
+ ─────────────────────────────────────────────────────────────────────────────────── </code></pre>
+<p>The same analysis can be done by updating the model with the <code>update()</code> function. Almost all the options available in <code>gamljGlm()</code> can be added to a model by running <code>update(mod,...)</code> where <code>...</code> is any option or options accepted by <code>gamljGlm()</code>.</p>
+<pre class="r"><code>mod2_2&lt;-update(mod1,effectSize = c(&quot;beta&quot;, &quot;eta&quot;,&quot;etap&quot;,&quot;omega&quot;,&quot;epsilon&quot;))
+mod2_2$main$anova</code></pre>
+<pre><code>
+ ANOVA Omnibus tests                                                                 
+ ─────────────────────────────────────────────────────────────────────────────────── 
+                SS       df     F       p         η²       η²p      ω²       ε²      
+ ─────────────────────────────────────────────────────────────────────────────────── 
+   Model         4751      2    24.1    &lt; .001    0.166    0.166    0.159    0.159   
+   xage          1516      1    15.4    &lt; .001    0.053    0.060    0.049    0.050   
+   zexer         4298      1    43.7    &lt; .001    0.150    0.153    0.147    0.147   
+   Residuals    23810    242                                                         
+   Total        28561    244                                                         
+ ─────────────────────────────────────────────────────────────────────────────────── </code></pre>
+</div>
+</div>
+<div id="moderated-regression" class="section level1">
+<h1>Moderated regression</h1>
+<p>To include the interaction we simply add the interaction effect in the formula.</p>
+<pre class="r"><code>mod3&lt;-gamljGlm(formula = yendu~xage*zexer, data=data)
+mod3</code></pre>
+<pre><code>
+ GENERAL LINEAR MODEL
+
+ Model Info                                                  
+ ─────────────────────────────────────────────────────────── 
+   Info                                                      
+ ─────────────────────────────────────────────────────────── 
+   Estimate          Linear model fit by OLS                 
+   Call              yendu ~ 1 + xage + zexer + xage:zexer   
+   R-squared                                         0.206   
+   Adj. R-squared                                    0.196   
+ ─────────────────────────────────────────────────────────── 
+
+
+ MODEL RESULTS
+
+ ANOVA Omnibus tests                                       
+ ───────────────────────────────────────────────────────── 
+                 SS       df     F       p         η²p     
+ ───────────────────────────────────────────────────────── 
+   Model          5887      3    20.9    &lt; .001    0.206   
+   xage           1570      1    16.7    &lt; .001    0.065   
+   zexer          4775      1    50.8    &lt; .001    0.174   
+   xage:zexer     1137      1    12.1    &lt; .001    0.048   
+   Residuals     22674    241                              
+   Total         28561    244                              
+ ───────────────────────────────────────────────────────── 
+
+
+ Fixed Effects Parameter Estimates                                                               
+ ─────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate    SE        Lower      Upper      β         df     t        p        
+ ─────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     25.8887    0.6466    24.6150    27.1625     0.000    241    40.04    &lt; .001   
+   xage            -0.2617    0.0641    -0.3879    -0.1355    -0.244    241    -4.08    &lt; .001   
+   zexer            0.9727    0.1365     0.7038     1.2417     0.429    241     7.12    &lt; .001   
+   xage:zexer       0.0472    0.0136     0.0205     0.0740     0.211    241     3.48    &lt; .001   
+ ─────────────────────────────────────────────────────────────────────────────────────────────── </code></pre>
+<div id="results-1" class="section level2">
+<h2>Results</h2>
+<p>Because variables are centered to their means, the first-order coefficients can be interpreted as “average” effects. One can also report the betas (<span class="math inline">\(\beta\)</span>). The estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.</p>
+</div>
+<div id="simple-slopes" class="section level2">
+<h2>Simple Slopes</h2>
+<p>We can now probe the interaction. One can re-run the model adding the appropriate options to ask for simple effects or one can use the <code>gamlj_simpleffects()</code> function, which is a convenience function to add simple effects to a pre-existing model. The function <code>gamlj_simpleffects()</code>, however, only returns the simple effects tables, not the full model.</p>
+<pre class="r"><code>#mod4&lt;-gamljGlm(formula = yendu~xage*zexer,
+#               data=data,
+#               simpleVariable = &quot;xage&quot;,
+#               simpleModerator = &quot;zexer&quot;)
+### equivalent results :
+gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;)</code></pre>
+<pre><code>
+ SIMPLE EFFECTS
+
+ Simple effects of xage : Omnibus Tests                         
+ ────────────────────────────────────────────────────────────── 
+   zexer        F         Num df    Den df    p         η²p     
+ ────────────────────────────────────────────────────────────── 
+   Mean-1-SD    27.972      1.00       241    &lt; .001    0.104   
+        Mean    16.686      1.00       241    &lt; .001    0.065   
+   Mean+1-SD     0.160      1.00       241     0.690    0.001   
+ ────────────────────────────────────────────────────────────── 
+
+
+ Simple effects of xage : Parameter estimates                                                  
+ ───────────────────────────────────────────────────────────────────────────────────────────── 
+   zexer        Estimate    SE        Lower     Upper     β          df     t         p        
+ ───────────────────────────────────────────────────────────────────────────────────────────── 
+   Mean-1-SD     -0.4873    0.0921    -0.669    -0.306    -0.4552    241    -5.289    &lt; .001   
+        Mean     -0.2617    0.0641    -0.388    -0.135    -0.2445    241    -4.085    &lt; .001   
+   Mean+1-SD     -0.0361    0.0903    -0.214     0.142    -0.0337    241    -0.400     0.690   
+ ───────────────────────────────────────────────────────────────────────────────────────────── </code></pre>
+<p>In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to its mean) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average). <code>gamlGLM()</code> produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
+<p>One can change the conditioning levels of the moderators with the <code>simpleScale</code> option (default is <code>mean_sd</code> for mean plus/minus one SD), either added to the <code>gamljGlm()</code> function or to the <code>gamlj_simpleEffects()</code> function. If one wants to use the percentiles (25%,50%,75%), for instance, one can run the following.</p>
+<pre class="r"><code>gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;,simpleScale=&quot;percent&quot;)</code></pre>
+<pre><code>
+ SIMPLE EFFECTS
+
+ Simple effects of xage : Omnibus Tests                    
+ ───────────────────────────────────────────────────────── 
+   zexer    F        Num df    Den df    p         η²p     
+ ───────────────────────────────────────────────────────── 
+    25th    28.15      1.00       241    &lt; .001    0.105   
+    50th    14.74      1.00       241    &lt; .001    0.058   
+    75th     1.81      1.00       241     0.180    0.007   
+ ───────────────────────────────────────────────────────── 
+
+
+ Simple effects of xage : Parameter estimates                                              
+ ───────────────────────────────────────────────────────────────────────────────────────── 
+   zexer    Estimate    SE        Lower     Upper      β          df     t        p        
+ ───────────────────────────────────────────────────────────────────────────────────────── 
+    25th      -0.435    0.0820    -0.597    -0.2736    -0.4066    241    -5.31    &lt; .001   
+    50th      -0.246    0.0641    -0.373    -0.1199    -0.2300    241    -3.84    &lt; .001   
+    75th      -0.105    0.0777    -0.257     0.0485    -0.0976    241    -1.35     0.180   
+ ───────────────────────────────────────────────────────────────────────────────────────── </code></pre>
+<p>The simple effects are now changed, because they are estimated for a different set of values of the moderator.</p>
+<p>One can further tweak the appearance of the tables by selecting a different value/labels in <code>simpleScaleLabels</code> option. Options are “labels”, “values” and “values_labels”. The latter outputs the values and the labels of the conditioning values.</p>
+<pre class="r"><code>gamlj_simpleEffects(mod3,variable = &quot;xage&quot;,moderator = &quot;zexer&quot;,
+                    simpleScale=&quot;percent&quot;, 
+                    simpleScaleLabels=&quot;values_labels&quot;)</code></pre>
+<pre><code>
+ SIMPLE EFFECTS
+
+ Simple effects of xage : Omnibus Tests                          
+ ─────────────────────────────────────────────────────────────── 
+   zexer          F        Num df    Den df    p         η²p     
+ ─────────────────────────────────────────────────────────────── 
+   25th=-3.673    28.15      1.00       241    &lt; .001    0.105   
+    50th=0.327    14.74      1.00       241    &lt; .001    0.058   
+    75th=3.327     1.81      1.00       241     0.180    0.007   
+ ─────────────────────────────────────────────────────────────── 
+
+
+ Simple effects of xage : Parameter estimates                                                    
+ ─────────────────────────────────────────────────────────────────────────────────────────────── 
+   zexer          Estimate    SE        Lower     Upper      β          df     t        p        
+ ─────────────────────────────────────────────────────────────────────────────────────────────── 
+   25th=-3.673      -0.435    0.0820    -0.597    -0.2736    -0.4066    241    -5.31    &lt; .001   
+    50th=0.327      -0.246    0.0641    -0.373    -0.1199    -0.2300    241    -3.84    &lt; .001   
+    75th=3.327      -0.105    0.0777    -0.257     0.0485    -0.0976    241    -1.35     0.180   
+ ─────────────────────────────────────────────────────────────────────────────────────────────── </code></pre>
+</div>
+<div id="simple-slopes-plot" class="section level2">
+<h2>Simple Slopes Plot</h2>
+<p>We can get a clear picture of the interaction by asking for a plot. Also the plot module takes care of centering the variables in a way that makes the plot clearly understandable.</p>
+<p>The options needed in <code>gamljGlm()</code> are <code>plotHAxis</code> for the x-axis variable and <code>plotSepLines</code> for the moderator. At which three levels of the moderator the separate lines are computed is decided by the option <code>simpleScale</code> as for the simple effects.</p>
+<pre class="r"><code>mod4&lt;-gamljGlm(formula = yendu~xage*zexer, data=data, 
+               plotHAxis = &quot;xage&quot;,plotSepLines = &quot;zexer&quot;,plotError = &quot;ci&quot;)
+plot(mod4)</code></pre>
+<p><img src="vignettes_gamljGlm_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>The nice plot we get shows the simple effects (simple equations to be precise) with the prediction confidence intervals indicated by the colored shades around the lines. If needed, the confidence intervals can be substituted with the standard errors of the estimates or they can be removed completely.</p>
+<p>We use the<code>plot()</code> function. The function, applied to a <code>gamlj</code> results object, returns one plot if it is present in the model, returned as a ggplot2 object. If more than one plot is present, a list of plots is returned. FALSE is returned if no plot is present or defined. The function <code>plot()</code> can also be use to add new plots or to add options to the plots.</p>
+<p>For instance, if we want to give a more honest account of the model fit, we can visualize the simple slopes over the the actual data. The function <code>plot()</code> produces a new plot after adding any options accepted by <code>gamljGlm()</code></p>
+<pre class="r"><code>plot(mod4,plotRaw=T)</code></pre>
+<p><img src="vignettes_gamljGlm_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Any plot produced by <code>gamljGlm</code> or <code>plot()</code> can be obtained as a ggplot2 object for further manipulations or usage. For instance, one can change the theme of the plot:</p>
+<pre class="r"><code>myplot&lt;-plot(mod4)
+myplot+ggplot2::theme_grey()</code></pre>
+<p><img src="vignettes_gamljGlm_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><a href="#linear-models-in-gamlj">back to top</a></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

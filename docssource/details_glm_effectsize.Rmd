@@ -57,7 +57,7 @@ All coefficients but the betas are computed with the approapriate function of th
 
 For continuous variables, it simply corresponds to the B coefficient obtained after standardizing all variables in the model. The standardization of the continuous variables is done before any transformation is applied, so if a complex model requires interaction or polynomial terms, the terms are computed after standardization, and the $\beta$ are consistent.
 
-For categorical variables, however, some comments are in order: Categorical variables are not standardized in `r gamlj()`, so the $\beta$ should be interpreted in terms of standardized differences in the dependent variable between the levels contrasted by the corresponding contrast. Consider the following example: Two groups (variable `groups`) of size 20 and 10 respectively, are compared on a variable Y. If one uses `r gamlj()` default contrast coding (`simple`), the B is the difference in groups means. The $\beta$ is the difference between the average z-scores of the dependent variable between the two groups. 
+For categorical variables, however, some comments are in order: Categorical variables are not standardized in `r modulename()`, so the $\beta$ should be interpreted in terms of standardized differences in the dependent variable between the levels contrasted by the corresponding contrast. Consider the following example: Two groups (variable `groups`) of size 20 and 10 respectively, are compared on a variable Y. If one uses `r modulename()` default contrast coding (`simple`), the B is the difference in groups means. The $\beta$ is the difference between the average z-scores of the dependent variable between the two groups. 
 Assume these are the results:
 
 `r pic("details/glm/effectsize_example1_1.png")`
@@ -74,7 +74,7 @@ Why is there this discrepancy? Because the groups are not balanced, so when the 
 
 `r pic("details/glm/effectsize_example1_4.png")`
 
-Thus, the correlation corresponds to running a regression with _zy_ as dependent variables and a continuous variable featuring either -.695 or 1.390 as values. The $\beta$ yielded by `r gamlj()`, instead, is the mean difference between X levels on the standardized Y. Please notice that other software may yield different  $\beta$'s for categorical variables. 
+Thus, the correlation corresponds to running a regression with _zy_ as dependent variables and a continuous variable featuring either -.695 or 1.390 as values. The $\beta$ yielded by `r modulename()`, instead, is the mean difference between X levels on the standardized Y. Please notice that other software may yield different  $\beta$'s for categorical variables. 
 
 If two groups are balanced and homeschedastic, the $\beta$ associated with a `deviation` contrast corresponds to the fully standardized coefficient.
 
@@ -87,7 +87,7 @@ $$\eta^2={{SS_{eff} \over {SS_{model}+SS_{res}}}}$$
 
 where $SS_{model}+SS_{res}=SS_{total}$ and $SS_{total}=\sum(y_i-\bar{y})^2$ and $SS_{model}=\sum(\hat{y_i}-\bar{\hat{y}})^2$. 
 
-Please notice that although the computation of the effect size indexes and their confidence intervals is carried out employing [effectsize R package](https://github.com/easystats/effectsize), `r gamlj()` makes a correction to the computation of $\eta^2$ and of the other non-partial indices. `effectsize` R package, infact, defines the total sum of squares as $SS_{total}^*=\sum{SS_{f}+SS_{res}}$, where $f$ is any effect in the model. For balanced designs and many other models, $SS_{total}^*=SS_{total}$, so no issue arises. However, there are certain models in which $SS_{total}^*\ne SS_{total}$, and so the index looses some of its properties when computed based on  $SS_{total}^*$. `r gamlj()` operates a correction such that all the non-partial indeces are always computed based on $SS_{total}=SS_{model}+SS_{res}$.
+Please notice that although the computation of the effect size indexes and their confidence intervals is carried out employing [effectsize R package](https://github.com/easystats/effectsize), `r modulename()` makes a correction to the computation of $\eta^2$ and of the other non-partial indices. `effectsize` R package, infact, defines the total sum of squares as $SS_{total}^*=\sum{SS_{f}+SS_{res}}$, where $f$ is any effect in the model. For balanced designs and many other models, $SS_{total}^*=SS_{total}$, so no issue arises. However, there are certain models in which $SS_{total}^*\ne SS_{total}$, and so the index looses some of its properties when computed based on  $SS_{total}^*$. `r modulename()` operates a correction such that all the non-partial indeces are always computed based on $SS_{total}=SS_{model}+SS_{res}$.
 
 `r foldable_title("Why this correction?",comment="technical stuff")`
 
@@ -95,7 +95,7 @@ With the correction, one property $\eta^2$ retains even when $SS_{total}^*\ne SS
 
 <img src="details/glm/eta1.png" class="img-responsive" alt="">
 
-Going in `r jamovi()`, `r opt("Regression->Partial correlation")` we can compute the semi-partial correlation of each IV coviariating the other. This gives:
+Going in `r jamovi`, `r opt("Regression->Partial correlation")` we can compute the semi-partial correlation of each IV coviariating the other. This gives:
 
 <img src="details/glm/eta2.png" class="img-responsive" alt="">
 
@@ -184,7 +184,7 @@ $$\epsilon^2p={{SS_{eff}-SS_{res} \cdot ({df_{eff}/df_{res}) \cdot }}\over{ SS_{
 
 # Simple Effects
 
-From version 2.6.1 on, all the effect size indices are available also for the simple effects. To compute them, `r gamlj()` extracts the SS of the simple effect from `R emmeans` F-tests. The SS residuals and SS model is extracted from the model summary, given that both SS do not change when simple effects are computed. Then the indices are computed using the previously described formulas. 
+From version 2.6.1 on, all the effect size indices are available also for the simple effects. To compute them, `r modulename()` extracts the SS of the simple effect from `R emmeans` F-tests. The SS residuals and SS model is extracted from the model summary, given that both SS do not change when simple effects are computed. Then the indices are computed using the previously described formulas. 
 
 In particular, if the simple effect is $se$:
 $$SS_{res}=\sigma^2\cdot df_{res}$$

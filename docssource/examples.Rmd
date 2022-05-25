@@ -12,7 +12,7 @@ output:
 ---
 
 
-```{r echo=FALSE,results='hide'}
+```{r setup, echo=FALSE,results='hide'}
 library(mcdocs)
 mcdocs_init()
 ```

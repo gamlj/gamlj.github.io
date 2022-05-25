@@ -25,7 +25,7 @@ data<-read.csv2("../data/school_exam.csv")
 `r keywords("jamovi, mixed models, generalized linear models, logistic mixed model, multilevel logist, moderated regression, interactions")`
 
 
-In this example we estimate a multilevel logistic regression, with interactions, using `r jamovi()` GAMLj module. 
+In this example we estimate a multilevel logistic regression, with interactions, using `r jamovi` GAMLj module. 
 
 One can follow the example by downloading the
 `r datafile("cvs file","school_exam.csv")` and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install the new version of GAMLj module from within jamovi library. Data are simulated for educational purposes, and should be used only for exercising.
@@ -62,7 +62,7 @@ Here we can choose which specific model we want to estimate. We can leave the se
 
 <img src="examples/gzlmmixed1/models.png" class="img-responsive" alt="">
 
-We can now define the variables role in the model, by selecting the dependent variable `pass` and the covariates `math` and `activity`. We put the latter ones in `Covariates` because they are continuous variables. Notice that `r jamovi()` recognizes `activity` as a nominal variable, because it lists only integer values. GAMLj automatically transforms it into a numerical variable and uses it as covariate.
+We can now define the variables role in the model, by selecting the dependent variable `pass` and the covariates `math` and `activity`. We put the latter ones in `Covariates` because they are continuous variables. Notice that `r jamovi` recognizes `activity` as a nominal variable, because it lists only integer values. GAMLj automatically transforms it into a numerical variable and uses it as covariate.
 
 <img src="examples/gzlmmixed1/variables.png" class="img-responsive" alt="">
 

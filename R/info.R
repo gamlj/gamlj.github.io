@@ -9,7 +9,7 @@ STORE_FOLDER="docs"
 SOURCE_FOLDER="docssource"
 
 #DATALINK<-"https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/data"
-DATALINK="https://github.com/gamlj/gamlj.github.io/blob/master/data/"
+DATALINK="https://github.com/gamlj/gamlj.github.io/blob/master/data"
 # These handle the release notes from commits
 MODULE_REPO="gamlj"
 MODULE_REPO_OWNER="gamlj"

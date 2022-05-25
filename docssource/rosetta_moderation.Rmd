@@ -16,8 +16,10 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r echo=FALSE,results='hide'}
-source("../R/functions.R")
+
+```{r setup, echo=FALSE,results='hide'}
+library(mcdocs)
+mcdocs_init()
 ```
 
 
@@ -26,23 +28,23 @@ source("../R/functions.R")
 `r version("0.9.1")` `r draft` 
 
 
-Here you can find comparisons of  results obtained in jamovi GAMLj, pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing identical results across programs (not necessarely with the most efficient strategy).
+Here you can find comparisons of  results obtained in jamovi `r modulename()`, pure R, and SPSS. When not explicitly discussed, the code of different software is written with the aim of obtaining identical results across programs (not necessarily with the most efficient strategy).
 
-In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from   [Cohen et al 2003](http://psycnet.apa.org/record/2002-18109-000) and can be downloaded  [here](https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv). GAMLj analyses on this dataset (without comparisons with other software) can be found in `r link_pages(nickname="exercise")`.
+In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from   [Cohen et al 2003](http://psycnet.apa.org/record/2002-18109-000) and can be downloaded  [here](https://github.com/mcfanda/`r modulename()`_docs/blob/master/data/exercise.csv). `r modulename()` analyses on this dataset (without comparisons with other software) can be found in `r link_pages(nickname="exercise")`.
 
 # The research design
 
-The research is about physical endurance associated with age and physical exercise. 245 participants were measured while jogging on a treadmill. Edurance was measured in minutes ('yendu' in the file). Participants' age (`xage` in years) and number of years of physical exercise (`zexer` in years) were recorded as well (in jamovi `Exploration` -> `Descriptive`)  
+The research is about physical endurance associated with age and physical exercise. 245 participants were measured while jogging on a treadmill. Edurance was measured in minutes ('yendu' in the file). Participants' age (`xage` in years) and number of years of physical exercise (`zexer` in years) were recorded as well (in `r `jamovi` `Exploration` -> `Descriptive`)  
 
 <img src="examples/glm1/desc.png" class="img-responsive" alt="">
 
-The researcher is interested in studying the relationships between endurance, age, and exercising, with the hypothesis that the effect of age (expectedly negative) is moderated by exercise, such that the more participants work out (higher levels of `exer`) the less age negatively affects endurance. 
+The researcher is interested in studying the relationships between endurance, age, and exercising, with the hypothesis that the effect of age (not unexpectedly negative) is moderated by exercise, such that the more participants work out (higher levels of `exer`) the less age negatively affects endurance. 
 
 For a longer discussion please check out `r link_pages(nickname="exercise")`.
 
-# GAMLj GLM
+# `r modulename()` GLM
 
-jamovi GAMLj module for GLM requires to set the variables in the right field depending on their role in the model and their type. 
+`r jamovi` `r `modulename()` module for GLM requires to set the variables in the right field depending on their role in the model and their type. 
 
 <img src="examples/glm1/variables.png" class="img-responsive" alt="">
 
@@ -68,7 +70,7 @@ Let's us first focus on the parameters estimates, the B coefficients.
 
 <img src="examples/glm1/resultsmoderate.png" class="img-responsive" alt="">
 
-GAMLj, by default, centers the variables and estimate main effects and interactions as expected by modern analysts. If one needs more advanced centering, `Covariates Scaling`  option panel can be of interest.
+`r modulename()`, by default, centers the variables and estimate main effects and interactions as expected by modern analysts. If one needs more advanced centering, `Covariates Scaling`  option panel can be of interest.
 
 One can also report the betas (last column in the `Model Coefficients` table). Please notice that jamovi GLM the estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.
 
@@ -82,7 +84,7 @@ jamovi GLM produces both the F-tests and the parameter estimates for the simple 
 
 and the F-tests are:
 
-<img src="rosetta/moderation/r.gamlj3.png" class="img-responsive" alt="">
+<img src="rosetta/moderation/r.`r modulename()`3.png" class="img-responsive" alt="">
 
 ## Simple Slopes Plot
 
@@ -96,7 +98,7 @@ It plots the effect of the `Horizontal axis` variable for three levels (-1 SD, m
 
 The nice plot we get shows the simple effects (simple equations to be precise) with the prediction confidence intervals indicated by the colored shades around the lines. If needed, the confidence intervals can be substituted with the standard errors of the estimates or they can be removed completely.
 
-Finaly, in order to give a more honest account of the model fit, we can visualize the simple slopes over the plots of the actual data (GAMLj v. >= 0.9.3). 
+Finaly, in order to give a more honest account of the model fit, we can visualize the simple slopes over the plots of the actual data (`r modulename()` v. >= 0.9.3). 
 
 <img src="examples/glm1/resultsplot2.png" class="img-responsive" alt="">
 
@@ -264,7 +266,7 @@ GLM yendu WITH czexer cxage
 
 ```
 
-In the contrast results, we find the estimates, the confidence intervals and the p-values. There're also the F-test tables, which are in line with the GAMLj F-tests. 
+In the contrast results, we find the estimates, the confidence intervals and the p-values. There're also the F-test tables, which are in line with the `r modulename()` F-tests. 
 
 <img src="rosetta/moderation/r.spss3.png" class="img-responsive" alt="">
 <img src="rosetta/moderation/r.spss4.png" class="img-responsive" alt="">

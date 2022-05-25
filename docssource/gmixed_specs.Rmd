@@ -5,25 +5,27 @@ output:
      toc: true
      toc_float:
         collapsed: false
-
 topic: gzlm
 category: details
 bibliography: 
      - bib.bib
      - bib.yaml
 link-citations: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 
 ```{r echo=FALSE,results='hide'}
 library(mcdocs)
 mcdocs_init()
+
 ```
 
 `r version("2.4.4")` 
 
 
-In this page some details about the GAMLj GMixed (Generalized mixed model)  implementation are given. When the code is showed, it is meant to be R code underlying the GAMLj module.
+In this page some details about the `r modulename()` GMixed (Generalized mixed model)  implementation are given. When the code is showed, it is meant to be R code underlying the `r modulename()` module.
 
 # Model info
 
@@ -41,12 +43,12 @@ Two R-squares values are reported:
 
 ## Deviance
 
-The implementation follows exactly the indication of R package `lme4` [@lme4cran]. In generalized mixed models, deviance can be defined in different ways. One dichotomy is the reference to a saturated model. The _absolute deviance_ of the model is simply the model deviance, the _relative deviance_ is the deviance resulting from subtracting the deviance of a saturated model from the model deviance. A crossing factor is whether the deviance is conditional to the random effects (all effects affect the deviance) or it is not conditional to them (only the fixed effects affect the deviance). GAMLj computes two cells of the potential 2x2 table of possible deviance definitions:
+The implementation follows exactly the indication of R package `lme4` [@lme4cran]. In generalized mixed models, deviance can be defined in different ways. One dichotomy is the reference to a saturated model. The _absolute deviance_ of the model is simply the model deviance, the _relative deviance_ is the deviance resulting from subtracting the deviance of a saturated model from the model deviance. A crossing factor is whether the deviance is conditional to the random effects (all effects affect the deviance) or it is not conditional to them (only the fixed effects affect the deviance). `r modulename()` computes two cells of the potential 2x2 table of possible deviance definitions:
 
 * `-2*LogLikel.`, `Unconditioal absolute deviance`: Computed by `-2*logLik(model)`
 *  `Deviance`, `Conditional relative deviance` : Computed by `stats::deviance(model)`
 
-Furthermore, GAMLj outputs also the logLikelihood (`logLik`), which is simply the absolute log likelihood computed as `stats::logLik(model)`.
+Furthermore, `r modulename()` outputs also the logLikelihood (`logLik`), which is simply the absolute log likelihood computed as `stats::logLik(model)`.
 
 
 ## AIC

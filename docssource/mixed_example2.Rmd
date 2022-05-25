@@ -13,12 +13,13 @@ output:
 ---
 
 ```{r echo=FALSE,results='hide'}
-source("../R/functions.R")
+library(mcdocs)
+mcdocs_init()
 ```
 
 `r keywords("jamovi, Mixed model, simple effects, post-hoc, polynomial contrasts")`
 
-`r version("0.9.7")`,`r version("1.0.0")`
+`r version("2.0.0")`
 
 In this example we work out the analysis of a simple repeated measures design with a within-subject factor and a between-subject factor: we do a mixed Anova with the mixed model.
 

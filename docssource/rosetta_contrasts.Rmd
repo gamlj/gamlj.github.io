@@ -16,8 +16,9 @@ editor_options:
 ---
 
 
-```{r echo=FALSE,results='hide'}
-source("../R/functions.R")
+```{r setup, echo=FALSE,results='hide'}
+library(mcdocs)
+mcdocs_init()
 ```
 
 `r keywords("jamovi, SPSS, R, contrasts, comparisons, planned comparisons, LMATRIX, contr.sum, emmeans")`
@@ -64,7 +65,7 @@ Furthermore, different software packages have different rounding rules, so we sa
 
 ## Meaning
 
-<b>Definition:</b><i> Compares each group mean to the grand mean. The grand mean is the mean of the groups means. The first group is omitted</i>
+<b>Definition: </b><i> Compares each group mean to the grand mean. The grand mean is the mean of the groups means. The first group is omitted</i>
 
 ## Jamovi ANOVA
 
@@ -152,7 +153,7 @@ Please notice that `emmeans` computes all possible comparisons: group 1 against 
 
 ## Meaning
 
-<b>Definition:</b><i> Compares each group with the first group.</i>
+<b>Definition: </b><i> Compares each group with the first group.</i>
 
 
 ## Jamovi ANOVA
@@ -238,7 +239,7 @@ GAMLj distinguishes between _simple_ and _dummy_ coding schemes. They give equiv
 # Contrast: Repeated
 
 
-<b>Definition:</b><i> Compares each group with the subsequent group</i> 
+<b>Definition: </b><i> Compares each group with the subsequent group</i> 
 
 
 ## Jamovi ANOVA
@@ -301,7 +302,7 @@ contrast(emm,"consec",adjust = "none",reverse=T)
 
 # Contrast: Polynomial
 
-<b>Definition:</b><i> Test polynomial (linear, quadratic, cubic, etc.) trends in the means pattern</i> 
+<b>Definition: </b><i> Test polynomial (linear, quadratic, cubic, etc.) trends in the means pattern</i> 
 
 
 
@@ -366,7 +367,7 @@ contrast(emm,"poly",adjust = "none")
 Difference and helmert contrasts are great source of confusion when one is comparing different software results. SPSS and jamovi use the same definition for them, but R has a different implementation. Different authors uses different definitions, so be aware of which comparisons are implemented.
 
 
-<b>Definition:</b><i>Compares each group with the average of previous groups.</i> 
+<b>Definition: </b><i>Compares each group with the average of previous groups.</i> 
 
 This is sometimes named _Reverse Helmert Coding_ , cf. [UCLA idre web site](https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/). 
 
@@ -447,12 +448,12 @@ summary(model)
 
 ## R emmeans
 
-Difference and helmert are not implemented in emmeans package, but `emmeans` has a very clever way to implement custom contrast codings. We need to define a funtion whose name ends with `.emmc` and returns the coding as a data.frame, and then pass it to `emmeans` `contrasts` function. The coding weights are the one of the contrast matrix used in SPSS (see [contrast matrix vs model matrix](#contrast_matrix_and_model_matrix_details) for details).
+Difference and helmert are not implemented in emmeans package, but `emmeans` has a very clever way to implement custom contrast coding. We need to define a function whose name ends with `.emmc` and returns the coding as a data.frame, and then pass it to `emmeans` `contrasts` function. The coding weights are the one of the contrast matrix used in SPSS (see [contrast matrix vs model matrix](#contrast_matrix_and_model_matrix_details) for details).
 
-```{r}
+```{r dif_emm}
 library(MASS) ## needed for ginv(), see below 
 
-difference.emmc<-function(levs) {
+difference.emmc<<-function(levs) {
   n<-length(levs)
   #### model matrix ########
   con_weights<-contr.helmert(n)
@@ -464,13 +465,13 @@ difference.emmc<-function(levs) {
   cont_mat<-ginv(t(model_mat))
   M <- as.data.frame(cont_mat)
   names(M) <- paste(levs[-1],"vs previous")
-  attr(M, "desc") <- "Helmert contrasts"
+  attr(M, "desc") <- "Difference contrasts"
   M
 }
 #### contrast matrix #########
 round(difference.emmc(levels(dat$Group)),digits = 3)
 #### results ##############
-contrast(emm,"difference",adjust="none")
+contrast(emm,method="difference",adjust="none")
 
 ```
 
@@ -480,7 +481,7 @@ Same results as before.
 # Contrast: Helmert
 
 
-<b>Definition:</b><i>Compares each group with the average of subsequent groups</i> 
+<b>Definition: </b><i>Compares each group with the average of subsequent groups</i> 
 
 
 ## Jamovi ANOVA
@@ -560,7 +561,7 @@ We need to define a funtion whose name ends with `.emmc` which returns the contr
 
 ```{r}
 library(MASS) # needed for ginv(), see below
-helmert.emmc<-function(levs) {
+helmert.emmc<<-function(levs) {
   n<-length(levs)
   #### build model matricx ######
   con_weights<-matrix(rev(contr.helmert(n)),ncol=n-1)
@@ -754,7 +755,7 @@ This is the contrast matrix we can pass to `emmeans`. We just need to wrap it up
 
 ```{r}
 
-helmert.emmc<-function(levs) {
+helmert.emmc<<-function(levs) {
   n<-length(levs)
   con_weights<-matrix(rev(contr.helmert(n)),ncol=n-1)
   cv<-apply(con_weights,2,max)+1

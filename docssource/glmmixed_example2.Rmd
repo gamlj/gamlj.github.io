@@ -14,20 +14,18 @@ editor_options:
 ---
 
 ```{r echo=FALSE,results='hide'}
-source("../R/constants.R")
-source("../R/functions.R")
+library(mcdocs)
+mcdocs_init()
 data<-read.csv2("../data/phdpubs.csv")
 ```
 
 `r keywords("jamovi, mixed models, generalized linear models, Poisson mixed model, multilevel logist, Negative Binomial")`
 
-`r version("2.1.2")` `r draft` `r incomplete`
+`r version("2.1.2")` `r draft`
 
-In this example we estimate a (multilevel) mixed Poisson model and a Negative Binomial mixed model using `r jamovi()` GAMLj module. 
+In this example we estimate a (multilevel) mixed Poisson model and a Negative Binomial mixed model using `r jamovi` GAMLj module. 
 
-One can follow the example by downloading the `r datafile("cvs file","phdpubs.csv")` and open it in
-https://raw.githubusercontent.com/gamlj/gamlj_docsource/master/data/phdpubs.csv
-[jamovi](https://www.jamovi.org/download.html). Be sure to install the new version of GAMLj module from within jamovi library. We use data from Long (1990) on the number of publications produced by Ph.D. biochemists to illustrate the application of Poisson. R analsyes of these data (not considering the mixed model) can be found in [Rodiguez page](https://data.princeton.edu/wws509/r/overdispersion).
+One can follow the example by downloading the `r datafile("cvs file","phdpubs.csv")` and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install the new version of `r modulename()` module from within jamovi library. We use data from Long (1990) on the number of publications produced by Ph.D. biochemists to illustrate the application of Poisson. R analsyes of these data (not considering the mixed model) can be found in [Rodiguez page](https://data.princeton.edu/wws509/r/overdispersion).
 We slightly modified the data by defining a new variable, `program`, that clusters together students in the same phd program. 
 
 # The research design

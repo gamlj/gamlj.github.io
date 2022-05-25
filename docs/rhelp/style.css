@@ -1,0 +1,179 @@
+
+.img-responsive {
+  padding: 15px;
+}
+
+.navbar-right a {
+    background-image: url("pics/GitHub-Mark-120px-plus.png");
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    padding-right: 50px !important;
+}
+
+h1 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 26px;
+  font-weight: bold;
+  color:  #2C3E50  ;
+
+}
+
+.section h1 {
+  padding-top: 155px !important; 
+  margin-top: -155px !important; 
+  
+}
+
+.section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color:  #2C3E50  ;
+}
+
+h2.vignettes {
+ padding-top: 20px;
+ padding-bottom: 20px;
+
+}
+
+.section h3 {
+  font-size: 15px;
+  font-weight: bold;
+  color:  #2C3E50  ;
+}
+
+a, a:hover, a:focus {
+  color: DodgerBlue;
+}
+
+span.keywords {
+  display: inline-block;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-style: italic;
+  border-radius: 5px; 
+  background-color: #3E6DA9;
+  margin-bottom: 25px;
+}
+
+span.keytitle {
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+span.version {
+  display: inline-block;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-style: italic;
+  border-radius: 5px; 
+  background-color: green;
+  margin-bottom: 10px;
+}
+
+span.versiontitle {
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+span.draft {
+  display: inline-block;
+  padding: 5px;
+  font-size: 12px;
+  font-style: italic;
+  border-radius: 5px; 
+  color: black;
+  background-color: #FCF8E3;
+  margin-bottom: 10px;
+}
+
+span.incomplete {
+  display: inline-block;
+  padding: 5px;
+  font-size: 12px;
+  font-style: italic;
+  border-radius: 5px; 
+  color: black;
+  background-color: #FF0000;
+  margin-bottom: 10px;
+}
+
+span.versiontitle {
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+div.littletitle {
+  padding: 5px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+span.jamovi {
+  font-weight: bold;
+  color:   #3E6DA9;
+  font-family: Tahoma, Geneva, sans-serif;
+  text-transform: lowercase;
+}
+
+span.gamlj {
+  font-weight: bold;
+  color:   #3E6DA9;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+
+pre.jamovitable {
+  color:black;
+  background-color: white;
+  margin-bottom: 35px;  
+}
+figure {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  
+}
+figcaption {
+  font-size: 1.2em;
+  font-style: italic;
+  padding-top: 10px;
+  
+  
+}
+
+span.option {
+    white-space: pre;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 2px 4px;
+    font-size: 90%;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: bold;
+    font-family: Helvetica;
+}
+
+.return{
+  font-size: 1.2em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight:  bold;
+}
+
+code {
+  color: black;
+}
