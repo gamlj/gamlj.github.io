@@ -469,7 +469,7 @@ IV   0   0  1</code></pre>
 <p>Continuous variables are centered by default.</p>
 <p>Thus, in GAMLj the intercept is the expected mean of the (transformed) dependent variable, whereas in R is the expected mean of the (transformed) dependent variable for all continuous independent variables equal to zero and the group scoring all zeros in the categorical variable.</p>
 <p>Also the exp(B) and their confidence intervals are equivalent in the two analyses, apart from rounding.</p>
-<p>As regards the random coefficients variance, <code>lme4::glmer</code> produced a <code>SD</code> of 2.01, thus a variance of 4.04, which is noticeably different from the GAMLj results.</p>
+<p>As regards the random coefficients variance, <code>lme4::glmer</code> produced a <code>SD</code> of 2.01, thus a variance of 4.0401, which is noticeably different from the GAMLj results.</p>
 <p><img src="rosetta/gzlmmixed/results_random.png" class="img-responsive" alt=""></p>
 <p>The reason of this difference is in the precision of the estimation. <code>lme4::glmer</code> estimates the model parameters evaluating the adaptive Gauss-Hermite approximation to the log-likelihood. How good the approximation will be is decided by the option <code>nAGQ</code>, specified in the <code>glmer</code> command above. The higher the number, the better the approximation, with a penalty in speed. Also GAMLj lets the user decide the precision level of the estimation with the equivalent parameter <code>precision/speed</code> in the <code>Options</code> tab.</p>
 <p><img src="rosetta/gzlmmixed/precision.png" class="img-responsive" alt=""></p>

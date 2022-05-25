@@ -18,8 +18,8 @@ editor_options:
 library(mcdocs)
 mcdocs_init()
 mcdocs_gh_info()
-write_commits(get_commits())
-
+coms<-get_commits()
+write_commits(coms)
 ```
 
 
