@@ -375,20 +375,20 @@ div.tocify {
 <p><span class="version"> <span class="versiontitle"> GAMLj version ≥ </span> 0.9.5 </span></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Here you can find comparisons of results obtained in jamovi GAMLj, jamovi (jmv), pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing identical results across programs.</p>
-<p>Example data are <a href="https://github.com/mcfanda/gamlj_docs/blob/master/data/rosetta.contrasts.csv">here</a>. One continuous dependent variable, one factor with 4 groups.</p>
+<p>Here you can find comparisons of results obtained in <span class="jamovi">jamovi</span> <span class="modulename">GAMLj</span>, <span class="jamovi">jamovi</span> (jmv), pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing identical results across programs.</p>
+<p>Example data are <a href="https://github.com/mcfanda/%3Cspan%20class=%22modulename%22%3EGAMLj%3C/span%3E_docs/blob/master/data/rosetta.contrasts.csv">here</a>. One continuous dependent variable, one factor with 4 groups.</p>
 <p>Unfortunately, contrasts coding schemes get different names in different publications and they are implemented in different ways across software. Things can get a bit confusing because of this. For partially overlapping coding scheme definitions see <a href="https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">UCLA idre web site</a>, <a href="https://www.ibm.com/support/knowledgecenter/en/SSLVMB_20.0.0/com.ibm.spss.statistics.help/contrasts.htm">SPSS manual</a> and <em>Cohen, J., Cohen, P., West, S. G., &amp; Aiken, L. S. (2013). Applied multiple regression/correlation analysis for the behavioral sciences. Routledge.</em> If you have familiarity with python, you can compare results also with <a href="http://www.statsmodels.org/dev/contrasts.html">python statmodels results</a></p>
 </div>
 <div id="software" class="section level1">
 <h1>Software</h1>
-<p>We use jamovi, SPSS and R. In jamovi we compare the ANOVA module in jamovi <code>jmv</code> and the <code>GAMLj</code> module. In R we use <em>pure R</em>, meaning that we estimate the contrast comparisons by estimating a linear model (<code>lm()</code> in particular), with the categorical variable properly coded. For more straigthforward estimation we employ <code>emmeans</code> R module. In SPSS we use the <code>UNIVARIATE</code> module.</p>
+<p>We use <span class="jamovi">jamovi</span>, SPSS and R. In <span class="jamovi">jamovi</span> we compare the ANOVA module in <span class="jamovi">jamovi</span> <code>jmv</code> and the <code>&lt;span class="modulename"&gt;GAMLj&lt;/span&gt;</code> module. In R we use <em>pure R</em>, meaning that we estimate the contrast comparisons by estimating a linear model (<code>lm()</code> in particular), with the categorical variable properly coded. For more straigthforward estimation we employ <code>emmeans</code> R module. In SPSS we use the <code>UNIVARIATE</code> module.</p>
 </div>
 <div id="more-technical-details" class="section level1">
 <h1>More technical details</h1>
 <p>Contrasts can be computed in two different ways:</p>
 <ul>
-<li><p>As the coefficients of a model where the categorical variable(s) is coded accordingly to a coding scheme. Jamovi GAMLj and standard R use this strategy. Understanding this approach opens to the possibility to test contrasts-based hypotheses in complex models, such as when interactions are involved, mediatiated effects or simple effects are of interest.</p></li>
-<li><p>As a comparison between sets of means tested with model-derived standard errors. jamovi ANOVA, <code>emmeans</code> R and SPSS use this approach. This approach is simpler and straightforward. In simple models, it works perfectly fine.</p></li>
+<li><p>As the coefficients of a model where the categorical variable(s) is coded accordingly to a coding scheme. <span class="jamovi">jamovi</span> <span class="modulename">GAMLj</span> and standard R use this strategy. Understanding this approach opens to the possibility to test contrasts-based hypotheses in complex models, such as when interactions are involved, mediatiated effects or simple effects are of interest.</p></li>
+<li><p>As a comparison between sets of means tested with model-derived standard errors. <span class="jamovi">jamovi</span> ANOVA, <code>emmeans</code> R and SPSS use this approach. This approach is simpler and straightforward. In simple models, it works perfectly fine.</p></li>
 <li><p>As a comparison between groups means, with group specific standard errors. None of the software used here uses this approach, so we do not deal with it here.</p></li>
 </ul>
 <p>The first two approaches give the same results if the contrasts are defined in the same way. However, the contrast coding displayed by the software may be different. The majority of software prints out the <strong>contrast matrix</strong>, which contains the coding scheme describing the tested comparisons. R model estimation requires the <strong>model matrix</strong>, which is generally different from the contrast matrix and represents the weights associated with the dummy variables needed to cast a categorical variable into the linear model estimating the contrasts. How they are related and how to obtain one from the other is explained in <a href="#contrast_matrix_and_model_matrix_details">contrast vs model matrix details</a></p>
@@ -406,7 +406,7 @@ div.tocify {
 <p><b>Definition: </b><i> Compares each group mean to the grand mean. The grand mean is the mean of the groups means. The first group is omitted</i></p>
 </div>
 <div id="jamovi-anova" class="section level2">
-<h2>Jamovi ANOVA</h2>
+<h2><span class="jamovi">jamovi</span> ANOVA</h2>
 <p><img src="rosetta/contrasts/c1.anova1.png" class="img-responsive" alt=""></p>
 <p>Setting the contrasts to <code>deviation</code></p>
 <p><img src="rosetta/contrasts/c1.anova2.png" class="img-responsive" alt=""></p>
@@ -414,12 +414,12 @@ div.tocify {
 <p><img src="rosetta/contrasts/r.c1.anova1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="jamovi-gamlj-glm" class="section level2">
-<h2>Jamovi GAMLj GLM</h2>
+<h2><span class="jamovi">jamovi</span> <span class="modulename">GAMLj</span> GLM</h2>
 <p><img src="rosetta/contrasts/c1.anova2.png" class="img-responsive" alt=""></p>
 <p>Results:</p>
 <p><img src="rosetta/contrasts/r.c1.gamlj1.png" class="img-responsive" alt=""></p>
 <p>The expected means of the four groups are:</p>
-<p><img src="rosetta/contrasts/r.c1.gamlj2.png" class="img-responsive" alt=""></p>
+<p>&lt;img src=“rosetta/contrasts/r.c1.<span class="modulename">GAMLj</span>2.png” class=“img-responsive” alt=““&gt;</p>
 </div>
 <div id="spss" class="section level2">
 <h2>SPSS</h2>
@@ -479,7 +479,7 @@ summary(model)</code></pre>
 </div>
 <div id="r-emmeans" class="section level2">
 <h2>R emmeans</h2>
-<p>To employ <code>emmeans</code> package, we first estimate the model (which conding we use does not matter), then we run the function <code>emm&lt;-emmeans(model,specs)</code>, where <code>specs</code> is the factor for which we want to compare the means, and then we apply <code>contrast(emm,contrast_type)</code> to the emmeans object. <code>contrast_type</code> is a string equal to the contrast function we want to use. We add <code>adjust="none"</code> to obtain the same p-values as in the previous analyses, but any adjustment supported by <code>emmeans</code> can be applied here. If we omit the <code>adjust</code> option, the default multiplicity adjustment method is “fdr” , cf. <a href="https://www.google.it/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;ved=0ahUKEwjqpImqvYLYAhVQpKQKHTcMBtUQFggqMAA&amp;url=https%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2Femmeans%2Femmeans.pdf&amp;usg=AOvVaw1kHsWAafZ1Rhf3b-f7uruS">emmeans package</a>.</p>
+<p>To employ <code>emmeans</code> package, we first estimate the model (which coding system we use does not matter), then we run the function <code>emm&lt;-emmeans(model,specs)</code>, where <code>specs</code> is the factor for which we want to compare the means, and then we apply <code>contrast(emm,contrast_type)</code> to the emmeans object. <code>contrast_type</code> is a string equal to the contrast function we want to use. We add <code>adjust="none"</code> to obtain the same p-values as in the previous analyses, but any adjustment supported by <code>emmeans</code> can be applied here. If we omit the <code>adjust</code> option, the default multiplicity adjustment method is “fdr” , cf. <a href="https://www.google.it/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;ved=0ahUKEwjqpImqvYLYAhVQpKQKHTcMBtUQFggqMAA&amp;url=https%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2Femmeans%2Femmeans.pdf&amp;usg=AOvVaw1kHsWAafZ1Rhf3b-f7uruS">emmeans package</a>.</p>
 <p>The <code>deviation</code> contrast it is named <code>eff</code> in emmeans.</p>
 <pre class="r"><code>library(emmeans)
 model&lt;-lm(Score~Group,data=dat)
@@ -500,15 +500,15 @@ contrast(emm,&quot;eff&quot;,reverse=T,adjust = &quot;none&quot;)</code></pre>
 <p><b>Definition: </b><i> Compares each group with the first group.</i></p>
 </div>
 <div id="jamovi-anova-1" class="section level2">
-<h2>Jamovi ANOVA</h2>
+<h2><span class="jamovi">jamovi</span> ANOVA</h2>
 <p>We set the contrasts to <code>simple</code></p>
 <p><img src="rosetta/contrasts/c2.anova1.png" class="img-responsive" alt=""></p>
 <p>Results:</p>
 <p><img src="rosetta/contrasts/r.c2.anova1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="jamovi-gamlj-glm-1" class="section level2">
-<h2>Jamovi GAMLj GLM</h2>
-<p>This is GAMLj default (since version 1.5). The contrasts in GAMLj is identical to the ANOVA module.</p>
+<h2><span class="jamovi">jamovi</span> <span class="modulename">GAMLj</span> GLM</h2>
+<p>This is <span class="modulename">GAMLj</span> default (since version 1.5). The contrasts in <span class="modulename">GAMLj</span> is identical to the ANOVA module.</p>
 <p><img src="rosetta/contrasts/c2.anova1.png" class="img-responsive" alt=""></p>
 <p><img src="rosetta/contrasts/r.c2.gamlj1.png" class="img-responsive" alt=""></p>
 </div>
@@ -578,20 +578,20 @@ contrast(emm,&quot;dunnett&quot;,adjust = &quot;none&quot;)</code></pre>
 </div>
 <div id="simple-vs-dummy" class="section level2">
 <h2>Simple vs Dummy</h2>
-<p>GAMLj distinguishes between <em>simple</em> and <em>dummy</em> coding schemes. They give equivalent results in means comparisons, simple effects, and contrast coefficients. The only difference is that the <code>Dummy</code> is not centered, and so when the codes are involved in interactions, the effects of the other variables have different meaning. In the presence of interactions, when <em>simple</em> is used, the other variables effects are computed averaging across the sample; when <em>dummy</em> is used, the other variables effects are computed for the reference group (the first group) defined by the <em>dummy</em> coding.</p>
+<p><span class="modulename">GAMLj</span> distinguishes between <em>simple</em> and <em>dummy</em> coding schemes. They give equivalent results in means comparisons, simple effects, and contrast coefficients. The only difference is that the <code>Dummy</code> is not centered, and so when the codes are involved in interactions, the effects of the other variables have different meaning. In the presence of interactions, when <em>simple</em> is used, the other variables effects are computed averaging across the sample; when <em>dummy</em> is used, the other variables effects are computed for the reference group (the first group) defined by the <em>dummy</em> coding.</p>
 </div>
 </div>
 <div id="contrast-repeated" class="section level1">
 <h1>Contrast: Repeated</h1>
 <p><b>Definition: </b><i> Compares each group with the subsequent group</i></p>
 <div id="jamovi-anova-2" class="section level2">
-<h2>Jamovi ANOVA</h2>
+<h2><span class="jamovi">jamovi</span> ANOVA</h2>
 <p><img src="rosetta/contrasts/c5.anova1.png" class="img-responsive" alt=""></p>
 <p>Results:</p>
 <p><img src="rosetta/contrasts/r.c5.anova1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="jamovi-gamlj-glm-2" class="section level2">
-<h2>Jamovi GAMLj GLM</h2>
+<h2><span class="jamovi">jamovi</span> <span class="modulename">GAMLj</span> GLM</h2>
 <p><img src="rosetta/contrasts/r.c5.gamlj1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="spss-2" class="section level2">
@@ -609,7 +609,7 @@ contrast(emm,&quot;dunnett&quot;,adjust = &quot;none&quot;)</code></pre>
 </div>
 <div id="r-2" class="section level2">
 <h2>R</h2>
-<p>R does not have an out-of-the-box contrast equivalent to <code>repeated</code> contrast. One can, howerver, uses the <code>contr.sdif()</code> function in <code>MASS</code> package. As compared with jamovi and SPSS the comparisons are in the opposite direction, so we simply multiply the code by -1 (t-tests and p-values do not depend on this):</p>
+<p>R does not have an out-of-the-box contrast equivalent to <code>repeated</code> contrast. One can, howerver, uses the <code>contr.sdif()</code> function in <code>MASS</code> package. As compared with <span class="jamovi">jamovi</span> and SPSS the comparisons are in the opposite direction, so we simply multiply the code by -1 (t-tests and p-values do not depend on this):</p>
 <pre class="r"><code>library(MASS)
 repeated&lt;-(-1)*contr.sdif(4) 
 repeated</code></pre>
@@ -644,7 +644,7 @@ summary(lm(Score~Group,data=dat))</code></pre>
 </div>
 <div id="r-emmeans-2" class="section level2">
 <h2>R emmeans</h2>
-<p>The <code>repeated</code> contrast can be achieved in emmeans with <code>consec</code>. To align the results to the jamovi SPSS, we should reverse the contrast coding, with the option <code>reverse</code>.</p>
+<p>The <code>repeated</code> contrast can be achieved in emmeans with <code>consec</code>. To align the results to the <span class="jamovi">jamovi</span> SPSS, we should reverse the contrast coding, with the option <code>reverse</code>.</p>
 <pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;consec&quot;,adjust = &quot;none&quot;,reverse=T)</code></pre>
@@ -658,13 +658,13 @@ contrast(emm,&quot;consec&quot;,adjust = &quot;none&quot;,reverse=T)</code></pre
 <h1>Contrast: Polynomial</h1>
 <p><b>Definition: </b><i> Test polynomial (linear, quadratic, cubic, etc.) trends in the means pattern</i></p>
 <div id="jamovi-anova-3" class="section level2">
-<h2>Jamovi ANOVA</h2>
+<h2><span class="jamovi">jamovi</span> ANOVA</h2>
 <p><img src="rosetta/contrasts/c6.anova1.png" class="img-responsive" alt=""></p>
 <p>Results:</p>
 <p><img src="rosetta/contrasts/r.c6.anova1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="jamovi-gamlj-glm-3" class="section level2">
-<h2>Jamovi GAMLj GLM</h2>
+<h2><span class="jamovi">jamovi</span> <span class="modulename">GAMLj</span> GLM</h2>
 <p><img src="rosetta/contrasts/r.c6.gamlj1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="spss-3" class="section level2">
@@ -721,17 +721,17 @@ contrast(emm,&quot;poly&quot;,adjust = &quot;none&quot;)</code></pre>
 </div>
 <div id="contrast-difference" class="section level1">
 <h1>Contrast: Difference</h1>
-<p>Difference and helmert contrasts are great source of confusion when one is comparing different software results. SPSS and jamovi use the same definition for them, but R has a different implementation. Different authors uses different definitions, so be aware of which comparisons are implemented.</p>
+<p>Difference and helmert contrasts are great source of confusion when one is comparing different software results. SPSS and <span class="jamovi">jamovi</span> use the same definition for them, but R has a different implementation. Different authors uses different definitions, so be aware of which comparisons are implemented.</p>
 <p><b>Definition: </b><i>Compares each group with the average of previous groups.</i></p>
 <p>This is sometimes named <em>Reverse Helmert Coding</em> , cf. <a href="https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">UCLA idre web site</a>.</p>
 <div id="jamovi-anova-4" class="section level2">
-<h2>Jamovi ANOVA</h2>
+<h2><span class="jamovi">jamovi</span> ANOVA</h2>
 <p><img src="rosetta/contrasts/c3.anova1.png" class="img-responsive" alt=""></p>
 <p>Results:</p>
 <p><img src="rosetta/contrasts/r.c3.anova1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="jamovi-gamlj-glm-4" class="section level2">
-<h2>Jamovi GAMLj GLM</h2>
+<h2><span class="jamovi">jamovi</span> <span class="modulename">GAMLj</span> GLM</h2>
 <p><img src="rosetta/contrasts/r.c3.gamlj1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="spss-4" class="section level2">
@@ -749,7 +749,7 @@ contrast(emm,&quot;poly&quot;,adjust = &quot;none&quot;)</code></pre>
 </div>
 <div id="r-4" class="section level2">
 <h2>R</h2>
-<p>The t-tests and p-values associated with the <em>difference contrast</em> can be obtained in R using the <code>contr.helmert()</code> function. Despite the name, <code>contr.helmert()</code> implements what is usually named “Reversed Helmert contrast”. Obviously, this is perfectly fine (cf. <a href="http://www.amazon.com/gp/product/0761922806/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0761922806&amp;linkCode=as2&amp;tag=curiousanduseful">An R and S-Plus Companion to Applied Regression</a>), but one should be aware of this difference. The contrast weights in R are scaled differently than in SPSS or jamovi, thus the contrast values (the coefficients) are not identical to the ones obtained in jamovi and SPSS, but they are proportional to them (that is why the t-tests are the same).</p>
+<p>The t-tests and p-values associated with the <em>difference contrast</em> can be obtained in R using the <code>contr.helmert()</code> function. Despite the name, <code>contr.helmert()</code> implements what is usually named “Reversed Helmert contrast”. Obviously, this is perfectly fine (cf. <a href="http://www.amazon.com/gp/product/0761922806/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0761922806&amp;linkCode=as2&amp;tag=curiousanduseful">An R and S-Plus Companion to Applied Regression</a>), but one should be aware of this difference. The contrast weights in R are scaled differently than in SPSS or <span class="jamovi">jamovi</span>, thus the contrast values (the coefficients) are not identical to the ones obtained in <span class="jamovi">jamovi</span> and SPSS, but they are proportional to them (that is why the t-tests are the same).</p>
 <pre class="r"><code>dat$Group&lt;-factor(dat$Group)
 contrasts(dat$Group)&lt;-contr.helmert(4)
 contrasts(dat$Group)</code></pre>
@@ -780,11 +780,11 @@ summary(model)</code></pre>
 ## Residual standard error: 0.511 on 166 degrees of freedom
 ## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
 ## F-statistic: 9.56 on 3 and 166 DF,  p-value: 0.0000074</code></pre>
-<p>To obtain the jamovi/SPSS estimate values in R, we should multiply the coefficients obtained in R by the index of the column of the contrasts (starting from 2 because 1 is for the intercept). To make things a bit more general, we can define a <em>conversion vector</em> that works both for deviation and helmert contrasts. Let the <em>conversion vector</em> be <span class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, where <span class="math inline">\(c_i\)</span> is a column of the contrast matrix.</p>
+<p>To obtain the <span class="jamovi">jamovi</span>/SPSS estimate values in R, we should multiply the coefficients obtained in R by the index of the column of the contrasts (starting from 2 because 1 is for the intercept). To make things a bit more general, we can define a <em>conversion vector</em> that works both for deviation and helmert contrasts. Let the <em>conversion vector</em> be <span class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, where <span class="math inline">\(c_i\)</span> is a column of the contrast matrix.</p>
 <pre class="r"><code>cv&lt;-apply(contr.helmert(4),2,max)+1
 cv</code></pre>
 <pre><code>## [1] 2 3 4</code></pre>
-<p>To obtain the same coefficients in R and in jamovi/SPSS, we can multiply the model coefficients by <span class="math inline">\(\mathbf{cv}\)</span></p>
+<p>To obtain the same coefficients in R and in <span class="jamovi">jamovi</span>/SPSS, we can multiply the model coefficients by <span class="math inline">\(\mathbf{cv}\)</span></p>
 <pre class="r"><code>coef(model)[c(2:4)]*cv</code></pre>
 <pre><code>## Group1 Group2 Group3 
 ## -0.100  0.294  0.395</code></pre>
@@ -820,7 +820,7 @@ summary(model)</code></pre>
 ## Residual standard error: 0.511 on 166 degrees of freedom
 ## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
 ## F-statistic: 9.56 on 3 and 166 DF,  p-value: 0.0000074</code></pre>
-<p>… and we get the same values, t-tests and p-values as in jamovi and SPSS.</p>
+<p>… and we get the same values, t-tests and p-values as in <span class="jamovi">jamovi</span> and SPSS.</p>
 </div>
 <div id="r-emmeans-4" class="section level2">
 <h2>R emmeans</h2>
@@ -862,13 +862,13 @@ contrast(emm,method=&quot;difference&quot;,adjust=&quot;none&quot;)</code></pre>
 <h1>Contrast: Helmert</h1>
 <p><b>Definition: </b><i>Compares each group with the average of subsequent groups</i></p>
 <div id="jamovi-anova-5" class="section level2">
-<h2>Jamovi ANOVA</h2>
+<h2><span class="jamovi">jamovi</span> ANOVA</h2>
 <p><img src="rosetta/contrasts/c4.anova1.png" class="img-responsive" alt=""></p>
 <p>Results:</p>
 <p><img src="rosetta/contrasts/r.c4.anova1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="jamovi-gamlj-glm-5" class="section level2">
-<h2>Jamovi GAMLj GLM</h2>
+<h2><span class="jamovi">jamovi</span> <span class="modulename">GAMLj</span> GLM</h2>
 <p><img src="rosetta/contrasts/r.c4.gamlj1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="spss-5" class="section level2">
@@ -885,7 +885,7 @@ contrast(emm,method=&quot;difference&quot;,adjust=&quot;none&quot;)</code></pre>
 </div>
 <div id="r-5" class="section level2">
 <h2>R</h2>
-<p>R defines helmert contrast in the reverse order as compared with jamovi and SPSS, and uses a different scaling. To obtain the helmert contrast as it is was defined above, we should reverse <code>contr.helmert()</code> and rescale the coding as we did for the <code>difference</code> contrasts. Without rescaling, the t-test and p-values are the same as in jamovi/spss, but the estimated values are different (but proportional).</p>
+<p>R defines helmert contrast in the reverse order as compared with <span class="jamovi">jamovi</span> and SPSS, and uses a different scaling. To obtain the helmert contrast as it is was defined above, we should reverse <code>contr.helmert()</code> and rescale the coding as we did for the <code>difference</code> contrasts. Without rescaling, the t-test and p-values are the same as in <span class="jamovi">jamovi</span>/spss, but the estimated values are different (but proportional).</p>
 <pre class="r"><code>dat$Group&lt;-factor(dat$Group)
 contrasts(dat$Group)&lt;-matrix(rev(contr.helmert(4)),ncol=3)
 con_weights&lt;-contrasts(dat$Group)
@@ -918,7 +918,7 @@ summary(model)</code></pre>
 ## Residual standard error: 0.511 on 166 degrees of freedom
 ## Multiple R-squared:  0.147,  Adjusted R-squared:  0.132 
 ## F-statistic: 9.56 on 3 and 166 DF,  p-value: 0.0000074</code></pre>
-<p>To obtain the jamovi/SPSS values in R, we should compute <span class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, and multiply it by the model coefficients.</p>
+<p>To obtain the <span class="jamovi">jamovi</span>/SPSS values in R, we should compute <span class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, and multiply it by the model coefficients.</p>
 <pre class="r"><code>cv&lt;-apply(con_weights,2,max)+1
 cv</code></pre>
 <pre><code>## [1] 4 3 2</code></pre>
@@ -999,7 +999,7 @@ helmert.emmc(levels(dat$Group))</code></pre>
 </div>
 <div id="contrast-matrix-vs-model-matrix" class="section level1">
 <h1>Contrast matrix vs model matrix</h1>
-<p>We have seen that Jamovi, SPSS and <code>emmeans</code> provide descriptions of the comparisons being estimated as labels of the contrast. However, if one needs to deepen the understanding of the contrast at hand, one needs to examine the contrast coding scheme. SPSS and <code>emmeans</code> can show the coding scheme in the form of <strong>contrast matrix</strong>.</p>
+<p>We have seen that <span class="jamovi">jamovi</span>, SPSS and <code>emmeans</code> provide descriptions of the comparisons being estimated as labels of the contrast. However, if one needs to deepen the understanding of the contrast at hand, one needs to examine the contrast coding scheme. SPSS and <code>emmeans</code> can show the coding scheme in the form of <strong>contrast matrix</strong>.</p>
 <p>To visualize the contrast matrix in in SPSS one uses the option <code>/PRINT=TEST(LMATRIX)</code> , and in <code>emmeans</code> one can use the function <code>coef()</code> on the contrast object output by the <code>contrast()</code> function.</p>
 <p>Let’s see an example using the <code>repeated</code> contrast:</p>
 <p>This is the <code>LMATRIX</code> one gets in SPSS</p>

@@ -274,5 +274,9 @@ Finally, as regards the omnibus tests, SPSS outputs the F-tests, not the Chi-squ
 
 Thus, GAMLj and R `lme4::glmer` produce results that are numerically very close  and practically identical. SPSS produces results that are numerically different but substantially equivalent to the other software results.
 
+# Rosetta's files
+
+`r list_pages(category="rosetta")`
+
 
 `r issues()`
