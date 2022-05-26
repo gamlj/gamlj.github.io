@@ -23,13 +23,13 @@ mcdocs_init()
 
 # Introduction
 
-GAMLj module can be installed and used in R as a standard R packages. Please check the R help for details. Here we provide some appliactions of the package in R.
+`r modulename()` module can be installed and used in R as a standard R packages. Please check the R help for details. Here we provide some appliactions of the package in R.
 
 # Installation
 
 At the moment, `r modulename()` is not in CRAN yet, so you need to install it via `devtools`
 
-```
+```{r, eval=FALSE}
 devtools::install_github("gamlj/gamlj")
 ```
 
@@ -60,6 +60,11 @@ extract_help<-function(pkg) {
 
 res<-extract_help(pkg) 
 
+### this should be fixed in mcdocs
+for (r in seq_along(res))
+   if (!is.null(res[[r]]))
+         res[[r]]<-paste("<script>",res[[r]])
+res
 ```
 
 ```{r, echo=FALSE,results='asis'}
