@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Rosetta store: Nested like in R</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110344212-1');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="gzlmmixed.html">Generalized Mixed Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples and Details</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+<li>
+  <a href="vignettes.html">GAMLj in R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/gamlj/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Rosetta store: Nested like in R</h1>
+
+</div>
+
+
+<p><span class="keywords"> <span class="keytitle"> keywords </span>
+jamovi, R, Mixed Models, Multilevel Models, Nested design, Nested levels
+</span></p>
+<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 1.0.0 </span></p>
+<div id="issue" class="section level1">
+<h1>Issue</h1>
+<p><em>I have nested clustering variables (nested levels) and I am not
+sure the model is considering the nesting correctly.</em></p>
+</div>
+<div id="short-answer" class="section level1">
+<h1>Short answer</h1>
+<p>Be sure that every cluster, at each level, has a unique value (factor
+level). If so, the model considers the nesting correctly</p>
+</div>
+<div id="long-answer" class="section level1">
+<h1>Long answer</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Mixed models are often used to analyze multilevel designs, in which
+several clustering variables appear. When more than one clustering
+variable exists, clusters can be nested or cross-classified. See
+<a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random
+effects</a> for some examples. In case of nested models, users sometimes
+wonder how to signal to <span class="modulename">GAMLj</span> that the
+clustering variables are nested, meaning that they define different
+levels of a multilevel design. This uncertainty is often supported by
+the fact that <code>lmer()</code> command of <code>R package lme4</code>
+seems to require specifying the nested nature of the clustering
+variables with special notation (see below). However, this is not the
+case. Nested clustering can be specified both in <code>lmer()</code>
+command than in <span class="modulename">GAMLj</span> without any
+special notation (model formula notation), and the models are correctly
+estimated taking into the account the nested nature of the design. Let’s
+see a toy example to clarifying the issue.</p>
+</div>
+<div id="a-quick-three-level-example" class="section level2">
+<h2>A quick three-level example</h2>
+<p>Assume you have three schools, within each school three classes, and
+pupils within classes. Schools are coded in variable <code>school</code>
+as <code>A</code>, <code>B</code>, and <code>C</code>. Assume you coded,
+within each school, the three classes as <code>1</code>, <code>2</code>,
+and <code>3</code>. Your dataset will look like this.
+<img src=" rosetta/mixed_nested/coding1.png " class="img-responsive" alt=""></p>
+<p>This means that the designs features 3 schools, and 9 classes.
+Usually, you want to estimate the random coefficients (in this simple
+case only the intercepts) across schools and classes. If you run a model
+in <span class="modulename">GAMLj</span> using these data, however, the
+model will pool together all pupils in class <code>1</code>, all pupils
+in class <code>2</code> an so on, irrespective of their school, as if
+pupils of different schools belonged to the same class. Indeed, in <span
+class="modulename">GAMLj</span> you would have 3 schools and 3 classes
+:</p>
+<p><img src=" rosetta/mixed_nested/input1.png " class="img-responsive" alt="">
+<img src=" rosetta/mixed_nested/output1.png " class="img-responsive" alt=""></p>
+<p>This is equivalent to run in <code>R lme4</code> command</p>
+<pre class="r"><code>library(lmerTest)
+
+data$school&lt;-factor(data$school)
+data$class&lt;-factor(data$class)
+lmer(y~1+(1|school)+(1|class),data=data)</code></pre>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
+## Formula: y ~ 1 + (1 | school) + (1 | class)
+##    Data: data
+## REML criterion at convergence: 117.3587
+## Random effects:
+##  Groups   Name        Std.Dev.
+##  school   (Intercept) 21.106  
+##  class    (Intercept)  3.902  
+##  Residual              4.829  
+## Number of obs: 18, groups:  school, 3; class, 3
+## Fixed Effects:
+## (Intercept)  
+##       27.83</code></pre>
+</div>
+<div id="solution" class="section level2">
+<h2>Solution</h2>
+<p>To avoid this issue, <code>R lmer()</code> allows using a different
+notation to specify the nesting. Namely</p>
+<pre class="r"><code>lmer(y~1+(1|school/class),data=data)</code></pre>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
+## Formula: y ~ 1 + (1 | school/class)
+##    Data: data
+## REML criterion at convergence: 87.559
+## Random effects:
+##  Groups       Name        Std.Dev.
+##  class:school (Intercept)  6.6144 
+##  school       (Intercept) 20.8497 
+##  Residual                  0.7071 
+## Number of obs: 18, groups:  class:school, 9; school, 3
+## Fixed Effects:
+## (Intercept)  
+##       27.83</code></pre>
+<p>As you can see, the model has now 9 classes and 3 schools, as
+intended. However, the only thing that this notation does is to build a
+new variable <code>class:school</code> which assigns unique values to
+each class. Indeed, we can do that in R and in <span
+class="modulename">GAMLj</span> to obtain exactly the same results.</p>
+<p>In R:</p>
+<pre class="r"><code>data$unique_class&lt;-apply(cbind(data$class,data$school),1,paste,collapse=&quot;_&quot;)
+data$unique_class&lt;-factor(data$unique_class)
+
+lmer(y~1+(1|school)+(1|unique_class),data=data)</code></pre>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
+## Formula: y ~ 1 + (1 | school) + (1 | unique_class)
+##    Data: data
+## REML criterion at convergence: 87.559
+## Random effects:
+##  Groups       Name        Std.Dev.
+##  unique_class (Intercept)  6.6144 
+##  school       (Intercept) 20.8497 
+##  Residual                  0.7071 
+## Number of obs: 18, groups:  unique_class, 9; school, 3
+## Fixed Effects:
+## (Intercept)  
+##       27.83</code></pre>
+<p>In <span class="jamovi">jamovi</span>:</p>
+<p><img src=" rosetta/mixed_nested/compute1.png " class="img-responsive" alt="">
+<img src=" rosetta/mixed_nested/input2.png " class="img-responsive" alt="">
+<img src=" rosetta/mixed_nested/output2.png " class="img-responsive" alt=""></p>
+<p>Indeed, the new variable <code>unique_class</code> is simply
+assigning unique values to the classes.</p>
+<p><img src=" rosetta/mixed_nested/coding2.png " class="img-responsive" alt=""></p>
+</div>
+</div>
+<div id="recap" class="section level1">
+<h1>Recap</h1>
+<p>When dealing with nested levels, be sure that each group (cluster) is
+coded with a unique code, and the nesting structure will be
+automatically taken into the account by the model.</p>
+</div>
+<div id="rosettas-files" class="section level1">
+<h1>Rosetta’s files</h1>
+<ul>
+<li>
+<a href="rosetta_contrasts.html">Rosetta store: contrasts</a>
+</li>
+<li>
+<a href="rosetta_gzlmmixed1.html">Rosetta store: Generalized Mixed</a>
+</li>
+<li>
+<a href="rosetta_mixed_nested.html">Rosetta store: Nested like in R</a>
+</li>
+<li>
+<a href="rosetta_moderation.html">Rosetta store: moderation</a>
+</li>
+</ul>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
+
+">send me an email</a>
+</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -381,14 +381,21 @@ div.tocify {
 <div id="version.2.9.3" class="section level1">
 <h1>Version.2.9.3</h1>
 <ul>
-<li><p>Major options names change (this will break back compatibility for good)</p></li>
+<li><p>Major options names change (this will break back compatibility
+for good)</p></li>
 <li><p>Variance partitioning coefficients in mixed models</p></li>
 <li><p>Ordinal regression in GzLM</p></li>
 <li><p>New plots for assumptions in mixed</p></li>
 </ul>
 </div>
-<div id="version.2.6.5-current" class="section level1">
-<h1>Version.2.6.5 (Current)</h1>
+<div id="version.2.6.6-current" class="section level1">
+<h1>Version.2.6.6 (Current)</h1>
+<ul>
+<li>Multinomial labels in simple effects</li>
+</ul>
+</div>
+<div id="version.2.6.5" class="section level1">
+<h1>Version.2.6.5</h1>
 <ul>
 <li>Fix relative risk table</li>
 </ul>
@@ -446,7 +453,8 @@ div.tocify {
 <div id="version.2.5.2" class="section level1">
 <h1>Version.2.5.2</h1>
 <ul>
-<li><p>Fix cluster-based centering for strange combinations of cluster variables</p></li>
+<li><p>Fix cluster-based centering for strange combinations of cluster
+variables</p></li>
 <li><p>Fix clusterbased centering in glmmixed</p></li>
 </ul>
 </div>
@@ -517,7 +525,8 @@ div.tocify {
 <li><p>Improved R interface</p></li>
 <li><p>Better options structure in R for all models</p></li>
 <li><p>Fix posthoc documentation</p></li>
-<li><p>Better options structure when passed by R, for contrasts and scling in GLM</p></li>
+<li><p>Better options structure when passed by R, for contrasts and
+scling in GLM</p></li>
 <li><p>Better effect size indexes for GLM</p></li>
 <li><p>Change scale of the dependent variable in GLM and Mixed</p></li>
 <li><p>Dependent variable transformation for GLM and Mixed</p></li>
@@ -551,7 +560,8 @@ div.tocify {
 <h1>Version.2.2.0</h1>
 <ul>
 <li><p>Fix resources limit bug</p></li>
-<li><p>Info (effect sizes and F test) for intercept in the General Linear Model</p></li>
+<li><p>Info (effect sizes and F test) for intercept in the General
+Linear Model</p></li>
 </ul>
 </div>
 <div id="version.2.1.2" class="section level1">
@@ -587,7 +597,8 @@ div.tocify {
 <div id="version.2.0.5" class="section level1">
 <h1>Version.2.0.5</h1>
 <ul>
-<li><p>Fix small bugs related with standardizing within clusters in mixed models</p></li>
+<li><p>Fix small bugs related with standardizing within clusters in
+mixed models</p></li>
 <li><p>Fix plots in mixed with multiple clustering variables</p></li>
 </ul>
 </div>
@@ -600,7 +611,8 @@ div.tocify {
 <li><p>Extract predicted values in R interface for all models</p></li>
 <li><p>Different optimizers in GzMixed</p></li>
 <li><p>Improved handling of aliased models</p></li>
-<li><p>GLM and GzLM handle cases where parameters are not estimates</p></li>
+<li><p>GLM and GzLM handle cases where parameters are not
+estimates</p></li>
 </ul>
 </div>
 <div id="version.2.0.3" class="section level1">
@@ -629,9 +641,11 @@ div.tocify {
 <h1>Version.2.0.0</h1>
 <ul>
 <li><p>fix Random Effects plot of linear predictor</p></li>
-<li><p>Color observed scores in plots when moderator is categorical</p></li>
+<li><p>Color observed scores in plots when moderator is
+categorical</p></li>
 <li><p>BIC in mixed models</p></li>
-<li><p>Allow F and t test in simple effects for large sample in Mixed models</p></li>
+<li><p>Allow F and t test in simple effects for large sample in Mixed
+models</p></li>
 <li><p>Different methods for CI in the generalized mixed models</p></li>
 <li><p>AIC, BIC and Deviance for Generalized Mixed Models</p></li>
 <li><p>Generalized mixed models</p></li>
@@ -700,18 +714,23 @@ div.tocify {
 <li>Estimated marginal means for conditioned covariates</li>
 <li>contrasts labels in the simple effects parameters table</li>
 <li>contrasts labels in the plots</li>
-<li>custom levels for conditioning of continuous variables involved in interactions</li>
-<li>labels or values in simple effects tables and plots for continuous covariates</li>
+<li>custom levels for conditioning of continuous variables involved in
+interactions</li>
+<li>labels or values in simple effects tables and plots for continuous
+covariates</li>
 <li>fix interaction disappearing from model declaration</li>
 <li>fix variables name with spaces and weired characters</li>
 <li>Improved description of contrast coding</li>
-<li>add dummy coding (0 and 1) with intercept equal to reference group</li>
+<li>add dummy coding (0 and 1) with intercept equal to reference
+group</li>
 <li>Fix interaction symbol in windows 10</li>
-<li>Restructuring of simple effects and posthoc table for better reading</li>
+<li>Restructuring of simple effects and posthoc table for better
+reading</li>
 <li>Improved compatibility with R when loaded as R package</li>
 <li>Helper functions to interact with the results in R</li>
 <li>Recycle of table results to speed up results updating</li>
-<li>Fix for factor levels labels with spaces and other weired characters</li>
+<li>Fix for factor levels labels with spaces and other weired
+characters</li>
 <li>Fix for variable names with spaces and other weired characters</li>
 <li>Improved plots</li>
 </ul>
@@ -724,7 +743,8 @@ div.tocify {
 <li>LRT for random effects</li>
 <li>Fix for models without fixed intercept</li>
 <li>Fix for random intercept only models</li>
-<li>Wider range of estimation techniques when model does not converge at first run</li>
+<li>Wider range of estimation techniques when model does not converge at
+first run</li>
 <li>Improved warnings and comments</li>
 <li>More flexible estimation of simple effects</li>
 </ul>
@@ -732,7 +752,8 @@ div.tocify {
 <div id="glm-models" class="section level2">
 <h2>GLM models</h2>
 <ul>
-<li>Added Kolmogorov-Smirnov and Shapiro-Wilk tests for normality of residuals</li>
+<li>Added Kolmogorov-Smirnov and Shapiro-Wilk tests for normality of
+residuals</li>
 <li>Added Adjusted R-squared</li>
 </ul>
 </div>
@@ -778,17 +799,23 @@ div.tocify {
 <h1>version 0.9.3</h1>
 <ul>
 <li><p>Plotting raw data along with predicted effects</p></li>
-<li><p>Y-axis range can be set to the range of the dependent variable</p></li>
+<li><p>Y-axis range can be set to the range of the dependent
+variable</p></li>
 <li><p>Confidence intervals for all models in the plots</p></li>
-<li><p>Catching several errors with degenerated or non-estimable multinomial models</p></li>
+<li><p>Catching several errors with degenerated or non-estimable
+multinomial models</p></li>
 </ul>
 </div>
 <div id="version-0.9.2" class="section level1">
 <h1>version 0.9.2</h1>
 <ul>
-<li><p>Fixed a bug in the GZLM R-squared. Now the R-squared corresponds to McFadden’s R squared <a href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/">ref info</a></p></li>
+<li><p>Fixed a bug in the GZLM R-squared. Now the R-squared corresponds
+to McFadden’s R squared <a
+href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/">ref
+info</a></p></li>
 <li><p>Fix errors with non-standard names of variables</p></li>
-<li><p>Better warnings when emmeans fails to estimate the post-hocs in GZLM</p></li>
+<li><p>Better warnings when emmeans fails to estimate the post-hocs in
+GZLM</p></li>
 <li><p>Labels in multinomial plots for separate lines variable</p></li>
 <li><p>Uncorrelated random effects option now works</p></li>
 </ul>

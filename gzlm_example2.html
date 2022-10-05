@@ -379,101 +379,253 @@ div.tocify {
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, logistic models, generalized linear models, odd-ratios, ANOVA, ANCOVA, factorial designs, interactions </span></p>
-<p><span class="draft"> Draft version, mistakes may be around </span>, <span class="version"> <span class="versiontitle"> GAMLj version ≥ </span> 0.9.7 </span></p>
-<p>In this example we analyze a 3 X 2 X 2 design, with a dichotomous dependent variable. We employ logistic regression for modelling the dichotomous dependent variable.</p>
-<p>We run the analyses with the GAMLj module in jamovi. One can follow the example by downloading the <a href="https://github.com/gamlj/gamlj.github.io/blob/master/data/neuralgia.csv">cvs file</a> and open it in <a href="https://www.jamovi.org/download.html">jamovi</a>. Be sure to install GAMLj module from within jamovi library.</p>
-<p>The data are from a <a href="https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_logistic_sect060.htm">SAS User’s Guide</a> example, 51.2. There you can find similar analyses in SAS.</p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span>
+jamovi, logistic models, generalized linear models, odd-ratios, ANOVA,
+ANCOVA, factorial designs, interactions </span></p>
+<p><span class="draft"> Draft version, mistakes may be around </span>,
+<span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 0.9.7 </span></p>
+<p>In this example we analyze a 3 X 2 X 2 design, with a dichotomous
+dependent variable. We employ logistic regression for modelling the
+dichotomous dependent variable.</p>
+<p>We run the analyses with the GAMLj module in jamovi. One can follow
+the example by downloading the <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/neuralgia.csv">cvs
+file</a> and open it in <a
+href="https://www.jamovi.org/download.html">jamovi</a>. Be sure to
+install GAMLj module from within jamovi library.</p>
+<p>The data are from a <a
+href="https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_logistic_sect060.htm">SAS
+User’s Guide</a> example, 51.2. There you can find similar analyses in
+SAS.</p>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
-<p>Here is the data description from <a href="https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_logistic_sect060.htm">SAS User’s Guide</a>:</p>
-<p>“The data set Neuralgia contains five variables: Treatment, Sex, Age, Duration, and Pain. The last variable, Pain, is the response variable. A specification of Pain=Yes indicates there was pain, and Pain=No indicates no pain. The variable Treatment is a categorical variable with three levels: A and B represent the two test treatments, and P represents the placebo treatment. The gender of the patients is given by the categorical variable Sex. The variable Age is the age of the patients, in years, when treatment began. The duration of complaint, in months, before the treatment began is given by the variable Duration.”</p>
-<p>The cross-tab of frequencies of participants <code>Treatment</code> by <code>Sex</code> is in the next table (in jamovi <code>frequencies</code> -&gt; <code>Contingency tables</code>), and these are the first independent variables we analyze.</p>
+<p>Here is the data description from <a
+href="https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_logistic_sect060.htm">SAS
+User’s Guide</a>:</p>
+<p>“The data set Neuralgia contains five variables: Treatment, Sex, Age,
+Duration, and Pain. The last variable, Pain, is the response variable. A
+specification of Pain=Yes indicates there was pain, and Pain=No
+indicates no pain. The variable Treatment is a categorical variable with
+three levels: A and B represent the two test treatments, and P
+represents the placebo treatment. The gender of the patients is given by
+the categorical variable Sex. The variable Age is the age of the
+patients, in years, when treatment began. The duration of complaint, in
+months, before the treatment began is given by the variable
+Duration.”</p>
+<p>The cross-tab of frequencies of participants <code>Treatment</code>
+by <code>Sex</code> is in the next table (in jamovi
+<code>frequencies</code> -&gt; <code>Contingency tables</code>), and
+these are the first independent variables we analyze.</p>
 <p><img src="examples/gzlm2/r.crosstabs.png" class="img-responsive" alt=""></p>
-<p>The base-rate frequencies for <code>Pain</code> (the dependent variable) are in the table.</p>
+<p>The base-rate frequencies for <code>Pain</code> (the dependent
+variable) are in the table.</p>
 <p><img src="examples/gzlm2/freq1.png" class="img-responsive" alt=""></p>
-<p>Age and Duration are continuous variables (disregard the little icon indicating the variable format you see in jamovi variables list, we’re are going to use them as continuous). Their descriptives are the following:</p>
+<p>Age and Duration are continuous variables (disregard the little icon
+indicating the variable format you see in jamovi variables list, we’re
+are going to use them as continuous). Their descriptives are the
+following:</p>
 <p><img src="examples/gzlm2/desc1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="understanding-the-problem" class="section level1">
 <h1>Understanding the problem</h1>
-<p>We want to understand how the pain reported by the patients is affected by the Treatment and if this relationship is moderated by gender. Furthermore, the influence of Age and Duration is of interest as well.</p>
-<p>We first start with <code>Treatment</code> and <code>Sex</code> and their interaction as predictors of <code>Pain</code>. Then we include also <code>Age</code> and <code>Duration</code>. In the terminology of the general linear model, these two analyses correspond to an ANOVA and an ANCOVA, respectively. Because the dependent variable is a dichotomous variable, we employ a logistic model. In the logistic model there’s no variance to be analyzed (is the deviance or likelihood that is analyzed), thus we should intend the terminology used here as meaning <em>ANOVA-like</em> and <em>ANCOVA-like</em> models.</p>
-<p>The logistic model predicts the probability of being in one group defined by the dependent variable over the probability of being in the other group (the odd). Jamovi GAMLj predicts the probability of the group indicated by the last level of the dependent variable, in this example being <code>Pain=Yes</code>. If you are comparing the present results with the analyses in the <a href="https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_logistic_sect060.htm">SAS User’s Guide</a>, please keep in mind that SAS predicts <code>Pain=No</code>, so the results are equivalent but the effects go in the opposite direction. One can change the direction of the effects by re-coding the <code>Pain</code> variable.</p>
+<p>We want to understand how the pain reported by the patients is
+affected by the Treatment and if this relationship is moderated by
+gender. Furthermore, the influence of Age and Duration is of interest as
+well.</p>
+<p>We first start with <code>Treatment</code> and <code>Sex</code> and
+their interaction as predictors of <code>Pain</code>. Then we include
+also <code>Age</code> and <code>Duration</code>. In the terminology of
+the general linear model, these two analyses correspond to an ANOVA and
+an ANCOVA, respectively. Because the dependent variable is a dichotomous
+variable, we employ a logistic model. In the logistic model there’s no
+variance to be analyzed (is the deviance or likelihood that is
+analyzed), thus we should intend the terminology used here as meaning
+<em>ANOVA-like</em> and <em>ANCOVA-like</em> models.</p>
+<p>The logistic model predicts the probability of being in one group
+defined by the dependent variable over the probability of being in the
+other group (the odd). Jamovi GAMLj predicts the probability of the
+group indicated by the last level of the dependent variable, in this
+example being <code>Pain=Yes</code>. If you are comparing the present
+results with the analyses in the <a
+href="https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_logistic_sect060.htm">SAS
+User’s Guide</a>, please keep in mind that SAS predicts
+<code>Pain=No</code>, so the results are equivalent but the effects go
+in the opposite direction. One can change the direction of the effects
+by re-coding the <code>Pain</code> variable.</p>
 <div id="interpretation" class="section level2">
 <h2>Interpretation</h2>
-<p>Recall that the predicted values of the models are the logit (logarithm of the odd) of being in pain (<code>Pain=Yes</code>) over not being in pain (<code>Pain=Yes</code>). Thus, the model coefficients are expressed in the logit scale ( <em>log(odd)</em> ) . A clearer scale is obtained by removing the logarithm from the logit, obtaining coefficients expressed in the odd scale. This is the <code>exp(B)</code> column of the results tables: <code>exp(B)</code> is an odd-ratio. The plots and the estimated marginal means are conveniently transformed in the probability scale, so they can be interpreted directly as the probability of being in pain (<code>P(Pain=Yes)</code>).</p>
+<p>Recall that the predicted values of the models are the logit
+(logarithm of the odd) of being in pain (<code>Pain=Yes</code>) over not
+being in pain (<code>Pain=Yes</code>). Thus, the model coefficients are
+expressed in the logit scale ( <em>log(odd)</em> ) . A clearer scale is
+obtained by removing the logarithm from the logit, obtaining
+coefficients expressed in the odd scale. This is the <code>exp(B)</code>
+column of the results tables: <code>exp(B)</code> is an odd-ratio. The
+plots and the estimated marginal means are conveniently transformed in
+the probability scale, so they can be interpreted directly as the
+probability of being in pain (<code>P(Pain=Yes)</code>).</p>
 </div>
 </div>
 <div id="anova-like-logistic-model" class="section level1">
 <h1>ANOVA-like logistic model</h1>
-<p>Let’s start with predicting <code>Pain</code> with <code>Sex</code> and <code>Treatment</code>. In GAMLj <code>generalized linear model</code> we select the <code>logistic model</code>, push the <code>Pain</code> variable in the <code>Dependent Variable</code> field and <code>Sex</code> and <code>Treatment</code> in <code>Factors</code>.</p>
+<p>Let’s start with predicting <code>Pain</code> with <code>Sex</code>
+and <code>Treatment</code>. In GAMLj
+<code>generalized linear model</code> we select the
+<code>logistic model</code>, push the <code>Pain</code> variable in the
+<code>Dependent Variable</code> field and <code>Sex</code> and
+<code>Treatment</code> in <code>Factors</code>.</p>
 <p><img src="examples/gzlm2/variables1.png" class="img-responsive" alt=""></p>
 <div id="r-squared-and-model-info" class="section level2">
 <h2>R-squared and model info</h2>
-<p>As soon as we fix the variables, results are displayed in the tables, with the first table showing some info about the model.</p>
+<p>As soon as we fix the variables, results are displayed in the tables,
+with the first table showing some info about the model.</p>
 <p><img src="examples/gzlm2/r.infos1.png" class="img-responsive" alt=""></p>
-<p>Here we find the R-squared, that gives information about the goodness of fit of the model (see <a href="gzlm_specs.html">technical details</a> for more info). Our ability to predict pain increases of 26% thanks to the independent variables as compared to using the base-rate probabilities of <code>Pain</code>.</p>
+<p>Here we find the R-squared, that gives information about the goodness
+of fit of the model (see <a href="gzlm_specs.html">technical details</a>
+for more info). Our ability to predict pain increases of 26% thanks to
+the independent variables as compared to using the base-rate
+probabilities of <code>Pain</code>.</p>
 </div>
 <div id="omnibus-tests" class="section level2">
 <h2>Omnibus tests</h2>
 <p><img src="examples/gzlm2/r.omnibus1.png" class="img-responsive" alt=""></p>
-<p>The omnibus Chi-Squared tests inform us on the main effects and interactions statistical significance. We can see there that we obtained a main effect of <code>Treatment</code> and one of <code>Sex</code>. Thus, on average, the probability of being in pain changes across treatments and it is different between women and men. There is clearly no interaction (<span class="math inline">\(\chi^2\)</span>=0, p=1).</p>
-<p>To interpret the main effects, let’s ask for the plot in the <code>Plots</code> tab:</p>
+<p>The omnibus Chi-Squared tests inform us on the main effects and
+interactions statistical significance. We can see there that we obtained
+a main effect of <code>Treatment</code> and one of <code>Sex</code>.
+Thus, on average, the probability of being in pain changes across
+treatments and it is different between women and men. There is clearly
+no interaction (<span class="math inline">\(\chi^2\)</span>=0, p=1).</p>
+<p>To interpret the main effects, let’s ask for the plot in the
+<code>Plots</code> tab:</p>
 <p><img src="examples/gzlm2/plots1.png" class="img-responsive" alt=""></p>
 <p>and see what we obtain:</p>
 <p><img src="examples/gzlm2/r.plots1.png" class="img-responsive" alt=""></p>
-<p>The effect of <code>Sex</code> is due to the fact that the <code>men</code> group is much more likely to report pain than the group of <code>women</code>. The effect of <code>Treatment</code> is mainly due to the higher pain report rate in the P treatment than in the other two conditions. The treatments are working.</p>
+<p>The effect of <code>Sex</code> is due to the fact that the
+<code>men</code> group is much more likely to report pain than the group
+of <code>women</code>. The effect of <code>Treatment</code> is mainly
+due to the higher pain report rate in the P treatment than in the other
+two conditions. The treatments are working.</p>
 </div>
 <div id="leaving-the-comfort-zone-technical" class="section level2">
 <h2>Leaving the comfort zone (technical)</h2>
-<p>(<em>you can skip this if you’re not interested in beautiful details and some fundamental laws of statistics</em>)</p>
-<p>We should stop for a while and think very broadly about these results, because they have many things to teach us in general terms. We can see that <code>Sex</code> has a statistical significant effect on <code>Pain</code>, but in the plots the confidence intervals seem to overlap quite a bit. One may be inclined to believe that it is about the 3 by 2 design weird error deviance being included in the SE computation, but it is not. We can remove <code>Treatment</code> and still find that <code>Sex</code> is significant but the confidence intervals of the two means of gender overlap.</p>
+<p>(<em>you can skip this if you’re not interested in beautiful details
+and some fundamental laws of statistics</em>)</p>
+<p>We should stop for a while and think very broadly about these
+results, because they have many things to teach us in general terms. We
+can see that <code>Sex</code> has a statistical significant effect on
+<code>Pain</code>, but in the plots the confidence intervals seem to
+overlap quite a bit. One may be inclined to believe that it is about the
+3 by 2 design weird error deviance being included in the SE computation,
+but it is not. We can remove <code>Treatment</code> and still find that
+<code>Sex</code> is significant but the confidence intervals of the two
+means of gender overlap.</p>
 <p><img src="examples/gzlm2/r.sex1.png" class="img-responsive" alt=""></p>
 <p><img src="examples/gzlm2/r.plots2.png" class="img-responsive" alt=""></p>
-<p>Some people may find this strange, because of the common belief that two overlapping confidence intervals should correspond to a non-significant difference. However, this belief is wrong.</p>
-<p><a href="www.cscu.cornell.edu/news/statnews/Stnews73insert.pdf">Andrea Knezevic at the Cornell University</a> and <a href="https://towardsdatascience.com/why-overlapping-confidence-intervals-mean-nothing-about-statistical-significance-48360559900a">Prasanna Parasurama at Atipica</a> explain this in a clear way. Here is a shorter version:</p>
-<p>Take a z-test for simplicity. Given two means <em>a</em> and <em>b</em>, their significance depends on the inequality <span class="math inline">\({a-b} &gt; 1.96 \cdot \sqrt{{SE_a}^2+{SE_b}^2}\)</span>. The confidence intervals of the two means are not-overlapping if <span class="math inline">\({a-b} &gt; 1.96 \cdot ( \sqrt{{SE_a}^2}+\sqrt{{SE_b}^2})\)</span>. Thus, as <span class="math inline">\(a-b\)</span> increases, the significance is reached first by the test with smaller right term of the inequality. By <a href="https://en.wikipedia.org/wiki/Jensen&#39;s_inequality">Jensen inequality</a>, we know that <span class="math inline">\(\sqrt{{SE_a}^2+{SE_b}^2} &lt; \sqrt{{SE_a}^2}+\sqrt{{SE_b}^2}\)</span> therefore there will be some values of <span class="math inline">\(a-b\)</span> where the z-test is significant but the means confidence intervals overlap. Our examples shows exactly this.</p>
-<p>From the same reasoning we can derive that the opposite is not true: If the confidence intervals do not overlap, the z-test must be significant.</p>
+<p>Some people may find this strange, because of the common belief that
+two overlapping confidence intervals should correspond to a
+non-significant difference. However, this belief is wrong.</p>
+<p><a
+href="www.cscu.cornell.edu/news/statnews/Stnews73insert.pdf">Andrea
+Knezevic at the Cornell University</a> and <a
+href="https://towardsdatascience.com/why-overlapping-confidence-intervals-mean-nothing-about-statistical-significance-48360559900a">Prasanna
+Parasurama at Atipica</a> explain this in a clear way. Here is a shorter
+version:</p>
+<p>Take a z-test for simplicity. Given two means <em>a</em> and
+<em>b</em>, their significance depends on the inequality <span
+class="math inline">\({a-b} &gt; 1.96 \cdot
+\sqrt{{SE_a}^2+{SE_b}^2}\)</span>. The confidence intervals of the two
+means are not-overlapping if <span class="math inline">\({a-b} &gt; 1.96
+\cdot ( \sqrt{{SE_a}^2}+\sqrt{{SE_b}^2})\)</span>. Thus, as <span
+class="math inline">\(a-b\)</span> increases, the significance is
+reached first by the test with smaller right term of the inequality. By
+<a href="https://en.wikipedia.org/wiki/Jensen&#39;s_inequality">Jensen
+inequality</a>, we know that <span
+class="math inline">\(\sqrt{{SE_a}^2+{SE_b}^2} &lt;
+\sqrt{{SE_a}^2}+\sqrt{{SE_b}^2}\)</span> therefore there will be some
+values of <span class="math inline">\(a-b\)</span> where the z-test is
+significant but the means confidence intervals overlap. Our examples
+shows exactly this.</p>
+<p>From the same reasoning we can derive that the opposite is not true:
+If the confidence intervals do not overlap, the z-test must be
+significant.</p>
 </div>
 <div id="coefficients" class="section level2">
 <h2>Coefficients</h2>
-<p>If one needs (and seldom one does in these cases), one can look at the model coefficients, the regression coefficients.</p>
+<p>If one needs (and seldom one does in these cases), one can look at
+the model coefficients, the regression coefficients.</p>
 <p><img src="examples/gzlm2/r.params1.png" class="img-responsive" alt=""></p>
-<p>Skipping the intercept (recall that nobody interprets the intercept :-) ), the first coefficient is <code>Sex1</code>: B=0.896. The <code>exp(B)</code> is 2.449. This means that the odd of reporting <code>Pain=yes</code> over <code>Pain=No</code> for men (see <code>Contrast</code> column) is 2.499 times larger than for the average of the sample (<code>(M,F)</code>). This comparison may sound awkward, but the awkwardness can be fixed. Recall that GAMLj default coding for factors is <code>deviations</code>, meaning that factors are coded such that each group (but the first) is compared with the average of the sample. When only two groups are present, a better coding is <code>simple</code>, that “simply” compares the two groups. We can set the coding in <code>Factor Coding</code>.</p>
+<p>Skipping the intercept (recall that nobody interprets the intercept
+:-) ), the first coefficient is <code>Sex1</code>: B=0.896. The
+<code>exp(B)</code> is 2.449. This means that the odd of reporting
+<code>Pain=yes</code> over <code>Pain=No</code> for men (see
+<code>Contrast</code> column) is 2.499 times larger than for the average
+of the sample (<code>(M,F)</code>). This comparison may sound awkward,
+but the awkwardness can be fixed. Recall that GAMLj default coding for
+factors is <code>deviations</code>, meaning that factors are coded such
+that each group (but the first) is compared with the average of the
+sample. When only two groups are present, a better coding is
+<code>simple</code>, that “simply” compares the two groups. We can set
+the coding in <code>Factor Coding</code>.</p>
 <p><img src="examples/gzlm2/contrasts1.png" class="img-responsive" alt=""></p>
 <p><img src="examples/gzlm2/r.params2.png" class="img-responsive" alt=""></p>
-<p>The B and exp(B) parameters associated with <code>Sex</code> have changed, although the z-test and p-value did not. The odd-ratio associated with <code>Sex</code> is now exp(B)=6, and the contrast says <code>M-F</code>- This means that the odd of reporting the pain is 6 times larger for men than for women.</p>
-<p>Indeed, if we ask for the estimated marginal means of Sex averaging across Treatment we see the probabilities of reporting pain for the two genders.</p>
+<p>The B and exp(B) parameters associated with <code>Sex</code> have
+changed, although the z-test and p-value did not. The odd-ratio
+associated with <code>Sex</code> is now exp(B)=6, and the contrast says
+<code>M-F</code>- This means that the odd of reporting the pain is 6
+times larger for men than for women.</p>
+<p>Indeed, if we ask for the estimated marginal means of Sex averaging
+across Treatment we see the probabilities of reporting pain for the two
+genders.</p>
 <p><img src="examples/gzlm2/means1.png" class="img-responsive" alt=""></p>
 <p><img src="examples/gzlm2/r.means1.png" class="img-responsive" alt=""></p>
-<p>We can check that the probability of pain is .614 for men and .209 for women, which yields:</p>
+<p>We can check that the probability of pain is .614 for men and .209
+for women, which yields:</p>
 <ul>
-<li>odd for men <span class="math inline">\({odd_M}={.614 \over {1-.614}}=1.58\)</span></li>
-<li>odd for women <span class="math inline">\({odd_F}={.209 \over {1-.209}}=.264\)</span></li>
-<li>the odd for men is <span class="math inline">\(\exp{B}={1.58 \over .264} =6\)</span> times lager than the odd for women</li>
+<li>odd for men <span class="math inline">\({odd_M}={.614 \over
+{1-.614}}=1.58\)</span></li>
+<li>odd for women <span class="math inline">\({odd_F}={.209 \over
+{1-.209}}=.264\)</span></li>
+<li>the odd for men is <span class="math inline">\(\exp{B}={1.58 \over
+.264} =6\)</span> times lager than the odd for women</li>
 </ul>
 <p>The other coefficients can be interpreted along the same line.</p>
 </div>
 </div>
 <div id="ancova-like-model." class="section level1">
 <h1>ANCOVA-like model.</h1>
-<p>Now we add <code>Duration</code> and <code>Age</code> as covariates, and we see how they influence <code>Pain</code>- We go back to the variables set-up and add them in the <code>Covariates</code> field.</p>
+<p>Now we add <code>Duration</code> and <code>Age</code> as covariates,
+and we see how they influence <code>Pain</code>- We go back to the
+variables set-up and add them in the <code>Covariates</code> field.</p>
 <p><img src="examples/gzlm2/variables2.png" class="img-responsive" alt=""></p>
 <div id="omnibus-tests-1" class="section level2">
 <h2>Omnibus tests</h2>
 <p><img src="examples/gzlm2/r.omnibus2.png" class="img-responsive" alt=""></p>
-<p>Results show that <code>Duration</code> does not have a significant effect on <code>Pain</code>, whereas <code>Age</code> does. We can check the direction of the <code>Age</code> effect by looking at the parameters.</p>
+<p>Results show that <code>Duration</code> does not have a significant
+effect on <code>Pain</code>, whereas <code>Age</code> does. We can check
+the direction of the <code>Age</code> effect by looking at the
+parameters.</p>
 <p><img src="examples/gzlm2/r.params3.png" class="img-responsive" alt=""></p>
-<p>The effect of Age is positive, B=0.268, and the odd-ratio is larger then 1, exp(B)=1.30. The older one gets, the more pain one reports.</p>
+<p>The effect of Age is positive, B=0.268, and the odd-ratio is larger
+then 1, exp(B)=1.30. The older one gets, the more pain one reports.</p>
 <p>As usual, a picture is worth a thousand words.</p>
-<p><img src="examples/gzlm2/r.plots3.png" class="img-responsive" alt=""> The older one gets, the more pain one reports, and the critical age seems to be around 70 years, where chanches of reporting pain considerably increase.</p>
-<p>As regards <code>Treatment</code> we can state that <code>Treatment</code> has still an effect even when <code>Age</code> and <code>Duration</code> are kept constant.</p>
+<p><img src="examples/gzlm2/r.plots3.png" class="img-responsive" alt="">
+The older one gets, the more pain one reports, and the critical age
+seems to be around 70 years, where chanches of reporting pain
+considerably increase.</p>
+<p>As regards <code>Treatment</code> we can state that
+<code>Treatment</code> has still an effect even when <code>Age</code>
+and <code>Duration</code> are kept constant.</p>
 </div>
 </div>
 <div id="moderation-model" class="section level1">
 <h1>Moderation model</h1>
-<p>The last interesting question is whether treatment has a different effect depending on the patient’s age. To answer this question we should simply add the interaction <code>Treatment*Age</code> in the model and plot the interaction plot. I find it easier to plot <code>Age</code> on the x-axis and show the probabilities of pain for different treatments. Let’s do that.</p>
+<p>The last interesting question is whether treatment has a different
+effect depending on the patient’s age. To answer this question we should
+simply add the interaction <code>Treatment*Age</code> in the model and
+plot the interaction plot. I find it easier to plot <code>Age</code> on
+the x-axis and show the probabilities of pain for different treatments.
+Let’s do that.</p>
 <div id="set-up" class="section level2">
 <h2>Set-up</h2>
 <p><img src="examples/gzlm2/model1.png" class="img-responsive" alt=""></p>
@@ -481,13 +633,20 @@ div.tocify {
 <div id="omnibus-tests-2" class="section level2">
 <h2>Omnibus tests</h2>
 <p><img src="examples/gzlm2/r.omnibus3.png" class="img-responsive" alt=""></p>
-<p>As suspected, there is an interaction between <code>Treatment</code> and <code>Age</code>, so it means that the efficacy of the treatments depends on the patient’s age. The plot will tell us how.</p>
+<p>As suspected, there is an interaction between <code>Treatment</code>
+and <code>Age</code>, so it means that the efficacy of the treatments
+depends on the patient’s age. The plot will tell us how.</p>
 </div>
 <div id="plot" class="section level2">
 <h2>Plot</h2>
 <p><img src="examples/gzlm2/plots4.png" class="img-responsive" alt=""></p>
 <p><img src="examples/gzlm2/r.plots4.png" class="img-responsive" alt=""></p>
-<p>First, the placebo group reports high rates of pain independently of age (blue line). For younger people (age&lt;70) the two treatments A and B are beneficial, because the probability of reporting pain is very low. When patients get older, treatments are not so effective any longer, because the probabilities increase and converge to high rates for all three groups.</p>
+<p>First, the placebo group reports high rates of pain independently of
+age (blue line). For younger people (age&lt;70) the two treatments A and
+B are beneficial, because the probability of reporting pain is very low.
+When patients get older, treatments are not so effective any longer,
+because the probabilities increase and converge to high rates for all
+three groups.</p>
 <p>This may very well conclude the analyses.</p>
 </div>
 </div>
@@ -501,14 +660,17 @@ div.tocify {
 <a href="gzlm_example2.html">Logistic analysis in jamovi</a>
 </li>
 <li>
-<a href="gzlm_example4.html">Frequencies analysis with overdispersed models</a>
+<a href="gzlm_example4.html">Frequencies analysis with overdispersed
+models</a>
 </li>
 </ul>
 <h1>
 Comments?
 </h1>
 <p>
-Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a> or <a href="mailto:mcfanda@gmail.com
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
 
 ">send me an email</a>
 </p>

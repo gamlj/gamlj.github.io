@@ -399,131 +399,358 @@ div.tocify {
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, GLM, effect size indices, omega-squared, eta-squared, epsilon-squared </span></p>
-<p><span class="version"> <span class="versiontitle"> GAMLj version ≥ </span> 2.6.1 </span></p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span>
+jamovi, GLM, effect size indices, omega-squared, eta-squared,
+epsilon-squared </span></p>
+<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 2.6.1 </span></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Standardized Effect size indices produced by GLM module are the following:</p>
+<p>Standardized Effect size indices produced by GLM module are the
+following:</p>
 <ul>
-<li><span class="math inline">\(\beta\)</span> : standardized regression coefficients</li>
-<li><span class="math inline">\(\eta^2\)</span>: (semi-partial) eta-squared</li>
-<li><span class="math inline">\(\eta^2\)</span>p : partial eta-squared</li>
+<li><span class="math inline">\(\beta\)</span> : standardized regression
+coefficients</li>
+<li><span class="math inline">\(\eta^2\)</span>: (semi-partial)
+eta-squared</li>
+<li><span class="math inline">\(\eta^2\)</span>p : partial
+eta-squared</li>
 <li><span class="math inline">\(\omega^2\)</span> : omega-squared</li>
-<li><span class="math inline">\(\omega^2\)</span>p : partial omega-squared</li>
-<li><span class="math inline">\(\epsilon^2\)</span> : epsilon-squared</li>
-<li><span class="math inline">\(\epsilon^2\)</span>p : partial epsilon-squared</li>
+<li><span class="math inline">\(\omega^2\)</span>p : partial
+omega-squared</li>
+<li><span class="math inline">\(\epsilon^2\)</span> :
+epsilon-squared</li>
+<li><span class="math inline">\(\epsilon^2\)</span>p : partial
+epsilon-squared</li>
 </ul>
-<p>All coefficients but the betas are computed with the approapriate function of the R package <a href="https://cran.r-project.org/web/packages/effectsize/index.html">effectsize</a>, with some adjustment.</p>
+<p>All coefficients but the betas are computed with the approapriate
+function of the R package <a
+href="https://cran.r-project.org/web/packages/effectsize/index.html">effectsize</a>,
+with some adjustment.</p>
 </div>
 <div id="beta-beta" class="section level1">
 <h1><span class="math inline">\(\beta\)</span> : beta</h1>
-<p>For continuous variables, it simply corresponds to the B coefficient obtained after standardizing all variables in the model. The standardization of the continuous variables is done before any transformation is applied, so if a complex model requires interaction or polynomial terms, the terms are computed after standardization, and the <span class="math inline">\(\beta\)</span> are consistent.</p>
-<p>For categorical variables, however, some comments are in order: Categorical variables are not standardized in <span class="modulename">GAMLj</span>, so the <span class="math inline">\(\beta\)</span> should be interpreted in terms of standardized differences in the dependent variable between the levels contrasted by the corresponding contrast. Consider the following example: Two groups (variable <code>groups</code>) of size 20 and 10 respectively, are compared on a variable Y. If one uses <span class="modulename">GAMLj</span> default contrast coding (<code>simple</code>), the B is the difference in groups means. The <span class="math inline">\(\beta\)</span> is the difference between the average z-scores of the dependent variable between the two groups. Assume these are the results:</p>
+<p>For continuous variables, it simply corresponds to the B coefficient
+obtained after standardizing all variables in the model. The
+standardization of the continuous variables is done before any
+transformation is applied, so if a complex model requires interaction or
+polynomial terms, the terms are computed after standardization, and the
+<span class="math inline">\(\beta\)</span> are consistent.</p>
+<p>For categorical variables, however, some comments are in order:
+Categorical variables are not standardized in <span
+class="modulename">GAMLj</span>, so the <span
+class="math inline">\(\beta\)</span> should be interpreted in terms of
+standardized differences in the dependent variable between the levels
+contrasted by the corresponding contrast. Consider the following
+example: Two groups (variable <code>groups</code>) of size 20 and 10
+respectively, are compared on a variable Y. If one uses <span
+class="modulename">GAMLj</span> default contrast coding
+(<code>simple</code>), the B is the difference in groups means. The
+<span class="math inline">\(\beta\)</span> is the difference between the
+average z-scores of the dependent variable between the two groups.
+Assume these are the results:</p>
 <p><img src=" details/glm/effectsize_example1_1.png " class="img-responsive" alt=""></p>
-<p>The beta is 0.352, so it means that if we compute the mean difference between groups in the standardized <em>y</em>, we obtain 0.352. In fact.</p>
+<p>The beta is 0.352, so it means that if we compute the mean difference
+between groups in the standardized <em>y</em>, we obtain 0.352. In
+fact.</p>
 <p><img src=" details/glm/effectsize_example1_2.png " class="img-responsive" alt=""></p>
-<p>However, the <span class="math inline">\(\beta\)</span> you obtain is not the correlation between <em>zy</em> and <em>groups</em>. The correlation is 0.169:</p>
+<p>However, the <span class="math inline">\(\beta\)</span> you obtain is
+not the correlation between <em>zy</em> and <em>groups</em>. The
+correlation is 0.169:</p>
 <p><img src=" details/glm/effectsize_example1_3.png " class="img-responsive" alt=""></p>
-<p>Why is there this discrepancy? Because the groups are not balanced, so when the correlation is computed, the variable <em>groups</em> is standardized, so the contrast coding values depend on the relative size of the groups. The actual groups coding values used by the Pearson’s correlations are the following:</p>
+<p>Why is there this discrepancy? Because the groups are not balanced,
+so when the correlation is computed, the variable <em>groups</em> is
+standardized, so the contrast coding values depend on the relative size
+of the groups. The actual groups coding values used by the Pearson’s
+correlations are the following:</p>
 <p><img src=" details/glm/effectsize_example1_4.png " class="img-responsive" alt=""></p>
-<p>Thus, the correlation corresponds to running a regression with <em>zy</em> as dependent variables and a continuous variable featuring either -.695 or 1.390 as values. The <span class="math inline">\(\beta\)</span> yielded by <span class="modulename">GAMLj</span>, instead, is the mean difference between X levels on the standardized Y. Please notice that other software may yield different <span class="math inline">\(\beta\)</span>’s for categorical variables.</p>
-<p>If two groups are balanced and homeschedastic, the <span class="math inline">\(\beta\)</span> associated with a <code>deviation</code> contrast corresponds to the fully standardized coefficient.</p>
+<p>Thus, the correlation corresponds to running a regression with
+<em>zy</em> as dependent variables and a continuous variable featuring
+either -.695 or 1.390 as values. The <span
+class="math inline">\(\beta\)</span> yielded by <span
+class="modulename">GAMLj</span>, instead, is the mean difference between
+X levels on the standardized Y. Please notice that other software may
+yield different <span class="math inline">\(\beta\)</span>’s for
+categorical variables.</p>
+<p>If two groups are balanced and homeschedastic, the <span
+class="math inline">\(\beta\)</span> associated with a
+<code>deviation</code> contrast corresponds to the fully standardized
+coefficient.</p>
 </div>
 <div id="eta2-semi-partial-eta-squared" class="section level1">
-<h1><span class="math inline">\(\eta^2\)</span>: (semi-partial) eta-squared</h1>
-<p>This is the proportion of total variance uniquely explained by the associated effect. Being <span class="math inline">\(SS_{eff}\)</span> the sum of squares of the effect, <span class="math inline">\(SS_{res}\)</span> the sum of squares of the residuals or of SS error, and <span class="math inline">\(SS_{model}\)</span> the sum of sum of squares of the whole model, we have:</p>
-<p><span class="math display">\[\eta^2={{SS_{eff} \over {SS_{model}+SS_{res}}}}\]</span></p>
-<p>where <span class="math inline">\(SS_{model}+SS_{res}=SS_{total}\)</span> and <span class="math inline">\(SS_{total}=\sum(y_i-\bar{y})^2\)</span> and <span class="math inline">\(SS_{model}=\sum(\hat{y_i}-\bar{\hat{y}})^2\)</span>.</p>
-<p>Please notice that although the computation of the effect size indexes and their confidence intervals is carried out employing <a href="https://github.com/easystats/effectsize">effectsize R package</a>, <span class="modulename">GAMLj</span> makes a correction to the computation of <span class="math inline">\(\eta^2\)</span> and of the other non-partial indices. <code>effectsize</code> R package, infact, defines the total sum of squares as <span class="math inline">\(SS_{total}^*=\sum{SS_{f}+SS_{res}}\)</span>, where <span class="math inline">\(f\)</span> is any effect in the model. For balanced designs and many other models, <span class="math inline">\(SS_{total}^*=SS_{total}\)</span>, so no issue arises. However, there are certain models in which <span class="math inline">\(SS_{total}^*\ne SS_{total}\)</span>, and so the index looses some of its properties when computed based on <span class="math inline">\(SS_{total}^*\)</span>. <span class="modulename">GAMLj</span> operates a correction such that all the non-partial indeces are always computed based on <span class="math inline">\(SS_{total}=SS_{model}+SS_{res}\)</span>.</p>
+<h1><span class="math inline">\(\eta^2\)</span>: (semi-partial)
+eta-squared</h1>
+<p>This is the proportion of total variance uniquely explained by the
+associated effect. Being <span class="math inline">\(SS_{eff}\)</span>
+the sum of squares of the effect, <span
+class="math inline">\(SS_{res}\)</span> the sum of squares of the
+residuals or of SS error, and <span
+class="math inline">\(SS_{model}\)</span> the sum of sum of squares of
+the whole model, we have:</p>
+<p><span class="math display">\[\eta^2={{SS_{eff} \over
+{SS_{model}+SS_{res}}}}\]</span></p>
+<p>where <span
+class="math inline">\(SS_{model}+SS_{res}=SS_{total}\)</span> and <span
+class="math inline">\(SS_{total}=\sum(y_i-\bar{y})^2\)</span> and <span
+class="math inline">\(SS_{model}=\sum(\hat{y_i}-\bar{\hat{y}})^2\)</span>.</p>
+<p>Please notice that although the computation of the effect size
+indexes and their confidence intervals is carried out employing <a
+href="https://github.com/easystats/effectsize">effectsize R package</a>,
+<span class="modulename">GAMLj</span> makes a correction to the
+computation of <span class="math inline">\(\eta^2\)</span> and of the
+other non-partial indices. <code>effectsize</code> R package, infact,
+defines the total sum of squares as <span
+class="math inline">\(SS_{total}^*=\sum{SS_{f}+SS_{res}}\)</span>, where
+<span class="math inline">\(f\)</span> is any effect in the model. For
+balanced designs and many other models, <span
+class="math inline">\(SS_{total}^*=SS_{total}\)</span>, so no issue
+arises. However, there are certain models in which <span
+class="math inline">\(SS_{total}^*\ne SS_{total}\)</span>, and so the
+index looses some of its properties when computed based on <span
+class="math inline">\(SS_{total}^*\)</span>. <span
+class="modulename">GAMLj</span> operates a correction such that all the
+non-partial indeces are always computed based on <span
+class="math inline">\(SS_{total}=SS_{model}+SS_{res}\)</span>.</p>
 <button type="button" class="collapsible">
 <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:steelblue;overflow:visible;position:relative;">
 <path d="M212.686 315.314L120 408l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C10.697 480 0 469.255 0 456V344c0-21.382 25.803-32.09 40.922-16.971L72 360l92.686-92.686c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.249 6.248 6.249 16.378 0 22.627zm22.628-118.628L328 104l-32.922-31.029C279.958 57.851 290.666 32 312.048 32h112C437.303 32 448 42.745 448 56v112c0 21.382-25.803 32.09-40.922 16.971L376 152l-92.686 92.686c-6.248 6.248-16.379 6.248-22.627 0l-25.373-25.373c-6.249-6.248-6.249-16.378 0-22.627z"/>
 </svg>
-<span class="colltitle"> Why this correction? </span> <span class="collinfo">click to read</span> <span class="collinfo"> technical stuff </span>
+<span class="colltitle"> Why this correction? </span> <span
+class="collinfo">click to read</span> <span class="collinfo"> technical
+stuff </span>
 </button>
 <div class="collapsiblecontent">
-<p>With the correction, one property <span class="math inline">\(\eta^2\)</span> retains even when <span class="math inline">\(SS_{total}^*\ne SS_{total}\)</span> is that <span class="math inline">\(\eta^2=r_{sp}^2\)</span>, where <span class="math inline">\(r_{sp}\)</span> is the semi-partial correlation <span class="citation">(<a href="#ref-cohen2014applied" role="doc-biblioref">Cohen, West, and Aiken 2014</a>)</span>. We can use the <code>exercise</code> dataset from <span class="citation">(<a href="#ref-cohen2014applied" role="doc-biblioref">Cohen, West, and Aiken 2014</a>)</span> to see this in practice (refer to <a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a> for a complete analysis). If we run a multiple regression <code>yendu~xage+zexer</code> and ask for the <span class="math inline">\(\eta^2\)</span>’s, we obtain the following results:</p>
+<p>With the correction, one property <span
+class="math inline">\(\eta^2\)</span> retains even when <span
+class="math inline">\(SS_{total}^*\ne SS_{total}\)</span> is that <span
+class="math inline">\(\eta^2=r_{sp}^2\)</span>, where <span
+class="math inline">\(r_{sp}\)</span> is the semi-partial correlation
+<span class="citation">(<a href="#ref-cohen2014applied"
+role="doc-biblioref">Cohen, West, and Aiken 2014</a>)</span>. We can use
+the <code>exercise</code> dataset from <span class="citation">(<a
+href="#ref-cohen2014applied" role="doc-biblioref">Cohen, West, and Aiken
+2014</a>)</span> to see this in practice (refer to
+<a href="glm_example1.html">GLM: Multiple regression, moderated
+regression, and simple slopes</a> for a complete analysis). If we run a
+multiple regression <code>yendu~xage+zexer</code> and ask for the <span
+class="math inline">\(\eta^2\)</span>’s, we obtain the following
+results:</p>
 <p><img src="details/glm/eta1.png" class="img-responsive" alt=""></p>
-<p>Going in <span class="jamovi">jamovi</span>, <span class="option">Regression-&gt;Partial correlation</span> we can compute the semi-partial correlation of each IV coviariating the other. This gives:</p>
+<p>Going in <span class="jamovi">jamovi</span>, <span
+class="option">Regression-&gt;Partial correlation</span> we can compute
+the semi-partial correlation of each IV coviariating the other. This
+gives:</p>
 <p><img src="details/glm/eta2.png" class="img-responsive" alt=""></p>
-<p>Squaring it gives <span class="math inline">\(r_{yx.z}^2=-0.230^2=0.0529\)</span>, which is equal to the corrisponding <span class="math inline">\(\eta^2=.053\)</span>.</p>
+<p>Squaring it gives <span
+class="math inline">\(r_{yx.z}^2=-0.230^2=0.0529\)</span>, which is
+equal to the corrisponding <span
+class="math inline">\(\eta^2=.053\)</span>.</p>
 <p><img src="details/glm/eta3.png" class="img-responsive" alt=""></p>
-<p>Squaring the second <span class="math inline">\(r_{sp}^2\)</span> gives <span class="math inline">\(r_{yz.x}^2=0.388^2=0.1504664\)</span>, considering rounding, which is equal to the corrisponding <span class="math inline">\(\eta^2=.150\)</span>.</p>
-<p>If we used <span class="math inline">\(SS_{total}^*=\sum{SS_{f}}+SS_{res}\)</span>, results would be:</p>
+<p>Squaring the second <span class="math inline">\(r_{sp}^2\)</span>
+gives <span class="math inline">\(r_{yz.x}^2=0.388^2=0.1504664\)</span>,
+considering rounding, which is equal to the corrisponding <span
+class="math inline">\(\eta^2=.150\)</span>.</p>
+<p>If we used <span
+class="math inline">\(SS_{total}^*=\sum{SS_{f}}+SS_{res}\)</span>,
+results would be:</p>
 <ul>
-<li><span class="math inline">\(SS_{total}^*=1516+4298+23810=29624\)</span></li>
-<li><span class="math inline">\(SS_{yx.z}^*=1516/29624 =0.0511747\)</span></li>
-<li><span class="math inline">\(SS_{yz.x}^*=4298/29624 =0.1450851\)</span></li>
+<li><span
+class="math inline">\(SS_{total}^*=1516+4298+23810=29624\)</span></li>
+<li><span class="math inline">\(SS_{yx.z}^*=1516/29624
+=0.0511747\)</span></li>
+<li><span class="math inline">\(SS_{yz.x}^*=4298/29624
+=0.1450851\)</span></li>
 </ul>
-<p>that are clearly not corresponding to the <span class="math inline">\(r_{sp}^2\)</span>, as they should be. We should note, however, that the two methods of estimation usually give very similar results, even when <span class="math inline">\(SS_{total}^* \ne SS_{total}\)</span> and exactly the same results when <span class="math inline">\(SS_{total}^*=SS_{total}\)</span>.</p>
+<p>that are clearly not corresponding to the <span
+class="math inline">\(r_{sp}^2\)</span>, as they should be. We should
+note, however, that the two methods of estimation usually give very
+similar results, even when <span class="math inline">\(SS_{total}^* \ne
+SS_{total}\)</span> and exactly the same results when <span
+class="math inline">\(SS_{total}^*=SS_{total}\)</span>.</p>
 <p>The same reasoning holds for all the non-partial indices.</p>
 </div>
 <button type="button" class="collapsible">
 <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:steelblue;overflow:visible;position:relative;">
 <path d="M212.686 315.314L120 408l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C10.697 480 0 469.255 0 456V344c0-21.382 25.803-32.09 40.922-16.971L72 360l92.686-92.686c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.249 6.248 6.249 16.378 0 22.627zm22.628-118.628L328 104l-32.922-31.029C279.958 57.851 290.666 32 312.048 32h112C437.303 32 448 42.745 448 56v112c0 21.382-25.803 32.09-40.922 16.971L376 152l-92.686 92.686c-6.248 6.248-16.379 6.248-22.627 0l-25.373-25.373c-6.249-6.248-6.249-16.378 0-22.627z"/>
 </svg>
-<span class="colltitle"> Isn’t this weird? </span> <span class="collinfo">click to read</span> <span class="collinfo"> technical stuff </span>
+<span class="colltitle"> Isn’t this weird? </span> <span
+class="collinfo">click to read</span> <span class="collinfo"> technical
+stuff </span>
 </button>
 <div class="collapsiblecontent">
-<p>For many people, the fact that <span class="math inline">\(SS_{model}^* \ne SS_{model}\)</span> may come as a surprise. Maybe because in the ANOVA tradition, with balanced designs, <span class="math inline">\(\sum{SS_{f}}\)</span> is always equal to <span class="math inline">\(SS_{model}\)</span>, or maybe because it would be nicer if it was always like in the ANOVA. Since we have to accept that in the GLM <span class="math inline">\(\sum{SS_{f}}\)</span> is not necessarily equal to <span class="math inline">\(SS_{model}\)</span>, let us see when this happens.</p>
-<p>There are two cases: The easiest to understand is when <span class="math inline">\(\sum{SS_{f}} \lt SS_{model}\)</span>. This case happens when the independent variables are positively (or all negatively) correlated so each variable explains a unique part of the variance, but the model sum of square involves also some shared variance, which ends up in <span class="math inline">\(SS_{model}\)</span> but not in <span class="math inline">\(\sum{SS_{f}}\)</span>.</p>
-<p>A little trickier is the case when <span class="math inline">\(\sum{SS_{f}} \gt SS_{model}\)</span>, because it seems strange that the sum of effects is larger than the overall combined effect.</p>
-<p>Consider a regression <span class="math inline">\(y=a+b_{yx.z}x+b_{yz.x}z\)</span>. Recall the the <span class="math inline">\(SS_{yx.z}\)</span> (<span class="math inline">\(x\)</span> explains <span class="math inline">\(y\)</span> keeping constant <span class="math inline">\(z\)</span>) is computed as <span class="math inline">\(SS_{model}-SS_{yz}\)</span>, where <span class="math inline">\(SS_{yz}\)</span> is the sum of squares explained by <span class="math inline">\(z\)</span> without <span class="math inline">\(x\)</span> in the model, and <span class="math inline">\(SS_{yz.x}=SS_{model}-SS_{yx}\)</span>. It follows that the <span class="math inline">\(\sum{SS_f}=2\cdot SS_{model}-SS_{yx}-SS_{yz}\)</span> is larger than <span class="math inline">\(SS_{model}\)</span> when <span class="math inline">\(SS_{model} &gt; SS_{yx}+SS_{yz}\)</span>. This necessarily means that at least one variable explains more variance while keeping constant the other than alone.</p>
-<p>Indeed, in the example above about exercising, the SS of <em>age</em> alone is 452, and <em>exer</em> alone is 3234, which sum to 3686, less than 4751, the multiple regression model SS.</p>
-<p>The question is now: when does this happen? Well, it happens when <span class="math inline">\(B_{yz}\)</span>, the coefficient associated with <span class="math inline">\(z\)</span> in simple regression, is smaller (in absolute value) than the partial coefficient of <span class="math inline">\(B_{yz.x}\)</span> of a multiple regression. Because <span class="math inline">\(B_{yz.x}=B_{yz} - B_{yx.z}\cdot B_{xz}\)</span>, this happens when <span class="math inline">\(B_{yz}\)</span> and <span class="math inline">\(B_{yx.z}\cdot B_{xz}\)</span> have different signs: therefore, we have a suppression effect!</p>
-<p><img src="details/glm/simplezony.png" class="img-responsive" alt=""> <img src="details/glm/simplezonx.png" class="img-responsive" alt=""> <img src="details/glm/mutiplezxony.png" class="img-responsive" alt=""></p>
-<p>In the example above, focusing on <em>exer</em> (the z variable), we have <span class="math inline">\(B_{yz.x}=.916\)</span>, <span class="math inline">\(B_{yx.z}=-.257\)</span> and <span class="math inline">\(B_{xz}=.598\)</span>, thus <span class="math inline">\(B_{yx.z}\cdot B_{xz}=-.257*.598=-0.153686\)</span>, which has a different sign than <span class="math inline">\(B_{yz}=.762\)</span>. Thus, the effect of <em>exercising</em> is stronger when keeping constant <em>age</em> than alone: <em>age</em> suppresses the effect of <em>exercising</em> on <em>endurance</em>.</p>
+<p>For many people, the fact that <span
+class="math inline">\(SS_{model}^* \ne SS_{model}\)</span> may come as a
+surprise. Maybe because in the ANOVA tradition, with balanced designs,
+<span class="math inline">\(\sum{SS_{f}}\)</span> is always equal to
+<span class="math inline">\(SS_{model}\)</span>, or maybe because it
+would be nicer if it was always like in the ANOVA. Since we have to
+accept that in the GLM <span class="math inline">\(\sum{SS_{f}}\)</span>
+is not necessarily equal to <span
+class="math inline">\(SS_{model}\)</span>, let us see when this
+happens.</p>
+<p>There are two cases: The easiest to understand is when <span
+class="math inline">\(\sum{SS_{f}} \lt SS_{model}\)</span>. This case
+happens when the independent variables are positively (or all
+negatively) correlated so each variable explains a unique part of the
+variance, but the model sum of square involves also some shared
+variance, which ends up in <span
+class="math inline">\(SS_{model}\)</span> but not in <span
+class="math inline">\(\sum{SS_{f}}\)</span>.</p>
+<p>A little trickier is the case when <span
+class="math inline">\(\sum{SS_{f}} \gt SS_{model}\)</span>, because it
+seems strange that the sum of effects is larger than the overall
+combined effect.</p>
+<p>Consider a regression <span
+class="math inline">\(y=a+b_{yx.z}x+b_{yz.x}z\)</span>. Recall the the
+<span class="math inline">\(SS_{yx.z}\)</span> (<span
+class="math inline">\(x\)</span> explains <span
+class="math inline">\(y\)</span> keeping constant <span
+class="math inline">\(z\)</span>) is computed as <span
+class="math inline">\(SS_{model}-SS_{yz}\)</span>, where <span
+class="math inline">\(SS_{yz}\)</span> is the sum of squares explained
+by <span class="math inline">\(z\)</span> without <span
+class="math inline">\(x\)</span> in the model, and <span
+class="math inline">\(SS_{yz.x}=SS_{model}-SS_{yx}\)</span>. It follows
+that the <span class="math inline">\(\sum{SS_f}=2\cdot
+SS_{model}-SS_{yx}-SS_{yz}\)</span> is larger than <span
+class="math inline">\(SS_{model}\)</span> when <span
+class="math inline">\(SS_{model} &gt; SS_{yx}+SS_{yz}\)</span>. This
+necessarily means that at least one variable explains more variance
+while keeping constant the other than alone.</p>
+<p>Indeed, in the example above about exercising, the SS of <em>age</em>
+alone is 452, and <em>exer</em> alone is 3234, which sum to 3686, less
+than 4751, the multiple regression model SS.</p>
+<p>The question is now: when does this happen? Well, it happens when
+<span class="math inline">\(B_{yz}\)</span>, the coefficient associated
+with <span class="math inline">\(z\)</span> in simple regression, is
+smaller (in absolute value) than the partial coefficient of <span
+class="math inline">\(B_{yz.x}\)</span> of a multiple regression.
+Because <span class="math inline">\(B_{yz.x}=B_{yz} - B_{yx.z}\cdot
+B_{xz}\)</span>, this happens when <span
+class="math inline">\(B_{yz}\)</span> and <span
+class="math inline">\(B_{yx.z}\cdot B_{xz}\)</span> have different
+signs: therefore, we have a suppression effect!</p>
+<p><img src="details/glm/simplezony.png" class="img-responsive" alt="">
+<img src="details/glm/simplezonx.png" class="img-responsive" alt="">
+<img src="details/glm/mutiplezxony.png" class="img-responsive" alt=""></p>
+<p>In the example above, focusing on <em>exer</em> (the z variable), we
+have <span class="math inline">\(B_{yz.x}=.916\)</span>, <span
+class="math inline">\(B_{yx.z}=-.257\)</span> and <span
+class="math inline">\(B_{xz}=.598\)</span>, thus <span
+class="math inline">\(B_{yx.z}\cdot
+B_{xz}=-.257*.598=-0.153686\)</span>, which has a different sign than
+<span class="math inline">\(B_{yz}=.762\)</span>. Thus, the effect of
+<em>exercising</em> is stronger when keeping constant <em>age</em> than
+alone: <em>age</em> suppresses the effect of <em>exercising</em> on
+<em>endurance</em>.</p>
 </div>
 </div>
 <div id="eta2p-partial-eta-squared" class="section level1">
-<h1><span class="math inline">\(\eta^2\)</span>p : partial eta-squared</h1>
-<p>This is the proportion of partial variance uniquely explained by the associated effect. That is, the variance uniquely explained by the effect expressed as the proportion of variance not explained by the other effects. Here the variance explained by the other effects in the model is completely partialed out. Its formula is:</p>
-<p><span class="math display">\[\eta^2p={{SS_{eff} \over {SS_{eff}+SS_{res}}}}\]</span></p>
-<p>clearly, if there is only one independent variable, <span class="math inline">\(\eta^2=\eta^2p\)</span></p>
+<h1><span class="math inline">\(\eta^2\)</span>p : partial
+eta-squared</h1>
+<p>This is the proportion of partial variance uniquely explained by the
+associated effect. That is, the variance uniquely explained by the
+effect expressed as the proportion of variance not explained by the
+other effects. Here the variance explained by the other effects in the
+model is completely partialed out. Its formula is:</p>
+<p><span class="math display">\[\eta^2p={{SS_{eff} \over
+{SS_{eff}+SS_{res}}}}\]</span></p>
+<p>clearly, if there is only one independent variable, <span
+class="math inline">\(\eta^2=\eta^2p\)</span></p>
 </div>
 <div id="omega2-omega-squared" class="section level1">
 <h1><span class="math inline">\(\omega^2\)</span> : omega-squared</h1>
-<p>This is the <em>expected value in the population</em> of the proportion of variance uniquely explained by the associated effect. In other words, it is the unbiased version of <span class="math inline">\(\eta^2\)</span>. There are different formulas to visualize its computation, here is one. If <span class="math inline">\(df_{res}\)</span> are the degrees of freedon of the residual variance, <span class="math inline">\(df_{eff}\)</span> are the degrees of freedom of the effect, we have:</p>
-<p><span class="math display">\[\omega^2={{SS_{eff}-SS_{res} \cdot ({df_{eff}/df_{res}) \cdot }}\over{ SS_{model}+SS_{res}(df_{res}+1)/df_{res}}}\]</span></p>
-<p>It’s clear that omega is similat to <span class="math inline">\(\eta^2\)</span>, but applies a correction for the denominator.</p>
+<p>This is the <em>expected value in the population</em> of the
+proportion of variance uniquely explained by the associated effect. In
+other words, it is the unbiased version of <span
+class="math inline">\(\eta^2\)</span>. There are different formulas to
+visualize its computation, here is one. If <span
+class="math inline">\(df_{res}\)</span> are the degrees of freedon of
+the residual variance, <span class="math inline">\(df_{eff}\)</span> are
+the degrees of freedom of the effect, we have:</p>
+<p><span class="math display">\[\omega^2={{SS_{eff}-SS_{res} \cdot
+({df_{eff}/df_{res}) \cdot }}\over{
+SS_{model}+SS_{res}(df_{res}+1)/df_{res}}}\]</span></p>
+<p>It’s clear that omega is similat to <span
+class="math inline">\(\eta^2\)</span>, but applies a correction for the
+denominator.</p>
 </div>
 <div id="omega2p-partial-omega-squared" class="section level1">
-<h1><span class="math inline">\(\omega^2\)</span>p : partial omega-squared</h1>
-<p>This is the <em>expected value in the population</em> of the proportion of <em>partial</em> variance uniquely explained by the associated effect. In other words,it is the unbiased version of <span class="math inline">\(\eta^2p\)</span>. With N being the sample size, We have:</p>
-<p><span class="math display">\[\omega^2p={{SS_{eff}-SS_{res} \cdot ({df_{eff}/df_{res}) \cdot }}\over{ SS_{eff}+SS_{res} \cdot [{(N-df_{eff})/df_{res}}]
+<h1><span class="math inline">\(\omega^2\)</span>p : partial
+omega-squared</h1>
+<p>This is the <em>expected value in the population</em> of the
+proportion of <em>partial</em> variance uniquely explained by the
+associated effect. In other words,it is the unbiased version of <span
+class="math inline">\(\eta^2p\)</span>. With N being the sample size, We
+have:</p>
+<p><span class="math display">\[\omega^2p={{SS_{eff}-SS_{res} \cdot
+({df_{eff}/df_{res}) \cdot }}\over{ SS_{eff}+SS_{res} \cdot
+[{(N-df_{eff})/df_{res}}]
 }}\]</span></p>
-<p>It’s clear that omega is similat to <span class="math inline">\(\eta^2p\)</span>, but applies a correction for the degress of freedom. In fact, as N increases, the two indices converge.</p>
+<p>It’s clear that omega is similat to <span
+class="math inline">\(\eta^2p\)</span>, but applies a correction for the
+degress of freedom. In fact, as N increases, the two indices
+converge.</p>
 </div>
 <div id="epsilon2p-epsilon-squared" class="section level1">
-<h1><span class="math inline">\(\epsilon^2\)</span>p : epsilon-squared</h1>
-<p>Epsilon-squared is another correction of <span class="math inline">\(\eta^2\)</span>, but the correction involves only the estimation of the sum of squares of the effect, not the partial variance on which the effect is compared</p>
-<p><span class="math display">\[\epsilon^2={{SS_{eff}-SS_{res} \cdot ({df_{eff}/df_{res}) \cdot }}\over{ SS_{model}+SS_{res}}}\]</span></p>
+<h1><span class="math inline">\(\epsilon^2\)</span>p :
+epsilon-squared</h1>
+<p>Epsilon-squared is another correction of <span
+class="math inline">\(\eta^2\)</span>, but the correction involves only
+the estimation of the sum of squares of the effect, not the partial
+variance on which the effect is compared</p>
+<p><span class="math display">\[\epsilon^2={{SS_{eff}-SS_{res} \cdot
+({df_{eff}/df_{res}) \cdot }}\over{ SS_{model}+SS_{res}}}\]</span></p>
 </div>
 <div id="epsilon2p-partial-epsilon-squared" class="section level1">
-<h1><span class="math inline">\(\epsilon^2\)</span>p : partial epsilon-squared</h1>
-<p>As for the non-partial Epsilon, the partial Epsilon-squared is a correction of <span class="math inline">\(\eta^2p\)</span>, but the correction involves only the estimation of the sum of squares of the effect, not the partial variance on which the effect is compared</p>
-<p><span class="math display">\[\epsilon^2p={{SS_{eff}-SS_{res} \cdot ({df_{eff}/df_{res}) \cdot }}\over{ SS_{eff}+SS_{res}}}\]</span></p>
+<h1><span class="math inline">\(\epsilon^2\)</span>p : partial
+epsilon-squared</h1>
+<p>As for the non-partial Epsilon, the partial Epsilon-squared is a
+correction of <span class="math inline">\(\eta^2p\)</span>, but the
+correction involves only the estimation of the sum of squares of the
+effect, not the partial variance on which the effect is compared</p>
+<p><span class="math display">\[\epsilon^2p={{SS_{eff}-SS_{res} \cdot
+({df_{eff}/df_{res}) \cdot }}\over{ SS_{eff}+SS_{res}}}\]</span></p>
 </div>
 <div id="simple-effects" class="section level1">
 <h1>Simple Effects</h1>
-<p>From version 2.6.1 on, all the effect size indices are available also for the simple effects. To compute them, <span class="modulename">GAMLj</span> extracts the SS of the simple effect from <code>R emmeans</code> F-tests. The SS residuals and SS model is extracted from the model summary, given that both SS do not change when simple effects are computed. Then the indices are computed using the previously described formulas.</p>
-<p>In particular, if the simple effect is <span class="math inline">\(se\)</span>: <span class="math display">\[SS_{res}=\sigma^2\cdot df_{res}\]</span></p>
-<p>where <span class="math inline">\(\sigma\)</span> is extracted as <code>sigma(model)</code>.</p>
-<p><span class="math display">\[SS_{model}={{F_{model}\cdot df_{model}} \cdot {SS_{res} \over {df_{res}}}}\]</span></p>
+<p>From version 2.6.1 on, all the effect size indices are available also
+for the simple effects. To compute them, <span
+class="modulename">GAMLj</span> extracts the SS of the simple effect
+from <code>R emmeans</code> F-tests. The SS residuals and SS model is
+extracted from the model summary, given that both SS do not change when
+simple effects are computed. Then the indices are computed using the
+previously described formulas.</p>
+<p>In particular, if the simple effect is <span
+class="math inline">\(se\)</span>: <span
+class="math display">\[SS_{res}=\sigma^2\cdot df_{res}\]</span></p>
+<p>where <span class="math inline">\(\sigma\)</span> is extracted as
+<code>sigma(model)</code>.</p>
+<p><span class="math display">\[SS_{model}={{F_{model}\cdot df_{model}}
+\cdot {SS_{res} \over {df_{res}}}}\]</span></p>
 <p>and</p>
-<p><span class="math display">\[SS_{se}={{F_{se}\cdot df_{se}} \cdot {SS_{res} \over {df_{res}}}}\]</span></p>
+<p><span class="math display">\[SS_{se}={{F_{se}\cdot df_{se}} \cdot
+{SS_{res} \over {df_{res}}}}\]</span></p>
 </div>
 <div id="confidence-intervals" class="section level1">
 <h1>Confidence intervals</h1>
-<p>In option tab <code>Options</code> it is possible to ask additional tables for the effect size indices, containing the effect size indices and their confidence intervals (here an example with the <code>exercise</code> dataset)</p>
+<p>In option tab <code>Options</code> it is possible to ask additional
+tables for the effect size indices, containing the effect size indices
+and their confidence intervals (here an example with the
+<code>exercise</code> dataset)</p>
 <p><img src="details/glm/detail_effectsize1.png" class="img-responsive" alt=""></p>
 <p><img src="details/glm/detail_effectsize2.png" class="img-responsive" alt=""></p>
-<p>Details for the confidence intervals computation can be found in <a href="https://github.com/easystats/effectsize">Ben-Shachar, Makowski &amp; Lüdecke (2020). Compute and interpret indices of effect size. CRAN</a></p>
+<p>Details for the confidence intervals computation can be found in <a
+href="https://github.com/easystats/effectsize">Ben-Shachar, Makowski
+&amp; Lüdecke (2020). Compute and interpret indices of effect size.
+CRAN</a></p>
 <h1>
 Comments?
 </h1>
 <p>
-Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a> or <a href="mailto:mcfanda@gmail.com
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
 
 ">send me an email</a>
 </p>
@@ -533,7 +760,9 @@ Got comments, issues or spotted a bug? Please open an issue on <a href="https://
 <h1 class="unnumbered">Additional references</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-cohen2014applied" class="csl-entry">
-Cohen, Patricia, Stephen G West, and Leona S Aiken. 2014. <em>Applied Multiple Regression/Correlation Analysis for the Behavioral Sciences</em>. Psychology press.
+Cohen, Patricia, Stephen G West, and Leona S Aiken. 2014. <em>Applied
+Multiple Regression/Correlation Analysis for the Behavioral
+Sciences</em>. Psychology press.
 </div>
 </div>
 </div>

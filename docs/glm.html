@@ -377,114 +377,273 @@ div.tocify {
 </div>
 
 
-<p><strong>General Linear Model</strong> module of the GAMLj suite for jamovi</p>
-<p><span class="version"> <span class="versiontitle"> GAMLj version ≥ </span> 2.6.0 </span></p>
+<p><strong>General Linear Model</strong> module of the GAMLj suite for
+jamovi</p>
+<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 2.6.0 </span></p>
 <p><img src="glm/main.png  " class="img-responsive" alt=""></p>
-<p>The module estimates a general linear model with categorical and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, etc.</p>
+<p>The module estimates a general linear model with categorical and/or
+continuous variables, with options to facilitate estimation of
+interactions, simple slopes, simple effects, etc.</p>
 <div id="module" class="section level1">
 <h1>Module</h1>
-<p>The module can estimate OLS linear models for any combination of categorical and continuous variables, thus providing an easy way for multiple regression, ANOVA, ANCOVA and moderation analysis.</p>
+<p>The module can estimate OLS linear models for any combination of
+categorical and continuous variables, thus providing an easy way for
+multiple regression, ANOVA, ANCOVA and moderation analysis.</p>
 </div>
 <div id="estimates" class="section level1">
 <h1>Estimates</h1>
-<p>The module provides ANOVA tables and parameters estimates for any estimated model. Effect size indices (eta, partial eta, partial omega, partial epsilon, and beta) are optionally computed.</p>
-<p>Variables definition follows jamovi standards, with categorical independent variables defined in <span class="option">Factors</span> and continuous independent variables in <span class="option">Covariates</span>.</p>
+<p>The module provides ANOVA tables and parameters estimates for any
+estimated model. Effect size indices (eta, partial eta, partial omega,
+partial epsilon, and beta) are optionally computed.</p>
+<p>Variables definition follows jamovi standards, with categorical
+independent variables defined in <span class="option">Factors</span> and
+continuous independent variables in <span
+class="option">Covariates</span>.</p>
 <p><img src="glm/variables.png" class="img-responsive" alt=""></p>
-<p>Effect size indices are optionally computed by selecting the following options (see <a href="details_glm_effectsize.html">Details: GLM effect size indices</a>):</p>
+<p>Effect size indices are optionally computed by selecting the
+following options (see <a href="details_glm_effectsize.html">Details:
+GLM effect size indices</a>):</p>
 <ul>
-<li><span class="math inline">\(\beta\)</span> : standardized regression coefficients</li>
-<li><span class="math inline">\(\eta^2\)</span>: (semi-partial) eta-squared</li>
-<li><span class="math inline">\(\eta^2\)</span>p : partial eta-squared</li>
+<li><span class="math inline">\(\beta\)</span> : standardized regression
+coefficients</li>
+<li><span class="math inline">\(\eta^2\)</span>: (semi-partial)
+eta-squared</li>
+<li><span class="math inline">\(\eta^2\)</span>p : partial
+eta-squared</li>
 <li><span class="math inline">\(\omega^2\)</span> : omega-squared</li>
-<li><span class="math inline">\(\omega^2\)</span>p : partial omega-squared</li>
-<li><span class="math inline">\(\epsilon^2\)</span> : epsilon-squared</li>
-<li><span class="math inline">\(\epsilon^2\)</span>p : partial epsilon-squared</li>
+<li><span class="math inline">\(\omega^2\)</span>p : partial
+omega-squared</li>
+<li><span class="math inline">\(\epsilon^2\)</span> :
+epsilon-squared</li>
+<li><span class="math inline">\(\epsilon^2\)</span>p : partial
+epsilon-squared</li>
 </ul>
-<p>Confidence intervals of the parameters can be also selected in <span class="option">Options</span> tab.</p>
+<p>Confidence intervals of the parameters can be also selected in <span
+class="option">Options</span> tab.</p>
 <p><img src="glm/effectsize1.png" class="img-responsive" alt=""></p>
-<p>Please check the details in <a href="details_glm_effectsize.html">Details: GLM effect size indices</a></p>
+<p>Please check the details in
+<a href="details_glm_effectsize.html">Details: GLM effect size
+indices</a></p>
 </div>
 <div id="model" class="section level1">
 <h1>Model</h1>
-<p>By default, the model terms are filled in automatically for main effects and for interactions with categorical variables.</p>
+<p>By default, the model terms are filled in automatically for main
+effects and for interactions with categorical variables.</p>
 <p><img src="glm/model.png" class="img-responsive" alt=""></p>
-<p>Interactions between continuous variables or categorical and continuous variables can be set by clicking the second arrow icon.</p>
-<p>Polinomial effects for continuous variables can be added to the model. When a variable is selected in the <span class="option">Components</span> field, a little number appears on the right side of the selection. The number indicates the <em>order</em> of the effect.</p>
+<p>Interactions between continuous variables or categorical and
+continuous variables can be set by clicking the second arrow icon.</p>
+<p>Polinomial effects for continuous variables can be added to the
+model. When a variable is selected in the <span
+class="option">Components</span> field, a little number appears on the
+right side of the selection. The number indicates the <em>order</em> of
+the effect.</p>
 <p><img src="commons/pics/nonlinear1.png" class="img-responsive" alt=""></p>
-<p>By increasing that number before dragging the term into the <span class="option">Model Terms</span> field, one can include any high order effect.</p>
+<p>By increasing that number before dragging the term into the <span
+class="option">Model Terms</span> field, one can include any high order
+effect.</p>
 <p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
-<p>Increasing the order number and combining the selection with other variables allows including interactions involving higher order effects of a variable.</p>
-<p>The option <span class="option">Fixed Intercept</span> includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see <a href="https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/">here</a> before you do it ).</p>
+<p>Increasing the order number and combining the selection with other
+variables allows including interactions involving higher order effects
+of a variable.</p>
+<p>The option <span class="option">Fixed Intercept</span> includes an
+intercept in the model. Unflag it to estimate zero-intercept models
+(Regression through the origin, but see <a
+href="https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/">here</a>
+before you do it ).</p>
 </div>
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
 <p><img src="commons/pics/factorCoding.png" class="img-responsive" alt=""></p>
-<p>It allows to code the categorical variables according to different coding schemas. The coding schema applies to all parameters estimates. The default coding schema is <span class="option">simple</span>, which is centered to zero and compares each means with the reference category mean. The reference category is the first appearing in the variable levels.</p>
-<p>Note that all contrasts but <span class="option">dummy</span> guarantee to be centered to zero (intercept being the grand mean), so when involved in interactions the other variables coefficients can be interpret as (main) average effects. If contrast <span class="option">dummy</span> is set, the intercept and the effects of other variables in interactions are estimated for the first group of the categorical IV.</p>
-<p>Contrasts definitions are provided in the estimates table. More detailed definitions of the comparisons operated by the contrasts can be obtained by selecting <span class="option">Show contrast definition table</span>.</p>
-<p>Differently to standard R naming system, contrasts variables are always named with the name of the factor and progressive numbers from 1 to K-1, where K is the number of levels of the factor.</p>
-<p>In reading the contrast labels, one should interpret the <code>(1,2,3)</code> code as meaning “the mean of the levels 1,2, and 3 pooled toghether”. If factor levels 1,2 and 3 are all levels of the factor in the samples, <code>(1,2,3)</code> is equivalent to “the mean of the sample”. For example, for a three levels factor, a contrast labeled <code>1-(1,2,3)</code> means that the contrast is comparing the mean of level 1 against the mean of the sample. For the same factor, a contrast labeled <code>1-(2,3)</code> indicates a comparison between level 1 mean and the subsequent levels means pooled together.</p>
-<p>More details and examples <a href="rosetta_contrasts.html">Rosetta store: contrasts</a>.</p>
+<p>It allows to code the categorical variables according to different
+coding schemas. The coding schema applies to all parameters estimates.
+The default coding schema is <span class="option">simple</span>, which
+is centered to zero and compares each means with the reference category
+mean. The reference category is the first appearing in the variable
+levels.</p>
+<p>Note that all contrasts but <span class="option">dummy</span>
+guarantee to be centered to zero (intercept being the grand mean), so
+when involved in interactions the other variables coefficients can be
+interpret as (main) average effects. If contrast <span
+class="option">dummy</span> is set, the intercept and the effects of
+other variables in interactions are estimated for the first group of the
+categorical IV.</p>
+<p>Contrasts definitions are provided in the estimates table. More
+detailed definitions of the comparisons operated by the contrasts can be
+obtained by selecting <span class="option">Show contrast definition
+table</span>.</p>
+<p>Differently to standard R naming system, contrasts variables are
+always named with the name of the factor and progressive numbers from 1
+to K-1, where K is the number of levels of the factor.</p>
+<p>In reading the contrast labels, one should interpret the
+<code>(1,2,3)</code> code as meaning “the mean of the levels 1,2, and 3
+pooled toghether”. If factor levels 1,2 and 3 are all levels of the
+factor in the samples, <code>(1,2,3)</code> is equivalent to “the mean
+of the sample”. For example, for a three levels factor, a contrast
+labeled <code>1-(1,2,3)</code> means that the contrast is comparing the
+mean of level 1 against the mean of the sample. For the same factor, a
+contrast labeled <code>1-(2,3)</code> indicates a comparison between
+level 1 mean and the subsequent levels means pooled together.</p>
+<p>More details and examples <a href="rosetta_contrasts.html">Rosetta
+store: contrasts</a>.</p>
 </div>
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
 <p><img src="glm/xscoring.png" class="img-responsive" alt=""></p>
-<p>Continuous variables can be centered, standardized (<span class="option">z-scores</span>), log-transformed (<span class="option">Log</span>) or used as they are (<span class="option">none</span>). The default is <span class="option">centered</span> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simply select <span class="option">none</span>.</p>
-<p><span class="option">Covariates conditioning</span> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
+<p>Continuous variables can be centered, standardized (<span
+class="option">z-scores</span>), log-transformed (<span
+class="option">Log</span>) or used as they are (<span
+class="option">none</span>). The default is <span
+class="option">centered</span> because it makes our lives much easier
+when there are interactions in the model, and do not affect the B
+coefficients when there are none. Thus, if one is comparing results with
+other software that does not center the continuous variables, without
+interactions in the model one would find only a discrepancy in the
+intercept, because in GAMLj the intercept represents the expected value
+of the dependent variable for the average value of the independent
+variable. If one needs to <em>unscale</em> the variable, simply select
+<span class="option">none</span>.</p>
+<p><span class="option">Covariates conditioning</span> rules how the
+model is conditioned to different values of the continuous independent
+variables in the <em>simple effects</em> estimation and in the
+<em>plots</em> when there is an interaction in the model.</p>
 <ul>
-<li><p><span class="option">Mean+SD</span>: means that the IV is conditioned to the <span class="math inline">\(mean\)</span>, to <span class="math inline">\(mean+k \cdot sd\)</span>, and to <span class="math inline">\(mean-k\cdot sd\)</span>, where <span class="math inline">\(k\)</span> is ruled by the white field below the option. Default is 1 SD.</p></li>
-<li><p><span class="option">Percentile 50 +offset</span>: means that the IV is conditioned to the <span class="math inline">\(median\)</span>, the <span class="math inline">\(median+k P\)</span>, and the <span class="math inline">\(median-k\cdot P\)</span>, where <span class="math inline">\(P\)</span> is the offset of percentile one needs. Again, the <span class="math inline">\(P\)</span> is ruled by the white field below the option. Default is 25%. The default conditions the model to:</p>
+<li><p><span class="option">Mean+SD</span>: means that the IV is
+conditioned to the <span class="math inline">\(mean\)</span>, to <span
+class="math inline">\(mean+k \cdot sd\)</span>, and to <span
+class="math inline">\(mean-k\cdot sd\)</span>, where <span
+class="math inline">\(k\)</span> is ruled by the white field below the
+option. Default is 1 SD.</p></li>
+<li><p><span class="option">Percentile 50 +offset</span>: means that the
+IV is conditioned to the <span class="math inline">\(median\)</span>,
+the <span class="math inline">\(median+k P\)</span>, and the <span
+class="math inline">\(median-k\cdot P\)</span>, where <span
+class="math inline">\(P\)</span> is the offset of percentile one needs.
+Again, the <span class="math inline">\(P\)</span> is ruled by the white
+field below the option. Default is 25%. The default conditions the model
+to:</p>
 <ul>
-<li><p><span class="math inline">\(50^{th}-25^{th}=25^{th}\)</span> percentile</p></li>
+<li><p><span class="math inline">\(50^{th}-25^{th}=25^{th}\)</span>
+percentile</p></li>
 <li><p><span class="math inline">\(50^{th}\)</span> percentile</p></li>
-<li><p><span class="math inline">\(50^{th}+25^{th}=75^{th}\)</span> percentile</p></li>
+<li><p><span class="math inline">\(50^{th}+25^{th}=75^{th}\)</span>
+percentile</p></li>
 </ul></li>
 </ul>
 <p>The offset should be within 5 and 50.</p>
-<p>Note that with either of these two options, one can estimate simple effects and plots for any value of the continuous IV.</p>
-<p><span class="option">Covariates labeling</span> decides which label should be associated with the estimates and plots of simple effects as follows:</p>
+<p>Note that with either of these two options, one can estimate simple
+effects and plots for any value of the continuous IV.</p>
+<p><span class="option">Covariates labeling</span> decides which label
+should be associated with the estimates and plots of simple effects as
+follows:</p>
 <ul>
-<li><p><span class="option">Labels</span> produces strings of the form <span class="math inline">\(Mean \pm SD\)</span></p></li>
-<li><p><span class="option">Values</span> uses the actual values of the variables</p></li>
-<li><p><span class="option">Labels+Values</span> produces labels of the form <span class="math inline">\(Mean \pm SD=XXXX\)</span>, where <code>XXXX</code> is the actual value.</p></li>
+<li><p><span class="option">Labels</span> produces strings of the form
+<span class="math inline">\(Mean \pm SD\)</span></p></li>
+<li><p><span class="option">Values</span> uses the actual values of the
+variables</p></li>
+<li><p><span class="option">Labels+Values</span> produces labels of the
+form <span class="math inline">\(Mean \pm SD=XXXX\)</span>, where
+<code>XXXX</code> is the actual value.</p></li>
 </ul>
-<p>The option <span class="option">Dependent variable</span> scale allows to transform the dependent variable. The dependent variable can be centered, standardized (<span class="option">z-scores</span>), log-transformed (<span class="option">Log</span>) or used as they are (<span class="option">none</span>). The default is <span class="option">none</span>, so no transformation is applied.</p>
+<p>The option <span class="option">Dependent variable</span> scale
+allows to transform the dependent variable. The dependent variable can
+be centered, standardized (<span class="option">z-scores</span>),
+log-transformed (<span class="option">Log</span>) or used as they are
+(<span class="option">none</span>). The default is <span
+class="option">none</span>, so no transformation is applied.</p>
 </div>
 <div id="post-hocs" class="section level1">
 <h1>Post-hocs</h1>
 <p><img src="commons/pics/posthoc.png" class="img-responsive" alt=""></p>
-<p>Post-hoc tests can be accomplished for the categorical variables groups by selecting the appropriated factor and flag the required tests</p>
-<p>Post-hoc tests are implemented based on R package <em>emmeans</em>. All tecnical info can be found <a href="https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#pairwise">here</a></p>
+<p>Post-hoc tests can be accomplished for the categorical variables
+groups by selecting the appropriated factor and flag the required
+tests</p>
+<p>Post-hoc tests are implemented based on R package <em>emmeans</em>.
+All tecnical info can be found <a
+href="https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#pairwise">here</a></p>
 </div>
 <div id="plots" class="section level1">
 <h1>Plots</h1>
 <p><img src="glm/plots.png" class="img-responsive" alt=""></p>
-<p>The “plots” menu allows for plotting main effects and interactions for any combination of types of variables, making it easy to plot interaction means plots, simple slopes, and combinations of them. The best plot is chosen automatically.</p>
-<p>By filling in <span class="option">Horizontal axis</span> one obtains the group means of the selected factor or the regression line for the selected covariate</p>
-<p>By filling in <span class="option">Horizontal axis</span> and <span class="option">Separated lines</span> one obtains a different plot depending on the type of variables selected:</p>
+<p>The “plots” menu allows for plotting main effects and interactions
+for any combination of types of variables, making it easy to plot
+interaction means plots, simple slopes, and combinations of them. The
+best plot is chosen automatically.</p>
+<p>By filling in <span class="option">Horizontal axis</span> one obtains
+the group means of the selected factor or the regression line for the
+selected covariate</p>
+<p>By filling in <span class="option">Horizontal axis</span> and <span
+class="option">Separated lines</span> one obtains a different plot
+depending on the type of variables selected:</p>
 <ul>
-<li><span class="option">Horizontal axis</span> and <span class="option">Separated lines</span> are both factors, one obtains the interaction plot of group means.</li>
-<li><span class="option">Horizontal axis</span> is a factor and <span class="option">Separated lines</span> is a covariate. One obtains the plot of group means of the factor estimated at three different levels of the covariate. The levels are decided by the <span class="option">Covariates conditioning</span> options above.</li>
-<li><span class="option">Horizontal axis</span> and <span class="option">Separated lines</span> are covariates. One obtains the simple slopes graph of the simple slopes of the variable in horizontal axis estimated at three different levels of the covariate.</li>
+<li><span class="option">Horizontal axis</span> and <span
+class="option">Separated lines</span> are both factors, one obtains the
+interaction plot of group means.</li>
+<li><span class="option">Horizontal axis</span> is a factor and <span
+class="option">Separated lines</span> is a covariate. One obtains the
+plot of group means of the factor estimated at three different levels of
+the covariate. The levels are decided by the <span
+class="option">Covariates conditioning</span> options above.</li>
+<li><span class="option">Horizontal axis</span> and <span
+class="option">Separated lines</span> are covariates. One obtains the
+simple slopes graph of the simple slopes of the variable in horizontal
+axis estimated at three different levels of the covariate.</li>
 </ul>
-<p>By filling in <span class="option">Separate plots</span> one can probe three-way interactions. If the selected variable is a factor, one obtains a two-way graph (as previously defined) for each level of the “Separate plots” variable. If the selected variable is a covariate, one obtains a two-way graph (as previously defined) for the <code>Separate plots</code> variable centered to conditioning values selected in the <span class="option">Covariates conditioning</span> options.</p>
-<p>Flagging the <span class="option">Display</span> options add <span class="option">Confidence intervals</span> (or confidence bands) or <span class="option">Standard errors</span> to the plots.</p>
-<p><span class="option">Plot</span> options allows to add observed data to the plot (<span class="option">Observed scores</span>) or to fix the range of the plot to the actual range of the dependent variable (<span class="option">Y-axis observed range</span>), without the need to plot the actual predicted values. When <code>Separate plots</code> are required, in each plot are showed only the observed scores of the moderator level for which the plot is done when the moderator is a categorical one, otherwise all data are plot in each plot.</p>
+<p>By filling in <span class="option">Separate plots</span> one can
+probe three-way interactions. If the selected variable is a factor, one
+obtains a two-way graph (as previously defined) for each level of the
+“Separate plots” variable. If the selected variable is a covariate, one
+obtains a two-way graph (as previously defined) for the
+<code>Separate plots</code> variable centered to conditioning values
+selected in the <span class="option">Covariates conditioning</span>
+options.</p>
+<p>Flagging the <span class="option">Display</span> options add <span
+class="option">Confidence intervals</span> (or confidence bands) or
+<span class="option">Standard errors</span> to the plots.</p>
+<p><span class="option">Plot</span> options allows to add observed data
+to the plot (<span class="option">Observed scores</span>) or to fix the
+range of the plot to the actual range of the dependent variable (<span
+class="option">Y-axis observed range</span>), without the need to plot
+the actual predicted values. When <code>Separate plots</code> are
+required, in each plot are showed only the observed scores of the
+moderator level for which the plot is done when the moderator is a
+categorical one, otherwise all data are plot in each plot.</p>
 </div>
 <div id="estimated-marginal-means" class="section level1">
 <h1>Estimated marginal means</h1>
 <p><img src="commons/pics/emmeans.png" class="img-responsive" alt=""></p>
-<p>Print the estimate expected means, SE, df and confidence intervals of the precicted dependent variable by factors in the model. When `<span class="option">Include covariates</span> is selected, factors levels are crossed also with the conditiong levels of the continuous variables (if any). The conditioning values are selected in <span class="option">Covariates Scaling</span> panel.</p>
+<p>Print the estimate expected means, SE, df and confidence intervals of
+the precicted dependent variable by factors in the model. When `<span
+class="option">Include covariates</span> is selected, factors levels are
+crossed also with the conditiong levels of the continuous variables (if
+any). The conditioning values are selected in <span
+class="option">Covariates Scaling</span> panel.</p>
 </div>
 <div id="assumptions-checks" class="section level1">
 <h1>Assumptions checks</h1>
 <p><img src="glm/assumptions.png" class="img-responsive" alt=""></p>
 <ul>
-<li><p><span class="option">Homogeneity tests</span> provides <a href="https://biostats.w.uib.no/test-for-homogeneity-of-variances-levenes-test/" target="_blank">Levene’s test</a> for equal variances across groups defined by factors (homoschedasticity).</p></li>
-<li><p><span class="option">Test normality of residuals</span> provides <a href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test" target="_blank">Kolmogorov-Smirnov</a> and <a href="https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation" target="_blank">Shapiro-Wilk</a> tests for normality of residuals.</p></li>
-<li><p><span class="option">Q-Q plot of residuals</span> outputs a Q-Q plot (observed residual quantiles on expected residual quantiles). More general info <a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot" target="_blank">here</a></p></li>
-<li><p><span class="option">Residuals histogram</span> outputs the histogram of the distribution of the residuals, with an overlaying ideal normal distribution with mean and variance equal to the residuals distribution parameters.</p></li>
-<li><p><span class="option">Residuals-Predicted plot</span> produces a scatterplot with the residuals on the Y-axis and the predicted in the X-axis. It can be usufull to assess heteroschdasticity.</p></li>
+<li><p><span class="option">Homogeneity tests</span> provides <a
+href="https://biostats.w.uib.no/test-for-homogeneity-of-variances-levenes-test/"
+target="_blank">Levene’s test</a> for equal variances across groups
+defined by factors (homoschedasticity).</p></li>
+<li><p><span class="option">Test normality of residuals</span> provides
+<a href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test"
+target="_blank">Kolmogorov-Smirnov</a> and <a
+href="https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation"
+target="_blank">Shapiro-Wilk</a> tests for normality of
+residuals.</p></li>
+<li><p><span class="option">Q-Q plot of residuals</span> outputs a Q-Q
+plot (observed residual quantiles on expected residual quantiles). More
+general info <a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot"
+target="_blank">here</a></p></li>
+<li><p><span class="option">Residuals histogram</span> outputs the
+histogram of the distribution of the residuals, with an overlaying ideal
+normal distribution with mean and variance equal to the residuals
+distribution parameters.</p></li>
+<li><p><span class="option">Residuals-Predicted plot</span> produces a
+scatterplot with the residuals on the Y-axis and the predicted in the
+X-axis. It can be usufull to assess heteroschdasticity.</p></li>
 </ul>
 </div>
 <div id="options" class="section level1">
@@ -494,18 +653,23 @@ div.tocify {
 <ul>
 <li><p><strong><code>Additional Info</code></strong></p>
 <ul>
-<li><span class="option">On intercept</span>_ provides effect size for the intercept</li>
-<li><span class="option">On Effect sizes</span>: outputs a new table with all effect sizes available, with confidence intervals</li>
-<li>see <a href="details_glm_effectsize.html">Details: GLM effect size indices</a></li>
+<li><span class="option">On intercept</span>_ provides effect size for
+the intercept</li>
+<li><span class="option">On Effect sizes</span>: outputs a new table
+with all effect sizes available, with confidence intervals</li>
+<li>see <a href="details_glm_effectsize.html">Details: GLM effect size
+indices</a></li>
 </ul></li>
 </ul>
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
-<p>Some worked out examples of the analyses carried out with jamovi GAMLj are posted here (more to come)</p>
+<p>Some worked out examples of the analyses carried out with jamovi
+GAMLj are posted here (more to come)</p>
 <ul>
 <li>
-<a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a>
+<a href="glm_example1.html">GLM: Multiple regression, moderated
+regression, and simple slopes</a>
 </li>
 <li>
 <a href="glm_example2.html">Polynomial Effects</a>
@@ -514,10 +678,16 @@ div.tocify {
 </div>
 <div id="details" class="section level1">
 <h1>Details</h1>
-<p>Some more information about the module specs can be found here # Specs</p>
+<p>Some more information about the module specs can be found here #
+Specs</p>
 <ul>
 <li>
-<a href="details_glm_effectsize.html">Details: GLM effect size indices</a>
+<a href="details_glm_effectsize.html">Details: GLM effect size
+indices</a>
+</li>
+<li>
+<a href="details_goodness.html">Details: Model goodness of fit in
+GAMLj</a>
 </li>
 <li>
 <a href="posthoc_specs.html">Post-hocs Details</a>
@@ -527,7 +697,9 @@ div.tocify {
 Comments?
 </h1>
 <p>
-Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a> or <a href="mailto:mcfanda@gmail.com
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
 
 ">send me an email</a>
 </p>

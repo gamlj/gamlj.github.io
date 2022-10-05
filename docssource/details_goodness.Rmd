@@ -1,0 +1,63 @@
+---
+title: 'Details: Model goodness of fit in GAMLj'
+nickname: details_goodness
+bibliography: 
+     - bib.bib
+     - bib.yaml
+link-citations: true
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+topic: glm
+category: details
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(fontawesome)
+options(scipen=999)
+
+```
+
+
+
+```{r echo=FALSE,results='hide'}
+library(mcdocs)
+mcdocs_init()
+```
+
+`r keywords("jamovi, GLM, Mixed, effect size indices, R-squared, loglikelihood ratio test")`
+
+`r version("3.0.0")` 
+
+# Introduction
+
+Here you can find information regarding the R-squared computed for different models and their associated inferential tests.
+
+# GLM (linear model)
+
+The R-squared produced by `r modulename()` is the standard R-squared produced by virtually any statistical software . It is computed as $SS_{model}$ divided by $SS_{total}$. In `r modulename()`, it is extracted from the R model object by `performance::r2(model)` (@parameters). The adjusted R squared is computed as 
+
+$$R_{adj}^2={{SS_{model}-SS_{res} \cdot ({df_{model}/df_{res}) \cdot }}\over{ SS_{model}+SS_{res}(df_{res}+1)/df_{res}}}$$
+
+The F-tests associated to the R-squares tests the null-hypothesis that the model predictors explain no variance, which is equivalent to compare the model at hand with an intercept-only model. 
+
+
+# GzLM (Generalized linear Models)
+
+For the generalized linear model, the R-squared
+
+
+`r issues()`
+
+
+
+# Additional references

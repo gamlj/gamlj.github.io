@@ -372,13 +372,18 @@ div.tocify {
 
 <div id="post-hocs" class="section level1">
 <h1>Post Hocs</h1>
-<p>Post-hocs tests are performed as implemented in the <a href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans package</a>. In particular, the actual implementation is as follows (for any given model term selected by the user) :</p>
+<p>Post-hocs tests are performed as implemented in the <a
+href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans
+package</a>. In particular, the actual implementation is as follows (for
+any given model term selected by the user) :</p>
 <pre><code>      formula &lt;- as.formula(paste(&#39;~&#39;, term))
       referenceGrid &lt;- emmeans::emmeans(private$.model, formula)
       bonferroni &lt;- summary(pairs(referenceGrid, adjust=&#39;bonferroni&#39;))
       holm &lt;- summary(pairs(referenceGrid, adjust=&#39;holm&#39;))
       tukey&lt;-summary(pairs(referenceGrid, adjust=&#39;tukey&#39;))</code></pre>
-<p>In <code>Mixed</code> module only <code>bonferroni</code> and <code>holm</code> methods are implemented yet, because I did not find enough evidence in the literature in support of other methods.</p>
+<p>In <code>Mixed</code> module only <code>bonferroni</code> and
+<code>holm</code> methods are implemented yet, because I did not find
+enough evidence in the literature in support of other methods.</p>
 </div>
 
 

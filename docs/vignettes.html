@@ -371,14 +371,18 @@ div.tocify {
 </div>
 
 
-<p><span class="version"> <span class="versiontitle"> GAMLj version ≥ </span> 2.4.0 </span></p>
+<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 2.4.0 </span></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p><span class="modulename">GAMLj</span> module can be installed and used in R as a standard R packages. Please check the R help for details. Here we provide some appliactions of the package in R.</p>
+<p><span class="modulename">GAMLj</span> module can be installed and
+used in R as a standard R packages. Please check the R help for details.
+Here we provide some appliactions of the package in R.</p>
 </div>
 <div id="installation" class="section level1">
 <h1>Installation</h1>
-<p>At the moment, <span class="modulename">GAMLj</span> is not in CRAN yet, so you need to install it via <code>devtools</code></p>
+<p>At the moment, <span class="modulename">GAMLj</span> is not in CRAN
+yet, so you need to install it via <code>devtools</code></p>
 <pre class="r"><code>devtools::install_github(&quot;gamlj/gamlj&quot;)</code></pre>
 <script>      var l = document.getElementsByClassName('reqn'); 
      for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
@@ -407,8 +411,10 @@ General Linear Model
 Description
 </h3>
 <p>
-General Linear Model. Estimates models using ‘lm()’ function and provides options to facilitate estimation of<br />
-interactions, simple slopes, simple effects, post-hoc tests, contrast analysis, effect size indexes and visualization of the results.
+General Linear Model. Estimates models using ‘lm()’ function and
+provides options to facilitate estimation of<br />
+interactions, simple slopes, simple effects, post-hoc tests, contrast
+analysis, effect size indexes and visualization of the results.
 </p>
 <h3>
 Usage
@@ -476,7 +482,9 @@ the data as a data frame
 </td>
 <td>
 <p>
-(optional) an object of class <code>formula</code> (or one that can be coerced to that class): a symbolic description of the model to be fitted.
+(optional) an object of class <code>formula</code> (or one that can be
+coerced to that class): a symbolic description of the model to be
+fitted.
 </p>
 </td>
 </tr>
@@ -486,7 +494,8 @@ the data as a data frame
 </td>
 <td>
 <p>
-a string naming the dependent variable; the variable must be numeric. Not needed if <code>formula</code> is used.
+a string naming the dependent variable; the variable must be numeric.
+Not needed if <code>formula</code> is used.
 </p>
 </td>
 </tr>
@@ -496,7 +505,8 @@ a string naming the dependent variable; the variable must be numeric. Not needed
 </td>
 <td>
 <p>
-a vector of strings naming the fixed factors. Not needed if <code>formula</code> is used.
+a vector of strings naming the fixed factors. Not needed if
+<code>formula</code> is used.
 </p>
 </td>
 </tr>
@@ -506,7 +516,8 @@ a vector of strings naming the fixed factors. Not needed if <code>formula</code>
 </td>
 <td>
 <p>
-a vector of strings naming the covariates (continuous variables). Not needed if <code>formula</code> is used.
+a vector of strings naming the covariates (continuous variables). Not
+needed if <code>formula</code> is used.
 </p>
 </td>
 </tr>
@@ -516,7 +527,8 @@ a vector of strings naming the covariates (continuous variables). Not needed if 
 </td>
 <td>
 <p>
-a list of character vectors describing fixed effects terms. Not needed if <code>formula</code> is used.
+a list of character vectors describing fixed effects terms. Not needed
+if <code>formula</code> is used.
 </p>
 </td>
 </tr>
@@ -526,7 +538,8 @@ a list of character vectors describing fixed effects terms. Not needed if <code>
 </td>
 <td>
 <p>
-<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed intercept. Not needed if <code>formula</code> is used.
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used.
 </p>
 </td>
 </tr>
@@ -536,7 +549,8 @@ a list of character vectors describing fixed effects terms. Not needed if <code>
 </td>
 <td>
 <p>
-<code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in tables
+<code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in
+tables
 </p>
 </td>
 </tr>
@@ -546,7 +560,8 @@ a list of character vectors describing fixed effects terms. Not needed if <code>
 </td>
 <td>
 <p>
-a number between 50 and 99.9 (default: 95) specifying the confidence interval width for the parameter estimates
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width for the parameter estimates
 </p>
 </td>
 </tr>
@@ -556,7 +571,13 @@ a number between 50 and 99.9 (default: 95) specifying the confidence interval wi
 </td>
 <td>
 <p>
-a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> specifying the type of contrast to use, one of <code>‘deviation’</code>, <code>‘simple’</code>, <code>‘dummy’</code>, <code>‘difference’</code>, <code>‘helmert’</code>, <code>‘repeated’</code> or <code>‘polynomial’</code>. If NULL, <code>‘simple’</code> is used. Can also be passed as a list of list of the form <code>list(list(var=‘var1’,type=‘type1’))</code>.
+a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code>
+specifying the type of contrast to use, one of <code>‘deviation’</code>,
+<code>‘simple’</code>, <code>‘dummy’</code>, <code>‘difference’</code>,
+<code>‘helmert’</code>, <code>‘repeated’</code> or
+<code>‘polynomial’</code>. If NULL, <code>‘simple’</code> is used. Can
+also be passed as a list of list of the form
+<code>list(list(var=‘var1’,type=‘type1’))</code>.
 </p>
 </td>
 </tr>
@@ -566,7 +587,8 @@ a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> spe
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), shows raw names of the contrasts variables
+<code>TRUE</code> or <code>FALSE</code> (default), shows raw names of
+the contrasts variables
 </p>
 </td>
 </tr>
@@ -576,7 +598,8 @@ a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> spe
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), shows contrast coefficients tables
+<code>TRUE</code> or <code>FALSE</code> (default), shows contrast
+coefficients tables
 </p>
 </td>
 </tr>
@@ -616,7 +639,8 @@ a string naming the variable defining the levels for multiple plots
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), plot raw data along the predicted values
+<code>TRUE</code> or <code>FALSE</code> (default), plot raw data along
+the predicted values
 </p>
 </td>
 </tr>
@@ -626,7 +650,8 @@ a string naming the variable defining the levels for multiple plots
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), set the Y-axis range equal to the range of the observed values.
+<code>TRUE</code> or <code>FALSE</code> (default), set the Y-axis range
+equal to the range of the observed values.
 </p>
 </td>
 </tr>
@@ -636,7 +661,9 @@ a string naming the variable defining the levels for multiple plots
 </td>
 <td>
 <p>
-<code>‘none’</code> (default), <code>‘ci’</code>, or <code>‘se’</code>. Use no error bars, use confidence intervals, or use standard errors on the plots, respectively.
+<code>‘none’</code> (default), <code>‘ci’</code>, or <code>‘se’</code>.
+Use no error bars, use confidence intervals, or use standard errors on
+the plots, respectively.
 </p>
 </td>
 </tr>
@@ -646,7 +673,8 @@ a string naming the variable defining the levels for multiple plots
 </td>
 <td>
 <p>
-a number between 50 and 99.9 (default: 95) specifying the confidence interval width for the plots.
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width for the plots.
 </p>
 </td>
 </tr>
@@ -656,7 +684,8 @@ a number between 50 and 99.9 (default: 95) specifying the confidence interval wi
 </td>
 <td>
 <p>
-a rhs formula with the terms specifying the table to apply the comparisons (of the form <code>‘~x+x:z’</code>
+a rhs formula with the terms specifying the table to apply the
+comparisons (of the form <code>‘~x+x:z’</code>
 </p>
 </td>
 </tr>
@@ -666,7 +695,8 @@ a rhs formula with the terms specifying the table to apply the comparisons (of t
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans statistics
+<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans
+statistics
 </p>
 </td>
 </tr>
@@ -676,7 +706,10 @@ a rhs formula with the terms specifying the table to apply the comparisons (of t
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans statistics conditioned to different values of the continuous variables in the model. Which levels of the continuous variable should be used is set by the <code>simpleScale</code> option.
+<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans
+statistics conditioned to different values of the continuous variables
+in the model. Which levels of the continuous variable should be used is
+set by the <code>simpleScale</code> option.
 </p>
 </td>
 </tr>
@@ -696,7 +729,8 @@ The variable for which the simple effects (slopes) are computed
 </td>
 <td>
 <p>
-the variable that provides the levels at which the simple effects are computed
+the variable that provides the levels at which the simple effects are
+computed
 </p>
 </td>
 </tr>
@@ -716,7 +750,8 @@ a moderator of the two-way interaction which is probed
 </td>
 <td>
 <p>
-<code>‘mean_sd’</code> (default), <code>‘custom’</code> , or <code>‘percent’</code>. Use to condition the covariates (if any)
+<code>‘mean_sd’</code> (default), <code>‘custom’</code> , or
+<code>‘percent’</code>. Use to condition the covariates (if any)
 </p>
 </td>
 </tr>
@@ -726,7 +761,8 @@ a moderator of the two-way interaction which is probed
 </td>
 <td>
 <p>
-how many st.deviations around the means used to condition simple effects and plots. Used if <code>simpleScale</code>=<code>‘mean_sd’</code>
+how many st.deviations around the means used to condition simple effects
+and plots. Used if <code>simpleScale</code>=<code>‘mean_sd’</code>
 </p>
 </td>
 </tr>
@@ -736,7 +772,9 @@ how many st.deviations around the means used to condition simple effects and plo
 </td>
 <td>
 <p>
-offsett (number of percentiles) around the median used to condition simple effects and plots. Used if <code>simpleScale</code>=<code>‘percent’</code>
+offsett (number of percentiles) around the median used to condition
+simple effects and plots. Used if
+<code>simpleScale</code>=<code>‘percent’</code>
 </p>
 </td>
 </tr>
@@ -746,7 +784,9 @@ offsett (number of percentiles) around the median used to condition simple effec
 </td>
 <td>
 <p>
-how the levels of a continuous moderator should appear in tables and plots: <code>labels</code>, <code>values</code> and <code>values_labels</code>.
+how the levels of a continuous moderator should appear in tables and
+plots: <code>labels</code>, <code>values</code> and
+<code>values_labels</code>.
 </p>
 </td>
 </tr>
@@ -756,7 +796,9 @@ how the levels of a continuous moderator should appear in tables and plots: <cod
 </td>
 <td>
 <p>
-one or more of <code>‘none’</code>, <code>‘bonf’</code>, or <code>‘holm’</code>; provide no, Bonferroni, and Holm Post Hoc corrections respectively.
+one or more of <code>‘none’</code>, <code>‘bonf’</code>, or
+<code>‘holm’</code>; provide no, Bonferroni, and Holm Post Hoc
+corrections respectively.
 </p>
 </td>
 </tr>
@@ -766,7 +808,11 @@ one or more of <code>‘none’</code>, <code>‘bonf’</code>, or <code>‘hol
 </td>
 <td>
 <p>
-a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>. Types are <code>‘centered’</code> to the mean, <code>‘standardized’</code>, log-transformed <code>‘log’</code> or <code>‘none’</code>. <code>‘none’</code> leaves the variable as it is. It can also be passed as a list of lists.
+a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>.
+Types are <code>‘centered’</code> to the mean,
+<code>‘standardized’</code>, log-transformed <code>‘log’</code> or
+<code>‘none’</code>. <code>‘none’</code> leaves the variable as it is.
+It can also be passed as a list of lists.
 </p>
 </td>
 </tr>
@@ -776,9 +822,14 @@ a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>. Ty
 </td>
 <td>
 <p>
-a list of effect sizes to print out. They can be: <code>‘eta’</code> for eta-squared, <code>‘etap’</code> for partial eta-squared, <code>‘omega’</code> for omega-squared, <code>‘omegap’</code> for partial omega-squared<br />
-<code>‘epsilon’</code> for epsilon-squared <code>‘epsilonp’</code> for partial epsilon-squared,<br />
-and <code>‘beta’</code> for standardized coefficients (betas). Default is <code>beta</code> and <code>etap</code>.
+a list of effect sizes to print out. They can be: <code>‘eta’</code> for
+eta-squared, <code>‘etap’</code> for partial eta-squared,
+<code>‘omega’</code> for omega-squared, <code>‘omegap’</code> for
+partial omega-squared<br />
+<code>‘epsilon’</code> for epsilon-squared <code>‘epsilonp’</code> for
+partial epsilon-squared,<br />
+and <code>‘beta’</code> for standardized coefficients (betas). Default
+is <code>beta</code> and <code>etap</code>.
 </p>
 </td>
 </tr>
@@ -788,7 +839,8 @@ and <code>‘beta’</code> for standardized coefficients (betas). Default is <c
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), perform homogeneity tests
+<code>TRUE</code> or <code>FALSE</code> (default), perform homogeneity
+tests
 </p>
 </td>
 </tr>
@@ -798,7 +850,8 @@ and <code>‘beta’</code> for standardized coefficients (betas). Default is <c
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide a Q-Q plot of residuals
+<code>TRUE</code> or <code>FALSE</code> (default), provide a Q-Q plot of
+residuals
 </p>
 </td>
 </tr>
@@ -808,7 +861,8 @@ and <code>‘beta’</code> for standardized coefficients (betas). Default is <c
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide a test for normality of residuals
+<code>TRUE</code> or <code>FALSE</code> (default), provide a test for
+normality of residuals
 </p>
 </td>
 </tr>
@@ -818,7 +872,8 @@ and <code>‘beta’</code> for standardized coefficients (betas). Default is <c
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide a histogram of residuals superimposed by a normal distribution
+<code>TRUE</code> or <code>FALSE</code> (default), provide a histogram
+of residuals superimposed by a normal distribution
 </p>
 </td>
 </tr>
@@ -828,7 +883,8 @@ and <code>‘beta’</code> for standardized coefficients (betas). Default is <c
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide a scatterplot of the residuals against predicted
+<code>TRUE</code> or <code>FALSE</code> (default), provide a scatterplot
+of the residuals against predicted
 </p>
 </td>
 </tr>
@@ -838,7 +894,8 @@ and <code>‘beta’</code> for standardized coefficients (betas). Default is <c
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide ìnformation about the intercept (F test, effect size indexes)
+<code>TRUE</code> or <code>FALSE</code> (default), provide ìnformation
+about the intercept (F test, effect size indexes)
 </p>
 </td>
 </tr>
@@ -848,7 +905,8 @@ and <code>‘beta’</code> for standardized coefficients (betas). Default is <c
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide ìnformation about the effect size indexes
+<code>TRUE</code> or <code>FALSE</code> (default), provide ìnformation
+about the effect size indexes
 </p>
 </td>
 </tr>
@@ -858,7 +916,10 @@ and <code>‘beta’</code> for standardized coefficients (betas). Default is <c
 </td>
 <td>
 <p>
-Re-scale the dependent variable. It can be <code>‘centered’</code> to the mean, <code>‘standardized’</code>, log-transformed <code>‘log’</code> or <code>‘none’</code>. <code>‘none’</code> (default) leaves the variable as it is.
+Re-scale the dependent variable. It can be <code>‘centered’</code> to
+the mean, <code>‘standardized’</code>, log-transformed
+<code>‘log’</code> or <code>‘none’</code>. <code>‘none’</code> (default)
+leaves the variable as it is.
 </p>
 </td>
 </tr>
@@ -900,8 +961,10 @@ Generalized Mixed Models
 Description
 </h3>
 <p>
-Generalized Mixed Linear Model. Estimates models using ‘lme4::glmer()’ function and provides options to facilitate estimation of<br />
-interactions, simple slopes, simple effects, post-hoc tests, contrast analysis, effect size indexes and visualization of the results.
+Generalized Mixed Linear Model. Estimates models using ‘lme4::glmer()’
+function and provides options to facilitate estimation of<br />
+interactions, simple slopes, simple effects, post-hoc tests, contrast
+analysis, effect size indexes and visualization of the results.
 </p>
 <h3>
 Usage
@@ -972,7 +1035,8 @@ the data as a data frame
 </td>
 <td>
 <p>
-(optional) the formula to use. The syntax is the same used in [lme4::lmer()]. See the examples
+(optional) the formula to use. The syntax is the same used in
+[lme4::lmer()]. See the examples
 </p>
 </td>
 </tr>
@@ -982,7 +1046,8 @@ the data as a data frame
 </td>
 <td>
 <p>
-a string naming the dependent variable from <code>data</code>, variable must be numeric
+a string naming the dependent variable from <code>data</code>, variable
+must be numeric
 </p>
 </td>
 </tr>
@@ -1022,7 +1087,8 @@ a list of character vectors describing fixed effects terms
 </td>
 <td>
 <p>
-<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed intercept
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept
 </p>
 </td>
 </tr>
@@ -1032,7 +1098,8 @@ a list of character vectors describing fixed effects terms
 </td>
 <td>
 <p>
-<code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in table
+<code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in
+table
 </p>
 </td>
 </tr>
@@ -1052,7 +1119,8 @@ a list of character vectors describing fixed effects terms
 </td>
 <td>
 <p>
-a number between 50 and 99.9 (default: 95) specifying the confidence interval width for the parameter estimates
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width for the parameter estimates
 </p>
 </td>
 </tr>
@@ -1062,7 +1130,13 @@ a number between 50 and 99.9 (default: 95) specifying the confidence interval wi
 </td>
 <td>
 <p>
-a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> specifying the type of contrast to use, one of <code>‘deviation’</code>, <code>‘simple’</code>, <code>‘dummy’</code>, <code>‘difference’</code>, <code>‘helmert’</code>, <code>‘repeated’</code> or <code>‘polynomial’</code>. If NULL, <code>‘simple’</code> is used. Can also be passed as a list of list of the form <code>list(list(var=‘var1’,type=‘type1’))</code>.
+a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code>
+specifying the type of contrast to use, one of <code>‘deviation’</code>,
+<code>‘simple’</code>, <code>‘dummy’</code>, <code>‘difference’</code>,
+<code>‘helmert’</code>, <code>‘repeated’</code> or
+<code>‘polynomial’</code>. If NULL, <code>‘simple’</code> is used. Can
+also be passed as a list of list of the form
+<code>list(list(var=‘var1’,type=‘type1’))</code>.
 </p>
 </td>
 </tr>
@@ -1072,7 +1146,8 @@ a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> spe
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide raw names of the contrasts variables
+<code>TRUE</code> or <code>FALSE</code> (default), provide raw names of
+the contrasts variables
 </p>
 </td>
 </tr>
@@ -1082,7 +1157,8 @@ a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> spe
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide contrast coefficients tables
+<code>TRUE</code> or <code>FALSE</code> (default), provide contrast
+coefficients tables
 </p>
 </td>
 </tr>
@@ -1122,7 +1198,8 @@ the variable for whose levels multiple plots are computed
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide descriptive statistics
+<code>TRUE</code> or <code>FALSE</code> (default), provide descriptive
+statistics
 </p>
 </td>
 </tr>
@@ -1132,7 +1209,8 @@ the variable for whose levels multiple plots are computed
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), scale the plot Y-Axis to the max and the min of the dependent variable observed scores.
+<code>TRUE</code> or <code>FALSE</code> (default), scale the plot Y-Axis
+to the max and the min of the dependent variable observed scores.
 </p>
 </td>
 </tr>
@@ -1142,7 +1220,9 @@ the variable for whose levels multiple plots are computed
 </td>
 <td>
 <p>
-<code>‘none’</code>, <code>‘ci’</code> (default), or <code>‘se’</code>. Use no error bars, use confidence intervals, or use standard errors on the plots, respectively
+<code>‘none’</code>, <code>‘ci’</code> (default), or <code>‘se’</code>.
+Use no error bars, use confidence intervals, or use standard errors on
+the plots, respectively
 </p>
 </td>
 </tr>
@@ -1152,7 +1232,8 @@ the variable for whose levels multiple plots are computed
 </td>
 <td>
 <p>
-a number between 50 and 99.9 (default: 95) specifying the confidence interval width
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width
 </p>
 </td>
 </tr>
@@ -1172,7 +1253,8 @@ a list of terms to perform post-hoc tests on
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans statistics
+<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans
+statistics
 </p>
 </td>
 </tr>
@@ -1182,7 +1264,8 @@ a list of terms to perform post-hoc tests on
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans statistics
+<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans
+statistics
 </p>
 </td>
 </tr>
@@ -1202,7 +1285,8 @@ The variable for which the simple effects (slopes) are computed
 </td>
 <td>
 <p>
-the variable that provides the levels at which the simple effects computed
+the variable that provides the levels at which the simple effects
+computed
 </p>
 </td>
 </tr>
@@ -1222,7 +1306,8 @@ a moderator of the two-way interaction which is probed
 </td>
 <td>
 <p>
-<code>‘mean_sd’</code> (default), <code>‘custom’</code> , or <code>‘custom_percent’</code>. Use to condition the covariates (if any)
+<code>‘mean_sd’</code> (default), <code>‘custom’</code> , or
+<code>‘custom_percent’</code>. Use to condition the covariates (if any)
 </p>
 </td>
 </tr>
@@ -1252,7 +1337,10 @@ offset value for conditioning
 </td>
 <td>
 <p>
-decide the labeling of simple effects in tables and plots. <code>labels</code> indicates that only labels are used, such as <code>Mean</code> and <code>Mean + 1 SD</code>. <code>values</code> uses the actual values as labels. <code>values_labels</code> uses both.
+decide the labeling of simple effects in tables and plots.
+<code>labels</code> indicates that only labels are used, such as
+<code>Mean</code> and <code>Mean + 1 SD</code>. <code>values</code> uses
+the actual values as labels. <code>values_labels</code> uses both.
 </p>
 </td>
 </tr>
@@ -1262,7 +1350,9 @@ decide the labeling of simple effects in tables and plots. <code>labels</code> i
 </td>
 <td>
 <p>
-one or more of <code>‘none’</code>, <code>‘bonf’</code>, or <code>‘holm’</code>; provide no, Bonferroni, and Holm Post Hoc corrections respectively
+one or more of <code>‘none’</code>, <code>‘bonf’</code>, or
+<code>‘holm’</code>; provide no, Bonferroni, and Holm Post Hoc
+corrections respectively
 </p>
 </td>
 </tr>
@@ -1272,7 +1362,13 @@ one or more of <code>‘none’</code>, <code>‘bonf’</code>, or <code>‘hol
 </td>
 <td>
 <p>
-a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>. Types are <code>‘centered’</code> to the mean, <code>‘clusterbasedcentered’</code> to the mean of each cluster, <code>‘standardized’</code>, <code>‘clusterbasedstandardized’</code> standardized within each cluster, log-transformed <code>‘log’</code>, or <code>‘none’</code>. <code>‘none’</code> leaves the variable as it is. It can also be passed as a list of lists.
+a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>.
+Types are <code>‘centered’</code> to the mean,
+<code>‘clusterbasedcentered’</code> to the mean of each cluster,
+<code>‘standardized’</code>, <code>‘clusterbasedstandardized’</code>
+standardized within each cluster, log-transformed <code>‘log’</code>, or
+<code>‘none’</code>. <code>‘none’</code> leaves the variable as it is.
+It can also be passed as a list of lists.
 </p>
 </td>
 </tr>
@@ -1282,7 +1378,8 @@ a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>. Ty
 </td>
 <td>
 <p>
-a vector of strings naming the clustering variables from <code>data</code>
+a vector of strings naming the clustering variables from
+<code>data</code>
 </p>
 </td>
 </tr>
@@ -1302,7 +1399,12 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>‘nocorr’</code>, <code>‘corr’</code> (default), or <code>‘block’</code>. When random effects are passed as list of length 1, it decides whether the effects should be correlated, non correlated. If <code>‘randomTerms’</code> is a list of lists of length &gt; 1, the option is automatially set to <code>‘block’</code>. The option is ignored if the model is passed using <code>formula</code>.
+<code>‘nocorr’</code>, <code>‘corr’</code> (default), or
+<code>‘block’</code>. When random effects are passed as list of length
+1, it decides whether the effects should be correlated, non correlated.
+If <code>‘randomTerms’</code> is a list of lists of length &gt; 1, the
+option is automatially set to <code>‘block’</code>. The option is
+ignored if the model is passed using <code>formula</code>.
 </p>
 </td>
 </tr>
@@ -1312,7 +1414,8 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), add random effects predicted values in the plot
+<code>TRUE</code> or <code>FALSE</code> (default), add random effects
+predicted values in the plot
 </p>
 </td>
 </tr>
@@ -1322,7 +1425,9 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), plot the predicted values in the linear predictor scale. If set, <code>plotRaw</code> and <code>plotDvScale</code> are ignored.
+<code>TRUE</code> or <code>FALSE</code> (default), plot the predicted
+values in the linear predictor scale. If set, <code>plotRaw</code> and
+<code>plotDvScale</code> are ignored.
 </p>
 </td>
 </tr>
@@ -1332,7 +1437,9 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-for the adaptive Gauss-Hermite log-likelihood approximation, nAGQ argument controls the number of nodes in the quadrature formula. A positive integer
+for the adaptive Gauss-Hermite log-likelihood approximation, nAGQ
+argument controls the number of nodes in the quadrature formula. A
+positive integer
 </p>
 </td>
 </tr>
@@ -1352,7 +1459,9 @@ for the adaptive Gauss-Hermite log-likelihood approximation, nAGQ argument contr
 </td>
 <td>
 <p>
-Select the generalized linear model: <code>linear</code>,<code>poisson</code>,<code>logistic</code>,<code>nb</code>, the latest being Negative Binomial
+Select the generalized linear model:
+<code>linear</code>,<code>poisson</code>,<code>logistic</code>,<code>nb</code>,
+the latest being Negative Binomial
 </p>
 </td>
 </tr>
@@ -1362,7 +1471,8 @@ Select the generalized linear model: <code>linear</code>,<code>poisson</code>,<c
 </td>
 <td>
 <p>
-Distribution family for the custom model, accepts gaussian, binomial, gamma and inverse_gaussian .
+Distribution family for the custom model, accepts gaussian, binomial,
+gamma and inverse_gaussian .
 </p>
 </td>
 </tr>
@@ -1372,7 +1482,8 @@ Distribution family for the custom model, accepts gaussian, binomial, gamma and 
 </td>
 <td>
 <p>
-Distribution family for the custom model, accepts identity, log and inverse, onemu2 (for 1/mu^2).
+Distribution family for the custom model, accepts identity, log and
+inverse, onemu2 (for 1/mu^2).
 </p>
 </td>
 </tr>
@@ -1434,8 +1545,10 @@ Generalized Linear Models
 Description
 </h3>
 <p>
-Generalized Linear Models. Estimates models using ‘glm()’ function and similar functions. It provides options to facilitate estimation of<br />
-interactions, simple slopes, simple effects, post-hoc tests, contrast analysis, effect size indexes and visualization of the results.
+Generalized Linear Models. Estimates models using ‘glm()’ function and
+similar functions. It provides options to facilitate estimation of<br />
+interactions, simple slopes, simple effects, post-hoc tests, contrast
+analysis, effect size indexes and visualization of the results.
 </p>
 <h3>
 Usage
@@ -1499,7 +1612,8 @@ the data as a data frame
 </td>
 <td>
 <p>
-a string naming the dependent variable from <code>data</code>, variable can be numeric or factor
+a string naming the dependent variable from <code>data</code>, variable
+can be numeric or factor
 </p>
 </td>
 </tr>
@@ -1539,7 +1653,8 @@ a list of character vectors describing fixed effects terms
 </td>
 <td>
 <p>
-<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed intercept
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept
 </p>
 </td>
 </tr>
@@ -1549,7 +1664,8 @@ a list of character vectors describing fixed effects terms
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), parameters CI in table
+<code>TRUE</code> or <code>FALSE</code> (default), parameters CI in
+table
 </p>
 </td>
 </tr>
@@ -1569,7 +1685,8 @@ a list of character vectors describing fixed effects terms
 </td>
 <td>
 <p>
-a number between 50 and 99.9 (default: 95) specifying the confidence interval width for the parameter estimates
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width for the parameter estimates
 </p>
 </td>
 </tr>
@@ -1579,7 +1696,13 @@ a number between 50 and 99.9 (default: 95) specifying the confidence interval wi
 </td>
 <td>
 <p>
-a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> specifying the type of contrast to use, one of <code>‘deviation’</code>, <code>‘simple’</code>, <code>‘dummy’</code>, <code>‘difference’</code>, <code>‘helmert’</code>, <code>‘repeated’</code> or <code>‘polynomial’</code>. If NULL, <code>‘simple’</code> is used. Can also be passed as a list of list of the form <code>list(list(var=‘var1’,type=‘type1’))</code>.
+a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code>
+specifying the type of contrast to use, one of <code>‘deviation’</code>,
+<code>‘simple’</code>, <code>‘dummy’</code>, <code>‘difference’</code>,
+<code>‘helmert’</code>, <code>‘repeated’</code> or
+<code>‘polynomial’</code>. If NULL, <code>‘simple’</code> is used. Can
+also be passed as a list of list of the form
+<code>list(list(var=‘var1’,type=‘type1’))</code>.
 </p>
 </td>
 </tr>
@@ -1589,7 +1712,8 @@ a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> spe
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide raw names of the contrasts variables
+<code>TRUE</code> or <code>FALSE</code> (default), provide raw names of
+the contrasts variables
 </p>
 </td>
 </tr>
@@ -1599,7 +1723,8 @@ a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> spe
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide contrast coefficients tables
+<code>TRUE</code> or <code>FALSE</code> (default), provide contrast
+coefficients tables
 </p>
 </td>
 </tr>
@@ -1639,7 +1764,8 @@ a string naming the variable to separate over to form multiple plots
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide descriptive statistics
+<code>TRUE</code> or <code>FALSE</code> (default), provide descriptive
+statistics
 </p>
 </td>
 </tr>
@@ -1659,7 +1785,9 @@ a string naming the variable to separate over to form multiple plots
 </td>
 <td>
 <p>
-<code>‘none’</code>, <code>‘ci’</code> (default), or <code>‘se’</code>. Use no error bars, use confidence intervals, or use standard errors on the plots, respectively
+<code>‘none’</code>, <code>‘ci’</code> (default), or <code>‘se’</code>.
+Use no error bars, use confidence intervals, or use standard errors on
+the plots, respectively
 </p>
 </td>
 </tr>
@@ -1669,7 +1797,8 @@ a string naming the variable to separate over to form multiple plots
 </td>
 <td>
 <p>
-a number between 50 and 99.9 (default: 95) specifying the confidence interval width
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width
 </p>
 </td>
 </tr>
@@ -1689,7 +1818,8 @@ a list of terms to perform post-hoc tests on
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans statistics
+<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans
+statistics
 </p>
 </td>
 </tr>
@@ -1699,7 +1829,8 @@ a list of terms to perform post-hoc tests on
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans statistics
+<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans
+statistics
 </p>
 </td>
 </tr>
@@ -1719,7 +1850,8 @@ The variable for which the simple effects (slopes) are computed
 </td>
 <td>
 <p>
-the variable that provides the levels at which the simple effects computed
+the variable that provides the levels at which the simple effects
+computed
 </p>
 </td>
 </tr>
@@ -1739,7 +1871,8 @@ a moderator of the two-way interaction which is probed
 </td>
 <td>
 <p>
-<code>‘mean_sd’</code> (default), <code>‘custom’</code> , or <code>‘custom_percent’</code>. Use to condition the covariates (if any)
+<code>‘mean_sd’</code> (default), <code>‘custom’</code> , or
+<code>‘custom_percent’</code>. Use to condition the covariates (if any)
 </p>
 </td>
 </tr>
@@ -1769,7 +1902,9 @@ offset value for conditioning
 </td>
 <td>
 <p>
-style for presenting condition values of a moderator. It can be <code>‘labels’</code> (default), <code>‘values’</code> or <code>‘labels_values’</code> for both.
+style for presenting condition values of a moderator. It can be
+<code>‘labels’</code> (default), <code>‘values’</code> or
+<code>‘labels_values’</code> for both.
 </p>
 </td>
 </tr>
@@ -1779,7 +1914,9 @@ style for presenting condition values of a moderator. It can be <code>‘labels�
 </td>
 <td>
 <p>
-one or more of <code>‘none’</code>, <code>‘bonf’</code>, or <code>‘holm’</code>; provide no, Bonferroni, and Holm Post Hoc corrections respectively
+one or more of <code>‘none’</code>, <code>‘bonf’</code>, or
+<code>‘holm’</code>; provide no, Bonferroni, and Holm Post Hoc
+corrections respectively
 </p>
 </td>
 </tr>
@@ -1789,7 +1926,11 @@ one or more of <code>‘none’</code>, <code>‘bonf’</code>, or <code>‘hol
 </td>
 <td>
 <p>
-a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>. Types are <code>‘centered’</code> to the mean, <code>‘standardized’</code>, log-transformed <code>‘log’</code> or <code>‘none’</code>. <code>‘none’</code> leaves the variable as it is. It can also be passed as a list of lists.
+a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>.
+Types are <code>‘centered’</code> to the mean,
+<code>‘standardized’</code>, log-transformed <code>‘log’</code> or
+<code>‘none’</code>. <code>‘none’</code> leaves the variable as it is.
+It can also be passed as a list of lists.
 </p>
 </td>
 </tr>
@@ -1809,7 +1950,8 @@ a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>. Ty
 </td>
 <td>
 <p>
-Select the generalized linear model: <code>linear</code>,<code>poisson</code>,<code>logistic</code>,<code>multinomial</code>
+Select the generalized linear model:
+<code>linear</code>,<code>poisson</code>,<code>logistic</code>,<code>multinomial</code>
 </p>
 </td>
 </tr>
@@ -1819,7 +1961,8 @@ Select the generalized linear model: <code>linear</code>,<code>poisson</code>,<c
 </td>
 <td>
 <p>
-Distribution family for the custom model, accepts gaussian, binomial, gamma and inverse_gaussian .
+Distribution family for the custom model, accepts gaussian, binomial,
+gamma and inverse_gaussian .
 </p>
 </td>
 </tr>
@@ -1829,7 +1972,8 @@ Distribution family for the custom model, accepts gaussian, binomial, gamma and 
 </td>
 <td>
 <p>
-Distribution family for the custom model, accepts identity, log and inverse, onemu2 (for 1/mu^2).
+Distribution family for the custom model, accepts identity, log and
+inverse, onemu2 (for 1/mu^2).
 </p>
 </td>
 </tr>
@@ -1884,8 +2028,10 @@ Mixed Model
 Description
 </h3>
 <p>
-Mixed Linear Model. Estimates models using ‘me4::lmer()’ function and provides options to facilitate estimation of<br />
-interactions, simple slopes, simple effects, post-hoc tests, contrast analysis, effect size indexes and visualization of the results.
+Mixed Linear Model. Estimates models using ‘me4::lmer()’ function and
+provides options to facilitate estimation of<br />
+interactions, simple slopes, simple effects, post-hoc tests, contrast
+analysis, effect size indexes and visualization of the results.
 </p>
 <h3>
 Usage
@@ -1960,7 +2106,8 @@ the data as a data frame
 </td>
 <td>
 <p>
-a string naming the dependent variable from <code>data</code>, variable must be numeric
+a string naming the dependent variable from <code>data</code>, variable
+must be numeric
 </p>
 </td>
 </tr>
@@ -2000,7 +2147,8 @@ a list of character vectors describing fixed effects terms
 </td>
 <td>
 <p>
-<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed intercept
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept
 </p>
 </td>
 </tr>
@@ -2010,7 +2158,8 @@ a list of character vectors describing fixed effects terms
 </td>
 <td>
 <p>
-<code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in table
+<code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in
+table
 </p>
 </td>
 </tr>
@@ -2020,7 +2169,8 @@ a list of character vectors describing fixed effects terms
 </td>
 <td>
 <p>
-a number between 50 and 99.9 (default: 95) specifying the confidence interval width for the parameter estimates
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width for the parameter estimates
 </p>
 </td>
 </tr>
@@ -2030,7 +2180,8 @@ a number between 50 and 99.9 (default: 95) specifying the confidence interval wi
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), produce random effects confidence intervals based on profile method
+<code>TRUE</code> or <code>FALSE</code> (default), produce random
+effects confidence intervals based on profile method
 </p>
 </td>
 </tr>
@@ -2040,7 +2191,13 @@ a number between 50 and 99.9 (default: 95) specifying the confidence interval wi
 </td>
 <td>
 <p>
-a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> specifying the type of contrast to use, one of <code>‘deviation’</code>, <code>‘simple’</code>, <code>‘dummy’</code>, <code>‘difference’</code>, <code>‘helmert’</code>, <code>‘repeated’</code> or <code>‘polynomial’</code>. If NULL, <code>‘simple’</code> is used. Can also be passed as a list of list of the form <code>list(list(var=‘var1’,type=‘type1’))</code>.
+a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code>
+specifying the type of contrast to use, one of <code>‘deviation’</code>,
+<code>‘simple’</code>, <code>‘dummy’</code>, <code>‘difference’</code>,
+<code>‘helmert’</code>, <code>‘repeated’</code> or
+<code>‘polynomial’</code>. If NULL, <code>‘simple’</code> is used. Can
+also be passed as a list of list of the form
+<code>list(list(var=‘var1’,type=‘type1’))</code>.
 </p>
 </td>
 </tr>
@@ -2050,7 +2207,8 @@ a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> spe
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide raw names of the contrasts variables
+<code>TRUE</code> or <code>FALSE</code> (default), provide raw names of
+the contrasts variables
 </p>
 </td>
 </tr>
@@ -2060,7 +2218,8 @@ a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code> spe
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide contrast coefficients tables
+<code>TRUE</code> or <code>FALSE</code> (default), provide contrast
+coefficients tables
 </p>
 </td>
 </tr>
@@ -2100,7 +2259,8 @@ the variable for whose levels multiple plots are computed
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide descriptive statistics
+<code>TRUE</code> or <code>FALSE</code> (default), provide descriptive
+statistics
 </p>
 </td>
 </tr>
@@ -2110,7 +2270,8 @@ the variable for whose levels multiple plots are computed
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), scale the plot Y-Axis to the max and the min of the dependent variable observed scores.
+<code>TRUE</code> or <code>FALSE</code> (default), scale the plot Y-Axis
+to the max and the min of the dependent variable observed scores.
 </p>
 </td>
 </tr>
@@ -2120,7 +2281,9 @@ the variable for whose levels multiple plots are computed
 </td>
 <td>
 <p>
-<code>‘none’</code>, <code>‘ci’</code> (default), or <code>‘se’</code>. Use no error bars, use confidence intervals, or use standard errors on the plots, respectively
+<code>‘none’</code>, <code>‘ci’</code> (default), or <code>‘se’</code>.
+Use no error bars, use confidence intervals, or use standard errors on
+the plots, respectively
 </p>
 </td>
 </tr>
@@ -2130,7 +2293,8 @@ the variable for whose levels multiple plots are computed
 </td>
 <td>
 <p>
-a number between 50 and 99.9 (default: 95) specifying the confidence interval width
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width
 </p>
 </td>
 </tr>
@@ -2150,7 +2314,8 @@ a list of terms to perform post-hoc tests on
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans statistics
+<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans
+statistics
 </p>
 </td>
 </tr>
@@ -2160,7 +2325,8 @@ a list of terms to perform post-hoc tests on
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans statistics
+<code>TRUE</code> or <code>FALSE</code> (default), provide lsmeans
+statistics
 </p>
 </td>
 </tr>
@@ -2180,7 +2346,8 @@ The variable for which the simple effects (slopes) are computed
 </td>
 <td>
 <p>
-the variable that provides the levels at which the simple effects computed
+the variable that provides the levels at which the simple effects
+computed
 </p>
 </td>
 </tr>
@@ -2200,7 +2367,8 @@ a moderator of the two-way interaction which is probed
 </td>
 <td>
 <p>
-<code>‘mean_sd’</code> (default), <code>‘custom’</code> , or <code>‘custom_percent’</code>. Use to condition the covariates (if any)
+<code>‘mean_sd’</code> (default), <code>‘custom’</code> , or
+<code>‘custom_percent’</code>. Use to condition the covariates (if any)
 </p>
 </td>
 </tr>
@@ -2230,7 +2398,10 @@ offset value for conditioning
 </td>
 <td>
 <p>
-decide the labeling of simple effects in tables and plots. <code>labels</code> indicates that only labels are used, such as <code>Mean</code> and <code>Mean + 1 SD</code>. <code>values</code> uses the actual values as labels. <code>values_labels</code> uses both.
+decide the labeling of simple effects in tables and plots.
+<code>labels</code> indicates that only labels are used, such as
+<code>Mean</code> and <code>Mean + 1 SD</code>. <code>values</code> uses
+the actual values as labels. <code>values_labels</code> uses both.
 </p>
 </td>
 </tr>
@@ -2240,7 +2411,9 @@ decide the labeling of simple effects in tables and plots. <code>labels</code> i
 </td>
 <td>
 <p>
-one or more of <code>‘none’</code>, <code>‘bonf’</code>, or <code>‘holm’</code>; provide no, Bonferroni, and Holm Post Hoc corrections respectively
+one or more of <code>‘none’</code>, <code>‘bonf’</code>, or
+<code>‘holm’</code>; provide no, Bonferroni, and Holm Post Hoc
+corrections respectively
 </p>
 </td>
 </tr>
@@ -2250,7 +2423,13 @@ one or more of <code>‘none’</code>, <code>‘bonf’</code>, or <code>‘hol
 </td>
 <td>
 <p>
-a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>. Types are <code>‘centered’</code> to the mean, <code>‘clusterbasedcentered’</code> to the mean of each cluster, <code>‘standardized’</code>, <code>‘clusterbasedstandardized’</code> standardized within each cluster, log-transformed <code>‘log’</code>, or <code>‘none’</code>. <code>‘none’</code> leaves the variable as it is. It can also be passed as a list of lists.
+a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>.
+Types are <code>‘centered’</code> to the mean,
+<code>‘clusterbasedcentered’</code> to the mean of each cluster,
+<code>‘standardized’</code>, <code>‘clusterbasedstandardized’</code>
+standardized within each cluster, log-transformed <code>‘log’</code>, or
+<code>‘none’</code>. <code>‘none’</code> leaves the variable as it is.
+It can also be passed as a list of lists.
 </p>
 </td>
 </tr>
@@ -2260,7 +2439,12 @@ a named vector of the form <code>c(var1=‘type1’,var2=‘type2’)</code>. Ty
 </td>
 <td>
 <p>
-Re-scale the dependent variable. It could be <code>‘centered’</code> to the mean, <code>‘clusterbasedcentered’</code> to the mean of each cluster, <code>‘standardized’</code>, <code>‘clusterbasedstandardized’</code> standardized within each cluster, log-transformed <code>‘log’</code>, or <code>‘none’</code> (default).
+Re-scale the dependent variable. It could be <code>‘centered’</code> to
+the mean, <code>‘clusterbasedcentered’</code> to the mean of each
+cluster, <code>‘standardized’</code>,
+<code>‘clusterbasedstandardized’</code> standardized within each
+cluster, log-transformed <code>‘log’</code>, or <code>‘none’</code>
+(default).
 </p>
 </td>
 </tr>
@@ -2270,7 +2454,8 @@ Re-scale the dependent variable. It could be <code>‘centered’</code> to the 
 </td>
 <td>
 <p>
-a vector of strings naming the clustering variables from <code>data</code>
+a vector of strings naming the clustering variables from
+<code>data</code>
 </p>
 </td>
 </tr>
@@ -2290,7 +2475,12 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>‘nocorr’</code>, <code>‘corr’</code> (default), or <code>‘block’</code>. When random effects are passed as list of length 1, it decides whether the effects should be correlated, non correlated. If <code>‘randomTerms’</code> is a list of lists of length &gt; 1, the option is automatially set to <code>‘block’</code>. The option is ignored if the model is passed using <code>formula</code>.
+<code>‘nocorr’</code>, <code>‘corr’</code> (default), or
+<code>‘block’</code>. When random effects are passed as list of length
+1, it decides whether the effects should be correlated, non correlated.
+If <code>‘randomTerms’</code> is a list of lists of length &gt; 1, the
+option is automatially set to <code>‘block’</code>. The option is
+ignored if the model is passed using <code>formula</code>.
 </p>
 </td>
 </tr>
@@ -2300,7 +2490,8 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>TRUE</code> (default) or <code>FALSE</code>, should the Restricted ML be used rather than ML
+<code>TRUE</code> (default) or <code>FALSE</code>, should the Restricted
+ML be used rather than ML
 </p>
 </td>
 </tr>
@@ -2310,7 +2501,8 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), LRT for the random effects
+<code>TRUE</code> or <code>FALSE</code> (default), LRT for the random
+effects
 </p>
 </td>
 </tr>
@@ -2320,7 +2512,8 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), add random effects predicted values in the plot
+<code>TRUE</code> or <code>FALSE</code> (default), add random effects
+predicted values in the plot
 </p>
 </td>
 </tr>
@@ -2350,7 +2543,8 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide a Q-Q plot of residuals
+<code>TRUE</code> or <code>FALSE</code> (default), provide a Q-Q plot of
+residuals
 </p>
 </td>
 </tr>
@@ -2360,7 +2554,8 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide a test for normality of residuals
+<code>TRUE</code> or <code>FALSE</code> (default), provide a test for
+normality of residuals
 </p>
 </td>
 </tr>
@@ -2370,7 +2565,8 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide a histogram of residuals superimposed by a normal distribution
+<code>TRUE</code> or <code>FALSE</code> (default), provide a histogram
+of residuals superimposed by a normal distribution
 </p>
 </td>
 </tr>
@@ -2380,7 +2576,8 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide a scatterplot of the residuals against predicted
+<code>TRUE</code> or <code>FALSE</code> (default), provide a scatterplot
+of the residuals against predicted
 </p>
 </td>
 </tr>
@@ -2390,7 +2587,8 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide a boxplot of random effects by the first defined clustering variable
+<code>TRUE</code> or <code>FALSE</code> (default), provide a boxplot of
+random effects by the first defined clustering variable
 </p>
 </td>
 </tr>
@@ -2400,7 +2598,8 @@ a list of lists specifying the models random effects.
 </td>
 <td>
 <p>
-<code>TRUE</code> or <code>FALSE</code> (default), provide histogram of random Coefficients
+<code>TRUE</code> or <code>FALSE</code> (default), provide histogram of
+random Coefficients
 </p>
 </td>
 </tr>
@@ -2462,7 +2661,10 @@ Assumptions checking plots
 Description
 </h3>
 <p>
-This function returns a list of plots as a ggplot objects produced by the assumptions checking options, such as ‘residPlot’, ‘normPlot’ (for continuous dependent variable models), ‘randHist’ and ‘clusterBoxplot’ (for mixed models).
+This function returns a list of plots as a ggplot objects produced by
+the assumptions checking options, such as ‘residPlot’, ‘normPlot’ (for
+continuous dependent variable models), ‘randHist’ and ‘clusterBoxplot’
+(for mixed models).
 </p>
 <h3>
 Usage
@@ -2521,8 +2723,10 @@ Extract data
 Description
 </h3>
 <p>
-This function returns a dataset with the variables in the GAMLj model<br />
-transformed according to GAMLj options. It is usefull to run additional<br />
+This function returns a dataset with the variables in the GAMLj
+model<br />
+transformed according to GAMLj options. It is usefull to run
+additional<br />
 models with other R packages with the same setup used by GAMLj
 </p>
 <h3>
@@ -2592,7 +2796,8 @@ Extract the R model
 Description
 </h3>
 <p>
-Return the estimated model object of the class lm, lmer, glm depending on the model.
+Return the estimated model object of the class lm, lmer, glm depending
+on the model.
 </p>
 <h3>
 Usage
@@ -2688,7 +2893,8 @@ a gamlj results object of the class ’gamlj*Results’
 </td>
 <td>
 <p>
-if not NULL, specifies the random effect to be included in the computation of the predicted values. Used only for the mixed models.
+if not NULL, specifies the random effect to be included in the
+computation of the predicted values. Used only for the mixed models.
 </p>
 </td>
 </tr>
@@ -2698,8 +2904,13 @@ if not NULL, specifies the random effect to be included in the computation of th
 </td>
 <td>
 <p>
-the type of prediction required. The default is on the scale of the response variables (‘response’); Thus for binomial models the default is to compute the predicted probabilities. ‘link’ gives the scale of the linear predictors;<br />
-is on the scale of the linear predictors; The ‘terms’ option returns a matrix giving the fitted values of each term in the model formula on the linear predictor scale.<br />
+the type of prediction required. The default is on the scale of the
+response variables (‘response’); Thus for binomial models the default is
+to compute the predicted probabilities. ‘link’ gives the scale of the
+linear predictors;<br />
+is on the scale of the linear predictors; The ‘terms’ option returns a
+matrix giving the fitted values of each term in the model formula on the
+linear predictor scale.<br />
 Cf. <code>stats::predict()</code>, <code>stats::predict.lm()</code>
 </p>
 </td>
@@ -2779,7 +2990,9 @@ a gamlj results object of the class ’gamlj*Results’
 </td>
 <td>
 <p>
-the type of the residuals for generalized models. The alternatives are: ‘deviance’ (default), ‘pearson’, ‘working’, ‘response’, and ‘partial’. Can be abbreviated.,<br />
+the type of the residuals for generalized models. The alternatives are:
+‘deviance’ (default), ‘pearson’, ‘working’, ‘response’, and ‘partial’.
+Can be abbreviated.,<br />
 cf. <code>stats::residuals.lm()</code>
 </p>
 </td>
@@ -2789,7 +3002,8 @@ cf. <code>stats::residuals.lm()</code>
 Details
 </h3>
 <p>
-<code>stats::predict()</code>, <code>stats::residuals.lm()</code>, <code>stats::residuals.glm()</code>
+<code>stats::predict()</code>, <code>stats::residuals.lm()</code>,
+<code>stats::residuals.glm()</code>
 </p>
 <h3>
 Value
@@ -2943,8 +3157,11 @@ GAMLj plot
 Description
 </h3>
 <p>
-This function re-estimates a GAMLj model adding a new plot. If no options is passed, extracts the<br />
-plots present in the ’gamlj*Results’ object. If one plot is present, it is returned as a ggplot2 object, if more than one is present, a list of plots is returned. FALSE is returned if no plot is present or defined.
+This function re-estimates a GAMLj model adding a new plot. If no
+options is passed, extracts the<br />
+plots present in the ’gamlj*Results’ object. If one plot is present, it
+is returned as a ggplot2 object, if more than one is present, a list of
+plots is returned. FALSE is returned if no plot is present or defined.
 </p>
 <h3>
 Usage
@@ -2972,7 +3189,8 @@ a gamlj results object of the class ‘gamlj’
 </td>
 <td>
 <p>
-a right hand side formula specifying the effect to plot, of the form ‘~x’, ’~x*z’ or ‘~x<em>z</em>w’.<br />
+a right hand side formula specifying the effect to plot, of the form
+‘~x’, ’~x*z’ or ‘~x<em>z</em>w’.<br />
 It has prevalence on other options defining a plot.
 </p>
 </td>
@@ -2983,7 +3201,8 @@ It has prevalence on other options defining a plot.
 </td>
 <td>
 <p>
-all options accepted by a gamlj model function. Relevant for new plots are ‘plotHAxis’, ‘plotSepLines’ and ‘plotSepPlots’
+all options accepted by a gamlj model function. Relevant for new plots
+are ‘plotHAxis’, ‘plotSepLines’ and ‘plotSepPlots’
 </p>
 </td>
 </tr>
@@ -3035,8 +3254,10 @@ Post-hoc test on GAMLj results
 Description
 </h3>
 <p>
-This is a convenience function to re-estimates a GAMLj model adding posthoc tests. If no options is passed, extracts the<br />
-post-hoc tests tables already in the model results (if any). If new post-hoc are defined, the post-hoc tests tables<br />
+This is a convenience function to re-estimates a GAMLj model adding
+posthoc tests. If no options is passed, extracts the<br />
+post-hoc tests tables already in the model results (if any). If new
+post-hoc are defined, the post-hoc tests tables<br />
 are returned.
 </p>
 <h3>
@@ -3066,8 +3287,11 @@ a gamlj results object of the class ‘gamlj’
 </td>
 <td>
 <p>
-all options accepted by a gamlj model function. Relevant for new tests are<br />
-‘postHoc’ (a list of list of terms), ‘postHocCorr’, a list of correction to apply: one or more of ‘none’, ‘bonf’, or ‘holm’; provide no, Bonferroni, and Holm Post Hoc corrections respectively.
+all options accepted by a gamlj model function. Relevant for new tests
+are<br />
+‘postHoc’ (a list of list of terms), ‘postHocCorr’, a list of correction
+to apply: one or more of ‘none’, ‘bonf’, or ‘holm’; provide no,
+Bonferroni, and Holm Post Hoc corrections respectively.
 </p>
 </td>
 </tr>
@@ -3077,8 +3301,10 @@ all options accepted by a gamlj model function. Relevant for new tests are<br />
 </td>
 <td>
 <p>
-a right hand side formula specifying the factors or factors combinations to test, of the form ‘~x+z’, ‘~x:z’ or ’~x*z’.<br />
-It has prevalence on other options defining a post-hoc test via character options.
+a right hand side formula specifying the factors or factors combinations
+to test, of the form ‘~x+z’, ‘~x:z’ or ’~x*z’.<br />
+It has prevalence on other options defining a post-hoc test via
+character options.
 </p>
 </td>
 </tr>
@@ -3164,7 +3390,8 @@ a gamlj results object of the class ’gamlj*Results’
 </td>
 <td>
 <p>
-additional arguments for specific predict methods other than the ones specified here.
+additional arguments for specific predict methods other than the ones
+specified here.
 </p>
 </td>
 </tr>
@@ -3174,8 +3401,13 @@ additional arguments for specific predict methods other than the ones specified 
 </td>
 <td>
 <p>
-the type of prediction required. The default is on the scale of the response variables (‘response’); Thus for binomial models the default is to compute the predicted probabilities. ‘link’ gives the scale of the linear predictors;<br />
-is on the scale of the linear predictors; The ‘terms’ option returns a matrix giving the fitted values of each term in the model formula on the linear predictor scale.<br />
+the type of prediction required. The default is on the scale of the
+response variables (‘response’); Thus for binomial models the default is
+to compute the predicted probabilities. ‘link’ gives the scale of the
+linear predictors;<br />
+is on the scale of the linear predictors; The ‘terms’ option returns a
+matrix giving the fitted values of each term in the model formula on the
+linear predictor scale.<br />
 Cf. <code>stats::predict()</code>, <code>stats::predict.lm()</code>
 </p>
 </td>
@@ -3186,7 +3418,9 @@ Cf. <code>stats::predict()</code>, <code>stats::predict.lm()</code>
 </td>
 <td>
 <p>
-(formula, NULL, or NA) specify which random effects to condition on when predicting. If NULL, include all random effects; if NA or ~0, include no random effects. Used only for the mixed models.
+(formula, NULL, or NA) specify which random effects to condition on when
+predicting. If NULL, include all random effects; if NA or ~0, include no
+random effects. Used only for the mixed models.
 </p>
 </td>
 </tr>
@@ -3282,7 +3516,10 @@ additional arguments for specific residuals methods.
 </td>
 <td>
 <p>
-the type of residuals for generalized models. The alternatives are: ‘deviance’ (default), ‘pearson’, ‘working’, ‘response’, and ‘partial’. Can be abbreviated. Cf. <code>stats::residuals()</code>, <code>stats::residuals.lm()</code>, <code>stats::residuals.glm()</code>
+the type of residuals for generalized models. The alternatives are:
+‘deviance’ (default), ‘pearson’, ‘working’, ‘response’, and ‘partial’.
+Can be abbreviated. Cf. <code>stats::residuals()</code>,
+<code>stats::residuals.lm()</code>, <code>stats::residuals.glm()</code>
 </p>
 </td>
 </tr>
@@ -3328,13 +3565,15 @@ R Documentation
 </tr>
 </table>
 <h2>
-R-squared and pseudo-rsquared for a list of (generalized) linear (mixed) models
+R-squared and pseudo-rsquared for a list of (generalized) linear (mixed)
+models
 </h2>
 <h3>
 Description
 </h3>
 <p>
-This function calls the generic <code>r.squared</code> function for each of the models in the list and rbinds the outputs into one data frame
+This function calls the generic <code>r.squared</code> function for each
+of the models in the list and rbinds the outputs into one data frame
 </p>
 <h3>
 Usage
@@ -3351,7 +3590,8 @@ Arguments
 </td>
 <td>
 <p>
-single model or a list of fitted (generalized) linear (mixed) model objects
+single model or a list of fitted (generalized) linear (mixed) model
+objects
 </p>
 </td>
 </tr>
@@ -3369,7 +3609,9 @@ Author(s)
 References
 </h3>
 <p>
-Lefcheck, Jonathan S. (2015) piecewiseSEM: Piecewise structural equation modeling in R for ecology, evolution, and systematics. Methods in Ecology and Evolution. 7(5): 573-579. DOI: 10.1111/2041-210X.12512
+Lefcheck, Jonathan S. (2015) piecewiseSEM: Piecewise structural equation
+modeling in R for ecology, evolution, and systematics. Methods in
+Ecology and Evolution. 7(5): 573-579. DOI: 10.1111/2041-210X.12512
 </p>
 </div>
 <script>      var l = document.getElementsByClassName('reqn'); 
@@ -3399,8 +3641,10 @@ Simple Effects on GAMLj results
 Description
 </h3>
 <p>
-This is a convenience function to re-estimates a GAMLj model adding simple effect analysis. If no options is passed, extracts the<br />
-simple effects tables already in the model results (if any). If new tests are defined, the simple effects tests tables<br />
+This is a convenience function to re-estimates a GAMLj model adding
+simple effect analysis. If no options is passed, extracts the<br />
+simple effects tables already in the model results (if any). If new
+tests are defined, the simple effects tests tables<br />
 are returned.
 </p>
 <h3>
@@ -3430,8 +3674,10 @@ a gamlj results object of the class ‘gamlj’
 </td>
 <td>
 <p>
-all options accepted by a gamlj model function. Relevant for new tests are<br />
-‘simpleVariable’ (the simple effect variable), ‘simpleModerator’ (the moderator), and ‘simple3way’ for the second moderator.
+all options accepted by a gamlj model function. Relevant for new tests
+are<br />
+‘simpleVariable’ (the simple effect variable), ‘simpleModerator’ (the
+moderator), and ‘simple3way’ for the second moderator.
 </p>
 </td>
 </tr>
@@ -3441,9 +3687,12 @@ all options accepted by a gamlj model function. Relevant for new tests are<br />
 </td>
 <td>
 <p>
-a right hand side formula specifying the variables to test, of the form ‘~x:z’, ‘~x:z:w’ or ’~x*z’.<br />
-The formula is not exanded, so the first variable is the simple effect variable, the second is the moderator,<br />
-the third an optional additional moderator It has prevalence on other options defining a simple effects test via character options.
+a right hand side formula specifying the variables to test, of the form
+‘~x:z’, ‘~x:z:w’ or ’~x*z’.<br />
+The formula is not exanded, so the first variable is the simple effect
+variable, the second is the moderator,<br />
+the third an optional additional moderator It has prevalence on other
+options defining a simple effects test via character options.
 </p>
 </td>
 </tr>
@@ -3530,7 +3779,9 @@ of class ’gamlj*Results’
 </td>
 <td>
 <p>
-any parameter to be passed to <code>gamljGlm</code>, <code>gamljMixed</code>, <code>gamljGzlm</code>, or <code>gamljGlmMixed</code>
+any parameter to be passed to <code>gamljGlm</code>,
+<code>gamljMixed</code>, <code>gamljGzlm</code>, or
+<code>gamljGlmMixed</code>
 </p>
 </td>
 </tr>
@@ -3549,22 +3800,14 @@ Marcello Gallucci
 <div id="examples" class="section level1">
 <h1>Examples</h1>
 <ul>
-<li>
-<h2 class="vignettes">
-<a href="vignettes_gamljGlm.html">Examples of gamljGlm()</a>
-</h2>
-</li>
-<li>
-<h2 class="vignettes">
-<a href="vignettes_plot.html">Plots in GAMLj</a>
-</h2>
-</li>
 </ul>
 <h1>
 Comments?
 </h1>
 <p>
-Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a> or <a href="mailto:mcfanda@gmail.com
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
 
 ">send me an email</a>
 </p>

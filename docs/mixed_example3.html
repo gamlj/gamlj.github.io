@@ -373,185 +373,450 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Mixed Models: Subjects by Stimuli random effects</h1>
+<h1 class="title toc-ignore">Mixed Models: Subjects by Stimuli random
+effects</h1>
 <h4 class="author">(Marcello Gallucci)</h4>
 
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> Mixed models, hierarchical linear model, multilevel model, ANOVA, subjects by stimuli </span></p>
-<p><span class="version"> <span class="versiontitle"> GAMLj version ≥ </span> 1.0.3 </span> <span class="draft"> Draft version, mistakes may be around </span></p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span>
+Mixed models, hierarchical linear model, multilevel model, ANOVA,
+subjects by stimuli </span></p>
+<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 1.0.3 </span> <span class="draft"> Draft version, mistakes may
+be around </span></p>
 <div id="intro" class="section level1">
 <h1>Intro</h1>
-<p>In this example we work out analyses for typical subjects by stimuli designs using a mixed model (also called hierarchical linear model or multilevel model). We use the GAMLj module in Jamovi. To follow the examples with the software, be sure to install GAMLj module from within jamovi library.</p>
-<p>The design and the analyses are inspired by the discussion of <em>subjects by stimuli</em> analyses reported in <a href="http://jakewestfall.org/publications/JWK.pdf?fbclid=IwAR2PT2AzWhJhWKIeuzJDD77OKsEi4UHuXfGy8-JppSA_U9wsdlQl7W3OdqY">Judd, Westfall, &amp; Kenny, 2012</a></p>
-<p>If you are not interested in the long story, you can jump to the <a href="#example-1-stimuli-crossed-with-conditions">first example right away</a>.</p>
+<p>In this example we work out analyses for typical subjects by stimuli
+designs using a mixed model (also called hierarchical linear model or
+multilevel model). We use the GAMLj module in Jamovi. To follow the
+examples with the software, be sure to install GAMLj module from within
+jamovi library.</p>
+<p>The design and the analyses are inspired by the discussion of
+<em>subjects by stimuli</em> analyses reported in <a
+href="http://jakewestfall.org/publications/JWK.pdf?fbclid=IwAR2PT2AzWhJhWKIeuzJDD77OKsEi4UHuXfGy8-JppSA_U9wsdlQl7W3OdqY">Judd,
+Westfall, &amp; Kenny, 2012</a></p>
+<p>If you are not interested in the long story, you can jump to the
+<a href="#example-1-stimuli-crossed-with-conditions">first example right
+away</a>.</p>
 </div>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
-<p>Imagine a one-way repeated measures design with two conditions. Condition A and condition B. Each participant undergoes both conditions. In each condition, a series of stimuli is presented, and for each stimulus the participant produces a response (the dependent variable). If we only consider repeated measures experimental conditions, there are two variants of this design ( <a href="http://www.sfs.uni-tuebingen.de/~hbaayen/publications/baayenDavidsonBates.pdf">Baayen, Davidson, and Bates, 2008</a> ), a) one with stimuli crossed with conditions, and b) one with stimuli nested in conditions. We analyze both and we will see that from a model-building point of view, they are almost equivalent. That is, the way we analyze the two designs is the same, with very minor differences.</p>
+<p>Imagine a one-way repeated measures design with two conditions.
+Condition A and condition B. Each participant undergoes both conditions.
+In each condition, a series of stimuli is presented, and for each
+stimulus the participant produces a response (the dependent variable).
+If we only consider repeated measures experimental conditions, there are
+two variants of this design ( <a
+href="http://www.sfs.uni-tuebingen.de/~hbaayen/publications/baayenDavidsonBates.pdf">Baayen,
+Davidson, and Bates, 2008</a> ), a) one with stimuli crossed with
+conditions, and b) one with stimuli nested in conditions. We analyze
+both and we will see that from a model-building point of view, they are
+almost equivalent. That is, the way we analyze the two designs is the
+same, with very minor differences.</p>
 <div id="examples-of-the-design-variants" class="section level2">
 <h2>Examples of the design variants</h2>
 <div id="stimuli-crossed-with-conditions" class="section level3">
 <h3>stimuli crossed with conditions</h3>
-<p><em>Stimuli crossed with conditions means that the same stimuli are present in all conditions</em>. An example of stimuli crossed with conditions can be: A researcher investigates the effect of colors on reading words. A list of words is randomly chosen from the dictionary and it is used as the set of stimuli in the experiment. The experimental factor is color of the word presented to the participant, repeated within participants: each word is presented to the participant once in blue and once in red on the computer screen. Thus, each participant reads all words twice. To counterbalance order effects, this kind of design is often implemented with different orders of presentation of the conditions, making them split-plot designs. We will not consider counterbalancing here.</p>
-<p>Another example can be an experiment in which the dependent variable is the response times to a instrument composed by several tasks. The instrument is proposed to the participants in two different conditions. Thus, each participant responds to the same set of tasks twice, once for each condition.</p>
+<p><em>Stimuli crossed with conditions means that the same stimuli are
+present in all conditions</em>. An example of stimuli crossed with
+conditions can be: A researcher investigates the effect of colors on
+reading words. A list of words is randomly chosen from the dictionary
+and it is used as the set of stimuli in the experiment. The experimental
+factor is color of the word presented to the participant, repeated
+within participants: each word is presented to the participant once in
+blue and once in red on the computer screen. Thus, each participant
+reads all words twice. To counterbalance order effects, this kind of
+design is often implemented with different orders of presentation of the
+conditions, making them split-plot designs. We will not consider
+counterbalancing here.</p>
+<p>Another example can be an experiment in which the dependent variable
+is the response times to a instrument composed by several tasks. The
+instrument is proposed to the participants in two different conditions.
+Thus, each participant responds to the same set of tasks twice, once for
+each condition.</p>
 </div>
 <div id="stimuli-nested-within-conditions" class="section level3">
 <h3>stimuli nested within conditions</h3>
-<p><em>Stimuli nested in conditions means that the stimuli are different across conditions</em>. Consider the previous example regarding words and colors. In this new variant two lists of words are employed: list A is presented in blue fonts and list B is presented in red fonts. The experimental factor is still color of the word presented to the participant. If the lists, for instance, are made of 15 words each, each participant reads 30 words in total, 15 in the blue condition and 15 in the red condition. Also this kind of design can involve counterbalancing.</p>
-<p>Another example of this type of design can be a research in which participants are asked to make judgments about African American and White males, with each stimulus person described with a name and photo. In this design, the experimental conditions are the races of the stimulus persons, with the individual stimulus persons nested under condition (cf. <a href="http://jakewestfall.org/publications/JWK.pdf?fbclid=IwAR2PT2AzWhJhWKIeuzJDD77OKsEi4UHuXfGy8-JppSA_U9wsdlQl7W3OdqY">Judd, Westfall, &amp; Kenny, 2012</a> ). If we have, for instance, 20 photos, 10 with White stimulus persons and 10 with African American stimulus persons, the participant responds to each photo producing 20 measures of the dependent variable.</p>
+<p><em>Stimuli nested in conditions means that the stimuli are different
+across conditions</em>. Consider the previous example regarding words
+and colors. In this new variant two lists of words are employed: list A
+is presented in blue fonts and list B is presented in red fonts. The
+experimental factor is still color of the word presented to the
+participant. If the lists, for instance, are made of 15 words each, each
+participant reads 30 words in total, 15 in the blue condition and 15 in
+the red condition. Also this kind of design can involve
+counterbalancing.</p>
+<p>Another example of this type of design can be a research in which
+participants are asked to make judgments about African American and
+White males, with each stimulus person described with a name and photo.
+In this design, the experimental conditions are the races of the
+stimulus persons, with the individual stimulus persons nested under
+condition (cf. <a
+href="http://jakewestfall.org/publications/JWK.pdf?fbclid=IwAR2PT2AzWhJhWKIeuzJDD77OKsEi4UHuXfGy8-JppSA_U9wsdlQl7W3OdqY">Judd,
+Westfall, &amp; Kenny, 2012</a> ). If we have, for instance, 20 photos,
+10 with White stimulus persons and 10 with African American stimulus
+persons, the participant responds to each photo producing 20 measures of
+the dependent variable.</p>
 </div>
 </div>
 </div>
 <div id="why-the-mixed-model" class="section level1">
 <h1>Why the mixed model?</h1>
-<p>We all know that when we analyze repeated measures designs, we should take into the account the dependency in the data created by the repeated measures. Why? Because the scores of the dependent variable are not independent one each other (a key assumption of the between-subject ANOVA), and the dependency may bias the results. Why might there be dependency? Because in repeated measures designs each participant responds to several stimuli, making the responses more similar within participant than across participants. This, in turn, creates a correlation (dependency) among repeated measures, and this correlation should be incorporated in the statistical models to avoid (or minimize) biases. In a design with response times as dependent variable, for instance, one can observe that participants tend to be different in their average speed of response, independently to the experimental conditions. If so, some participant will be always slower or faster than others, creating a correlation among measures.</p>
-<p>When you have designs with multiple stimuli, the same logic applies. Responses to one stimulus may be more similar among themselves than across different stimuli, creating a correlation. A word, for instance, may be longer to read than other words, independently of the participant or the condition, thus making all the response times to it longer than for other words.</p>
-<p>One way to capture dependency due to repetition within participants and repetition within stimuli is to employ a mixed model in which the model coefficients are allowed to vary across participants and across stimuli. That is, a model with random coefficients.</p>
+<p>We all know that when we analyze repeated measures designs, we should
+take into the account the dependency in the data created by the repeated
+measures. Why? Because the scores of the dependent variable are not
+independent one each other (a key assumption of the between-subject
+ANOVA), and the dependency may bias the results. Why might there be
+dependency? Because in repeated measures designs each participant
+responds to several stimuli, making the responses more similar within
+participant than across participants. This, in turn, creates a
+correlation (dependency) among repeated measures, and this correlation
+should be incorporated in the statistical models to avoid (or minimize)
+biases. In a design with response times as dependent variable, for
+instance, one can observe that participants tend to be different in
+their average speed of response, independently to the experimental
+conditions. If so, some participant will be always slower or faster than
+others, creating a correlation among measures.</p>
+<p>When you have designs with multiple stimuli, the same logic applies.
+Responses to one stimulus may be more similar among themselves than
+across different stimuli, creating a correlation. A word, for instance,
+may be longer to read than other words, independently of the participant
+or the condition, thus making all the response times to it longer than
+for other words.</p>
+<p>One way to capture dependency due to repetition within participants
+and repetition within stimuli is to employ a mixed model in which the
+model coefficients are allowed to vary across participants and across
+stimuli. That is, a model with random coefficients.</p>
 </div>
 <div id="the-mixed-model" class="section level1">
 <h1>The Mixed model</h1>
-<p>The simplest mixed model that captures (some) dependency among data due to the repeated measures is a model in which the <em>intercepts</em> vary across participants and across stimuli. In other words, the average individual differences across participants are captured by a random intercept across participants, the stimuli average differences are captured by a random intercept varying across stimuli. If we denote by <span class="math inline">\(i\)</span> each participant, and by <span class="math inline">\(j\)</span> each stimulus, <span class="math inline">\(C_{ij}\)</span> the condition variable (for simplicity with two conditions), <span class="math inline">\(y_{ij}\)</span> the dependent variable score for participant <span class="math inline">\(i\)</span> and stimulus <span class="math inline">\(j\)</span>, the model will be.</p>
-<p><span class="math display">\[ \hat{y}_{ij}=a+a_{i}+a_{j}+b \cdot C_{ij}\]</span> where <span class="math inline">\(a\)</span> is the fixed intercept, <span class="math inline">\(b\)</span> is the fixed effect of <span class="math inline">\(C\)</span> on <span class="math inline">\(y\)</span>, <span class="math inline">\(a_i\)</span> is the individual intercept associated with participant <span class="math inline">\(i\)</span>, and <span class="math inline">\(a_j\)</span> is the individual intercept associated with stimulus <span class="math inline">\(j\)</span>.</p>
-<p>We can also add random effects of <span class="math inline">\(C_{ij}\)</span>, as we will see later on.</p>
+<p>The simplest mixed model that captures (some) dependency among data
+due to the repeated measures is a model in which the <em>intercepts</em>
+vary across participants and across stimuli. In other words, the average
+individual differences across participants are captured by a random
+intercept across participants, the stimuli average differences are
+captured by a random intercept varying across stimuli. If we denote by
+<span class="math inline">\(i\)</span> each participant, and by <span
+class="math inline">\(j\)</span> each stimulus, <span
+class="math inline">\(C_{ij}\)</span> the condition variable (for
+simplicity with two conditions), <span
+class="math inline">\(y_{ij}\)</span> the dependent variable score for
+participant <span class="math inline">\(i\)</span> and stimulus <span
+class="math inline">\(j\)</span>, the model will be.</p>
+<p><span class="math display">\[ \hat{y}_{ij}=a+a_{i}+a_{j}+b \cdot
+C_{ij}\]</span> where <span class="math inline">\(a\)</span> is the
+fixed intercept, <span class="math inline">\(b\)</span> is the fixed
+effect of <span class="math inline">\(C\)</span> on <span
+class="math inline">\(y\)</span>, <span
+class="math inline">\(a_i\)</span> is the individual intercept
+associated with participant <span class="math inline">\(i\)</span>, and
+<span class="math inline">\(a_j\)</span> is the individual intercept
+associated with stimulus <span class="math inline">\(j\)</span>.</p>
+<p>We can also add random effects of <span
+class="math inline">\(C_{ij}\)</span>, as we will see later on.</p>
 </div>
 <div id="assumptions" class="section level1">
 <h1>Assumptions</h1>
-<p>It is important to notice that the approach we are taking requires both participants and stimuli to represent <em>a random sample of a larger population</em>. For participants this is seldom a problem, because participants recruited in research are usually randomly sampled from larger populations of participants. For stimuli, however, this assumption can be tricky. A set of stimuli can be a random sample of a larger population if each individual stimulus is not interesting per se, but only because it has some charateristic shared with the population of stimuli it comes from. Under this assumption, for instance, if we use the word “beer” as a stimulus, we use it because it represents an instance of words (taken from the population of all words in the dictionary), or an instance of 4 letter words (the population would be 4 letter words), or a word indicating a liquid. Had we sampled wine, it would have been a perfectly equivalent stimulus.</p>
-<p>Conversely, if we are interested in the particular stimuli we choose, stimuli would not be a random sample of a larger population, and the approach described here would not be correct. For instance, if we really care about the word “beer” as a peculiar and unique stimulus, we should consider it as a level of a factor in the analysis, and not as a random case in the sample of words.</p>
-<p>Furthermore, if the stimuli are a sample of a larger population, their numerosity should be as large as possible. As for participants, also for stimuli the larger the sample, the more accurate and powerful are the results.</p>
+<p>It is important to notice that the approach we are taking requires
+both participants and stimuli to represent <em>a random sample of a
+larger population</em>. For participants this is seldom a problem,
+because participants recruited in research are usually randomly sampled
+from larger populations of participants. For stimuli, however, this
+assumption can be tricky. A set of stimuli can be a random sample of a
+larger population if each individual stimulus is not interesting per se,
+but only because it has some charateristic shared with the population of
+stimuli it comes from. Under this assumption, for instance, if we use
+the word “beer” as a stimulus, we use it because it represents an
+instance of words (taken from the population of all words in the
+dictionary), or an instance of 4 letter words (the population would be 4
+letter words), or a word indicating a liquid. Had we sampled wine, it
+would have been a perfectly equivalent stimulus.</p>
+<p>Conversely, if we are interested in the particular stimuli we choose,
+stimuli would not be a random sample of a larger population, and the
+approach described here would not be correct. For instance, if we really
+care about the word “beer” as a peculiar and unique stimulus, we should
+consider it as a level of a factor in the analysis, and not as a random
+case in the sample of words.</p>
+<p>Furthermore, if the stimuli are a sample of a larger population,
+their numerosity should be as large as possible. As for participants,
+also for stimuli the larger the sample, the more accurate and powerful
+are the results.</p>
 <p>We now turn to practical examples.</p>
 </div>
-<div id="example-1-stimuli-crossed-with-conditions" class="section level1">
+<div id="example-1-stimuli-crossed-with-conditions"
+class="section level1">
 <h1>Example 1: Stimuli crossed with conditions</h1>
-<p>One can follow the example by downloading the file <a href="https://github.com/gamlj/gamlj.github.io/blob/master/data/subjects_by_stimuli.csv">subjects by stimuli</a> and open it in <a href="https://www.jamovi.org/download.html">jamovi</a>.</p>
-<p>Data can also be opened within jamovi in the jamovi data library, with the name <code>Beers</code>.</p>
+<p>One can follow the example by downloading the file <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/subjects_by_stimuli.csv">subjects
+by stimuli</a> and open it in <a
+href="https://www.jamovi.org/download.html">jamovi</a>.</p>
+<p>Data can also be opened within jamovi in the jamovi data library,
+with the name <code>Beers</code>.</p>
 <p><img src="commons/pics/librarydata.png" class="img-responsive" alt=""></p>
 <div id="design" class="section level2">
 <h2>Design</h2>
-<p>A one-way repeated measures design has two conditions: A and B. Each participant undergoes both conditions. In each condition, the same 30 stimuli are presented, and for each stimulus the participant produces a response (the dependent variable <em>y</em>). There are 50 participants in the sample. The following table shows how each stimulus is repeated for each condition, and it is measured 100 times, 50 per condition, where 50 is the number of participants.</p>
+<p>A one-way repeated measures design has two conditions: A and B. Each
+participant undergoes both conditions. In each condition, the same 30
+stimuli are presented, and for each stimulus the participant produces a
+response (the dependent variable <em>y</em>). There are 50 participants
+in the sample. The following table shows how each stimulus is repeated
+for each condition, and it is measured 100 times, 50 per condition,
+where 50 is the number of participants.</p>
 <p><img src=" examples/mixed3/design1.png " class="img-responsive" alt=""></p>
-<p>The following table shows (for the first 17 participants) how each participant is measured 60 times, 30 times for each condition, where 30 is the number of stimuli per condition.</p>
+<p>The following table shows (for the first 17 participants) how each
+participant is measured 60 times, 30 times for each condition, where 30
+is the number of stimuli per condition.</p>
 <p><img src=" examples/mixed3/design2.png " class="img-responsive" alt=""></p>
 <p>The head of the data file, in the long format, looks like this:</p>
 <p><img src=" examples/mixed3/data1.png " class="img-responsive" alt=""></p>
-<p>Which stimulus is measured in each row is indicated by the variable <code>stimulus</code>, which participant in the variable <code>subj</code>. The experimental conditions are indicated by the variable <code>cond</code>. The dependent is <code>y</code>.</p>
+<p>Which stimulus is measured in each row is indicated by the variable
+<code>stimulus</code>, which participant in the variable
+<code>subj</code>. The experimental conditions are indicated by the
+variable <code>cond</code>. The dependent is <code>y</code>.</p>
 </div>
 <div id="the-model" class="section level2">
 <h2>The model</h2>
-<p>We employ GAMLj mixed model module. First, we set the variables role by dropping <code>y</code> in the dependent field, <code>cond</code> in the <code>factors</code> field (i.e. categorical independent variables). Then we define the clustering variables. We have two clustering variables: <code>subj</code> and <code>stimuli</code>. We do not have to specify anything about the crossing or nesting of the classifications, the software takes care of understanding the structure of the data.</p>
+<p>We employ GAMLj mixed model module. First, we set the variables role
+by dropping <code>y</code> in the dependent field, <code>cond</code> in
+the <code>factors</code> field (i.e. categorical independent variables).
+Then we define the clustering variables. We have two clustering
+variables: <code>subj</code> and <code>stimuli</code>. We do not have to
+specify anything about the crossing or nesting of the classifications,
+the software takes care of understanding the structure of the data.</p>
 <p><img src=" examples/mixed3/input1.png " class="img-responsive" alt=""></p>
-<p>The <strong>fixed effect</strong> of <code>cond</code> is automatically put in the model, so we do not have to do anything here.</p>
+<p>The <strong>fixed effect</strong> of <code>cond</code> is
+automatically put in the model, so we do not have to do anything
+here.</p>
 <p><img src=" examples/mixed3/input2.png " class="img-responsive" alt=""></p>
-<p>As regards the <strong>random effects</strong>, we specify that we want the intercept to vary across participants (<code>intercept|subj</code>) and across stimuli (<code>intercept|stimuli</code>). For the moment, we have done with setting the model up.</p>
+<p>As regards the <strong>random effects</strong>, we specify that we
+want the intercept to vary across participants
+(<code>intercept|subj</code>) and across stimuli
+(<code>intercept|stimuli</code>). For the moment, we have done with
+setting the model up.</p>
 <p><img src=" examples/mixed3/input3.png " class="img-responsive" alt=""></p>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
-<p>The first interesting table is the <code>Model info</code> table, were some info is given (for the R-squared interpretation see <a href="mixed_example1.html">Mixed Models: Random coefficients regression</a>).</p>
+<p>The first interesting table is the <code>Model info</code> table,
+were some info is given (for the R-squared interpretation see
+<a href="mixed_example1.html">Mixed Models: Random coefficients
+regression</a>).</p>
 <p><img src=" examples/mixed3/results1.png " class="img-responsive" alt=""></p>
-<p>Then we can explore the random variances. We can see that we have variances larger than zero for the intercepts both across participant (<span class="math inline">\(\sigma=4.55\)</span>) and across stimuli (<span class="math inline">\(\sigma=3.88\)</span>) and their impact is quite substantial: <span class="math inline">\(ICC=.312\)</span> and <span class="math inline">\(ICC=.279\)</span>, respectively. Thus, we can say that it was a good idea to capture those portions of variance by including random intercepts varying across both participants and stimuli.</p>
+<p>Then we can explore the random variances. We can see that we have
+variances larger than zero for the intercepts both across participant
+(<span class="math inline">\(\sigma=4.55\)</span>) and across stimuli
+(<span class="math inline">\(\sigma=3.88\)</span>) and their impact is
+quite substantial: <span class="math inline">\(ICC=.312\)</span> and
+<span class="math inline">\(ICC=.279\)</span>, respectively. Thus, we
+can say that it was a good idea to capture those portions of variance by
+including random intercepts varying across both participants and
+stimuli.</p>
 <p><img src=" examples/mixed3/results2.png " class="img-responsive" alt=""></p>
 <p>The fixed effect can now be interpreted as in any one-way ANOVA.</p>
 <p><img src=" examples/mixed3/results3.png " class="img-responsive" alt=""></p>
-<p>There is a strong effect of condition on the response to the stimuli. The direction of the effect can be evaluated with a plot.</p>
+<p>There is a strong effect of condition on the response to the stimuli.
+The direction of the effect can be evaluated with a plot.</p>
 <p><img src=" examples/mixed3/input4.png " class="img-responsive" alt=""></p>
 <p><img src=" examples/mixed3/results4.png " class="img-responsive" alt=""></p>
-<p>By selecting the option <code>Random effects</code> in the plot options, we can see the random effects and how they vary across participants. Because we specified only the intercepts to be random, the random effects are all parallel, by they do show different heights, as expected by a varying intercept.</p>
+<p>By selecting the option <code>Random effects</code> in the plot
+options, we can see the random effects and how they vary across
+participants. Because we specified only the intercepts to be random, the
+random effects are all parallel, by they do show different heights, as
+expected by a varying intercept.</p>
 <p><img src=" examples/mixed3/results5.png " class="img-responsive" alt=""></p>
-<p>You may have noticed that we interpreted the plot as showing the random effects across participants. We did that because GAMLj, up to the present version, does not allow to plot random effects across different clustering variables. It plots the random effects across the levels of the first clustering variable defined in the input. Thus, if we want to see the random effects across stimuli, we simply change the order of the clustering variables in the input panel, and ask for the plot again.</p>
-<p><img src=" examples/mixed3/input5.png " class="img-responsive" alt=""> <img src=" examples/mixed3/results6.png " class="img-responsive" alt=""></p>
-<p>In the new plot, there are 30 lines representing the effect of condition for each stimulus. Again, the lines are parallel but they show different height</p>
+<p>You may have noticed that we interpreted the plot as showing the
+random effects across participants. We did that because GAMLj, up to the
+present version, does not allow to plot random effects across different
+clustering variables. It plots the random effects across the levels of
+the first clustering variable defined in the input. Thus, if we want to
+see the random effects across stimuli, we simply change the order of the
+clustering variables in the input panel, and ask for the plot again.</p>
+<p><img src=" examples/mixed3/input5.png " class="img-responsive" alt="">
+<img src=" examples/mixed3/results6.png " class="img-responsive" alt=""></p>
+<p>In the new plot, there are 30 lines representing the effect of
+condition for each stimulus. Again, the lines are parallel but they show
+different height</p>
 </div>
 <div id="the-model-ii" class="section level2">
 <h2>The model (II)</h2>
-<p>We can now enlarge the random components by adding other random effects. In particular, we can see whether the effect of <code>cond</code> varies across participants and across stimuli. Notice that both effects are possible. Each participant is measured in each condition, so we can compute the effect of condition in each participant and evaluate the variance of the effect across participants. Also each stimulus is measured (is present) in each condition, so we can compute the effect of condition for each stimulus and evaluate the variance of the effect across participant.</p>
-<p>We do that in GAMLj by adding the required effects in the <code>Random Effects</code> tab.</p>
+<p>We can now enlarge the random components by adding other random
+effects. In particular, we can see whether the effect of
+<code>cond</code> varies across participants and across stimuli. Notice
+that both effects are possible. Each participant is measured in each
+condition, so we can compute the effect of condition in each participant
+and evaluate the variance of the effect across participants. Also each
+stimulus is measured (is present) in each condition, so we can compute
+the effect of condition for each stimulus and evaluate the variance of
+the effect across participant.</p>
+<p>We do that in GAMLj by adding the required effects in the
+<code>Random Effects</code> tab.</p>
 <p><img src=" examples/mixed3/input7.png " class="img-responsive" alt=""></p>
 </div>
 <div id="results-1" class="section level2">
 <h2>Results</h2>
-<p>With the new model, we see that there is variability in the random effects of <code>cond</code> across participants, table <code>Random effects</code>, row <code>subj</code>-<code>cond1</code>, <span class="math inline">\(\sigma_i^2=1.15\)</span>. whereas there is very little variance in the random effects of <code>cond</code> across stimuli, table <code>Random effects</code>, row <code>stimuli</code>-<code>cond1</code>, <span class="math inline">\(\sigma_j^2=.0043\)</span>.</p>
+<p>With the new model, we see that there is variability in the random
+effects of <code>cond</code> across participants, table
+<code>Random effects</code>, row <code>subj</code>-<code>cond1</code>,
+<span class="math inline">\(\sigma_i^2=1.15\)</span>. whereas there is
+very little variance in the random effects of <code>cond</code> across
+stimuli, table <code>Random effects</code>, row
+<code>stimuli</code>-<code>cond1</code>, <span
+class="math inline">\(\sigma_j^2=.0043\)</span>.</p>
 <p><img src=" examples/mixed3/results7.png " class="img-responsive" alt=""></p>
-<p>The random effect of <code>cond</code> across stimuli, furthermore, is perfectly correlated with the intercepts across stimuli, table <code>Random parameters correlation</code>, second row, <span class="math inline">\(\rho=-1.000\)</span>, showing that the parameter is reduntant. We can then remove it.</p>
-<p>In the final version of the model we have <code>cond</code> effect and intercept varying across participants and intercept varying across stimuli.</p>
+<p>The random effect of <code>cond</code> across stimuli, furthermore,
+is perfectly correlated with the intercepts across stimuli, table
+<code>Random parameters correlation</code>, second row, <span
+class="math inline">\(\rho=-1.000\)</span>, showing that the parameter
+is reduntant. We can then remove it.</p>
+<p>In the final version of the model we have <code>cond</code> effect
+and intercept varying across participants and intercept varying across
+stimuli.</p>
 <p><img src=" examples/mixed3/results8.png " class="img-responsive" alt=""></p>
-<p>The main fixed effect of <code>cond</code> is still there, even though the degrees of freedom are now much less than the ones of the model without the random effect of <code>cond</code>.</p>
+<p>The main fixed effect of <code>cond</code> is still there, even
+though the degrees of freedom are now much less than the ones of the
+model without the random effect of <code>cond</code>.</p>
 <p><img src=" examples/mixed3/results9.png " class="img-responsive" alt=""></p>
-<p>If we look at the plot of fixed and random effects, we can appreciate the new features of this model. We now have random effects that vary from participant to participant, and in fact the lines representing individual effects are no longer parallel. The fixed effect seems to be equivalent to the previous model effect.</p>
+<p>If we look at the plot of fixed and random effects, we can appreciate
+the new features of this model. We now have random effects that vary
+from participant to participant, and in fact the lines representing
+individual effects are no longer parallel. The fixed effect seems to be
+equivalent to the previous model effect.</p>
 <p><img src=" examples/mixed3/results10.png " class="img-responsive" alt=""></p>
 </div>
 </div>
 <div id="example-2-stimuli-nested-in-conditions" class="section level1">
 <h1>Example 2: Stimuli nested in conditions</h1>
 <p>We can use the the dataset</p>
-<p>One can follow the example by downloading the file <a href="https://github.com/gamlj/gamlj.github.io/blob/master/data/subjects_on_stimuli.csv">subjects on stimuli</a> and open it in <a href="https://www.jamovi.org/download.html">jamovi</a>. We have 50 participants with two repeated measures conditions (0 and 1).</p>
+<p>One can follow the example by downloading the file <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/subjects_on_stimuli.csv">subjects
+on stimuli</a> and open it in <a
+href="https://www.jamovi.org/download.html">jamovi</a>. We have 50
+participants with two repeated measures conditions (0 and 1).</p>
 <p><img src=" examples/mixed3/input10.png " class="img-responsive" alt=""></p>
 <div id="design-1" class="section level2">
 <h2>Design</h2>
-<p>A one-way repeated measures design has two conditions: = and 1. Each participant undergoes both conditions. In each condition, a different set of 18 stimuli is presented, and for each stimulus the participant produces a response (the dependent variable <em>y</em>). There are 50 participants in the sample. The following table (truncated for brevity) shows how each stimulus is present in only one condition, and it is measured 50 times in total, where 50 is the number of participants.</p>
-<p><img src=" examples/mixed3/design11.png " class="img-responsive" alt=""> <img src=" examples/mixed3/design12.png " class="img-responsive" alt=""></p>
-<p>The following table shows (for the first 17 participants) how each participant is measured 36 times, 18 times for each condition, where 18 is the number of stimuli per condition</p>
+<p>A one-way repeated measures design has two conditions: = and 1. Each
+participant undergoes both conditions. In each condition, a different
+set of 18 stimuli is presented, and for each stimulus the participant
+produces a response (the dependent variable <em>y</em>). There are 50
+participants in the sample. The following table (truncated for brevity)
+shows how each stimulus is present in only one condition, and it is
+measured 50 times in total, where 50 is the number of participants.</p>
+<p><img src=" examples/mixed3/design11.png " class="img-responsive" alt="">
+<img src=" examples/mixed3/design12.png " class="img-responsive" alt=""></p>
+<p>The following table shows (for the first 17 participants) how each
+participant is measured 36 times, 18 times for each condition, where 18
+is the number of stimuli per condition</p>
 <p><img src=" examples/mixed3/design13.png " class="img-responsive" alt=""></p>
 </div>
 <div id="the-model-1" class="section level2">
 <h2>The model</h2>
-<p>We employ GAMLj mixed model module. First, we set the variables role by dropping <code>y</code> in the dependent field, <code>cond</code> in the <code>factors</code> field (i.e. categorical independent variables). Then we define the clustering variables. We have two clustering variables: <code>subj</code> and <code>stimuli</code>. We do not have to specify anything about the crossing or nesting of the classifications, the software takes care of understanding the structure of the data.</p>
+<p>We employ GAMLj mixed model module. First, we set the variables role
+by dropping <code>y</code> in the dependent field, <code>cond</code> in
+the <code>factors</code> field (i.e. categorical independent variables).
+Then we define the clustering variables. We have two clustering
+variables: <code>subj</code> and <code>stimuli</code>. We do not have to
+specify anything about the crossing or nesting of the classifications,
+the software takes care of understanding the structure of the data.</p>
 <p><img src=" examples/mixed3/input11.png " class="img-responsive" alt=""></p>
-<p>The <strong>fixed effect</strong> of <code>cond</code> is automatically put in the model, so we do not have to do anything here.</p>
+<p>The <strong>fixed effect</strong> of <code>cond</code> is
+automatically put in the model, so we do not have to do anything
+here.</p>
 <p><img src=" examples/mixed3/input12.png " class="img-responsive" alt=""></p>
-<p>As regards the <strong>random effects</strong>, we specify that we want the intercept to vary across participants (<code>intercept|subj</code>) and across stimuli (<code>intercept|stimuli</code>). For the moment, we have repeated what we have done in example 1.</p>
+<p>As regards the <strong>random effects</strong>, we specify that we
+want the intercept to vary across participants
+(<code>intercept|subj</code>) and across stimuli
+(<code>intercept|stimuli</code>). For the moment, we have repeated what
+we have done in example 1.</p>
 <p><img src=" examples/mixed3/input13.png " class="img-responsive" alt=""></p>
 </div>
 <div id="results-2" class="section level2">
 <h2>Results</h2>
-<p>Then go straight to the random variances. We can see that we have variance for the intercepts both across participant (<span class="math inline">\(\sigma=3.84\)</span>) and across stimuli <span class="math inline">\(\sigma=5.42\)</span> and their impact is quite substantial <span class="math inline">\(ICC=.276\)</span> and <span class="math inline">\(ICC=.350\)</span>, respectively. Thus, we can say that it was a good idea to capture those portions of variances by including random intercepts varying across both participants and stimuli. Again, same story as in example 1.</p>
+<p>Then go straight to the random variances. We can see that we have
+variance for the intercepts both across participant (<span
+class="math inline">\(\sigma=3.84\)</span>) and across stimuli <span
+class="math inline">\(\sigma=5.42\)</span> and their impact is quite
+substantial <span class="math inline">\(ICC=.276\)</span> and <span
+class="math inline">\(ICC=.350\)</span>, respectively. Thus, we can say
+that it was a good idea to capture those portions of variances by
+including random intercepts varying across both participants and
+stimuli. Again, same story as in example 1.</p>
 <p><img src=" examples/mixed3/results20.png " class="img-responsive" alt=""></p>
 <p>The fixed effect can now be interpreted as in any one-way ANOVA.</p>
 <p><img src=" examples/mixed3/results21.png " class="img-responsive" alt=""></p>
-<p>There is an effect of condition on the response to the stimuli. The direction of the effect can be evaluated with a plot.</p>
+<p>There is an effect of condition on the response to the stimuli. The
+direction of the effect can be evaluated with a plot.</p>
 <p><img src=" examples/mixed3/results22.png " class="img-responsive" alt=""></p>
 <p><img src=" examples/mixed3/results23.png " class="img-responsive" alt=""></p>
 </div>
 <div id="the-model-ii-1" class="section level2">
 <h2>The model II</h2>
-<p>We can now enlarge the random components by adding other random effects. <strong>This is the only difference between stimuli crossed with participants and stimuli nested in participants</strong>: When stimuli are nested in participants, the effect of condition cannot logically be random across stimuli, because each stimulus is employed in only one condition. Thus, we cannot test whether the effect of <code>cond</code> varies across across stimuli.</p>
-<p>As regards the effect of condition across participants, we can estimate it as a random coefficient. We do that in GAMLj by adding the required effects in the <code>Random Effects</code> tab.</p>
+<p>We can now enlarge the random components by adding other random
+effects. <strong>This is the only difference between stimuli crossed
+with participants and stimuli nested in participants</strong>: When
+stimuli are nested in participants, the effect of condition cannot
+logically be random across stimuli, because each stimulus is employed in
+only one condition. Thus, we cannot test whether the effect of
+<code>cond</code> varies across across stimuli.</p>
+<p>As regards the effect of condition across participants, we can
+estimate it as a random coefficient. We do that in GAMLj by adding the
+required effects in the <code>Random Effects</code> tab.</p>
 <p><img src=" examples/mixed3/input14.png " class="img-responsive" alt=""></p>
 </div>
 <div id="results-3" class="section level2">
 <h2>Results</h2>
-<p>With the new model, we see that there is variability in the random effects of <code>cond</code> across participants, table <code>Random effects</code>, row <code>subj</code>-<code>cond1</code>, <span class="math inline">\(\sigma_i^2=0.194\)</span>.</p>
+<p>With the new model, we see that there is variability in the random
+effects of <code>cond</code> across participants, table
+<code>Random effects</code>, row <code>subj</code>-<code>cond1</code>,
+<span class="math inline">\(\sigma_i^2=0.194\)</span>.</p>
 <p><img src=" examples/mixed3/results15.png " class="img-responsive" alt=""></p>
-<p>The main fixed effect of <code>cond</code> is still there, and did not change much.</p>
+<p>The main fixed effect of <code>cond</code> is still there, and did
+not change much.</p>
 <p><img src=" examples/mixed3/results16.png " class="img-responsive" alt=""></p>
-<p>As in the previous example (example 1), the plot of random effects shows non parallel effects as a consequence of the variability in the random effects.</p>
+<p>As in the previous example (example 1), the plot of random effects
+shows non parallel effects as a consequence of the variability in the
+random effects.</p>
 <p><img src=" examples/mixed3/results17.png " class="img-responsive" alt=""></p>
 </div>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
-<p>Participants and Stimuli variability can be captured in a repeated measures design by employing a mixed model with random coefficients varying across participants and across stimuli. Whether stimuli are nested or crossed with participants does not change the general set up of the mixed model. In both cases we can define the intercepts to vary across stimuli to capture stimuli variability. However, when stimuli are crossed with participants, also the condition effect may be random across stimuli, whereas when stimuli are nested in participants, the condition effect cannot be random across stimuli. In both cases, the condition effect can be random across participants.</p>
+<p>Participants and Stimuli variability can be captured in a repeated
+measures design by employing a mixed model with random coefficients
+varying across participants and across stimuli. Whether stimuli are
+nested or crossed with participants does not change the general set up
+of the mixed model. In both cases we can define the intercepts to vary
+across stimuli to capture stimuli variability. However, when stimuli are
+crossed with participants, also the condition effect may be random
+across stimuli, whereas when stimuli are nested in participants, the
+condition effect cannot be random across stimuli. In both cases, the
+condition effect can be random across participants.</p>
 </div>
 <div id="related-examples" class="section level1">
 <h1>Related examples</h1>
 <ul>
 <li>
-<a href="mixed_example1.html">Mixed Models: Random coefficients regression</a>
+<a href="mixed_example1.html">Mixed Models: Random coefficients
+regression</a>
 </li>
 <li>
-<a href="mixed_example2.html">Mixed Models: Repeated measures designs</a>
+<a href="mixed_example2.html">Mixed Models: Repeated measures
+designs</a>
 </li>
 <li>
-<a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random effects</a>
+<a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random
+effects</a>
 </li>
 </ul>
 <h1>
 Comments?
 </h1>
 <p>
-Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a> or <a href="mailto:mcfanda@gmail.com
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
 
 ">send me an email</a>
 </p>

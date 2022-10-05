@@ -373,63 +373,136 @@ div.tocify {
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, SPSS, R, Multiple regression, moderated regression, simple slopes, PROCESS </span></p>
-<p><span class="version"> <span class="versiontitle"> GAMLj version ≥ </span> 0.9.1 </span> <span class="draft"> Draft version, mistakes may be around </span></p>
-<p>Here you can find comparisons of results obtained in jamovi <span class="modulename">GAMLj</span>, pure R, and SPSS. When not explicitly discussed, the code of different software is written with the aim of obtaining identical results across programs (not necessarily with the most efficient strategy).</p>
-<p>In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from <a href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a> and can be downloaded <a href="https://github.com/mcfanda/%3Cspan%20class=%22modulename%22%3EGAMLj%3C/span%3E_docs/blob/master/data/exercise.csv">here</a>. <span class="modulename">GAMLj</span> analyses on this dataset (without comparisons with other software) can be found in <a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a>.</p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span>
+jamovi, SPSS, R, Multiple regression, moderated regression, simple
+slopes, PROCESS </span></p>
+<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 0.9.1 </span> <span class="draft"> Draft version, mistakes may
+be around </span></p>
+<p>Here you can find comparisons of results obtained in jamovi <span
+class="modulename">GAMLj</span>, pure R, and SPSS. When not explicitly
+discussed, the code of different software is written with the aim of
+obtaining identical results across programs (not necessarily with the
+most efficient strategy).</p>
+<p>In this example we tackle a moderated regression analysis with simple
+slopes analysis and simple slopes graphs. Data are from <a
+href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a>
+and can be downloaded <a
+href="https://github.com/mcfanda/%3Cspan%20class=%22modulename%22%3EGAMLj%3C/span%3E_docs/blob/master/data/exercise.csv">here</a>.
+<span class="modulename">GAMLj</span> analyses on this dataset (without
+comparisons with other software) can be found in
+<a href="glm_example1.html">GLM: Multiple regression, moderated
+regression, and simple slopes</a>.</p>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
-<p>The research is about physical endurance associated with age and physical exercise. 245 participants were measured while jogging on a treadmill. Edurance was measured in minutes (‘yendu’ in the file). Participants’ age (<code>xage</code> in years) and number of years of physical exercise (<code>zexer</code> in years) were recorded as well (in <code>r</code>jamovi<code></code>Exploration<code>-&gt;</code>Descriptive`)</p>
+<p>The research is about physical endurance associated with age and
+physical exercise. 245 participants were measured while jogging on a
+treadmill. Edurance was measured in minutes (‘yendu’ in the file).
+Participants’ age (<code>xage</code> in years) and number of years of
+physical exercise (<code>zexer</code> in years) were recorded as well
+(in
+<code>r</code>jamovi<code></code>Exploration<code>-&gt;</code>Descriptive`)</p>
 <p><img src="examples/glm1/desc.png" class="img-responsive" alt=""></p>
-<p>The researcher is interested in studying the relationships between endurance, age, and exercising, with the hypothesis that the effect of age (not unexpectedly negative) is moderated by exercise, such that the more participants work out (higher levels of <code>exer</code>) the less age negatively affects endurance.</p>
-<p>For a longer discussion please check out <a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a>.</p>
+<p>The researcher is interested in studying the relationships between
+endurance, age, and exercising, with the hypothesis that the effect of
+age (not unexpectedly negative) is moderated by exercise, such that the
+more participants work out (higher levels of <code>exer</code>) the less
+age negatively affects endurance.</p>
+<p>For a longer discussion please check out
+<a href="glm_example1.html">GLM: Multiple regression, moderated
+regression, and simple slopes</a>.</p>
 </div>
 <div id="gamlj-glm" class="section level1">
 <h1><span class="modulename">GAMLj</span> GLM</h1>
-<p><span class="jamovi">jamovi</span> <code>r</code>modulename()` module for GLM requires to set the variables in the right field depending on their role in the model and their type.</p>
+<p><span class="jamovi">jamovi</span> <code>r</code>modulename()` module
+for GLM requires to set the variables in the right field depending on
+their role in the model and their type.</p>
 <p><img src="examples/glm1/variables.png" class="img-responsive" alt=""></p>
-<p>Thus, we push <code>yendu</code> in the <code>Dependent Variable</code> field and both <code>xage</code> and <code>zexer</code> in the <code>Covariates</code> field, being both variables quantitative.</p>
-<p>As soon as the variables are set, jamovi fills in the tables in the output panel with the estimation results. However, it is worth noticing that the statistical model has been defined by default by the software: We can see that in the <code>Model</code> tab.</p>
+<p>Thus, we push <code>yendu</code> in the
+<code>Dependent Variable</code> field and both <code>xage</code> and
+<code>zexer</code> in the <code>Covariates</code> field, being both
+variables quantitative.</p>
+<p>As soon as the variables are set, jamovi fills in the tables in the
+output panel with the estimation results. However, it is worth noticing
+that the statistical model has been defined by default by the software:
+We can see that in the <code>Model</code> tab.</p>
 <p><img src="examples/glm1/model.png" class="img-responsive" alt=""></p>
-<p>jamovi, following a somehow old tradition established by SPSS, automatically includes continuous independent variables in the model without their interaction. For categorical variables the default behavior is to include both main effects and interactions.</p>
-<p>To include the interaction we simply add the interaction effect in the <code>Model Terms</code> under the <code>Model</code> tab.</p>
+<p>jamovi, following a somehow old tradition established by SPSS,
+automatically includes continuous independent variables in the model
+without their interaction. For categorical variables the default
+behavior is to include both main effects and interactions.</p>
+<p>To include the interaction we simply add the interaction effect in
+the <code>Model Terms</code> under the <code>Model</code> tab.</p>
 <p><img src="examples/glm1/model2.png" class="img-responsive" alt=""></p>
-<p>The interaction is pushed in the <code>Model Terms</code> by selecting the variables on the left and click <code>interaction</code> in the “arrow” cascade menu.</p>
+<p>The interaction is pushed in the <code>Model Terms</code> by
+selecting the variables on the left and click <code>interaction</code>
+in the “arrow” cascade menu.</p>
 <p><img src="glm/interactions.png" class="img-responsive" alt=""></p>
 <div id="results" class="section level2">
 <h2>Results</h2>
-<p>Let’s us first focus on the parameters estimates, the B coefficients.</p>
+<p>Let’s us first focus on the parameters estimates, the B
+coefficients.</p>
 <p><img src="examples/glm1/resultsmoderate.png" class="img-responsive" alt=""></p>
-<p><span class="modulename">GAMLj</span>, by default, centers the variables and estimate main effects and interactions as expected by modern analysts. If one needs more advanced centering, <code>Covariates Scaling</code> option panel can be of interest.</p>
-<p>One can also report the betas (last column in the <code>Model Coefficients</code> table). Please notice that jamovi GLM the estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.</p>
+<p><span class="modulename">GAMLj</span>, by default, centers the
+variables and estimate main effects and interactions as expected by
+modern analysts. If one needs more advanced centering,
+<code>Covariates Scaling</code> option panel can be of interest.</p>
+<p>One can also report the betas (last column in the
+<code>Model Coefficients</code> table). Please notice that jamovi GLM
+the estimates of the betas are correct also in the presence of the
+interaction, because the variables are standardized before the
+interaction term is computed.</p>
 </div>
 <div id="simple-slopes" class="section level2">
 <h2>Simple Slopes</h2>
-<p>We can now probe the interaction. We go to <code>Simple effects</code> tab and select <code>xage</code> as <code>Simple effec variable</code> and <code>zexer</code> as <code>Moderator</code>. In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average, 4.78), the main effect of age (<code>zexer</code> centered to its mean, that is 0) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average, -4.78).</p>
-<p>jamovi GLM produces both the F-tests and the parameter estimates for the simple slopes. The parameters estimates are:</p>
+<p>We can now probe the interaction. We go to
+<code>Simple effects</code> tab and select <code>xage</code> as
+<code>Simple effec variable</code> and <code>zexer</code> as
+<code>Moderator</code>. In this way we obtain the effect of age computed
+for high exercise (<code>zexer</code> centered to 1 SD above average,
+4.78), the main effect of age (<code>zexer</code> centered to its mean,
+that is 0) and the effect of age computed for low exercise
+(<code>zexer</code> centered to -1 SD above average, -4.78).</p>
+<p>jamovi GLM produces both the F-tests and the parameter estimates for
+the simple slopes. The parameters estimates are:</p>
 <p><img src="examples/glm1/resultssimple.png" class="img-responsive" alt=""></p>
 <p>and the F-tests are:</p>
-<p>&lt;img src=“rosetta/moderation/r.<span class="modulename">GAMLj</span>3.png” class=“img-responsive” alt=““&gt;</p>
+<p>&lt;img src=“rosetta/moderation/r.<span
+class="modulename">GAMLj</span>3.png” class=“img-responsive”
+alt=““&gt;</p>
 </div>
 <div id="simple-slopes-plot" class="section level2">
 <h2>Simple Slopes Plot</h2>
-<p>We can get a clear picture of the interaction by asking for a plot. Also the plot module takes care of centering the variables in a way that makes the plot clearly understandable.</p>
+<p>We can get a clear picture of the interaction by asking for a plot.
+Also the plot module takes care of centering the variables in a way that
+makes the plot clearly understandable.</p>
 <p><img src="examples/glm1/plots.png" class="img-responsive" alt=""></p>
-<p>It plots the effect of the <code>Horizontal axis</code> variable for three levels (-1 SD, mean, +1 SD) of the <code>Separate Lines</code> variable.</p>
+<p>It plots the effect of the <code>Horizontal axis</code> variable for
+three levels (-1 SD, mean, +1 SD) of the <code>Separate Lines</code>
+variable.</p>
 <p><img src="examples/glm1/resultsplot.png" class="img-responsive" alt=""></p>
-<p>The nice plot we get shows the simple effects (simple equations to be precise) with the prediction confidence intervals indicated by the colored shades around the lines. If needed, the confidence intervals can be substituted with the standard errors of the estimates or they can be removed completely.</p>
-<p>Finaly, in order to give a more honest account of the model fit, we can visualize the simple slopes over the plots of the actual data (<span class="modulename">GAMLj</span> v. &gt;= 0.9.3).</p>
+<p>The nice plot we get shows the simple effects (simple equations to be
+precise) with the prediction confidence intervals indicated by the
+colored shades around the lines. If needed, the confidence intervals can
+be substituted with the standard errors of the estimates or they can be
+removed completely.</p>
+<p>Finaly, in order to give a more honest account of the model fit, we
+can visualize the simple slopes over the plots of the actual data (<span
+class="modulename">GAMLj</span> v. &gt;= 0.9.3).</p>
 <p><img src="examples/glm1/resultsplot2.png" class="img-responsive" alt=""></p>
 </div>
 </div>
 <div id="pure-r" class="section level1">
 <h1>Pure R</h1>
-<p>By pure R I mean using R-core with the minimum number of additional packages. Of course, there’s always a package in R that wraps things up for us, but here we assume we do not know of any.</p>
+<p>By pure R I mean using R-core with the minimum number of additional
+packages. Of course, there’s always a package in R that wraps things up
+for us, but here we assume we do not know of any.</p>
 <p>First load the data and center the independent variables</p>
 <pre class="r"><code>dat&lt;-read.csv(&quot;../data/exercise.csv&quot;)
 dat$zexer&lt;-dat$zexer-mean(dat$zexer)
 dat$xage&lt;-dat$xage-mean(dat$xage)</code></pre>
-<p>and then we estimate the model with the interaction between <code>xage</code> and <code>zexer</code></p>
+<p>and then we estimate the model with the interaction between
+<code>xage</code> and <code>zexer</code></p>
 <pre class="r"><code>model&lt;-lm(yendu~xage*zexer,data=dat)
 (sumr&lt;-summary(model))</code></pre>
 <pre><code>## 
@@ -452,7 +525,8 @@ dat$xage&lt;-dat$xage-mean(dat$xage)</code></pre>
 ## Residual standard error: 9.7 on 241 degrees of freedom
 ## Multiple R-squared:  0.2061, Adjusted R-squared:  0.1962 
 ## F-statistic: 20.86 on 3 and 241 DF,  p-value: 0.000000000004764</code></pre>
-<p>If one requires the standardized solution, the same procedure can be done after standardizing the variables</p>
+<p>If one requires the standardized solution, the same procedure can be
+done after standardizing the variables</p>
 <pre class="r"><code>dat$zexer_z&lt;-scale(dat$zexer)
 dat$xage_z&lt;-scale(dat$xage)
 dat$yendu_z&lt;-scale(dat$yendu)
@@ -481,7 +555,12 @@ summary(model_z)</code></pre>
 ## F-statistic: 20.86 on 3 and 241 DF,  p-value: 0.000000000004764</code></pre>
 <div id="simple-slope" class="section level2">
 <h2>Simple Slope</h2>
-<p>Recall that in a linear model with interaction, the simple slope (the B coefficient one gets from the model associated with the IV) is the effect of one independent variable estimated for the other variable equal to zero. Thus, by centering the moderator at different values, we can obtain the slope of a variable for any value of the moderator by centering the moderator to that value.</p>
+<p>Recall that in a linear model with interaction, the simple slope (the
+B coefficient one gets from the model associated with the IV) is the
+effect of one independent variable estimated for the other variable
+equal to zero. Thus, by centering the moderator at different values, we
+can obtain the slope of a variable for any value of the moderator by
+centering the moderator to that value.</p>
 <p>We use +- SD.</p>
 <pre class="r"><code># centering zexer to +SD and -SD
 dat$zexer_high&lt;-(dat$zexer)-(mean(dat$zexer)+sd(dat$zexer))
@@ -531,7 +610,8 @@ model_zh&lt;-lm(yendu~xage*zexer_high,data=dat)
 ## Residual standard error: 9.7 on 241 degrees of freedom
 ## Multiple R-squared:  0.2061, Adjusted R-squared:  0.1962 
 ## F-statistic: 20.86 on 3 and 241 DF,  p-value: 0.000000000004764</code></pre>
-<p>we can extract only the slopes we are interested in and show them in a table.</p>
+<p>we can extract only the slopes we are interested in and show them in
+a table.</p>
 <pre class="r"><code>## in the summary object, the effect of age is in the second row. ##
 
 mat&lt;-rbind(sumr_zl$coefficients[2,],sumr$coefficients[2,],sumr_zh$coefficients[2,])
@@ -561,7 +641,14 @@ p+theme_tufte()+geom_rangeframe() </code></pre>
 </div>
 <div id="r-emmeans" class="section level1">
 <h1>R emmeans</h1>
-<p>In R there are many ways to obtain the same solution ( see simple <a href="https://nickmichalak.blogspot.it/2016/07/reproducing-hayess-process-models.html">slopes with laavan package</a> , for instance), but here I’d like to test <code>emmeans::emtrends</code>, because it makes things so easy that it is really worth mentioning. Furthermore, <code>emmeans</code> (the offspring of lsmeans) is very powerfull, and does a lot of cool things, so getting to know it is always a good idea. Details <a href="https://cran.r-project.org/web/packages/emmeans/emmeans.pdf">here</a>.</p>
+<p>In R there are many ways to obtain the same solution ( see simple <a
+href="https://nickmichalak.blogspot.it/2016/07/reproducing-hayess-process-models.html">slopes
+with laavan package</a> , for instance), but here I’d like to test
+<code>emmeans::emtrends</code>, because it makes things so easy that it
+is really worth mentioning. Furthermore, <code>emmeans</code> (the
+offspring of lsmeans) is very powerfull, and does a lot of cool things,
+so getting to know it is always a good idea. Details <a
+href="https://cran.r-project.org/web/packages/emmeans/emmeans.pdf">here</a>.</p>
 <pre class="r"><code>library(emmeans)
 ### define the levels at which we want the simple slope #####
 ### in this case, -SD, mean, -SD
@@ -575,7 +662,8 @@ emmeans::emtrends(model,specs = &quot;zexer&quot;,var = &quot;xage&quot;,at=list
 ## 
 ## Confidence level used: 0.95</code></pre>
 <p>Pretty sleek!</p>
-<p>By the way, you can condition the simple slopes to any value you want. Percentile? let’s do it:</p>
+<p>By the way, you can condition the simple slopes to any value you
+want. Percentile? let’s do it:</p>
 <pre class="r"><code>library(emmeans)
 ### define the levels at which we want the simple slope #####
 ### in this case, 0, 25th, 50th, and 75th and 10oth percentile
@@ -595,8 +683,14 @@ emmeans::emtrends(model,specs = &quot;zexer&quot;,var = &quot;xage&quot;,at=list
 </div>
 <div id="pure-spss" class="section level1">
 <h1>Pure SPSS</h1>
-<p>In SPSS we can follow the same procedure we used in pure R, estimating three models after centering the moderator at different levels. This is easy but tediuos , so we move to a different strategy. We can use something similar to <code>R emmeans</code> strategy, and estimate contrasts on the (centered) model coefficients using <code>GLM  contrasts</code> option.</p>
-<p>Before estimating the model, we center the independent variables, so we need to know their means.</p>
+<p>In SPSS we can follow the same procedure we used in pure R,
+estimating three models after centering the moderator at different
+levels. This is easy but tediuos , so we move to a different strategy.
+We can use something similar to <code>R emmeans</code> strategy, and
+estimate contrasts on the (centered) model coefficients using
+<code>GLM  contrasts</code> option.</p>
+<p>Before estimating the model, we center the independent variables, so
+we need to know their means.</p>
 <p><img src="rosetta/moderation/r.spss1.png" class="img-responsive" alt=""></p>
 <pre class="spss"><code>compute cexer=zexer-10.67.
 compute cage=xage-49.18.
@@ -609,10 +703,27 @@ GLM yendu WITH czexer cxage
   /DESIGN= cage cexer cage*cexer.
 
 </code></pre>
-<p>SPSS returns both the F-tests and the parameter estimates (with t-tests and p-value). We look at the latter ones.</p>
+<p>SPSS returns both the F-tests and the parameter estimates (with
+t-tests and p-value). We look at the latter ones.</p>
 <p><img src="rosetta/moderation/r.spss2.png" class="img-responsive" alt=""></p>
-<p>Now we can play with the model for estimating contrasts on its parameters. Recall that a simple slope for <span class="math inline">\(x\)</span> is simple <span class="math inline">\(B_x+ B_{xz} \cdot z_0\)</span>, for some value of <span class="math inline">\(z_0\)</span> of the moderator. Thus, for a centered model,the simple slope of <span class="math inline">\(x\)</span> for <span class="math inline">\(z=+SD\)</span> is <span class="math inline">\(B_x+ B_{xz} \cdot SD_z\)</span>, and for <span class="math inline">\(z=-SD\)</span>, we get <span class="math inline">\(B_x+ B_{xz} \cdot -SD_z\)</span>.</p>
-<p>Estimation and testing for combinations of model parameters can be obtained in SPSS with <code>/LMATRIX</code> subcommand. <code>/LMATRIX</code> subcommand syntax is <code>/LMATRIX label term1 code1 term2 code2 etc</code>. In our case, <code>term1</code> is <code>cxage</code>, code1 is 1, term2 is the interaction <code>cxage*czexer</code> and code2 is one SD of <code>zexer</code>.</p>
+<p>Now we can play with the model for estimating contrasts on its
+parameters. Recall that a simple slope for <span
+class="math inline">\(x\)</span> is simple <span
+class="math inline">\(B_x+ B_{xz} \cdot z_0\)</span>, for some value of
+<span class="math inline">\(z_0\)</span> of the moderator. Thus, for a
+centered model,the simple slope of <span
+class="math inline">\(x\)</span> for <span
+class="math inline">\(z=+SD\)</span> is <span class="math inline">\(B_x+
+B_{xz} \cdot SD_z\)</span>, and for <span
+class="math inline">\(z=-SD\)</span>, we get <span
+class="math inline">\(B_x+ B_{xz} \cdot -SD_z\)</span>.</p>
+<p>Estimation and testing for combinations of model parameters can be
+obtained in SPSS with <code>/LMATRIX</code> subcommand.
+<code>/LMATRIX</code> subcommand syntax is
+<code>/LMATRIX label term1 code1 term2 code2 etc</code>. In our case,
+<code>term1</code> is <code>cxage</code>, code1 is 1, term2 is the
+interaction <code>cxage*czexer</code> and code2 is one SD of
+<code>zexer</code>.</p>
 <pre class="spss"><code>
 GLM yendu WITH czexer cxage
   /INTERCEPT=INCLUDE
@@ -621,29 +732,40 @@ GLM yendu WITH czexer cxage
    /LMATRIX =&quot;Moderator +1 SD&quot; cage 1 cage*cexer 4.77
    /DESIGN= cxage czexer cxage*czexer.
 </code></pre>
-<p>In the contrast results, we find the estimates, the confidence intervals and the p-values. There’re also the F-test tables, which are in line with the <span class="modulename">GAMLj</span> F-tests.</p>
-<p><img src="rosetta/moderation/r.spss3.png" class="img-responsive" alt=""> <img src="rosetta/moderation/r.spss4.png" class="img-responsive" alt=""></p>
+<p>In the contrast results, we find the estimates, the confidence
+intervals and the p-values. There’re also the F-test tables, which are
+in line with the <span class="modulename">GAMLj</span> F-tests.</p>
+<p><img src="rosetta/moderation/r.spss3.png" class="img-responsive" alt="">
+<img src="rosetta/moderation/r.spss4.png" class="img-responsive" alt=""></p>
 <div id="simple-slopes-plot-2" class="section level2">
 <h2>Simple slopes plot</h2>
-<p>To obtains a simple slope plot we need to write some numbers in the systax. That’s a drag! The good news is that it works for any king of model, glm, generalized, EEM, mixed, hierarchical etc. etc.</p>
-<p>We build a dataset with all combinations of interesting levels (SD and mean) of the independent variables.</p>
+<p>To obtains a simple slope plot we need to write some numbers in the
+systax. That’s a drag! The good news is that it works for any king of
+model, glm, generalized, EEM, mixed, hierarchical etc. etc.</p>
+<p>We build a dataset with all combinations of interesting levels (SD
+and mean) of the independent variables.</p>
 <pre class="spss"><code>
 ORTHOPLAN /FACTORS=x (10 0 10) z (-4 0 4) /REPLACE.
 </code></pre>
 <p><img src="rosetta/moderation/r.spss5.png" class="img-responsive" alt=""></p>
-<p>then compute the expected values using the centered model coefficients.</p>
+<p>then compute the expected values using the centered model
+coefficients.</p>
 <pre class="spss"><code>
 compute a=25.86.
 compute bx=-.262.
 compute bz=.973.
 compute bint=.047.
 compute y=a+bx*x+bz*z+bint*x*z.</code></pre>
-<p>An then we plot the variable. Plotting can be done using standard plots and tweak the graph manually.</p>
+<p>An then we plot the variable. Plotting can be done using standard
+plots and tweak the graph manually.</p>
 <pre><code>GRAPH
   /SCATTERPLOT(BIVAR)=x WITH y BY z.
 </code></pre>
 <p><img src="rosetta/moderation/r.spss6.png" class="img-responsive" alt=""></p>
-<p>You can manually change the plot, but it will come back ugly when you re-run it. To get nice graphical results without manual intevention you can use SPSS GGRAPH with GPL (not explained here) and get something like this.</p>
+<p>You can manually change the plot, but it will come back ugly when you
+re-run it. To get nice graphical results without manual intevention you
+can use SPSS GGRAPH with GPL (not explained here) and get something like
+this.</p>
 <pre class="spss"><code>
 string mod(a10).
 recode z (-4=&quot;-1 DS&quot; ) (0=&quot;Mean&quot;) ( 4=&quot;+1 DS&quot;) into mod.
@@ -669,17 +791,27 @@ END GPL.</code></pre>
 </div>
 <div id="spss-process" class="section level1">
 <h1>SPSS PROCESS</h1>
-<p>PROCESS is an add-on for SPSS that simplifies computation of simple slopes and does many more things (expecially mediation and moderated mediation). It is very well documented <a href="http://www.processmacro.org/index.html">here</a>.</p>
-<p>In order to check if the previous results are in line with PROCESS, we estimated the model again as follows:</p>
+<p>PROCESS is an add-on for SPSS that simplifies computation of simple
+slopes and does many more things (expecially mediation and moderated
+mediation). It is very well documented <a
+href="http://www.processmacro.org/index.html">here</a>.</p>
+<p>In order to check if the previous results are in line with PROCESS,
+we estimated the model again as follows:</p>
 <p><img src="rosetta/moderation/process1.png" class="img-responsive" alt=""></p>
 <p>and get the simple slopes we needed</p>
 <p><img src="rosetta/moderation/r.process1.png" class="img-responsive" alt=""></p>
-<p>Please notice that we estimated the centered model for the sake of comparability, but in PROCESS you do not need to center the variables because the macro will center them for you. PROCESS produces also the syntax for plotting the simple slopes, using the strategies we used in <em>pure SPSS</em> section.</p>
+<p>Please notice that we estimated the centered model for the sake of
+comparability, but in PROCESS you do not need to center the variables
+because the macro will center them for you. PROCESS produces also the
+syntax for plotting the simple slopes, using the strategies we used in
+<em>pure SPSS</em> section.</p>
 <h1>
 Comments?
 </h1>
 <p>
-Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a> or <a href="mailto:mcfanda@gmail.com
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
 
 ">send me an email</a>
 </p>

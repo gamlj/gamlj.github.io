@@ -373,99 +373,215 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">GLM: Multiple regression, moderated regression, and simple slopes</h1>
+<h1 class="title toc-ignore">GLM: Multiple regression, moderated
+regression, and simple slopes</h1>
 <h4 class="author">(Marcello Gallucci)</h4>
 
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> Multiple regression, moderated regression, simple slopes </span></p>
-<p>In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from <a href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a> and can be downloaded <a href="https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv">here</a>. A detailed comparison between the following results and results obtained with other software (SPSS, PROCESS, and R) can be found in <a href="rosetta_moderation.html">Rosetta store: moderation</a>.</p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span>
+Multiple regression, moderated regression, simple slopes </span></p>
+<p>In this example we tackle a moderated regression analysis with simple
+slopes analysis and simple slopes graphs. Data are from <a
+href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a>
+and can be downloaded <a
+href="https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv">here</a>.
+A detailed comparison between the following results and results obtained
+with other software (SPSS, PROCESS, and R) can be found in
+<a href="rosetta_moderation.html">Rosetta store: moderation</a>.</p>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
-<p>The research is about physical endurance associated with age and physical exercise. 245 participants were measured while jogging on a treadmill. Endurance was measured in minutes (‘yendu’ in the file). Participants’ age (<code>xage</code> in years) and number of years of physical exercise (<code>zexer</code> in years) were recorded as well (in jamovi <code>Exploration</code> -&gt; <code>Descriptive</code>)</p>
+<p>The research is about physical endurance associated with age and
+physical exercise. 245 participants were measured while jogging on a
+treadmill. Endurance was measured in minutes (‘yendu’ in the file).
+Participants’ age (<code>xage</code> in years) and number of years of
+physical exercise (<code>zexer</code> in years) were recorded as well
+(in jamovi <code>Exploration</code> -&gt; <code>Descriptive</code>)</p>
 <p><img src="examples/glm1/desc.png" class="img-responsive" alt=""></p>
-<p>The researcher is interested in studying the relationships between endurance, age, and exercising, with the hypothesis that the effect of age (expected to be negative) is moderated by exercise, such that the more participants work out (higher levels of <code>exer</code>) the less age negatively affects endurance.</p>
+<p>The researcher is interested in studying the relationships between
+endurance, age, and exercising, with the hypothesis that the effect of
+age (expected to be negative) is moderated by exercise, such that the
+more participants work out (higher levels of <code>exer</code>) the less
+age negatively affects endurance.</p>
 </div>
 <div id="understanding-the-problem" class="section level1">
 <h1>Understanding the problem</h1>
-<p>We can think about this analytic problem as a multiple regression, where the effect of age and exercise can be estimated while keeping constant the other variable. However, the researcher puts forward a <em>moderation hypothesis</em>, because s/he expects the effect of age to change for different levels of exercising. We than need an interaction between age and exercise.</p>
-<p>We first run a multiple regression (to warm up), then we estimate a multiple regression with an interaction (moderated regression) and we probe the interaction with a simple slope analysis and simple slope graphs. Technical details can be found in <a href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a>, or in <a href="http://quantpsy.org/interact/interactions.htm">Preacher website</a>.</p>
+<p>We can think about this analytic problem as a multiple regression,
+where the effect of age and exercise can be estimated while keeping
+constant the other variable. However, the researcher puts forward a
+<em>moderation hypothesis</em>, because s/he expects the effect of age
+to change for different levels of exercising. We than need an
+interaction between age and exercise.</p>
+<p>We first run a multiple regression (to warm up), then we estimate a
+multiple regression with an interaction (moderated regression) and we
+probe the interaction with a simple slope analysis and simple slope
+graphs. Technical details can be found in <a
+href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al
+2003</a>, or in <a
+href="http://quantpsy.org/interact/interactions.htm">Preacher
+website</a>.</p>
 </div>
 <div id="glm" class="section level1">
 <h1>GLM</h1>
 <div id="multiple-regression" class="section level2">
 <h2>Multiple regression</h2>
-<p>jamovi GAMLj module for GLM requires to set the variables in the right field depending on their role in the model and their type.</p>
+<p>jamovi GAMLj module for GLM requires to set the variables in the
+right field depending on their role in the model and their type.</p>
 <p><img src="examples/glm1/variables.png" class="img-responsive" alt=""></p>
-<p>Thus, we push <code>yendu</code> in the <code>Dependent Variable</code> field and both <code>xage</code> and <code>zexer</code> in the <code>Covariates</code> field, being both variables quantitative.</p>
-<p>As soon as the variables are set, jamovi fills in the tables in the output panel with the estimation results. However, it is worth noticing that the statistical model has been defined by default by the software: We can see that in the <code>Model</code> tab.</p>
+<p>Thus, we push <code>yendu</code> in the
+<code>Dependent Variable</code> field and both <code>xage</code> and
+<code>zexer</code> in the <code>Covariates</code> field, being both
+variables quantitative.</p>
+<p>As soon as the variables are set, jamovi fills in the tables in the
+output panel with the estimation results. However, it is worth noticing
+that the statistical model has been defined by default by the software:
+We can see that in the <code>Model</code> tab.</p>
 <p><img src="examples/glm1/model.png" class="img-responsive" alt=""></p>
-<p>jamovi, following a somehow old tradition established by SPSS, automatically includes continuous independent variables in the model without their interaction. For categorical variables the default behavior is to include both main effects and interactions.</p>
-<p>Thus, the model we are estimating now is <code>yendu~xage+zexer</code>.</p>
+<p>jamovi, following a somehow old tradition established by SPSS,
+automatically includes continuous independent variables in the model
+without their interaction. For categorical variables the default
+behavior is to include both main effects and interactions.</p>
+<p>Thus, the model we are estimating now is
+<code>yendu~xage+zexer</code>.</p>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
 <p><img src="examples/glm1/model.results.png" class="img-responsive" alt=""></p>
-<p>Results show that both age and exercising have an effect on endurance while keeping constant the other variable. The <code>Model Info</code> table shows the R-squared, R-squared=.166 (adjusted .159), indicating the the two independent variables together explain around 16% of the dependent variable variance.</p>
-<p>The <code>Model Coefficients</code> table reports the estimates of the B coefficients. We can interpret the B coefficients (under <code>Estimate</code> column of <code>Model Coefficients</code> table) because the units of the variables are intuitively clear:</p>
+<p>Results show that both age and exercising have an effect on endurance
+while keeping constant the other variable. The <code>Model Info</code>
+table shows the R-squared, R-squared=.166 (adjusted .159), indicating
+the the two independent variables together explain around 16% of the
+dependent variable variance.</p>
+<p>The <code>Model Coefficients</code> table reports the estimates of
+the B coefficients. We can interpret the B coefficients (under
+<code>Estimate</code> column of <code>Model Coefficients</code> table)
+because the units of the variables are intuitively clear:</p>
 <ul>
-<li><code>xage</code> B=-.257: While keeping exercise constant, one year more in age corresponds on average to a decrease in endurance of .257 minutes.</li>
-<li><code>zexer</code> B=-.916: While keeping age constant, one year more of exercising corresponds on average to an increase in endurance of .916 minutes.</li>
+<li><code>xage</code> B=-.257: While keeping exercise constant, one year
+more in age corresponds on average to a decrease in endurance of .257
+minutes.</li>
+<li><code>zexer</code> B=-.916: While keeping age constant, one year
+more of exercising corresponds on average to an increase in endurance of
+.916 minutes.</li>
 </ul>
 <p>For each coefficient the confidence interval is also reported.</p>
-<p>A special note should be made for the intercept (nobody interpret intercepts, but we do now). The intercept is the expected value (the mean) of the dependent variable, estimated for all independent variables equal to zero. In jamovi GLM, however, continuous variables are centered to their mean by default (this will prove very helpful later on), thus the interpretation of the intercept should be: the expected value of the dependent variable estimated for the average values of the independent variables. This is not bad, after all, because 26.5 is actually the mean of the dependent variables (see descriptives above), thus a plot of the effects will be centered around the dependent variable mean. In case we want the independent variables not to be centered, we can select a different scaling in the `Covariates Scaling’ tab.</p>
-<p>In general, we want to report standardized effect size indexes, for the sake of comparison, meta-analysis, APA task forces (and probably the Marvel Avengers league). jamovi GLM offers a plethora of them:</p>
+<p>A special note should be made for the intercept (nobody interpret
+intercepts, but we do now). The intercept is the expected value (the
+mean) of the dependent variable, estimated for all independent variables
+equal to zero. In jamovi GLM, however, continuous variables are centered
+to their mean by default (this will prove very helpful later on), thus
+the interpretation of the intercept should be: the expected value of the
+dependent variable estimated for the average values of the independent
+variables. This is not bad, after all, because 26.5 is actually the mean
+of the dependent variables (see descriptives above), thus a plot of the
+effects will be centered around the dependent variable mean. In case we
+want the independent variables not to be centered, we can select a
+different scaling in the `Covariates Scaling’ tab.</p>
+<p>In general, we want to report standardized effect size indexes, for
+the sake of comparison, meta-analysis, APA task forces (and probably the
+Marvel Avengers league). jamovi GLM offers a plethora of them:</p>
 <ul>
 <li>betas: standardized coefficients.</li>
-<li>eta-squared: variance explained over the total variance of the dependent variable (proportion).</li>
-<li>partial eta-squared: variance explained over the variance not explained by other effects (proportion).</li>
-<li>omega-squared: expected proportion of variance explained. It is computed as variance explained over the variance not explained by other effects, expected in the population.</li>
+<li>eta-squared: variance explained over the total variance of the
+dependent variable (proportion).</li>
+<li>partial eta-squared: variance explained over the variance not
+explained by other effects (proportion).</li>
+<li>omega-squared: expected proportion of variance explained. It is
+computed as variance explained over the variance not explained by other
+effects, expected in the population.</li>
 </ul>
-<p>By ticking the options in the variable definition panel, we obtain the ES indexes as follows.</p>
+<p>By ticking the options in the variable definition panel, we obtain
+the ES indexes as follows.</p>
 <p><img src="examples/glm1/model.results2.png" class="img-responsive" alt=""></p>
 </div>
 <div id="moderated-regression" class="section level2">
 <h2>Moderated regression</h2>
-<p>To include the interaction we simply add the interaction effect in the <code>Model Terms</code> in the <code>Model</code> tab.</p>
+<p>To include the interaction we simply add the interaction effect in
+the <code>Model Terms</code> in the <code>Model</code> tab.</p>
 <p><img src="examples/glm1/model2.png" class="img-responsive" alt=""></p>
-<p>The interaction is pushed in the <code>Model Terms</code> by selecting the variables on the left side and clicking <code>interaction</code> in the “arrow” cascade menu.</p>
+<p>The interaction is pushed in the <code>Model Terms</code> by
+selecting the variables on the left side and clicking
+<code>interaction</code> in the “arrow” cascade menu.</p>
 <p><img src="glm/interactions.png" class="img-responsive" alt=""></p>
 </div>
 <div id="results-1" class="section level2">
 <h2>Results</h2>
-<p>Let’s us first focus on the parameters estimates, the B coefficients.</p>
+<p>Let’s us first focus on the parameters estimates, the B
+coefficients.</p>
 <p><img src="examples/glm1/model2.results.png" class="img-responsive" alt=""></p>
-<p>The interaction term appears to be statistically significant, B=0.047, t(241)=3.48,p&lt;.001,<span class="math inline">\(\eta^2\)</span>=0.048, justifying interpreting the first-order effects as conditional effects. Because variables are centered to their means, we can interpret the first-order effect as “average” effects. On average:</p>
+<p>The interaction term appears to be statistically significant,
+B=0.047, t(241)=3.48,p&lt;.001,<span
+class="math inline">\(\eta^2\)</span>=0.048, justifying interpreting the
+first-order effects as conditional effects. Because variables are
+centered to their means, we can interpret the first-order effect as
+“average” effects. On average:</p>
 <ul>
-<li><code>xage</code> B=-.261: one year more in age corresponds on average to a decrease in endurance of .26 minutes.</li>
-<li><code>zexer</code> B=-.972: one year more of exercising corresponds on average to an increase in endurance of .97 minutes.</li>
+<li><code>xage</code> B=-.261: one year more in age corresponds on
+average to a decrease in endurance of .26 minutes.</li>
+<li><code>zexer</code> B=-.972: one year more of exercising corresponds
+on average to an increase in endurance of .97 minutes.</li>
 </ul>
-<p>One can also report the betas (last column in the <code>Model Coefficients</code> table). Please notice that in jamovi GLM, the estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.</p>
+<p>One can also report the betas (last column in the
+<code>Model Coefficients</code> table). Please notice that in jamovi
+GLM, the estimates of the betas are correct also in the presence of the
+interaction, because the variables are standardized before the
+interaction term is computed.</p>
 </div>
 <div id="simple-slopes" class="section level2">
 <h2>Simple Slopes</h2>
-<p>We can now probe the interaction. We go to <code>Simple effects</code> tab and select <code>xage</code> as <code>Simple effects variable</code> and <code>zexer</code> as <code>Moderator</code>. In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to its mean) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average).</p>
+<p>We can now probe the interaction. We go to
+<code>Simple effects</code> tab and select <code>xage</code> as
+<code>Simple effects variable</code> and <code>zexer</code> as
+<code>Moderator</code>. In this way we obtain the effect of age computed
+for high exercise (<code>zexer</code> centered to 1 SD above average),
+the main effect of age (<code>zexer</code> centered to its mean) and the
+effect of age computed for low exercise (<code>zexer</code> centered to
+-1 SD above average).</p>
 <p><img src="examples/glm1/simple.png" class="img-responsive" alt=""></p>
-<p>jamovi GLM produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
+<p>jamovi GLM produces both the F-tests and the parameter estimates for
+the simple slopes. We focus on the latter table now.</p>
 <p><img src="examples/glm1/simple.results.png" class="img-responsive" alt=""></p>
-<p>The first row of the table shows the simple slopes of age (the effect of age) computed for exercise equal to minus one standard deviation (-4.78). The effect of age is negative and strong ,B=-.487, t(241)=-5.289,p&lt;.001. Going down the table we find the simple slope of age (the effect of age) computed for average exercise (0): The average effect of age, B=-.261, t(241)=-4.085,p&lt;.001, is negative and weaker than for high exercise. Finally, for high exercise (+4.78), the effect is weak and not significant, B=-.036, t(241)=-0.400,p=.690.</p>
-<p>One can change the conditioning levels of the moderators by going back to <code>Covariates scaling</code> panel. If we want to use the percentiles (25%,50%,75%), for instance, we can flag the option in <code>Covariates scaling</code> accordingly.</p>
+<p>The first row of the table shows the simple slopes of age (the effect
+of age) computed for exercise equal to minus one standard deviation
+(-4.78). The effect of age is negative and strong ,B=-.487,
+t(241)=-5.289,p&lt;.001. Going down the table we find the simple slope
+of age (the effect of age) computed for average exercise (0): The
+average effect of age, B=-.261, t(241)=-4.085,p&lt;.001, is negative and
+weaker than for high exercise. Finally, for high exercise (+4.78), the
+effect is weak and not significant, B=-.036, t(241)=-0.400,p=.690.</p>
+<p>One can change the conditioning levels of the moderators by going
+back to <code>Covariates scaling</code> panel. If we want to use the
+percentiles (25%,50%,75%), for instance, we can flag the option in
+<code>Covariates scaling</code> accordingly.</p>
 <p><img src="examples/glm1/scaling.png" class="img-responsive" alt=""></p>
-<p>The simple effects are now changed, because they are estimated for a different set of values of the moderator.</p>
+<p>The simple effects are now changed, because they are estimated for a
+different set of values of the moderator.</p>
 <p><img src="examples/glm1/scaling.results.png" class="img-responsive" alt=""></p>
-<p>One can further tweak the appearance of the tables by selecting different value/labels options in <code>Covariates Scaling</code> panel. For instance, by selecting <code>Values + Labels</code> one obtains detailed labeling in the tables.</p>
+<p>One can further tweak the appearance of the tables by selecting
+different value/labels options in <code>Covariates Scaling</code> panel.
+For instance, by selecting <code>Values + Labels</code> one obtains
+detailed labeling in the tables.</p>
 <p><img src="examples/glm1/labeling.png" class="img-responsive" alt=""></p>
 <p><img src="examples/glm1/labeling.results.png" class="img-responsive" alt=""></p>
 </div>
 <div id="simple-slopes-plot" class="section level2">
 <h2>Simple Slopes Plot</h2>
-<p>We can get a clear picture of the interaction by asking for a plot. Also the plot module takes care of centering the variables in a way that makes the plot clearly understandable.</p>
+<p>We can get a clear picture of the interaction by asking for a plot.
+Also the plot module takes care of centering the variables in a way that
+makes the plot clearly understandable.</p>
 <p><img src="examples/glm1/plots.png" class="img-responsive" alt=""></p>
-<p>The command plots the effect of the <code>Horizontal axis</code> variable for three levels (decided in <code>Covariate scaling</code>) of the <code>Separate Lines</code> variable.</p>
+<p>The command plots the effect of the <code>Horizontal axis</code>
+variable for three levels (decided in <code>Covariate scaling</code>) of
+the <code>Separate Lines</code> variable.</p>
 <p><img src="examples/glm1/plots.results.png" class="img-responsive" alt=""></p>
-<p>The nice plot we get shows the simple effects (simple equations to be precise) with the prediction confidence intervals indicated by the colored shades around the lines. If needed, the confidence intervals can be substituted with the standard errors of the estimates or they can be removed completely.</p>
-<p>Finally, in order to give a more honest account of the model fit, we can visualize the simple slopes over the the actual data.</p>
+<p>The nice plot we get shows the simple effects (simple equations to be
+precise) with the prediction confidence intervals indicated by the
+colored shades around the lines. If needed, the confidence intervals can
+be substituted with the standard errors of the estimates or they can be
+removed completely.</p>
+<p>Finally, in order to give a more honest account of the model fit, we
+can visualize the simple slopes over the the actual data.</p>
 <p><img src="examples/glm1/data.plots.png" class="img-responsive" alt=""></p>
 </div>
 </div>
@@ -473,7 +589,8 @@ div.tocify {
 <h1>Related examples</h1>
 <ul>
 <li>
-<a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a>
+<a href="glm_example1.html">GLM: Multiple regression, moderated
+regression, and simple slopes</a>
 </li>
 <li>
 <a href="glm_example2.html">Polynomial Effects</a>
@@ -483,7 +600,9 @@ div.tocify {
 Comments?
 </h1>
 <p>
-Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a> or <a href="mailto:mcfanda@gmail.com
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
 
 ">send me an email</a>
 </p>

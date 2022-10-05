@@ -370,77 +370,181 @@ div.tocify {
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, mixed models, generalized linear models, logistic mixed model, multilevel logist, moderated regression, interactions </span></p>
-<p>In this example we estimate a multilevel logistic regression, with interactions, using <span class="jamovi">jamovi</span> GAMLj module.</p>
-<p>One can follow the example by downloading the <a href="https://github.com/gamlj/gamlj.github.io/blob/master/data/school_exam.csv">cvs file</a> and open it in <a href="https://www.jamovi.org/download.html">jamovi</a>. Be sure to install the new version of GAMLj module from within jamovi library. Data are simulated for educational purposes, and should be used only for exercising.</p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span>
+jamovi, mixed models, generalized linear models, logistic mixed model,
+multilevel logist, moderated regression, interactions </span></p>
+<p>In this example we estimate a multilevel logistic regression, with
+interactions, using <span class="jamovi">jamovi</span> GAMLj module.</p>
+<p>One can follow the example by downloading the <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/school_exam.csv">cvs
+file</a> and open it in <a
+href="https://www.jamovi.org/download.html">jamovi</a>. Be sure to
+install the new version of GAMLj module from within jamovi library. Data
+are simulated for educational purposes, and should be used only for
+exercising.</p>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
-<p>Imagine a study conducted in 70 schools. In each school the same exam is taken by students of equivalent age and grade. For each student, we recorded whether the student passed the exam, <code>pass</code>, the student’s score in math test, <code>math</code>, and the number of extracurricular activities the student undertook during the semester.</p>
-<p>The researcher wants to estimate the effect of the math test on the probability of passing the exam, and also test whether the amount of extracurricular activities may moderate the math effect.</p>
-<p>Each school has a different number of students, ranging from 51 to 100. Each student presents three values: the score in the <code>math</code> test, the number of <code>activity</code> undertaken and whether the exam was passed <code>pass=1</code> or not, <code>pass=0</code>.</p>
-<p>Here are the frequency tables for the <code>pass</code> variable and an abridged table for the schools variable. <code>frequencies</code> -&gt; <code>Contingency tables</code>.</p>
+<p>Imagine a study conducted in 70 schools. In each school the same exam
+is taken by students of equivalent age and grade. For each student, we
+recorded whether the student passed the exam, <code>pass</code>, the
+student’s score in math test, <code>math</code>, and the number of
+extracurricular activities the student undertook during the
+semester.</p>
+<p>The researcher wants to estimate the effect of the math test on the
+probability of passing the exam, and also test whether the amount of
+extracurricular activities may moderate the math effect.</p>
+<p>Each school has a different number of students, ranging from 51 to
+100. Each student presents three values: the score in the
+<code>math</code> test, the number of <code>activity</code> undertaken
+and whether the exam was passed <code>pass=1</code> or not,
+<code>pass=0</code>.</p>
+<p>Here are the frequency tables for the <code>pass</code> variable and
+an abridged table for the schools variable. <code>frequencies</code>
+-&gt; <code>Contingency tables</code>.</p>
 <p><img src="examples/gzlmmixed1/results_freq1.png" class="img-responsive" alt=""></p>
 <p>…</p>
 <p><img src="examples/gzlmmixed1/results_freq2.png" class="img-responsive" alt=""></p>
 </div>
 <div id="understanding-the-problem" class="section level1">
 <h1>Understanding the problem</h1>
-<p>Because the outcome variable, <code>pass</code>, is a dichotomous one, we need a logistic model (generalized linear model). However, we have students clustered within schools, thus we need a mixed model (random intercepts and slopes) to account for clustering dependence. In other terms, we need to take into the account the <em>multilevel structure</em> of the data, with students nested within schools.</p>
+<p>Because the outcome variable, <code>pass</code>, is a dichotomous
+one, we need a logistic model (generalized linear model). However, we
+have students clustered within schools, thus we need a mixed model
+(random intercepts and slopes) to account for clustering dependence. In
+other terms, we need to take into the account the <em>multilevel
+structure</em> of the data, with students nested within schools.</p>
 </div>
 <div id="mixed-logistic-model" class="section level1">
 <h1>Mixed logistic model</h1>
-<p>Let’s start by opening the <code>Generalized Mixed Models</code> sub-module in GAMLj menu.</p>
+<p>Let’s start by opening the <code>Generalized Mixed Models</code>
+sub-module in GAMLj menu.</p>
 <p><img src="examples/gzlmmixed1/menu.png" class="img-responsive" alt=""></p>
-<p>Here we can choose which specific model we want to estimate. We can leave the selected option to <code>Logistic</code>, which is the module default.</p>
+<p>Here we can choose which specific model we want to estimate. We can
+leave the selected option to <code>Logistic</code>, which is the module
+default.</p>
 <p><img src="examples/gzlmmixed1/models.png" class="img-responsive" alt=""></p>
-<p>We can now define the variables role in the model, by selecting the dependent variable <code>pass</code> and the covariates <code>math</code> and <code>activity</code>. We put the latter ones in <code>Covariates</code> because they are continuous variables. Notice that <span class="jamovi">jamovi</span> recognizes <code>activity</code> as a nominal variable, because it lists only integer values. GAMLj automatically transforms it into a numerical variable and uses it as covariate.</p>
+<p>We can now define the variables role in the model, by selecting the
+dependent variable <code>pass</code> and the covariates
+<code>math</code> and <code>activity</code>. We put the latter ones in
+<code>Covariates</code> because they are continuous variables. Notice
+that <span class="jamovi">jamovi</span> recognizes <code>activity</code>
+as a nominal variable, because it lists only integer values. GAMLj
+automatically transforms it into a numerical variable and uses it as
+covariate.</p>
 <p><img src="examples/gzlmmixed1/variables.png" class="img-responsive" alt=""></p>
 <div id="the-model" class="section level2">
 <h2>The model</h2>
-<p>We need to specify the model, in terms of fixed effects and random effects. First, we expand the <code>Fixed Effects</code> tab and include the interaction into the model terms, by selecting both variables on the left panel and pushing them on the right.</p>
+<p>We need to specify the model, in terms of fixed effects and random
+effects. First, we expand the <code>Fixed Effects</code> tab and include
+the interaction into the model terms, by selecting both variables on the
+left panel and pushing them on the right.</p>
 <p><img src="examples/gzlmmixed1/fixed.png" class="img-responsive" alt=""></p>
-<p>Then we expand the <code>Random Component</code> tab and fill in the intercept as random effects across school (we will add random terms later on, here we start with the intercept as random for the sake of simplicity).</p>
+<p>Then we expand the <code>Random Component</code> tab and fill in the
+intercept as random effects across school (we will add random terms
+later on, here we start with the intercept as random for the sake of
+simplicity).</p>
 <p><img src="examples/gzlmmixed1/random1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
-<p>The first table, <code>Model Info</code> recaps the model call (the formula used in R), the description of the model (family and link function), and some overall model index. Here we can look at the R-squared, for datail see <a href="gzlm_specs.html">technical details</a> and <a href="https://cran.r-project.org/web/packages/piecewiseSEM/">R piecewise package implementation</a></p>
+<p>The first table, <code>Model Info</code> recaps the model call (the
+formula used in R), the description of the model (family and link
+function), and some overall model index. Here we can look at the
+R-squared, for datail see <a href="gzlm_specs.html">technical
+details</a> and <a
+href="https://cran.r-project.org/web/packages/piecewiseSEM/">R piecewise
+package implementation</a></p>
 <p><img src="examples/gzlmmixed1/results_modelinfo.png" class="img-responsive" alt=""></p>
-<p>Based on the R-square indexes, we can see that our error of approximation of the data decreases of 4% ( <span class="math inline">\({R^2}_{marg}=.039\)</span> ) thanks to the fixed effects, whereas all effects together decrease our error of approximation of 37% (<span class="math inline">\({R^2}_{cond}=.378\)</span>).</p>
-<p>The other information in the table helps to interpret the results. In particulat, the row <code>Direction</code> is useful. It gives the definition of the logit that is used, including which is the reference group of the dependent variable. In the example, it indicates that we are predicting <code>pass=1</code> against <code>pass=0</code>. Thus we know that all the independent variables positively related with the logit are positively related with the odd of passing the exam.</p>
+<p>Based on the R-square indexes, we can see that our error of
+approximation of the data decreases of 4% ( <span
+class="math inline">\({R^2}_{marg}=.039\)</span> ) thanks to the fixed
+effects, whereas all effects together decrease our error of
+approximation of 37% (<span
+class="math inline">\({R^2}_{cond}=.378\)</span>).</p>
+<p>The other information in the table helps to interpret the results. In
+particulat, the row <code>Direction</code> is useful. It gives the
+definition of the logit that is used, including which is the reference
+group of the dependent variable. In the example, it indicates that we
+are predicting <code>pass=1</code> against <code>pass=0</code>. Thus we
+know that all the independent variables positively related with the
+logit are positively related with the odd of passing the exam.</p>
 </div>
 <div id="random-component" class="section level2">
 <h2>Random component</h2>
 <p><img src="examples/gzlmmixed1/results_random1.png" class="img-responsive" alt=""></p>
-<p>For this model, with only intercepts as random coefficients across schools, the random component table is pretty simply. It shows the variance of the random intercepts. It is non-zero, so we are happy.</p>
+<p>For this model, with only intercepts as random coefficients across
+schools, the random component table is pretty simply. It shows the
+variance of the random intercepts. It is non-zero, so we are happy.</p>
 </div>
 <div id="omnibus-test" class="section level2">
 <h2>Omnibus test</h2>
 <p><img src="examples/gzlmmixed1/results_omnibus1.png" class="img-responsive" alt=""></p>
-<p>The omnibus (Wald) Chi-Squared test tests the main effects of the independent variables and their interaction. Notice that in GAMLj the continuous variables are centered to their mean by default, and thus we can interpret the linear effects of <code>math</code> and <code>activity</code> as <em>average effects</em> or <em>main effects</em> . Based on the p-value, our results seem to support an interaction and two main effects.</p>
+<p>The omnibus (Wald) Chi-Squared test tests the main effects of the
+independent variables and their interaction. Notice that in GAMLj the
+continuous variables are centered to their mean by default, and thus we
+can interpret the linear effects of <code>math</code> and
+<code>activity</code> as <em>average effects</em> or <em>main
+effects</em> . Based on the p-value, our results seem to support an
+interaction and two main effects.</p>
 </div>
 <div id="parameter-estimates" class="section level2">
 <h2>Parameter estimates</h2>
-<p>The same information can be extracted from the parameters estimates table.</p>
+<p>The same information can be extracted from the parameters estimates
+table.</p>
 <p><img src="examples/gzlmmixed1/results_params.png" class="img-responsive" alt=""></p>
-<p>Here we also obtain the <code>odd ratio</code> (exp(B)) of the effects, useful to interpret the effects in terms of rate of change in the dependent variable odd.</p>
+<p>Here we also obtain the <code>odd ratio</code> (exp(B)) of the
+effects, useful to interpret the effects in terms of rate of change in
+the dependent variable odd.</p>
 </div>
 <div id="plots" class="section level2">
 <h2>Plots</h2>
-<p>For generalized linear models, mixed included, a good strategy is to visualize the effects by plotting the predicted values. GAMLj plots the predicted values after transforming them back to the original scale of the dependent variable, in this case probability.</p>
-<p>Ask for the plot in the <code>Plots</code> panel. Add <code>math</code> as the variable whose values go in the <code>Horizontal axis</code> and <code>activity</code> as <code>separate lines</code>.</p>
+<p>For generalized linear models, mixed included, a good strategy is to
+visualize the effects by plotting the predicted values. GAMLj plots the
+predicted values after transforming them back to the original scale of
+the dependent variable, in this case probability.</p>
+<p>Ask for the plot in the <code>Plots</code> panel. Add
+<code>math</code> as the variable whose values go in the
+<code>Horizontal axis</code> and <code>activity</code> as
+<code>separate lines</code>.</p>
 <p><img src="examples/gzlmmixed1/plot1.png" class="img-responsive" alt=""></p>
-<p>Because <code>activity</code> is a continuous variable, the separated lines will show the effect of <code>math</code> for three <em>interesting</em> values of the moderator <code>activity</code>. The defaul in GAMLj is to show effects for the moderator set at <code>Mean-1SD</code>, <code>Mean</code>, and <code>Mean+1SD</code>. This default can be altered in the <code>Covariates scaling</code> tab.</p>
+<p>Because <code>activity</code> is a continuous variable, the separated
+lines will show the effect of <code>math</code> for three
+<em>interesting</em> values of the moderator <code>activity</code>. The
+defaul in GAMLj is to show effects for the moderator set at
+<code>Mean-1SD</code>, <code>Mean</code>, and <code>Mean+1SD</code>.
+This default can be altered in the <code>Covariates scaling</code>
+tab.</p>
 <p><img src="examples/gzlmmixed1/results_plot1.png" class="img-responsive" alt=""></p>
-<p>Thus, for the average level of <code>activity</code> (gray line) there’s an increase of probability of passing the exam along the scores of <code>math</code>. The increase, however, is much stronger for students with one standard deviation above average of activities (yellow line), whereas for student with a few activities (blue line), the probability of passing the exam does not change much depending on the <code>math</code> score (recall the data are simulated, the interpretation is provided only as an exercise).</p>
-<p>We can also visualize the random effects by asking them in the imput panel.</p>
+<p>Thus, for the average level of <code>activity</code> (gray line)
+there’s an increase of probability of passing the exam along the scores
+of <code>math</code>. The increase, however, is much stronger for
+students with one standard deviation above average of activities (yellow
+line), whereas for student with a few activities (blue line), the
+probability of passing the exam does not change much depending on the
+<code>math</code> score (recall the data are simulated, the
+interpretation is provided only as an exercise).</p>
+<p>We can also visualize the random effects by asking them in the imput
+panel.</p>
 <p><img src="examples/gzlmmixed1/plot2.png" class="img-responsive" alt=""></p>
 <p><img src="examples/gzlmmixed1/results_plot2.png" class="img-responsive" alt=""></p>
-<p>Notice that the random effects depict different curves for different schools, even though the only random effect is the intercept. This is not weird in generalized linear models. The random intercept is estimated for the logit, thus it is the intercept of the straight lines computed for predicting the logit. When the logit is transformed back to probabilities, the function relating Y to X is no longer a straight line, and its shapes changes depending also on the value of the interecpt. If we wish to appreciate how the random <em>linear</em> effects vary, we can ask for the <code>Linear Predictor</code> plot, which plots the effects in the logit scale.</p>
+<p>Notice that the random effects depict different curves for different
+schools, even though the only random effect is the intercept. This is
+not weird in generalized linear models. The random intercept is
+estimated for the logit, thus it is the intercept of the straight lines
+computed for predicting the logit. When the logit is transformed back to
+probabilities, the function relating Y to X is no longer a straight
+line, and its shapes changes depending also on the value of the
+interecpt. If we wish to appreciate how the random <em>linear</em>
+effects vary, we can ask for the <code>Linear Predictor</code> plot,
+which plots the effects in the logit scale.</p>
 <p><img src="examples/gzlmmixed1/plot3.png" class="img-responsive" alt=""></p>
 <p><img src="examples/gzlmmixed1/results_plot3.png" class="img-responsive" alt=""></p>
-<p>As expected, the random effects are all parallel, because we allowed only the intercepts to be random.</p>
-<p>At this point, one can expand the model by allowing also the IVs effects to vary, and evaluate the goodness of the models, comparing them, and further investigate the relationships we observed, with simple effects analysis and additional plots.</p>
+<p>As expected, the random effects are all parallel, because we allowed
+only the intercepts to be random.</p>
+<p>At this point, one can expand the model by allowing also the IVs
+effects to vary, and evaluate the goodness of the models, comparing
+them, and further investigate the relationships we observed, with simple
+effects analysis and additional plots.</p>
 </div>
 </div>
 <div id="related-examples" class="section level1">
@@ -450,14 +554,17 @@ div.tocify {
 <a href="glmmixed_example1.html">Logistic mixed model in jamovi</a>
 </li>
 <li>
-<a href="glmmixed_example2.html">Poisson and Negative Binomial mixed models in jamovi</a>
+<a href="glmmixed_example2.html">Poisson and Negative Binomial mixed
+models in jamovi</a>
 </li>
 </ul>
 <h1>
 Comments?
 </h1>
 <p>
-Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a> or <a href="mailto:mcfanda@gmail.com
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
 
 ">send me an email</a>
 </p>
