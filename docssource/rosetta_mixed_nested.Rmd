@@ -56,11 +56,10 @@ This is equivalent to run in `R lme4` command
 
 ```{r, warning=FALSE,message=FALSE}
 library(lmerTest)
-
 data$school<-factor(data$school)
 data$class<-factor(data$class)
-lmer(y~1+(1|school)+(1|class),data=data)
-
+mod<-lmer(y~1+(1|school)+(1|class),data=data)
+print(mod,digits=5)
 ```
 
 ## Solution
@@ -68,7 +67,8 @@ lmer(y~1+(1|school)+(1|class),data=data)
 To avoid this issue, `R lmer()` allows using a different notation to specify the nesting. Namely
 
 ```{r, warning=FALSE,message=FALSE}
-lmer(y~1+(1|school/class),data=data)
+mod<-lmer(y~1+(1|school/class),data=data)
+print(mod,digits=5)
 
 ```
 
@@ -80,7 +80,8 @@ In R:
 data$unique_class<-apply(cbind(data$class,data$school),1,paste,collapse="_")
 data$unique_class<-factor(data$unique_class)
 
-lmer(y~1+(1|school)+(1|unique_class),data=data)
+mod<-lmer(y~1+(1|school)+(1|unique_class),data=data)
+print(mod,digits=5)
 
 ```
 

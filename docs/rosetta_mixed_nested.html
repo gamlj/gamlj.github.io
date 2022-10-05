@@ -428,42 +428,43 @@ class="modulename">GAMLj</span> you would have 3 schools and 3 classes
 <img src=" rosetta/mixed_nested/output1.png " class="img-responsive" alt=""></p>
 <p>This is equivalent to run in <code>R lme4</code> command</p>
 <pre class="r"><code>library(lmerTest)
-
 data$school&lt;-factor(data$school)
 data$class&lt;-factor(data$class)
-lmer(y~1+(1|school)+(1|class),data=data)</code></pre>
+mod&lt;-lmer(y~1+(1|school)+(1|class),data=data)
+print(mod,digits=5)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school) + (1 | class)
 ##    Data: data
-## REML criterion at convergence: 117
+## REML criterion at convergence: 117.359
 ## Random effects:
 ##  Groups   Name        Std.Dev.
-##  school   (Intercept) 21.11   
-##  class    (Intercept)  3.90   
-##  Residual              4.83   
+##  school   (Intercept) 21.1056 
+##  class    (Intercept)  3.9018 
+##  Residual              4.8291 
 ## Number of obs: 18, groups:  school, 3; class, 3
 ## Fixed Effects:
 ## (Intercept)  
-##        27.8</code></pre>
+##      27.833</code></pre>
 </div>
 <div id="solution" class="section level2">
 <h2>Solution</h2>
 <p>To avoid this issue, <code>R lmer()</code> allows using a different
 notation to specify the nesting. Namely</p>
-<pre class="r"><code>lmer(y~1+(1|school/class),data=data)</code></pre>
+<pre class="r"><code>mod&lt;-lmer(y~1+(1|school/class),data=data)
+print(mod,digits=5)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school/class)
 ##    Data: data
-## REML criterion at convergence: 87.6
+## REML criterion at convergence: 87.559
 ## Random effects:
 ##  Groups       Name        Std.Dev.
-##  class:school (Intercept)  6.614  
-##  school       (Intercept) 20.850  
-##  Residual                  0.707  
+##  class:school (Intercept)  6.6144 
+##  school       (Intercept) 20.8497 
+##  Residual                  0.7071 
 ## Number of obs: 18, groups:  class:school, 9; school, 3
 ## Fixed Effects:
 ## (Intercept)  
-##        27.8</code></pre>
+##      27.833</code></pre>
 <p>As you can see, the model has now 9 classes and 3 schools, as
 intended. However, the only thing that this notation does is to build a
 new variable <code>class:school</code> which assigns unique values to
@@ -473,20 +474,21 @@ class="modulename">GAMLj</span> to obtain exactly the same results.</p>
 <pre class="r"><code>data$unique_class&lt;-apply(cbind(data$class,data$school),1,paste,collapse=&quot;_&quot;)
 data$unique_class&lt;-factor(data$unique_class)
 
-lmer(y~1+(1|school)+(1|unique_class),data=data)</code></pre>
+mod&lt;-lmer(y~1+(1|school)+(1|unique_class),data=data)
+print(mod,digits=5)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school) + (1 | unique_class)
 ##    Data: data
-## REML criterion at convergence: 87.6
+## REML criterion at convergence: 87.559
 ## Random effects:
 ##  Groups       Name        Std.Dev.
-##  unique_class (Intercept)  6.614  
-##  school       (Intercept) 20.850  
-##  Residual                  0.707  
+##  unique_class (Intercept)  6.6144 
+##  school       (Intercept) 20.8497 
+##  Residual                  0.7071 
 ## Number of obs: 18, groups:  unique_class, 9; school, 3
 ## Fixed Effects:
 ## (Intercept)  
-##        27.8</code></pre>
+##      27.833</code></pre>
 <p>In <span class="jamovi">jamovi</span>:</p>
 <p><img src=" rosetta/mixed_nested/compute1.png " class="img-responsive" alt="">
 <img src=" rosetta/mixed_nested/input2.png " class="img-responsive" alt="">

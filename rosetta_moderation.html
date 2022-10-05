@@ -617,10 +617,10 @@ a table.</p>
 mat&lt;-rbind(sumr_zl$coefficients[2,],sumr$coefficients[2,],sumr_zh$coefficients[2,])
 rownames(mat)&lt;-c(&quot;exer at -SD&quot;,&quot;exer at mean&quot;,&quot;exer at +SD&quot;)
 mat</code></pre>
-<pre><code>##              Estimate Std. Error t value    Pr(&gt;|t|)
-## exer at -SD   -0.4873     0.0921   -5.29 0.000000276
-## exer at mean  -0.2617     0.0641   -4.08 0.000060075
-## exer at +SD   -0.0361     0.0903   -0.40 0.689641052</code></pre>
+<pre><code>##                Estimate Std. Error   t value       Pr(&gt;|t|)
+## exer at -SD  -0.4872940  0.0921361 -5.288851 0.000000276122
+## exer at mean -0.2616898  0.0640638 -4.084828 0.000060074787
+## exer at +SD  -0.0360855  0.0902537 -0.399823 0.689641051886</code></pre>
 </div>
 <div id="simple-slopes-plot-1" class="section level2">
 <h2>Simple slopes plot</h2>
@@ -656,9 +656,9 @@ zlevels&lt;-c(-sd(dat$zexer),mean(dat$zexer),+sd(dat$zexer))
 ### then we run emtrends where specs is the moderator, var= the IV, and &quot;at&quot; the levels ##
 emmeans::emtrends(model,specs = &quot;zexer&quot;,var = &quot;xage&quot;,at=list(zexer=zlevels))</code></pre>
 <pre><code>##  zexer xage.trend     SE  df lower.CL upper.CL
-##  -4.78     -0.487 0.0921 241   -0.669   -0.306
-##   0.00     -0.262 0.0641 241   -0.388   -0.136
-##   4.78     -0.036 0.0903 241   -0.214    0.142
+##  -4.78    -0.4873 0.0921 241   -0.669   -0.306
+##   0.00    -0.2617 0.0641 241   -0.388   -0.135
+##   4.78    -0.0361 0.0903 241   -0.214    0.142
 ## 
 ## Confidence level used: 0.95</code></pre>
 <p>Pretty sleek!</p>
@@ -668,16 +668,16 @@ want. Percentile? let’s do it:</p>
 ### define the levels at which we want the simple slope #####
 ### in this case, 0, 25th, 50th, and 75th and 10oth percentile
 (perc&lt;-quantile(dat$zexer))</code></pre>
-<pre><code>##      0%     25%     50%     75%    100% 
-## -10.673  -3.673   0.327   3.327  15.327</code></pre>
+<pre><code>##        0%       25%       50%       75%      100% 
+## -10.67347  -3.67347   0.32653   3.32653  15.32653</code></pre>
 <pre class="r"><code>### then we run emtrends where specs is the moderator, var= the IV, and &quot;at&quot; the levels ##
 emmeans::emtrends(model,specs = &quot;zexer&quot;,var = &quot;xage&quot;,at=list(zexer=perc))</code></pre>
-<pre><code>##   zexer xage.trend     SE  df lower.CL upper.CL
-##  -10.67     -0.766 0.1598 241   -1.081   -0.451
-##   -3.67     -0.435 0.0820 241   -0.597   -0.274
-##    0.33     -0.246 0.0641 241   -0.373   -0.120
-##    3.33     -0.105 0.0776 241   -0.257    0.048
-##   15.33      0.462 0.2167 241    0.036    0.889
+<pre><code>##    zexer xage.trend     SE  df lower.CL upper.CL
+##  -10.673     -0.766 0.1598 241  -1.0807  -0.4512
+##   -3.673     -0.435 0.0820 241  -0.5968  -0.2736
+##    0.327     -0.246 0.0641 241  -0.3726  -0.1199
+##    3.327     -0.105 0.0776 241  -0.2575   0.0484
+##   15.327      0.462 0.2167 241   0.0356   0.8893
 ## 
 ## Confidence level used: 0.95</code></pre>
 </div>
