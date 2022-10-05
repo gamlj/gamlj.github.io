@@ -430,28 +430,6 @@ any given model term selected by the user) :</p>
 <p>In <code>Mixed</code> module only <code>bonferroni</code> and
 <code>holm</code> methods are implemented yet, because I did not find
 enough evidence in the literature in support of other methods.</p>
-</div>
-<div id="cross-classifications" class="section level1">
-<h1>Cross-classifications</h1>
-<p>Assume one has schools and classes, coded as follows:</p>
-<p><img src=" commons/pics/compute_unique_clusters_0.png " class="img-responsive" alt=""></p>
-<p>We want to use school as a clustering variable, but the way
-<code>Class</code> is coded would pool together cases of different
-classes, because class 1, for instance, appears in all three schools,
-even if they are actually three different classes.</p>
-<p>To overcome this problem, some software allows specifying the
-clustering variable as <code>School:Class</code>, so classes can be
-distinguished. <span class="modulename">GAMLj</span> does not allow
-that, because there’s really no reason to it and it may be confusing.
-The solution in <span class="modulename">GAMLj</span> is to recode the
-classes such that they all have a unique code. In <span
-class="jamovi">jamovi</span> one can simply compute a new variable as
-follows:</p>
-<p><img src=" commons/pics/compute_unique_clusters_1.png " class="img-responsive" alt=""></p>
-<p>and obtains unique codes for the classes.</p>
-<p><img src=" commons/pics/compute_unique_clusters_2.png " class="img-responsive" alt=""></p>
-These unique codes can now be used in mixed models to define class as
-unique clusters in the clustering variable.
 <p class="return">
 Return to main help page: <a class="backto" href="mixed.html">Mixed
 Models module</a> <a class="backto" href="gzlmmixed.html">Generalized
