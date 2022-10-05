@@ -33,22 +33,5 @@ As far as it is possible, inferential tests are based on an automatic selection 
 ```{r child="posthoc_specs.Rmd"}
 ```
 
-# Cross-classifications
-
-Assume one has schools and classes, coded as follows:
-
-`r pic("commons/pics/compute_unique_clusters_0.png")`
-
-We want to use school as a clustering variable, but the way `Class` is coded would pool together cases of different classes, because class 1, for instance, appears in all three schools, even if they are actually three different classes. 
-
-To overcome this problem, some software allows specifying the clustering variable as `School:Class`, so classes can be distinguished. `r modulename()` does not allow that, because there's really no reason to it and it may be confusing. The solution in `r modulename()` is to recode the classes such that they all have a unique code. In `r jamovi` one can simply compute a new variable as follows:
-
-`r pic("commons/pics/compute_unique_clusters_1.png")`
-
-and obtains unique codes for the classes.
-
-`r pic("commons/pics/compute_unique_clusters_2.png")`
-
-These unique codes can now be used in mixed models to define class as unique clusters in the clustering variable.
 `r backto("mixed","gmixed")`
 

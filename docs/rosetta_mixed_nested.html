@@ -435,16 +435,16 @@ lmer(y~1+(1|school)+(1|class),data=data)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school) + (1 | class)
 ##    Data: data
-## REML criterion at convergence: 117.3587
+## REML criterion at convergence: 117
 ## Random effects:
 ##  Groups   Name        Std.Dev.
-##  school   (Intercept) 21.106  
-##  class    (Intercept)  3.902  
-##  Residual              4.829  
+##  school   (Intercept) 21.11   
+##  class    (Intercept)  3.90   
+##  Residual              4.83   
 ## Number of obs: 18, groups:  school, 3; class, 3
 ## Fixed Effects:
 ## (Intercept)  
-##       27.83</code></pre>
+##        27.8</code></pre>
 </div>
 <div id="solution" class="section level2">
 <h2>Solution</h2>
@@ -454,16 +454,16 @@ notation to specify the nesting. Namely</p>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school/class)
 ##    Data: data
-## REML criterion at convergence: 87.559
+## REML criterion at convergence: 87.6
 ## Random effects:
 ##  Groups       Name        Std.Dev.
-##  class:school (Intercept)  6.6144 
-##  school       (Intercept) 20.8497 
-##  Residual                  0.7071 
+##  class:school (Intercept)  6.614  
+##  school       (Intercept) 20.850  
+##  Residual                  0.707  
 ## Number of obs: 18, groups:  class:school, 9; school, 3
 ## Fixed Effects:
 ## (Intercept)  
-##       27.83</code></pre>
+##        27.8</code></pre>
 <p>As you can see, the model has now 9 classes and 3 schools, as
 intended. However, the only thing that this notation does is to build a
 new variable <code>class:school</code> which assigns unique values to
@@ -477,16 +477,16 @@ lmer(y~1+(1|school)+(1|unique_class),data=data)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school) + (1 | unique_class)
 ##    Data: data
-## REML criterion at convergence: 87.559
+## REML criterion at convergence: 87.6
 ## Random effects:
 ##  Groups       Name        Std.Dev.
-##  unique_class (Intercept)  6.6144 
-##  school       (Intercept) 20.8497 
-##  Residual                  0.7071 
+##  unique_class (Intercept)  6.614  
+##  school       (Intercept) 20.850  
+##  Residual                  0.707  
 ## Number of obs: 18, groups:  unique_class, 9; school, 3
 ## Fixed Effects:
 ## (Intercept)  
-##       27.83</code></pre>
+##        27.8</code></pre>
 <p>In <span class="jamovi">jamovi</span>:</p>
 <p><img src=" rosetta/mixed_nested/compute1.png " class="img-responsive" alt="">
 <img src=" rosetta/mixed_nested/input2.png " class="img-responsive" alt="">

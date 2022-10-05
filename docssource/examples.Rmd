@@ -52,10 +52,6 @@ Comparisons with other software: Here you can find comparisons of  results obtai
 
 `r list_pages(category="rosetta")`
 
-# Specs
-
-`r list_pages(category="details")`
-
 
 
 `r issues()`
