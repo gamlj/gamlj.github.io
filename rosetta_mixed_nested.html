@@ -402,8 +402,8 @@ the fact that <code>lmer()</code> command of <code>R package lme4</code>
 seems to require specifying the nested nature of the clustering
 variables with special notation (see below). However, this is not the
 case. Nested clustering can be specified both in <code>lmer()</code>
-command than in <span class="modulename">GAMLj</span> without any
-special notation (model formula notation), and the models are correctly
+command and in <span class="modulename">GAMLj</span> without any special
+notation (model formula notation), and the models are correctly
 estimated taking into the account the nested nature of the design. Let’s
 see a toy example to clarifying the issue.</p>
 </div>
@@ -415,7 +415,7 @@ as <code>A</code>, <code>B</code>, and <code>C</code>. Assume you coded,
 within each school, the three classes as <code>1</code>, <code>2</code>,
 and <code>3</code>. Your dataset will look like this.
 <img src=" rosetta/mixed_nested/coding1.png " class="img-responsive" alt=""></p>
-<p>This means that the designs features 3 schools, and 9 classes.
+<p>This means that the design features 3 schools, and 9 classes.
 Usually, you want to estimate the random coefficients (in this simple
 case only the intercepts) across schools and classes. If you run a model
 in <span class="modulename">GAMLj</span> using these data, however, the
@@ -435,7 +435,7 @@ print(mod,digits=5)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school) + (1 | class)
 ##    Data: data
-## REML criterion at convergence: 117.359
+## REML criterion at convergence: 117.3587
 ## Random effects:
 ##  Groups   Name        Std.Dev.
 ##  school   (Intercept) 21.1056 
