@@ -83,7 +83,7 @@ We now turn to practical examples.
 
 One can follow the example by downloading the file `r datafile("subjects by stimuli","subjects_by_stimuli.csv")` and open it in [jamovi](https://www.jamovi.org/download.html).
 
-Data can also be opened within jamovi in the jamovi data library, with the name `Beers`.
+Data can also be opened within jamovi in the jamovi data library, with the name `subjects_by_stimuli`.
 
 <img src="commons/pics/librarydata.png" class="img-responsive" alt="">
 
