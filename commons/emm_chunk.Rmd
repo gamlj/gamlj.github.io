@@ -1,7 +1,0 @@
----
-title: "emm_chunk"
-output: html_document
----
-
-
-Print the estimate expected means, SE, df and confidence intervals of the precicted dependent variable by factors in the model. When ``r opt("Include covariates")` is selected, factors levels are crossed also with the conditiong levels of the continuous variables (if any). The conditioning values are selected in `r opt("Covariates Scaling")` panel.
