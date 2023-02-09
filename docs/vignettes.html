@@ -13,7 +13,7 @@
 
 <title>GAMLj in R</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -154,11 +154,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -187,8 +191,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -196,16 +200,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -384,26 +381,7 @@ Here we provide some appliactions of the package in R.</p>
 <p>At the moment, <span class="modulename">GAMLj</span> is not in CRAN
 yet, so you need to install it via <code>devtools</code></p>
 <pre class="r"><code>devtools::install_github(&quot;gamlj/gamlj&quot;)</code></pre>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-gamljGlm
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+<script>
 <h2>
 General Linear Model
 </h2>
@@ -419,7 +397,8 @@ analysis, effect size indexes and visualization of the results.
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>gamljGlm( 
+<pre> 
+ gamljGlm( 
    data, 
    formula, 
    dep = NULL, 
@@ -461,11 +440,11 @@ Usage
    effectSizeInfo = FALSE, 
    dep_scale = "none" 
  ) 
- </code></pre>
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>data</code>
@@ -930,30 +909,11 @@ Value
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data('ToothGrowth') 
+<pre> 
+ data('ToothGrowth') 
  gamlj::gamljGlm(formula = len ~ supp,  data = ToothGrowth) 
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-gamljGlmMixed
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Generalized Mixed Models
 </h2>
@@ -969,7 +929,8 @@ analysis, effect size indexes and visualization of the results.
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>gamljGlmMixed( 
+<pre> 
+ gamljGlmMixed( 
    data, 
    formula = NULL, 
    dep = NULL, 
@@ -1014,11 +975,11 @@ Usage
    custom_link = "identity", 
    cimethod = "wald" 
  ) 
- </code></pre>
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>data</code>
@@ -1504,7 +1465,8 @@ Value
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data(subjects_by_stimuli) 
+<pre> 
+ data(subjects_by_stimuli) 
  gamlj::gamljMixed( 
         formula = y ~ 1 + cond+( 1|subj ), 
         data = subjects_by_stimuli) 
@@ -1516,28 +1478,8 @@ Examples
         cluster = "subj", 
         randomTerms=list(list(c("cond","subj")))) 
          
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-gamljGzlm
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Generalized Linear Models
 </h2>
@@ -1553,7 +1495,8 @@ analysis, effect size indexes and visualization of the results.
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>gamljGzlm( 
+<pre> 
+ gamljGzlm( 
    data, 
    dep, 
    factors = NULL, 
@@ -1591,11 +1534,11 @@ Usage
    custom_link = "identity", 
    formula 
  ) 
- </code></pre>
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>data</code>
@@ -1994,33 +1937,14 @@ Value
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data&lt;-emmeans::neuralgia 
+<pre> 
+ data&lt;-emmeans::neuralgia 
   gamlj::gamljGzlm( 
             formula = Pain ~ Duration, 
             data = data, 
              modelSelection = "logistic") 
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-gamljMixed
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Mixed Model
 </h2>
@@ -2036,7 +1960,8 @@ analysis, effect size indexes and visualization of the results.
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>gamljMixed( 
+<pre> 
+ gamljMixed( 
    data, 
    dep = NULL, 
    factors = NULL, 
@@ -2085,11 +2010,11 @@ Usage
    randHist = FALSE, 
    formula 
  ) 
- </code></pre>
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>data</code>
@@ -2620,7 +2545,8 @@ Value
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data(subjects_by_stimuli) 
+<pre> 
+ data(subjects_by_stimuli) 
  gamlj::gamljMixed( 
         formula = y ~ 1 + cond+( 1|subj ), 
         data = subjects_by_stimuli) 
@@ -2632,28 +2558,8 @@ Examples
         cluster = "subj", 
         randomTerms=list(list(c("cond","subj")))) 
          
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-gamlj_assumptionsPlots
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Assumptions checking plots
 </h2>
@@ -2669,12 +2575,13 @@ continuous dependent variable models), ‘randHist’ and ‘clusterBoxplot’
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>gamlj_assumptionsPlots(object) 
- </code></pre>
+<pre> 
+ gamlj_assumptionsPlots(object) 
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>object</code>
@@ -2695,27 +2602,7 @@ Author(s)
 <p>
 Marcello Gallucci
 </p>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-gamlj_data
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+<script>
 <h2>
 Extract data
 </h2>
@@ -2732,12 +2619,13 @@ models with other R packages with the same setup used by GAMLj
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>gamlj_data(object) 
- </code></pre>
+<pre> 
+ gamlj_data(object) 
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>object</code>
@@ -2761,34 +2649,15 @@ Marcello Gallucci
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data('qsport') 
+<pre> 
+ data('qsport') 
  gmod&lt;-gamlj::gamljGlm(formula = performance ~ hours, 
                  data = qsport, 
                  scaling = c(hours='standardized')) 
  gdata&lt;-gamlj_data(gmod) 
  lm(performance ~ hours,data=gdata) 
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-gamlj_model
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Extract the R model
 </h2>
@@ -2802,12 +2671,13 @@ on the model.
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>gamlj_model(object) 
- </code></pre>
+<pre> 
+ gamlj_model(object) 
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>object</code>
@@ -2831,34 +2701,15 @@ Marcello Gallucci
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data('qsport') 
+<pre> 
+ data('qsport') 
  obj&lt;-gamlj::gamljGlm( 
     formula = performance ~ hours, 
     data = qsport) 
   model&lt;-gamlj_model(obj) 
    
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-gamlj_predict
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Predicted values from GAMLj models
 </h2>
@@ -2871,12 +2722,13 @@ Deprecated. Please use ‘predict()’
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>gamlj_predict(gobj, re.form = NULL, type = "response") 
- </code></pre>
+<pre> 
+ gamlj_predict(gobj, re.form = NULL, type = "response") 
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>gobj</code>
@@ -2928,34 +2780,15 @@ Marcello Gallucci
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data('qsport') 
+<pre> 
+ data('qsport') 
  gmod&lt;-gamlj::gamljGlm( 
     formula = performance ~ hours, 
     data = qsport) 
   preds&lt;-gamlj_predict(gmod) 
    
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-gamlj_residuals
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Residuals values of a GAMLj model
 </h2>
@@ -2968,12 +2801,13 @@ Deprecated. Please use ‘residuals()’
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>gamlj_residuals(gobj, type = "response") 
- </code></pre>
+<pre> 
+ gamlj_residuals(gobj, type = "response") 
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>gobj</code>
@@ -3017,34 +2851,15 @@ Marcello Gallucci
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data('qsport') 
+<pre> 
+ data('qsport') 
  gmod&lt;-gamlj::gamljGlm( 
     formula = performance ~ hours, 
     data = qsport) 
   preds&lt;-gamlj_residuals(gmod) 
    
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-gamlj_simpleEffects
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Deprecated simple effects
 </h2>
@@ -3057,18 +2872,19 @@ Deprecated, please use ‘simpleffects’ #’
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>gamlj_simpleEffects( 
+<pre> 
+ gamlj_simpleEffects( 
    object, 
    variable = NULL, 
    moderator = NULL, 
    threeway = NULL, 
    ... 
  ) 
- </code></pre>
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>object</code>
@@ -3129,27 +2945,7 @@ Author(s)
 <p>
 Marcello Gallucci
 </p>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-plot.gamlj
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+<script>
 <h2>
 GAMLj plot
 </h2>
@@ -3166,13 +2962,14 @@ plots is returned. FALSE is returned if no plot is present or defined.
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>## S3 method for class 'gamlj' 
+<pre> 
+ ## S3 method for class 'gamlj' 
  plot(x, formula = NULL, ...) 
- </code></pre>
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>x</code>
@@ -3219,34 +3016,15 @@ Marcello Gallucci
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data(qsport) 
+<pre> 
+ data(qsport) 
  gmod&lt;-gamlj::gamljGlm( 
    formula = performance ~ hours, 
    data = qsport) 
  plot(gmod,plotHAxis = 'hours') 
  plot(gmod,formula=~hours) 
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-posthoc
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Post-hoc test on GAMLj results
 </h2>
@@ -3263,14 +3041,15 @@ are returned.
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>posthoc(object, ...) 
+<pre> 
+ posthoc(object, ...) 
  ## S3 method for class 'gamlj' 
  posthoc(object, formula = NULL, ...) 
- </code></pre>
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>object</code>
@@ -3321,34 +3100,15 @@ Marcello Gallucci
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data(fivegroups) 
+<pre> 
+ data(fivegroups) 
  fivegroups$Group&lt;-factor(fivegroups$Group) 
  gmod&lt;-gamlj::gamljGlm( 
    formula = Score ~Group, 
    data = fivegroups) 
  posthoc(gmod,formula =~Group) 
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-predict
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Predicted values from GAMLj models
 </h2>
@@ -3361,7 +3121,8 @@ Returns predicted values from the estimated model
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>## S3 method for class 'gamljGlmResults' 
+<pre> 
+ ## S3 method for class 'gamljGlmResults' 
  predict(object, ...) 
  ## S3 method for class 'gamljGzlmResults' 
  predict(object, type = "response", ...) 
@@ -3369,11 +3130,11 @@ Usage
  predict(object, re.form = NULL, type = "response", ...) 
  ## S3 method for class 'gamljGlmMixedResults' 
  predict(object, re.form = NULL, type = "response", ...) 
- </code></pre>
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>object</code>
@@ -3437,34 +3198,15 @@ Marcello Gallucci
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data('qsport') 
+<pre> 
+ data('qsport') 
  gmod&lt;-gamlj::gamljGlm( 
     formula = performance ~ hours, 
     data = qsport) 
   preds&lt;-predict(gmod) 
    
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-residuals
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Residuals values from GAMLj models
 </h2>
@@ -3477,7 +3219,8 @@ Returns residuals values from the estimated model
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>## S3 method for class 'gamljGlmResults' 
+<pre> 
+ ## S3 method for class 'gamljGlmResults' 
  residuals(object, ...) 
  ## S3 method for class 'gamljGzlmResults' 
  residuals(object, type = "deviance", ...) 
@@ -3485,11 +3228,11 @@ Usage
  residuals(object, ...) 
  ## S3 method for class 'gamljGlmMixedResults' 
  residuals(object, type = "deviance", ...) 
- </code></pre>
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>object</code>
@@ -3536,34 +3279,15 @@ Marcello Gallucci
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data('qsport') 
+<pre> 
+ data('qsport') 
  gmod&lt;-gamlj::gamljGlm( 
     formula = performance ~ hours, 
     data = qsport) 
   preds&lt;-residuals(gmod) 
    
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-rsquared.glmm
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 R-squared and pseudo-rsquared for a list of (generalized) linear (mixed)
 models
@@ -3578,12 +3302,13 @@ of the models in the list and rbinds the outputs into one data frame
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>rsquared.glmm(obj) 
- </code></pre>
+<pre> 
+ rsquared.glmm(obj) 
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>obj</code>
@@ -3613,27 +3338,7 @@ Lefcheck, Jonathan S. (2015) piecewiseSEM: Piecewise structural equation
 modeling in R for ecology, evolution, and systematics. Methods in
 Ecology and Evolution. 7(5): 573-579. DOI: 10.1111/2041-210X.12512
 </p>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-simpleEffects
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+<script>
 <h2>
 Simple Effects on GAMLj results
 </h2>
@@ -3650,14 +3355,15 @@ are returned.
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>simpleEffects(object, ...) 
+<pre> 
+ simpleEffects(object, ...) 
  ## S3 method for class 'gamlj' 
  simpleEffects(object, formula = NULL, ...) 
- </code></pre>
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>object</code>
@@ -3709,35 +3415,16 @@ Marcello Gallucci
 <h3>
 Examples
 </h3>
-<pre><code class='language-R'>data(winkel) 
+<pre> 
+ data(winkel) 
  wicksell$time&lt;-factor(wicksell$time) 
  wicksell$group&lt;-factor(wicksell$group)  
  gmod&lt;-gamlj::gamljMixed( 
     formula = dv ~ 1 +group+ time:group+ time+( 1 | subj ), 
     data = wicksell) 
  simpleEffects(gmod,formula =~time:group) 
- </code></pre>
-</div>
-<script>      var l = document.getElementsByClassName('reqn'); 
-     for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); } 
-     return; 
- }</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js" 
-     onload="processMathHTML();"></script>
-<link rel="stylesheet" type="text/css" href="R.css" />
-</head>
-<body>
-<div class="container">
-<table width="100%">
-<tr>
-<td>
-update.gamljGlmResults
-</td>
-<td style="text-align: right;">
-R Documentation
-</td>
-</tr>
-</table>
+ </pre>
+<script>
 <h2>
 Update a GAMLj model
 </h2>
@@ -3750,7 +3437,8 @@ Re-estimates a GAMLj model applying new options to the original model
 <h3>
 Usage
 </h3>
-<pre><code class='language-R'>## S3 method for class 'gamljGlmResults' 
+<pre> 
+ ## S3 method for class 'gamljGlmResults' 
  update(object, ...) 
  ## S3 method for class 'gamljGzlmResults' 
  update(object, ...) 
@@ -3758,11 +3446,11 @@ Usage
  update(object, ...) 
  ## S3 method for class 'gamljGlmMixedResults' 
  update(object, ...) 
- </code></pre>
+ </pre>
 <h3>
 Arguments
 </h3>
-<table>
+<table summary="R argblock">
 <tr valign="top">
 <td>
 <code>object</code>
@@ -3796,10 +3484,19 @@ Author(s)
 Marcello Gallucci
 </p>
 </div>
-</div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
 <ul>
+<li>
+<h2 class="vignettes">
+<a href="vignettes_gamljGlm.html">Examples of gamljGlm()</a>
+</h2>
+</li>
+<li>
+<h2 class="vignettes">
+<a href="vignettes_plot.html">Plots in GAMLj</a>
+</h2>
+</li>
 </ul>
 <h1>
 Comments?

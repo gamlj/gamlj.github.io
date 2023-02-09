@@ -13,7 +13,7 @@
 
 <title>Details: GLM effect size indices</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -176,11 +176,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -209,8 +213,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -218,16 +222,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -512,8 +509,8 @@ class="modulename">GAMLj</span> operates a correction such that all the
 non-partial indeces are always computed based on <span
 class="math inline">\(SS_{total}=SS_{model}+SS_{res}\)</span>.</p>
 <button type="button" class="collapsible">
-<svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:steelblue;overflow:visible;position:relative;">
-<path d="M212.686 315.314L120 408l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C10.697 480 0 469.255 0 456V344c0-21.382 25.803-32.09 40.922-16.971L72 360l92.686-92.686c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.249 6.248 6.249 16.378 0 22.627zm22.628-118.628L328 104l-32.922-31.029C279.958 57.851 290.666 32 312.048 32h112C437.303 32 448 42.745 448 56v112c0 21.382-25.803 32.09-40.922 16.971L376 152l-92.686 92.686c-6.248 6.248-16.379 6.248-22.627 0l-25.373-25.373c-6.249-6.248-6.249-16.378 0-22.627z"/>
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:steelblue;overflow:visible;position:relative;">
+<path d="M344 0H488c13.3 0 24 10.7 24 24V168c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-39-39-87 87c-9.4 9.4-24.6 9.4-33.9 0l-32-32c-9.4-9.4-9.4-24.6 0-33.9l87-87L327 41c-6.9-6.9-8.9-17.2-5.2-26.2S334.3 0 344 0zM184 496H40c-13.3 0-24-10.7-24-24V328c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2l39 39 87-87c9.4-9.4 24.6-9.4 33.9 0l32 32c9.4 9.4 9.4 24.6 0 33.9l-87 87 39 39c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8z"/>
 </svg>
 <span class="colltitle"> Why this correction? </span> <span
 class="collinfo">click to read</span> <span class="collinfo"> technical
@@ -542,12 +539,12 @@ the semi-partial correlation of each IV coviariating the other. This
 gives:</p>
 <p><img src="details/glm/eta2.png" class="img-responsive" alt=""></p>
 <p>Squaring it gives <span
-class="math inline">\(r_{yx.z}^2=-0.230^2=0.0529\)</span>, which is
-equal to the corrisponding <span
+class="math inline">\(r_{yx.z}^2=-0.230^2=0.053\)</span>, which is equal
+to the corrisponding <span
 class="math inline">\(\eta^2=.053\)</span>.</p>
 <p><img src="details/glm/eta3.png" class="img-responsive" alt=""></p>
 <p>Squaring the second <span class="math inline">\(r_{sp}^2\)</span>
-gives <span class="math inline">\(r_{yz.x}^2=0.388^2=0.1504664\)</span>,
+gives <span class="math inline">\(r_{yz.x}^2=0.388^2=0.15\)</span>,
 considering rounding, which is equal to the corrisponding <span
 class="math inline">\(\eta^2=.150\)</span>.</p>
 <p>If we used <span
@@ -557,9 +554,9 @@ results would be:</p>
 <li><span
 class="math inline">\(SS_{total}^*=1516+4298+23810=29624\)</span></li>
 <li><span class="math inline">\(SS_{yx.z}^*=1516/29624
-=0.0511747\)</span></li>
+=0.051\)</span></li>
 <li><span class="math inline">\(SS_{yz.x}^*=4298/29624
-=0.1450851\)</span></li>
+=0.145\)</span></li>
 </ul>
 <p>that are clearly not corresponding to the <span
 class="math inline">\(r_{sp}^2\)</span>, as they should be. We should
@@ -570,8 +567,8 @@ class="math inline">\(SS_{total}^*=SS_{total}\)</span>.</p>
 <p>The same reasoning holds for all the non-partial indices.</p>
 </div>
 <button type="button" class="collapsible">
-<svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:steelblue;overflow:visible;position:relative;">
-<path d="M212.686 315.314L120 408l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C10.697 480 0 469.255 0 456V344c0-21.382 25.803-32.09 40.922-16.971L72 360l92.686-92.686c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.249 6.248 6.249 16.378 0 22.627zm22.628-118.628L328 104l-32.922-31.029C279.958 57.851 290.666 32 312.048 32h112C437.303 32 448 42.745 448 56v112c0 21.382-25.803 32.09-40.922 16.971L376 152l-92.686 92.686c-6.248 6.248-16.379 6.248-22.627 0l-25.373-25.373c-6.249-6.248-6.249-16.378 0-22.627z"/>
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:steelblue;overflow:visible;position:relative;">
+<path d="M344 0H488c13.3 0 24 10.7 24 24V168c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-39-39-87 87c-9.4 9.4-24.6 9.4-33.9 0l-32-32c-9.4-9.4-9.4-24.6 0-33.9l87-87L327 41c-6.9-6.9-8.9-17.2-5.2-26.2S334.3 0 344 0zM184 496H40c-13.3 0-24-10.7-24-24V328c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2l39 39 87-87c9.4-9.4 24.6-9.4 33.9 0l32 32c9.4 9.4 9.4 24.6 0 33.9l-87 87 39 39c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8z"/>
 </svg>
 <span class="colltitle"> Isn’t this weird? </span> <span
 class="collinfo">click to read</span> <span class="collinfo"> technical
@@ -637,9 +634,9 @@ signs: therefore, we have a suppression effect!</p>
 have <span class="math inline">\(B_{yz.x}=.916\)</span>, <span
 class="math inline">\(B_{yx.z}=-.257\)</span> and <span
 class="math inline">\(B_{xz}=.598\)</span>, thus <span
-class="math inline">\(B_{yx.z}\cdot
-B_{xz}=-.257*.598=-0.153686\)</span>, which has a different sign than
-<span class="math inline">\(B_{yz}=.762\)</span>. Thus, the effect of
+class="math inline">\(B_{yx.z}\cdot B_{xz}=-.257*.598=-0.154\)</span>,
+which has a different sign than <span
+class="math inline">\(B_{yz}=.762\)</span>. Thus, the effect of
 <em>exercising</em> is stronger when keeping constant <em>age</em> than
 alone: <em>age</em> suppresses the effect of <em>exercising</em> on
 <em>endurance</em>.</p>

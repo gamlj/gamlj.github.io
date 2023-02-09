@@ -1,11 +1,8 @@
 # folders should be absolute or relative to the docssource folder
 # do not use the trailing slash
 MODULE_NAME="GAMLj"
-MODULE_FOLDER="/home/marcello/Skinner/Forge/jamovi/gamlj/gamlj"
-SOURCE_FOLDER="pubs"
-TARGET_FOLDER="../gamlj.github.io"
-PROJECT_FOLDER="/home/marcello/Skinner/Forge/jamovi/gamlj/gamlj.github.io"
-STORE_FOLDER="docs"
+MODULE_FOLDER="~/Skinner/Forge/jamovi/gamlj/gamlj"
+PROJECT_FOLDER="~/Skinner/Forge/jamovi/gamlj/gamlj.github.io"
 SOURCE_FOLDER="docssource"
 
 #DATALINK<-"https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/data"
