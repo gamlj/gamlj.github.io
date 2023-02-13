@@ -1,0 +1,24 @@
+---
+title: "fixedcomparison_chunk"
+output: html_document
+---
+
+## Models comparison
+
+When `r opt("Activate")` is flagged, models comparison options become visible.
+
+`r pic("commons/pics/modelcomparison1.png")`
+
+Two models will be estimated and compared. The current model defined in `Model Terms` and the model defined in the `Nested Model` 
+field. By default, the `Nested Model` terms are empty, so an intercept-only model is compared with the current. When the user defines define nested terms, the comparison is updated. 
+
+Consider the following example: 
+
+`r pic("commons/pics/modelcomparison2.png")`
+
+The current model is composed by three main effects (`x`, `z` and `w`) and two interactions `w*z` and `w*z`. The nested model terms are only composed by the main effects (`x`, `z` and `w`). Thus, the loglikelihood ratio test that it is performed to compare the model will test the significance of the two interactions together. The output offers a Table in which each model fit indices and tests are presented, and the two models comparison test is presented.
+
+`r pic("commons/pics/modelcomparison3.png")`
+
+
+

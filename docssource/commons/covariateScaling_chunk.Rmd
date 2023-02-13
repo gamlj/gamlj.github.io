@@ -34,3 +34,9 @@ Note that with either of these two options, one can estimate simple effects and 
 
 * `r opt("Labels+Values")` produces labels of the form $Mean \pm SD=XXXX$, where `XXXX` is the actual value.
 
+* `r opt("Unscaled Values")` produces labels indicating the actual value (of the mean and sd) of the orginal variable scale. This can be useful, for instance, when the user need the estimates to be obtained with centered variables (because there are interactions, for instance), but the plot of the effects is preferred in the orginal scales.
+
+* `r opt("Unscaled Values + Labels")` as the previous option, but add also the label "Mean" and "SD" to the orginal values.
+
+The `r opt("Scaling on")` option decides how the scaling of the variables handle missing values: First, keep in mind that the model will be estimated on complete cases, no matter how this option is set. When there are missing values, however, one can scale each variable only on the complete cases (the default), or scale `columnwise`. If `columnwise` is selected, the mean and standard deviation of each variable used to scale the scores are computed with the available data of the variable, independently of possible missing values in other variables.
+

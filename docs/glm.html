@@ -69,6 +69,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
@@ -378,16 +400,13 @@ div.tocify {
 jamovi</p>
 <p><span class="version"> <span class="versiontitle"> GAMLj version ≥
 </span> 2.6.0 </span></p>
-<p><img src="glm/main.png  " class="img-responsive" alt=""></p>
+<p><img src=" glm/main.png " class="img-responsive" alt=""></p>
 <p>The module estimates a general linear model with categorical and/or
 continuous variables, with options to facilitate estimation of
 interactions, simple slopes, simple effects, etc.</p>
-<div id="module" class="section level1">
-<h1>Module</h1>
 <p>The module can estimate OLS linear models for any combination of
 categorical and continuous variables, thus providing an easy way for
 multiple regression, ANOVA, ANCOVA and moderation analysis.</p>
-</div>
 <div id="estimates" class="section level1">
 <h1>Estimates</h1>
 <p>The module provides ANOVA tables and parameters estimates for any
@@ -397,7 +416,7 @@ partial epsilon, and beta) are optionally computed.</p>
 independent variables defined in <span class="option">Factors</span> and
 continuous independent variables in <span
 class="option">Covariates</span>.</p>
-<p><img src="glm/variables.png" class="img-responsive" alt=""></p>
+<p><img src=" glm/variables.png " class="img-responsive" alt=""></p>
 <p>Effect size indices are optionally computed by selecting the
 following options (see <a href="details_glm_effectsize.html">Details:
 GLM effect size indices</a>):</p>
@@ -422,12 +441,55 @@ class="option">Options</span> tab.</p>
 <p>Please check the details in
 <a href="details_glm_effectsize.html">Details: GLM effect size
 indices</a></p>
+<p>The complete set of options for this panel is:</p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">Effect Size</span>
+</td>
+<td>
+The effect size to show in tables. They can be: <code>"eta"</code> for
+eta-squared, <code>'etap'</code> for partial eta-squared,
+<code>'omega'</code> for omega-squared, <code>'omegap'</code> for
+partial omega-squared, <code>'epsilon'</code> for epsilon-squared,
+<code>'epsilonp'</code> for partial epsilon-squared and
+<code>'beta'</code> for standardized coefficients (betas). Default is
+<code>"beta"</code> and <code>"parEta"</code>.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Estimates C.I.</span>
+</td>
+<td>
+Non standardized coefficients (estimastes) CI in tables if flagged
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">β C.I.</span>
+</td>
+<td>
+Standardized coefficients CI in tables if flagged
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Do not run</span>
+</td>
+<td>
+If flagged, the results are not updated each time an option is changed.
+This allows settings complex model options without waiting for the
+results to update every time.
+</td>
+</tr>
+</table>
 </div>
 <div id="model" class="section level1">
 <h1>Model</h1>
 <p>By default, the model terms are filled in automatically for main
 effects and for interactions with categorical variables.</p>
-<p><img src="glm/model.png" class="img-responsive" alt=""></p>
+<p><img src=" glm/model.png " class="img-responsive" alt=""></p>
 <p>Interactions between continuous variables or categorical and
 continuous variables can be set by clicking the second arrow icon.</p>
 <p>Polinomial effects for continuous variables can be added to the
@@ -443,11 +505,71 @@ effect.</p>
 <p>Increasing the order number and combining the selection with other
 variables allows including interactions involving higher order effects
 of a variable.</p>
-<p>The option <span class="option">Fixed Intercept</span> includes an
+<p>The option <span class="option">Intercept</span> includes an
 intercept in the model. Unflag it to estimate zero-intercept models
 (Regression through the origin, but see <a
 href="https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/">here</a>
 before you do it ).</p>
+<p>The other options are:</p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">Intercept</span>
+</td>
+<td>
+Estimates fixed intercept if flagged
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Nested intercept</span>
+</td>
+<td>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Activate</span>
+</td>
+<td>
+Activates models comparison
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Test</span>
+</td>
+<td>
+Omnibus test of the model is based on F-test (default) or loglikelihood
+ration test <code>LRT</code>.
+</td>
+</tr>
+</table>
+<div id="models-comparison" class="section level2">
+<h2>Models comparison</h2>
+<p>When <span class="option">Activate</span> is flagged, models
+comparison options become visible.</p>
+<p><img src=" commons/pics/modelcomparison1.png " class="img-responsive" alt=""></p>
+<p>Two models will be estimated and compared. The current model defined
+in <code>Model Terms</code> and the model defined in the
+<code>Nested Model</code> field. By default, the
+<code>Nested Model</code> terms are empty, so an intercept-only model is
+compared with the current. When the user defines define nested terms,
+the comparison is updated.</p>
+<p>Consider the following example:</p>
+<p><img src=" commons/pics/modelcomparison2.png " class="img-responsive" alt=""></p>
+<p>The current model is composed by three main effects (<code>x</code>,
+<code>z</code> and <code>w</code>) and two interactions <code>w*z</code>
+and <code>w*z</code>. The nested model terms are only composed by the
+main effects (<code>x</code>, <code>z</code> and <code>w</code>). Thus,
+the loglikelihood ratio test that it is performed to compare the model
+will test the significance of the two interactions together. The output
+offers a Table in which each model fit indices and tests are presented,
+and the two models comparison test is presented.</p>
+<p><img src=" commons/pics/modelcomparison3.png " class="img-responsive" alt=""></p>
+</div>
 </div>
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
@@ -486,20 +608,21 @@ store: contrasts</a>.</p>
 </div>
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
-<p><img src="glm/xscoring.png" class="img-responsive" alt=""></p>
-<p>Continuous variables can be centered, standardized (<span
-class="option">z-scores</span>), log-transformed (<span
-class="option">Log</span>) or used as they are (<span
+<p><img src=" glm/xscoring.png " class="img-responsive" alt=""></p>
+<p>Continuous variables can be <span class="option">Centered</span>,
+standardized (<span class="option">z-scores</span>), log-transformed
+(<span class="option">Log</span>) or used as they are (<span
 class="option">none</span>). The default is <span
 class="option">centered</span> because it makes our lives much easier
 when there are interactions in the model, and do not affect the B
 coefficients when there are none. Thus, if one is comparing results with
 other software that does not center the continuous variables, without
 interactions in the model one would find only a discrepancy in the
-intercept, because in GAMLj the intercept represents the expected value
-of the dependent variable for the average value of the independent
-variable. If one needs to <em>unscale</em> the variable, simply select
-<span class="option">none</span>.</p>
+intercept, because in <span class="modulename">GAMLj</span> the
+intercept represents the expected value of the dependent variable for
+the average value of the independent variable. If one needs to
+<em>unscale</em> the variable, simply select <span
+class="option">none</span>.</p>
 <p><span class="option">Covariates conditioning</span> rules how the
 model is conditioned to different values of the continuous independent
 variables in the <em>simple effects</em> estimation and in the
@@ -541,7 +664,25 @@ variables</p></li>
 <li><p><span class="option">Labels+Values</span> produces labels of the
 form <span class="math inline">\(Mean \pm SD=XXXX\)</span>, where
 <code>XXXX</code> is the actual value.</p></li>
+<li><p><span class="option">Unscaled Values</span> produces labels
+indicating the actual value (of the mean and sd) of the orginal variable
+scale. This can be useful, for instance, when the user need the
+estimates to be obtained with centered variables (because there are
+interactions, for instance), but the plot of the effects is preferred in
+the orginal scales.</p></li>
+<li><p><span class="option">Unscaled Values + Labels</span> as the
+previous option, but add also the label “Mean” and “SD” to the orginal
+values.</p></li>
 </ul>
+<p>The <span class="option">Scaling on</span> option decides how the
+scaling of the variables handle missing values: First, keep in mind that
+the model will be estimated on complete cases, no matter how this option
+is set. When there are missing values, however, one can scale each
+variable only on the complete cases (the default), or scale
+<code>columnwise</code>. If <code>columnwise</code> is selected, the
+mean and standard deviation of each variable used to scale the scores
+are computed with the available data of the variable, independently of
+possible missing values in other variables.</p>
 <p>The option <span class="option">Dependent variable</span> scale
 allows to transform the dependent variable. The dependent variable can
 be centered, standardized (<span class="option">z-scores</span>),
@@ -551,13 +692,33 @@ class="option">none</span>, so no transformation is applied.</p>
 </div>
 <div id="post-hocs" class="section level1">
 <h1>Post-hocs</h1>
-<p><img src="commons/pics/posthoc.png" class="img-responsive" alt=""></p>
+<p><img src=" glm/posthoc.png " class="img-responsive" alt=""></p>
 <p>Post-hoc tests can be accomplished for the categorical variables
 groups by selecting the appropriated factor and flag the required
 tests</p>
 <p>Post-hoc tests are implemented based on R package <em>emmeans</em>.
 All tecnical info can be found <a
 href="https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#pairwise">here</a></p>
+<p>Along with the means comparisons, one can obtain also the Cohen’s
+<span class="math inline">\(d\)</span> effect size indices. Different
+formulation of the Cohen’s <span class="math inline">\(d\)</span> are
+available, and they differ in the way the pooled standard error is
+computed.</p>
+<ul>
+<li><p>Cohen’s d (model SD) <span
+class="math inline">\(d_{mod}\)</span>: the means difference is divided
+by the estimated standard deviation computed based on the model residual
+variance.</p></li>
+<li><p>Cohen’s d (sample SD) <span
+class="math inline">\(d_{mod}\)</span>: the means difference is divided
+by the pooled standard deviation computed within each group.</p></li>
+<li><p>Hedge’s g <span class="math inline">\(g_{sample}\)</span>: the
+means difference is divided by the pooled standard deviation computed
+within each group, corrected for sample bias. The correction is the one
+describe by <span class="citation">Hedges and Olkin (<a
+href="#ref-hedges2014statistical" role="doc-biblioref">2014</a>)</span>
+based on the Gamma function.</p></li>
+</ul>
 </div>
 <div id="plots" class="section level1">
 <h1>Plots</h1>
@@ -701,6 +862,12 @@ or <a href="mailto:mcfanda@gmail.com
 ">send me an email</a>
 </p>
 <p>’</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-hedges2014statistical" class="csl-entry">
+Hedges, Larry V, and Ingram Olkin. 2014. <em>Statistical Methods for
+Meta-Analysis</em>. Academic press.
+</div>
+</div>
 </div>
 
 

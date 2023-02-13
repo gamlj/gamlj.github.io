@@ -9,6 +9,10 @@ output:
      toc: true
      toc_float:
         collapsed: false
+bibliography: 
+     - bib.bib
+link-citations: true
+        
 ---
 
 
@@ -21,11 +25,10 @@ mcdocs_init()
 
 `r version("2.6.0")` 
 
-<img src="glm/main.png  " class="img-responsive" alt="">
+`r pic("glm/main.png")`
 
 The module estimates a general linear model with categorical and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, etc.
 
-# Module
 The module can estimate OLS linear models for any combination of categorical and continuous variables, thus providing an easy way for multiple regression, ANOVA, ANCOVA and moderation analysis. 
 
 # Estimates
@@ -33,8 +36,8 @@ The module provides ANOVA tables and parameters estimates for any estimated mode
 
 Variables definition follows jamovi standards, with categorical independent variables defined in `r opt("Factors")` and continuous independent variables in `r opt("Covariates")`.
 
-<img src="glm/variables.png" class="img-responsive" alt="">
-
+ `r pic("glm/variables.png")`
+ 
 Effect size indices are optionally computed by selecting the following options (see  `r link_pages("details_glm_effectsize")`):
 
   - $\beta$ : standardized regression coefficients
@@ -52,11 +55,16 @@ Confidence intervals of the parameters can be also selected in `r opt("Options")
 
 Please check the details in `r link_pages(nickname="details_glm_effectsize")`
 
+The complete set of options for this panel is:
+
+`r panel_options('gamljlm','panel_input')`
+
+
 # Model 
 
 By default, the model terms are filled in automatically for main effects and for interactions with categorical variables. 
 
-<img src="glm/model.png" class="img-responsive" alt="">
+`r pic("glm/model.png")`
 
 Interactions between continuous variables or categorical and continuous variables can be set by clicking the second arrow icon.
 
@@ -64,7 +72,15 @@ Interactions between continuous variables or categorical and continuous variable
 ```
 
 
-The option `r opt("Fixed Intercept")` includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see [here](https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/) before you do it ). 
+The option `r opt("Intercept")` includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see [here](https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/) before you do it ). 
+
+The other options are:
+
+`r panel_options('gamljlm','panel_model')`
+
+
+```{r , child='commons/fixedcomparison_chunk.Rmd'}
+```
 
 # Factors coding
 
@@ -78,9 +94,9 @@ More details and examples `r link_pages("ros_contrasts")`.
 
 # Covariates Scaling
 
-<img src="glm/xscoring.png" class="img-responsive" alt="">
+`r pic("glm/xscoring.png")`
 
-Continuous variables can be centered, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as they are (`r opt("none")`). The default is `r opt("centered")` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simply select `r opt("none")`.
+Continuous variables can be `r opt("Centered")`, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as they are (`r opt("none")`). The default is `r opt("centered")` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in `r modulename()` the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simply select `r opt("none")`.
 
 
 ```{r child3, child='commons/covariateScaling_chunk.Rmd'}
@@ -89,13 +105,19 @@ Continuous variables can be centered, standardized (`r opt("z-scores")`), log-tr
 The option `r opt("Dependent variable")`  scale allows to transform the dependent variable. The dependent variable can be centered, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as they are (`r opt("none")`). The default is `r opt("none")`, so no transformation is applied.
 
 # Post-hocs
-<img src="commons/pics/posthoc.png" class="img-responsive" alt="">
 
+`r pic("glm/posthoc.png")`
 
 ```{r child4, child='commons/posthoc_chunk.Rmd'}
 ```
 
+Along with the means comparisons, one can obtain also the Cohen's $d$ effect size indices. Different formulation of the Cohen's $d$ are available, and they differ in the way the pooled standard error is computed.
 
+* Cohen's d (model SD) $d_{mod}$: the means difference is divided by the estimated standard deviation computed based on the model residual variance. 
+
+* Cohen's d (sample SD) $d_{mod}$: the means difference is divided by the pooled standard deviation computed within each group. 
+
+* Hedge's g  $g_{sample}$: the means difference is divided by the pooled standard deviation computed within each group, corrected for sample bias. The correction is the one describe by @hedges2014statistical based on the Gamma function. 
 
 # Plots
 
