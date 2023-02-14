@@ -28,13 +28,13 @@ Note that with either of these two options, one can estimate simple effects and 
 
 `r opt("Covariates labeling")` decides which label should be associated with the estimates and plots of simple effects as follows:
 
-* `r opt("Labels")` produces strings of the form $Mean \pm SD$
+* `r opt("Labels")` produces strings of the form $Mean \pm SD$.
 
-* `r opt("Values")` uses the actual values of the variables
+* `r opt("Values")` uses the actual values of the variables, after scaling.
 
 * `r opt("Labels+Values")` produces labels of the form $Mean \pm SD=XXXX$, where `XXXX` is the actual value.
 
-* `r opt("Unscaled Values")` produces labels indicating the actual value (of the mean and sd) of the orginal variable scale. This can be useful, for instance, when the user need the estimates to be obtained with centered variables (because there are interactions, for instance), but the plot of the effects is preferred in the orginal scales.
+* `r opt("Unscaled Values")` produces labels indicating the actual value (of the mean and sd) of the original variable scale. This can be useful, for instance, when the user needs the estimates to be obtained with centered variables (because there are interactions, for instance), but the plot of the effects is preferred in the original scales of the moderators.
 
 * `r opt("Unscaled Values + Labels")` as the previous option, but add also the label "Mean" and "SD" to the orginal values.
 

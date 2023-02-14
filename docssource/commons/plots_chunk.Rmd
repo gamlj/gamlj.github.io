@@ -7,7 +7,7 @@ output: html_document
 
 The "plots" menu allows for plotting  main effects and interactions for any combination of types of variables, making it easy to plot interaction means plots, simple slopes, and combinations of them. The best plot is chosen automatically.
 
-By filling in `r opt("Horizontal axis")` one obtains the group means of the selected factor or the regression line for the selected covariate
+By filling in `r opt("Horizontal axis")` one obtains the group means of the selected factor or the regression line for the selected covariate.
 
 By filling in `r opt("Horizontal axis")` and `r opt("Separated lines")` one obtains a different plot depending on the type of variables selected:
 
@@ -15,10 +15,6 @@ By filling in `r opt("Horizontal axis")` and `r opt("Separated lines")` one obta
   - `r opt("Horizontal axis")` is a factor and `r opt("Separated lines")` is a covariate. One obtains the plot of group means of the factor estimated at three different levels of the covariate. The levels are decided by the `r opt("Covariates conditioning")` options above.
   - `r opt("Horizontal axis")`  and `r opt("Separated lines")` are covariates. One obtains the simple slopes graph of the simple slopes of the variable in horizontal axis estimated at three different levels of the covariate.
   
-By filling in `r opt("Separate plots")` one can probe three-way interactions. If the selected variable is a factor, one obtains a two-way graph (as previously defined) for each level of the "Separate plots" variable. If the selected variable is a covariate, one obtains a two-way graph (as previously defined) for the `Separate plots` variable centered to conditioning values selected in the `r opt("Covariates conditioning")` options.
-
-Flagging the `r opt("Display")` options add `r opt("Confidence intervals")` (or confidence bands) or `r opt("Standard errors")` to the plots.
-
-`r opt("Plot")` options allows to add observed data to the plot (`r opt("Observed scores")`) or to fix the range of the plot to the actual range of the dependent variable (`r opt("Y-axis observed range")`), without the need to plot the actual predicted values. When `Separate plots` are required, in each plot are showed only the observed scores of the moderator level for which the plot is done when the moderator is a categorical one, otherwise all data are plot in each plot. 
+By filling in `r opt("Separate plots")` one can probe higher-order interactions. If the selected variable is a factor, one obtains a two-way graph (as previously defined) for each level of the "Separate plots" variable. If the selected variable is a covariate, one obtains a two-way graph (as previously defined) for the `Separate plots` variable centered to conditioning values selected in the `r opt("Covariates conditioning")` options. Any number of plots can be obtained depending on the order of the interaction.
 
 

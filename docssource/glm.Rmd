@@ -51,7 +51,7 @@ Effect size indices are optionally computed by selecting the following options (
 
 Confidence intervals of the parameters can be also selected in `r opt("Options")` tab.
 
-<img src="glm/effectsize1.png" class="img-responsive" alt="">
+`r pic("glm/effectsize1.png")`
 
 Please check the details in `r link_pages(nickname="details_glm_effectsize")`
 
@@ -72,7 +72,7 @@ Interactions between continuous variables or categorical and continuous variable
 ```
 
 
-The option `r opt("Intercept")` includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see [here](https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/) before you do it ). 
+The option `r opt("Intercept")` includes an intercept in the model. Unflagging it estimates zero-intercept models (Regression through the origin, but see [here](https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/) before you do it ). 
 
 The other options are:
 
@@ -102,7 +102,7 @@ Continuous variables can be `r opt("Centered")`, standardized (`r opt("z-scores"
 ```{r child3, child='commons/covariateScaling_chunk.Rmd'}
 ```
 
-The option `r opt("Dependent variable")`  scale allows to transform the dependent variable. The dependent variable can be centered, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as they are (`r opt("none")`). The default is `r opt("none")`, so no transformation is applied.
+The option `r opt("Dependent variable")`  scale allows to transform the dependent variable. The dependent variable can be centered, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as it is (`r opt("none")`). The default is `r opt("none")`, so no transformation is applied.
 
 # Post-hocs
 
@@ -121,48 +121,40 @@ Along with the means comparisons, one can obtain also the Cohen's $d$ effect siz
 
 # Plots
 
-<img src="glm/plots.png" class="img-responsive" alt="">
-
+`r pic("glm/plot.png")`
 
 ```{r child5, child='commons/plots_chunk.Rmd'}
 ```
 
+The remaining options are defined as follows:
+
+`r panel_options('gamljlm','panel_plots')`
 
 # Estimated marginal means
 
-<img src="commons/pics/emmeans.png" class="img-responsive" alt="">
+`r pic("commons/pics/emmeans.png")`
 
 ```{r child6, child='commons/emm_chunk.Rmd'}
 ```
 
 
-
-
 # Assumptions checks
 
-<img src="glm/assumptions.png" class="img-responsive" alt="">
+`r pic("glm/assumptions.png")`
 
-* `r opt("Homogeneity tests")` provides [Levene's test](https://biostats.w.uib.no/test-for-homogeneity-of-variances-levenes-test/){target="_blank"} for equal variances across groups defined by factors  (homoschedasticity).
+`r panel_options('gamljlm','panel_assumptions')`
 
-* `r opt("Test normality of residuals")` provides [Kolmogorov-Smirnov](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test){target="_blank"} and [Shapiro-Wilk](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation){target="_blank"} tests for normality of residuals.
-
-* `r opt("Q-Q plot of residuals")` outputs a Q-Q plot (observed residual quantiles on expected residual quantiles). More general info [here](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot){target="_blank"}
-
-* `r opt("Residuals histogram")` outputs the histogram of the distribution of the residuals, with an overlaying ideal normal distribution with mean and variance equal to the residuals distribution parameters.
-
-* `r opt("Residuals-Predicted plot")` produces a scatterplot with the residuals on the Y-axis and the predicted in the X-axis. It can be usufull to assess heteroschdasticity.
 
 # Options
 
-<img src="glm/options.png" class="img-responsive" alt="">
+`r pic("glm/options.png")`
 
-Additional options that do not fit elsewhere.
+`r panel_options('gamljlm','panel_options')`
 
-* __`Additional Info`__
 
-    * `r opt("On intercept")`_ provides effect size for the intercept
-    * `r opt("On Effect sizes")`: outputs a new table with all effect sizes available, with confidence intervals 
-    * see `r link_pages("details_glm_effectsize")`
+
+
+`r link_pages("details_glm_effectsize")`
 
 
 
