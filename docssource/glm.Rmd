@@ -23,7 +23,7 @@ mcdocs_init()
 
 **General Linear Model** module of the GAMLj suite for jamovi
 
-`r version("2.6.0")` 
+`r version("3.0.0")` 
 
 `r pic("glm/main.png")`
 
@@ -32,9 +32,9 @@ The module estimates a general linear model with categorical and/or continuous v
 The module can estimate OLS linear models for any combination of categorical and continuous variables, thus providing an easy way for multiple regression, ANOVA, ANCOVA and moderation analysis. 
 
 # Estimates
-The module provides ANOVA tables and parameters estimates for any estimated model. Effect size indices (eta, partial eta, partial omega, partial epsilon, and beta) are optionally computed.
+The module provides ANOVA tables and parameters estimates for any estimated model. Variance-based effect size indices (eta, partial eta, partial omega, partial epsilon, and beta) and mean comparisons (Cohen's d) are optionally computed.
 
-Variables definition follows jamovi standards, with categorical independent variables defined in `r opt("Factors")` and continuous independent variables in `r opt("Covariates")`.
+Variables definition follows `r jamovi` standards, with categorical independent variables defined in `r opt("Factors")` and continuous independent variables in `r opt("Covariates")`.
 
  `r pic("glm/variables.png")`
  
@@ -49,9 +49,8 @@ Effect size indices are optionally computed by selecting the following options (
   - $\epsilon^2$p : partial epsilon-squared 
 
 
-Confidence intervals of the parameters can be also selected in `r opt("Options")` tab.
+Confidence intervals of the parameters can be also selected in `r opt("Options")` tab (see below).
 
-`r pic("glm/effectsize1.png")`
 
 Please check the details in `r link_pages(nickname="details_glm_effectsize")`
 
@@ -74,13 +73,15 @@ Interactions between continuous variables or categorical and continuous variable
 
 The option `r opt("Intercept")` includes an intercept in the model. Unflagging it estimates zero-intercept models (Regression through the origin, but see [here](https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/) before you do it ). 
 
-The other options are:
-
-`r panel_options('gamljlm','panel_model')`
 
 
 ```{r , child='commons/fixedcomparison_chunk.Rmd'}
 ```
+
+
+The other options are:
+
+`r panel_options('gamljlm','panel_model')`
 
 # Factors coding
 
@@ -115,7 +116,7 @@ Along with the means comparisons, one can obtain also the Cohen's $d$ effect siz
 
 * Cohen's d (model SD) $d_{mod}$: the means difference is divided by the estimated standard deviation computed based on the model residual variance. 
 
-* Cohen's d (sample SD) $d_{mod}$: the means difference is divided by the pooled standard deviation computed within each group. 
+* Cohen's d (sample SD) $d_{sample}$: the means difference is divided by the pooled standard deviation computed within each group. 
 
 * Hedge's g  $g_{sample}$: the means difference is divided by the pooled standard deviation computed within each group, corrected for sample bias. The correction is the one describe by @hedges2014statistical based on the Gamma function. 
 
@@ -129,6 +130,14 @@ Along with the means comparisons, one can obtain also the Cohen's $d$ effect siz
 The remaining options are defined as follows:
 
 `r panel_options('gamljlm','panel_plots')`
+
+# Simple Effects
+
+
+```{r child60, child='commons/se_chunk.Rmd'}
+```
+
+
 
 # Estimated marginal means
 

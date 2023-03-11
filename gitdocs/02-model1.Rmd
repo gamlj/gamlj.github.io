@@ -1,0 +1,54 @@
+--- 
+title: "GAMLj Models"
+author: "Marcello Gallucci"
+date: "2023"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+github-repo: mcfanda/jmvScaffold
+description: "Examples of using GAMLj jamovi module to estimates different types of linear models"
+---
+
+
+
+```{r results='hide', echo=FALSE}
+library(mcdocs)
+
+```
+
+# The general linear model {#model1}
+
+`r draft`
+
+## Introduction
+
+
+The general linear model (GLM) encompasses the majority of the analyses that are commonly part of any practitioner's statistical toolbox. There are good reasons for that: with a good knowledge of the GLM we can go a long way. Within the GLM one finds analyses such as simple and multiple regression, Pearson correlation, the paired-sample t-test, the ANOVA, the ANCOVA, and their many derivations such as mediation analysis, planned comparisons, etc (cf. \@ref(naming)). The common theme of all these applications is that the dependent variable is a continuous variable, hopefully normally distributed, and that the sample is composed by non-related, independent cases. The most basic but yet very important application of the GLM is the simple regression.
+
+## GLM with one continuous independent variable
+
+Consider the dataset `manymodels` (cf. \@ref(data)). The dependent variable is a continuous variable named `ycont`, and we want to estimate its linear relation with a continuous variable named `x`. The extensive relation between the two variables can be appreciated in a scatterplot. It is clear that `ycont` and `x` can be any variable, as long as we can consider them as continuous. For the sake of the argument, let us imagine we went to a bar and measured `ycont` as the average number of smiles done in a given time and $x$ as the number of beers drunken for that given time span.
+
+`r pic("bookletpics/1_scatterplot1.png")`
+
+What we want to know is what is the average increase (or decrease) of the dependent variable as the independent variable increases. Thus, how many smiles on average one should expect for one more beer. We ran a GLM to get the answer.
+
+`r pic("bookletpics/1_menu1.png")`
+
+We set the `ycont` variable as the dependent variable and the `x` variable as the independent continuos variable (see \@ref(covnames)), and look at the results.
+
+`r pic("bookletpics/1_input1.png")`
+
+First, we check out the `r opt("Model Info")` table.
+
+`r pic("bookletpics/1_output1.png")`
+
+This is a recap table that basically says that we did what we wanted to do, and how we did it. The second table we get is the `r opt("Model Fit")` table, were the $R^2$, the adjusted $R^2$, and their inferential test are presented.
+
+`r pic("bookletpics/1_output2.png")`
+
+The $R^2$ gives us the first glance of the model from the _variance angle_ (cf. \@ref(angles)). The short story says that our model (in this case the independent variable $x$) explains, or account for, .323*100 percent of the variance. So, if all differences in the smiles (`ycont`) are set to 100, 32% of them can be associate with the amount of beers drunken ($x$).  The `Adj` $R^2$ is the estimation of the variance explained by the model in the population, the `df` are the number of parameters estimated by the model (here is one because we have one independent variable), the `F` is the F-test testing the null hypothesis that $R^2$ is zero, and `p` is the probability of obtaining our results under the null hypothesis. If you find this story a bit dull, you might want to read the full story in Appendix \@ref(appendixa).
+
+
+
+

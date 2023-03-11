@@ -68,6 +68,7 @@ if (window.hljs) {
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
 
 
 
@@ -293,27 +294,43 @@ Model in Jamovi</h1>
 </div>
 
 
+<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 3.0.0 </span></p>
+<p>This documentation refers to <span class="modulename">GAMLj</span>
+version 3 and above. <span class="modulename">GAMLj</span> is not
+compatible with <code>.omv</code> files produced with previous versions
+of the module. In case you need to downgrade to older version, please
+install the latest version of <span class="modulename">GAMLj</span> 2
+from here, with
+<a href='https://mcfanda.github.io/gamlj_legacy.github.io/' target='_blank'>Version
+2 docs</a>.</p>
 <p>General, Mixed and Generalized Models module for <span
-class="jamovi">jamovi</span></p>
-<p><img src="commons/pics/ui.png" class="img-responsive" alt="commons/pics/ui.png" width="400"></p>
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>.</p>
+<p><img src=" commons/pics/ui.png " class="img-responsive" alt=""></p>
 <p>GAMLj offers tools to estimate, visualize, and interpret General
 Linear Models, Mixed Linear Models and Generalized Linear Models with
-categorial and/or continuous variables, with options to facilitate
+categorical and/or continuous variables, with options to facilitate
 estimation of interactions, simple slopes, simple effects, post-hoc
 tests, etc.</p>
 <ul>
 <li>ANOVA and Regression approach</li>
 <li>Continuous and categorical independent variables</li>
-<li>F-test and parameter estimates</li>
-<li>Confidence intervals</li>
+<li>F-test, LR tests, and parameter estimates</li>
+<li>Confidence intervals, standard, profile and bootstrap</li>
 <li>Moderation made easy</li>
 <li>Simple slopes analysis</li>
-<li>Simple effects</li>
-<li>post-hocs analysis</li>
-<li>Plots for up to three-way interactions</li>
+<li>Simple effects analysis</li>
+<li>Simple interaction analysis</li>
+<li>Post-hocs analysis</li>
+<li>Plots for any order of interactions</li>
 <li>Automatic selection of best estimation methods and degrees of
 freedom selection</li>
 <li>Type III estimation</li>
+<li>A large set of effect size indices, depending on the model being
+estimated, such as <span class="math inline">\(\eta^2\)</span>, <span
+class="math inline">\(\omega^2\)</span>, <span
+class="math inline">\(\epsilon^2\)</span>, and Cohen’s <span
+class="math inline">\(d\)</span>, both partial and not partial.</li>
 </ul>
 <p>Available models are:</p>
 <ul>
@@ -333,9 +350,23 @@ freedom selection</li>
 <li>Overdispersed Poisson regression (GZLM)</li>
 <li>Overdispersed Poisson ANOVA-like model (GZLM)</li>
 <li>Negative binomial regression (GZLM)</li>
-<li>Negative binomail ANOVA-like model (GZLM)</li>
-<li>Random coefficients logistic model (GlmMixed)</li>
-<li>Random coefficients poisson model (GlmMixed)</li>
+<li>Negative binomial ANOVA-like model (GZLM)</li>
+<li>Ordinal regression (GZLM)</li>
+<li>Ordinal ANOVA-like model (GZLM)</li>
+<li>Mixed Logistic regression (GMixed)</li>
+<li>Mixed Logistic ANOVA-like model (GMixed)</li>
+<li>Mixed Probit regression (GMixed)</li>
+<li>Mixed Probit ANOVA-like model (GMixed)</li>
+<li>Mixed Multinomial regression (GMixed)</li>
+<li>Mixed Multinomial ANOVA-like model (GMixed)</li>
+<li>Mixed Poisson regression (GMixed)</li>
+<li>Mixed Poisson ANOVA-like model (GMixed)</li>
+<li>Mixed Overdispersed Poisson regression (GMixed)</li>
+<li>Mixed Overdispersed Poisson ANOVA-like model (GMixed)</li>
+<li>Mixed Negative binomial regression (GMixed)</li>
+<li>Mixed Negative binomail ANOVA-like model (GMixed)</li>
+<li>Mixed Ordinal regression (GMixed)</li>
+<li>Mixed Ordinal ANOVA-like model (GMixed)</li>
 </ul>
 <p>Please visit the sub-modules pages for details:</p>
 <ul>
@@ -347,8 +378,8 @@ freedom selection</li>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
 <p>Some worked out examples of the analyses carried out with <span
-class="jamovi">jamovi</span> <span class="modulename">GAMLj</span> are
-posted here (more to come)</p>
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+<span class="modulename">GAMLj</span> are posted here (more to come)</p>
 <div class="littletitle">
 General Linear Model
 </div>

@@ -93,6 +93,7 @@ div.csl-indent {
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
 
 
 
@@ -399,7 +400,7 @@ div.tocify {
 <p><strong>General Linear Model</strong> module of the GAMLj suite for
 jamovi</p>
 <p><span class="version"> <span class="versiontitle"> GAMLj version ≥
-</span> 2.6.0 </span></p>
+</span> 3.0.0 </span></p>
 <p><img src=" glm/main.png " class="img-responsive" alt=""></p>
 <p>The module estimates a general linear model with categorical and/or
 continuous variables, with options to facilitate estimation of
@@ -410,12 +411,14 @@ multiple regression, ANOVA, ANCOVA and moderation analysis.</p>
 <div id="estimates" class="section level1">
 <h1>Estimates</h1>
 <p>The module provides ANOVA tables and parameters estimates for any
-estimated model. Effect size indices (eta, partial eta, partial omega,
-partial epsilon, and beta) are optionally computed.</p>
-<p>Variables definition follows jamovi standards, with categorical
-independent variables defined in <span class="option">Factors</span> and
-continuous independent variables in <span
-class="option">Covariates</span>.</p>
+estimated model. Variance-based effect size indices (eta, partial eta,
+partial omega, partial epsilon, and beta) and mean comparisons (Cohen’s
+d) are optionally computed.</p>
+<p>Variables definition follows <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+standards, with categorical independent variables defined in <span
+class="option">Factors</span> and continuous independent variables in
+<span class="option">Covariates</span>.</p>
 <p><img src=" glm/variables.png " class="img-responsive" alt=""></p>
 <p>Effect size indices are optionally computed by selecting the
 following options (see <a href="details_glm_effectsize.html">Details:
@@ -436,8 +439,7 @@ epsilon-squared</li>
 epsilon-squared</li>
 </ul>
 <p>Confidence intervals of the parameters can be also selected in <span
-class="option">Options</span> tab.</p>
-<p><img src=" glm/effectsize1.png " class="img-responsive" alt=""></p>
+class="option">Options</span> tab (see below).</p>
 <p>Please check the details in
 <a href="details_glm_effectsize.html">Details: GLM effect size
 indices</a></p>
@@ -449,12 +451,12 @@ indices</a></p>
 </td>
 <td>
 The effect size to show in tables. They can be: <code>"eta"</code> for
-eta-squared, <code>'etap'</code> for partial eta-squared,
-<code>'omega'</code> for omega-squared, <code>'omegap'</code> for
+eta-squared, <code>partial eta'</code> for partial eta-squared,
+<code>'omega'</code> for omega-squared, <code>'omega partial'</code> for
 partial omega-squared, <code>'epsilon'</code> for epsilon-squared,
-<code>'epsilonp'</code> for partial epsilon-squared and
+<code>'epsilon partial'</code> for partial epsilon-squared and
 <code>'beta'</code> for standardized coefficients (betas). Default is
-<code>"beta"</code> and <code>"parEta"</code>.
+<code>"beta"</code> and <code>"eta partial"</code>.
 </td>
 </tr>
 <tr>
@@ -480,7 +482,7 @@ Standardized coefficients CI in tables if flagged
 <td>
 If flagged, the results are not updated each time an option is changed.
 This allows settings complex model options without waiting for the
-results to update every time.
+results to update every time. Unflag it when ready to go.
 </td>
 </tr>
 </table>
@@ -497,19 +499,39 @@ model. When a variable is selected in the <span
 class="option">Components</span> field, a little number appears on the
 right side of the selection. The number indicates the <em>order</em> of
 the effect.</p>
-<p><img src="commons/pics/nonlinear1.png" class="img-responsive" alt=""></p>
+<p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
 <p>By increasing that number before dragging the term into the <span
 class="option">Model Terms</span> field, one can include any high order
-effect.</p>
-<p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
-<p>Increasing the order number and combining the selection with other
-variables allows including interactions involving higher order effects
-of a variable.</p>
+effect. Increasing the order number and combining the selection with
+other variables allows including interactions involving higher order
+effects of a variable.</p>
 <p>The option <span class="option">Intercept</span> includes an
 intercept in the model. Unflagging it estimates zero-intercept models
 (Regression through the origin, but see <a
 href="https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/">here</a>
 before you do it ).</p>
+<div id="models-comparison" class="section level2">
+<h2>Models comparison</h2>
+<p>When <span class="option">Activate</span> is flagged, models
+comparison options become visible.</p>
+<p><img src=" commons/pics/modelcomparison1.png " class="img-responsive" alt=""></p>
+<p>Two models will be estimated and compared. The current model defined
+in <code>Model Terms</code> and the model defined in the
+<code>Nested Model</code> field. By default, the
+<code>Nested Model</code> terms are empty, so an intercept-only model is
+compared with the current. When the user defines nested terms, the
+comparison is updated.</p>
+<p>Consider the following example:</p>
+<p><img src=" commons/pics/modelcomparison2.png " class="img-responsive" alt=""></p>
+<p>The current model is composed by three main effects (<code>x</code>,
+<code>z</code> and <code>w</code>) and two interactions <code>w*z</code>
+and <code>w*z</code>. The nested model terms are only composed by the
+main effects (<code>x</code>, <code>z</code> and <code>w</code>). Thus,
+the loglikelihood ratio test that it is performed to compare the model
+will test the significance of the two interactions together. The output
+offers a Table in which each model fit indices and tests are presented,
+and the two models comparison test is presented.</p>
+<p><img src=" commons/pics/modelcomparison3.png " class="img-responsive" alt=""></p>
 <p>The other options are:</p>
 <table class="options">
 <tr>
@@ -547,28 +569,6 @@ ration test <code>LRT</code>.
 </td>
 </tr>
 </table>
-<div id="models-comparison" class="section level2">
-<h2>Models comparison</h2>
-<p>When <span class="option">Activate</span> is flagged, models
-comparison options become visible.</p>
-<p><img src=" commons/pics/modelcomparison1.png " class="img-responsive" alt=""></p>
-<p>Two models will be estimated and compared. The current model defined
-in <code>Model Terms</code> and the model defined in the
-<code>Nested Model</code> field. By default, the
-<code>Nested Model</code> terms are empty, so an intercept-only model is
-compared with the current. When the user defines define nested terms,
-the comparison is updated.</p>
-<p>Consider the following example:</p>
-<p><img src=" commons/pics/modelcomparison2.png " class="img-responsive" alt=""></p>
-<p>The current model is composed by three main effects (<code>x</code>,
-<code>z</code> and <code>w</code>) and two interactions <code>w*z</code>
-and <code>w*z</code>. The nested model terms are only composed by the
-main effects (<code>x</code>, <code>z</code> and <code>w</code>). Thus,
-the loglikelihood ratio test that it is performed to compare the model
-will test the significance of the two interactions together. The output
-offers a Table in which each model fit indices and tests are presented,
-and the two models comparison test is presented.</p>
-<p><img src=" commons/pics/modelcomparison3.png " class="img-responsive" alt=""></p>
 </div>
 </div>
 <div id="factors-coding" class="section level1">
@@ -710,8 +710,9 @@ class="math inline">\(d_{mod}\)</span>: the means difference is divided
 by the estimated standard deviation computed based on the model residual
 variance.</p></li>
 <li><p>Cohen’s d (sample SD) <span
-class="math inline">\(d_{mod}\)</span>: the means difference is divided
-by the pooled standard deviation computed within each group.</p></li>
+class="math inline">\(d_{sample}\)</span>: the means difference is
+divided by the pooled standard deviation computed within each
+group.</p></li>
 <li><p>Hedge’s g <span class="math inline">\(g_{sample}\)</span>: the
 means difference is divided by the pooled standard deviation computed
 within each group, corrected for sample bias. The correction is the one
@@ -806,6 +807,19 @@ lines (if present) drawn in different styles.
 </td>
 </tr>
 </table>
+</div>
+<div id="simple-effects" class="section level1">
+<h1>Simple Effects</h1>
+<p><img src="commons/pics/simple.png" class="img-responsive" alt=""></p>
+<p>Simple effects can be computed for any combination of types of
+variables, making it easy to probe interactions, simple slopes, and
+combinations of them. Simple effects can estimated up to a three-way
+interaction.</p>
+<p>Simple effects are computed following the same logic of the plots.
+They correspond to the plotted effects as defined above. As for plots,
+the effects are estimated for different levels of the categorical
+moderators and for the conditioning values of the continuous moderators
+defined in <span class="option">Covariates Scaling</span> panel.</p>
 </div>
 <div id="estimated-marginal-means" class="section level1">
 <h1>Estimated marginal means</h1>

@@ -1,0 +1,71 @@
+# (APPENDIX) Appendix {-} 
+
+```{r results='hide'}
+library(mcdocs)
+
+```
+
+# Appendix A: The $R^2$'s {#appendixa}
+
+Contrary to what many people think, almost all effect sizes and their corresponding inferential tests in the linear models realm are based to some sort of model comparison. The $R^2$ is one of them.
+
+Assume you have a dependent variable that you want to model, meaning that you want to recap it by expressing it with some predicted values. For the moment, assume the variable to be continuous. If you only have the variable scores available, without any other information, your best guess is to predict the mean as the most likely value. Keeping up with our toy example, assume that `ycont` in the dataset was the number of smiles for a given time span done by our participants in a bar. if you only have the `ycont` variable, you best bet would be that the next customer will smile, on average, $\hat{y}=31.7$ times, because that is the expected value (mean) of the variable distribution. So we say, whoever comes next in the bar, they will smile $\hat{y}=31.7$ times on average.
+
+`r pic("bookletpics/ap_a_output1.png")`
+
+What I am saying translates in the most simple model:
+
+$$ \hat{y_i}=\bar{y}$$
+
+If we use the mean as our expected value, that is our model, we have an approximation error ($\sigma^2$), which amounts to the discrepancy between the predicted valued (the variable mean) and the actual observed values. Because errors larger or smaller than the actual values are the same, we can square them, and compute the average error across cases (forget about the minus 1, it is not important now).
+
+$$ \sigma^2_{\bar{x}}={\Sigma{(y_i-\hat{y})^2} \over {N-1}}$$
+
+When we associate an independent variable to a dependent variable in a linear model, we are seeking a better account of the differences in the scores of the dependent variable. It is like to answering to the question "how many smiles would a person randomly taken from our sample do?", with "it depends on how many beers they had". If it was only for the beers, the predicted values would be 
+
+$$ \hat{y}=a+bx$$
+and the error we make would be:
+$$ \sigma^2_r={\Sigma{[(\hat{y_i}=a+bx_i)-y_i]^2} \over {N-1}}$$
+How good is this error variance associated with the regression? Well, it depends on how big was the error without the regression, that is using the mean as the only predictor, namely $\sigma^2_{\bar{x}}$.
+
+So we take the difference between these possible error variances, and we know how much the regression _reduced the error_
+
+$$ {\sigma^2_{\bar{x}}-\sigma^2_r \over \sigma^2_{\bar{x}}}=R^2$$
+The $R^2$ (and its variants) is the amount of error that we reduce in our predictions thanks to our model as compared to not using our model.
+
+## Variance explained
+
+So, why is the $R^2$ index interpreted as _proportion of variance explained_? The reason is simply that a portion of the dependent variable variance can be associated to the variance of the independent variable(s), and thus we know why is there: because for a certain part (equal to $R^2$) people are different in the number of smailes because they are different in their number of beers.
+
+
+
+You can get a borader view on this topic consulting @judd2017data.
+
+
+
+# Appendix B {#appendixb}
+
+`r jamovi` classifies data variables in four classes: 
+
+`r knitr::include_graphics("bookletpics/a_vartypes.png")`
+
+* __Nominal__ : categorical factor, it is passed to the R engine as a factor. Its behavior in jamovi interface depends on the `Data Type` property. We have  
+
+    * `Data Type`: `integer` it can be inserted in input field that permit numerical variable and nominal variables
+    * `Data Type`: `text` it can be inserted in input field that permit nominal variables
+    * `Data Type`: `decimal` it does not exist. Setting `Data Type` to `decimal` makes the variable a `continuous type`
+    
+* __Continuous__ : numerical variable, it is passed to the R engine as a number. It can be input in the variable field that permit numerical variable. The data type property behaves like this:
+
+    * `Data Type`: `integer` it rounds the values to the closer integer
+    * `Data Type`: `decimal` allows for floating points
+    * `Data Type`: `text` it does not exist, setting `Data Type` to `text` transforms the variable into a nominal variable
+    
+* __Ordinal__ : numerical variable, it is passed to the R engine as a ordered factor. It can be input in the variable field that permit numerical and ordinal variables variable. The data type property behaves like this:
+
+    * `Data Type`: `integer` it can be inserted in input field that permit numerical variable and nominal variables
+    * `Data Type`: `text` it can be inserted in input field that permit nominal variables
+    * `Data Type`: `decimal` it does not exist. Setting `Data Type` to `decimal` makes the variable a `continuous type`
+
+* __ID__ : something cool which I do not know about.
+

@@ -71,6 +71,7 @@ if (window.hljs) {
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
 
 
 
@@ -378,7 +379,7 @@ div.tocify {
 for jamovi</p>
 <p><span class="version"> <span class="versiontitle"> GAMLj version ≥
 </span> 1.6.0 </span></p>
-<p><img src="gzlm/main.png" class="img-responsive" alt=""></p>
+<p><img src=" gzlm/main.png " class="img-responsive" alt=""></p>
 <p>The module estimates generalized linear models with categorial and/or
 continuous dependent and independent variables, with options to
 facilitate estimation ofinteractions, simple slopes, simple effects,
@@ -393,15 +394,11 @@ etc.</p>
 <li>Negative binomial model</li>
 <li>Logistic model</li>
 <li>Probit model</li>
+<li>Ordinal model (proportional odds)</li>
 <li>Multinomial model</li>
 <li>Custom model with combinations of distribution and link
 function</li>
 </ul>
-<p><img src="gzlm/variables.png" class="img-responsive" alt=""></p>
-<p>For each model, any combination of categorical and continuous
-variables can be set as independent variables, thus providing an easy
-way for multiple regression, ANOVA-like, ANCOVA-like and moderation
-analysis for categorical and count dependent variables.</p>
 <p>Models are defined by a link function (LF) and the dependent variable
 distribution, thus allowing to model different types of dependent
 variables:</p>
@@ -427,6 +424,9 @@ distribution, modelling dichotomous dependent variables.</p></li>
 <li><p><span class="option">Probit</span> model: inverse of the
 cumulative normal distribution link function, binomial distribution,
 modelling dichotomous dependent variables.</p></li>
+<li><p><span class="option">Ordinal</span> model: s proportional odds
+logistic regression, cumlative logit LF, multinomial distribution,
+modelling ordered dependent variables.</p></li>
 <li><p><span class="option">Multinomial</span> model: logit LF,
 multinomial distribution, modelling categorical dependent
 variables.</p></li>
@@ -452,21 +452,55 @@ distribution family and link function.</p>
 <p>The plausibility of the distribution/link function combination is no
 checked, but errors are issued if the data do not conform to the chosen
 custom model.</p>
-</div>
-<div id="estimates" class="section level1">
-<h1>Estimates</h1>
-<p>The module provides Analysis of Deviance tables and parameter
-estimates for any estimated model. Variables definition follows jamovi
-standards, with categorical independent variables defined in “factors”
-and continuous independent variables in “covariates”.</p>
-<p><img src="gzlm/variables.png" class="img-responsive" alt=""></p>
-<p>Effect size indexes are optionally computed by selecting
-<code>Odd rations (expB)</code>. Odd ratios apply the exponential
-function to the parameter estimates, thus they make sense in all models
-where the link function is based on the
-logarithm.<code>Relative risk (RR)</code> indexes can be obtained for
-logistic models.</p>
-<p><img src="gzlm/effectsizes.png" class="img-responsive" alt=""></p>
+<p><img src=" gzlm/variables.png " class="img-responsive" alt=""></p>
+<p>For each model, any combination of categorical and continuous
+variables can be set as independent variables, thus providing an easy
+way for multiple regression, ANOVA-like, ANCOVA-like and moderation
+analysis for categorical and count dependent variables. An <span
+class="option">Offset</span> variable can be defined, which is included
+in the model with a fixed coefficient (set to 1) (see )</p>
+<p>The options of this panel are:</p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">Effect Size</span>
+</td>
+<td>
+Effect size indices. <code>Odd Rations</code> (default) exponentiates
+the coefficients. For dichotomous dependent variables
+<code>Relative Risk</code> indices can be obtained.
+<code>Marginal Effects</code> computes the marginal effects (if the
+model allows).
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">For exp(B)</span>
+</td>
+<td>
+<code>TRUE</code> (default) or <code>FALSE</code> , exp(B) CI in table
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">For estimates</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), coefficients CI in
+tables
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Do not run</span>
+</td>
+<td>
+If flagged, the results are not updated each time an option is changed.
+This allows settings complex model options without waiting for the
+results to update every time. Unflag it when ready to go.
+</td>
+</tr>
+</table>
 </div>
 <div id="model" class="section level1">
 <h1>Model</h1>
@@ -481,19 +515,64 @@ model. When a variable is selected in the <span
 class="option">Components</span> field, a little number appears on the
 right side of the selection. The number indicates the <em>order</em> of
 the effect.</p>
-<p><img src="commons/pics/nonlinear1.png" class="img-responsive" alt=""></p>
+<p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
 <p>By increasing that number before dragging the term into the <span
 class="option">Model Terms</span> field, one can include any high order
-effect.</p>
-<p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
-<p>Increasing the order number and combining the selection with other
-variables allows including interactions involving higher order effects
-of a variable.</p>
-<p>The option <span class="option">Fixed Intercept</span> includes an
-intercept in the model. Unflag it to estimate zero-intercept models
-(Regression through the origin, but see <a
-href="https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/">here</a>
-before you do it ).</p>
+effect. Increasing the order number and combining the selection with
+other variables allows including interactions involving higher order
+effects of a variable.</p>
+<div id="models-comparison" class="section level2">
+<h2>Models comparison</h2>
+<p>When <span class="option">Activate</span> is flagged, models
+comparison options become visible.</p>
+<p><img src=" commons/pics/modelcomparison1.png " class="img-responsive" alt=""></p>
+<p>Two models will be estimated and compared. The current model defined
+in <code>Model Terms</code> and the model defined in the
+<code>Nested Model</code> field. By default, the
+<code>Nested Model</code> terms are empty, so an intercept-only model is
+compared with the current. When the user defines nested terms, the
+comparison is updated.</p>
+<p>Consider the following example:</p>
+<p><img src=" commons/pics/modelcomparison2.png " class="img-responsive" alt=""></p>
+<p>The current model is composed by three main effects (<code>x</code>,
+<code>z</code> and <code>w</code>) and two interactions <code>w*z</code>
+and <code>w*z</code>. The nested model terms are only composed by the
+main effects (<code>x</code>, <code>z</code> and <code>w</code>). Thus,
+the loglikelihood ratio test that it is performed to compare the model
+will test the significance of the two interactions together. The output
+offers a Table in which each model fit indices and tests are presented,
+and the two models comparison test is presented.</p>
+<p><img src=" commons/pics/modelcomparison3.png " class="img-responsive" alt=""></p>
+<p>The options are:</p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">Intercept</span>
+</td>
+<td>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Nested intercept</span>
+</td>
+<td>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Activate</span>
+</td>
+<td>
+Not present in R
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
@@ -579,13 +658,31 @@ should be associated with the estimates and plots of simple effects as
 follows:</p>
 <ul>
 <li><p><span class="option">Labels</span> produces strings of the form
-<span class="math inline">\(Mean \pm SD\)</span></p></li>
+<span class="math inline">\(Mean \pm SD\)</span>.</p></li>
 <li><p><span class="option">Values</span> uses the actual values of the
-variables</p></li>
+variables, after scaling.</p></li>
 <li><p><span class="option">Labels+Values</span> produces labels of the
 form <span class="math inline">\(Mean \pm SD=XXXX\)</span>, where
 <code>XXXX</code> is the actual value.</p></li>
+<li><p><span class="option">Unscaled Values</span> produces labels
+indicating the actual value (of the mean and sd) of the original
+variable scale. This can be useful, for instance, when the user needs
+the estimates to be obtained with centered variables (because there are
+interactions, for instance), but the plot of the effects is preferred in
+the original scales of the moderators.</p></li>
+<li><p><span class="option">Unscaled Values + Labels</span> as the
+previous option, but add also the label “Mean” and “SD” to the orginal
+values.</p></li>
 </ul>
+<p>The <span class="option">Scaling on</span> option decides how the
+scaling of the variables handle missing values: First, keep in mind that
+the model will be estimated on complete cases, no matter how this option
+is set. When there are missing values, however, one can scale each
+variable only on the complete cases (the default), or scale
+<code>columnwise</code>. If <code>columnwise</code> is selected, the
+mean and standard deviation of each variable used to scale the scores
+are computed with the available data of the variable, independently of
+possible missing values in other variables.</p>
 </div>
 <div id="post-hocs" class="section level1">
 <h1>Post-hocs</h1>
@@ -599,14 +696,14 @@ href="https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html
 </div>
 <div id="plots" class="section level1">
 <h1>Plots</h1>
-<p><img src="commons/pics/plots.png" class="img-responsive" alt=""></p>
+<p><img src=" gzlm/plot.png " class="img-responsive" alt=""></p>
 <p>The “plots” menu allows for plotting main effects and interactions
 for any combination of types of variables, making it easy to plot
 interaction means plots, simple slopes, and combinations of them. The
 best plot is chosen automatically.</p>
 <p>By filling in <span class="option">Horizontal axis</span> one obtains
 the group means of the selected factor or the regression line for the
-selected covariate</p>
+selected covariate.</p>
 <p>By filling in <span class="option">Horizontal axis</span> and <span
 class="option">Separated lines</span> one obtains a different plot
 depending on the type of variables selected:</p>
@@ -625,38 +722,182 @@ simple slopes graph of the simple slopes of the variable in horizontal
 axis estimated at three different levels of the covariate.</li>
 </ul>
 <p>By filling in <span class="option">Separate plots</span> one can
-probe three-way interactions. If the selected variable is a factor, one
-obtains a two-way graph (as previously defined) for each level of the
-“Separate plots” variable. If the selected variable is a covariate, one
-obtains a two-way graph (as previously defined) for the
+probe higher-order interactions. If the selected variable is a factor,
+one obtains a two-way graph (as previously defined) for each level of
+the “Separate plots” variable. If the selected variable is a covariate,
+one obtains a two-way graph (as previously defined) for the
 <code>Separate plots</code> variable centered to conditioning values
 selected in the <span class="option">Covariates conditioning</span>
-options.</p>
-<p>Flagging the <span class="option">Display</span> options add <span
-class="option">Confidence intervals</span> (or confidence bands) or
-<span class="option">Standard errors</span> to the plots.</p>
-<p><span class="option">Plot</span> options allows to add observed data
-to the plot (<span class="option">Observed scores</span>) or to fix the
-range of the plot to the actual range of the dependent variable (<span
-class="option">Y-axis observed range</span>), without the need to plot
-the actual predicted values. When <code>Separate plots</code> are
-required, in each plot are showed only the observed scores of the
-moderator level for which the plot is done when the moderator is a
-categorical one, otherwise all data are plot in each plot.</p>
+options. Any number of plots can be obtained depending on the order of
+the interaction.</p>
 <p>Plots interpretation varies depending on the model being estimated.
 All plots are, however, depicting predicted values in the response
 original scale (usually probabilities). See details and interpretation
 discussion.</p>
+<p>The options are:</p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">Error Bar Definition</span>
+</td>
+<td>
+<code>'none'</code> (default), <code>'ci'</code>, or <code>'se'</code>.
+Use no error bars, use confidence intervals, or use standard errors on
+the plots, respectively.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Y-axis scale</span>
+</td>
+<td>
+Plot ordinal model predicted values in as probabilities
+(<code>response</code>) or predicted class (<code>mean.class</code>)
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Observed scores</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), plot raw data along
+the predicted values
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Y-axis observed range</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), set the Y-axis range
+equal to the range of the observed values.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">X original scale</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), use original scale
+for covariates.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Varying line types</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), use different
+linetypes per levels.
+</td>
+</tr>
+</table>
+</div>
+<div id="simple-effects" class="section level1">
+<h1>Simple Effects</h1>
+<p><img src="commons/pics/simple.png" class="img-responsive" alt=""></p>
+<p>Simple effects can be computed for any combination of types of
+variables, making it easy to probe interactions, simple slopes, and
+combinations of them. Simple effects can estimated up to any order of
+interaction. If only one moderator is set in the <span
+class="option">Moderators</span> field, the effect of the variable in
+the <span class="option">Simple effects variable</span> is computed at
+different levels of the moderator. If more than one moderator is
+defined, the effects are estimated for all combinations of the moderator
+levels.</p>
+<p>Simple effects are computed following the same logic of the plots.
+They correspond to the plotted effects as defined above. As for plots,
+the effects are estimated for different levels of the categorical
+moderators and for the conditioning values of the continuous moderators
+defined in <span class="option">Covariates Scaling</span> panel.</p>
+<p>When there is more than one moderator, one can activate <span
+class="option">Simple interactions</span> to obtain estimation and tests
+for lower order interactions at different levels of a moderator. Simple
+interactions are computed using the last variable appearing in the <span
+class="option">Moderators</span> field as moderator. In the case
+depicted in the figure above, the interaction <code>w*x</code> is
+estimated and tested at different levels of <code>z</code>.</p>
 </div>
 <div id="estimated-marginal-means" class="section level1">
 <h1>Estimated marginal means</h1>
 <p><img src="commons/pics/emmeans.png" class="img-responsive" alt=""></p>
 <p>Print the estimate expected means, SE, df and confidence intervals of
-the precicted dependent variable by factors in the model. When `<span
-class="option">Include covariates</span> is selected, factors levels are
-crossed also with the conditiong levels of the continuous variables (if
-any). The conditioning values are selected in <span
-class="option">Covariates Scaling</span> panel.</p>
+the predicted dependent variable by factors in the model. Any
+combination available in the model (main effects, interactions,
+non-linear terms), can be requested. If the term involves categorical
+independent variables, means of each level of the variable are
+presented. If the term involves continuous variables, expected means
+computed at the levels defined in <code>Covariate Scaling</code> are
+presented.</p>
+</div>
+<div id="options" class="section level1">
+<h1>Options</h1>
+<p><img src=" gzlm/options.png " class="img-responsive" alt=""></p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">CI Method</span>
+</td>
+<td>
+The method used to compute the confidence intervals.
+<code>Standard</code> uses the Wald method to compute standard errors
+and confidence intervals. <code>Profile</code> computes Profile
+Likelihood Based Confidence Interval, in which the bounds are chosen
+based on the percentiles of the chi-square distribution around the
+maximum likelihood estimate. <code>Bootstrap percent</code> performs a
+non-parametric boostrap, with <code>Bootstrap rep</code> repetitions,
+and compute the CI based on the percentiles of the boostrap
+distribution. The <code>BCa</code> implements the bias-corrected
+bootstrap method.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Coefficients Covariances</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), shows coefficients
+covariances
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Parallel lines test</span>
+</td>
+<td>
+Test parallel lines assumptions in cumulative link model (ordinal
+regression)
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Predicted</span>
+</td>
+<td>
+Saves the predicted values of the model. Predicted values are always
+scaled in the dependent variable original scale, that in the majority of
+cases is the probability scale. For <code>Poisson</code> models and
+<code>Negative Binomial</code> the count scale is used.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Residuals</span>
+</td>
+<td>
+Saves the residual values of the model. The response scale is used.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Remove notes</span>
+</td>
+<td>
+Remove all notes and warning from the Tables. Useful to produce
+pubblication quality tables.
+</td>
+</tr>
+</table>
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>

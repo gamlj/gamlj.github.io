@@ -2,7 +2,7 @@
   title: "About"
 ---
   
-GALMj is awesome. 
+GALMj 3 is awesome. 
 
 # Acronym
 

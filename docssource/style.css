@@ -133,18 +133,6 @@ span.little {
 }
 
 
-span.jamovi {
-  font-weight: bold;
-  color:   #3E6DA9;
-  font-family: Tahoma, Geneva, sans-serif;
-  text-transform: lowercase;
-}
-
-span.gamlj {
-  font-weight: bold;
-  color:   #3E6DA9;
-  font-family: Tahoma, Geneva, sans-serif;
-}
 
 
 pre.jamovitable {
@@ -167,7 +155,6 @@ figcaption {
 
 td.optionname {
   vertical-align: top;
-  padding: 15px;
 }
 
 span.option {

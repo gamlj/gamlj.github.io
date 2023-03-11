@@ -11,27 +11,33 @@ output:
 ```{r echo=FALSE,results='hide'}
 library(mcdocs)
 mcdocs_init()
+
 ```
   
+`r version("3.0.0")`
 
-General, Mixed and Generalized Models module for `r jamovi`
+This documentation refers to `r modulename()` version 3 and above. `r modulename()` is not compatible with `.omv` files produced with previous versions of the module. In case you need to downgrade to older version, please install the latest version of `r modulename()` 2 from here, with `r ext_url("Version 2 docs","https://mcfanda.github.io/gamlj_legacy.github.io/")`.
+  
 
-<img src="commons/pics/ui.png" class="img-responsive" alt="commons/pics/ui.png" width="400">
+General, Mixed and Generalized Models module for `r jamovi`.
 
+`r pic("commons/pics/ui.png")`
 
-GAMLj offers tools to estimate, visualize, and interpret General Linear Models, Mixed Linear Models and Generalized Linear Models with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc tests, etc.
+GAMLj offers tools to estimate, visualize, and interpret General Linear Models, Mixed Linear Models and Generalized Linear Models with categorical and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc tests, etc.
 
 * ANOVA and Regression approach
 * Continuous and categorical independent variables
-* F-test and parameter estimates
-* Confidence intervals
+* F-test, LR tests, and parameter estimates
+* Confidence intervals, standard, profile and bootstrap
 * Moderation made easy
 * Simple slopes analysis
-* Simple effects
-* post-hocs analysis
-* Plots for up to three-way interactions
+* Simple effects analysis
+* Simple interaction analysis
+* Post-hoc analysis
+* Plots for any order of interactions
 * Automatic selection of best estimation methods and degrees of freedom selection
 * Type III estimation
+* A large set of effect size indices, depending on the model being estimated, such as $\eta^2$, $\omega^2$, $\epsilon^2$, and Cohen's $d$, both partial and not partial. 
 
 Available models are:
 
@@ -51,9 +57,24 @@ Available models are:
 * Overdispersed Poisson regression (GZLM)
 * Overdispersed Poisson ANOVA-like model (GZLM)
 * Negative binomial regression (GZLM)
-* Negative binomail  ANOVA-like model (GZLM)
-* Random coefficients logistic model (GlmMixed)
-* Random coefficients poisson model (GlmMixed)
+* Negative binomial  ANOVA-like model (GZLM)
+* Ordinal regression (GZLM)
+* Ordinal ANOVA-like model (GZLM)
+* Mixed Logistic regression (GMixed)
+* Mixed Logistic ANOVA-like model (GMixed)
+* Mixed Probit regression (GMixed)
+* Mixed Probit ANOVA-like model (GMixed)
+* Mixed Multinomial regression (GMixed)
+* Mixed Multinomial ANOVA-like model (GMixed)
+* Mixed Poisson regression (GMixed)
+* Mixed Poisson ANOVA-like model (GMixed)
+* Mixed Overdispersed Poisson regression (GMixed)
+* Mixed Overdispersed Poisson ANOVA-like model (GMixed)
+* Mixed Negative binomial regression (GMixed)
+* Mixed Negative binomail  ANOVA-like model (GMixed)
+* Mixed Ordinal regression (GMixed)
+* Mixed Ordinal ANOVA-like model (GMixed)
+
 
 Please visit the sub-modules pages for details:
 

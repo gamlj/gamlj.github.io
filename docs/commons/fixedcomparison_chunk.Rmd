@@ -10,7 +10,7 @@ When `r opt("Activate")` is flagged, models comparison options become visible.
 `r pic("commons/pics/modelcomparison1.png")`
 
 Two models will be estimated and compared. The current model defined in `Model Terms` and the model defined in the `Nested Model` 
-field. By default, the `Nested Model` terms are empty, so an intercept-only model is compared with the current. When the user defines define nested terms, the comparison is updated. 
+field. By default, the `Nested Model` terms are empty, so an intercept-only model is compared with the current. When the user defines nested terms, the comparison is updated. 
 
 Consider the following example: 
 
