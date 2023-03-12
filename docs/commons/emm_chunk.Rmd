@@ -1,7 +1,0 @@
----
-title: "emm_chunk"
-output: html_document
----
-
-
-Print the estimate expected means, SE, df and confidence intervals of the predicted dependent variable by factors in the model. Any combination available in the model (main effects, interactions, non-linear terms), can be requested. If the term involves categorical independent variables, means of each level of the variable are presented. If the term involves continuous variables, expected means computed at the levels defined in `Covariate Scaling` are presented.

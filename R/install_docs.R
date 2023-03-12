@@ -2,7 +2,7 @@
 library(mcdocs)
 
 
-bookdown::render_book("gitdocs/",output_dir = "../docs/",clean = T)
+bookdown::render_book("gitdocs/",output_dir = "../docs/book",clean = T)
 
 pkgdown::build_site(preview = FALSE)
 mcdocs_init()
