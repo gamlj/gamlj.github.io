@@ -11,6 +11,12 @@ general-references
 model1
 introduction
 glm-with-one-continuous-independent-variable
+input
+model-recap
+twofit
+omnibus-tests
+coefficients
 appendixa
+commuting-r2
 variance-explained
 appendixb
