@@ -40,7 +40,7 @@ What we want to know is what is the average increase (or decrease) of the depend
 
 `r pic("bookletpics/2_menu1.png")`
 
-We set the `ycont` variable as the dependent variable and the `x` variable as the independent continuos variable (see \@ref(covnames)), and look at the results.
+We set the `ycont` variable as the dependent variable and the `x` variable as the independent continuous variable (see \@ref(covnames)), and look at the results.
 
 `r pic("bookletpics/2_input1.png")`
 
@@ -56,7 +56,7 @@ This is a recap table that basically says that we did what we wanted to do, and 
 
 `r pic("bookletpics/2_output2.png")`
 
-The $R^2$ gives us the first glance of the model from the _variance angle_ (cf. \@ref(angles)). The short story says that our model (in this case the independent variable $x$) explains, or account for, .323*100 percent of the variance. So, if all differences in the smiles (`ycont`) are set to 100, 32% of them can be associate with the amount of beers drunken ($x$).  The `Adj` $R^2$ is the estimation of the variance explained by the model in the population, the `df` are the number of parameters estimated by the model (here is one because we have one independent variable that requires only one coefficient), the `F` is the F-test testing the null hypothesis that $R^2$ is zero, and `p` is the probability of obtaining our results under the null hypothesis. If you find this story a bit dull, you might want to read the full story in Appendix \@ref(appendixa).
+The $R^2$ gives us the first glance of the model from the _variance angle_ (cf. \@ref(angles)). The short story says that our model (in this case the independent variable $x$) explains, or account for, .323*100 percent of the variance. So, if all differences in the smiles (`ycont`) are set to 100, 32% of them can be associate with the amount of beers drunken ($x$).  The `Adj.`$R^2$ is the estimation of the variance explained by the model in the population, the `df` are the number of parameters estimated by the model (here is one because we have one independent variable that requires only one coefficient), the `F` is the F-test testing the null hypothesis that $R^2$ is zero, and `p` is the probability of obtaining our results under the null hypothesis. If you find this story a bit dull, you might want to read the full story in Appendix \@ref(appendixa).
 
 ### Omnibus Tests
 
@@ -76,17 +76,62 @@ The coefficients table, here called the _Parameters Estimates_ table, informs us
 
 The intercept, which is not focal here (_nobody looks at the intercept_), is worth mentioning for the sake of comparison with other software. If you run the same analysis in SPSS, R, Jasp, Stata, etc, you get the same `estimate` for the `x` variable, but a different `(Intercept)`. Recall that in any linear model the intercept is the expected value of the dependent variable for $x=0$, `r modulename()`, however, by default centers the independent variables to their means, so $x=0$ means $x=\bar{x}$. So, in `r modulename()` the intercept is the expected value of the dependent variable for the average value of $x$. 
 
-Why centering? First, centering does not change the results of the regression coefficients of simple and multiple regression, so it is harmless in many situations. However, when an interaction is in the model, centering guarantees that the linear effects are the _main effects_ one expects, and not some weired effects computed for the moderator equal to (possibly non existing) zero. Furthermore, I personally believe that very few variables have a real and meaningful zero, so their mean is a more sensible value than zero ^[I have nothing against zero, my favorite number is 610, which in Italian literally translates to  _you are a zero_, where "you" is really meant to  mean "we all"]. If your variables really have a meaningful zero (which you really care about), you can always "unscale" your independent variables setting them to `Original` in the `r opt("Covariates scaling")` panel.
+Why centering? First, centering does not change the results of the regression coefficients of simple and multiple regression, so it is harmless in many situations. However, when an interaction is in the model, centering guarantees that the linear effects are the _main effects_ one expects, and not some weired effects computed for the moderator equal to (possibly non existing) zero. Furthermore, I personally believe that very few variables have a real and meaningful zero, so their mean is a more sensible value than zero ^[I have nothing against zero: my favorite number is 610, which in Italian literally translates to  _you are a zero_, where "you" is really meant to  be "we all"]. If your variables really have a meaningful zero (which you really care about), you can always "unscale" your independent variables setting them to `Original` in the `r opt("Covariates scaling")` panel.
 
 `r pic("bookletpics/2_input2.png")`
 
+### Pearson Correlation
+
+The most used index of association ---
+
 ### PLots
 
-It is always a good idea to look at your model results with a plot. A plot shows your fitted model (predicted values). Because a model is always an approximation of the realt data, we want to show our predicted values against, or together, with the actual data. In `r opt("Plots")` panel, we can set up a plot as follows:
+It is always a good idea to look at your model results with a plot. A plot shows your fitted model (predicted values). Because a model is always an approximation of the real data, we want to show our predicted values against, or together, with the actual data. In `r opt("Plots")` panel, we can set up a plot as follows:
 
 `r pic("bookletpics/2_input3.png")`
 
 and see the results:
 
 `r pic("bookletpics/2_plot1.png")`
+
+## GLM with two or more continuous independent variables
+
+`r oldnames("Multiple Regression")`
+
+Let us add to our model the `z` variable, again a continuous variable. To keep up with our toy example, let assume that `z` was a measure of participants' extroversion.
+
+`r pic("bookletpics/2_input4.png")`
+
+The results are not update. Let go through the most important tables.
+
+### Model Fit {#twofit2}
+
+`r pic("bookletpics/2_output6.png")`
+
+The $R^2$ gives us variance explained, or accounted for, of the dependent variable by the whole model. This means by both `x` and `z`, alone and together. The overall variance explained is statistically different from zero, so we can say we do explain some variance of `smiling` thanks to the variability of `beers` and `extroversion`. The question is now how to each independent variable contributes to this variance explained. We need to look at the individual contributions, so the `r opt("Omnibus Tests")`.
+
+### Omnibus Tests
+
+`r pic("bookletpics/2_output7.png")`
+
+Please notice that I selected $\eta^2$, `partial` $\eta^2$,  $\epsilon^2$, and `partial` $\epsilon^2$, so we can interpret these indices. Before that, however, we can mention that the `x` variable effect is statistically different from zero, F(1,117)=58.87, p.<.001, whereas the effect of `z` reaches the predefined level of significance by a very tiny margin, F(1,117)=4.242, p.=.042. So we can say that there is enough evidence to believe that both effects are different from zero, although the former seems more solid than the latter. Statistical significance, however, is only a part of the story: effects should be evaluated on at least three dimensions: **significance**, **size**
+ and **direction**. We now want to evaluate their size.
+
+Effect size indexes are good tools to evaluate effect sizes (_nomen omen_). We start with the `partial` $\eta^2$, mainly because it is the most used and reported one effect size index in the literature (I always thought that is the case because it is the only ES produced by SPSS GLM). The `partial` $\eta^2$ is the proportion of variance uniquely accounted for by the independent variable, expressed as the proportion of the variance of the dependent variable not explained by the other independent variables. In short, for `x` (beers) is the proportion of variance of smiles not explained by "extroversion" that is explained by "beers". In other words, it answers the question: if everybody had the same level of "extroversion", how much variance would "beers" explain?
+
+Notice that the unique variance explained by "beers" (`x`), namely 31.2%, is computed after removing the variance explained by "extroversion" (`z`). Often you want to know how much variance a variable explains of the total variance, so of all the variance that is available. That is the $\eta^2$, the variance uniquely explained by a variable as a proportion of the total variance of the dependent variable. In other words, it answers the question: how much variance of "smiles" would "beers" uniquely explain?
+
+The $\epsilon^2$ and `partial` $\epsilon^2$ indexes can be interpret as the $\eta$'s, but they are adjusted to represent the population variances, not the sample variances. So, they are better estimation of the "real" effect size indexes.
+
+### Household Chores
+
+Effect size indexes differences (partial vs not partial ones) are usually explained with Venn Diagrams. We try here without them. Assume you leave in a house with another person. There are 100 chores to do in your household, such us washing the dishes, cleaning the windows and take the dog out for a walk. You do 20 chores, 5 of which you did together with your companion. Your companion did 40 chores (they are always better), including the ones you did together. So, all together you people did 55 chores, your companion did 35 alone, you did 15 alone, and 5 chores were done together. 
+
+You people overall contribution is 55/100, so your $R^2=.55$. You alone did 15 chores, so your unique contribution is $\eta^2=15/100=.15$ of the total amount of chores to be done. However, of the chores left to do by your companion (60), you did alone 15, so your _partial_ contribution is $p\eta^2=15/60=.25$.  So the difference between $eta^2$ (or any non partial ES) and its partial version is the denominator. Non partial are proportion of the total, partial ones are proportion of the total minus the part accounted for by the others.
+
+In any household we would use the $\eta^2$, but many authors are still using the $p\eta^2$. We should know what they are, and feel free to use which one one prefers. A deep discussion of this matter can be found in @olejnik2003generalized, that  I recommend reading.
+
+### Coefficients
+
+Now we look at the direction and intensity of the effects.
 
