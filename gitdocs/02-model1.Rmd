@@ -76,13 +76,22 @@ The coefficients table, here called the _Parameters Estimates_ table, informs us
 
 The intercept, which is not focal here (_nobody looks at the intercept_), is worth mentioning for the sake of comparison with other software. If you run the same analysis in SPSS, R, Jasp, Stata, etc, you get the same `estimate` for the `x` variable, but a different `(Intercept)`. Recall that in any linear model the intercept is the expected value of the dependent variable for $x=0$, `r modulename()`, however, by default centers the independent variables to their means, so $x=0$ means $x=\bar{x}$. So, in `r modulename()` the intercept is the expected value of the dependent variable for the average value of $x$. 
 
-Why centering? First, centering does not change the results of the regression coefficients of simple and multiple regression, so it is harmless in many situations. However, when an interaction is in the model, centering guarantees that the linear effects are the _main effects_ one expects, and not some weired effects computed for the moderator equal to (possibly non existing) zero. Furthermore, I personally believe that very few variables have a real and meaningful zero, so their mean is a more sensible value than zero ^[I have nothing against zero: my favorite number is 610, which in Italian literally translates to  _you are a zero_, where "you" is really meant to  be "we all"]. If your variables really have a meaningful zero (which you really care about), you can always "unscale" your independent variables setting them to `Original` in the `r opt("Covariates scaling")` panel.
+Why centering? First, centering does not change the results of the regression coefficients of simple and multiple regression, so it is harmless in many situations. However, when an interaction is in the model, centering guarantees that the linear effects are the _main effects_ one expects, and not some weird effects computed for the moderator equal to (possibly non existing) zero. Furthermore, I personally believe that very few variables have a real and meaningful zero, so their mean is a more sensible value than zero ^[I have nothing against zero: my favorite number is 610, which in Italian literally translates to  _you are a zero_, where "you" is really meant to  be "we all"]. If your variables really have a meaningful zero (which you really care about), you can always "unscale" your independent variables setting them to `Original` in the `r opt("Covariates scaling")` panel.
 
 `r pic("bookletpics/2_input2.png")`
 
 ### Pearson Correlation
 
-The most used index of association ---
+Across sciences, the most used index of association between two variables is the Pearson Correlation, $r$, otherwise named zero-order correlation, bivariate correlation, standardized covariance index, product-moment correlation, etc (pick any name, the Pearson correlation is a case of the `r ext_url("Stigler law of eponymy", "https://en.wikipedia.org/wiki/Stigler%27s_law_of_eponymy")` anyway).
+
+What is important here is that the Pearson correlation is just the standardized regression coefficient of a GLM with only two continuous variables (one dep, on indep). In the GLM terminology, it takes the name of $\beta$. In our example, the correlation
+ between `ycont` and `x` is $.568$. We can verify this by asking `r jamovi` to produce the correlation between the two variables in the `r opt("Regression->Correlation Matrix")` menu. 
+
+`r pic("bookletpics/2_output8.png")`
+ 
+As expected, the correlation and the $\beta$ are the same. More specifically, the Pearson correlation is the regression coefficient that one obtains if the GLM is run after standardizing (compute the z-scores) of both dependent and independent variables. This gives us a key to interpret the Pearson correlation in a precise way: Remembering that any standardized variable has 0 mean and standard deviation equal to 1, we can interpret the $r$ (and therefore the $\beta$) as the amount of standard deviations the dependent variable moves as we move the independent variable of one standard deviation. It varies from -1 to 1, with 0 meaning no relation.
+
+When we deal with GLM's with more than one independent variable, the link between the $\beta$ and the Pearson correlation is lost, but $\beta$'s remain the coefficients obtained after standardizing the variables, so they remain the standardized coefficients.
 
 ### PLots
 

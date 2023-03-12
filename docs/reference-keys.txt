@@ -16,11 +16,13 @@ model-recap
 twofit
 omnibus-tests
 coefficients
+pearson-correlation
 plots
 glm-with-two-or-more-continuous-independent-variables
 twofit2
 omnibus-tests-1
 household-chores
+coefficients-1
 appendixa
 commuting-r2
 variance-explained
