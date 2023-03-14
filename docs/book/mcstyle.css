@@ -236,3 +236,9 @@ span.oldnamestitle {
   font-weight: bold;
   font-style: normal;
 }
+
+span.tablename {
+  font-size: .95em;
+  font-style: normal;
+  border-bottom: 1px solid black;
+}

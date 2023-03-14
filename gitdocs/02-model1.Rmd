@@ -46,11 +46,11 @@ We set the `ycont` variable as the dependent variable and the `x` variable as th
 
 ### Model Recap
 
-First, we check out the `r opt("Model Info")` table.
+First, we check out the `r tab("Model Info")` Table.
 
 `r pic("bookletpics/2_output1.png")`
 
-This is a recap table that says that we did what we wanted to do, and how we did it. The second table we get is the `r opt("Model Fit")` table, where the $R^2$, the adjusted $R^2$, and their inferential test are presented.
+This is a recap table that says that we did what we wanted to do, and how we did it. The second table we get is the `r tab("Model Fit")` Table, where the $R^2$, the adjusted $R^2$, and their inferential test are presented.
 
 ### Model Fit {#twofit}
 
@@ -72,7 +72,7 @@ we can notice that the $\epsilon^2$ is equal to the adjusted $R^2$. Yes, that is
 
 `r pic("bookletpics/2_output5.png")`
 
-The coefficients table here called the _Parameters Estimates_ table, informs us about the size and the direction of the effect. The interesting coefficient is the one associated with the independent variable (`estimate`). Here it is $3.808$. This means that for every unit increase in the independent variable the dependent variable increases, on average, of $3.808$ units. In our toy example, for each beer one drinks, on average, one smiles $3.808$ smiles more. This is the **regression coefficient**, the very first and most solid pillar of the linear model building. This interpretation is going to stick, so keep it in mind, because when models get more complex, we are going to amend it, but only to make it more precise, never to twist it. 
+The coefficients table here called the `r tab("Parameters Estimates (Coefficients)")` table, informs us about the size and the direction of the effect. The interesting coefficient is the one associated with the independent variable (`estimate`). Here it is $3.808$. This means that for every unit increase in the independent variable the dependent variable increases, on average, of $3.808$ units. In our toy example, for each beer one drinks, on average, one smiles $3.808$ smiles more. This is the **regression coefficient**, the very first and most solid pillar of the linear model building. This interpretation is going to stick, so keep it in mind, because when models get more complex, we are going to amend it, but only to make it more precise, never to twist it. 
 
 The intercept, which is not focal here (_nobody looks at the intercept_), is worth mentioning for the sake of comparison with other software. If you run the same analysis in SPSS, R, Jasp, Stata, etc, you get the same `estimate` for the `x` variable, but a different `(Intercept)`. Recall that in any linear model the intercept is the expected value of the dependent variable for $x=0$, `r modulename()`, however, by default centers the independent variables to their means, so $x=0$ means $x=\bar{x}$. So, in `r modulename()` the intercept is the expected value of the dependent variable for the average value of $x$. 
 
@@ -142,5 +142,15 @@ In any household, we would use the $\eta^2$, but many authors are still using th
 
 ### Coefficients
 
-Now we look at the direction and intensity of the effects.
+Now we look at the direction and intensity of the effects, interpreting the `r tab("Parameters Estimates (Coefficients)")` Table.
+
+`r pic("bookletpics/2_output9.png")`
+
+For each variable effect, can see the estimates (the $b$ coefficients), the standard error (SE), the confidence intervals, tbe $\beta$, the degrees of freedom, the -test and the p-values. So, the full set of estimations ($b$ and $\beta$) and the inferential tests (t-test, C.I. df and p-values). Let's interpret them for $x$:
+
+* $b$      : keeping constant $z$, for one unit more in $x$ we expect the dependent variable average score to increase of $3.777$ units.
+* $\beta$  : the effect corresponds to a standardized coefficient of $.564$, indicating that one standard deviation more in $x$, $ycont$ increases of .564 standard deviations. * $C.I.$   : "Were this procedure to be repeated on numerous samples, the proportion of calculated 95% confidence intervals that encompassed the true value of the population parameter would tend toward 95%" `ext_url("Wikipedia","https://en.wikipedia.org/wiki/Confidence_interval")`. Weird? Yes, that's what confidence intervals are. But what about 2.785 and 4.769? Well, they are the limits of 95% of the distribution of sample estimates if, and only if, we got exactly the right population parameter in our sample. But we have no way to assess whether we did, so there is not much to learn from these two number. This book is not the right place to discuss this issue, but interested readers may enjoy reading @mayoci.
+
+
+
 

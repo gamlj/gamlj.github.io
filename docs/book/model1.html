@@ -244,9 +244,9 @@ div.csl-indent {
 </div>
 <div id="model-recap" class="section level3 hasAnchor" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Model Recap<a href="model1.html#model-recap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>First, we check out the <span class="option">Model Info</span> table.</p>
+<p>First, we check out the <span class="tablename">Model Info</span> Table.</p>
 <p><img src="bookletpics/2_output1.png" width="402" /></p>
-<p>This is a recap table that says that we did what we wanted to do, and how we did it. The second table we get is the <span class="option">Model Fit</span> table, where the <span class="math inline">\(R^2\)</span>, the adjusted <span class="math inline">\(R^2\)</span>, and their inferential test are presented.</p>
+<p>This is a recap table that says that we did what we wanted to do, and how we did it. The second table we get is the <span class="tablename">Model Fit</span> Table, where the <span class="math inline">\(R^2\)</span>, the adjusted <span class="math inline">\(R^2\)</span>, and their inferential test are presented.</p>
 </div>
 <div id="twofit" class="section level3 hasAnchor" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Model Fit<a href="model1.html#twofit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -263,7 +263,7 @@ div.csl-indent {
 <div id="coefficients" class="section level3 hasAnchor" number="2.2.5">
 <h3><span class="header-section-number">2.2.5</span> Coefficients<a href="model1.html#coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="bookletpics/2_output5.png" width="641" /></p>
-<p>The coefficients table here called the <em>Parameters Estimates</em> table, informs us about the size and the direction of the effect. The interesting coefficient is the one associated with the independent variable (<code>estimate</code>). Here it is <span class="math inline">\(3.808\)</span>. This means that for every unit increase in the independent variable the dependent variable increases, on average, of <span class="math inline">\(3.808\)</span> units. In our toy example, for each beer one drinks, on average, one smiles <span class="math inline">\(3.808\)</span> smiles more. This is the <strong>regression coefficient</strong>, the very first and most solid pillar of the linear model building. This interpretation is going to stick, so keep it in mind, because when models get more complex, we are going to amend it, but only to make it more precise, never to twist it.</p>
+<p>The coefficients table here called the <span class="tablename">Parameters Estimates (Coefficients)</span> table, informs us about the size and the direction of the effect. The interesting coefficient is the one associated with the independent variable (<code>estimate</code>). Here it is <span class="math inline">\(3.808\)</span>. This means that for every unit increase in the independent variable the dependent variable increases, on average, of <span class="math inline">\(3.808\)</span> units. In our toy example, for each beer one drinks, on average, one smiles <span class="math inline">\(3.808\)</span> smiles more. This is the <strong>regression coefficient</strong>, the very first and most solid pillar of the linear model building. This interpretation is going to stick, so keep it in mind, because when models get more complex, we are going to amend it, but only to make it more precise, never to twist it.</p>
 <p>The intercept, which is not focal here (<em>nobody looks at the intercept</em>), is worth mentioning for the sake of comparison with other software. If you run the same analysis in SPSS, R, Jasp, Stata, etc, you get the same <code>estimate</code> for the <code>x</code> variable, but a different <code>(Intercept)</code>. Recall that in any linear model the intercept is the expected value of the dependent variable for <span class="math inline">\(x=0\)</span>, <span class="modulename">GAMLj</span>, however, by default centers the independent variables to their means, so <span class="math inline">\(x=0\)</span> means <span class="math inline">\(x=\bar{x}\)</span>. So, in <span class="modulename">GAMLj</span> the intercept is the expected value of the dependent variable for the average value of <span class="math inline">\(x\)</span>.</p>
 <p>Why centering? First, centering does not change the results of the regression coefficients of simple and multiple regression, so it is harmless in many situations. However, when an interaction is in the model, centering guarantees that the linear effects are the <em>main effects</em> one expects, and not some weird effects computed for the moderator equal to (possibly non-existing) zero. Furthermore, I believe that very few variables have a real and meaningful zero, so their mean is a more sensible value than zero <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. If your variables really have a meaningful zero (which you care about), you can always “unscale” your independent variables setting them to <code>Original</code> in the <span class="option">Covariates scaling</span> panel.</p>
 <p><img src="bookletpics/2_input2.png" width="528" /></p>
@@ -313,7 +313,8 @@ and <strong>direction</strong>. We now want to evaluate their size.</p>
 </div>
 <div id="coefficients-1" class="section level3 hasAnchor" number="2.3.4">
 <h3><span class="header-section-number">2.3.4</span> Coefficients<a href="model1.html#coefficients-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Now we look at the direction and intensity of the effects.</p>
+<p>Now we look at the direction and intensity of the effects, interpreting the <span class="tablename">Parameters Estimates (Coefficients)</span> Table.</p>
+<p><img src="bookletpics/2_output9.png" width="643" /></p>
 
 </div>
 </div>

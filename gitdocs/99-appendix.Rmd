@@ -7,21 +7,21 @@ library(mcdocs)
 
 # Appendix A: The $R^2$'s {#appendixa}
 
-Contrary to what many people think, almost all effect sizes and their corresponding inferential tests in the linear models realm are based to some sort of model comparison. The $R^2$ is one of them.
+Contrary to what many people think, almost all effect sizes and their corresponding inferential tests in the linear model's realm are based on some sort of model comparison [@judd2017data]. The $R^2$ is one of them.
 
-Assume you have a dependent variable that you want to model, meaning that you want to recap it by expressing it with some predicted values. For the moment, assume the variable to be continuous. If you only have the variable scores available, without any other information, your best guess is to use the mean as the most likely value. Keeping up with our toy example, assume that `ycont` in the dataset was the number of smiles for a given time span done by our participants in a bar. If you only have the `ycont` variable, your best bet would be that the next customer will smile, on average, $\hat{y}=31.7$ times, because that is the expected value (mean) of the variable distribution. So we say, whoever comes next in the bar, they will smile $\hat{y}=31.7$ times on average.
+Assume you have a dependent variable that you want to model, meaning that you want to recap its scores by expressing them with some predicted values. For the moment, assume the variable to be continuous. If you only have the variable scores available, without any other information, your best guess is to use the mean as the most likely value. Keeping up with our toy example, assume that `ycont` in the dataset was the number of smiles for a given time done by our participants in a bar. If you only have the `ycont` variable, your best bet would be that the next customer will smile, on average, $\hat{y}=31.7$ times, because that is the expected value (mean) of the variable distribution. So we say, whoever comes next in the bar, they will smile $\hat{y}=31.7$ times on average.
 
 `r pic("bookletpics/ap_a_output1.png")`
 
-What I am saying translates in the most simple linear model, the mean model:
+What I am saying translates into the most simple linear model, the mean model:
 
 $$ \hat{y_i}=\bar{y}$$
 
-If we use the mean as our expected value, that is our model, we have an approximation error ($\sigma^2$), which amounts to the discrepancy between the predicted valued (the variable mean) and the actual observed values. Because errors larger or smaller than the actual values are the same, we can square the errors, and compute the average error across cases (forget about the minus 1, it is not important now).
+If we use the mean as our expected value, that is our model, we have an approximation error ($\sigma^2$), which amounts to the discrepancy between the predicted values (the variable mean) and the actual observed values. Because errors larger or smaller than the actual values are the same, we can square the errors, and compute the average error across cases (forget about the minus 1, it is not important now).
 
 $$ \sigma^2_{\bar{x}}={\Sigma{(y_i-\hat{y})^2} \over {N-1}}$$
 
-When we associate an independent variable to a dependent variable in a linear model, we are seeking a better account of the differences in the scores of the dependent variable. It is like to answering to the question "how many smiles would a person randomly taken from our sample do?", with "it depends on how many beers they had". If it was only for the beers, the predicted values would be 
+When we associate an independent variable with a dependent variable in a linear model, we are seeking a better account of the differences in the scores of the dependent variable. It is like answering the question "how many smiles would a  randomly taken person from our sample do?", with "it depends on how many beers they had". If it was only for the beers, the predicted values would be 
 
 $$ \hat{y}=a+bx$$
 and the error we make would be:
@@ -35,7 +35,7 @@ The $R^2$ (and its variants) is the amount of error that we reduce in our predic
 
 ## Commuting $R^2$
 
-Let assume you commute to the university every day and it takes 60 minutes ($T_0$) to get there from your home, following one route. A friend of yours (probably a know-it-all colleague), suggests an alternative route. You follow the lead, and you got at your department in 50 minutes ($T_c$). Nice, but what was your colleague contribution to your happiness (assuming you do not enjoy commuting)? We can say that it was 10', which is given by $60-50=10$. Is that a lot? Well, it depends on the overall commuting time, because saving 10' from Lakeville to Berwick (they are in Nova Scotia, CA, 16 minutes apart) is different than saving 10' travelling from Milan (Italy) to Manila (Philippines), which takes around 17 hours. Thus, we can compute our colleague contribution to our happiness as: 
+Let's assume you commute to the university every day and it takes 60 minutes ($T_0$) to get there from your home, following one route. A friend of yours (probably a know-it-all colleague), suggests an alternative route. You follow the lead, and you got to your department in 50 minutes ($T_c$). Nice, but what was your colleague's contribution to your happiness (assuming you do not enjoy commuting)? We can say that it was 10', which is given by $60-50=10$. Is that a lot? Well, it depends on the overall commuting time, because saving 10' from Lakeville to Berwick (they are in Nova Scotia, CA, 16 minutes apart) is different than saving 10' traveling from Milan (Italy) to Manila (Philippines), which takes around 17 hours. Thus, we can compute our colleague's contribution to our happiness as: 
 
 $$ {(T_0-T_c) \over T_0}={10 \over60}$$
 
@@ -47,9 +47,9 @@ which is how much our model "saved" of (or reduced) our error. That is called th
 
 ## Variance explained
 
-So, why is the $R^2$ index interpreted as _proportion of variance explained_? The reason is simply that a portion of the dependent variable variance can be associated to the variance of the independent variable(s), and thus we know why is there: because for a certain part (equal to $R^2$) people are different in the number of smiles because they are different in their number of beers.
+So, why is the $R^2$ index interpreted as _proportion of variance explained_? The reason is simply that a portion of the dependent variable variance can be associated with the variance of the independent variable(s), and thus we know why is there: because for a certain part (equal to $R^2$) people are different in the number of smiles because they are different in their number of beers.
 
-You can get a borader view on this topic consulting @judd2017data. If you get exited by this, you can consult @searle2016linear, which explains that almost any test we are familiar to can be cast as a model comparison test.
+You can get a broader view of this topic by consulting @judd2017data. If you get excited by this, you can consult @searle2016linear, which explains that almost any test we are familiar with can be cast as a model comparison test.
 
 
 # Appendix B {#appendixb}
@@ -60,21 +60,21 @@ You can get a borader view on this topic consulting @judd2017data. If you get ex
 
 * __Nominal__ : categorical factor, it is passed to the R engine as a factor. Its behavior in jamovi interface depends on the `Data Type` property. We have  
 
-    * `Data Type`: `integer` it can be inserted in input field that permit numerical variable and nominal variables
-    * `Data Type`: `text` it can be inserted in input field that permit nominal variables
+    * `Data Type`: `integer` can be inserted in the input field that permits numerical variable and nominal variables
+    * `Data Type`: `text` can be inserted in the input field that permits nominal variables
     * `Data Type`: `decimal` it does not exist. Setting `Data Type` to `decimal` makes the variable a `continuous type`
     
-* __Continuous__ : numerical variable, it is passed to the R engine as a number. It can be input in the variable field that permit numerical variable. The data type property behaves like this:
+* __Continuous__ : numerical variable, it is passed to the R engine as a number. It can be input in the variable field that permits numerical variable. The data type property behaves like this:
 
-    * `Data Type`: `integer` it rounds the values to the closer integer
+    * `Data Type`: `integer`  rounds the values to the closer integer
     * `Data Type`: `decimal` allows for floating points
-    * `Data Type`: `text` it does not exist, setting `Data Type` to `text` transforms the variable into a nominal variable
+    * `Data Type`: `text`  does not exist, setting `Data Type` to `text` transforms the variable into a nominal variable
     
-* __Ordinal__ : numerical variable, it is passed to the R engine as a ordered factor. It can be input in the variable field that permit numerical and ordinal variables variable. The data type property behaves like this:
+* __Ordinal__ : numerical variable, it is passed to the R engine as an ordered factor. It can be input in the variable field that permits numerical and ordinal variables variable. The data type property behaves like this:
 
-    * `Data Type`: `integer` it can be inserted in input field that permit numerical variable and nominal variables
-    * `Data Type`: `text` it can be inserted in input field that permit nominal variables
-    * `Data Type`: `decimal` it does not exist. Setting `Data Type` to `decimal` makes the variable a `continuous type`
+    * `Data Type`: `integer` can be inserted in the input field that permits numerical variable and nominal variables
+    * `Data Type`: `text`  can be inserted in the input field that permits nominal variables
+    * `Data Type`: `decimal`  does not exist. Setting `Data Type` to `decimal` makes the variable a `continuous type`
 
 * __ID__ : something cool which I do not know about.
 
