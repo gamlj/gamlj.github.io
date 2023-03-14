@@ -315,12 +315,20 @@ and <strong>direction</strong>. We now want to evaluate their size.</p>
 <h3><span class="header-section-number">2.3.4</span> Coefficients<a href="model1.html#coefficients-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now we look at the direction and intensity of the effects, interpreting the <span class="tablename">Parameters Estimates (Coefficients)</span> Table.</p>
 <p><img src="bookletpics/2_output9.png" width="643" /></p>
+<p>For each variable effect, can see the estimates (the <span class="math inline">\(b\)</span> coefficients), the standard error (SE), the confidence intervals, tbe <span class="math inline">\(\beta\)</span>, the degrees of freedom, the -test and the p-values. So, the full set of estimations (<span class="math inline">\(b\)</span> and <span class="math inline">\(\beta\)</span>) and the inferential tests (t-test, C.I. df and p-values). Let’s interpret them for <span class="math inline">\(x\)</span>:</p>
+<ul>
+<li><span class="math inline">\(b\)</span> : keeping constant <span class="math inline">\(z\)</span>, for one unit more in <span class="math inline">\(x\)</span> we expect the dependent variable average score to increase of <span class="math inline">\(3.777\)</span> units.</li>
+<li><span class="math inline">\(\beta\)</span> : the effect corresponds to a standardized coefficient of <span class="math inline">\(.564\)</span>, indicating that one standard deviation more in <span class="math inline">\(x\)</span>, <span class="math inline">\(ycont\)</span> increases of .564 standard deviations. * <span class="math inline">\(C.I.\)</span> : “Were this procedure to be repeated on numerous samples, the proportion of calculated 95% confidence intervals that encompassed the true value of the population parameter would tend toward 95%” <code>ext_url("Wikipedia","https://en.wikipedia.org/wiki/Confidence_interval")</code>. Weird? Yes, that’s what confidence intervals are. But what about 2.785 and 4.769? Well, they are the limits of 95% of the distribution of sample estimates if, and only if, we got exactly the right population parameter in our sample. But we have no way to assess whether we did, so there is not much to learn from these two number. This book is not the right place to discuss this issue, but interested readers may enjoy reading <span class="citation">Mayo (<a href="#ref-mayoci" role="doc-biblioref">1981</a>)</span>.</li>
+</ul>
 
 </div>
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-mayoci" class="csl-entry">
+Mayo, Deborah G. 1981. <span>“In Defense of the Neyman-Pearson Theory of Confidence Intervals.”</span> <em>Philosophy of Science</em> 48 (2): 269–80. <a href="https://doi.org/10.1086/288996">https://doi.org/10.1086/288996</a>.
+</div>
 <div id="ref-olejnik2003generalized" class="csl-entry">
 Olejnik, Stephen, and James Algina. 2003. <span>“Generalized Eta and Omega Squared Statistics: Measures of Effect Size for Some Common Research Designs.”</span> <em>Psychological Methods</em> 8 (4): 434.
 </div>
