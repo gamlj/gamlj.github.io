@@ -16,3 +16,4 @@ str(knitr::knit_engines$get())
 
 
 # old tag G-2YGWBQCQK3
+.30^2

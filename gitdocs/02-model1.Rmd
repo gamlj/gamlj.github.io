@@ -24,9 +24,9 @@ library(mcdocs)
 
 ## Introduction
 
-The general linear model (GLM) encompasses the majority of the analyses that are commonly part of any practitioner's statistical toolbox. There are good reasons for that: with a good knowledge of the GLM we can go a long way. Within the GLM one finds analyses such as simple and multiple regression, Pearson correlation, the independent-samples t-test, the ANOVA, the ANCOVA, and many of their derivations, such as mediation analysis, planned comparisons, etc (cf. \@ref(naming)). The common theme of all these applications is that the dependent variable is continuous, hopefully normally distributed, and that the sample is composed of non-related, independent cases. The most basic yet the very important application of the GLM is simple regression.
+The general linear model (GLM) encompasses the majority of the analyses that are commonly part of any practitioner's statistical toolbox. There are good reasons for that: with a good knowledge of the GLM we can go a long way. Within the GLM one finds analyses such as simple and multiple regression, Pearson correlation, the independent-samples t-test, the ANOVA, the ANCOVA, and many of their derivations, such as mediation analysis, planned comparisons, etc (cf. \@ref(naming)). The common theme of all these applications is that the dependent variable is continuous, hopefully normally distributed, and that the sample is composed of non-related, independent cases. The most basic yet the very important application of the GLM is simple regression, a GLM with one continuous independent variable (IV).
 
-## GLM with one continuous independent variable
+## One continuous IV
 
 `r oldnames("Simple Regression")`
 
@@ -93,7 +93,12 @@ As expected, the correlation and the $\beta$ are the same. More specifically, th
 
 When we deal with GLM with more than one independent variable, the link between the $\beta$ and the Pearson correlation is lost, but $\beta$'s remain the coefficients obtained after standardizing the variables, so they remain the standardized coefficients.
 
-### PLots
+If the user decides to report the $\beta$ coefficients, they would likely want to report the $\beta$ confidence intervals. They can be asked for in the input by flagging 
+
+`r pic("bookletpics/2_simple_input9.png")`
+`r pic("bookletpics/2_simple_output9.png")`
+
+### Plots
 
 It is always a good idea to look at your model results with a plot. A plot shows your fitted model (predicted values). Because a model is always an approximation of the real data, we want to show our predicted values against, or together, with the actual data. In `r opt("Plots")` panel, we can set up a plot as follows:
 
@@ -103,7 +108,7 @@ and see the results:
 
 `r pic("bookletpics/2_plot1.png")`
 
-## GLM with two or more continuous independent variables
+## More continuous IVs {#civs}
 
 `r oldnames("Multiple Regression")`
 
@@ -119,7 +124,7 @@ The results are now updated. Let's go through the most important tables.
 
 The $R^2$ gives us the variance explained, or accounted for, of the dependent variable by the whole model. This means by both `x` and `z`, alone and together. The overall variance explained is statistically different from zero, so we can say we do explain some variance of `smiling` thanks to the variability of `beers` and `extroversion`. The question is now how each independent variable contributes to this variance explained. We need to look at the individual contributions, so the `r opt("Omnibus Tests")`.
 
-### Omnibus Tests
+### Omnibus Tests {#variances}
 
 `r pic("bookletpics/2_output7.png")`
 
@@ -149,8 +154,169 @@ Now we look at the direction and intensity of the effects, interpreting the `r t
 For each variable effect, can see the estimates (the $b$ coefficients), the standard error (SE), the confidence intervals, tbe $\beta$, the degrees of freedom, the -test and the p-values. So, the full set of estimations ($b$ and $\beta$) and the inferential tests (t-test, C.I. df and p-values). Let's interpret them for $x$:
 
 * $b$      : keeping constant $z$, for one unit more in $x$ we expect the dependent variable average score to increase of $3.777$ units.
-* $\beta$  : the effect corresponds to a standardized coefficient of $.564$, indicating that one standard deviation more in $x$, $ycont$ increases of .564 standard deviations. * $C.I.$   : "Were this procedure to be repeated on numerous samples, the proportion of calculated 95% confidence intervals that encompassed the true value of the population parameter would tend toward 95%" `ext_url("Wikipedia","https://en.wikipedia.org/wiki/Confidence_interval")`. Weird? Yes, that's what confidence intervals are. But what about 2.785 and 4.769? Well, they are the limits of 95% of the distribution of sample estimates if, and only if, we got exactly the right population parameter in our sample. But we have no way to assess whether we did, so there is not much to learn from these two number. This book is not the right place to discuss this issue, but interested readers may enjoy reading @mayoci.
+* $\beta$  : the effect corresponds to a standardized coefficient of $.564$, indicating that for one standard deviation more in $x$, $ycont$ increases of .564 standard deviations. 
+* $C.I.$   : "Were this procedure to be repeated on numerous samples, the proportion of calculated 95% confidence intervals that encompassed the true value of the population parameter would tend toward 95%" (cf. `r  ext_url("Wikipedia","https://en.wikipedia.org/wiki/Confidence_interval")`). Weird? Yes, that's what confidence intervals are. But what about 2.785 and 4.769? Well, they are the two values that include 95% of the cases of the distribution of sample estimates if, and only if, we got exactly the right population parameter in our sample. But we have no way to assess whether we did, so there is not much to learn from these two numbers. This book is not the right place to discuss this issue, but interested readers may enjoy reading @mayoci.
+
+## Continuous IVs and interaction {#moderation}
+
+In the previous model, we can make a plot of the effect of beers (`x`) on smiles (`ycont`), at different levels of extroversion (`z`). This can be achieved in `r modulename()` by asking for a plot as follows:
+
+`r pic("bookletpics/2_input10.png")`
+
+`r pic("bookletpics/2_output10.png")`
+
+Three three lines depicted in the plots are the effects of `x` on `ycont`, estimated at different levels of `z`. Because `z` is continuous, `r modulename()` automatically sets the focal levels of `z` equal to the mean, on SD above the mean, and one SD below the mean (this can be changed, see below).
+
+As expected, the three effects depicted are perfectly parallel. This is because in multiple regression, the effect of each variable is computed keeping constant the other variables, which is equivalent to saying that the effects are computed as if they were the same at each levels of the other variable. They are forced to be the same, no matter the data. But this constrain can be removed by adding an interaction in the model. An interaction allows the effect one variable to change at different levels of the other. In other words, an interaction allows the effect of `x` to depend on the levels of `z`, and its coefficients tells us how much the effect of one variable changes at different levels of the other. Let's do it.
+
+In the `r opt("Model")` panel, we select both variables on the left field and move them together to the right field, defining an interaction $x*z$.
+
+`r pic("bookletpics/2_input11.png")`
+
+The results updated accordingly showing now also the interaction effects. 
+
+`r pic("bookletpics/2_output11.png")`
+
+Let's focus on the `r tab("Parameter Estimates (Coefficients)")` Table. When there is an interaction in a linear model, the effect associated with the independent variables are the effect of the independent variable computed for the other variable equal to zero. This is not a software choice, that is the way a linear model is [@aiken1991multiple]. However, `r modulename()`, by default, centers the continuous variables to their means, so the linear effects can be interpreted as _main effects_, namely, the effect of the variable computed on average, at the average level of the other variable. Thus, we can say that, _on average_, beers ($x$) has a positive effect on smiles ($ycont$) of $3.686$, corresponding to a standardized effect of $.550$. For the average level of beers ($x$), the effect of extroversion ($z$) is  $.954$, corresponding to a standardized effect of $.156$. 
+
+As regards the interaction effect, $x*z$, it tells us that the effect of beers ($z$) increases of $1.028$ units for each unit more of extroversion ($z$). We see that this effect is statistically significant, so we can say that the effect of beers changes at different levels of extroversion. We should make clear that the same interpretation is valid if we invert $z$ with $x$. The effect of $z$ is different at different levels of $x$.
+
+## Moderation=interaction {#modint}
+
+Many authors calls this type of effect a moderation effect. They are correct, but there is nothing special about interactions between continuous variables. Any interaction effect, no matter if the independent variables are continuous or categorical, tests a moderation model. The only difference between moderation and interaction is theoretical. When we lay out a theoretical model, we declare which variable is the hypothesized moderator and which is the independent variable. Statistically, they are equivalent, and the strength of moderation is tested with an interaction. We will see that moderation models are tested also with categorical variables (within what people calls _ANOVA_) or when one variable is categorical and the other is continuous (within what people used to call _ANCOVA_, but not anymore). We have seen that naming techniques rather than model is cumbersome (\@ref(naming)). The same goes for _moderation_. Just keep in mind that moderation refers to a theoretical model, its statistical counterpart is _interaction_, for all kinds of variables.
+
+## Simple Slopes {#simpleslopes}
+
+When an interaction is present (let's say it is significantly different from zero), we can probe it [@aiken1991multiple]. Probing means to see and test the effect of one independent variable at different levels of the other. The "other variable" is usually called the _moderator_, so the variable that theoretically is able to change the effect of the independent variable. In our example, we focus on the effect of beers ($x$), and different levels of the moderator extroversion ($z$). First, let's look at the plot.
+
+`r pic("bookletpics/2_input10.png")`
+
+`r pic("bookletpics/2_output12.png")`
+
+We can see now that the lines representing the effect of $x$ at different levels of $z$ are no longer parallel, they have _different slopes_.  Looking at the plot, we can see that the effect of $x$ is stronger for high levels of $z$ (`Mean+1*SD`), than for the average level of $z$ (`Mean`) than for low levels of $z$ (`Mean-1*SD`). 
+
+The plot is very useful to visualize how the effect of one variable changes at different levels of the moderator. Often, however, we also want to estimate those slopes and maybe test them. We can do that in the `r opt("Simple Effects")` panel. Recall that _simple slopes_ are just a name for _simple effects_ applied to continuous variables, so `r modulename()` uses the term _simple effects_ because it generalizes to any type of independent variable.
+
+`r pic("bookletpics/2_input13.png")`
+
+`r pic("bookletpics/2_output13.png")`
+
+The first table reports the F-tests and indices of explained variance (\@ref(variances)). The coefficients tables reports the slopes of the effect of the `x` variable at different levels of the `z` variables. Practically, the tables report the effect sizes and the inferential tests associated with the lines depicted in the plot. 
+
+If one wants to change the levels of the moderator at which the effects are estimated and plotted, one can go to the `r opt("Covariate Scaling")` panel and change the `Covariate conditioning` setup. For instance, one may want to explore the effect of `x` at 2 SD away from the mean, so one sets the field under `Mean $\pm$ SD` to 2. One can also decide to condition the slopes to specific percentiles of the `z` variable, by selecting `Percentiles $\pm$ SD`, which conditions to 25th, 50th, 75th percentile (cf `r ext_url("GAMLj help page","https://gamlj.github.io/glm.html")`.
+
+`r pic("bookletpics/2_input14.png")`
+
+`r pic("bookletpics/2_output14.png")`
+
+We can be happy with the analysis, as we have estimated, tested, and quantified all the interesting effects of our independent variables on the dependent variables.
+
+## Categorical IVs {#anova}
+
+`r oldnames("ANOVA")`
+
+We can now work with a model with categorical independent variables. The dataset provides `cat2` and `cat3` variables, with two groups and three groups respectively. Their combination produces the following groups.
+
+`r pic("bookletpics/2_anova_output1.png")`
 
 
+To put some flesh on the bones, let's imagine that cat3 be the type of beer one drinks, with levels _stout_, _IPA_ and _pilsner_. Assume `cat2` be type of bar, _music bar_ vs _sports bar_. To remember, let's put some labels on the variables levels.
 
+`r pic("bookletpics/2_anova_input1.png")`
+`r pic("bookletpics/2_anova_input2.png")`
+
+Take a note about the fact that the specific values presented in the dataset of a categorical variables have no bearing on the results of the analysis. The categorical variables are coded by `r modulename()` independently of their values. We can also change the coding system with the module options (see below).
+
+We can now run a new model, with `ycont` as dependent variable, and the two categorical variables as the independent ones.
+
+`r pic("bookletpics/2_anova_input3.png")`
+
+The tables we have seen for the first model are produced also now, we only need to adjust some interpretation to reflect the categorical nature of the variables.
+
+### Model Fit and Omnibus tests
+
+`r pic("bookletpics/2_anova_output2.png")`
+
+`r tab("Model Fit")` and `r tab("ANOVA omnibus tests")` tables do not require adjustments of the interpretation. Here we see that our model explains $.162*100$ percent of the dependent variable variance,  $.125*100$ percent as population estimate, and that the type of bar `cat2` has a main effect, type of beer (`cat3`) has a main effects, and no interaction. Effects are small, with `cat2` main effect explaing $.112*100$ percent of the variance not explained by the other effect, `cat3` main effects explaining $.056*100$ percent, and the interaction explaining only around 2% of the partial variance.
+
+### Coefficients {#dummies}
+
+When dealing with categorical independent variables, one usually does not look at the coefficients, but goes straight to the plots to interpret the results. Nonetheless, the coefficients are present and they can be interpreted. 
+
+`r pic("bookletpics/2_anova_output3.png")`
+
+
+Their interpretation depends on the way the levels (groups) of the variables are coded. In fact, to cast a categorical variable into a linear model (any linear model), it must be coded with weights (numbers) that represent specific contrasts. We need $K-1$ contrasts to represent $K$ groups (see appendix \@ref(a1dummies) for more details). These contrasts are commonly called _dummy variables_, but it is more correct to call them _contrast variables_. `r modulename()` default uses the _simple_ coding system, as evident in the `r opt("Factor Coding")` tab.
+
+
+`r pic("bookletpics/2_anova_input4.png")`
+
+
+_Simple_ coding contrasts, that is estimates the mean difference, between one reference group and each of the other groups. The first level present in the dataset is used as reference group. _Simple_ conding yield the same comparison as the more classical _dummy_ system, but _simple_ centers the coding to zero, so in the presence of an interaction in the mode, the main effects are correctly estimated as _average effects_. So, for `cat2`, we need only one _contrast_ which compares _music_ vs _sport_. The coefficient $4.343$ is the mean difference (in the dep variable) between the two groups. So, people in the _music_ bar smile 4.343 smiles more than people in the _sport_ bar.  For type of beer (`cat3`), we need two contrast variables, because we have three groups: `cat31` compares the reference group _pilsner_ against _IPA_, the second contrast `cat32` compares _pilsner_ with _stout_. The remaining coefficients are the ones that a required to estimate the interaction `cat2 X cat3`. 
+
+We should notice that the model does not estimate all possible contrasts, for instance _stout_ is not compared with _IPA_. The reason is that those contrasts are redundant in order to capture all possible explained variance. If one needs all possible comparisons, one can use `r opt("Post Hoc Tests")` panel to obtain the comparisons.
+
+`r modulename()` offers several coding systems to code the categorical variable. If you want to take a look at what the contrasts are comparing, you can ask for `r opt("Contrast Coefficients tables")`, so a table visualizing the actual coding is produced.
+
+`r pic("bookletpics/2_anova_output4.png")`
+
+All coding system used in `r modulename()` are explained in details in the `r ext_url("GAMLj help page: contrasts","https://gamlj.github.io/rosetta_contrasts.html")`
+
+### Plots
+
+As for the continuous IVs case, we can plot the results. When the IVs are categorical, we obtain the plot of the means.
+
+`r pic("bookletpics/2_anova_input5.png")`
+`r pic("bookletpics/2_anova_output5.png")`
+
+From the results is evident the main effect of `cat2`, with _music_ bar showing a higher average than _sports_ bar, and a small main effect of type of beer, with _stour_ vaguely larger than _IPA_ and larger than _pilsner_.
+
+
+## Post-hoc tests
+
+Sometimes people want to probe main effects or interaction of categorical variables to test all possible comparisons among means. It should not be an habit to do so, because the coefficients already provides comparisons that may be enough to explain the results. Nonetheless, if one really needs all possible comparisons, one can use the `r opt("Post Hoc Tests")` panel. Here we ask for the post hoch tests for the variable `cat3`, because `cat2` features only two levels, so probing is useless (we have already its main effect). In this example we do not probe the interaction, because is very small and not significant, but the module allow probing all possible effects.
+
+`r pic("bookletpics/2_anova_input6.png")`
+`r pic("bookletpics/2_anova_output6.png")`
+
+Post hoc tests are basically t-test comparing any pair of levels of the independent variables in their dependent variable means. So, here we have the mean for the _pilsner_ group compared with the _IPA_ group, the _pilsner_ group compared with the _stout_ group, and the _IPA_ group compared with the _stout_ group. For each comparison we have the difference in means, the confidence intervals, the t-test, df, and p-value. All columns report what a simple t-test would provide, but the p-value column is different. The p-value is adjusted for multiple comparisons, meaning that the p-value is calculated to counteract the higher probability of finding something singificant when multiple tests are run. The adjustment is proportional to the number of comparisons that are tested.
+
+Why adjusting? Well, adjustment is required when the researcher does not have an _a priori_ hypothesis regarding which comparison should be _significant_ and which should not. If one does not have a clear hypothesis, any comparison that comes out as significant will be considered as _real_, so different from zero. However, when several comparisons are tested, the probability of obtaining at least one comparison as significant is not .05 ($\alpha$), as one expects, but higher: the more comparisons one tests, the higher the probability.
+
+Recall that any inferential test (_frequentist_ tests, I should add) lays out a null-hypothesis, say $\Delta=0$ (difference equal to zero). The t-test returns the probability of obtaining the observed result (here $-2.788$ for pilsner vs stout) if we were sampling from a distribution in which  $\Delta=0$. When the p-value is low, we say that it is very unlikely that our result comes from a distribution where  $\Delta=0$, so we reject the null-hypothesis. Unlikely, however, does not mean impossible, so there is always a chance to be wrong in rejecting the null-hypothesis. If we use a significance cut-off of $\alpha=.05$, we accept the risk that if our results is indeed zero, we will be wrong 5% of the time. The good news is that will be right $1-\alpha=.95$ of the time. However, this reasoning is valid for one test. If we run two tests, we want to take the right decision for boths, so the probability of being right in both tests is $(1-\alpha)^2=`r .95^2`$. If we run three tests, we will be right with probability $(1-\alpha)^3=`r .95^3`$. So, we capitalize on chances, meaning that it becomes more and more likely to get at least one tests as significant, even if they all come from a population where no difference is present.
+
+Multiple comparisons adjustment corrects the p-value in order to make a significant result more difficult to obtain. Practically, the p-value is increased proportionally to the number of comparisons that are tested. There are different methods to adjust the p-value, and they are listed in the panel as options: _bonferroni_, _Tukey_, _Holm_, _Scheffe_, _Sidak_. They are all alternative ways to adjust the p-value. The interesting dimension along which they different is liberalism-conservativism. In statistics, a _liberal_ test is more likely to yield a significant result than a conservative test, _ceteris paribus_. Liberal tests are more powerful but their correction of the p-value may not be enough, whereas conservative tests correct for multiplicity but may result under-powered. Bonferroni and Sidak adjustment tend to be more conservative than the others. _Tukey_ correction seems the more reasonable choice in most circumstances [@midway2020comparing].
+
+Recall, post hoc tests are need when the researcher is willing to accept any significant results as worth mentioning and interpreting. If, on the other hand, one has a clear pattern of means hypothesized, adjustment may not be needed and the specific comparisons may be evaluated without correction.
+
+## Cohen's d
+
+Cohen's $d$ is probably the most used effect size index to quantify a mean difference. It express the mean difference is a standardized scale: it is the ratio of the mean difference over the within groups standard devition, or residual standard deviation. Unfortunately, Cohen [@cohen2013statistical] defined the $d$ index for the population, and thus it is not clear how to compute it in the sample. `r modulename()` offers three options.
+
+* Cohen's d (model SD) $d_{mod}$: the means difference is divided by the estimated standard deviation computed based on the model residual variance. 
+
+* Cohen's d (sample SD) $d_{sample}$: the means difference is divided by the pooled standard deviation computed within each group. 
+
+* Hedge's g  $g_{sample}$: the means difference is divided by the pooled standard deviation computed within each group, corrected for sample bias. The correction is the one describe by @hedges2014statistical based on the Gamma function. 
+
+The two d's differ in their adherence with the model being estimated. The _model SD_ version, gives the estimated `d` after removing the variance explained by the other effects in the model, so it is the actual effect size of the comparison of the estimated marginal means. The _sample SD_ gives the crude standardized difference, as if the model was not estimated at all, but only the two groups were considered. The _model SD_ should be preferred as default index to report in a model, the _sample SD_ version can be useful to compare effects in the literature obtained with a different model or without a model.
+
+Hedge's g gives a population estimate of the sample $d$.
+
+## Estimated marginal means
+
+The means that are plotted in the plot can be visualized, with their standard error and confidence intervals, by defining the variables for which we want them in the `r opt("Estimated Marginal Means")`.
+
+`r pic("bookletpics/2_anova_input7.png")`
+`r pic("bookletpics/2_anova_output7.png")`
+
+In balanced designs with only categorical IVs, they are the means of the groups (or combinations of groups). When there are also continuous independent variables, they are adjusted for the continuous variables: they are the means estimated after keeping constant the continuous independent variables.
+
+If marginal means are requested for continuous variables, they represent the expected value of the dependent variable for three _interesting_ levels of the independent variable, where the _interesting_ is defined as for the _simple slope_ technique (cf \@ref(simpleslopes))
+
+For instance, in model \@ref(moderation), if we ask for the estimated marginal means of $x$, we obtain the following estimates:
+
+`r pic("bookletpics/2_moderation_output1.png")`
+
+meaning that, based on the model, we expect the number of smiles (`ycont`) to be 28.03 for low level of beers (1 SD below average of `x`), 31.7 for average level of beers (average of `x`), and 35.9 for high level of beers (1 SD above average of `x`).
 
