@@ -186,7 +186,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.2.6" data-path="model1.html"><a href="model1.html#pearson-correlation"><i class="fa fa-check"></i><b>2.2.6</b> Pearson Correlation</a></li>
 <li class="chapter" data-level="2.2.7" data-path="model1.html"><a href="model1.html#plots"><i class="fa fa-check"></i><b>2.2.7</b> Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="model1.html"><a href="model1.html#civs"><i class="fa fa-check"></i><b>2.3</b> More continuous IVs</a>
+<li class="chapter" data-level="2.3" data-path="model1.html"><a href="model1.html#multiregression"><i class="fa fa-check"></i><b>2.3</b> More continuous IVs</a>
 <ul>
 <li class="chapter" data-level="2.3.1" data-path="model1.html"><a href="model1.html#twofit2"><i class="fa fa-check"></i><b>2.3.1</b> Model Fit</a></li>
 <li class="chapter" data-level="2.3.2" data-path="model1.html"><a href="model1.html#variances"><i class="fa fa-check"></i><b>2.3.2</b> Omnibus Tests</a></li>
@@ -202,9 +202,19 @@ div.csl-indent {
 <li class="chapter" data-level="2.7.2" data-path="model1.html"><a href="model1.html#dummies"><i class="fa fa-check"></i><b>2.7.2</b> Coefficients</a></li>
 <li class="chapter" data-level="2.7.3" data-path="model1.html"><a href="model1.html#plots-1"><i class="fa fa-check"></i><b>2.7.3</b> Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="model1.html"><a href="model1.html#post-hoc-tests"><i class="fa fa-check"></i><b>2.8</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="2.8" data-path="model1.html"><a href="model1.html#posthoc"><i class="fa fa-check"></i><b>2.8</b> Post-hoc tests</a></li>
 <li class="chapter" data-level="2.9" data-path="model1.html"><a href="model1.html#cohens-d"><i class="fa fa-check"></i><b>2.9</b> Cohen’s d</a></li>
 <li class="chapter" data-level="2.10" data-path="model1.html"><a href="model1.html#estimated-marginal-means"><i class="fa fa-check"></i><b>2.10</b> Estimated marginal means</a></li>
+<li class="chapter" data-level="2.11" data-path="model1.html"><a href="model1.html#ancova"><i class="fa fa-check"></i><b>2.11</b> Categorical and Continuous IVs</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="model1.html"><a href="model1.html#results-tables"><i class="fa fa-check"></i><b>2.11.1</b> Results tables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="model1.html"><a href="model1.html#moderation2"><i class="fa fa-check"></i><b>2.12</b> Categorical and Continuous Interactions</a>
+<ul>
+<li class="chapter" data-level="2.12.1" data-path="model1.html"><a href="model1.html#plot"><i class="fa fa-check"></i><b>2.12.1</b> Plot</a></li>
+<li class="chapter" data-level="2.12.2" data-path="model1.html"><a href="model1.html#simple-effects"><i class="fa fa-check"></i><b>2.12.2</b> Simple Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.13" data-path="model1.html"><a href="model1.html#simple-interactions"><i class="fa fa-check"></i><b>2.13</b> Simple Interactions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -325,7 +335,7 @@ Is this model able to produce three predicted values? First, for all dummies equ
 <h3><span class="header-section-number">A.3.2</span> Zero-intercept ANOVA<a href="appendixa.html#zero-intercept-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The demonstration in <a href="appendixa.html#a1dummies">A.3</a> may explain also a curious phenomenon, which often surprises users of the linear model (independently of the software used). If one estimates a GLM with categorical IVs without the intercept, the model consists of K coefficients, where K is the number of groups, and the coefficients values are the means of the dependent variable for the three groups. These are called zero-intercepts models. Using <code>manymodels</code> data, a GLM with <code>cat3</code> as independent, <code>ycont</code> as dependent, and no intercept, we get these coefficients:</p>
 <p><img src="bookletpics/ap_a_output2.png" width="1247" /></p>
-<p>It is clear that without an intercepts, the three predicted values required here can be estimated by simply recasting the model as follows:</p>
+<p>It is clear that without an intercept, the three predicted values required here can be estimated by simply recasting the model as follows:</p>
 <p><span class="math display">\[
 \hat{y_i}=\bar{y}_1 \begin{bmatrix}
 1 \\

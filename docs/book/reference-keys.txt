@@ -18,7 +18,7 @@ omnibus-tests
 coefficients
 pearson-correlation
 plots
-civs
+multiregression
 twofit2
 variances
 household-chores
@@ -30,9 +30,15 @@ anova
 model-fit-and-omnibus-tests
 dummies
 plots-1
-post-hoc-tests
+posthoc
 cohens-d
 estimated-marginal-means
+ancova
+results-tables
+moderation2
+plot
+simple-effects
+simple-interactions
 appendixa
 commuting-r2
 variance-explained
