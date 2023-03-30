@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Appendix A: The \(R^2\)’s | GAMLj Models</title>
+  <title>B How many contrasts? | GAMLj Models</title>
   <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Appendix A: The \(R^2\)’s | GAMLj Models" />
+  <meta property="og:title" content="B How many contrasts? | GAMLj Models" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
   <meta name="github-repo" content="mcfanda/jmvScaffold" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Appendix A: The \(R^2\)’s | GAMLj Models" />
+  <meta name="twitter:title" content="B How many contrasts? | GAMLj Models" />
   
   <meta name="twitter:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="references.html"/>
-<link rel="next" href="a1dummies.html"/>
+<link rel="prev" href="appendixa.html"/>
+<link rel="next" href="appendixb.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -249,44 +249,80 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendixa" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">A</span> Appendix A: The <span class="math inline">\(R^2\)</span>’s<a href="appendixa.html#appendixa" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Contrary to what many people think, almost all effect sizes and their corresponding inferential tests in the linear model’s realm are based on some sort of model comparison <span class="citation">(<a href="#ref-judd2017data" role="doc-biblioref">Judd, McClelland, and Ryan 2017</a>)</span>. The <span class="math inline">\(R^2\)</span> is one of them.</p>
-<p>Assume you have a dependent variable that you want to model, meaning that you want to recap its scores by expressing them with some predicted values. For the moment, assume the variable to be continuous. If you only have the variable scores available, without any other information, your best guess is to use the mean as the most likely value. Keeping up with our toy example, assume that <code>ycont</code> in the dataset was the number of smiles for a given time done by our participants in a bar. If you only have the <code>ycont</code> variable, your best bet would be that the next customer will smile, on average, <span class="math inline">\(\hat{y}=31.7\)</span> times, because that is the expected value (mean) of the variable distribution. So we say, whoever comes next in the bar, they will smile <span class="math inline">\(\hat{y}=31.7\)</span> times on average.</p>
-<p><img src="bookletpics/ap_a_output1.png" width="478" /></p>
-<p>What I am saying translates into the most simple linear model, the mean model:</p>
-<p><span class="math display">\[ \hat{y_i}=\bar{y}\]</span></p>
-<p>If we use the mean as our expected value, that is our model, we have an approximation error (<span class="math inline">\(\sigma^2\)</span>), which amounts to the discrepancy between the predicted values (the variable mean) and the actual observed values. Because errors larger or smaller than the actual values are the same, we can square the errors, and compute the average error across cases (forget about the minus 1, it is not important now).</p>
-<p><span class="math display">\[ \sigma^2_{\bar{x}}={\Sigma{(y_i-\hat{y})^2} \over {N-1}}\]</span></p>
-<p>When we associate an independent variable with a dependent variable in a linear model, we are seeking a better account of the differences in the scores of the dependent variable. It is like answering the question “how many smiles would a randomly taken person from our sample do?”, with “it depends on how many beers they had”. If it was only for the beers, the predicted values would be</p>
-<p><span class="math display">\[ \hat{y_i}=a+bx_i\]</span>
-and the error we make would be:
-<span class="math display">\[ \sigma^2_r={\Sigma{[a+bx_i-y_i]^2} \over {N-1}}\]</span>
-How good is this error variance associated with the regression? Well, it depends on how big was the error without the regression, that is using the mean as the only predictor, namely <span class="math inline">\(\sigma^2_{\bar{x}}\)</span>.</p>
-<p>So we take the difference between these possible error variances, and we know how much the regression <em>reduced the error</em></p>
-<p><span class="math display">\[ {\sigma^2_{\bar{x}}-\sigma^2_r \over \sigma^2_{\bar{x}}}=R^2\]</span>
-The <span class="math inline">\(R^2\)</span> (and its variants) is the amount of error that we reduce in our predictions thanks to our model as compared to not using our model. In other words, is the comparison of our model error with the error of a model without the independent variable(s).</p>
-<div id="commuting-r2" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">A.1</span> Commuting <span class="math inline">\(R^2\)</span><a href="appendixa.html#commuting-r2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s assume you commute to the university every day and it takes 60 minutes (<span class="math inline">\(T_0\)</span>) to get there from your home, following one route. A friend of yours (probably a know-it-all colleague), suggests an alternative route. You follow the lead, and you got to your department in 50 minutes (<span class="math inline">\(T_c\)</span>). Nice, but what was your colleague’s contribution to your happiness (assuming you do not enjoy commuting)? We can say that it was 10’, which is given by <span class="math inline">\(60-50=10\)</span>. Is that a lot? Well, it depends on the overall commuting time, because saving 10’ from Lakeville to Berwick (they are in Nova Scotia, CA, 16 minutes apart) is different than saving 10’ traveling from Milan (Italy) to Manila (Philippines), which takes around 17 hours. Thus, we can compute our colleague’s contribution to our happiness as:</p>
-<p><span class="math display">\[ {(T_0-T_c) \over T_0}={10 \over60}\]</span></p>
-<p>which simply means that our colleague made us save 1/6 of our journey time. This is our colleague <span class="math inline">\(R^2\)</span>. In statistical terms, we have the error variance without the model (<span class="math inline">\(\sigma_{\bar{x}}^2\)</span>), the error variance of the model <span class="math inline">\(\sigma_{r}^2\)</span>, and we have:</p>
-<p><span class="math display">\[ R^2={\sigma^2_{\bar{x}}-\sigma^2_r \over \sigma^2_{\bar{x}}}\]</span></p>
-<p>which is how much our model “saved” of (or reduced) our error. That is called the <em>Proportion of Reduced Error</em> <span class="citation">(<a href="#ref-judd2017data" role="doc-biblioref">Judd, McClelland, and Ryan 2017</a>)</span>.</p>
+<div id="a1dummies" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">B</span> How many contrasts?<a href="a1dummies.html#a1dummies" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="sufficiency-of-k-1-dummies" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">B.1</span> Sufficiency of K-1 dummies<a href="a1dummies.html#sufficiency-of-k-1-dummies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The fact that a linear model does not estimate all possible comparisons among levels of a categorical variable may appear puzzling. We have seen, in fact, that to represent a categorical variable with <span class="math inline">\(K\)</span> levels, we only need <span class="math inline">\(K-1\)</span> contrasts and not (<span class="math inline">\(K(K-1)/2\)</span>), which will be the number of all possible comparisons. Let’s see why.</p>
+<p>A linear model requires as many coefficients as are necessary to compute the predicted values for all possible levels of the independent variables. This means that if I plug in the model a certain value of the independent variable, a sensible predicted value is produced. In simple regression <span class="math inline">\(\hat{y_i}=2+3 \cdot x_i\)</span> , for instance, if I plug <span class="math inline">\(x_i=4\)</span>, I get <span class="math inline">\(\hat{y_i}=14\)</span>, so it works. When you have a dichotomous independent variable, the model should work in the same way. For simplicity, assume the dichotomous IV is coded with the <em>dummy</em> coding system, so 0 vs 1, and the groups have the same N. The model is</p>
+<p><span class="math display">\[
+\hat{y_i}=a+b \begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\]</span>
+The model should be able to produce predicted values for <span class="math inline">\(x=0\)</span> and for <span class="math inline">\(x=1\)</span>. It is easy to verify that this happens without problems: <span class="math inline">\(\hat{y_0}=a+b \cdot 0=a\)</span>, the dependent variable mean for group 0, and <span class="math inline">\(\hat{y_1}=a+b \cdot 1=a+b\)</span>, the dependent variable mean for group 1. Now, if the IV has three groups, <span class="math inline">\(x=\{1,2,3\}\)</span>, and I cast it with 2 dummies, I get this new model:</p>
+<p><span class="math display">\[
+\hat{y_i}=a+b_1 \begin{bmatrix}
+0 \\
+1 \\
+0
+\end{bmatrix} +b_2 \begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix}
+\]</span>
+Is this model able to produce three predicted values? First, for all dummies equal to zero, we have the expected value for group x=1, so <span class="math inline">\(a=\bar{y}_1\)</span>. Therefore <span class="math inline">\(b_1=\bar{y}_2-a=\bar{y}_2-\bar{y}_1\)</span> and <span class="math inline">\(b_2=\bar{y}_3-a=\bar{y}_3-\bar{y}_1\)</span>. Thus:</p>
+<ul>
+<li><p>for <span class="math inline">\(x=1\)</span>, the two dummies have values <span class="math inline">\(0\)</span> and <span class="math inline">\(0\)</span>, so the predicted value is <span class="math inline">\(\hat{y_1}=a+b_1 \cdot 0 +b_2 \cdot 0 =\bar{y}_1\)</span>.</p></li>
+<li><p>for <span class="math inline">\(x=2\)</span>, the two dummies have values <span class="math inline">\(1\)</span> and <span class="math inline">\(0\)</span>, so the predicted value is <span class="math inline">\(\hat{y_2}=a+b_1 \cdot 1 +b_2 \cdot 0 =a+b_1=\bar{y}_1+\bar{y}_2-\bar{y}_1=\bar{y}_2\)</span>.</p></li>
+<li><p>for <span class="math inline">\(x=3\)</span>, the two dummies have values <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, so the predicted value is <span class="math inline">\(\hat{y_3}=a+b_1 \cdot 0 +b_2 \cdot 1 =a+b_2=\bar{y}_1+\bar{y}_3-\bar{y}_1=\bar{y}_3\)</span>.</p></li>
+</ul>
+<p>No other coefficient or term is needed to account for all differences in the dependent variable due to independent variable. In fact, if a third dummy is inserted here, its coefficient must be necessarily zero, otherwise the predicted values will be biased, so the third dummy is redundant.</p>
+<p>Often readers wonder if this works also for other coding systems. Sure it does, it is just a little more complicated to see ti. Take the <em>deviation</em> method. Here the model for three-group IV is:</p>
+<p><span class="math display">\[
+\hat{y_i}=a+b_1 \begin{bmatrix}
+-1 \\
+1 \\
+0
+\end{bmatrix} +b_2 \begin{bmatrix}
+-1 \\
+0 \\
+1
+\end{bmatrix}
+\]</span></p>
+<p>For <span class="math inline">\(x=1\)</span>, the two dummies have values <span class="math inline">\(-1\)</span> and <span class="math inline">\(-1\)</span>, so the predicted value is <span class="math inline">\(\hat{y_1}=a-b_1-b_2\)</span>. For <span class="math inline">\(x=2\)</span>, the two dummies have values <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, so the predicted value is <span class="math inline">\(\hat{y_2}=a+b_1 \cdot 1 +b_2 \cdot 0 =a+b_1\)</span>. For <span class="math inline">\(x=3\)</span>, the two dummies have values <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, so the predicted value is <span class="math inline">\(\hat{y_2}=a+b_1 \cdot 0 +b_2 \cdot 1 =a+b_2\)</span>. Are they the correct expected values?</p>
+<p>First, here the intercept <span class="math inline">\(a\)</span> is the expected mean of the dependent variable, namely <span class="math inline">\((\bar{y}_1+\bar{y}_2+\bar{y}_3)/3\)</span>, because both contrast variables are centered to 0. Therefore, <span class="math inline">\(b_1=\bar{y}_2-a\)</span> and <span class="math inline">\(b_1=\bar{y}_3-a\)</span>. So:</p>
+<ul>
+<li>For <span class="math inline">\(x=1\)</span>, we have <span class="math inline">\(\hat{y_1}=a-b_1-b_2=3a-\bar{y}_2-\bar{y}_3=\bar{y}_1+\bar{y}_2+\bar{y}_3-\bar{y}_2+\bar{y}_3=\bar{y}_1\)</span></li>
+<li>For <span class="math inline">\(x=2\)</span>, we have <span class="math inline">\(\hat{y_2}=a+b_1=a+\bar{y}_2-a=\bar{y}_2\)</span></li>
+<li>For <span class="math inline">\(x=2\)</span>, we have <span class="math inline">\(\hat{y_3}=a+b_2=a+\bar{y}_3-a=\bar{y}_3\)</span></li>
+</ul>
+<p>One can show that it works for any coding system offered by <span class="modulename">GAMLj</span>.</p>
 </div>
-<div id="variance-explained" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">A.2</span> Variance explained<a href="appendixa.html#variance-explained" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>So, why is the <span class="math inline">\(R^2\)</span> index interpreted as <em>proportion of variance explained</em>? The reason is simply that a portion of the dependent variable variance can be associated with the variance of the independent variable(s), and thus we know why is there: because for a certain part (equal to <span class="math inline">\(R^2\)</span>) people are different in the number of smiles because they are different in their number of beers.</p>
-<p>You can get a broader view of this topic by consulting <span class="citation">Judd, McClelland, and Ryan (<a href="#ref-judd2017data" role="doc-biblioref">2017</a>)</span>. If you get excited by this, you can consult <span class="citation">Searle and Gruber (<a href="#ref-searle2016linear" role="doc-biblioref">2016</a>)</span>, which explains that almost any test we are familiar with can be cast as a model comparison test.</p>
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-judd2017data" class="csl-entry">
-Judd, Charles M, Gary H McClelland, and Carey S Ryan. 2017. <em>Data Analysis: A Model Comparison Approach to Regression, ANOVA, and Beyond</em>. Routledge.
-</div>
-<div id="ref-searle2016linear" class="csl-entry">
-Searle, Shayle R, and Marvin HJ Gruber. 2016. <em>Linear Models</em>. John Wiley &amp; Sons.
+<div id="zero-intercept-anova" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">B.2</span> Zero-intercept ANOVA<a href="a1dummies.html#zero-intercept-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The demonstration in <a href="a1dummies.html#a1dummies">B</a> may explain also a curious phenomenon, which often surprises users of the linear model (independently of the software used). If one estimates a GLM with categorical IVs without the intercept, the model consists of K coefficients, where K is the number of groups, and the coefficients values are the means of the dependent variable for the three groups. These are called zero-intercepts models. Using <code>manymodels</code> data, a GLM with <code>cat3</code> as independent, <code>ycont</code> as dependent, and no intercept, we get these coefficients:</p>
+<p><img src="bookletpics/ap_a_output2.png" width="1247" /></p>
+<p>It is clear that without an intercept, the three predicted values required here can be estimated by simply recasting the model as follows:</p>
+<p><span class="math display">\[
+\hat{y_i}=\bar{y}_1 \begin{bmatrix}
+1 \\
+0 \\
+0
+\end{bmatrix} +\bar{y}_2 \begin{bmatrix}
+0 \\
+1 \\
+0
+\end{bmatrix}+
+\bar{y}_3 \begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix}
+\]</span></p>
+<p>Almost any software does that automatically, including <span class="modulename">GAMLj</span>.</p>
 </div>
 </div>
             </section>
@@ -294,8 +330,8 @@ Searle, Shayle R, and Marvin HJ Gruber. 2016. <em>Linear Models</em>. John Wiley
           </div>
         </div>
       </div>
-<a href="references.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a1dummies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="appendixa.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendixb.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

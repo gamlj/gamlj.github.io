@@ -23,7 +23,7 @@ $$ \sigma^2_{\bar{x}}={\Sigma{(y_i-\hat{y})^2} \over {N-1}}$$
 
 When we associate an independent variable with a dependent variable in a linear model, we are seeking a better account of the differences in the scores of the dependent variable. It is like answering the question "how many smiles would a  randomly taken person from our sample do?", with "it depends on how many beers they had". If it was only for the beers, the predicted values would be 
 
-$$ \hat{y}=a+bx$$
+$$ \hat{y_i}=a+bx_i$$
 and the error we make would be:
 $$ \sigma^2_r={\Sigma{[a+bx_i-y_i]^2} \over {N-1}}$$
 How good is this error variance associated with the regression? Well, it depends on how big was the error without the regression, that is using the mean as the only predictor, namely $\sigma^2_{\bar{x}}$.
@@ -31,7 +31,7 @@ How good is this error variance associated with the regression? Well, it depends
 So we take the difference between these possible error variances, and we know how much the regression _reduced the error_
 
 $$ {\sigma^2_{\bar{x}}-\sigma^2_r \over \sigma^2_{\bar{x}}}=R^2$$
-The $R^2$ (and its variants) is the amount of error that we reduce in our predictions thanks to our model as compared to not using our model.
+The $R^2$ (and its variants) is the amount of error that we reduce in our predictions thanks to our model as compared to not using our model. In other words, is the comparison of our model error with the error of a model without the independent variable(s).
 
 ## Commuting $R^2$
 
@@ -52,9 +52,9 @@ So, why is the $R^2$ index interpreted as _proportion of variance explained_? Th
 You can get a broader view of this topic by consulting @judd2017data. If you get excited by this, you can consult @searle2016linear, which explains that almost any test we are familiar with can be cast as a model comparison test.
 
 
-## How many contrasts? {#a1dummies}
+# How many contrasts? {#a1dummies}
 
-### Sufficiency of K-1 dummies
+## Sufficiency of K-1 dummies
 
 The fact that a linear model does not estimate all possible comparisons among levels of a categorical variable may appear puzzling. We have seen, in fact, that to represent a categorical variable with $K$ levels, we only need $K-1$ contrasts and not ($K(K-1)/2$), which will be the number of all possible comparisons. Let's see why.
 
@@ -89,7 +89,7 @@ Is this model able to produce three predicted values? First, for all dummies equ
 
 No other coefficient or term is needed to account for all differences in the dependent variable due to independent variable. In fact, if a third dummy is inserted here, its coefficient must be necessarily zero, otherwise the predicted values will be biased, so the third dummy is redundant.
 
-Often readers wonder if this works also for other coding systems. Sure it does, it is just a little more complicated to see ti. Take the _deviation_ method. Here the model for three-group IV is:
+Often readers wonder if this works also for other coding systems. Sure it does, it is just a little more complicated to see it. Take the _deviation_ method. Here the model for three-group IV is:
 
 $$
 \hat{y_i}=a+b_1 \begin{bmatrix}
@@ -113,7 +113,7 @@ First, here the intercept $a$ is the expected mean of the dependent variable, na
 
 One can show that it works for any coding system offered by `r modulename()`.
 
-### Zero-intercept ANOVA
+## Zero-intercept ANOVA
 
 The demonstration in \@ref(a1dummies) may explain also a curious phenomenon, which often surprises users of the linear model (independently of the software used). If one estimates a GLM with categorical IVs without the intercept, the model consists of K coefficients, where K is the number of groups, and the coefficients values are the means of the dependent variable for the three groups. These are called zero-intercepts models. Using `manymodels` data, a GLM with `cat3` as independent, `ycont` as dependent, and no intercept, we get these coefficients:
 
@@ -126,12 +126,12 @@ $$
 1 \\
 0 \\
 0
-\end{bmatrix} +\bar{y}_1 \begin{bmatrix}
+\end{bmatrix} +\bar{y}_2 \begin{bmatrix}
 0 \\
 1 \\
 0
 \end{bmatrix}+
-\bar{y}_1 \begin{bmatrix}
+\bar{y}_3 \begin{bmatrix}
 0 \\
 0 \\
 1
@@ -140,7 +140,7 @@ $$
 
 Almost any software does that automatically, including `r modulename()`. 
 
-# Appendix B {#appendixb}
+# Appendix Variable Types {#appendixb}
 
 `r jamovi` classifies data variables in four classes: 
 

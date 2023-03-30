@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>B Appendix B | GAMLj Models</title>
+  <title>C Appendix Variable Types | GAMLj Models</title>
   <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="B Appendix B | GAMLj Models" />
+  <meta property="og:title" content="C Appendix Variable Types | GAMLj Models" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
   <meta name="github-repo" content="mcfanda/jmvScaffold" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="B Appendix B | GAMLj Models" />
+  <meta name="twitter:title" content="C Appendix Variable Types | GAMLj Models" />
   
   <meta name="twitter:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="appendixa.html"/>
+<link rel="prev" href="a1dummies.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -214,7 +214,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.12.1" data-path="model1.html"><a href="model1.html#plot"><i class="fa fa-check"></i><b>2.12.1</b> Plot</a></li>
 <li class="chapter" data-level="2.12.2" data-path="model1.html"><a href="model1.html#simple-effects"><i class="fa fa-check"></i><b>2.12.2</b> Simple Effects</a></li>
 </ul></li>
-<li class="chapter" data-level="2.13" data-path="model1.html"><a href="model1.html#simple-interactions"><i class="fa fa-check"></i><b>2.13</b> Simple Interactions</a></li>
+<li class="chapter" data-level="2.13" data-path="model1.html"><a href="model1.html#simpleinteractions"><i class="fa fa-check"></i><b>2.13</b> Simple Interactions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -222,13 +222,13 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="A.1" data-path="appendixa.html"><a href="appendixa.html#commuting-r2"><i class="fa fa-check"></i><b>A.1</b> Commuting <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="A.2" data-path="appendixa.html"><a href="appendixa.html#variance-explained"><i class="fa fa-check"></i><b>A.2</b> Variance explained</a></li>
-<li class="chapter" data-level="A.3" data-path="appendixa.html"><a href="appendixa.html#a1dummies"><i class="fa fa-check"></i><b>A.3</b> How many contrasts?</a>
+</ul></li>
+<li class="chapter" data-level="B" data-path="a1dummies.html"><a href="a1dummies.html"><i class="fa fa-check"></i><b>B</b> How many contrasts?</a>
 <ul>
-<li class="chapter" data-level="A.3.1" data-path="appendixa.html"><a href="appendixa.html#sufficiency-of-k-1-dummies"><i class="fa fa-check"></i><b>A.3.1</b> Sufficiency of K-1 dummies</a></li>
-<li class="chapter" data-level="A.3.2" data-path="appendixa.html"><a href="appendixa.html#zero-intercept-anova"><i class="fa fa-check"></i><b>A.3.2</b> Zero-intercept ANOVA</a></li>
+<li class="chapter" data-level="B.1" data-path="a1dummies.html"><a href="a1dummies.html#sufficiency-of-k-1-dummies"><i class="fa fa-check"></i><b>B.1</b> Sufficiency of K-1 dummies</a></li>
+<li class="chapter" data-level="B.2" data-path="a1dummies.html"><a href="a1dummies.html#zero-intercept-anova"><i class="fa fa-check"></i><b>B.2</b> Zero-intercept ANOVA</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="appendixb.html"><a href="appendixb.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
+<li class="chapter" data-level="C" data-path="appendixb.html"><a href="appendixb.html"><i class="fa fa-check"></i><b>C</b> Appendix Variable Types</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -249,8 +249,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendixb" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">B</span> Appendix B<a href="appendixb.html#appendixb" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="appendixb" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">C</span> Appendix Variable Types<a href="appendixb.html#appendixb" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> classifies data variables in four classes:</p>
 <p><img src="bookletpics/a_vartypes.png" width="195" /></p>
 <ul>
@@ -287,7 +287,7 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="appendixa.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a1dummies.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

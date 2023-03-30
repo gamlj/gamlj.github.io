@@ -203,21 +203,21 @@ When an interaction is present (let's say it is significantly different from zer
 
 We can see now that the lines representing the effect of $x$ at different levels of $z$ are no longer parallel, they have _different slopes_.  Looking at the plot, we can see that the effect of $x$ is stronger for high levels of $z$ (`Mean+1*SD`), than for the average level of $z$ (`Mean`) than for low levels of $z$ (`Mean-1*SD`). 
 
-The plot is very useful to visualize how the effect of one variable changes at different levels of the moderator. Often, however, we also want to estimate those slopes and maybe test them. We can do that in the `r opt("Simple Effects")` panel. Recall that _simple slopes_ are just a name for _simple effects_ applied to continuous variables, so `r modulename()` uses the term _simple effects_ because it generalizes to any type of independent variable.
+The plot is very useful to visualize how the effect of one variable changes at different levels of the moderator. Often, however, we also want to estimate those slopes and maybe test them. We can do that in the `r opt("Simple Effects")` panel. Recall that _simple slopes_ is just a name for _simple effects_ applied to continuous variables, so `r modulename()` uses the term _simple effects_ because it generalizes to any type of independent variable.
 
 `r pic("bookletpics/2_input13.png")`
 
 `r pic("bookletpics/2_output13.png")`
 
-The first table reports the F-tests and indices of explained variance (\@ref(variances)). The coefficients tables reports the slopes of the effect of the `x` variable at different levels of the `z` variables. Practically, the tables report the effect sizes and the inferential tests associated with the lines depicted in the plot. 
+The first table reports the F-tests and indices of explained variance (\@ref(variances)). The coefficients table reports the slopes of the effect of the `x` variable at different levels of the `z` variable. Practically, the tables report the effect sizes and the inferential tests associated with the lines depicted in the plot. 
 
-If one wants to change the levels of the moderator at which the effects are estimated and plotted, one can go to the `r opt("Covariate Scaling")` panel and change the `Covariate conditioning` setup. For instance, one may want to explore the effect of `x` at 2 SD away from the mean, so one sets the field under `Mean $\pm$ SD` to 2. One can also decide to condition the slopes to specific percentiles of the `z` variable, by selecting `Percentiles $\pm$ SD`, which conditions to 25th, 50th, 75th percentile (cf `r ext_url("GAMLj help page","https://gamlj.github.io/glm.html")`.
+If one wants to change the levels of the moderator at which the effects are estimated and plotted, one can go to the `r opt("Covariate Scaling")` panel and change the `Covariate conditioning` setup. For instance, one may want to explore the effect of `x` at 2 SD away from the mean, so one sets the field under Mean $\pm$ SD to 2. One can also decide to condition the slopes to specific percentiles of the `z` variable, by selecting Percentiles $\pm$ SD, which conditions to 25th, 50th, 75th percentile (cf `r ext_url("GAMLj help page","https://gamlj.github.io/glm.html")`).
 
 `r pic("bookletpics/2_input14.png")`
 
 `r pic("bookletpics/2_output14.png")`
 
-We can be happy with the analysis, as we have estimated, tested, and quantified all the interesting effects of our independent variables on the dependent variables.
+We can be happy with the analysis, as we have estimated, tested, and quantified all the interesting effects of our independent variables on the dependent variables. We discuss simple effects again in \@ref(simpleinteractions).
 
 ## Categorical IVs {#anova}
 
@@ -233,7 +233,7 @@ To put some flesh on the bones, let's imagine that cat3 be the type of beer one 
 `r pic("bookletpics/2_anova_input1.png")`
 `r pic("bookletpics/2_anova_input2.png")`
 
-Take a note about the fact that the specific values present in the dataset of a categorical variables have no bearing on the results of the analysis. The categorical variables are coded by `r modulename()` independently of their values: It applies a coding system to cast the categorical `r IV` into the model. We can also change the coding system with the module options (see below).
+Take a note about the fact that the specific values present in the dataset of a categorical variable have no bearing on the results of the analysis. The categorical variables are coded by `r modulename()` independently of their values: It applies a coding system to cast the categorical `r IV` into the model. We can also change the coding system with the module options (see below).
 
 We can now run a new model, with `ycont` as dependent variable, and the two categorical variables as the independent ones.
 
@@ -245,7 +245,7 @@ The tables we have seen for the first model are the same produced now, we only n
 
 `r pic("bookletpics/2_anova_output2.png")`
 
-`r tab("Model Fit")` and `r tab("ANOVA omnibus tests")` tables do not require adjustments of the interpretation. Here we see that our model explains $.162*100$ percent of the dependent variable variance,  $.125*100$ percent as population estimate, and that the type of bar (`cat2`) has a main effect, type of beer (`cat3`) has a main effects, and there is  no indication of an interaction. Effects are small, with `cat2` main effect explaing $.112*100$ percent of the variance not explained by the other effects, `cat3` main effect explaining $.056*100$ percent, and the interaction explaining only around 2% of the partial variance.
+`r tab("Model Fit")` and `r tab("ANOVA Omnibus tests")` tables do not require adjustments of the interpretation. Here we see that our model explains $.162*100$ percent ($R^2$) of the dependent variable variance,  $.125*100$ percent as population estimate (Adj. $R^2$), and that the type of bar (`cat2`) has a main effect, type of beer (`cat3`) has a main effect, and there is  no indication of an interaction. Effects are small, with `cat2` main effect explaing $.112*100$ percent of the variance not explained by the other effects, `cat3` main effect explaining $.056*100$ percent, and the interaction explaining only around 2% of the partial variance.
 
 ### Coefficients {#dummies}
 
@@ -282,7 +282,7 @@ From the results is evident the main effect of `cat2`, with _music_ bar showing 
 
 ## Post-hoc tests {#posthoc}
 
-Sometimes people want to probe main effects or interactions of categorical variables to test all possible comparisons among means. This should not be an habit to do so, because the coefficients table already provides comparisons that may be enough to explain the results. Nonetheless, if one really needs all possible comparisons, one can use the `r opt("Post Hoc Tests")` panel. Here we ask for the _post hoc_ tests for the variable `cat3`, because `cat2` features only two levels, so probing is useless (we have already its main effect). In this example we do not probe the interaction, because it is very small and not significant, but the module allow probing all possible effects.
+Sometimes people want to probe main effects or interactions of categorical variables to test all possible comparisons among means. It should not be a habit to do so, because the coefficients table already provides comparisons that may be enough to explain the results. Nonetheless, if one really needs all possible comparisons, one can use the `r opt("Post Hoc Tests")` panel. Here we ask for the _post hoc_ tests for the variable `cat3`, because `cat2` features only two levels, so probing is useless (we have already its main effect). In this example we do not probe the interaction, because it is very small and not significant, but the module allows probing all possible effects.
 
 `r pic("bookletpics/2_anova_input6.png")`
 `r pic("bookletpics/2_anova_output6.png")`
@@ -291,9 +291,9 @@ Post hoc tests are basically t-tests comparing any pair of levels of the indepen
 
 Why adjusting? Well, adjustment is required when the researcher does not have an _a priori_ hypothesis regarding which comparison should be _significant_ and which should not. If one does not have a clear hypothesis, any comparison that comes out as significant will be considered as _real_, so different from zero. However, when several comparisons are tested, the probability of obtaining at least one comparison as significant is not .05 ($\alpha$), as one expects, but higher: the more comparisons one tests, the higher the probability.
 
-Recall that any inferential test (_frequentist_ tests, I should add) lays out a null-hypothesis, say $\Delta=0$ (difference equal to zero). The t-test returns the probability of obtaining the observed result (here $-2.788$ for _pilsner_ vs _stout_) if we were sampling from a distribution in which  $\Delta=0$. When the p-value is low, we say that it is very unlikely that our result comes from a distribution where  $\Delta=0$, so we reject the null-hypothesis. Unlikely, however, does not mean impossible, so there is always a chance to be wrong in rejecting the null-hypothesis. If we use a significance cut-off of $\alpha=.05$, we accept the risk that if our population difference is indeed zero, we will be wrong 5% of the time. The good news is that we'll be right $1-\alpha=.95$ (*100) of the times. However, this reasoning is valid for one test. If we run two tests, we want to take the right decision for boths, so the probability of being right in both tests is $(1-\alpha)^2=`r .95^2`$. If we run three tests, we will be right with probability $(1-\alpha)^3=`r .95^3`$. So, we capitalize on chance, meaning that it becomes more and more likely to get at least one test as significant, even if they all come from a population where no difference is present.
+Recall that any inferential test (_frequentist_ tests, I should add) lays out a null-hypothesis, say $\Delta=0$ (difference equal to zero). The t-test returns the probability of obtaining the observed result (here $-2.788$ for _pilsner_ vs _stout_) if we were sampling from a distribution in which  $\Delta=0$. When the p-value is low, we say that it is very unlikely that our result comes from a distribution where  $\Delta=0$, so we reject the null-hypothesis. Unlikely, however, does not mean impossible, so there is always a chance to be wrong in rejecting the null-hypothesis. If we use a significance cut-off of $\alpha=.05$, we accept the risk  of being wrong 5% of the time, if the population difference is indeed zero. The good news is that we'll be right $1-\alpha=.95$ (*100) of the times. However, this reasoning is valid for one test. If we run two tests, we want to take the right decision for boths, so the probability of being right in both tests is $(1-\alpha)^2=`r .95^2`$. If we run three tests, we will be right with probability $(1-\alpha)^3=`r .95^3`$. So, we capitalize on chance, meaning that it becomes more and more likely to get at least one test as significant, even if they all come from a population where no difference is present.
 
-Multiple comparisons adjustment corrects the p-value in order to make a significant result more difficult to obtain. Practically, the p-value is increased proportionally to the number of comparisons that are tested. There are different methods to adjust the p-value, and they are listed in the panel as options: _bonferroni_, _Tukey_, _Holm_, _Scheffe_, _Sidak_. They are all alternative ways to adjust the p-value. The interesting dimension along which they different is liberalism-conservativism. In statistics, a _liberal_ test is more likely to yield a significant result than a conservative test, _ceteris paribus_. Liberal tests are more powerful but their correction of the p-value may not be enough, whereas conservative tests correct for multiplicity but may result under-powered. Bonferroni and Sidak adjustment tend to be more conservative than the others. _Tukey_ correction seems the more reasonable choice in most circumstances [@midway2020comparing].
+Multiple comparisons adjustment corrects the p-value in order to make a significant result more difficult to obtain. Practically, the p-value is increased proportionally to the number of comparisons that are tested. There are different methods to adjust the p-value, and they are listed in the panel as options: _bonferroni_, _Tukey_, _Holm_, _Scheffe_, _Sidak_. They are all alternative ways to adjust the p-value. The interesting dimension along which they differ is liberalism-conservativism. In statistics, a _liberal_ test is more likely to yield a significant result than a conservative test, _ceteris paribus_. Liberal tests are more powerful but their correction of the p-value may not be enough, whereas conservative tests correct for multiplicity but may result under-powered. Bonferroni and Sidak adjustment tend to be more conservative than the others. _Tukey_ correction seems the more reasonable choice in most circumstances [@midway2020comparing].
 
 Recall, post hoc tests are needed when the researcher is willing to accept any significant result as worth mentioning and interpreting. On the other hand, if one has a clear pattern of means hypothesized, adjustment may not be needed and the specific comparisons may be evaluated without correction.
 
@@ -306,6 +306,9 @@ Cohen's $d$ is probably the most used effect size index to quantify a mean diffe
 * Cohen's d (sample SD) $d_{sample}$: the means difference is divided by the pooled standard deviation computed within each group. 
 
 * Hedge's g  $g_{sample}$: the means difference is divided by the pooled standard deviation computed within each group, corrected for sample bias. The correction is the one describe by @hedges2014statistical based on the Gamma function. 
+
+
+`r pic("bookletpics/2_anova_output8.png")`
 
 The two d's differ in their adherence with the model being estimated. The _model SD_ version, gives the estimated `d` after removing the variance explained by the other effects in the model, so it is the actual effect size of the comparison of the estimated marginal means. The _sample SD_ gives the crude standardized difference, as if the model was not estimated at all, but only the two groups were considered. The _model SD_ should be preferred as default index to report in a model, the _sample SD_ version can be useful to compare effects in the literature obtained with a different model or without a model.
 
@@ -352,7 +355,7 @@ There is nothing special about interactions between continuous and categorical v
 
 `r pic("bookletpics/2_ancova_input3.png")`
 
-Upon updating the model, the results update as well, and now we can check the main effects, the 2-way interactions and the 2-way interaction. We focus on the variances explained and F-tests.
+Upon updating the model, the results update as well, and now we can check the main effects, the 2-way interactions and the 3-way interaction. We focus on the variances explained and F-tests.
 
 `r pic("bookletpics/2_ancova_output3.png")`
 
@@ -361,7 +364,7 @@ This means that the 2-way interaction `x * cat3` is different at different level
 
 Upon finding a higher order interaction, one wants to plot it and interpret its direction. This is because the higher order interaction shows a pattern of results that is more specific then lower order effects. In fact, lower order effects are always interpreted _on average_, so they are less specific than the higher order effect. Practically, the `cat2 * cat3` significant interaction in our results is not very informative given these results, because it says that _on average_, meaning averaging across levels of `x`, there is an interaction between type of bar and type of beer. But we know from the significant 3-way interaction that the 2-way interaction changes at different levels of `x`, so it is not really important its value on average.
 
-If the 3-way interaction was not significant, or minuscule for our standard, we would simply start probing the lower order effects.
+If the 3-way interaction was not significant, or minuscule for our standards, we would simply start probing the lower order effects.
 
 ### Plot
 
@@ -384,7 +387,7 @@ We can quantify and tests all the effects depicted in the plots by asking for _s
 
 The interpretation of these effects follows what we have done for the 2-way interaction before (\@ref(simpleslopes)). However, because we have a 3-way interaction, we can also probe for _simple interactions_.
 
-## Simple Interactions
+## Simple Interactions {#simpleinteractions}
 
 _Simple interactions_ are simple effects, in which the focal effect is an interaction. We can ask for this analysis by selecting `r opt("Simple Interaction")` option.
 

@@ -38,7 +38,7 @@ results-tables
 moderation2
 plot
 simple-effects
-simple-interactions
+simpleinteractions
 appendixa
 commuting-r2
 variance-explained
