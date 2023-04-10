@@ -8,7 +8,7 @@ statistical-techniques-vs-analyses
 terms-that-we-need-to-generalize
 covnames
 general-references
-model1
+glm
 introduction
 one-continuous-iv
 input
@@ -39,6 +39,17 @@ moderation2
 plot
 simple-effects
 simpleinteractions
+model-comparison-approach
+the-method
+types-of-tests
+not-necessary-model-comparisons
+hierarchical-regression
+assumptions-checks
+homoschedasticity
+normality-of-residuals
+violations-remedies
+robust-standard-error
+bootstrap-confidence-intervals
 appendixa
 commuting-r2
 variance-explained

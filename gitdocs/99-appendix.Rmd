@@ -5,9 +5,9 @@ library(mcdocs)
 
 ```
 
-# Appendix A: The $R^2$'s {#appendixa}
+# The $R^2$'s {#appendixa}
 
-Contrary to what many people think, almost all effect sizes and their corresponding inferential tests in the linear model's realm are based on some sort of model comparison [@judd2017data]. The $R^2$ is one of them.
+Contrary to what many people think, almost all effect sizes and their corresponding inferential tests in the linear model's realm are based on some sort of model-comparison technique [@judd2017data]. The $R^2$ is one of them.
 
 Assume you have a dependent variable that you want to model, meaning that you want to recap its scores by expressing them with some predicted values. For the moment, assume the variable to be continuous. If you only have the variable scores available, without any other information, your best guess is to use the mean as the most likely value. Keeping up with our toy example, assume that `ycont` in the dataset was the number of smiles for a given time done by our participants in a bar. If you only have the `ycont` variable, your best bet would be that the next customer will smile, on average, $\hat{y}=31.7$ times, because that is the expected value (mean) of the variable distribution. So we say, whoever comes next in the bar, they will smile $\hat{y}=31.7$ times on average.
 
@@ -115,7 +115,7 @@ One can show that it works for any coding system offered by `r modulename()`.
 
 ## Zero-intercept ANOVA
 
-The demonstration in \@ref(a1dummies) may explain also a curious phenomenon, which often surprises users of the linear model (independently of the software used). If one estimates a GLM with categorical IVs without the intercept, the model consists of K coefficients, where K is the number of groups, and the coefficients values are the means of the dependent variable for the three groups. These are called zero-intercepts models. Using `manymodels` data, a GLM with `cat3` as independent, `ycont` as dependent, and no intercept, we get these coefficients:
+The demonstration in Appendix \@ref(a1dummies) may explain also a curious phenomenon, which often surprises users of the linear model (independently of the software used). If one estimates a GLM with categorical IVs without the intercept, the model consists of K coefficients, where K is the number of groups, and the coefficients values are the means of the dependent variable for the groups. These models are called zero-intercepts models. Using `manymodels` data, a GLM with `cat3` as independent, `ycont` as dependent, and no intercept (we unflag the `r opt("Intercept")` option), we get these coefficients:
 
 `r pic("bookletpics/ap_a_output2.png")`
 
