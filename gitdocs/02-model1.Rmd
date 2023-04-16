@@ -39,7 +39,7 @@ Consider the dataset `manymodels` (cf. \@ref(data)). The dependent variable is a
 
 What we want to know is the average increase (or decrease) of the dependent variable as the independent variable increases. Thus, how many smiles on average one should expect for one more beer? We ran a GLM to get the answer.
 
-### Input 
+### Input  {#glminput}
 
 `r pic("bookletpics/2_menu1.png")`
 
@@ -71,7 +71,7 @@ With only one continuous variable this table is not very useful, but we comment 
 
 we can notice that the $\epsilon^2$ is equal to the adjusted $R^2$. Yes, that is going to stay: $R^2$ and $\eta^2$ indices (partial or not) are the sample estimates of variance explained, whereas $R_{adj}^2$ and $\epsilon^2$ effect size indices (partial or not) are the population version ($\omega^2$ is population too). People tend to use the sample version of these indices ($\eta^2$ and $R^2$) when they should use the population version ($R^2_{adj}$ and $\epsilon^2$). The same goes for $\omega^2$ index, but you want to `r ext_url("read this about why you want to use them","http://daniellakens.blogspot.com/2015/06/why-you-should-use-omega-squared.html")`, and `r ext_url("this how they are computed","https://gamlj.github.io/details_glm_effectsize.html")` . In a nutshell, $R^2$ and $\eta^2$ tell what happened in the sample, $R_{adj}^2$ and $\epsilon^2$  tell what should happen in the population.
 
-### Coefficients
+### Coefficients {#glmcoefs}
 
 `r pic("bookletpics/2_output5.png")`
 
@@ -102,7 +102,7 @@ If the user decides to report the $\beta$ coefficients, they would likely want t
 `r pic("bookletpics/2_simple_output9.png")`
 
 
-### Plots
+### Plots {#glmplot}
 
 It is always a good idea to look at your model results with a plot. A plot shows your fitted model (predicted values). Because a model is always an approximation of the real data, we want to show our predicted values against, or together, the actual data. In `r opt("Plots")` panel, we can set up a plot as follows:
 
@@ -113,6 +113,8 @@ and see the results:
 `r pic("bookletpics/2_plot1.png")`
 
 By default, the plot shows also the confidence bands around the regression line. The bands are the continuous version of the confidence intervals, and indicate the range of values where the predicted value are expected to lay.
+
+Notice that the independent variable scale is centered to 0. This is because `r modulename()` centers continuous variable by default (cf \@ref(glmcoefs)). If a plot with the original scale is preferred, one can flag the option `r opt("X original scale")` in the `r opt("Plots")` panel.
 
 ## More continuous IVs {#multiregression}
 
@@ -456,7 +458,7 @@ Being idealized scenarios, the observed data are never perfectly abiding by the 
 
 Here we focus on the  `r ext_url("homoschedasticity","https://en.wikipedia.org/wiki/Homoscedasticity_and_heteroscedasticity")` and `r ext_url("normality of residuals","https://online.stat.psu.edu/stat462/node/122/")` assumptions. 
 
-### Homoschedasticity
+### Homoschedasticity {#homosched}
 
 By _Homoschedasticity_ we mean that the variance of the residuals is constant around the predicted values, that this the residuals spread around the predicted values at more or less the same distance along the model predictions. In other words, the spread of the clouds of points representing the `r DV` as a function of the `r IV` is constant. When the spread is not constant, we have _Heteroschedasticity_. Here are two exemplifications:
 

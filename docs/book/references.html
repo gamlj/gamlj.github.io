@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="glm.html"/>
+<link rel="prev" href="gzlm.html"/>
 <link rel="next" href="appendixa.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -178,20 +178,20 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="glm.html"><a href="glm.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
 <li class="chapter" data-level="2.2" data-path="glm.html"><a href="glm.html#one-continuous-iv"><i class="fa fa-check"></i><b>2.2</b> One continuous IV</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="glm.html"><a href="glm.html#input"><i class="fa fa-check"></i><b>2.2.1</b> Input</a></li>
+<li class="chapter" data-level="2.2.1" data-path="glm.html"><a href="glm.html#glminput"><i class="fa fa-check"></i><b>2.2.1</b> Input</a></li>
 <li class="chapter" data-level="2.2.2" data-path="glm.html"><a href="glm.html#model-recap"><i class="fa fa-check"></i><b>2.2.2</b> Model Recap</a></li>
 <li class="chapter" data-level="2.2.3" data-path="glm.html"><a href="glm.html#twofit"><i class="fa fa-check"></i><b>2.2.3</b> Model Fit</a></li>
 <li class="chapter" data-level="2.2.4" data-path="glm.html"><a href="glm.html#omnibus-tests"><i class="fa fa-check"></i><b>2.2.4</b> Omnibus Tests</a></li>
-<li class="chapter" data-level="2.2.5" data-path="glm.html"><a href="glm.html#coefficients"><i class="fa fa-check"></i><b>2.2.5</b> Coefficients</a></li>
+<li class="chapter" data-level="2.2.5" data-path="glm.html"><a href="glm.html#glmcoefs"><i class="fa fa-check"></i><b>2.2.5</b> Coefficients</a></li>
 <li class="chapter" data-level="2.2.6" data-path="glm.html"><a href="glm.html#pearson-correlation"><i class="fa fa-check"></i><b>2.2.6</b> Pearson Correlation</a></li>
-<li class="chapter" data-level="2.2.7" data-path="glm.html"><a href="glm.html#plots"><i class="fa fa-check"></i><b>2.2.7</b> Plots</a></li>
+<li class="chapter" data-level="2.2.7" data-path="glm.html"><a href="glm.html#glmplot"><i class="fa fa-check"></i><b>2.2.7</b> Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="glm.html"><a href="glm.html#multiregression"><i class="fa fa-check"></i><b>2.3</b> More continuous IVs</a>
 <ul>
 <li class="chapter" data-level="2.3.1" data-path="glm.html"><a href="glm.html#twofit2"><i class="fa fa-check"></i><b>2.3.1</b> Model Fit</a></li>
 <li class="chapter" data-level="2.3.2" data-path="glm.html"><a href="glm.html#variances"><i class="fa fa-check"></i><b>2.3.2</b> Omnibus Tests</a></li>
 <li class="chapter" data-level="2.3.3" data-path="glm.html"><a href="glm.html#household-chores"><i class="fa fa-check"></i><b>2.3.3</b> Household Chores</a></li>
-<li class="chapter" data-level="2.3.4" data-path="glm.html"><a href="glm.html#coefficients-1"><i class="fa fa-check"></i><b>2.3.4</b> Coefficients</a></li>
+<li class="chapter" data-level="2.3.4" data-path="glm.html"><a href="glm.html#coefficients"><i class="fa fa-check"></i><b>2.3.4</b> Coefficients</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="glm.html"><a href="glm.html#moderation"><i class="fa fa-check"></i><b>2.4</b> Continuous IVs and interaction</a></li>
 <li class="chapter" data-level="2.5" data-path="glm.html"><a href="glm.html#modint"><i class="fa fa-check"></i><b>2.5</b> Moderation=interaction</a></li>
@@ -200,7 +200,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.7.1" data-path="glm.html"><a href="glm.html#model-fit-and-omnibus-tests"><i class="fa fa-check"></i><b>2.7.1</b> Model Fit and Omnibus tests</a></li>
 <li class="chapter" data-level="2.7.2" data-path="glm.html"><a href="glm.html#dummies"><i class="fa fa-check"></i><b>2.7.2</b> Coefficients</a></li>
-<li class="chapter" data-level="2.7.3" data-path="glm.html"><a href="glm.html#plots-1"><i class="fa fa-check"></i><b>2.7.3</b> Plots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="glm.html"><a href="glm.html#plots"><i class="fa fa-check"></i><b>2.7.3</b> Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="glm.html"><a href="glm.html#posthoc"><i class="fa fa-check"></i><b>2.8</b> Post-hoc tests</a></li>
 <li class="chapter" data-level="2.9" data-path="glm.html"><a href="glm.html#cohens-d"><i class="fa fa-check"></i><b>2.9</b> Cohen’s d</a></li>
@@ -224,13 +224,53 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.15" data-path="glm.html"><a href="glm.html#assumptions-checks"><i class="fa fa-check"></i><b>2.15</b> Assumptions checks</a>
 <ul>
-<li class="chapter" data-level="2.15.1" data-path="glm.html"><a href="glm.html#homoschedasticity"><i class="fa fa-check"></i><b>2.15.1</b> Homoschedasticity</a></li>
+<li class="chapter" data-level="2.15.1" data-path="glm.html"><a href="glm.html#homosched"><i class="fa fa-check"></i><b>2.15.1</b> Homoschedasticity</a></li>
 <li class="chapter" data-level="2.15.2" data-path="glm.html"><a href="glm.html#normality-of-residuals"><i class="fa fa-check"></i><b>2.15.2</b> Normality of residuals</a></li>
 </ul></li>
 <li class="chapter" data-level="2.16" data-path="glm.html"><a href="glm.html#violations-remedies"><i class="fa fa-check"></i><b>2.16</b> Violations Remedies</a>
 <ul>
 <li class="chapter" data-level="2.16.1" data-path="glm.html"><a href="glm.html#robust-standard-error"><i class="fa fa-check"></i><b>2.16.1</b> Robust Standard Error</a></li>
 <li class="chapter" data-level="2.16.2" data-path="glm.html"><a href="glm.html#bootstrap-confidence-intervals"><i class="fa fa-check"></i><b>2.16.2</b> Bootstrap Confidence Intervals</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="gzlm.html"><a href="gzlm.html"><i class="fa fa-check"></i><b>3</b> The Generalized Linear Model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="gzlm.html"><a href="gzlm.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="gzlm.html"><a href="gzlm.html#logistic"><i class="fa fa-check"></i><b>3.2</b> Logistic Model</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="gzlm.html"><a href="gzlm.html#the-rationale"><i class="fa fa-check"></i><b>3.2.1</b> The rationale</a></li>
+<li class="chapter" data-level="3.2.2" data-path="gzlm.html"><a href="gzlm.html#model-estimation"><i class="fa fa-check"></i><b>3.2.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="gzlm.html"><a href="gzlm.html#model-recap-1"><i class="fa fa-check"></i><b>3.2.3</b> Model Recap</a></li>
+<li class="chapter" data-level="3.2.4" data-path="gzlm.html"><a href="gzlm.html#model-fit"><i class="fa fa-check"></i><b>3.2.4</b> Model Fit</a></li>
+<li class="chapter" data-level="3.2.5" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-1"><i class="fa fa-check"></i><b>3.2.5</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="3.2.6" data-path="gzlm.html"><a href="gzlm.html#coefficients-1"><i class="fa fa-check"></i><b>3.2.6</b> Coefficients</a></li>
+<li class="chapter" data-level="3.2.7" data-path="gzlm.html"><a href="gzlm.html#odd-ratios-expb"><i class="fa fa-check"></i><b>3.2.7</b> Odd ratios exp(B)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="gzlm.html"><a href="gzlm.html#marginal-effects"><i class="fa fa-check"></i><b>3.2.8</b> Marginal effects</a></li>
+<li class="chapter" data-level="3.2.9" data-path="gzlm.html"><a href="gzlm.html#multiple-ivs"><i class="fa fa-check"></i><b>3.2.9</b> Multiple IVs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="gzlm.html"><a href="gzlm.html#gzlmanova"><i class="fa fa-check"></i><b>3.3</b> Logistic with Catecorical IVs</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="gzlm.html"><a href="gzlm.html#model-estimation-1"><i class="fa fa-check"></i><b>3.3.1</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="gzlm.html"><a href="gzlm.html#model-fit-1"><i class="fa fa-check"></i><b>3.3.2</b> Model Fit</a></li>
+<li class="chapter" data-level="3.3.3" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-2"><i class="fa fa-check"></i><b>3.3.3</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="3.3.4" data-path="gzlm.html"><a href="gzlm.html#plots-1"><i class="fa fa-check"></i><b>3.3.4</b> Plots</a></li>
+<li class="chapter" data-level="3.3.5" data-path="gzlm.html"><a href="gzlm.html#estimated-marginal-means-1"><i class="fa fa-check"></i><b>3.3.5</b> Estimated Marginal Means</a></li>
+<li class="chapter" data-level="3.3.6" data-path="gzlm.html"><a href="gzlm.html#relative-risk"><i class="fa fa-check"></i><b>3.3.6</b> Relative Risk</a></li>
+<li class="chapter" data-level="3.3.7" data-path="gzlm.html"><a href="gzlm.html#marginal-effects-1"><i class="fa fa-check"></i><b>3.3.7</b> Marginal Effects</a></li>
+<li class="chapter" data-level="3.3.8" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests"><i class="fa fa-check"></i><b>3.3.8</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="3.3.9" data-path="gzlm.html"><a href="gzlm.html#other-options"><i class="fa fa-check"></i><b>3.3.9</b> Other options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="gzlm.html"><a href="gzlm.html#probit-model"><i class="fa fa-check"></i><b>3.4</b> Probit Model</a></li>
+<li class="chapter" data-level="3.5" data-path="gzlm.html"><a href="gzlm.html#multinomail"><i class="fa fa-check"></i><b>3.5</b> The Multinomial Model</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="gzlm.html"><a href="gzlm.html#rationale"><i class="fa fa-check"></i><b>3.5.1</b> Rationale</a></li>
+<li class="chapter" data-level="3.5.2" data-path="gzlm.html"><a href="gzlm.html#model-estimation-2"><i class="fa fa-check"></i><b>3.5.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.5.3" data-path="gzlm.html"><a href="gzlm.html#model-recap-2"><i class="fa fa-check"></i><b>3.5.3</b> Model Recap</a></li>
+<li class="chapter" data-level="3.5.4" data-path="gzlm.html"><a href="gzlm.html#overal-fit"><i class="fa fa-check"></i><b>3.5.4</b> Overal Fit</a></li>
+<li class="chapter" data-level="3.5.5" data-path="gzlm.html"><a href="gzlm.html#plots-2"><i class="fa fa-check"></i><b>3.5.5</b> Plots</a></li>
+<li class="chapter" data-level="3.5.6" data-path="gzlm.html"><a href="gzlm.html#coefficients-2"><i class="fa fa-check"></i><b>3.5.6</b> Coefficients</a></li>
+<li class="chapter" data-level="3.5.7" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests-1"><i class="fa fa-check"></i><b>3.5.7</b> Post Hoc Tests</a></li>
+<li class="chapter" data-level="3.5.8" data-path="gzlm.html"><a href="gzlm.html#simple-effects-1"><i class="fa fa-check"></i><b>3.5.8</b> Simple Effects</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -273,6 +313,9 @@ div.csl-indent {
 Agresti, Alan. 1990. <em>Categorical Data Analysis</em>. A Wiley-Interscience Publication. New York [u.a.]: Wiley.
 </div>
 <div class="csl-entry">
+Agresti, Alan, and Claudia Tarantola. 2018. <span>“Simple Ways to Interpret Effects in Modeling Ordinal Categorical Data.”</span> <em>Statistica Neerlandica</em> 72 (3): 210–23.
+</div>
+<div class="csl-entry">
 Aiken, Leona S, Stephen G West, and Raymond R Reno. 1991. <em>Multiple Regression: Testing and Interpreting Interactions</em>. sage.
 </div>
 <div class="csl-entry">
@@ -297,6 +340,9 @@ Judd, Charles M, Gary H McClelland, and Carey S Ryan. 2017. <em>Data Analysis: A
 Jung, Kwanghee, Jaehoon Lee, Vibhuti Gupta, and Gyeongcheol Cho. 2019. <span>“Comparison of Bootstrap Confidence Interval Methods for GSCA Using a Monte Carlo Simulation.”</span> <em>Frontiers in Psychology</em> 10: 2215.
 </div>
 <div class="csl-entry">
+Leeper, Thomas J. 2021. <em>Margins: Marginal Effects for Model Objects</em>. <a href="https://cran.r-project.org/web/packages/margins/index.html">https://cran.r-project.org/web/packages/margins/index.html</a>.
+</div>
+<div class="csl-entry">
 Mayo, Deborah G. 1981. <span>“In Defense of the Neyman-Pearson Theory of Confidence Intervals.”</span> <em>Philosophy of Science</em> 48 (2): 269–80. <a href="https://doi.org/10.1086/288996">https://doi.org/10.1086/288996</a>.
 </div>
 <div class="csl-entry">
@@ -317,6 +363,9 @@ Raudenbush, Stephen W, and Anthony S Bryk. 2002. <em>Hierarchical Linear Models:
 <div class="csl-entry">
 Searle, Shayle R, and Marvin HJ Gruber. 2016. <em>Linear Models</em>. John Wiley &amp; Sons.
 </div>
+<div class="csl-entry">
+Zou, Guangyong. 2004. <span>“A Modified Poisson Regression Approach to Prospective Studies with Binary Data.”</span> <em>American Journal of Epidemiology</em> 159 (7): 702–6.
+</div>
 </div>
 
 </div>
@@ -329,7 +378,7 @@ Searle, Shayle R, and Marvin HJ Gruber. 2016. <em>Linear Models</em>. John Wiley
           </div>
         </div>
       </div>
-<a href="glm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gzlm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="appendixa.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
