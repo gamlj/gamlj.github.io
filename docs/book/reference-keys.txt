@@ -60,7 +60,7 @@ model-fit
 omnibus-tests-1
 coefficients-1
 odd-ratios-expb
-marginal-effects
+logisticcontmarginal
 multiple-ivs
 gzlmanova
 model-estimation-1
@@ -69,11 +69,11 @@ omnibus-tests-2
 plots-1
 estimated-marginal-means-1
 relative-risk
-marginal-effects-1
+logisticcatmarginal
 post-hoc-tests
 other-options
 probit-model
-multinomail
+multinomial
 rationale
 model-estimation-2
 model-recap-2
@@ -81,6 +81,7 @@ overal-fit
 plots-2
 coefficients-2
 post-hoc-tests-1
+marginal-effects
 simple-effects-1
 appendixa
 commuting-r2

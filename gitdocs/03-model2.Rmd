@@ -172,7 +172,7 @@ The odd ratio is the standard effect size used in logistic regression, but it is
 
 `r pic("bookletpics/3_logistic_input3.png")`
 
-### Marginal effects
+### Marginal effects {#logisticcontmarginal}
 
 In the same way that the `exp(B)` gets rid of the log scale, marginal effects get rid of the odd scale [@agresti2018simple]. If we get rid of the odd scale, we are back in the probability scale. Let's see our model in probability scale, by asking the plot of the predicted values in the `r opt("Plots")` panel (as we did in GLM \@ref(glmplot)).
 
@@ -253,7 +253,7 @@ When comparing `IPA` with `pilsner` group, we have that the probability of visit
 
 A caveat is in order here. If one computes these values based on the estimated marginal means, they do not correspond exactly: $.768/.409=1.89$, whereas the RR of cat2 is $1.937$. Close, but not equal. The reason is the presence of the interactions, so it has to do with the way probabilities are averaged across the levels of other variables. The difference, however, is always rather small. For models with only one `r IV`, the computations correspond exactly.
 
-### Marginal Effects
+### Marginal Effects {#logisticcatmarginal}
 
 `r pic("bookletpics/3_logistic_output11.png")`
 
@@ -273,17 +273,17 @@ The first comparison shows an $OR=.452$, meaning that the ratio of the pilsner g
 
 All other options, `r opt("Simple Effects")`, `r opt("Factor Coding")`, `r opt("Covariates Scaling")`, `r opt("Bootstrap")` confidence intervals, etc. are the same as in the GLM.
 
-## Probit Model
+## Probit Model 
 
-The probit model (cf  `r ext_url("Wiki","https://en.wikipedia.org/wiki/Probit_model")`) is practically equivalent to the logistic model. All examples, options and interpretations are the same, so we are not going to explore it in details. The reason `r modulename()` offers the probit model is because there are several disciplines in which it is more commonly used than the logistic model. The aim of the two models is the same: Predicting a dichotomous dependent by its relations with a set of `r IVs`. 
+The probit model (cf  `r ext_url("Wiki","https://en.wikipedia.org/wiki/Probit_model")`) is practically equivalent to the logistic model. All examples, options and interpretations are the same, so we are not going to explore it in details. The reason `r modulename()` offers the probit model is because there are several disciplines in which this model is more commonly used than the logistic model. The aim of the two models is the same: Predicting a dichotomous dependent by its relations with a set of `r IVs`. 
 
-The only difference between the logistic and the probit model is the link function. Rather than predicting the _logit_ of the probability, it uses the _probit_ of the probability. The _probit_ function uses the inverse of the cumulative distribution function of the normal distribution. In a nutshell,  imagine an histogram: The cumulative distribution function of the normal distribution associates a probability to any possible value of the X-axis. Its inverse associates a value to any probability, yielding the predicted values in a scale that admits any positive or negative values. In other words, it does what the logit does, with a different function.
+The only difference between the logistic and the probit model is the link function. Rather than predicting the _logit_ of the probability, it uses the _probit_ of the probability. The _probit_ function uses the inverse of the cumulative distribution function of the normal distribution. In a nutshell,  imagine a histogram: The cumulative distribution function of the normal distribution associates a probability to any possible value of the X-axis. Its inverse associates a value to any probability, yielding the predicted values in a scale that admits any positive or negative value. In other words, it does what the logit does, with a different function.
 
 The fact that the logit and the probit models give almost identical results can be easily understood by looking at the way the two link functions transform probabilities in real values: practically in the same way. 
 
 `r pic("https://upload.wikimedia.org/wikipedia/commons/3/39/Logit-probit.svg")`
 
-## The Multinomial Model {#multinomail}
+## The Multinomial Model {#multinomial}
 
 ### Rationale
 
@@ -359,11 +359,11 @@ How the independent variable influences the group probabilities can be seen with
 
 ### Plots
 
-Plot of probabilities are very useful to interpret multinomial models. For multinomial models, the plot depicts one line for each level of the dependent variable. Each line depicts the expected probability of being in that group as a function of the independent variables (plots are produced like any other model, so it is not shown here. `original X-scale` option is selected as well). 
+Plot of probabilities are very useful to interpret multinomial models. For multinomial models, the plot depicts one line for each level of the dependent variable. Each line depicts the expected probability of being in that group as a function of the independent variables (plots are produced like for any other model, so it is not shown here. `original X-scale` option is selected as well). 
 
 `r pic("bookletpics/3_multi_plot1.png")`
 
-Here we see how the effect of _beers_ ($x$) unfolds into probabilities differences. For low level of beers, it is very unlikely to dance, but this group becomes more likely as _beers_ increases. `chats` and `darts` starts at the same level of probability, they diverge as _beers_ increases: `darts` becomes less and less likely, whereas `chats` increases to decrease again for high level of _beers_. With the plot, a full picture of the effect can be obtained and a clear interpretation of the results can be given.
+Here we see how the effect of _beers_ ($x$) unfolds into probabilities differences. For low level of beers, it is very unlikely to dance, but this group becomes more likely as _beers_ increases. `chats` and `darts` start at the same level of probability, they diverge as _beers_ increases: `darts` becomes less and less likely, whereas `chats` increases to decrease again for high levels of _beers_. With the plot, a full picture of the effect can be obtained and a clear interpretation of the results can be given.
 
 ### Coefficients
 
@@ -388,7 +388,45 @@ The omnibus test suggest a main effect of `cat3` on the probability of `ycat`, t
 
 The `cat3` groups do not differ in the probability of being in the `darts` group. The `cat3` groups do not differ in the probability of being in the `chat` group, although some difference can be seen for the comparison `pilsner-stout`. The `cat3` groups do not differ in the probability of being in the `dance` group, although some difference can be seen for the comparison `pilsner-stout`, again. 
 
-We noticed that `cat3` had a significant effects on the dependent variable (`r tab("Omnibus Test")`), but no post hoc test reaches a significant level. That is not an error, it could happens because of the correction for multiplicity. Because in multinomial models the comparisons are usually many, the adjustment may result in very under-powered comparisons. The indication is to use the post-hoc only when strictly necessary, namely when one has really no idea of what to expect from our data.  
+We noticed that `cat3` had a significant effect on the dependent variable (`r tab("Omnibus Test")`), but no post hoc test reaches a significant level. That is not an error, it could happen because of the correction for multiplicity. Because in multinomial models the comparisons are usually many, the adjustment may result in very under-powered comparisons. The indication is to use the post-hoc only when strictly necessary, namely when one has really no idea of what to expect from our data.  
+
+
+### Marginal Effects
+
+Recall the marginal effects in the logistic model (cf. \@ref(logisticcontmarginal) and \@ref(logisticcatmarginal)). They are the average change in probability (probabilities differences) along a continuous `r IV` or between two groups defined by a categorical `r IV`. In multinomial models, they have the same interpretation, but they are produced for each comparison (dummy) between the dependent variable groups. In our example with `x` and `cat3` `r IVs`, we have the following marginal effects.
+
+`r pic("bookletpics/3_multi_output7.png")`
+
+The first row presents the average marginal effect, $AME=.082$ of x on the comparison between `chat` and `darts`: that is, the average change in probability of being in the `chat` group rather than the `darts` group along the values of `x`. The second row ($AME=.677$) is   the difference in the probability of being in group `chat` rather than `darts` between the group `stout` and group `pilsner`. The third row indicates the difference in the probability of being in group `chat` rather than `darts` between the group `stout` and group `pilsner`.
+
+The following three rows are the same comparisons, but operated on the probability of being in group `dance` rather than in group `darts`.
+
 
 ### Simple Effects
+
+We now examine a multinomial model with `z` (remember _extraversion_) and `cat3` as independent variables, with the addition of their interaction as a term in the model.
+
+The omnibus tests are the following:
+
+`r pic("bookletpics/3_multi_output8.png")`
+
+We find an interaction between the continuous variable `z` and the categorical variable `cat3`. To explore this interaction we can estimate and test the simple slopes of `z` at different levels of `cat3`. This estimation provides the numerical version of a simple _slopes_ plot, that we can obtain in `r opt("Plots")` as usual
+
+`r pic("bookletpics/3_multi_input2.png")`
+
+The plots (rearanged) looks like this:
+
+`r pic("bookletpics/3_multi_output9.png")`
+
+These are the effects (difference in probability) of `z` on `ycat` estimated for the thee groups defined by `cat3`. To know where the effects are or are not present, we can ask for the simple effects.
+
+`r pic("bookletpics/3_multi_input3.png")`
+
+`r pic("bookletpics/3_multi_output10.png")`
+
+It is clear that the effect of `z` is different from zero for the group `pilsner`, $\chi^2(2)=6.55$,$p.=.038$, it is very weak and not significant for the group `IPA`, $\chi^2(2)=1.59$,$p.=.450$, and is significant and strong for the group `stout`, $\chi^2(2)=18.44$,$p.<.001$.
+
+### Other options
+
+All other options, `r opt("Simple Interactions")`, `r opt("Factor Coding")`, `r opt("Covariates Scaling")`, `r opt("Bootstrap")` confidence intervals, etc. are the same as in the GLM.
 

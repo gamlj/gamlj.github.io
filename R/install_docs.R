@@ -13,7 +13,9 @@ str(knitr::knit_engines$get())
 
 ## this update your github site
 #update_git()
-
+.610/.500
 
 # old tag G-2YGWBQCQK3
 .30^2
+
+.768/.409
