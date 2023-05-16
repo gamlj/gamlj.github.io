@@ -61,10 +61,10 @@ extract_help<-function(pkg) {
 res<-extract_help(pkg) 
 
 ### this should be fixed in mcdocs
-for (r in seq_along(res))
-   if (!is.null(res[[r]]))
-         res[[r]]<-paste("<script>",res[[r]])
-res
+#for (r in seq_along(res))
+#   if (!is.null(res[[r]]))
+#         res[[r]]<-paste("<script>",res[[r]])
+
 ```
 
 ```{r, echo=FALSE,results='asis'}
