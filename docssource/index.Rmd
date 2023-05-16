@@ -16,9 +16,11 @@ mcdocs_init()
   
 `r version("3.0.0")`
 
-This documentation refers to `r modulename()` version 3 and above. `r modulename()` is not compatible with `.omv` files produced with previous versions of the module. In case you need to downgrade to older version, please install the latest version of `r modulename()` 2 from here, with `r ext_url("Version 2 docs","https://mcfanda.github.io/gamlj_legacy.github.io/")`.
-  
+This documentation it is being updated toward `r modulename()` version 3 and above. You still find much of the material suitable for `r modulename()` version 2. In case you want to read documentation that applies only to version 2, please go to `r ext_url("Version 2 docs","https://mcfanda.github.io/gamlj_legacy.github.io/")`.
+
+<div class="bignote">  
 If you are interested in more information about the statistical models that can be estimated by `r modulename()`, and their results interpretation, you can read  `r ext_url("GAMLj models","https://gamlj.github.io/book/booklet.html")`, a (in progress) web book companion to the module.
+</div>
 
 General, Mixed and Generalized Models module for `r jamovi`.
 

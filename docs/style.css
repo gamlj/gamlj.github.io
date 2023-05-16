@@ -225,3 +225,13 @@ code {
   border: 2px solid #87cefa;
 }
 
+
+div.bignote {
+  display: inline-block;
+  padding: 15px;
+  color:  #212f3c ;
+  font-size: 1.1em;
+  border-radius: 5px; 
+  background-color:  #d6eaf8 ;
+  margin-bottom: 10px;
+}
