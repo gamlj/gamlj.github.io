@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>A The \(R^2\)’s | GAMLj Models</title>
+  <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="A The \(R^2\)’s | GAMLj Models" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  <meta name="github-repo" content="mcfanda/jmvScaffold" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A The \(R^2\)’s | GAMLj Models" />
+  
+  <meta name="twitter:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  
+
+<meta name="author" content="Marcello Gallucci" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="references.html"/>
+<link rel="next" href="a1dummies.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">GAMLj Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="booklet.html"><a href="booklet.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="booklet.html"><a href="booklet.html#preface"><i class="fa fa-check"></i><b>1.1</b> Preface</a></li>
+<li class="chapter" data-level="1.2" data-path="booklet.html"><a href="booklet.html#getstarted"><i class="fa fa-check"></i><b>1.2</b> Getting Started</a></li>
+<li class="chapter" data-level="1.3" data-path="booklet.html"><a href="booklet.html#data"><i class="fa fa-check"></i><b>1.3</b> Data</a></li>
+<li class="chapter" data-level="1.4" data-path="booklet.html"><a href="booklet.html#naming"><i class="fa fa-check"></i><b>1.4</b> What’s in a name</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="booklet.html"><a href="booklet.html#angles"><i class="fa fa-check"></i><b>1.4.1</b> Statistical techniques vs points of view</a></li>
+<li class="chapter" data-level="1.4.2" data-path="booklet.html"><a href="booklet.html#statistical-techniques-vs-analyses"><i class="fa fa-check"></i><b>1.4.2</b> Statistical techniques vs Analyses</a></li>
+<li class="chapter" data-level="1.4.3" data-path="booklet.html"><a href="booklet.html#terms-that-we-need-to-generalize"><i class="fa fa-check"></i><b>1.4.3</b> Terms that we need to generalize</a></li>
+<li class="chapter" data-level="1.4.4" data-path="booklet.html"><a href="booklet.html#covnames"><i class="fa fa-check"></i><b>1.4.4</b> Terms we need to cope with</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="booklet.html"><a href="booklet.html#general-references"><i class="fa fa-check"></i><b>1.5</b> General References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>2</b> The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="glm.html"><a href="glm.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="glm.html"><a href="glm.html#regression"><i class="fa fa-check"></i><b>2.2</b> One continuous IV</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="glm.html"><a href="glm.html#glminput"><i class="fa fa-check"></i><b>2.2.1</b> Input</a></li>
+<li class="chapter" data-level="2.2.2" data-path="glm.html"><a href="glm.html#model-recap"><i class="fa fa-check"></i><b>2.2.2</b> Model Recap</a></li>
+<li class="chapter" data-level="2.2.3" data-path="glm.html"><a href="glm.html#twofit"><i class="fa fa-check"></i><b>2.2.3</b> Model Fit</a></li>
+<li class="chapter" data-level="2.2.4" data-path="glm.html"><a href="glm.html#omnibus-tests"><i class="fa fa-check"></i><b>2.2.4</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="2.2.5" data-path="glm.html"><a href="glm.html#glmcoefs"><i class="fa fa-check"></i><b>2.2.5</b> Coefficients</a></li>
+<li class="chapter" data-level="2.2.6" data-path="glm.html"><a href="glm.html#pearson-correlation"><i class="fa fa-check"></i><b>2.2.6</b> Pearson Correlation</a></li>
+<li class="chapter" data-level="2.2.7" data-path="glm.html"><a href="glm.html#glmplot"><i class="fa fa-check"></i><b>2.2.7</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="glm.html"><a href="glm.html#multiregression"><i class="fa fa-check"></i><b>2.3</b> More continuous IVs</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="glm.html"><a href="glm.html#twofit2"><i class="fa fa-check"></i><b>2.3.1</b> Model Fit</a></li>
+<li class="chapter" data-level="2.3.2" data-path="glm.html"><a href="glm.html#variances"><i class="fa fa-check"></i><b>2.3.2</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="2.3.3" data-path="glm.html"><a href="glm.html#household-chores"><i class="fa fa-check"></i><b>2.3.3</b> Household Chores</a></li>
+<li class="chapter" data-level="2.3.4" data-path="glm.html"><a href="glm.html#coefficients"><i class="fa fa-check"></i><b>2.3.4</b> Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="glm.html"><a href="glm.html#moderation"><i class="fa fa-check"></i><b>2.4</b> Continuous IVs and interaction</a></li>
+<li class="chapter" data-level="2.5" data-path="glm.html"><a href="glm.html#modint"><i class="fa fa-check"></i><b>2.5</b> Moderation=interaction</a></li>
+<li class="chapter" data-level="2.6" data-path="glm.html"><a href="glm.html#simpleslopes"><i class="fa fa-check"></i><b>2.6</b> Simple Slopes</a></li>
+<li class="chapter" data-level="2.7" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>2.7</b> Categorical IVs</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="glm.html"><a href="glm.html#model-fit-and-omnibus-tests"><i class="fa fa-check"></i><b>2.7.1</b> Model Fit and Omnibus tests</a></li>
+<li class="chapter" data-level="2.7.2" data-path="glm.html"><a href="glm.html#dummies"><i class="fa fa-check"></i><b>2.7.2</b> Coefficients</a></li>
+<li class="chapter" data-level="2.7.3" data-path="glm.html"><a href="glm.html#plots"><i class="fa fa-check"></i><b>2.7.3</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="glm.html"><a href="glm.html#posthoc"><i class="fa fa-check"></i><b>2.8</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="2.9" data-path="glm.html"><a href="glm.html#cohens-d"><i class="fa fa-check"></i><b>2.9</b> Cohen’s d</a></li>
+<li class="chapter" data-level="2.10" data-path="glm.html"><a href="glm.html#estimated-marginal-means"><i class="fa fa-check"></i><b>2.10</b> Estimated marginal means</a></li>
+<li class="chapter" data-level="2.11" data-path="glm.html"><a href="glm.html#ancova"><i class="fa fa-check"></i><b>2.11</b> Categorical and Continuous IVs</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="glm.html"><a href="glm.html#results-tables"><i class="fa fa-check"></i><b>2.11.1</b> Results tables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="glm.html"><a href="glm.html#moderation2"><i class="fa fa-check"></i><b>2.12</b> Categorical and Continuous Interactions</a>
+<ul>
+<li class="chapter" data-level="2.12.1" data-path="glm.html"><a href="glm.html#plot"><i class="fa fa-check"></i><b>2.12.1</b> Plot</a></li>
+<li class="chapter" data-level="2.12.2" data-path="glm.html"><a href="glm.html#simple-effects"><i class="fa fa-check"></i><b>2.12.2</b> Simple Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.13" data-path="glm.html"><a href="glm.html#simpleinteractions"><i class="fa fa-check"></i><b>2.13</b> Simple Interactions</a></li>
+<li class="chapter" data-level="2.14" data-path="glm.html"><a href="glm.html#model-comparison-approach"><i class="fa fa-check"></i><b>2.14</b> Model-comparison approach</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="glm.html"><a href="glm.html#the-method"><i class="fa fa-check"></i><b>2.14.1</b> The Method</a></li>
+<li class="chapter" data-level="2.14.2" data-path="glm.html"><a href="glm.html#types-of-tests"><i class="fa fa-check"></i><b>2.14.2</b> Types of tests</a></li>
+<li class="chapter" data-level="2.14.3" data-path="glm.html"><a href="glm.html#not-necessary-model-comparisons"><i class="fa fa-check"></i><b>2.14.3</b> Not necessary model-comparisons</a></li>
+<li class="chapter" data-level="2.14.4" data-path="glm.html"><a href="glm.html#hierarchical-regression"><i class="fa fa-check"></i><b>2.14.4</b> Hierarchical regression</a></li>
+</ul></li>
+<li class="chapter" data-level="2.15" data-path="glm.html"><a href="glm.html#assumptions-checks"><i class="fa fa-check"></i><b>2.15</b> Assumptions checks</a>
+<ul>
+<li class="chapter" data-level="2.15.1" data-path="glm.html"><a href="glm.html#homosched"><i class="fa fa-check"></i><b>2.15.1</b> Homoschedasticity</a></li>
+<li class="chapter" data-level="2.15.2" data-path="glm.html"><a href="glm.html#normality-of-residuals"><i class="fa fa-check"></i><b>2.15.2</b> Normality of residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.16" data-path="glm.html"><a href="glm.html#violations-remedies"><i class="fa fa-check"></i><b>2.16</b> Violations Remedies</a>
+<ul>
+<li class="chapter" data-level="2.16.1" data-path="glm.html"><a href="glm.html#robust-standard-error"><i class="fa fa-check"></i><b>2.16.1</b> Robust Standard Error</a></li>
+<li class="chapter" data-level="2.16.2" data-path="glm.html"><a href="glm.html#bootstrap-confidence-intervals"><i class="fa fa-check"></i><b>2.16.2</b> Bootstrap Confidence Intervals</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="gzlm.html"><a href="gzlm.html"><i class="fa fa-check"></i><b>3</b> The Generalized Linear Model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="gzlm.html"><a href="gzlm.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="gzlm.html"><a href="gzlm.html#logistic"><i class="fa fa-check"></i><b>3.2</b> Logistic Model</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="gzlm.html"><a href="gzlm.html#the-rationale"><i class="fa fa-check"></i><b>3.2.1</b> The rationale</a></li>
+<li class="chapter" data-level="3.2.2" data-path="gzlm.html"><a href="gzlm.html#model-estimation"><i class="fa fa-check"></i><b>3.2.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="gzlm.html"><a href="gzlm.html#model-recap-1"><i class="fa fa-check"></i><b>3.2.3</b> Model Recap</a></li>
+<li class="chapter" data-level="3.2.4" data-path="gzlm.html"><a href="gzlm.html#model-fit"><i class="fa fa-check"></i><b>3.2.4</b> Model Fit</a></li>
+<li class="chapter" data-level="3.2.5" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-1"><i class="fa fa-check"></i><b>3.2.5</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="3.2.6" data-path="gzlm.html"><a href="gzlm.html#coefficients-1"><i class="fa fa-check"></i><b>3.2.6</b> Coefficients</a></li>
+<li class="chapter" data-level="3.2.7" data-path="gzlm.html"><a href="gzlm.html#odd-ratios-expb"><i class="fa fa-check"></i><b>3.2.7</b> Odd ratios exp(B)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="gzlm.html"><a href="gzlm.html#logisticcontmarginal"><i class="fa fa-check"></i><b>3.2.8</b> Marginal effects</a></li>
+<li class="chapter" data-level="3.2.9" data-path="gzlm.html"><a href="gzlm.html#multiple-ivs"><i class="fa fa-check"></i><b>3.2.9</b> Multiple IVs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="gzlm.html"><a href="gzlm.html#gzlmanova"><i class="fa fa-check"></i><b>3.3</b> Logistic with Catecorical IVs</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="gzlm.html"><a href="gzlm.html#model-estimation-1"><i class="fa fa-check"></i><b>3.3.1</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="gzlm.html"><a href="gzlm.html#model-fit-1"><i class="fa fa-check"></i><b>3.3.2</b> Model Fit</a></li>
+<li class="chapter" data-level="3.3.3" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-2"><i class="fa fa-check"></i><b>3.3.3</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="3.3.4" data-path="gzlm.html"><a href="gzlm.html#plots-1"><i class="fa fa-check"></i><b>3.3.4</b> Plots</a></li>
+<li class="chapter" data-level="3.3.5" data-path="gzlm.html"><a href="gzlm.html#estimated-marginal-means-1"><i class="fa fa-check"></i><b>3.3.5</b> Estimated Marginal Means</a></li>
+<li class="chapter" data-level="3.3.6" data-path="gzlm.html"><a href="gzlm.html#relative-risk"><i class="fa fa-check"></i><b>3.3.6</b> Relative Risk</a></li>
+<li class="chapter" data-level="3.3.7" data-path="gzlm.html"><a href="gzlm.html#logisticcatmarginal"><i class="fa fa-check"></i><b>3.3.7</b> Marginal Effects</a></li>
+<li class="chapter" data-level="3.3.8" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests"><i class="fa fa-check"></i><b>3.3.8</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="3.3.9" data-path="gzlm.html"><a href="gzlm.html#other-options"><i class="fa fa-check"></i><b>3.3.9</b> Other options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="gzlm.html"><a href="gzlm.html#probit"><i class="fa fa-check"></i><b>3.4</b> Probit Model</a></li>
+<li class="chapter" data-level="3.5" data-path="gzlm.html"><a href="gzlm.html#multinomial"><i class="fa fa-check"></i><b>3.5</b> The Multinomial Model</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="gzlm.html"><a href="gzlm.html#rationale"><i class="fa fa-check"></i><b>3.5.1</b> Rationale</a></li>
+<li class="chapter" data-level="3.5.2" data-path="gzlm.html"><a href="gzlm.html#model-estimation-2"><i class="fa fa-check"></i><b>3.5.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.5.3" data-path="gzlm.html"><a href="gzlm.html#model-recap-2"><i class="fa fa-check"></i><b>3.5.3</b> Model Recap</a></li>
+<li class="chapter" data-level="3.5.4" data-path="gzlm.html"><a href="gzlm.html#overal-fit"><i class="fa fa-check"></i><b>3.5.4</b> Overal Fit</a></li>
+<li class="chapter" data-level="3.5.5" data-path="gzlm.html"><a href="gzlm.html#plots-2"><i class="fa fa-check"></i><b>3.5.5</b> Plots</a></li>
+<li class="chapter" data-level="3.5.6" data-path="gzlm.html"><a href="gzlm.html#coefficients-2"><i class="fa fa-check"></i><b>3.5.6</b> Coefficients</a></li>
+<li class="chapter" data-level="3.5.7" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests-1"><i class="fa fa-check"></i><b>3.5.7</b> Post Hoc Tests</a></li>
+<li class="chapter" data-level="3.5.8" data-path="gzlm.html"><a href="gzlm.html#marginal-effects"><i class="fa fa-check"></i><b>3.5.8</b> Marginal Effects</a></li>
+<li class="chapter" data-level="3.5.9" data-path="gzlm.html"><a href="gzlm.html#simple-effects-1"><i class="fa fa-check"></i><b>3.5.9</b> Simple Effects</a></li>
+<li class="chapter" data-level="3.5.10" data-path="gzlm.html"><a href="gzlm.html#other-options-1"><i class="fa fa-check"></i><b>3.5.10</b> Other options</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendixa.html"><a href="appendixa.html"><i class="fa fa-check"></i><b>A</b> The <span class="math inline">\(R^2\)</span>’s</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="appendixa.html"><a href="appendixa.html#commuting-r2"><i class="fa fa-check"></i><b>A.1</b> Commuting <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="A.2" data-path="appendixa.html"><a href="appendixa.html#variance-explained"><i class="fa fa-check"></i><b>A.2</b> Variance explained</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="a1dummies.html"><a href="a1dummies.html"><i class="fa fa-check"></i><b>B</b> How many contrasts?</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="a1dummies.html"><a href="a1dummies.html#sufficiency-of-k-1-dummies"><i class="fa fa-check"></i><b>B.1</b> Sufficiency of K-1 dummies</a></li>
+<li class="chapter" data-level="B.2" data-path="a1dummies.html"><a href="a1dummies.html#zero-intercept-anova"><i class="fa fa-check"></i><b>B.2</b> Zero-intercept ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="appendixb.html"><a href="appendixb.html"><i class="fa fa-check"></i><b>C</b> Appendix Variable Types</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GAMLj Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="appendixa" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">A</span> The <span class="math inline">\(R^2\)</span>’s<a href="appendixa.html#appendixa" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Contrary to what many people think, almost all effect sizes and their corresponding inferential tests in the linear model’s realm are based on some sort of model-comparison technique <span class="citation">(<a href="#ref-judd2017data" role="doc-biblioref">Judd, McClelland, and Ryan 2017</a>)</span>. The <span class="math inline">\(R^2\)</span> is one of them.</p>
+<p>Assume you have a dependent variable that you want to model, meaning that you want to recap its scores by expressing them with some predicted values. For the moment, assume the variable to be continuous. If you only have the variable scores available, without any other information, your best guess is to use the mean as the most likely value. Keeping up with our toy example, assume that <code>ycont</code> in the dataset was the number of smiles for a given time done by our participants in a bar. If you only have the <code>ycont</code> variable, your best bet would be that the next customer will smile, on average, <span class="math inline">\(\hat{y}=31.7\)</span> times, because that is the expected value (mean) of the variable distribution. So we say, whoever comes next in the bar, they will smile <span class="math inline">\(\hat{y}=31.7\)</span> times on average.</p>
+<p><img src="bookletpics/ap_a_output1.png" width="478" /></p>
+<p>What I am saying translates into the most simple linear model, the mean model:</p>
+<p><span class="math display">\[ \hat{y_i}=\bar{y}\]</span></p>
+<p>If we use the mean as our expected value, that is our model, we have an approximation error (<span class="math inline">\(\sigma^2\)</span>), which amounts to the discrepancy between the predicted values (the variable mean) and the actual observed values. Because errors larger or smaller than the actual values are the same, we can square the errors, and compute the average error across cases (forget about the minus 1, it is not important now).</p>
+<p><span class="math display">\[ \sigma^2_{\bar{x}}={\Sigma{(y_i-\hat{y})^2} \over {N-1}}\]</span></p>
+<p>When we associate an independent variable with a dependent variable in a linear model, we are seeking a better account of the differences in the scores of the dependent variable. It is like answering the question “how many smiles would a randomly taken person from our sample do?”, with “it depends on how many beers they had”. If it was only for the beers, the predicted values would be</p>
+<p><span class="math display">\[ \hat{y_i}=a+bx_i\]</span>
+and the error we make would be:
+<span class="math display">\[ \sigma^2_r={\Sigma{[a+bx_i-y_i]^2} \over {N-1}}\]</span>
+How good is this error variance associated with the regression? Well, it depends on how big was the error without the regression, that is using the mean as the only predictor, namely <span class="math inline">\(\sigma^2_{\bar{x}}\)</span>.</p>
+<p>So we take the difference between these possible error variances, and we know how much the regression <em>reduced the error</em></p>
+<p><span class="math display">\[ {\sigma^2_{\bar{x}}-\sigma^2_r \over \sigma^2_{\bar{x}}}=R^2\]</span>
+The <span class="math inline">\(R^2\)</span> (and its variants) is the amount of error that we reduce in our predictions thanks to our model as compared to not using our model. In other words, is the comparison of our model error with the error of a model without the independent variable(s).</p>
+<div id="commuting-r2" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">A.1</span> Commuting <span class="math inline">\(R^2\)</span><a href="appendixa.html#commuting-r2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s assume you commute to the university every day and it takes 60 minutes (<span class="math inline">\(T_0\)</span>) to get there from your home, following one route. A friend of yours (probably a know-it-all colleague), suggests an alternative route. You follow the lead, and you got to your department in 50 minutes (<span class="math inline">\(T_c\)</span>). Nice, but what was your colleague’s contribution to your happiness (assuming you do not enjoy commuting)? We can say that it was 10’, which is given by <span class="math inline">\(60-50=10\)</span>. Is that a lot? Well, it depends on the overall commuting time, because saving 10’ from Lakeville to Berwick (they are in Nova Scotia, CA, 16 minutes apart) is different than saving 10’ traveling from Milan (Italy) to Manila (Philippines), which takes around 17 hours. Thus, we can compute our colleague’s contribution to our happiness as:</p>
+<p><span class="math display">\[ {(T_0-T_c) \over T_0}={10 \over60}\]</span></p>
+<p>which simply means that our colleague made us save 1/6 of our journey time. This is our colleague <span class="math inline">\(R^2\)</span>. In statistical terms, we have the error variance without the model (<span class="math inline">\(\sigma_{\bar{x}}^2\)</span>), the error variance of the model <span class="math inline">\(\sigma_{r}^2\)</span>, and we have:</p>
+<p><span class="math display">\[ R^2={\sigma^2_{\bar{x}}-\sigma^2_r \over \sigma^2_{\bar{x}}}\]</span></p>
+<p>which is how much our model “saved” of (or reduced) our error. That is called the <em>Proportion of Reduced Error</em> <span class="citation">(<a href="#ref-judd2017data" role="doc-biblioref">Judd, McClelland, and Ryan 2017</a>)</span>.</p>
+</div>
+<div id="variance-explained" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">A.2</span> Variance explained<a href="appendixa.html#variance-explained" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So, why is the <span class="math inline">\(R^2\)</span> index interpreted as <em>proportion of variance explained</em>? The reason is simply that a portion of the dependent variable variance can be associated with the variance of the independent variable(s), and thus we know why is there: because for a certain part (equal to <span class="math inline">\(R^2\)</span>) people are different in the number of smiles because they are different in their number of beers.</p>
+<p>You can get a broader view of this topic by consulting <span class="citation">Judd, McClelland, and Ryan (<a href="#ref-judd2017data" role="doc-biblioref">2017</a>)</span>. If you get excited by this, you can consult <span class="citation">Searle and Gruber (<a href="#ref-searle2016linear" role="doc-biblioref">2016</a>)</span>, which explains that almost any test we are familiar with can be cast as a model comparison test.</p>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-judd2017data" class="csl-entry">
+Judd, Charles M, Gary H McClelland, and Carey S Ryan. 2017. <em>Data Analysis: A Model Comparison Approach to Regression, ANOVA, and Beyond</em>. Routledge.
+</div>
+<div id="ref-searle2016linear" class="csl-entry">
+Searle, Shayle R, and Marvin HJ Gruber. 2016. <em>Linear Models</em>. John Wiley &amp; Sons.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="references.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a1dummies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["gamljmodels.pdf", "gamljmodels.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
