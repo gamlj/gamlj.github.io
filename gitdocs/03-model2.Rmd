@@ -195,9 +195,9 @@ Adding independent variables in the logistic regression, as well as interaction 
 
 ## Logistic with Catecorical IVs {#gzlmanova}
 
-In the same way the GLM can accommodate categorical `r IVs`, so does the logistic model. Categorical `r IVs` are cast into the model using contrast variables (cf. \@ref(dummies)), their coefficients represent group comparisons, and their omnibus tests inform us on the effect of the categorical variable on the probability of being the group $y=1$ rather than the group $y=0$.
+We know that the GLM can accommodate categorical `r IVs`, and so does the logistic model. Categorical `r IVs` are cast into the model using contrast variables (cf. \@ref(dummies)), their coefficients represent group comparisons, and their omnibus tests inform us on the effect of the categorical variable on the probability of being in the group $y=1$ rather than the group $y=0$.
 
-We are going to exemplify this model using the `manymodels` dataset, using `cat2` and `cat3` as our categorical `r IVs`. Recall we use as a cover story the type of beer drunken for `cat3` and the type of bar for `cat2`.
+We are going to exemplify this model using the `manymodels` dataset, using `cat2` and `cat3` as our categorical `r IVs`. Recall we use as a cover story the type of beer drunk for `cat3` and the type of bar for `cat2`.
 
 `r pic("bookletpics/3_logistic_output6.png")`
 
@@ -215,7 +215,7 @@ As usual in `r modulename()`, in the presence of categorical `r IVs` the model i
 
 `r pic("bookletpics/3_logistic_output7.png")`
 
-The output tables concerning the fit of the model do not really change when the independent variables are categorical. The $R^2$ indicates the advantage of fit of our model as compared with a intercept-only model, the $R^2_adj$ estimate the quantity in the population, and the inferential test ($\chi^2$) indicates whether our model predicts the dependent variable better than chances.
+The output tables concerning the fit of the model do not really change when the independent variables are categorical. The $R^2$ indicates the advantage of fit of our model as compared with a intercept-only model, the $R^2_{adj}$ estimate the quantity in the population, and the inferential test ($\chi^2$) indicates whether our model predicts the dependent variable better than chances. More precisely, the model fit indicates if and how much our model predicts the probability of group membership better than just saying that the probability of being in group 1 is equal for every case and it is the number of cases in group 1 divided by the total number of cases.
 
 ### Omnibus Tests
 
@@ -223,7 +223,7 @@ With categorical `r IVs`, the crucial table is the `r tab("Omnibus Tests")` tabl
 
 `r pic("bookletpics/3_logistic_output8.png")`
 
-We can see that we obtain a main effects of `cat2`, with $\chi^2(1)=15.73$, p.<.001. This means that the probability of being in $ybin=1$ group is different in the two groups defined by `cat2`. People in the two types of bar visit the restroom with different probability. To interpret the direction of the effect, we can look at the plot
+We can see that we obtain a non significant main effect for `cat3` indicating that there is not enough evidence to show that the three groups defined by  `cat3` have different probabilities to go to the restroom ($y=1$). The lack of interaction indicates that the effect of `cat3` is not different across levels of `cat2`. We do find a main effects of `cat2`, with $\chi^2(1)=15.73$, p.<.001. This means that the probability of being in $ybin=1$ group is different in the two groups defined by `cat2`. People in the two types of bar visit the restroom with different probability. To interpret the direction of the effect, we can look at the plot
 
 ### Plots
 
