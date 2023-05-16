@@ -51,7 +51,7 @@ violations-remedies
 robust-standard-error
 bootstrap-confidence-intervals
 gzlm
-introduction-1
+gzlmintro
 logistic
 the-rationale
 model-estimation

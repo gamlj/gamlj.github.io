@@ -239,7 +239,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="gzlm.html"><a href="gzlm.html"><i class="fa fa-check"></i><b>3</b> The Generalized Linear Model</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="gzlm.html"><a href="gzlm.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.1" data-path="gzlm.html"><a href="gzlm.html#gzlmintro"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
 <li class="chapter" data-level="3.2" data-path="gzlm.html"><a href="gzlm.html#logistic"><i class="fa fa-check"></i><b>3.2</b> Logistic Model</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="gzlm.html"><a href="gzlm.html#the-rationale"><i class="fa fa-check"></i><b>3.2.1</b> The rationale</a></li>
@@ -316,8 +316,8 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 3</span> The Generalized Linear Model<a href="gzlm.html#gzlm" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><span class="draft"> Draft version, mistakes may be around </span></p>
 <p><span class="keywords"> <span class="keytitle"> keywords </span> Generalized Linear Model, Logistic Regression, logit </span></p>
-<div id="introduction-1" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Introduction<a href="gzlm.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="gzlmintro" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introduction<a href="gzlm.html#gzlmintro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the general linear model (cf. <a href="glm.html#glm">2</a>) the dependent variable must be a quantitative variable: It should express quantities, such that its values can retain all properties of the numbers: 1 is less than 2, 4 is 2*2. In this way, the mean, the variances and all the estimates can make sense. We have also seen that the GLM assumes the residuals being normally distributed, which is akin to saying that the dependent variable is normally distribute (a part from the <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span> influence). There are many research designs that require the dependent variable to be not-normally distributed or not even quantitative. One may want to predict the vote in a referendum, the number of smartphone owned by individuals, the sex of the offspring of a herd, a choice between two or more product colors in a marketing study. In all these circumstances, the GLM cannot be applied.</p>
 <p>We still want to use a linear model, though, because we know very well how to estimate it and interpret it. So, instead of forgoing the linear model, we change the way the linear model predicts the dependent variable, such that the estimates are unbiased and reasonable even when the dependent variable values are not quantities, or they are clearly not normally distributed.</p>
 <p>Here comes the <em>generalized linear model</em>. Consider the standard regression model.</p>
@@ -599,7 +599,7 @@ Please consult <span class="citation">Leeper (<a href="#ref-thomas" role="doc-bi
 <div id="probit" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Probit Model<a href="gzlm.html#probit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The probit model (cf <a href='https://en.wikipedia.org/wiki/Probit_model' target='_blank'>Wiki</a>) is practically equivalent to the logistic model. All examples, options and interpretations are the same, so we are not going to explore it in details. The reason <span class="modulename">GAMLj</span> offers the probit model is because there are several disciplines in which this model is more commonly used than the logistic model. The aim of the two models is the same: Predicting a dichotomous dependent by its relations with a set of <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>.</p>
-<p>The only difference between the logistic and the probit model is the link function. Rather than predicting the <em>logit</em> of the probability, it uses the <em>probit</em> of the probability. The <em>probit</em> function uses the inverse of the cumulative distribution function of the normal distribution. In a nutshell, imagine a histogram: The cumulative distribution function of the normal distribution associates a probability to any possible value of the X-axis. Its inverse associates a value to any probability, yielding the predicted values in a scale that admits any positive or negative value. In other words, it does what the logit does, with a different function.</p>
+<p>The only difference between the logistic and the probit model is the link function (<a href="gzlm.html#gzlmintro">3.1</a>). Rather than predicting the <em>logit</em> of the probability, the probit model uses the <em>probit</em> of the probability. The <em>probit</em> function uses the inverse of the cumulative distribution function of the normal distribution. In a nutshell, imagine a histogram: The cumulative distribution function of the normal distribution associates a probability to any possible value of the X-axis. Its inverse return the X-axis value for any probability value, yielding the predicted values in a scale that admits any positive or negative value. In other words, it does what the logit does, with a different function.</p>
 <p>The fact that the logit and the probit models give almost identical results can be easily understood by looking at the way the two link functions transform probabilities in real values: practically in the same way.</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Logit-probit.svg" /><!-- --></p>
 </div>
@@ -666,8 +666,8 @@ logit(D2)  &amp;= a_2 + b_2 \cdot x   \\
 \end{align*}\]</span></p>
 <p>or, equivalently</p>
 <p><span class="math display">\[\begin{align*}
-log({B \over A})  &amp;= a_1 + b_1 \cdot x   \\
-log({C \over A})  &amp;= a_2 + b_2 \cdot x   \\
+log({p(B) \over p(A)})  &amp;= a_1 + b_1 \cdot x   \\
+log({p(C) \over p(A)})  &amp;= a_2 + b_2 \cdot x   \\
 \end{align*}\]</span></p>
 <p>The overall model fit will be given by the cumulative fit of the two logistic models; the omnibus test of <span class="math inline">\(x\)</span> will be given by testing that both <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span> are zero, and the specific effects of <span class="math inline">\(x\)</span> on the comparisons is given by the <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span> coefficients. This will be repeated for <span class="math inline">\(K-1\)</span> logistic models, where <span class="math inline">\(K\)</span> is the number of levels of the dependent variable.</p>
 </div>
@@ -696,7 +696,7 @@ P(ycat=chat)/P(ycat=darts), P(ycat=dance)/P(ycat=darts)
 <div id="overal-fit" class="section level3 hasAnchor" number="3.5.4">
 <h3><span class="header-section-number">3.5.4</span> Overal Fit<a href="gzlm.html#overal-fit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="bookletpics/3_multi_output3.png" width="419" /></p>
-<p>As usual, the <span class="math inline">\(R^2\)</span> tells us the improvement in fit due to our independent variables, and its inferential test provides a test of the hypothesis that our model predicts the dependent variable better than chances. The Ominibus tests are interesting here: They test the null hypothesis that the independent variable(s) has no effect on the probabilities of belonging to the three groups, thus they provide an overall test across the logistic models predicting the dummies. In our case, we can say that <em>beers</em> (<span class="math inline">\(x\)</span>) influences the choice of the activity (<span class="math inline">\(ycat\)</span>), with <span class="math inline">\(\chi^2(1)=15.9\)</span>, <span class="math inline">\(p.&lt;.001\)</span>.</p>
+<p>As usual, the <span class="math inline">\(R^2\)</span> tells us the improvement in fit due to our independent variables, and its inferential test provides a test of the hypothesis that our model predicts the dependent variable better than chances. The Ominibus tests are interesting here: They test the null hypothesis that the independent variable(s) has no effect on the probabilities of belonging to the three groups, thus they provide an overall test across the logistic models predicting the dummies. In our case, we can say that <em>beers</em> (<span class="math inline">\(x\)</span>) influences the choice of the activity (<span class="math inline">\(ycat\)</span>), with <span class="math inline">\(\chi^2(2)=15.9\)</span>, <span class="math inline">\(p.&lt;.001\)</span>.</p>
 <p>How the independent variable influences the group probabilities can be seen with a plot and by inspecting the coefficients.</p>
 </div>
 <div id="plots-2" class="section level3 hasAnchor" number="3.5.5">

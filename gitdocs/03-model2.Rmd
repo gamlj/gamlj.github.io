@@ -23,7 +23,7 @@ DV   <-  tooltip("DV","Dependent Variable")
 
 `r keywords("Generalized Linear Model, Logistic Regression, logit")`
 
-## Introduction
+## Introduction {#gzlmintro}
 
 In the general linear model (cf. \@ref(glm)) the dependent variable must be a quantitative variable: It should express quantities, such that its values can retain all properties of the numbers: 1 is less than 2, 4 is 2*2. In this way, the mean, the variances and all the estimates can make sense. We have also seen that the GLM assumes the residuals being normally distributed, which is akin to saying that the dependent variable is normally distribute (a part from the `r IVs` influence). There are many research designs that require the dependent variable to be not-normally distributed or not even quantitative. One may want to predict the vote in a referendum, the number of smartphone owned by individuals, the sex of the offspring of a herd, a choice between two or more product colors in a marketing study. In all these circumstances, the GLM cannot be applied. 
 
@@ -277,7 +277,7 @@ All other options, `r opt("Simple Effects")`, `r opt("Factor Coding")`, `r opt("
 
 The probit model (cf  `r ext_url("Wiki","https://en.wikipedia.org/wiki/Probit_model")`) is practically equivalent to the logistic model. All examples, options and interpretations are the same, so we are not going to explore it in details. The reason `r modulename()` offers the probit model is because there are several disciplines in which this model is more commonly used than the logistic model. The aim of the two models is the same: Predicting a dichotomous dependent by its relations with a set of `r IVs`. 
 
-The only difference between the logistic and the probit model is the link function. Rather than predicting the _logit_ of the probability, it uses the _probit_ of the probability. The _probit_ function uses the inverse of the cumulative distribution function of the normal distribution. In a nutshell,  imagine a histogram: The cumulative distribution function of the normal distribution associates a probability to any possible value of the X-axis. Its inverse associates a value to any probability, yielding the predicted values in a scale that admits any positive or negative value. In other words, it does what the logit does, with a different function.
+The only difference between the logistic and the probit model is the link function (\@ref(gzlmintro)). Rather than predicting the _logit_ of the probability, the probit model uses the _probit_ of the probability. The _probit_ function uses the inverse of the cumulative distribution function of the normal distribution. In a nutshell,  imagine a histogram: The cumulative distribution function of the normal distribution associates a probability to any possible value of the X-axis. Its inverse return the X-axis value for any probability value, yielding the predicted values in a scale that admits any positive or negative value. In other words, it does what the logit does, with a different function.
 
 The fact that the logit and the probit models give almost identical results can be easily understood by looking at the way the two link functions transform probabilities in real values: practically in the same way. 
 
@@ -312,8 +312,8 @@ htmlTable::htmlTable(a,header = c("Levels","D1","D2"),rnames = FALSE)
 or, equivalently
 
 \begin{align*}
- log({B \over A})  &= a_1 + b_1 \cdot x   \\
- log({C \over A})  &= a_2 + b_2 \cdot x   \\
+ log({p(B) \over p(A)})  &= a_1 + b_1 \cdot x   \\
+ log({p(C) \over p(A)})  &= a_2 + b_2 \cdot x   \\
 \end{align*}
 
 The overall model fit will be given by the cumulative fit of the two logistic models; the omnibus test of $x$ will be given by testing that both $b_1$ and $b_2$ are zero, and the specific effects of $x$ on the comparisons is given by the $b_1$ and $b_2$ coefficients. This will be repeated for $K-1$ logistic models, where $K$ is the number of levels of the dependent variable.
@@ -353,7 +353,7 @@ Before looking at the specific comparisons, we have the overall fit and tests.
 
 `r pic("bookletpics/3_multi_output3.png")`
 
-As usual, the $R^2$ tells us the improvement in fit due to our independent variables, and its inferential test provides a test of the hypothesis that our model predicts the dependent variable better than chances. The Ominibus tests are interesting here: They test the null hypothesis that the independent variable(s) has no effect on the probabilities of belonging to the three groups, thus they provide an overall test across the logistic models predicting the dummies. In our case, we can say that _beers_ ($x$) influences the choice of the activity ($ycat$), with $\chi^2(1)=15.9$, $p.<.001$. 
+As usual, the $R^2$ tells us the improvement in fit due to our independent variables, and its inferential test provides a test of the hypothesis that our model predicts the dependent variable better than chances. The Ominibus tests are interesting here: They test the null hypothesis that the independent variable(s) has no effect on the probabilities of belonging to the three groups, thus they provide an overall test across the logistic models predicting the dummies. In our case, we can say that _beers_ ($x$) influences the choice of the activity ($ycat$), with $\chi^2(2)=15.9$, $p.<.001$. 
 
 How the independent variable influences the group probabilities can be seen with a plot and by inspecting the coefficients.
 
