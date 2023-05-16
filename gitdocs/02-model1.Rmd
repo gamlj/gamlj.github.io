@@ -29,7 +29,7 @@ DV   <-  tooltip("DV","Dependent Variable")
 
 The general linear model (GLM) encompasses the majority of the analyses that are commonly part of any practitioner's statistical toolbox. There are good reasons for that: with a good knowledge of the GLM one can go a long way. Within the GLM one finds analyses such as simple and multiple regression, Pearson correlation, the independent-samples t-test, the ANOVA, the ANCOVA, and many of their derivations, such as mediation analysis, planned comparisons, etc (cf. \@ref(naming)). The common theme of all these applications is that the dependent variable is continuous, hopefully normally distributed, and that the sample is composed of non-related, independent cases. The most basic yet very important application of the GLM is the simple regression, a GLM with one continuous independent variable (IV).
 
-## One continuous IV
+## One continuous IV {#regression}
 
 `r oldnames("Simple Regression")`
 

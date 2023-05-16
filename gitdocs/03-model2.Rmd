@@ -67,17 +67,17 @@ We are going to explore all these models, highlighting their specificity but kee
 
 ### The rationale
 
-A logistic model can be estimated when the dependent variables features two groups, or two levels.  The necessity to change the GLM into a different linear model becomes clear by inspecting a scatterplot between a continuous independent variable and a dichotomous dependent variable.
+A logistic model can be estimated when the dependent variable features two groups, or two levels.  The necessity to change the GLM into a different linear model becomes clear by inspecting a scatterplot between a continuous independent variable and a dichotomous dependent variable.
 
 `r pic("bookletpics/3_logistic_plot1.png")`
 
 It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a clouds that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in \@ref(homosched)), because the line will cross a strip once (so residual is zero) and depart from it everafter (increasing the residual variance).
 
-The solution is to change the form of predicted values such that any values can be a sensible predicted value. To achieve this, we should first notice that when one has a dichotomous dependent variable, what one is predicting is the probability of being in the group scoring 1. Indeed, the predicted values are the expected (average) values of $y$ for a each given $x_i$. The average value of a dichotomous variable is
+The solution is to change the form of predicted values such that any values can be a sensible predicted value. To achieve this, we should first notice that when one has a dichotomous dependent variable, what one is predicting is the probability of being in the group scoring 1. Indeed, the predicted values are the expected (average) values of $y$ for each given $x_i$. The average value of a dichotomous variable is
 $$
 E(y)={n_1 \over N}
 $$
-where $n_1$ is the number of cases in group 1, and N is the total sample. $E(y)$, however, is the probability of being in group 1. Thus, $p(x=1)=E(y)$, which we call simply $p$.
+where $n_1$ is the number of cases in group 1, and N is the total sample. $E(y)$, however, is the probability of being in group 1. Thus, $p(x=1)=E(y)$, which we simply call $p$.
 
 So, the aim of the logistic model is to estimate how the probability of being in group 1 rather than 0 depends on the `r IVs` scores. The probability scale, varying from 0 to 1, is not suitable to be fit by a straight line. We can change this by predicting the _odd_ of the probability, namely:
 
@@ -85,7 +85,7 @@ $$
 odd={p \over {1-p}}
 $$
 
-The odd frees us from the upper boundary of 1, because any positive value expressed in odd can be sensible predicted value. For each positive value, one can always transform it back and get back a probability. The problems are negative values, that a straight line will always yield. Since the odd cannot be negative, we need to apply to it another transformation, namely the logarithm transformation. A logarithmic transformation transforms a positively-valued variable into a variable with all possible values, positive and negative. We've done, the function that expresses a probability into a variable admitting all possible values is the logit function:
+The odd frees us from the upper boundary of 1, because any positive value expressed in odd can be sensible predicted value. For each positive value, one can always transform it back and get back a probability. The problems are negative values, that a straight line will always yield. Since the odd cannot be negative, we need to apply to it another transformation, namely the logarithm transformation. A logarithmic transformation transforms a positively-valued variable into a variable with all possible values, positive and negative. The function that expresses a probability into a variable admitting all possible values is the logit function:
 
 $$
 logit(y)={log \left( {p \over 1-p} \right)}
@@ -119,7 +119,7 @@ Once we have selected the model, we can set up the variables in the variables ro
 
 `r pic("bookletpics/3_logistic_output1.png")`
 
-In the `r tab("Model Info")` table we find a set of properties of the estimated model. The most important one to check is described in the `direction` row. When the dependent variable is dichotomous, in fact, for which group the probability is estimated is arbitrary, but we need to know which group is in order to interpret the results correctly. `r modulename()` models the probability of being in the group with the "largest" label value, after ordering the value labels. In our case, it models the probability of being in group `ybin=1` over the probability of being in group `ybin=0`. This is indicated in the `direction` row of the table. 
+In the `r tab("Model Info")` table we find a set of properties of the estimated model. The most important one to check is described in the `direction` row. When the dependent variable is dichotomous, in fact, the direction of the probability is arbitrary, so we need to know which group is predicted. `r modulename()` models the probability of being in the group with the "largest" label value, after ordering the value labels. In our case, it models the probability of being in group `ybin=1` over the probability of being in group `ybin=0`. This is indicated in the `direction` row of the table. 
 
 ### Model Fit
 
@@ -141,12 +141,12 @@ As for the GLM, we have omnibus tests for the effects of our `r IVs`. They are e
 `r pic("bookletpics/3_logistic_output4.png")`
 
 With continuous `r IVs`, the coefficients `Estimates` are the most interesting parameters. 
-The `Estimate` column reports the regression coefficients. Their interpretation should be based on the fact that the predicted values scale is the logit scale. Thus, as regard the effect of $x$, we can say that for one unit more in $x$, the logit of the probability of being in the group $ybin=1$ increases of one 1.53 units. In our cover story, for one more beer the logit of visiting the restroom increases of one unit. Being positive, we can conclude that the more you dring, the higher the probability of visiting the restroom. Being statistically significant (z-test=4.73, p.<.001), we can conclude tha the effect is different from zero. 
+The `Estimate` column reports the regression coefficients. Their interpretation should be based on the fact that the predicted values scale is the logit scale. Thus, as regard the effect of $x$, we can say that for one unit more in $x$, the logit of the probability of being in the group $ybin=1$ increases of one 1.53 units. In our cover story, for one more beer the logit of visiting the restroom increases of one unit. Being positive, we can conclude that the more you drink, the higher the probability of visiting the restroom. Being statistically significant (z-test=4.73, p.<.001), we can conclude tha the effect is different from zero. 
 
 ### Odd ratios exp(B)
 
 The issue here is that it is very difficult to fathom the practical size of the effect. Is  
-1.53 units increase in the logit scale a big or small increase? Honestly, nobody knows, because the logarithm scale is difficult to master, and even if one could, the readers of the results would probably not. So, we interpret the `exp(B)` parameter, which is the logit after removing the logarithm scale. The logarithm scale is removed by simply passing the logit to the exponential function, hence the notation `exp(B)`. If we remove the logarithm scale, we are left with the odd scale. However, we should pay attention to what happens to the coefficients when the scale is changed from the logit to the odd. Two pieces of information are imnportant here. First, recall that the $b$ coefficient in a linear model (any linear model) is the difference in the predicted values for two consecutive values of the independent values. That is
+1.53 units increase in the logit scale a big or small increase? Honestly, nobody knows, because the logarithm scale is difficult to master, and even if one could, the readers of the results would probably not. So, we interpret the `exp(B)` parameter, which is the logit after removing the logarithm scale. The logarithm scale is removed by simply passing the logit to the exponential function, hence the notation `exp(B)`. If we remove the logarithm scale, we are left with the odd scale. However, we should pay attention to what happens to the coefficients when the scale is changed from the logit to the odd. Two pieces of information are important here. First, recall that the $b$ coefficient in a linear model (any linear model) is the difference in the predicted values for two consecutive values of the independent variable. That is
 
 $$
 b=\hat{y}_{(x=1)}-\hat{y}_{(x=0)}
@@ -182,7 +182,7 @@ First, notice that our model is not linear, because the logistic model is linear
 
 `r pic("bookletpics/3_logistic_plot3.png")`
 
-In the model above, for instance, for $x=-2$ we can see a mildly positive increase, whereas for $x=0$ the increase is very steep, which becomes almost flat for $x=2$. Each of this possible increses (or change in probability) is a marginal effect. However, if we want to quantify the increase (or change) in probability due to the increase in the `r IV`, we have a different marginal effect for each value of $x$. But we can compute them all (for all observed values of $x$) and take the average: This is the average marginal effects (AME) produced by `r modulename()`.  
+In the model above, for instance, for $x=-2$ we can see a mildly positive increase, whereas for $x=0$ the increase is very steep, which becomes almost flat for $x=2$. Each of this possible increases (or change in probability) is a marginal effect. However, if we want to quantify the increase (or change) in probability due to the increase in the `r IV`, we have a different marginal effect for each value of $x$. But we can compute them all (for all observed values of $x$) and take the average: This is the average marginal effects (AME) produced by `r modulename()`.  
 
 `r pic("bookletpics/3_logistic_output5.png")`
 
@@ -273,7 +273,7 @@ The first comparison shows an $OR=.452$, meaning that the ratio of the pilsner g
 
 All other options, `r opt("Simple Effects")`, `r opt("Factor Coding")`, `r opt("Covariates Scaling")`, `r opt("Bootstrap")` confidence intervals, etc. are the same as in the GLM.
 
-## Probit Model 
+## Probit Model {#probit}
 
 The probit model (cf  `r ext_url("Wiki","https://en.wikipedia.org/wiki/Probit_model")`) is practically equivalent to the logistic model. All examples, options and interpretations are the same, so we are not going to explore it in details. The reason `r modulename()` offers the probit model is because there are several disciplines in which this model is more commonly used than the logistic model. The aim of the two models is the same: Predicting a dichotomous dependent by its relations with a set of `r IVs`. 
 

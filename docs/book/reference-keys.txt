@@ -10,7 +10,7 @@ covnames
 general-references
 glm
 introduction
-one-continuous-iv
+regression
 glminput
 model-recap
 twofit
@@ -72,7 +72,7 @@ relative-risk
 logisticcatmarginal
 post-hoc-tests
 other-options
-probit-model
+probit
 multinomial
 rationale
 model-estimation-2
@@ -83,6 +83,7 @@ coefficients-2
 post-hoc-tests-1
 marginal-effects
 simple-effects-1
+other-options-1
 appendixa
 commuting-r2
 variance-explained

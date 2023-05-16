@@ -1,7 +1,6 @@
 #remotes::install_github("mcfanda/mcdocs")
 library(mcdocs)
 
-
 bookdown::render_book("gitdocs/",output_dir = "../docs/book",clean = T)
 
 pkgdown::build_site(preview = FALSE)

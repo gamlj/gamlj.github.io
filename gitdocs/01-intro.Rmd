@@ -29,7 +29,14 @@ This is a book about linear models in `r jamovi`, using the `r modulename()` mod
 This book, so far, covers the following models:
 
 * The general linear model (\@ref(glm))
-
+    * Regression (\@ref(regression), \@ref(multiregression))
+    * ANOVA (\@ref(anova))
+    * ANCOVA (\@ref(ancova))
+    * Moderation (\@ref(moderation))
+* The Generalized linear model (\@ref(gzlm))
+    * Logistic model (\@ref(logistic))
+    * Probit model (\@ref(probit))
+    * Multinomial model (\@ref(multinomial))
 
 ## Getting Started {#getstarted}
 
