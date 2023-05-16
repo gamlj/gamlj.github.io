@@ -430,3 +430,23 @@ It is clear that the effect of `z` is different from zero for the group `pilsner
 
 All other options, `r opt("Simple Interactions")`, `r opt("Factor Coding")`, `r opt("Covariates Scaling")`, `r opt("Bootstrap")` confidence intervals, etc. are the same as in the GLM.
 
+## The Ordinal Model {#ordinal}
+
+Consider now a different type of variable: immagine we asked the people at the bar to expressed their appreciation of the bar. We gave them 5 options
+
+* I will never come back
+* I may come back sometime
+* I will come back once in while
+* I will come back often
+* I would like to be here every day
+
+Silly as it may seems, this variable represents a very common type of variable in science. It produces 5 possible values, that are clearly ordered in terms of preferences for the bar. Despite that, we cannot honestly assume that this is a continuous variable, because the distance between, say, _I will never come back_ and _I may come back sometime_ cannot be confidently be assumed to be the same as the distance between _I will come back often_ and _I would like to be here every day_. So, this is an _ordinal_ variable [@stevens1946theory]. The argument become more serious if we focus on the Likert scale [@likert1932technique], one of the most frequently used measurement instrument in social science. Different authors have claimed that a Likert scale is an ordinal variable and it cannot be considered a continuous scale, whereas other have claimed that the assumption of continuity does not really bias the results of parametric analyses. See for instance @wu2017can and the references there. We are not going to solve this conundrum here. We assume one has decided that the dependent variable is of the ordinal type.
+
+## Rationale
+
+Assume we treat an ordinal variable as a multinomial variable,featuring $K$ levels. If we do that, we treat the levels as completely unordered, and thus the only information that we are using to estimate the generalized model is that the $K$ levels are different. As we have seen in the discussion of multinomial regression (\@ref(multinomial)), we would need K-1 logistic models to obtain our results. In doind that, however, 
+
+.... to be continued
+
+
+

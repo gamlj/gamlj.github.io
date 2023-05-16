@@ -278,6 +278,8 @@ div.csl-indent {
 <li class="chapter" data-level="3.5.9" data-path="gzlm.html"><a href="gzlm.html#simple-effects-1"><i class="fa fa-check"></i><b>3.5.9</b> Simple Effects</a></li>
 <li class="chapter" data-level="3.5.10" data-path="gzlm.html"><a href="gzlm.html#other-options-1"><i class="fa fa-check"></i><b>3.5.10</b> Other options</a></li>
 </ul></li>
+<li class="chapter" data-level="3.6" data-path="gzlm.html"><a href="gzlm.html#ordinal"><i class="fa fa-check"></i><b>3.6</b> The Ordinal Model</a></li>
+<li class="chapter" data-level="3.7" data-path="gzlm.html"><a href="gzlm.html#rationale-1"><i class="fa fa-check"></i><b>3.7</b> Rationale</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -746,8 +748,25 @@ P(ycat=chat)/P(ycat=darts), P(ycat=dance)/P(ycat=darts)
 <div id="other-options-1" class="section level3 hasAnchor" number="3.5.10">
 <h3><span class="header-section-number">3.5.10</span> Other options<a href="gzlm.html#other-options-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>All other options, <span class="option">Simple Interactions</span>, <span class="option">Factor Coding</span>, <span class="option">Covariates Scaling</span>, <span class="option">Bootstrap</span> confidence intervals, etc. are the same as in the GLM.</p>
-
 </div>
+</div>
+<div id="ordinal" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> The Ordinal Model<a href="gzlm.html#ordinal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consider now a different type of variable: immagine we asked the people at the bar to expressed their appreciation of the bar. We gave them 5 options</p>
+<ul>
+<li>I will never come back</li>
+<li>I may come back sometime</li>
+<li>I will come back once in while</li>
+<li>I will come back often</li>
+<li>I would like to be here every day</li>
+</ul>
+<p>Silly as it may seems, this variable represents a very common type of variable in science. It produces 5 possible values, that are clearly ordered in terms of preferences for the bar. Despite that, we cannot honestly assume that this is a continuous variable, because the distance between, say, <em>I will never come back</em> and <em>I may come back sometime</em> cannot be confidently be assumed to be the same as the distance between <em>I will come back often</em> and <em>I would like to be here every day</em>. So, this is an <em>ordinal</em> variable <span class="citation">(<a href="#ref-stevens1946theory" role="doc-biblioref">Stevens 1946</a>)</span>. The argument become more serious if we focus on the Likert scale <span class="citation">(<a href="#ref-likert1932technique" role="doc-biblioref">Likert 1932</a>)</span>, one of the most frequently used measurement instrument in social science. Different authors have claimed that a Likert scale is an ordinal variable and it cannot be considered a continuous scale, whereas other have claimed that the assumption of continuity does not really bias the results of parametric analyses. See for instance <span class="citation">Wu and Leung (<a href="#ref-wu2017can" role="doc-biblioref">2017</a>)</span> and the references there. We are not going to solve this conundrum here. We assume one has decided that the dependent variable is of the ordinal type.</p>
+</div>
+<div id="rationale-1" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Rationale<a href="gzlm.html#rationale-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Assume we treat an ordinal variable as a multinomial variable,featuring <span class="math inline">\(K\)</span> levels. If we do that, we treat the levels as completely unordered, and thus the only information that we are using to estimate the generalized model is that the <span class="math inline">\(K\)</span> levels are different. As we have seen in the discussion of multinomial regression (<a href="gzlm.html#multinomial">3.5</a>), we would need K-1 logistic models to obtain our results. In doind that, however,</p>
+<p>…. to be continued</p>
+
 </div>
 </div>
 <h3>References</h3>
@@ -757,6 +776,15 @@ Agresti, Alan, and Claudia Tarantola. 2018. <span>“Simple Ways to Interpret Ef
 </div>
 <div id="ref-thomas" class="csl-entry">
 Leeper, Thomas J. 2021. <em>Margins: Marginal Effects for Model Objects</em>. <a href="https://cran.r-project.org/web/packages/margins/index.html">https://cran.r-project.org/web/packages/margins/index.html</a>.
+</div>
+<div id="ref-likert1932technique" class="csl-entry">
+Likert, Rensis. 1932. <span>“A Technique for the Measurement of Attitudes.”</span> <em>Archives of Psychology</em>.
+</div>
+<div id="ref-stevens1946theory" class="csl-entry">
+Stevens, Stanley Smith. 1946. <span>“On the Theory of Scales of Measurement.”</span> <em>Science</em> 103 (2684): 677–80.
+</div>
+<div id="ref-wu2017can" class="csl-entry">
+Wu, Huiping, and Shing-On Leung. 2017. <span>“Can Likert Scales Be Treated as Interval Scales?—a Simulation Study.”</span> <em>Journal of Social Service Research</em> 43 (4): 527–32.
 </div>
 <div id="ref-zou2004modified" class="csl-entry">
 Zou, Guangyong. 2004. <span>“A Modified Poisson Regression Approach to Prospective Studies with Binary Data.”</span> <em>American Journal of Epidemiology</em> 159 (7): 702–6.

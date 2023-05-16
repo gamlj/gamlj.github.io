@@ -84,6 +84,8 @@ post-hoc-tests-1
 marginal-effects
 simple-effects-1
 other-options-1
+ordinal
+rationale-1
 appendixa
 commuting-r2
 variance-explained
