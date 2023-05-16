@@ -363,7 +363,7 @@ Plot of probabilities are very useful to interpret multinomial models. For multi
 
 `r pic("bookletpics/3_multi_plot1.png")`
 
-Here we see how the effect of _beers_ ($x$) unfolds into probabilities differences. For low level of beers, it is very unlikely to dance, but this group becomes more likely as _beers_ increases. `chats` and `darts` start at the same level of probability, they diverge as _beers_ increases: `darts` becomes less and less likely, whereas `chats` increases to decrease again for high levels of _beers_. With the plot, a full picture of the effect can be obtained and a clear interpretation of the results can be given.
+Here we see how the effect of _beers_ ($x$) unfolds into probabilities differences. For low level of beers, it is very unlikely to dance, but this group becomes more likely as _beers_ ($x$) increases. `chats` and `darts` start at the same level of probability, they diverge as _beers_ ($x$) increases: `darts` becomes less and less likely, whereas `chats` increases to decrease again for high levels of _beers_ ($x$). With the plot, a full picture of the effect can be obtained and a clear interpretation of the results can be given.
 
 ### Coefficients
 
