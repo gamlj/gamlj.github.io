@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="(by Marcello Gallucci)" />
+
+
+<title>Simple frequencies analysis with Poisson models</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KM7X6HK5HM');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="gzlmmixed.html">Generalized Mixed Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples and Details</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+<li>
+  <a href="vignettes.html">GAMLj in R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/gamlj/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Simple frequencies analysis with Poisson
+models</h1>
+<h4 class="author">(by Marcello Gallucci)</h4>
+
+</div>
+
+
+<p><span class="keywords"> <span class="keytitle"> keywords </span>
+jamovi, Poisson models, generalized linear models, odd-ratios,
+regression, frequencies, count data, log-linear models </span></p>
+<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 0.9.4 </span> <span class="draft"> Draft version, mistakes may
+be around </span></p>
+<p>In this example we analyze a dependent variable featuring frequency
+of events, or count data. The indipendent variables are one continuous
+and one dichotomous. We employ a poisson regression model.</p>
+<p>We run the analyses with the GAMLj module in jamovi. One can follow
+the example by downloading the <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/cells.csv">csv
+file</a>. Be sure to install GAMLj module from within jamovi
+library.</p>
+<p>The data are simulated, not real, so please do not cite them to argue
+about any issue. The reason of this is to provide an example where the
+Poisson model assumptions are surely met, so some of the difficulties of
+dealing with count data and frequencies are not present. For more
+elaborated examples see <a href="gzlm_example4.html">Frequencies
+analysis with overdispersed models</a>.</p>
+<div id="the-research-design" class="section level1">
+<h1>The research design</h1>
+<p>Imagine a hypothetical study about addiction to mobile phones.
+Imagine a researcher developed a self-report questionnaire to measure
+participants mobile phone addiction (over-usage) and wanted to test
+whether the scores of the questionnaire predicts actual addictive
+behavior. Addictive behavior is measured in an experimental setting by
+counting how times the participants checked the mobile phone while
+waiting for the experimenters to arrive to start the measurement session
+(let’s ignore the time spent on each checks and assume all participants
+waited for the same ammount of time).</p>
+<p>The variables are then:</p>
+<ul>
+<li><em>checks</em>: number of time spent checking the phones.</li>
+<li><em>selfreport</em>: the total score of the self-report
+questionnaire</li>
+<li><em>brand</em> : brand of the participant’s phone: either
+<code>Pears</code> or <code>Apples</code></li>
+</ul>
+<p>The descriptive and frequencies the independent variables show the
+sample charateristics.</p>
+<p><img src="examples/gzlm3/r.descs1.png" class="img-responsive" alt=""></p>
+<p>The frequencies for <code>checks</code> (the dependent variable) are
+in the following plots.</p>
+<p><img src="examples/gzlm3/r.plots1.png" class="img-responsive" alt=""></p>
+<p>It is clear that the average number of checks is about 10, but the
+distribution is following a Poisson distribution, with the majority of
+participants showing a low frequency of checks, and a few participants
+showing medium and high frequencies, with the rarity of a frequency
+being proportional to the frequency itself. As the data are simulated,
+we know that they come from a Poison ditribution.</p>
+</div>
+<div id="understanding-the-problem" class="section level1">
+<h1>Understanding the problem</h1>
+<p>We want to understand how the frequency of checks is associated with
+the participant self-report questionnaire score (a sort of validity
+check of the questionnaire), if the brand of the phone makes a
+difference in the expected frequency of checking, and whether the
+questionnaire predictive ability varies for the two cell phone brands.
+Thus, we are looking for an effect of <code>selfreport</code> and a main
+effect of <code>brand</code> to answer the first two questions, and for
+the interaction between <code>selfreport</code> and <code>brand</code>
+to answer the third question.</p>
+<p>We employ the Poisson model because it is the classical model for
+modelling count dependent variables, and, being a special case of the
+generalized linear model, can accomodate main effects and intereactions.
+This is equivalent to a linear model where the link function is the
+logarithm of the predicted frequencies <span
+class="math inline">\(log(\hat{F})\)</span>, and the Poisson
+distribution is assumed for the dependent variable.</p>
+<p>We first start with only <code>selfreport</code> as independent
+variable, then we estimate the full model with also <code>brand</code>
+and the interaction as predictors.</p>
+<div id="interpretation" class="section level2">
+<h2>Interpretation</h2>
+<p>Recall that the predicted values of the models are the logarithm of
+the frequencies of checking the phone. Thus, the model coefficients are
+expressed in the log(Freq) scale. A clearer scale is obtained by
+removing the logarithm from the coefficients, obtaining coefficients
+expressed in original frequency scale. This is the <code>exp(B)</code>
+column of the results tables: <code>exp(B)</code> is the frequency rate
+of change: How many times should we multiply the expected frequency at
+<span class="math inline">\(x_i\)</span> to obtain the frequency at
+<span class="math inline">\(x_{i+1}\)</span>. In other words, the rate
+of change of the frequency as one increases the independent variable of
+one unity (or move from one group to the other for categorical
+independent variables).</p>
+<p>The plots and the estimated marginal means are conviniently
+transformed in the frequency scale, so they can be interpreted directly
+as the frequency of checking.</p>
+</div>
+</div>
+<div id="simple-poisson-regression-model" class="section level1">
+<h1>Simple Poisson regression model</h1>
+<p>Let’s start with predicting <code>checks</code> with
+<code>selfreport</code>. In GAMLj <code>generalized linear model</code>
+we select the <code>Poisson</code> model, push the <code>checks</code>
+variable in the <code>Dependent Variable</code> field and
+<code>selfreport</code> in <code>Covariates</code>.</p>
+<p><img src="examples/gzlm3/variables1.png" class="img-responsive" alt=""></p>
+<p>The model yields its results.</p>
+<div id="r-squared-and-model-info" class="section level2">
+<h2>R-squared and model info</h2>
+<p>As soon as we fix the variables, results are displayed in the tables,
+with the first table showing some info about the model.</p>
+<p><img src="examples/gzlm3/r.info1.png" class="img-responsive" alt=""></p>
+<p>Here we find several info, some noteworthy ((see <a
+href="gzlm_specs.html">technical details</a> for more info):</p>
+<ul>
+<li>the R-squared, that gives information about the goodness of fit of
+the model . Our ability to predict the frequencies of checks increases
+of 33% thanks to the independent variable as compared to using the
+expected (average) frequency alone.</li>
+<li>AIC (Aikake Information Criterion)_ Based on the likelihood of the
+model, decreases with the goodness of fit of the model. Useful to
+compare the present model with alternative models (see below)</li>
+<li>Value/DF: This is the Pearson <span
+class="math inline">\(\chi^2\)</span> divided by the degrees of freedom.
+If the model fits well, its value should be around 1. This index is
+useful to evaluate the dispersion of the model. A model is overdispersed
+if the variance of the dependent variable is larger than what expected
+by the assumed distribution. In this example, it’s value is bourderline,
+as it is three times what it should be. However, we still have to
+include the <code>brand</code> variable which may explain variability of
+the dependent variable and thus capture dispersion. More details in <a
+href="gzml_example4.html">Advanced frequencies analysis with Poisson
+models</a> and in <a href="gzlm_specs.html">technical details</a>.</li>
+</ul>
+</div>
+<div id="omnibus-tests" class="section level2">
+<h2>Omnibus tests</h2>
+<p><img src="examples/gzlm3/r.omnibus1.png" class="img-responsive" alt=""></p>
+<p>The omnibus Chi-Squared test is showing a statistical significant
+relationship between the self-report score and the number of checks. If
+we go down to the <code>Model coefficients</code> table we can interpret
+the direction of the effect by looking at the B and <code>exp(B)</code>
+coefficients.</p>
+<p><img src="examples/gzlm3/r.params1.png" class="img-responsive" alt=""></p>
+</div>
+<div id="model-coefficients" class="section level2">
+<h2>Model Coefficients</h2>
+<p>There is a positive relationship between <code>selfreport</code> and
+<code>checks</code> (B=1.04, exp(B)=2.84), such that for one unit more
+in the self-report score, the frequency of checks <em>increases 2.84
+times</em>. We just deduce this by looking at the <code>exp(b)</code>.
+Is that a big effect? Difficult to say, because we do not understand the
+units of the self-report score, so “one unit” does not say much. To
+overcome this interpretational limit, we can standardized the
+independent variable in <code>Covariated Scoring</code> panel,</p>
+<p><img src="examples/gzlm3/covscore1.png" class="img-responsive" alt=""></p>
+<p><img src="examples/gzlm3/r.params2.png" class="img-responsive" alt=""></p>
+<p>We can now look at the new exp(B)=1.86 which says that the frequency
+of checks almost double for each standard deviation more in the
+self-report. It is not small as an effect: the average person in the
+sample checked the phone around 8 times (the intercept exp(B) is 8.13),
+and people one standard deviation above average round 15.12 times.</p>
+</div>
+<div id="plot" class="section level2">
+<h2>Plot</h2>
+<p>Finaly, we can ask for the plot of the predicted score, along with
+confidence intervals and observed scores.</p>
+<p><img src="examples/gzlm3/plots1.png" class="img-responsive" alt=""></p>
+<p><img src="examples/gzlm3/r.plots2.png" class="img-responsive" alt=""></p>
+<p>The graph shows a clear exponential relationship between
+<code>relfreport</code> and the frequency of check (which we took into
+the account thanks to the log() transformation): below the avergage of
+self-report score, the frequency does not change much, but when the
+score gets to one standard deviation above averare its increase
+intensifies and reaches very high frequencies for scores up to 2
+standard deviations above average. We also see a reasonable fit of the
+predicted frequencies to the observed ones.</p>
+</div>
+</div>
+<div id="full-model." class="section level1">
+<h1>Full model.</h1>
+<p>Now we add <code>brand</code> as a factor in the model, and its
+interaction with <code>selfreport</code></p>
+<p><img src="examples/gzlm3/variables2.png" class="img-responsive" alt=""></p>
+<p>First, we push <code>brand</code> in the <code>Factors</code> field,
+then we go to the <code>Model</code> panel and select the interaction.
+<img src="examples/gzlm3/model1.png" class="img-responsive" alt=""> We
+need this second steps because jamovi GAMLj follows a somehow old
+tradition established by SPSS of automatically including continuous
+independent variables in the model without their interaction with
+categorical variables.</p>
+<div id="model-info" class="section level2">
+<h2>Model info</h2>
+<p><img src="examples/gzlm3/r.info2.png" class="img-responsive" alt=""></p>
+<p>We first note that the <span class="math inline">\(R^2\)</span> rised
+up to .50, showing a strong effect of <code>brand</code>. We can also
+appreciate that the <code>Value/DF</code> index is now 0.987,
+practically 1: The model in now well in line with the assumptions of the
+Poisson model, and no overdispersion is present.</p>
+</div>
+<div id="omnibus-tests-1" class="section level2">
+<h2>Omnibus tests</h2>
+<p><img src="examples/gzlm3/r.omnibus2.png" class="img-responsive" alt=""></p>
+<p>Results show a main effect of <code>brand</code> and confirm the main
+effect of <code>self-report</code>. No evidence of an important
+interaction is there.</p>
+</div>
+<div id="model-coefficients-1" class="section level2">
+<h2>Model coefficients</h2>
+<p><img src="examples/gzlm3/r.params4.png" class="img-responsive" alt=""></p>
+<p>The effect of <code>selfreport</code> is still (averaging across
+<code>brand</code>) positive but stronger than before, exp(b)=2.87.
+Keeping constant <code>brand</code>, the frequency of checks increases
+around 3 times for each standard deviation of
+<code>selfreport</code>.</p>
+<p>To interpret the effect of <code>brand</code> first look at the
+<code>contrast</code> column. It says that the default coding of
+<code>brand</code> compares the <code>Pears</code> group with the
+average of the groups <code>(Pears,Apples)</code>. When there are only
+two groups, a direct comparison is clearer, thus we go to
+<code>Factor coding</code> panel and we ask for <code>simple</code>
+contrast, which does exactly that.</p>
+<p><img src="examples/gzlm3/contrasts1.png" class="img-responsive" alt=""></p>
+<p><img src="examples/gzlm3/r.params5.png" class="img-responsive" alt=""></p>
+<p>The exp(B) associated with brand is .437: the group
+<code>Pears</code> checks the phone .437 time more than the group
+<code>Apples</code>, which means (by taking the reciprocal of exp(B))
+2.29 times less than <code>Apples</code>.</p>
+</div>
+<div id="plot-1" class="section level2">
+<h2>Plot</h2>
+<p>As usual, a picture is worth a thousand words.</p>
+<p><img src="examples/gzlm3/r.plots3.png" class="img-responsive" alt=""></p>
+<p>This concludes these set of analyses.</p>
+</div>
+</div>
+<div id="related-examples" class="section level1">
+<h1>Related examples</h1>
+<ul>
+<li>
+<a href="gzlm_example1.html">Multinomial analysis in jamovi</a>
+</li>
+<li>
+<a href="gzlm_example2.html">Logistic analysis in jamovi</a>
+</li>
+<li>
+<a href="gzlm_example4.html">Frequencies analysis with overdispersed
+models</a>
+</li>
+</ul>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
+
+">send me an email</a>
+</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

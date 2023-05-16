@@ -1,0 +1,3934 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>GAMLj in R</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KM7X6HK5HM');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="gzlmmixed.html">Generalized Mixed Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples and Details</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+<li>
+  <a href="vignettes.html">GAMLj in R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/gamlj/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">GAMLj in R</h1>
+
+</div>
+
+
+<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 2.4.0 </span></p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p><span class="modulename">GAMLj</span> module can be installed and
+used in R as a standard R packages. Please check the R help for details.
+Here we provide some appliactions of the package in R.</p>
+</div>
+<div id="installation" class="section level1">
+<h1>Installation</h1>
+<p>At the moment, <span class="modulename">GAMLj</span> is not in CRAN
+yet, so you need to install it via <code>devtools</code></p>
+<pre class="r"><code>devtools::install_github(&quot;gamlj/gamlj&quot;)</code></pre>
+<h2>
+anova test on GAMLj results
+</h2>
+<h3>
+Description
+</h3>
+<p>
+This is a convenience function to extract the ANOVA table (omnibus
+tests) from a GAMLj model. If no options is passed, extracts the<br />
+ANOVA tests table already in the model results (if any). If two GAMLj
+models are provided, a model comparison si produces. Any option accepted
+by gamlj model can be passed. are returned.
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ anova(object, ...) 
+ ## S3 method for class 'gamlj' 
+ anova(object, object2, ...) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>object</code>
+</td>
+<td>
+<p>
+a gamlj results object of the class ‘gamlj’
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>…</code>
+</td>
+<td>
+<p>
+all options accepted by a gamlj model function.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>object2</code>
+</td>
+<td>
+<p>
+a gamlj results object of the class ‘gamlj’ representing the nested
+model. Overiddes <code>nested_terms</code>. It can be passed also as a a
+right-hand side formula specifying terms of the nested model.
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+Marcello Gallucci
+</p>
+<h3>
+Examples
+</h3>
+<pre> 
+ data(fivegroups) 
+ fivegroups$Group&lt;-factor(fivegroups$Group) 
+ gmod&lt;-gamlj::gamlj_lm( 
+   formula = Score ~Group, 
+   data = fivegroups) 
+ posthoc(gmod,formula =~Group) 
+ </pre>
+<h2>
+Assumptions checking plots
+</h2>
+<h3>
+Description
+</h3>
+<p>
+This function returns a list of plots as a ggplot objects produced by
+the assumptions checking options, such as ‘qq_plot’, ‘resid_plot’ and
+‘norm_plot’ for continuous dependent variable models,<br />
+‘cluster_boxplot’, ‘cluster_respred’ and ‘rand_hist’ for mixed models.
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ assumptions(object) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>object</code>
+</td>
+<td>
+<p>
+a gamlj results object of the class ’gamlj*Results“
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+Marcello Gallucci
+</p>
+<h2>
+Generalized Linear Model with options to estimate logistic,
+probit,<br />
+ordinal, multinomial and custum link function models. Provides options
+to estimate posthoc, simple effects and slopes, plots of main effects
+and interaction. Model comparison is also an option.
+</h2>
+<h3>
+Description
+</h3>
+<p>
+Generalized Linear Model with options to estimate logistic,
+probit,<br />
+ordinal, multinomial and custum link function models. Provides options
+to estimate posthoc, simple effects and slopes, plots of main effects
+and interaction. Model comparison is also an option.
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ gamlj_glm( 
+   formula = NULL, 
+   data, 
+   model_type = "linear", 
+   dep = NULL, 
+   factors = NULL, 
+   covs = NULL, 
+   offset = NULL, 
+   model_terms = NULL, 
+   fixed_intercept = TRUE, 
+   nested_intercept = NULL, 
+   custom_family = "gaussian", 
+   custom_link = "identity", 
+   nested_terms = NULL, 
+   comparison = FALSE, 
+   omnibus = "LRT", 
+   estimates_ci = FALSE, 
+   ci_method = "wald", 
+   boot_r = 1000, 
+   ci_width = 95, 
+   contrasts = NULL, 
+   show_contrastnames = TRUE, 
+   show_contrastcodes = FALSE, 
+   vcov = FALSE, 
+   plot_x = NULL, 
+   plot_z = NULL, 
+   plot_by = NULL, 
+   plot_raw = FALSE, 
+   plot_yscale = FALSE, 
+   plot_xoriginal = FALSE, 
+   plot_black = FALSE, 
+   plot_around = "ci", 
+   emmeans = NULL, 
+   posthoc = NULL, 
+   simple_x = NULL, 
+   simple_mods = NULL, 
+   simple_interactions = FALSE, 
+   covs_conditioning = "mean_sd", 
+   ccm_value = 1, 
+   ccp_value = 25, 
+   covs_scale_labels = "labels", 
+   adjust = list("bonf"), 
+   covs_scale = NULL, 
+   expb_ci = TRUE, 
+   es = list("expb"), 
+   propodds_test = FALSE, 
+   plot_scale = "response" 
+ ) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>formula</code>
+</td>
+<td>
+<p>
+(optional) the formula of the model compatible with glm. If not passed,
+model terms should be defined as a list in <code>model_terms</code>
+option.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>data</code>
+</td>
+<td>
+<p>
+the data as a data.frame
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>model_type</code>
+</td>
+<td>
+<p>
+define the type of model (link function and distribution combination)
+required. It can be <code>linear</code>, <code>poisson</code>,
+<code>poiover</code>, <code>nb</code>, <code>logistic</code>,
+<code>probit</code>, <code>custom</code>, <code>ordinal</code>,
+<code>multinomial</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>dep</code>
+</td>
+<td>
+<p>
+a string naming the dependent variable from <code>data</code>; the
+variable must be numeric. Not needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>factors</code>
+</td>
+<td>
+<p>
+a vector of strings naming the fixed factors from <code>data</code>. Not
+needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs</code>
+</td>
+<td>
+<p>
+a vector of strings naming the covariates from <code>data</code>. Not
+needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>offset</code>
+</td>
+<td>
+<p>
+a vector of strings naming the offset variables.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>model_terms</code>
+</td>
+<td>
+<p>
+a list of character vectors describing fixed effects terms. Not needed
+if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>fixed_intercept</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>nested_intercept</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>custom_family</code>
+</td>
+<td>
+<p>
+Distribution family for the custom model, accepts <code>gaussian</code>,
+<code>binomial</code>, <code>gamma</code> and
+<code>inverse_gaussian</code>.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>custom_link</code>
+</td>
+<td>
+<p>
+Distribution family for the <code>model_type=“custom”</code>, accepts
+<code>identity</code>, <code>log</code> and <code>inverse</code>. Use
+<code>onemu2</code> for 1/mu^2).
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>nested_terms</code>
+</td>
+<td>
+<p>
+a list of character vectors describing effects terms for nested model.
+It can be passed as right-hand formula.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>comparison</code>
+</td>
+<td>
+<p>
+Not present in R
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>omnibus</code>
+</td>
+<td>
+<p>
+Whether the omnibus test for the model should be <code>wald</code> or
+<code>LRT</code>.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>estimates_ci</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code> , coefficients CI in
+tables
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ci_method</code>
+</td>
+<td>
+<p>
+The method used to compute the confidence intervals. ‘wald’ uses the
+Wald method to compute standard<br />
+errors and confidence intervals. ‘profile’ computes Profile Likelihood
+Based Confidence Interval, in which<br />
+the bounds are chosen based on the percentiles of the chi-square
+distribution around the maximum likelihood estimate. ‘quantile’ performs
+a non-parametric boostrap, with ‘boot_r’ repetitions, and compute the CI
+based on the percentiles of the boostrap distribution. ‘bcai’ implements
+the bias-corrected bootstrap method.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>boot_r</code>
+</td>
+<td>
+<p>
+a number bootstrap repetitions.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ci_width</code>
+</td>
+<td>
+<p>
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width for the plots.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>contrasts</code>
+</td>
+<td>
+<p>
+a named vector of the form <code>c(var1=“type”, var2=“type2”)</code>
+specifying the type of contrast to use, one of <code>deviation</code>,
+<code>simple</code>, <code>dummy</code>, <code>difference</code>,
+<code>helmert</code>, <code>repeated</code> or
+<code>‘polynomial’</code>. If NULL, <code>simple</code> is used. Can
+also be passed as a list of list of the form
+list(list(var="var1",type="type1")).
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>show_contrastnames</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), shows raw names of
+the contrasts variables in tables
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>show_contrastcodes</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), shows contrast
+coefficients tables
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>vcov</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), shows coefficients
+covariances
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_x</code>
+</td>
+<td>
+<p>
+a string naming the variable placed on the horizontal axis of the plot
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_z</code>
+</td>
+<td>
+<p>
+a string naming the variable represented as separate lines in the plot
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_by</code>
+</td>
+<td>
+<p>
+a list of variables defining the levels at which a separate plot should
+be produced.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_raw</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), plot raw data along
+the predicted values
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_yscale</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), set the Y-axis range
+equal to the range of the observed values.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_xoriginal</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), use original scale
+for covariates.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_black</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), use different
+linetypes per levels.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_around</code>
+</td>
+<td>
+<p>
+<code>‘none’</code> (default), <code>‘ci’</code>, or <code>‘se’</code>.
+Use no error bars, use confidence intervals, or use standard errors on
+the plots, respectively.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>emmeans</code>
+</td>
+<td>
+<p>
+a rhs formula with the terms specifying the marginal means to estimate
+(of the form <code>‘~x+x:z’</code>)
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>posthoc</code>
+</td>
+<td>
+<p>
+a rhs formula with the terms specifying the table to apply the
+comparisons (of the form <code>‘~x+x:z’</code>). The formula is not
+expanded, so <code>x*z</code> becomes <code>x+z</code> and not
+<code>x+z+x:z</code>. It can be passed also as a list of the form
+<code>‘list(“x”,“z”,c(“x”,“z”)’</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_x</code>
+</td>
+<td>
+<p>
+The variable for which the simple effects (slopes) are computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_mods</code>
+</td>
+<td>
+<p>
+the variable that provides the levels at which the simple effects are
+computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_interactions</code>
+</td>
+<td>
+<p>
+should simple Interactions be computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_conditioning</code>
+</td>
+<td>
+<p>
+<code>‘mean_sd’</code> (default), <code>‘custom’</code> , or
+<code>‘percent’</code>. Use to condition the covariates (if any)
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ccm_value</code>
+</td>
+<td>
+<p>
+how many st.deviations around the means used to condition simple effects
+and plots. Used if <code>simpleScale</code>=<code>‘mean_sd’</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ccp_value</code>
+</td>
+<td>
+<p>
+offsett (number of percentiles) around the median used to condition
+simple effects and plots. Used if
+<code>simpleScale</code>=<code>‘percent’</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_scale_labels</code>
+</td>
+<td>
+<p>
+how the levels of a continuous moderator should appear in tables and
+plots: <code>labels</code>, <code>values</code> and
+<code>values_labels</code>, <code>ovalues</code>,
+<code>ovalues_labels</code>. The latter two refer to the variable
+original levels, before scaling.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>adjust</code>
+</td>
+<td>
+<p>
+one or more of <code>‘none’</code>,
+<code>‘bonf’</code>,<code>‘tukey’</code> <code>‘holm’</code>; provide
+no, Bonferroni, Tukey and Holm Post Hoc corrections respectively.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_scale</code>
+</td>
+<td>
+<p>
+a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code>
+specifying the transformation to apply to covariates, one of
+<code>‘centered’</code> to the mean,
+<code>‘standardized’</code>,<code>‘log’</code> or <code>‘none’</code>.
+<code>‘none’</code> leaves the variable as it is.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>expb_ci</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code> , exp(B) CI in table
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>es</code>
+</td>
+<td>
+<p>
+Effect size indices. <code>expb</code> (default) exponentiates the
+coefficients. For dichotomous dependent variables relative risk indices
+(RR) can be obtained. <code>marginals</code> computes the marginal
+effects.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>propodds_test</code>
+</td>
+<td>
+<p>
+Test parallel lines assumptions in cumulative link model (ordinal
+regression)
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_scale</code>
+</td>
+<td>
+<p>
+Chi-squared computation method. <code>‘lrt’</code> (default) gives
+LogLikelihood ration test, <code>‘wald’</code> gives the Wald
+Chi-squared.
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Examples
+</h3>
+<pre> 
+    data &lt;- emmeans::neuralgia 
+    gamlj::gamljGzlm(formula = Pain ~ Duration, 
+                     data = data, 
+                     model_type = "logistic" 
+                     ) 
+       
+ </pre>
+<h2>
+Generalized Mixed Model
+</h2>
+<h3>
+Description
+</h3>
+<p>
+Generalized Mixed Model
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ gamlj_gmixed( 
+   formula = NULL, 
+   data = NULL, 
+   dep = NULL, 
+   factors = NULL, 
+   covs = NULL, 
+   model_terms = NULL, 
+   fixed_intercept = TRUE, 
+   es = list("expb"), 
+   expb_ci = TRUE, 
+   nested_terms = NULL, 
+   nested_intercept = NULL, 
+   estimates_ci = FALSE, 
+   ci_method = "wald", 
+   boot_r = 1000, 
+   ci_width = 95, 
+   contrasts = NULL, 
+   show_contrastnames = TRUE, 
+   show_contrastcodes = FALSE, 
+   plot_x = NULL, 
+   plot_z = NULL, 
+   plot_by = NULL, 
+   plot_raw = FALSE, 
+   plot_yscale = FALSE, 
+   plot_xoriginal = FALSE, 
+   plot_black = FALSE, 
+   plot_around = "none", 
+   plot_re = FALSE, 
+   plot_re_method = "average", 
+   plot_scale = "response", 
+   emmeans = NULL, 
+   posthoc = NULL, 
+   simple_x = NULL, 
+   simple_mods = NULL, 
+   simple_interactions = FALSE, 
+   covs_conditioning = "mean_sd", 
+   ccm_value = 1, 
+   ccp_value = 25, 
+   covs_scale_labels = "labels", 
+   adjust = list("bonf"), 
+   model_type = "logistic", 
+   covs_scale = NULL, 
+   scale_missing = "complete", 
+   norm_test = FALSE, 
+   re = NULL, 
+   nested_re = NULL, 
+   re_corr = "all", 
+   re_lrt = FALSE, 
+   re_ci = FALSE 
+ ) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>formula</code>
+</td>
+<td>
+<p>
+(optional) the formula to use, see the examples
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>data</code>
+</td>
+<td>
+<p>
+the data as a data frame
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>dep</code>
+</td>
+<td>
+<p>
+a string naming the dependent variable from <code>data</code>; the
+variable must be numeric. Not needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>factors</code>
+</td>
+<td>
+<p>
+a vector of strings naming the fixed factors from <code>data</code>. Not
+needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs</code>
+</td>
+<td>
+<p>
+a vector of strings naming the covariates from <code>data</code>. Not
+needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>model_terms</code>
+</td>
+<td>
+<p>
+a list of character vectors describing fixed effects terms. Not needed
+if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>fixed_intercept</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used and "1" is passed
+explicitly to the formula.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>es</code>
+</td>
+<td>
+<p>
+Effect size indices. <code>expb</code> (default) exponentiates the
+coefficients. For dichotomous dependent variables relative risk indices
+(RR) can be obtained. <code>marginals</code> computes the marginal
+effects.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>expb_ci</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code> , exp(B) CI in table
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>nested_terms</code>
+</td>
+<td>
+<p>
+a list of character vectors describing effects terms for the nested
+model. It can be passed as right-hand formula.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>nested_intercept</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>estimates_ci</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), parameters CI in
+table
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ci_method</code>
+</td>
+<td>
+<p>
+The method used to compute the confidence intervals. ‘wald’ uses the
+Wald method to compute standard<br />
+errors and confidence intervals. ‘profile’ computes Profile Likelihood
+Based Confidence Interval, in which<br />
+the bounds are chosen based on the percentiles of the chi-square
+distribution around the maximum likelihood estimate. ‘quantile’ performs
+a non-parametric boostrap, with ‘boot_r’ repetitions, and compute the CI
+based on the percentiles of the boostrap distribution. ‘bcai’ implements
+the bias-corrected bootstrap method.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>boot_r</code>
+</td>
+<td>
+<p>
+a number bootstrap repetitions.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ci_width</code>
+</td>
+<td>
+<p>
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width for the plots.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>contrasts</code>
+</td>
+<td>
+<p>
+a named vector of the form <code>c(var1=“type”, var2=“type2”)</code>
+specifying the type of contrast to use, one of <code>‘deviation’</code>,
+<code>‘simple’</code>, <code>‘dummy’</code>, <code>‘difference’</code>,
+<code>‘helmert’</code>, <code>‘repeated’</code> or
+<code>‘polynomial’</code>. If NULL, <code>simple</code> is used. Can
+also be passed as a list of list of the form
+list(list(var="var1",type="type1")).
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>show_contrastnames</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), shows raw names of
+the contrasts variables in tables
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>show_contrastcodes</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), shows contrast
+coefficients tables
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_x</code>
+</td>
+<td>
+<p>
+a string naming the variable placed on the horizontal axis of the plot
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_z</code>
+</td>
+<td>
+<p>
+a string naming the variable represented as separate lines in the plot
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_by</code>
+</td>
+<td>
+<p>
+a list of string naming the variables defining the levels for multiple
+plots
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_raw</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), plot raw data along
+the predicted values
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_yscale</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), set the Y-axis range
+equal to the range of the observed values.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_xoriginal</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), use original scale
+for covariates.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_black</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), use different
+linetypes per levels.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_around</code>
+</td>
+<td>
+<p>
+<code>‘none’</code> (default), <code>‘ci’</code>, or <code>‘se’</code>.
+Use no error bars, use confidence intervals, or use standard errors on
+the plots, respectively.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_re</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), add predicted values
+based on random effect in plot
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_re_method</code>
+</td>
+<td>
+<p>
+.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_scale</code>
+</td>
+<td>
+<p>
+Plot ordinal model predicted values in as probabilities
+(<code>response</code>) or predicted class (<code>mean.class</code>)
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>emmeans</code>
+</td>
+<td>
+<p>
+a rhs formula with the terms specifying the marginal means to estimate
+(of the form <code>‘~x+x:z’</code>)
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>posthoc</code>
+</td>
+<td>
+<p>
+a rhs formula with the terms specifying the table to apply the
+comparisons (of the form <code>‘~x+x:z’</code>). The formula is not
+expanded, so ’<code>x*z</code>’ becomes ‘<code>x+z’ and not
+‘</code>x+z+x:z<code>’. It can be passed also as a list of the form
+‘</code>list("x","z",c("x","z")’’
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_x</code>
+</td>
+<td>
+<p>
+The variable for which the simple effects (slopes) are computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_mods</code>
+</td>
+<td>
+<p>
+the variable that provides the levels at which the simple effects are
+computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_interactions</code>
+</td>
+<td>
+<p>
+should simple Interactions be computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_conditioning</code>
+</td>
+<td>
+<p>
+<code>‘mean_sd’</code> (default), <code>‘custom’</code> , or
+<code>‘percent’</code>. Use to condition the covariates (if any)
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ccm_value</code>
+</td>
+<td>
+<p>
+Covariates conditioning mean offset value: how many st.deviations around
+the means used to condition simple effects and plots. Used if
+<code>covs_conditioning</code>=<code>‘mean_sd’</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ccp_value</code>
+</td>
+<td>
+<p>
+Covariates conditioning percentile offset value: number of percentiles
+around the median used to condition simple effects and plots. Used if
+<code>covs_conditioning</code>=<code>‘percent’</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_scale_labels</code>
+</td>
+<td>
+<p>
+how the levels of a continuous moderator should appear in tables and
+plots: <code>labels</code>, <code>values</code> and
+<code>values_labels</code>, <code>ovalues</code>, ’ovalues_labels. The
+latter two refer to the variable orginal levels, before scaling.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>adjust</code>
+</td>
+<td>
+<p>
+one or more of <code>‘none’</code>,
+<code>‘bonf’</code>,<code>‘tukey’</code>
+<code>‘holm’</code>,<code>‘scheffe’</code>, <code>‘tukey’</code>;
+provide no, Bonferroni, Tukey and Holm Post Hoc corrections
+respectively.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>model_type</code>
+</td>
+<td>
+<p>
+Select the generalized linear model:
+<code>logistic</code>,<code>probit</code>,<code>nb</code> for negative
+binomial <code>poisson</code>,<code>multinomial</code>,
+<code>ordinal</code> for cumulative logit models.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_scale</code>
+</td>
+<td>
+<p>
+a list of lists specifying the covariates scaling, one of
+<code>‘centered to the mean’</code>, <code>‘standardized’</code>, or
+<code>‘none’</code>. <code>‘none’</code> leaves the variable as it is
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>scale_missing</code>
+</td>
+<td>
+<p>
+.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>norm_test</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide a test for
+normality of residuals
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>re</code>
+</td>
+<td>
+<p>
+a list of lists specifying the models random effects.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>nested_re</code>
+</td>
+<td>
+<p>
+a list of lists specifying the models random effects.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>re_corr</code>
+</td>
+<td>
+<p>
+<code>‘all’</code>, <code>‘none’</code> (default), or
+<code>‘block’</code>. When random effects are passed as list of length
+1, it decides whether the effects should be correlated, non correlated.
+If <code>‘re’</code> is a list of lists of length &gt; 1, the option is
+automatially set to <code>‘block’</code>. The option is ignored if the
+model is passed using <code>formula</code>.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>re_lrt</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), LRT for the random
+effects
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>re_ci</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), confidence intervals
+for the random effects
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>cluster</code>
+</td>
+<td>
+<p>
+a vector of strings naming the clustering variables from
+<code>data</code>, not necessary if <code>formula</code> is defined.
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Examples
+</h3>
+<pre> 
+ data(schoolexam) 
+ gamlj::gamljGlmMixed(formula = pass ~ 1 + math+( 1|school ), 
+                      data = schoolexam 
+                      ) 
+         
+ </pre>
+<h2>
+General Linear Model
+</h2>
+<h3>
+Description
+</h3>
+<p>
+General Linear Model. Estimates models using <code>lm()</code> function
+and<br />
+provides options to facilitate estimation of<br />
+interactions, simple slopes, simple effects, post-hoc tests,
+contrast<br />
+analysis, effect size indexes and visualization of the results.
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ gamlj_lm( 
+   formula = NULL, 
+   data, 
+   dep = NULL, 
+   fixed_intercept = TRUE, 
+   factors = NULL, 
+   covs = NULL, 
+   model_terms = NULL, 
+   nested_terms = NULL, 
+   nested_intercept = NULL, 
+   omnibus = "F", 
+   estimates_ci = TRUE, 
+   betas_ci = FALSE, 
+   ci_width = 95, 
+   ci_method = "wald", 
+   boot_r = 1000, 
+   contrasts = NULL, 
+   show_contrastnames = TRUE, 
+   show_contrastcodes = FALSE, 
+   vcov = FALSE, 
+   plot_x = NULL, 
+   plot_z = NULL, 
+   plot_by = NULL, 
+   plot_raw = FALSE, 
+   plot_yscale = FALSE, 
+   plot_xoriginal = FALSE, 
+   plot_black = FALSE, 
+   plot_around = "ci", 
+   emmeans = NULL, 
+   posthoc = NULL, 
+   simple_x = NULL, 
+   simple_mods = NULL, 
+   simple_interactions = FALSE, 
+   covs_scale = NULL, 
+   covs_conditioning = "mean_sd", 
+   ccm_value = 1, 
+   ccp_value = 25, 
+   covs_scale_labels = "labels", 
+   adjust = list("bonf"), 
+   posthoc_es = list("dm"), 
+   d_ci = FALSE, 
+   es = list("beta", "etap"), 
+   homo_test = FALSE, 
+   qq_plot = FALSE, 
+   norm_test = FALSE, 
+   norm_plot = FALSE, 
+   resid_plot = FALSE, 
+   intercept_info = FALSE, 
+   es_info = FALSE, 
+   dep_scale = "none", 
+   se_method = "standard" 
+ ) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>formula</code>
+</td>
+<td>
+<p>
+(optional) the formula of the model, see the examples. If not passed
+model terms should be defined as a list in <code>model_terms</code>
+option.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>data</code>
+</td>
+<td>
+<p>
+the data as a data frame
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>dep</code>
+</td>
+<td>
+<p>
+a string naming the dependent variable from <code>data</code>; the
+variable must be numeric. Not needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>fixed_intercept</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Overridden if <code>formula</code> is used and contains
+<code>~1</code> or <code>~0</code>.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>factors</code>
+</td>
+<td>
+<p>
+a vector of strings naming the fixed factors from <code>data</code>. Not
+needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs</code>
+</td>
+<td>
+<p>
+a vector of strings naming the covariates from <code>data</code>. Not
+needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>model_terms</code>
+</td>
+<td>
+<p>
+a list of character vectors describing fixed effects terms. Not needed
+if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>nested_terms</code>
+</td>
+<td>
+<p>
+A right-hand formula for the nested model. It can be passed as a list of
+character vectors describing effects terms for the nested model.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>nested_intercept</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Overridden if <code>model_ters</code> is a formula and
+contains <code>~1</code> or <code>~0</code>..
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>omnibus</code>
+</td>
+<td>
+<p>
+Omnibus tests are based on F-test <code>F</code> (default) or
+loglikelihood ration test <code>LRT</code>.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>estimates_ci</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in
+table
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>betas_ci</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in
+table
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ci_width</code>
+</td>
+<td>
+<p>
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width for the plots.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ci_method</code>
+</td>
+<td>
+<p>
+.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>boot_r</code>
+</td>
+<td>
+<p>
+a number bootstrap repetitions.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>contrasts</code>
+</td>
+<td>
+<p>
+a named vector of the form <code>c(var1=“type”, var2=“type2”)</code>
+specifying the type of contrast to use, one of <code>‘deviation’</code>,
+<code>‘simple’</code>, <code>‘dummy’</code>, <code>‘difference’</code>,
+<code>‘helmert’</code>, <code>‘repeated’</code> or
+<code>‘polynomial’</code>. If NULL, <code>simple</code> is used. Can
+also be passed as a list of list of the form
+list(list(var="var1",type="type1")).
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>show_contrastnames</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), shows raw names of
+the contrasts variables in tables
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>show_contrastcodes</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), shows contrast
+coefficients tables
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>vcov</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), shows coefficients
+covariances
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_x</code>
+</td>
+<td>
+<p>
+a string naming the variable placed on the horizontal axis of the plot
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_z</code>
+</td>
+<td>
+<p>
+a string naming the variable represented as separate lines in the plot
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_by</code>
+</td>
+<td>
+<p>
+a list of variables defining the levels at which a separate plot should
+be produced.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_raw</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), plot raw data along
+the predicted values
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_yscale</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), set the Y-axis range
+equal to the range of the observed values.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_xoriginal</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), use original scale
+for covariates.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_black</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), use different
+linetypes per levels.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_around</code>
+</td>
+<td>
+<p>
+<code>‘none’</code> (default), <code>‘ci’</code>, or <code>‘se’</code>.
+Use no error bars, use confidence intervals, or use standard errors on
+the plots, respectively.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>emmeans</code>
+</td>
+<td>
+<p>
+a rhs formula with the terms specifying the marginal means to estimate
+(of the form <code>‘~x+x:z’</code>)
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>posthoc</code>
+</td>
+<td>
+<p>
+a rhs formula with the terms specifying the table to apply the
+comparisons (of the form <code>‘~x+x:z’</code>). The formula is not
+expanded, so <code>’x*z’</code> becomes <code>‘x+z’</code> and not
+<code>‘x+z+x:z’</code>. It can be passed also as a list of the form
+<code>list(“x”,“z”,c(“x”,“z”)</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_x</code>
+</td>
+<td>
+<p>
+The variable for which the simple effects (slopes) are computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_mods</code>
+</td>
+<td>
+<p>
+a character vector with the variable(s) providing the levels at which
+the simple effects are computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_interactions</code>
+</td>
+<td>
+<p>
+should simple Interactions be computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_scale</code>
+</td>
+<td>
+<p>
+a named vector of the form <code>c(var1=‘type’, var2=‘type2’)</code>
+specifying the transformation to apply to covariates, one of
+<code>‘centered’</code> to the mean, <code>‘standardized’</code> or
+<code>‘none’</code>. <code>‘none’</code> leaves the variable as it is.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_conditioning</code>
+</td>
+<td>
+<p>
+‘<code>mean_sd</code>’ (default), or ‘<code>percent</code>’. How to
+condition covariates in simple effects and plots. ‘<code>mean_sd</code>’
+for mean +/- ‘<code>ccp_value</code>’ * sd. ‘<code>percent</code>’ for
+median +/-‘<code>ccp_value</code>’ for percentiles.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ccm_value</code>
+</td>
+<td>
+<p>
+how many st.deviations around the means used to condition simple effects
+and plots. Used if <code>covs_conditioning</code>=<code>‘mean_sd’</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ccp_value</code>
+</td>
+<td>
+<p>
+offsett (number of percentiles) around the median used to condition
+simple effects and plots. Used if
+<code>simpleScale</code>=<code>‘percent’</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_scale_labels</code>
+</td>
+<td>
+<p>
+how the levels of a continuous moderator should appear in tables and
+plots: <code>labels</code>, <code>values</code> and
+<code>values_labels</code>, <code>ovalues</code>, ’ovalues_labels. The
+latter two refer to the variable orginal levels, before scaling.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>adjust</code>
+</td>
+<td>
+<p>
+adjustment method for postho tests. One or more of <code>‘none’</code>,
+<code>‘bonf’</code>,<code>‘tukey’</code> <code>‘holm’</code>; provide
+no, Bonferroni, Tukey and Holm Post Hoc corrections respectively.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>posthoc_es</code>
+</td>
+<td>
+<p>
+effect size indices for mean comparisons. One or more of
+<code>‘dm’</code>, <code>‘ds’</code>,<code>‘g’</code> for Cohen’s d
+(dm=model SD,ds=sample SD ) or Hedge’s g
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>d_ci</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), d confidence
+intervals
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>es</code>
+</td>
+<td>
+<p>
+a list of effect sizes to print out. They can be: <code>“eta”</code> for
+eta-squared, <code>‘etap’</code> for partial eta-squared,
+<code>‘omega’</code> for omega-squared, <code>‘omegap’</code> for
+partial omega-squared, <code>‘epsilon’</code> for epsilon-squared,
+<code>‘epsilonp’</code> for partial epsilon-squared and
+<code>‘beta’</code> for standardized coefficients (betas). Default is
+<code>“beta”</code> and <code>“parEta”</code>.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>homo_test</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), perform homogeneity
+tests
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>qq_plot</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide a Q-Q plot of
+residuals
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>norm_test</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide a test for
+normality of residuals
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>norm_plot</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide a histogram
+of residuals superimposed by a normal distribution
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>resid_plot</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide a scatterplot
+of the residuals against predicted
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>intercept_info</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide ìnformation
+about the intercept (F test, effect size indexes)
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>es_info</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide ìnformation
+about the effect size indexes
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>dep_scale</code>
+</td>
+<td>
+<p>
+Re-scale the dependent variable.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>se_method</code>
+</td>
+<td>
+<p>
+Method to compute the standard error.<br />
+Classical standard errors is the default <code>standard</code>.<br />
+Four methods for heteroschedasticy-consistent<br />
+standard errors are available: <code>HC0</code>,
+<code>HC1</code>,<code>HC2</code>,<code>HC3</code>, from package
+<code>sandwich</code> . See <code>vcovHC</code> for details.
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Examples
+</h3>
+<pre> 
+ data('ToothGrowth') 
+ gamlj::gamljGlm(formula = len ~ supp,  data = ToothGrowth) 
+ </pre>
+<h2>
+Mixed Model
+</h2>
+<h3>
+Description
+</h3>
+<p>
+Mixed Linear Model. Estimates models using lmer and merTest-package
+functions and<br />
+provides options to facilitate estimation of<br />
+interactions, simple slopes, simple effects, post-hoc tests,
+contrast<br />
+analysis, effect size indexes and visualization of the results.
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ gamlj_mixed( 
+   formula = NULL, 
+   data, 
+   dep = NULL, 
+   factors = NULL, 
+   covs = NULL, 
+   model_terms = NULL, 
+   fixed_intercept = TRUE, 
+   nested_terms = NULL, 
+   nested_intercept = NULL, 
+   omnibus = "LRT", 
+   estimates_ci = TRUE, 
+   ci_method = "wald", 
+   boot_r = 1000, 
+   ci_width = 95, 
+   contrasts = NULL, 
+   show_contrastnames = TRUE, 
+   show_contrastcodes = FALSE, 
+   plot_x = NULL, 
+   plot_z = NULL, 
+   plot_by = NULL, 
+   plot_raw = FALSE, 
+   plot_yscale = FALSE, 
+   plot_xoriginal = FALSE, 
+   plot_black = FALSE, 
+   plot_around = "none", 
+   plot_re = FALSE, 
+   plot_re_method = "average", 
+   emmeans = NULL, 
+   posthoc = NULL, 
+   simple_x = NULL, 
+   simple_mods = NULL, 
+   simple_interactions = FALSE, 
+   covs_conditioning = "mean_sd", 
+   ccm_value = 1, 
+   ccp_value = 25, 
+   covs_scale_labels = "labels", 
+   adjust = list("bonf"), 
+   covs_scale = NULL, 
+   dep_scale = "none", 
+   scale_missing = "complete", 
+   norm_test = FALSE, 
+   cluster = NULL, 
+   re = NULL, 
+   nested_re = NULL, 
+   reml = TRUE, 
+   re_lrt = FALSE, 
+   re_ci = FALSE, 
+   df_method = "Satterthwaite", 
+   norm_plot = FALSE, 
+   qq_plot = FALSE, 
+   resid_plot = FALSE, 
+   cluster_boxplot = FALSE, 
+   cluster_respred = FALSE, 
+   rand_hist = FALSE 
+ ) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>formula</code>
+</td>
+<td>
+<p>
+(optional) the formula of the linear mixed model as defined in lmer.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>data</code>
+</td>
+<td>
+<p>
+the data as a data frame
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>dep</code>
+</td>
+<td>
+<p>
+a string naming the dependent variable from <code>data</code>; the
+variable must be numeric. Not needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>factors</code>
+</td>
+<td>
+<p>
+a vector of strings naming the fixed factors from <code>data</code>. Not
+needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs</code>
+</td>
+<td>
+<p>
+a vector of strings naming the covariates from <code>data</code>. Not
+needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>model_terms</code>
+</td>
+<td>
+<p>
+a list of character vectors describing fixed effects terms. Not needed
+if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>fixed_intercept</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Overridden if <code>formula</code> is used and contains
+<code>~1</code> or <code>~0</code>.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>nested_terms</code>
+</td>
+<td>
+<p>
+a list of character vectors describing effects terms for nestet. It can
+be passed as right-hand formula.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>nested_intercept</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>omnibus</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>estimates_ci</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in
+table
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ci_method</code>
+</td>
+<td>
+<p>
+.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>boot_r</code>
+</td>
+<td>
+<p>
+a number bootstrap repetitions.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ci_width</code>
+</td>
+<td>
+<p>
+a number between 50 and 99.9 (default: 95) specifying the confidence
+interval width for the plots.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>contrasts</code>
+</td>
+<td>
+<p>
+a named vector of the form <code>c(var1=“type”, var2=“type2”)</code>
+specifying the type of contrast to use, one of <code>‘deviation’</code>,
+<code>‘simple’</code>, <code>‘dummy’</code>, <code>‘difference’</code>,
+<code>‘helmert’</code>, <code>‘repeated’</code> or
+<code>‘polynomial’</code>. If NULL, <code>simple</code> is used. Can
+also be passed as a list of list of the form
+list(list(var="var1",type="type1")).
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>show_contrastnames</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), shows raw names of
+the contrasts variables in tables
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>show_contrastcodes</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), shows contrast
+coefficients tables
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_x</code>
+</td>
+<td>
+<p>
+a string naming the variable placed on the horizontal axis of the plot
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_z</code>
+</td>
+<td>
+<p>
+a string naming the variable represented as separate lines in the plot
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_by</code>
+</td>
+<td>
+<p>
+a list of string naming the variables defining the levels for multiple
+plots
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_raw</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), plot raw data along
+the predicted values
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_yscale</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), set the Y-axis range
+equal to the range of the observed values.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_xoriginal</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), use original scale
+for covariates.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_black</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), use different line
+type per levels.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_around</code>
+</td>
+<td>
+<p>
+<code>‘none’</code> (default), <code>‘ci’</code>, or <code>‘se’</code>.
+Use no error bars, use confidence intervals, or use standard errors on
+the plots, respectively.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_re</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), add predicted values
+based on random effect in plot
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>plot_re_method</code>
+</td>
+<td>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>emmeans</code>
+</td>
+<td>
+<p>
+a rhs formula with the terms specifying the marginal means to estimate
+(of the form <code>‘~x+x:z’</code>)
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>posthoc</code>
+</td>
+<td>
+<p>
+a rhs formula with the terms specifying the table to apply the
+comparisons (of the form <code>‘~x+x:z’</code>). The formula is not
+expanded, so ’<code>x*z</code>’ becomes ‘<code>x+z’ and not
+‘</code>x+z+x:z<code>’. It can be passed also as a list of the form
+‘</code>list("x","z",c("x","z")’’
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_x</code>
+</td>
+<td>
+<p>
+The variable for which the simple effects (slopes) are computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_mods</code>
+</td>
+<td>
+<p>
+the variable that provides the levels at which the simple effects are
+computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>simple_interactions</code>
+</td>
+<td>
+<p>
+should simple Interactions be computed
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_conditioning</code>
+</td>
+<td>
+<p>
+<code>‘mean_sd’</code> (default), <code>‘custom’</code> , or
+<code>‘percent’</code>. Use to condition the covariates (if any)
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ccm_value</code>
+</td>
+<td>
+<p>
+Covariates conditioning mean offset value: how many st.deviations around
+the means used to condition simple effects and plots. Used if
+<code>covs_conditioning</code>=<code>‘mean_sd’</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>ccp_value</code>
+</td>
+<td>
+<p>
+Covariates conditioning percentile offset value: number of percentiles
+around the median used to condition simple effects and plots. Used if
+<code>covs_conditioning</code>=<code>‘percent’</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_scale_labels</code>
+</td>
+<td>
+<p>
+how the levels of a continuous moderator should appear in tables and
+plots: <code>labels</code>, <code>values</code> and
+<code>values_labels</code>, <code>ovalues</code>, ’ovalues_labels. The
+latter two refer to the variable orginal levels, before scaling.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>adjust</code>
+</td>
+<td>
+<p>
+one or more of <code>‘none’</code>,
+<code>‘bonf’</code>,<code>‘tukey’</code>
+<code>‘holm’</code>,<code>‘scheffe’</code>, <code>‘tukey’</code>;
+provide no, Bonferroni, Tukey and Holm Post Hoc corrections
+respectively.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>covs_scale</code>
+</td>
+<td>
+<p>
+a list of lists specifying the covariates scaling, one of
+<code>‘centered to the mean’</code>, <code>‘standardized’</code>, or
+<code>‘none’</code>. <code>‘none’</code> leaves the variable as it is
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>dep_scale</code>
+</td>
+<td>
+<p>
+Re-scale the dependent variable.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>scale_missing</code>
+</td>
+<td>
+<p>
+.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>norm_test</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide a test for
+normality of residuals
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>cluster</code>
+</td>
+<td>
+<p>
+a vector of strings naming the clustering variables from
+<code>data</code>. Not necessary if <code>formula</code> is defined.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>re</code>
+</td>
+<td>
+<p>
+a list of lists specifying the models random effects.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>nested_re</code>
+</td>
+<td>
+<p>
+a list of lists specifying the models random effects.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>reml</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> (default) or <code>FALSE</code>, should the Restricted
+ML be used rather than ML
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>re_lrt</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), LRT for the random
+effects
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>re_ci</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), confidence intervals
+for the random effects
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>df_method</code>
+</td>
+<td>
+<p>
+The method for computing the denominator degrees of freedom and
+F-statistics. "Satterthwaite" (default) uses Satterthwaite’s method;
+"Kenward-Roger" uses Kenward-Roger’s method, "lme4" returns the
+lme4-anova table, i.e., using the anova method for lmerMod objects as
+defined in the lme4-package
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>norm_plot</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide a histogram
+of residuals superimposed by a normal distribution
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>qq_plot</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide a Q-Q plot of
+residuals
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>resid_plot</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide a scatterplot
+of the residuals against predicted
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>cluster_boxplot</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide a boxplot of
+random effects by the first defined clustering variable
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>cluster_respred</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), residuals vs
+predicted by the first defined clustering variable
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>rand_hist</code>
+</td>
+<td>
+<p>
+<code>TRUE</code> or <code>FALSE</code> (default), provide histogram of
+random Coefficients
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>re_corr</code>
+</td>
+<td>
+<p>
+<code>‘all’</code>, <code>‘none’</code> (default), or
+<code>‘block’</code>. When random effects are passed as list of length
+1, it decides whether the effects should be correlated, non correlated.
+If <code>‘re’</code> is a list of lists of length &gt; 1, the option is
+automatially set to <code>‘block’</code>. The option is ignored if the
+model is passed using <code>formula</code>.
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Examples
+</h3>
+<pre> 
+ data(subjects_by_stimuli) 
+ gamlj::gamljMixed( 
+        formula = y ~ 1 + cond+( 1|subj ), 
+        data = subjects_by_stimuli) 
+ </pre>
+<h2>
+Extract data
+</h2>
+<h3>
+Description
+</h3>
+<p>
+This function returns a dataset with the variables in the GAMLj
+model<br />
+transformed according to GAMLj options. It is usefull to run
+additional<br />
+models with other R packages with the same setup used by GAMLj
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ get_data(object, ...) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>object</code>
+</td>
+<td>
+<p>
+a gamlj results object of the class ’gamlj*Results’
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+Marcello Gallucci
+</p>
+<h3>
+Examples
+</h3>
+<pre> 
+ data('qsport') 
+ gmod&lt;-gamlj::gamlj_lm(formula = performance ~ hours, 
+                 data = qsport, 
+                 scaling = c(hours='standardized')) 
+ gdata&lt;-get_data(gmod) 
+ lm(performance ~ hours,data=gdata) 
+ </pre>
+<h2>
+GAMLj plot
+</h2>
+<h3>
+Description
+</h3>
+<p>
+This function re-estimates a GAMLj model adding a new plot. If no
+options is passed, extracts the<br />
+plots present in the ’gamlj*Results’ object. If one plot is present, it
+is returned as a ggplot2 object, if more than one is present, a list of
+plots is returned. FALSE is returned if no plot is present or defined.
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ ## S3 method for class 'gamlj' 
+ plot(x, formula = NULL, ...) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>x</code>
+</td>
+<td>
+<p>
+a gamlj results object of the class ‘gamlj’
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>formula</code>
+</td>
+<td>
+<p>
+a right hand side formula specifying the effect to plot, of the form
+‘~x’, ’~x*z’ or ‘~x<em>z</em>w’.<br />
+It has prevalence on other options defining a plot.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>…</code>
+</td>
+<td>
+<p>
+all options accepted by a gamlj model function.<br />
+Relevant for new plots are <code>plot_x</code>, <code>plot_z</code> and
+<code>plot_by</code>
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+Marcello Gallucci
+</p>
+<h3>
+Examples
+</h3>
+<pre> 
+ data(qsport) 
+ gmod&lt;-gamlj::gamlj_lm( 
+   formula = performance ~ hours, 
+   data = qsport) 
+ plot(gmod,plot_x = 'hours') 
+ plot(gmod,formula=~hours) 
+ </pre>
+<h2>
+Post-hoc test on GAMLj results
+</h2>
+<h3>
+Description
+</h3>
+<p>
+This is a convenience function to re-estimates a GAMLj model adding
+posthoc tests. If no options is passed, extracts the<br />
+post-hoc tests tables already in the model results (if any). If new
+post-hoc are defined, the post-hoc tests tables<br />
+are returned.
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ posthoc(object, ...) 
+ ## S3 method for class 'gamlj' 
+ posthoc(object, formula = NULL, ...) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>object</code>
+</td>
+<td>
+<p>
+a gamlj results object of the class ‘gamlj’
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>…</code>
+</td>
+<td>
+<p>
+all options accepted by a gamlj model function. Relevant for new tests
+are<br />
+‘post_hoc’ (a list of list of terms), ‘adjust’, a list of correction to
+apply: one or more of <code>none</code>, <code>bonf</code>,
+<code>holm</code>, <code>scheffe</code> or <code>sidak</code>.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>formula</code>
+</td>
+<td>
+<p>
+a right hand side formula specifying the factors or factors combinations
+to test, of the form ‘~x+z’, ‘~x:z’ or ’~x*z’.<br />
+It has prevalence on other options defining a post-hoc test via
+character options.
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+Marcello Gallucci
+</p>
+<h3>
+Examples
+</h3>
+<pre> 
+ data(fivegroups) 
+ fivegroups$Group&lt;-factor(fivegroups$Group) 
+ gmod&lt;-gamlj::gamlj_lm( 
+   formula = Score ~Group, 
+   data = fivegroups) 
+ posthoc(gmod,formula =~Group) 
+ </pre>
+<h2>
+Predicted values from GAMLj models
+</h2>
+<h3>
+Description
+</h3>
+<p>
+Returns predicted values from the estimated model
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ ## S3 method for class 'gamljlmResults' 
+ predict(object, ...) 
+ ## S3 method for class 'gamljglmResults' 
+ predict(object, type = "response", ...) 
+ ## S3 method for class 'gamljmixedResults' 
+ predict(object, re.form = NULL, type = "response", ...) 
+ ## S3 method for class 'gamljgmixedResults' 
+ predict(object, re.form = NULL, type = "response", ...) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>object</code>
+</td>
+<td>
+<p>
+a gamlj results object of the class ’gamlj*Results’
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>…</code>
+</td>
+<td>
+<p>
+additional arguments for specific predict methods other than the ones
+specified here.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>type</code>
+</td>
+<td>
+<p>
+the type of prediction required. The default is on the scale of the
+response variables (‘response’); Thus for binomial models the default is
+to compute the predicted probabilities. ‘link’ gives the scale of the
+linear predictors;<br />
+is on the scale of the linear predictors; The ‘terms’ option returns a
+matrix giving the fitted values of each term in the model formula on the
+linear predictor scale.<br />
+Cf. <code>stats::predict()</code>, <code>stats::predict.lm()</code>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>re.form</code>
+</td>
+<td>
+<p>
+(formula, NULL, or NA) specify which random effects to condition on when
+predicting. If NULL, include all random effects; if NA or ~0, include no
+random effects. Used only for the mixed models.
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+Marcello Gallucci
+</p>
+<h3>
+Examples
+</h3>
+<pre> 
+ data('qsport') 
+ gmod&lt;-gamlj::gamlj_lm( 
+    formula = performance ~ hours, 
+    data = qsport) 
+  preds&lt;-predict(gmod) 
+   
+ </pre>
+<h2>
+Residuals values from GAMLj models
+</h2>
+<h3>
+Description
+</h3>
+<p>
+Returns residuals values from the estimated model
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ ## S3 method for class 'gamljlmResults' 
+ residuals(object, ...) 
+ ## S3 method for class 'gamljglmResults' 
+ residuals(object, type = "deviance", ...) 
+ ## S3 method for class 'gamljmixedResults' 
+ residuals(object, ...) 
+ ## S3 method for class 'gamljgmixedResults' 
+ residuals(object, type = "deviance", ...) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>object</code>
+</td>
+<td>
+<p>
+a gamlj results object of the class ’gamlj*Results’
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>…</code>
+</td>
+<td>
+<p>
+additional arguments for specific residuals methods.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>type</code>
+</td>
+<td>
+<p>
+the type of residuals for generalized models. The alternatives are:
+‘deviance’ (default), ‘pearson’, ‘working’, ‘response’, and ‘partial’.
+Can be abbreviated. Cf. <code>stats::residuals()</code>,
+<code>stats::residuals.lm()</code>, <code>stats::residuals.glm()</code>
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+Marcello Gallucci
+</p>
+<h3>
+Examples
+</h3>
+<pre> 
+ data('qsport') 
+ gmod&lt;-gamlj::gamlj_lm( 
+    formula = performance ~ hours, 
+    data = qsport) 
+  preds&lt;-residuals(gmod) 
+   
+ </pre>
+<h2>
+R-squared and pseudo-rsquared for a list of (generalized) linear (mixed)
+models
+</h2>
+<h3>
+Description
+</h3>
+<p>
+This function calls the generic <code>r.squared</code> function for each
+of the models in the list and rbinds the outputs into one data frame
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ rsquared.glmm(obj) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>obj</code>
+</td>
+<td>
+<p>
+single model or a list of fitted (generalized) linear (mixed) model
+objects
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+: Jon Lefcheck
+</p>
+<h3>
+References
+</h3>
+<p>
+Lefcheck, Jonathan S. (2015) piecewiseSEM: Piecewise structural equation
+modeling in R for ecology, evolution, and systematics. Methods in
+Ecology and Evolution. 7(5): 573-579. DOI: 10.1111/2041-210X.12512
+</p>
+<h2>
+S3 methods for class jamovi ResultsElement
+</h2>
+<h3>
+Description
+</h3>
+<p>
+These functions extract all visible tables from a ResultsElement
+produced by gamlj and print them in R style.
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ ## S3 method for class 'ResultsElement' 
+ summary(object, ...) 
+ ## S3 method for class 'jmvrtable' 
+ print(x, ...) 
+ ## S3 method for class 'jmvrobj' 
+ print(x, ...) 
+ ## S3 method for class 'gamlj' 
+ coef(object, ...) 
+ fit(x, ...) 
+ ## S3 method for class 'gamlj' 
+ fit(x, ...) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>object</code>
+</td>
+<td>
+<p>
+a gamlj results object of the class ‘gamlj’
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>x</code>
+</td>
+<td>
+<p>
+a gamlj results object of the class ‘gamlj’
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+Marcello Gallucci
+</p>
+<h3>
+Examples
+</h3>
+<pre> 
+ data(fivegroups) 
+ fivegroups$Group&lt;-factor(fivegroups$Group) 
+ gmod&lt;-gamlj::gamlj_lm( 
+   formula = Score ~Group, 
+   data = fivegroups) 
+ summary(gmod) 
+ </pre>
+<h2>
+Simple Effects on GAMLj results
+</h2>
+<h3>
+Description
+</h3>
+<p>
+This is a convenience function to re-estimates a GAMLj model adding
+simple effect analysis. If no options is passed, extracts the<br />
+simple effects tables already in the model results (if any). If new
+tests are defined, the simple effects tests tables<br />
+are returned.
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ simple_effects(object, ...) 
+ ## S3 method for class 'gamlj' 
+ simple_effects(object, formula = NULL, ...) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>object</code>
+</td>
+<td>
+<p>
+a gamlj results object of the class ‘gamlj’
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>…</code>
+</td>
+<td>
+<p>
+all options accepted by a gamlj model function. Relevant for new tests
+are<br />
+‘simple_x’ (the simple effect variable),
+<code><code>simple_mods</code></code>, the moderator(s). Both are
+overriden by the formula option.
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>formula</code>
+</td>
+<td>
+<p>
+a right hand side formula specifying the variables to test, of the form
+‘~x:z’, ‘~x:z:w’ or ’~x*z’.<br />
+The formula is not expanded, so the first variable is the simple effect
+variable, the second is the moderator,<br />
+the third an optional additional moderator, an so on. It has prevalence
+on other options defining a simple effects test via character options.
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+Marcello Gallucci
+</p>
+<h3>
+Examples
+</h3>
+<pre> 
+ data(winkel) 
+ wicksell$time&lt;-factor(wicksell$time) 
+ wicksell$group&lt;-factor(wicksell$group)  
+ gmod&lt;-gamlj::gamljmixed( 
+    formula = dv ~ 1 +group+ time:group+ time+( 1 | subj ), 
+    data = wicksell) 
+ simpleEffects(gmod,formula =~time:group) 
+ </pre>
+<h2>
+Update a GAMLj model
+</h2>
+<h3>
+Description
+</h3>
+<p>
+Re-estimates a GAMLj model applying new options to the original model
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ ## S3 method for class 'gamljlmResults' 
+ update(object, ...) 
+ ## S3 method for class 'gamljglmResults' 
+ update(object, ...) 
+ ## S3 method for class 'gamljmixedResults' 
+ update(object, ...) 
+ ## S3 method for class 'gamljgmixedResults' 
+ update(object, ...) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>object</code>
+</td>
+<td>
+<p>
+of class ’gamlj*Results’
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>…</code>
+</td>
+<td>
+<p>
+any parameter to be passed to <code>gamlj_lm</code>,
+<code>gamlj_mixed</code>, <code>gamlj_glm</code>, or
+<code>gamlj_gmixed</code>
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+Marcello Gallucci
+</p>
+<h2>
+Coefficients covariances for a GAMLj model
+</h2>
+<h3>
+Description
+</h3>
+<p>
+Returns the parameters variances and covariances
+</p>
+<h3>
+Usage
+</h3>
+<pre> 
+ ## S3 method for class 'gamlj' 
+ vcov(object, ...) 
+ </pre>
+<h3>
+Arguments
+</h3>
+<table summary="R argblock">
+<tr valign="top">
+<td>
+<code>object</code>
+</td>
+<td>
+<p>
+of class ’gamlj*Results’
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td>
+<code>…</code>
+</td>
+<td>
+<p>
+any parameter to be passed to <code>gamlj_lm</code>,
+<code>gamlj_mixed</code>, <code>gamlj_glm</code>, or
+<code>gamlj_gmixed</code>
+</p>
+</td>
+</tr>
+</table>
+<h3>
+Value
+</h3>
+<h3>
+Author(s)
+</h3>
+<p>
+Marcello Gallucci
+</p>
+</div>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<ul>
+</ul>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
+
+">send me an email</a>
+</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

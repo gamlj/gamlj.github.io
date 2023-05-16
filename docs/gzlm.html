@@ -11,7 +11,7 @@
 
 
 
-<title>General Linear Model</title>
+<title>Generalized linear models</title>
 
 <script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -69,28 +69,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-/* for pandoc --citeproc since 2.11 */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="mcstyle.css" type="text/css" />
@@ -392,87 +370,124 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">General Linear Model</h1>
+<h1 class="title toc-ignore">Generalized linear models</h1>
 
 </div>
 
 
-<p><strong>General Linear Model</strong> module of the GAMLj suite for
-jamovi</p>
+<p><strong>Generalized Linear Models</strong> module of the GAMLj suite
+for jamovi</p>
 <p><span class="version"> <span class="versiontitle"> GAMLj version ≥
-</span> 3.0.0 </span></p>
-<p><img src="glm/main.png" width="1163" /></p>
-<p>The module estimates a general linear model with categorical and/or
-continuous variables, with options to facilitate estimation of
-interactions, simple slopes, simple effects, etc.</p>
-<p>The module can estimate OLS linear models for any combination of
-categorical and continuous variables, thus providing an easy way for
-multiple regression, ANOVA, ANCOVA and moderation analysis.</p>
-<div id="estimates" class="section level1">
-<h1>Estimates</h1>
-<p>The module provides ANOVA tables and parameters estimates for any
-estimated model. Variance-based effect size indices (eta, partial eta,
-partial omega, partial epsilon, and beta) and mean comparisons (Cohen’s
-d) are optionally computed.</p>
-<p>Variables definition follows <span
-class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
-standards, with categorical independent variables defined in <span
-class="option">Factors</span> and continuous independent variables in
-<span class="option">Covariates</span>.</p>
-<p><img src="glm/variables.png" width="564" /></p>
-<p>Effect size indices are optionally computed by selecting the
-following options (see <a href="details_glm_effectsize.html">Details:
-GLM effect size indices</a>):</p>
+</span> 1.6.0 </span></p>
+<p><img src="gzlm/main.png" width="1051" /></p>
+<p>The module estimates generalized linear models with categorial and/or
+continuous dependent and independent variables, with options to
+facilitate estimation ofinteractions, simple slopes, simple effects,
+etc.</p>
+<div id="module" class="section level1">
+<h1>Module</h1>
+<p>The module can estimate several linear models:</p>
 <ul>
-<li><span class="math inline">\(\beta\)</span> : standardized regression
-coefficients</li>
-<li><span class="math inline">\(\eta^2\)</span>: (semi-partial)
-eta-squared</li>
-<li><span class="math inline">\(\eta^2\)</span>p : partial
-eta-squared</li>
-<li><span class="math inline">\(\omega^2\)</span> : omega-squared</li>
-<li><span class="math inline">\(\omega^2\)</span>p : partial
-omega-squared</li>
-<li><span class="math inline">\(\epsilon^2\)</span> :
-epsilon-squared</li>
-<li><span class="math inline">\(\epsilon^2\)</span>p : partial
-epsilon-squared</li>
+<li>Linear model</li>
+<li>Poisson model</li>
+<li>Poisson overdispersed</li>
+<li>Negative binomial model</li>
+<li>Logistic model</li>
+<li>Probit model</li>
+<li>Ordinal model (proportional odds)</li>
+<li>Multinomial model</li>
+<li>Custom model with combinations of distribution and link
+function</li>
 </ul>
-<p>Confidence intervals of the parameters can be also selected in <span
-class="option">Options</span> tab (see below).</p>
-<p>Please check the details in
-<a href="details_glm_effectsize.html">Details: GLM effect size
-indices</a></p>
-<p>The complete set of options for this panel is:</p>
+<p>Models are defined by a link function (LF) and the dependent variable
+distribution, thus allowing to model different types of dependent
+variables:</p>
+<ul>
+<li><p><span class="option">Linear</span> model: identity LF, gaussian
+distribution, yielding a general linear model for continuous dependent
+variables.</p></li>
+<li><p><span class="option">Poisson</span> model: logarithm LF, Poisson
+distribution, modelling count dependent variables. This model is often
+called log-linear model when the independent variables are all
+categorical.</p></li>
+<li><p><span class="option">Poisson (overdispersion)</span> model:
+Overdispersed Poisson model: logarithm LF, Poisson distribution,
+quasi-maximum likelihood estimation, with overdispersion, modelling
+count dependent variables. This model is often used for overdispersed
+data.</p></li>
+<li><p><span class="option">Negative binomial</span> model: logarithm
+LF, negative binomial distribution, maximum likelihood estimation, with
+overdispersion, modelling count dependent variables. This model is often
+used for overdispersed data.</p></li>
+<li><p><span class="option">Logistic</span> model: logit LF, binomial
+distribution, modelling dichotomous dependent variables.</p></li>
+<li><p><span class="option">Probit</span> model: inverse of the
+cumulative normal distribution link function, binomial distribution,
+modelling dichotomous dependent variables.</p></li>
+<li><p><span class="option">Ordinal</span> model: s proportional odds
+logistic regression, cumlative logit LF, multinomial distribution,
+modelling ordered dependent variables.</p></li>
+<li><p><span class="option">Multinomial</span> model: logit LF,
+multinomial distribution, modelling categorical dependent
+variables.</p></li>
+<li><p><span class="option">Custom</span> model: combination of
+distribution family and link function.</p>
+<ul>
+<li><p>The available distributions are:</p>
+<ul>
+<li>Gaussian</li>
+<li>Binomial</li>
+<li>Gamma</li>
+<li>Inverse Gaussian</li>
+</ul></li>
+<li><p>The available link functions are:</p>
+<ul>
+<li>Identity</li>
+<li>Log</li>
+<li>Inverse</li>
+<li>Inverse squared</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>The plausibility of the distribution/link function combination is no
+checked, but errors are issued if the data do not conform to the chosen
+custom model.</p>
+<p><img src="gzlm/variables.png" width="563" /></p>
+<p>For each model, any combination of categorical and continuous
+variables can be set as independent variables, thus providing an easy
+way for multiple regression, ANOVA-like, ANCOVA-like and moderation
+analysis for categorical and count dependent variables. An <span
+class="option">Offset</span> variable can be defined, which is included
+in the model with a fixed coefficient (set to 1) (see )</p>
+<p>The options of this panel are:</p>
 <table class="options">
 <tr>
 <td class="optionname">
 <span class="option">Effect Size</span>
 </td>
 <td>
-The effect size to show in tables. They can be: <code>"eta"</code> for
-eta-squared, <code>partial eta'</code> for partial eta-squared,
-<code>'omega'</code> for omega-squared, <code>'omega partial'</code> for
-partial omega-squared, <code>'epsilon'</code> for epsilon-squared,
-<code>'epsilon partial'</code> for partial epsilon-squared and
-<code>'beta'</code> for standardized coefficients (betas). Default is
-<code>"beta"</code> and <code>"eta partial"</code>.
+Effect size indices. <code>Odd Rations</code> (default) exponentiates
+the coefficients. For dichotomous dependent variables
+<code>Relative Risk</code> indices can be obtained.
+<code>Marginal Effects</code> computes the marginal effects (if the
+model allows).
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Estimates C.I.</span>
+<span class="option">For exp(B)</span>
 </td>
 <td>
-Non standardized coefficients (estimastes) CI in tables if flagged
+<code>TRUE</code> (default) or <code>FALSE</code> , exp(B) CI in table
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">β C.I.</span>
+<span class="option">For estimates</span>
 </td>
 <td>
-Standardized coefficients CI in tables if flagged
+<code>TRUE</code> or <code>FALSE</code> (default), coefficients CI in
+tables
 </td>
 </tr>
 <tr>
@@ -491,9 +506,10 @@ results to update every time. Unflag it when ready to go.
 <h1>Model</h1>
 <p>By default, the model terms are filled in automatically for main
 effects and for interactions with categorical variables.</p>
-<p><img src="glm/model.png" width="564" /></p>
+<p><img src="gzlm/model.png" class="img-responsive" alt=""></p>
 <p>Interactions between continuous variables or categorical and
-continuous variables can be set by clicking the second arrow icon.</p>
+continuous ones can be set by selecting one or more variables and
+clicking the second arrow icon.</p>
 <p>Polinomial effects for continuous variables can be added to the
 model. When a variable is selected in the <span
 class="option">Components</span> field, a little number appears on the
@@ -505,11 +521,6 @@ class="option">Model Terms</span> field, one can include any high order
 effect. Increasing the order number and combining the selection with
 other variables allows including interactions involving higher order
 effects of a variable.</p>
-<p>The option <span class="option">Intercept</span> includes an
-intercept in the model. Unflagging it estimates zero-intercept models
-(Regression through the origin, but see <a
-href="https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/">here</a>
-before you do it ).</p>
 <div id="models-comparison" class="section level2">
 <h2>Models comparison</h2>
 <p>When <span class="option">Activate</span> is flagged, models
@@ -532,14 +543,15 @@ will test the significance of the two interactions together. The output
 offers a Table in which each model fit indices and tests are presented,
 and the two models comparison test is presented.</p>
 <p><img src="commons/pics/modelcomparison3.png" /><!-- --></p>
-<p>The other options are:</p>
+<p>The options are:</p>
 <table class="options">
 <tr>
 <td class="optionname">
 <span class="option">Intercept</span>
 </td>
 <td>
-Estimates fixed intercept if flagged
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used.
 </td>
 </tr>
 <tr>
@@ -556,16 +568,7 @@ intercept. Not needed if <code>formula</code> is used.
 <span class="option">Activate</span>
 </td>
 <td>
-Activates models comparison
-</td>
-</tr>
-<tr>
-<td class="optionname">
-<span class="option">Test</span>
-</td>
-<td>
-Omnibus test of the model is based on F-test (default) or loglikelihood
-ration test <code>LRT</code>.
+Not present in R
 </td>
 </tr>
 </table>
@@ -603,26 +606,23 @@ labeled <code>1-(1,2,3)</code> means that the contrast is comparing the
 mean of level 1 against the mean of the sample. For the same factor, a
 contrast labeled <code>1-(2,3)</code> indicates a comparison between
 level 1 mean and the subsequent levels means pooled together.</p>
-<p>More details and examples <a href="rosetta_contrasts.html">Rosetta
-store: contrasts</a>.</p>
 </div>
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
-<p><img src="glm/xscoring.png" width="546" /></p>
-<p>Continuous variables can be <span class="option">Centered</span>,
-standardized (<span class="option">z-scores</span>), log-transformed
-(<span class="option">Log</span>) or used as they are (<span
+<p><img src="commons/pics/xscoring.png" class="img-responsive" alt=""></p>
+<p>Continuous variables can be centered, standardized (<span
+class="option">z-scores</span>), log-transformed (<span
+class="option">Log</span>) or used as they are (<span
 class="option">none</span>). The default is <span
 class="option">centered</span> because it makes our lives much easier
 when there are interactions in the model, and do not affect the B
 coefficients when there are none. Thus, if one is comparing results with
 other software that does not center the continuous variables, without
 interactions in the model one would find only a discrepancy in the
-intercept, because in <span class="modulename">GAMLj</span> the
-intercept represents the expected value of the dependent variable for
-the average value of the independent variable. If one needs to
-<em>unscale</em> the variable, simply select <span
-class="option">none</span>.</p>
+intercept, because in GAMLj the intercept represents the expected value
+of the dependent variable for the average value of the independent
+variable. If one needs to <em>unscale</em> the variable, simply select
+<span class="option">none</span>.</p>
 <p><span class="option">Covariates conditioning</span> rules how the
 model is conditioned to different values of the continuous independent
 variables in the <em>simple effects</em> estimation and in the
@@ -683,47 +683,20 @@ variable only on the complete cases (the default), or scale
 mean and standard deviation of each variable used to scale the scores
 are computed with the available data of the variable, independently of
 possible missing values in other variables.</p>
-<p>The option <span class="option">Dependent variable</span> scale
-allows to transform the dependent variable. The dependent variable can
-be centered, standardized (<span class="option">z-scores</span>),
-log-transformed (<span class="option">Log</span>) or used as it is
-(<span class="option">none</span>). The default is <span
-class="option">none</span>, so no transformation is applied.</p>
 </div>
 <div id="post-hocs" class="section level1">
 <h1>Post-hocs</h1>
-<p><img src="glm/posthoc.png" width="567" /></p>
+<p><img src="commons/pics/posthoc.png" class="img-responsive" alt=""></p>
 <p>Post-hoc tests can be accomplished for the categorical variables
 groups by selecting the appropriated factor and flag the required
 tests</p>
 <p>Post-hoc tests are implemented based on R package <em>emmeans</em>.
 All tecnical info can be found <a
 href="https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#pairwise">here</a></p>
-<p>Along with the means comparisons, one can obtain also the Cohen’s
-<span class="math inline">\(d\)</span> effect size indices. Different
-formulation of the Cohen’s <span class="math inline">\(d\)</span> are
-available, and they differ in the way the pooled standard error is
-computed.</p>
-<ul>
-<li><p>Cohen’s d (model SD) <span
-class="math inline">\(d_{mod}\)</span>: the means difference is divided
-by the estimated standard deviation computed based on the model residual
-variance.</p></li>
-<li><p>Cohen’s d (sample SD) <span
-class="math inline">\(d_{sample}\)</span>: the means difference is
-divided by the pooled standard deviation computed within each
-group.</p></li>
-<li><p>Hedge’s g <span class="math inline">\(g_{sample}\)</span>: the
-means difference is divided by the pooled standard deviation computed
-within each group, corrected for sample bias. The correction is the one
-describe by <span class="citation">Hedges and Olkin (<a
-href="#ref-hedges2014statistical" role="doc-biblioref">2014</a>)</span>
-based on the Gamma function.</p></li>
-</ul>
 </div>
 <div id="plots" class="section level1">
 <h1>Plots</h1>
-<p><img src="glm/plot.png" width="567" /></p>
+<p><img src="gzlm/plot.png" width="565" /></p>
 <p>The “plots” menu allows for plotting main effects and interactions
 for any combination of types of variables, making it easy to plot
 interaction means plots, simple slopes, and combinations of them. The
@@ -757,16 +730,29 @@ one obtains a two-way graph (as previously defined) for the
 selected in the <span class="option">Covariates conditioning</span>
 options. Any number of plots can be obtained depending on the order of
 the interaction.</p>
-<p>The remaining options are defined as follows:</p>
+<p>Plots interpretation varies depending on the model being estimated.
+All plots are, however, depicting predicted values in the response
+original scale (usually probabilities). See details and interpretation
+discussion.</p>
+<p>The options are:</p>
 <table class="options">
 <tr>
 <td class="optionname">
-<span class="option">Display</span>
+<span class="option">Error Bar Definition</span>
 </td>
 <td>
-<code>'None'</code> (default), <code>Confidence Intervals</code>, or
-<code>Standard Error</code>. Display on plots no error bars, use
-confidence intervals, or use standard errors on the plots, respectively.
+<code>'none'</code> (default), <code>'ci'</code>, or <code>'se'</code>.
+Use no error bars, use confidence intervals, or use standard errors on
+the plots, respectively.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Y-axis scale</span>
+</td>
+<td>
+Plot ordinal model predicted values in as probabilities
+(<code>response</code>) or predicted class (<code>mean.class</code>)
 </td>
 </tr>
 <tr>
@@ -792,9 +778,8 @@ equal to the range of the observed values.
 <span class="option">X original scale</span>
 </td>
 <td>
-If selected, the X-axis variable is scaled with the orginal scale of the
-variable, independently to the scaling set is the
-<code>Covariates Scaling</code>.
+<code>TRUE</code> or <code>FALSE</code> (default), use original scale
+for covariates.
 </td>
 </tr>
 <tr>
@@ -802,8 +787,8 @@ variable, independently to the scaling set is the
 <span class="option">Varying line types</span>
 </td>
 <td>
-If selected, a black and white theme is set for the plot, with multiple
-lines (if present) drawn in different styles.
+<code>TRUE</code> or <code>FALSE</code> (default), use different
+linetypes per levels.
 </td>
 </tr>
 </table>
@@ -835,7 +820,7 @@ estimated and tested at different levels of <code>z</code>.</p>
 </div>
 <div id="estimated-marginal-means" class="section level1">
 <h1>Estimated marginal means</h1>
-<p><img src="commons/pics/emmeans.png" width="568" /></p>
+<p><img src="commons/pics/emmeans.png" class="img-responsive" alt=""></p>
 <p>Print the estimate expected means, SE, df and confidence intervals of
 the predicted dependent variable by factors in the model. Any
 combination available in the model (main effects, interactions,
@@ -845,116 +830,25 @@ presented. If the term involves continuous variables, expected means
 computed at the levels defined in <code>Covariate Scaling</code> are
 presented.</p>
 </div>
-<div id="assumptions-checks" class="section level1">
-<h1>Assumptions checks</h1>
-<p><img src="glm/assumptions.png" width="557" /></p>
-<table class="options">
-<tr>
-<td class="optionname">
-<span class="option">Homogeneity tests</span>
-</td>
-<td>
-Provides <a
-href="https://biostats.w.uib.no/test-for-homogeneity-of-variances-levenes-test/"
-target="_blank">Levene’s test</a> for equal variances across groups
-defined by factors (homoschedasticity).
-</td>
-</tr>
-<tr>
-<td class="optionname">
-<span class="option">Normality of residuals</span>
-</td>
-<td>
-Provides <a
-href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test"
-target="_blank">Kolmogorov-Smirnov</a> and <a
-href="https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation"
-target="_blank">Shapiro-Wilk</a> tests for normality of residuals.
-</td>
-</tr>
-<tr>
-<td class="optionname">
-<span class="option">Q-Q plot of residuals</span>
-</td>
-<td>
-Outputs a Q-Q plot (observed residual quantiles on expected residual
-quantiles). More general info <a
-href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot"
-target="_blank">here</a>
-</td>
-</tr>
-<tr>
-<td class="optionname">
-<span class="option">Residuals Histogram</span>
-</td>
-<td>
-Outputs the histogram of the distribution of the residuals, with an
-overlaying ideal normal distribution with mean and variance equal to the
-residuals distribution parameters.
-</td>
-</tr>
-<tr>
-<td class="optionname">
-<span class="option">Residuals-Predicted plot</span>
-</td>
-<td>
-Produces a scatterplot with the residuals on the Y-axis and the
-predicted in the X-axis. It can be usufull to assess heteroschdasticity.
-</td>
-</tr>
-</table>
-</div>
 <div id="options" class="section level1">
 <h1>Options</h1>
-<p><img src="glm/options.png" width="560" /></p>
+<p><img src="gzlm/options.png" width="548" /></p>
 <table class="options">
 <tr>
 <td class="optionname">
 <span class="option">CI Method</span>
 </td>
 <td>
-The method to estimate the confidence intervals. Standard method
-(<code>Wald</code>) or bootstrap methods. For bootstrap,
-<code>Quantile</code> computes the confidence intervals based on the
-bootstrap distribution, whereas <code>BCAi</code> computes the bootstrap
-bias corrected accelerated intervals.
-</td>
-</tr>
-<tr>
-<td class="optionname">
-<span class="option">SE Method</span>
-</td>
-<td>
-The method to estimate the standard errors. <code>Standard</code> for
-Wald’s method or <code>Robust</code> for robust method.
-</td>
-</tr>
-<tr>
-<td class="optionname">
-<span class="option">Method</span>
-</td>
-<td>
-<code>HC1</code> to <code>HC3</code> sets the
-heteroschedasticity-consistent robust standard error. See <a
-href="https://cran.r-project.org/web/packages/sandwich/sandwich.pdf">sandwich
-R package</a> for deatils.
-</td>
-</tr>
-<tr>
-<td class="optionname">
-<span class="option">On intercept</span>
-</td>
-<td>
-If selected provides ìnformation about the intercept (F test, effect
-size indexes)
-</td>
-</tr>
-<tr>
-<td class="optionname">
-<span class="option">On Effect sizes</span>
-</td>
-<td>
-If selected, provides ìnformation about the effect size indexes
+The method used to compute the confidence intervals.
+<code>Standard</code> uses the Wald method to compute standard errors
+and confidence intervals. <code>Profile</code> computes Profile
+Likelihood Based Confidence Interval, in which the bounds are chosen
+based on the percentiles of the chi-square distribution around the
+maximum likelihood estimate. <code>Bootstrap percent</code> performs a
+non-parametric boostrap, with <code>Bootstrap rep</code> repetitions,
+and compute the CI based on the percentiles of the boostrap
+distribution. The <code>BCa</code> implements the bias-corrected
+bootstrap method.
 </td>
 </tr>
 <tr>
@@ -968,10 +862,22 @@ covariances
 </tr>
 <tr>
 <td class="optionname">
+<span class="option">Parallel lines test</span>
+</td>
+<td>
+Test parallel lines assumptions in cumulative link model (ordinal
+regression)
+</td>
+</tr>
+<tr>
+<td class="optionname">
 <span class="option">Predicted</span>
 </td>
 <td>
-Saves in the dataset the predicted values of the model
+Saves the predicted values of the model. Predicted values are always
+scaled in the dependent variable original scale, that in the majority of
+cases is the probability scale. For <code>Poisson</code> models and
+<code>Negative Binomial</code> the count scale is used.
 </td>
 </tr>
 <tr>
@@ -979,7 +885,7 @@ Saves in the dataset the predicted values of the model
 <span class="option">Residuals</span>
 </td>
 <td>
-Saves in the dataset the residual values of the model
+Saves the residual values of the model. The response scale is used.
 </td>
 </tr>
 <tr>
@@ -987,43 +893,40 @@ Saves in the dataset the residual values of the model
 <span class="option">Remove notes</span>
 </td>
 <td>
-Removes all notes and warnings from the Tables. Useful to produce
+Remove all notes and warning from the Tables. Useful to produce
 pubblication quality tables.
 </td>
 </tr>
 </table>
-<p><a href="details_glm_effectsize.html">Details: GLM effect size
-indices</a></p>
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
 <p>Some worked out examples of the analyses carried out with jamovi
-GAMLj are posted here (more to come)</p>
+GAMLj GZLM are posted here (more to come)</p>
 <ul>
 <li>
-<a href="glm_example1.html">GLM: Multiple regression, moderated
-regression, and simple slopes</a>
+<a href="gzlm_example1.html">Multinomial analysis in jamovi</a>
 </li>
 <li>
-<a href="glm_example2.html">Polynomial Effects</a>
+<a href="gzlm_example2.html">Logistic analysis in jamovi</a>
+</li>
+<li>
+<a href="gzlm_example4.html">Frequencies analysis with overdispersed
+models</a>
 </li>
 </ul>
 </div>
 <div id="details" class="section level1">
 <h1>Details</h1>
-<p>Some more information about the module specs can be found here #
-Specs</p>
+<p>Some more information about the module specs can be found here</p>
 <ul>
 <li>
-<a href="details_glm_effectsize.html">Details: GLM effect size
-indices</a>
+<a href="gmixed_specs.html">Generalized mixed model module technical
+details</a>
 </li>
 <li>
-<a href="details_goodness.html">Details: Model goodness of fit in
-GAMLj</a>
-</li>
-<li>
-<a href="posthoc_specs.html">Post-hocs Details</a>
+<a href="gzlm_specs.html">Generalized linear model module technical
+details</a>
 </li>
 </ul>
 <h1>
@@ -1036,13 +939,6 @@ or <a href="mailto:mcfanda@gmail.com
 
 ">send me an email</a>
 </p>
-<p>’</p>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-hedges2014statistical" class="csl-entry">
-Hedges, Larry V, and Ingram Olkin. 2014. <em>Statistical Methods for
-Meta-Analysis</em>. Academic press.
-</div>
-</div>
 </div>
 
 
