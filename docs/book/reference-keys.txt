@@ -51,7 +51,7 @@ violations-remedies
 robust-standard-error
 bootstrap-confidence-intervals
 gzlm
-introduction-1
+gzlmintro
 logistic
 the-rationale
 model-estimation
@@ -84,6 +84,17 @@ post-hoc-tests-1
 marginal-effects
 simple-effects-1
 other-options-1
+ordinal
+rationale-1
+model-estimation-3
+model-recap-3
+parallellines
+model-fit-2
+omnibus-tests-3
+coefficients-3
+estimated-marginal-means-2
+post-hoc-tests-2
+plot-1
 appendixa
 commuting-r2
 variance-explained

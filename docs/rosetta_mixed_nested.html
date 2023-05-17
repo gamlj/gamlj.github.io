@@ -433,7 +433,7 @@ print(mod,digits=5)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school) + (1 | class)
 ##    Data: data
-## REML criterion at convergence: 117
+## REML criterion at convergence: 117.3587
 ## Random effects:
 ##  Groups   Name        Std.Dev.
 ##  school   (Intercept) 21.1056 
@@ -453,7 +453,7 @@ print(mod,digits=5)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school/class)
 ##    Data: data
-## REML criterion at convergence: 87.6
+## REML criterion at convergence: 87.559
 ## Random effects:
 ##  Groups       Name        Std.Dev.
 ##  class:school (Intercept)  6.6144 
@@ -477,7 +477,7 @@ print(mod,digits=5)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school) + (1 | unique_class)
 ##    Data: data
-## REML criterion at convergence: 87.6
+## REML criterion at convergence: 87.559
 ## Random effects:
 ##  Groups       Name        Std.Dev.
 ##  unique_class (Intercept)  6.6144 
