@@ -457,7 +457,7 @@ Count (frequencies)
 <h3><span class="header-section-number">3.2.1</span> The rationale<a href="gzlm.html#the-rationale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A logistic model can be estimated when the dependent variable features two groups, or two levels. The necessity to change the GLM into a different linear model becomes clear by inspecting a scatterplot between a continuous independent variable and a dichotomous dependent variable.</p>
 <p><img src="bookletpics/3_logistic_plot1.png" width="603" /></p>
-<p>It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a clouds that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in <a href="glm.html#homosched">2.15.1</a>), because the line will cross a strip once (so residual is zero) and depart from it everafter (increasing the residual variance).</p>
+<p>It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a cloud that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in <a href="glm.html#homosched">2.15.1</a>), because the line will cross a strip once (so residual is zero) and depart from it everafter (increasing the residual variance).</p>
 <p>The solution is to change the form of predicted values such that any values can be a sensible predicted value. To achieve this, we should first notice that when one has a dichotomous dependent variable, what one is predicting is the probability of being in the group scoring 1. Indeed, the predicted values are the expected (average) values of <span class="math inline">\(y\)</span> for each given <span class="math inline">\(x_i\)</span>. The average value of a dichotomous variable is
 <span class="math display">\[
 E(y)={n_1 \over N}
@@ -528,10 +528,12 @@ The second piece of information is that when you take the exponential function o
 exp(log(a)-log(b))={a \over b}
 \]</span>
 Thus, if we take the exponential function of the logit B, we obtain the ratio between two odds</p>
-<p><span class="math display">\[
+<span class="math display">\[
 exp(b)={odd_{(x=1)} \over odd_{(x=0)}}
 \]</span>
-Therefore, <code>exp(B)</code> is a ratio between two odds, computed at two consecutive values of the independent variable. That is why it is called the <em>odd ratio</em>. It is <em>the rate of change of the odd as you increase the independent variable of one unit</em>. In other words, it indicates how many times the odd changes as one increases the exponential function of one unit. In our example <code>exp(B)=4.62</code>, so, for every beer more, the odd of going to the restroom increases of 4.62 times.</p>
+<div class="enf">
+<p>Therefore, <code>exp(B)</code> is a ratio between two odds, computed at two consecutive values of the independent variable. That is why it is called the <em>odd ratio</em>. It is <em>the rate of change of the odd as you increase the independent variable of one unit</em>. In other words, it indicates how many times the odd changes as one increases the exponential function of one unit. In our example <code>exp(B)=4.62</code>, so, for every beer more, the odd of going to the restroom increases of 4.62 times.</p>
+</div>
 <p>The odd ratio is the standard effect size used in logistic regression, but it is not the only one. In different disciplines other ways to quantify the logistic effects are used. <span class="modulename">GAMLj</span> provides the most common ones: <em>Marginal effects</em> and <em>Relative Risk</em>. Now we discuss the former because it is more appropriate with continuous <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>. We discuss the RR when we deal with categorical <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span> (cf <a href="gzlm.html#gzlmanova">3.3</a>)</p>
 <p><img src="bookletpics/3_logistic_input3.png" width="524" /></p>
 </div>

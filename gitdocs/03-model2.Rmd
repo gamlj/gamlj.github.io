@@ -73,7 +73,7 @@ A logistic model can be estimated when the dependent variable features two group
 
 `r pic("bookletpics/3_logistic_plot1.png")`
 
-It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a clouds that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in \@ref(homosched)), because the line will cross a strip once (so residual is zero) and depart from it everafter (increasing the residual variance).
+It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a cloud that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in \@ref(homosched)), because the line will cross a strip once (so residual is zero) and depart from it everafter (increasing the residual variance).
 
 The solution is to change the form of predicted values such that any values can be a sensible predicted value. To achieve this, we should first notice that when one has a dichotomous dependent variable, what one is predicting is the probability of being in the group scoring 1. Indeed, the predicted values are the expected (average) values of $y$ for each given $x_i$. The average value of a dichotomous variable is
 $$
@@ -170,7 +170,9 @@ Thus, if we take the exponential function of the logit B, we obtain the ratio be
 $$
 exp(b)={odd_{(x=1)} \over odd_{(x=0)}}
 $$
+<div class="enf">
 Therefore, `exp(B)` is a ratio between two odds, computed at two consecutive values of the independent variable. That is why it is called the _odd ratio_. It is _the rate of change of the odd as you increase the independent variable of one unit_. In other words, it indicates how many times the odd changes as one increases the exponential function of one unit. In our example `exp(B)=4.62`, so, for every beer more, the odd of going to the restroom increases of 4.62 times.
+</div>
 
 The odd ratio is the standard effect size used in logistic regression, but it is not the only one. In different disciplines other ways to quantify the logistic effects are used. `r modulename()` provides the most common ones: _Marginal effects_ and _Relative Risk_. Now we discuss the former because it is more appropriate with continuous `r IVs`. We discuss the RR when we deal with categorical `r IV` (cf \@ref(gzlmanova))
 
