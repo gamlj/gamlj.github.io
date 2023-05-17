@@ -24,7 +24,7 @@ mcdocs_init()
 
 `r draft`
 
-This is a book about linear models in `r jamovi`, using the `r modulename()` module. This book is halfway between a software manual and a statistical how-to. Thus, what regards the statistical reasoning and the models interpretation may be applied to analyses carried out also with other software. The practical steps to obtain the results are specific to `r modulename()`. 
+This is a book about linear models in `r jamovi`, using `r modulename()` module. This book is halfway between a software manual and a statistical how-to. Thus, what regards the statistical reasoning and the models interpretation may be applied to analyses carried out also with other software. The practical steps to obtain the results are specific to `r modulename()`. 
 
 This book, so far, covers the following models:
 
