@@ -344,107 +344,51 @@ f(\hat{y_i})=a+b x_i
 \]</span>
 In addition to predicting a transformation of the dependent variable, the generalized linear model does not assume the dependent variable to be normally distributed, but allows assuming different families of distribution: <a href='https://en.wikipedia.org/wiki/Binomial_distribution' target='_blank'>Binomial</a>, <a href='https://en.wikipedia.org/wiki/Multinomial_distribution' target='_blank'>multinomial</a>, <a href='Poisson distribution' target='_blank'>Poisson</a>, etc.</p>
 <p>Combining a particular link function with a distribution makes a particular application of the generalized linear model. The combination of link function and distribution makes a particular application a model suitable for predicting a particular type of dependent variable. Here is a brief recap of the generalized linear models that can be estimated with <span class="modulename">GAMLj</span>.</p>
-<table class="gmisc_table" style="border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
+<table class='gmisc_table' style='border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;' >
 <thead>
 <tr>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
-Model
-</th>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
-Link Function
-</th>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
-Distribution
-</th>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
-DV type
-</th>
+<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>Model</th>
+<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>Link Function</th>
+<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>Distribution</th>
+<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>DV type</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">
-Logistic Model
-</td>
-<td style="text-align: center;">
-Logit
-</td>
-<td style="text-align: center;">
-Binomial
-</td>
-<td style="text-align: center;">
-Dichotomous
-</td>
+<td style='text-align: center;'>Logistic Model</td>
+<td style='text-align: center;'>Logit</td>
+<td style='text-align: center;'>Binomial</td>
+<td style='text-align: center;'>Dichotomous</td>
 </tr>
 <tr>
-<td style="text-align: center;">
-Probit Model
-</td>
-<td style="text-align: center;">
-Inverse cumulative normal
-</td>
-<td style="text-align: center;">
-Binomial
-</td>
-<td style="text-align: center;">
-Dichotomous
-</td>
+<td style='text-align: center;'>Probit Model</td>
+<td style='text-align: center;'>Inverse cumulative normal</td>
+<td style='text-align: center;'>Binomial</td>
+<td style='text-align: center;'>Dichotomous</td>
 </tr>
 <tr>
-<td style="text-align: center;">
-Multinomial Model
-</td>
-<td style="text-align: center;">
-Logit
-</td>
-<td style="text-align: center;">
-Multinomial
-</td>
-<td style="text-align: center;">
-Categorical
-</td>
+<td style='text-align: center;'>Multinomial Model</td>
+<td style='text-align: center;'>Logit</td>
+<td style='text-align: center;'>Multinomial</td>
+<td style='text-align: center;'>Categorical</td>
 </tr>
 <tr>
-<td style="text-align: center;">
-Ordinal Model
-</td>
-<td style="text-align: center;">
-Cumulative Logit
-</td>
-<td style="text-align: center;">
-Logit
-</td>
-<td style="text-align: center;">
-Ordinal
-</td>
+<td style='text-align: center;'>Ordinal Model</td>
+<td style='text-align: center;'>Cumulative Logit</td>
+<td style='text-align: center;'>Logit</td>
+<td style='text-align: center;'>Ordinal</td>
 </tr>
 <tr>
-<td style="text-align: center;">
-Poisson Model
-</td>
-<td style="text-align: center;">
-Log
-</td>
-<td style="text-align: center;">
-Poisson
-</td>
-<td style="text-align: center;">
-Count (frequencies)
-</td>
+<td style='text-align: center;'>Poisson Model</td>
+<td style='text-align: center;'>Log</td>
+<td style='text-align: center;'>Poisson</td>
+<td style='text-align: center;'>Count (frequencies)</td>
 </tr>
 <tr>
-<td style="border-bottom: 2px solid grey; text-align: center;">
-Negative Binomial Model
-</td>
-<td style="border-bottom: 2px solid grey; text-align: center;">
-Log
-</td>
-<td style="border-bottom: 2px solid grey; text-align: center;">
-Negative binomial
-</td>
-<td style="border-bottom: 2px solid grey; text-align: center;">
-Count (frequencies)
-</td>
+<td style='border-bottom: 2px solid grey; text-align: center;'>Negative Binomial Model</td>
+<td style='border-bottom: 2px solid grey; text-align: center;'>Log</td>
+<td style='border-bottom: 2px solid grey; text-align: center;'>Negative binomial</td>
+<td style='border-bottom: 2px solid grey; text-align: center;'>Count (frequencies)</td>
 </tr>
 </tbody>
 </table>
@@ -630,53 +574,29 @@ Please consult <span class="citation">Leeper (<a href="#ref-thomas" role="doc-bi
 <h3><span class="header-section-number">3.5.1</span> Rationale<a href="gzlm.html#rationale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sooner or later a dependent variable with more than two groups will cross our path. A choice may be added to the experimental outcome, a third group may be necessary to exhaust a classification, a set of products needs to be tested. When the dependent variable features more than two groups, the logistic or probit model cannot be used. It must be generalized into the <em>Multinomial Model</em>. A multinomial model is logically equivalent to estimating a set of logistic regressions, one for each dummy variable (cf. <a href="glm.html#dummies">2.7.2</a> and <a href="a1dummies.html#a1dummies">B</a>) representing the categorical dependent variable.</p>
 <p>Consider a three group variable, with levels A, B and C. To represent it with a set of dummy variables we need 2 dummies.</p>
-<table class="gmisc_table" style="border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
+<table class='gmisc_table' style='border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;' >
 <thead>
 <tr>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
-Levels
-</th>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
-D1
-</th>
-<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
-D2
-</th>
+<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>Levels</th>
+<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>D1</th>
+<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>D2</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">
-A
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
+<td style='text-align: center;'>A</td>
+<td style='text-align: center;'>0</td>
+<td style='text-align: center;'>0</td>
 </tr>
 <tr>
-<td style="text-align: center;">
-B
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
+<td style='text-align: center;'>B</td>
+<td style='text-align: center;'>1</td>
+<td style='text-align: center;'>0</td>
 </tr>
 <tr>
-<td style="border-bottom: 2px solid grey; text-align: center;">
-C
-</td>
-<td style="border-bottom: 2px solid grey; text-align: center;">
-0
-</td>
-<td style="border-bottom: 2px solid grey; text-align: center;">
-1
-</td>
+<td style='border-bottom: 2px solid grey; text-align: center;'>C</td>
+<td style='border-bottom: 2px solid grey; text-align: center;'>0</td>
+<td style='border-bottom: 2px solid grey; text-align: center;'>1</td>
 </tr>
 </tbody>
 </table>
