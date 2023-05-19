@@ -95,6 +95,7 @@ coefficients-3
 estimated-marginal-means-2
 post-hoc-tests-2
 plot-1
+other-options-2
 appendixa
 commuting-r2
 variance-explained

@@ -175,15 +175,17 @@ In the previous model, we can make a plot of the effect of beers (`x`) on smiles
 
 `r pic("bookletpics/2_output10.png")`
 
-The three lines depicted in the plot are the effects of `x` on `ycont`, estimated at different levels of `z`. Because `z` is continuous, `r modulename()` automatically sets the focal levels of `z` equal to the mean, on SD above the mean, and one SD below the mean (this can be changed, see below).
+The three lines depicted in the plot are the effects of `x` on `ycont`, estimated at different levels of `z`. Because `z` is continuous, `r modulename()` automatically sets the focal levels of `z` equal to the mean, one SD above the mean, and one SD below the mean (this can be changed, see below).
 
-As expected, the three effects depicted are perfectly parallel. This is because in multiple regression, the effect of each variable is computed keeping constant the other variable, which is equivalent to saying that the effects are computed as if they were the same at each level of the other variable. In other words, they are forced to be the same, no matter the data. But this constrain can be removed by adding an interaction in the model. An interaction allows the effect one variable to change at different levels of the other. In other words, an interaction allows the effect of `x` to depend on the levels of `z`. The interaction coefficient tells us how much the effect of one variable changes at different levels of the other. Let's do it.
-
-In the `r opt("Model")` panel, we select both variables on the left field and move them together to the right field, defining an interaction $x*z$.
+As expected, the three effects depicted are perfectly parallel. This is because in multiple regression, the effect of each variable is computed keeping constant the other variable, which is equivalent to saying that the effect is computed as if it were the same at each level of the other variable. In other words, the effects at different levels of the other variable are forced to be the same, no matter the data. But this constrain can be removed by adding an interaction in the model. 
+<div class="enf">
+An interaction allows the effect one variable to change at different levels of the other. In other words, an interaction allows the effect of `x` to depend on the levels of `z`. The interaction coefficient tells us how much the effect of one variable changes at different levels of the other. The value of the interaction coefficient is the expected change in the effect of one independent variable associated with one unit increase in the other independent variable.
+</div>
+Let's do it. In the `r opt("Model")` panel, we select both variables on the left field and move them together to the right field, defining an interaction $x*z$.
 
 `r pic("bookletpics/2_input11.png")`
 
-The results updated accordingly showing now also the interaction effects. 
+The results updated accordingly showing now also the interaction effect. 
 
 `r pic("bookletpics/2_output11.png")`
 
@@ -193,7 +195,7 @@ As regards the interaction effect, $x*z$, it tells us that the effect of beers (
 
 ## Moderation=interaction {#modint}
 
-Many authors calls this type of effect a moderation effect. They are correct, but there is nothing special about interactions between continuous variables. Any interaction effect, no matter if the independent variables are continuous or categorical, tests a moderation model. The only difference between moderation and interaction is theoretical. When we lay out a theoretical model, we declare which variable is the hypothesized moderator and which is the independent variable. Statistically, they are equivalent, and the strength of moderation is tested with an interaction. We will see that moderation models are tested also with categorical variables (within what people calls _ANOVA_) or when one variable is categorical and the other is continuous (within what people used to call _ANCOVA_, but not anymore). We have seen that naming techniques rather than models is cumbersome (\@ref(naming)). The same goes for _moderation_. Just keep in mind that moderation refers to a theoretical model, its statistical counterpart is _interaction_, for all kinds of variables.
+Many authors calls this type of effect a moderation effect. They are correct, but there is nothing special about interactions between continuous variables. Any interaction effect, no matter if the independent variables are continuous or categorical, tests a moderation model. The only difference between moderation and interaction is theoretical. When we lay out a theoretical model, we declare which variable is the hypothesized moderator and which is the independent variable. Statistically, they are equivalent, and the strength of moderation is tested with an interaction. We will see that moderation models are tested also with categorical variables (within what people calls _ANOVA_) or when one variable is categorical and the other is continuous (within what people used to call _ANCOVA_, but not anymore). We have seen that naming techniques rather than models is cumbersome (\@ref(naming)). The same goes for _moderation_. Just keep in mind that moderation refers to a theoretical model, its statistical counterpart is the _interaction_, for all kinds of variables.
 
 ## Simple Slopes {#simpleslopes}
 

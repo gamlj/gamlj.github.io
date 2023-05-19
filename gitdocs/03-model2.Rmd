@@ -73,7 +73,7 @@ A logistic model can be estimated when the dependent variable features two group
 
 `r pic("bookletpics/3_logistic_plot1.png")`
 
-It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a clouds that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in \@ref(homosched)), because the line will cross a strip once (so residual is zero) and depart from it everafter (increasing the residual variance).
+It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a cloud that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in \@ref(homosched)), because the line will cross a strip once (so residual is zero) and depart from it everafter (increasing the residual variance).
 
 The solution is to change the form of predicted values such that any values can be a sensible predicted value. To achieve this, we should first notice that when one has a dichotomous dependent variable, what one is predicting is the probability of being in the group scoring 1. Indeed, the predicted values are the expected (average) values of $y$ for each given $x_i$. The average value of a dichotomous variable is
 $$
@@ -170,7 +170,9 @@ Thus, if we take the exponential function of the logit B, we obtain the ratio be
 $$
 exp(b)={odd_{(x=1)} \over odd_{(x=0)}}
 $$
+<div class="enf">
 Therefore, `exp(B)` is a ratio between two odds, computed at two consecutive values of the independent variable. That is why it is called the _odd ratio_. It is _the rate of change of the odd as you increase the independent variable of one unit_. In other words, it indicates how many times the odd changes as one increases the exponential function of one unit. In our example `exp(B)=4.62`, so, for every beer more, the odd of going to the restroom increases of 4.62 times.
+</div>
 
 The odd ratio is the standard effect size used in logistic regression, but it is not the only one. In different disciplines other ways to quantify the logistic effects are used. `r modulename()` provides the most common ones: _Marginal effects_ and _Relative Risk_. Now we discuss the former because it is more appropriate with continuous `r IVs`. We discuss the RR when we deal with categorical `r IV` (cf \@ref(gzlmanova))
 
@@ -440,7 +442,7 @@ All other options, `r opt("Simple Interactions")`, `r opt("Factor Coding")`, `r 
 
 ## The Ordinal Model {#ordinal}
 
-Consider now a different type of variable: immagine we asked the people at the bar to expressed their appreciation of the bar. We gave them 5 options
+Consider now a different type of variable: immagine we asked the people at the bar to express their appreciation for the bar. We gave them 5 options
 
 * I will never come back
 * I may come back sometime
@@ -448,7 +450,7 @@ Consider now a different type of variable: immagine we asked the people at the b
 * I will come back often
 * I would like to be here every day
 
-Silly as it may seems, this variable represents a very common type of variable in science. It produces 5 possible values, that are clearly ordered in terms of preferences for the bar. Despite that, we cannot honestly assume that this is a continuous variable, because the distance between, say, _I will never come back_ and _I may come back sometime_ cannot be confidently be assumed to be the same as the distance between _I will come back often_ and _I would like to be here every day_. So, this is an _ordinal_ variable [@stevens1946theory]. The argument become more serious if we focus on the Likert scale [@likert1932technique], one of the most frequently used measurement instrument in social science. Different authors have claimed that a Likert scale is an ordinal variable and it cannot be considered a continuous scale, whereas other have claimed that the assumption of continuity does not really bias the results of parametric analyses. See for instance @wu2017can and the references there. We are not going to solve this conundrum here. We assume one has decided that the dependent variable is of the ordinal type.
+Silly as it may seems, this variable represents a very common type of variable in science. It produces 5 possible values, that are clearly ordered in terms of preferences for the bar. Despite that, we cannot honestly assume that this is a continuous variable, because the distance between, say, _I will never come back_ and _I may come back sometime_ cannot confidently be assumed to be the same as the distance between _I will come back often_ and _I would like to be here every day_. Nevertheless, It is plain to see that _I will never come back_ conveys much less appreciation than _I will come back often_, which is in turn less appreciative than _I would like to be here every day_ . So, this is an _ordinal_ variable [@stevens1946theory]. The argument become more serious if we focus on the Likert scale [@likert1932technique], one of the most frequently used measurement instrument in social science. Different authors have claimed that a Likert scale is an ordinal variable and it cannot be considered a continuous scale, whereas other have claimed that the assumption of continuity does not really bias the results of parametric analyses. See for instance @wu2017can and the references there. We are not going to solve this conundrum here. We assume one has decided that the dependent variable is of the ordinal type.
 
 ### Rationale
 
@@ -459,12 +461,12 @@ Consider our ordinal $y=\{1,2,3,4,5\}$, and say that each $i$ level (the choice 
 $$
 p(y\le k)=\sum_{i=1}^k \pi_i
 $$
-meaning, the probability to choose any level up to $k$ is the sum of the probabilities of the levels less or equal to $k$. As we have seen above (\@ref(logistic)), the linear model does not work well in predicting probabilities, so let express this probabilities as logits:
+meaning: the probability to choose any level up to $k$ is the sum of the probabilities of the levels less or equal to $k$. As we have seen above (\@ref(logistic)), the linear model does not work well in predicting probabilities, so let express these probabilities as logits:
 
 $$
 logit_k=log \left( {p(y\le k) \over p(y\gt k)}\right)=log \left({\sum_{i=1}^k \pi_i \over \sum_{i=k+1}^K \pi_i} \right)
 $$
-which translates into predicting the log of the odd of choosing  up to one level over choosing any other higher levels. Tha can be done with a linear model
+which translates into predicting the log of the odd of choosing  up to one level over choosing any other higher levels. That can be done with a linear model
 
 
 $$
@@ -485,19 +487,21 @@ logit_k=a_k-b x
 $$
 
 <div class="enf">
-In this model, intercepts are the log-odds of choosing a level or below that level. The regression coefficient describes the increase in log-odds of choosing a level or above associated with a one unit increase in $x$. In other words, the $b$ coefficient indicates how much the independent variable increases the probability of choosing an higher level, so making a step up on the ordinal scale.
+In this model, intercepts are the log-odds of choosing a level or below that level. The regression coefficient describes the increase in log-odds of choosing a level or above associated with a one unit increase in $x$. In other words, the $b$ coefficient indicates how much the independent variable increases the probability of choosing a higher level, so taking a step up on the ordinal scale.
 </div>
 
 Another way to see how the model works, is to consider the following plots.
 
 `r pic("bookletpics/3_ordinal_probs.png")`
 
-On the left panel, we have the cumulative probability functions for each level compared with any other lower levels. When the probability is predicted as a logit, its relationship with the independent variable is linearized (right panel), so we are fitting  regression lines, with different intercept but the same slope (lines are parallel). This is the proportional odds model. 
+On the left panel, we have the cumulative probability functions for each level compared with any other higher level. When the probability is predicted as a logit, its relationship with the independent variable is linearized (right panel), so we are fitting  regression lines, with different intercept but the same slope (lines are parallel). This is the proportional odds model. 
 
+
+`r modulename()` provides the proportional odds model as implemented by the R package `ordinal`. Details can be found in the `r ext_url("ordinal package vignettes","https://cran.r-project.org/web/packages/ordinal/vignettes/clm_article.pdf")`.
 
 ### Model Estimation
 
-We simply set the model as `Ordinal` at the top of the input variable, and set our dependent and independent variables as for any other model. Here we inserted as independent variables both a continuous ($x$) and a categorical variable ($cat3$), so we can explore more options and technique within the ordinal model.
+We simply set the model as `Ordinal` at the top of the input variable, and set our dependent and independent variables as for any other model. Here we inserted as independent variables both a continuous ($x$) and a categorical variable ($cat3$), so we can explore more options and techniques within the ordinal model.
 
 `r pic("bookletpics/3_ordinal_input1.png")`
 
@@ -505,11 +509,11 @@ We simply set the model as `Ordinal` at the top of the input variable, and set o
 
 `r pic("bookletpics/3_ordinal_output1.png")`
 
-In the `r tab("Model Info")` table we find a set of properties of the estimated model, as we for any other generalized linear model. The `direction` row indicates how the levels of the dependent variables are ordered, in this example as 1|2|3|4|5. This is usually obvious, but in some cases it is important to check that the order of the dependent variable levels is indeed how intended by the user.
+In the `r tab("Model Info")` table we find a set of properties of the estimated model, as we have seen for all the other generalized linear models. The `direction` row indicates how the levels of the dependent variables are ordered, in this example as 1|2|3|4|5. This is usually obvious, but in some cases it is important to check that the order of the dependent variable levels is indeed how intended by the user.
 
 ### Parallel Lines test {#parallellines}
 
-Before looking at the results of the model estimation, we should remember that the ordinal model estimated by `r modulename()` is a _proportional odd model_, in which we assume that the coefficient associated with an independent variable is the same for all logit estimated along the dependent variable scale (cf \@ref(ordinal)). `r modulename()` provides a test for this assumption, usually named _parallel lines test_. It is named like that because proportional odds functions, when estimated in the logit scale, are equivalent to parallel lines.
+Before looking at the results of the model estimation, we should remember that the ordinal model estimated by `r modulename()` is a _proportional odds model_, in which we assume that the coefficient associated with an independent variable is the same for all logit estimated along the dependent variable scale (cf \@ref(ordinal)). `r modulename()` provides a test for this assumption, usually named _parallel lines test_. It is named like that because proportional odds functions, when estimated in the logit scale, are equivalent to parallel lines.
 
 The logic of the test is simple: the model with all coefficients of an independent variable set equal is compared with a model in which the coefficients are allowed to vary from logit to logit. The two models are compared with a log-likelihood ratio test. If the test is not significant, we have indication that the assumption of proportional odd is met. When significant, we have indication that a breach to the assumption may be in place.
 
@@ -519,7 +523,7 @@ The test can be found in the input  `r opt("Options")` panel.
 
 `r pic("bookletpics/3_ordinal_output7.png")`
 
-The test is performed for each independent variable effect. We can see that no problem arises with $x$, because the $\chi^2$ is clearly not significant. A doubt can be cast n `cat3`, that show that the assumption of proportional odds does not perfectly apply to its effects ($\chi^2=16.48$, $p=.011$). It should be said, however, that this tests are quite conservative, so one should be very lenient in their interpretation. One can argue, for instance, that the deviation from the assumption does not seem very strong, so the model can be saved and the results interpreted anyway.
+The test is performed for each independent variable effect. We can see that no problem arises with $x$, because the $\chi^2$ is clearly not significant. A doubt can be cast on `cat3`, that show that the assumption of proportional odds does not perfectly apply to its effects ($\chi^2=16.48$, $p=.011$). It should be said, however, that this tests are quite conservative, so one should be very lenient in their interpretation. One can argue, for instance, that the deviation from the assumption does not seem very strong, so the model can be saved and the results interpreted anyway.
 
 ### Model Fit
 
@@ -534,25 +538,25 @@ The additional indices reported in `r tab("Additional indices")` reports other i
 
 ### Omnibus Tests
 
-As for all the other generalized linear models, we have omnibus tests for the effects of our `r IVs`. They are especially useful when dealing with categorical independent variables, because with continuous independent variables they are redundant as compare with the coefficients tests. With one `r IV`, the omnibus test is equivalent to the model fit test.
+As for all the other generalized linear models, we have omnibus tests for the effects of our `r IVs`. They are especially useful when dealing with categorical independent variables, because with continuous independent variables they are redundant as compare with the coefficients tests.
 
 `r pic("bookletpics/3_ordinal_output3.png")`
 
-We notice in our example that both variable show a significant effects. Thus, keeping the other constant, each variable is able to influence the probability of choosing an higher level of the ordinal variable. We can now probe these effects to understand their size and their direction.
+We noticed in our example that both variables show significant effects. Thus, while keeping the other constant, each variable is able to influence the probability of choosing a higher level of the ordinal variable. We can now examine these effects to understand their size and direction.
 
 ### Coefficients
 
 `r pic("bookletpics/3_ordinal_output4.png")`
 
-The first rows of the table report the intercepts, in this context called _thresholds_. Those are the expected logit (under `Estimate` column) or the expected odd (uder `exp(b)` column) of the regression fitted for each logit. They are seldom interpreted, but they are basically the odds of choosing a level or lower over choosing any higher level, for all `r IVs` equal to zero.
+The first rows of the table report the intercepts, in this context called _thresholds_. Those are the expected logit (under `Estimate` column) or the expected odd (under `exp(b)` column) of the regression fitted for each logit. They are seldom interpreted, but they are basically the odds of choosing a level or lower over choosing any higher level, for all `r IVs` equal to zero.
 
-The $x$ effect $b=1.343$ and its $exp(B)=3.831$ indicate the effect of the independent variable on the probability of choosing an higher level: for one unit more in $x$, the odd of passing from one level to the higher level increases of $3.831$ times. Thus, the more beers one drinks ($x$), the higher is the appreciation of the bar. As regards the effects of `cat3`, `IPA` group, as compared with `pilsner` group, as an odd of increasing the chosen level .630 times smaller, whereas for the `stout` groups the odd is 1.097 times larger. The latter comparison is significant.
+The $x$ effect $b=1.343$ and its $exp(B)=3.831$ indicate the effect of the independent variable on the probability of choosing an higher level: for one unit more in $x$, the odd of passing from one level to the higher level increases of $3.831$ times. Thus, the more beers one drinks ($x$), the higher is the appreciation of the bar. As regards the effects of `cat3`, as compared with `pilsner` group, the `IPA` group has an odd of increasing the chosen level .630 times smaller, whereas for the `stout` group the odd is 1.097 times larger. The latter comparison is significant.
 
 We can probe the categorical variable effect by displaying and evaluating the expected means.
 
 ### Estimated marginal means
 
-Obtained as for any other model in the input (cf \@ref(estimated-marginal-means)), the estimated marginal means for the ordered model are expected mean classes, which means the expected mean level chosen, broken down by groups defined by the independent variable.
+Obtained as for any other model in the input (cf \@ref(estimated-marginal-means)), the estimated marginal means for the ordered model are expected mean classes: the expected mean level chosen, broken down by groups defined by the independent variable.
 
 `r pic("bookletpics/3_ordinal_output5.png")`
 
@@ -564,16 +568,16 @@ Post-hoc tests are asked in the input and interpreted as for any other model (cf
 
 `r pic("bookletpics/3_ordinal_output6.png")`
 
-The only remark needed here is that for ordinal models, the group comparisons are done on the logit, so they are tested as groups comparisons on the difference in logit. In the table, however, they are reported as odd ratios (the difference in logit is exponentiated before display it in the table).
+The only remark needed here is that for ordinal models, the group comparisons are conducted using the logit, testing them as comparisons of groups based on the difference in logit. However, in the table, these comparisons are reported as odds ratios, where the difference in logit is exponentiated before being displayed.
 
-In our example, we can see that `IPA` group shows an odd of increasing the dependent variable level $Ratio=1.88$ times larger than the `pilsner`, not significantly different, $z=1.363$, $p.=518$, `stout` group shows an odd of increasing the dependent variable level $Ratio=2.97$ times larger than the `pilsner`, not significantly different, $z=2.265$, $p.=0.070$, whereas `stout` group shows an odd of increasing the dependent variable level $Ratio=1.58$ times larger than the `pilsner`, again not significantly different, $z=0.980$, $p.=.982$. We can notice that the same odd ratios were reported in the `r tab("Parameter Estimates (Coefficients)")` table, with different p-values because no adjustment was operated there.
+In our example, we can see that `IPA` group shows an odd of increasing the dependent variable level $Ratio=1.88$ times larger than the `pilsner`, not significantly different, $z=1.363$, $p.=518$. The `stout` group shows an odd of increasing the dependent variable level $Ratio=2.97$ times larger than the `pilsner` group, not significantly different, $z=2.265$, $p.=0.070$, whereas `stout` group shows an odd of increasing the dependent variable level $Ratio=1.58$ times larger than the `pilsner`, again not significantly different, $z=0.980$, $p.=.982$. We can notice that the same odd ratios were reported in the `r tab("Parameter Estimates (Coefficients)")` table, with different p-values because no adjustment was operated there.
 
 
 ### Plot
 
-When dealing with generalized linear model, it is always a good idea to have a look at the effect in terms association of the predicted values with the independent variables. For ordinal models, we can choose two types of predicted values: 
+When dealing with generalized linear model, it is always a good idea to have a look at the effects in terms association of the predicted values with the independent variables. For ordinal models, we can choose two types of predicted values: 
 
-1) __response__, the predicted values are expressed in probability of belonging to a level of the dependent variable. In our example, the plot diplays the probability of choosing any of the response level as a function of the independent variables. 
+1) __Response__, the predicted values are expressed in probability of belonging to a level of the dependent variable. In our example, the plot diplays the probability of choosing any of the response level as a function of the independent variables. 
 2) __Mean class__, the predicted values are the expected classes, coded from 1 to $K$. In our example it would display the expected average classes as a funtion of the independent variable values. Let us see both versions.
 
 The input is as usual.
@@ -584,7 +588,7 @@ By default we have the `r opt("Response")` option, so the type is the probabilit
 
 `r pic("bookletpics/3_ordinal_plot1.png")`
 
-Here we can follow the probability function and see which levels are more likely and which are less likely as we increase the level of the independent variable. It is clear that the highest levels (4 and 5) become more and mode likely when we increase $x$, such that the lower levels (1 and 2) become less and less likely. 
+Here, we can track the probability function to observe the likelihood of different levels as we increase the independent variable. It is evident that the higher levels (4 and 5) become increasingly likely as we increase $x$, while the lower levels (1 and 2) become less probable.
 
 A similar information can be obtained if we select `r opt("Mean class")` in  `r opt("Plot type")`. 
 
@@ -594,4 +598,7 @@ Here we see what is the average expected level as a function of $x$. For low val
 
 Depending on the specific application, one of the two plot types may result useful. 
 
+### Other options
+
+All other options, `r opt("Simple Interactions")`, `r opt("Factor Coding")`, `r opt("Covariates Scaling")`, `r opt("Bootstrap")` confidence intervals, `r opt("Model comparison")` etc. are the same as in the GLM.
 
