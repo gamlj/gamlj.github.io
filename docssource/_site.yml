@@ -25,7 +25,7 @@ output:
   html_document:
     css: 
      - style.css
-     - mcstyle.css
+     - helpstyle.css
     theme: flatly
 
     
