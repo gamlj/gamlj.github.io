@@ -1,17 +1,19 @@
 --- 
 title: "GAMLj Models"
 author: "Marcello Gallucci"
-date: "2023"
-site: bookdown::bookdown_site
+date: '2023'
+output: pdf_document
 documentclass: book
-bibliography: [book.bib, thisbook.bib]
+bibliography:
+- book.bib
+- thisbook.bib
 biblio-style: apalike
 link-citations: yes
-github-repo: mcfanda/jmvScaffold
-description: "Examples of using GAMLj jamovi module to estimates different types of linear models"
+github-repo: mcfanda/gamlj.github.io
+description: Examples of using GAMLj jamovi module to estimates different types of
+  linear models
+site: bookdown::bookdown_site
 ---
-
-
 
 ```{r results='hide', echo=FALSE}
 library(mcdocs)
@@ -46,12 +48,23 @@ First, we need to install `r jamovi`, and within it, install `r modulename()`.
 
 * Within `r jamovi`, access the library and install `r modulename()`
 
-`r pic("bookletpics/0_library1.png")`
-`r pic("bookletpics/1_library2.png")`
+
+```{r ,echo=FALSE, out.width="90%"}
+knitr::include_graphics("bookletpics/0_library1.png")
+```
+
+
+```{r ,echo=FALSE, out.width="90%"}
+knitr::include_graphics("bookletpics/0_library2.png")
+```
+
 
 Installing the module produces a new icon in the icons bar, and the new icon gives access to the list of the module available analyses.
 
-`r pic("bookletpics/0_menu1.png")`
+```{r ,echo=FALSE, out.width="90%"}
+knitr::include_graphics("bookletpics/0_menu1.png")
+```
+
 
 Here we always refer to  `r version("3.0.0")`. If you need to work with previous versions, you can refer to  `r ext_url("GAMLj legacy help","https://gamlj.github.io/gamlj_legacy/")`
 We are ready to go.
@@ -66,7 +79,10 @@ I agree with the idea that $x$, $y$, and $z$ datasets are boring, and real data 
 
 Both datasets can be opened from `r jamovi` data library.
 
-`r pic("bookletpics/0_datalibrary1.png")`
+```{r ,echo=FALSE, out.width="90%"}
+knitr::include_graphics("bookletpics/0_datalibrary1.png")
+```
+
 
 ## What's in a name {#naming}
 

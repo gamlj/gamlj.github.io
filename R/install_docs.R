@@ -3,17 +3,13 @@ library(mcdocs)
 
 bookdown::render_book("gitdocs/",output_dir = "../docs/book",clean = T)
 
+"bookdown::pdf_book"
+bookdown::render_book("gitdocs/",output_dir = "../docs/book",clean = T, output_format = "bookdown::pdf_book")
+
 pkgdown::build_site(preview = FALSE)
 
-str(knitr::knit_engines$get()) 
 ## this renders the website
 #render_mcdocs()
 
 ## this update your github site
 #update_git()
-.610/.500
-
-# old tag G-2YGWBQCQK3
-.30^2
-
-.768/.409
