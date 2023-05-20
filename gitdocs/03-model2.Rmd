@@ -5,7 +5,9 @@ date: "2023"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-github-repo: mcfanda/jmvScaffold
+bibliography: [book.bib, thisbook.bib]
+biblio-style: apalike
+github-repo: mcfanda/gamlj.github.io
 description: "Examples of using GAMLj jamovi module to estimates different types of linear models"
 ---
 
@@ -291,7 +293,7 @@ The _probit_ function uses the inverse of the cumulative distribution function o
 
 The fact that the logit and the probit models give almost identical results can be easily understood by looking at the way the two link functions transform probabilities in real values: practically in the same way. 
 
-`r pic("https://upload.wikimedia.org/wikipedia/commons/3/39/Logit-probit.svg")`
+`r pic("bookletpics/logitprobit.png")`
 
 ## The Multinomial Model {#multinomial}
 
@@ -464,7 +466,7 @@ $$
 meaning: the probability to choose any level up to $k$ is the sum of the probabilities of the levels less or equal to $k$. As we have seen above (\@ref(logistic)), the linear model does not work well in predicting probabilities, so let express these probabilities as logits:
 
 $$
-logit_k=log \left( {p(y\le k) \over p(y\gt k)}\right)=log \left({\sum_{i=1}^k \pi_i \over \sum_{i=k+1}^K \pi_i} \right)
+logit_k=log \left( {p(y\le k) \over p(y > k)}\right)=log \left({\sum_{i=1}^k \pi_i \over \sum_{i=k+1}^K \pi_i} \right)
 $$
 which translates into predicting the log of the odd of choosing  up to one level over choosing any other higher levels. That can be done with a linear model
 
@@ -602,3 +604,8 @@ Depending on the specific application, one of the two plot types may result usef
 
 All other options, `r opt("Simple Interactions")`, `r opt("Factor Coding")`, `r opt("Covariates Scaling")`, `r opt("Bootstrap")` confidence intervals, `r opt("Model comparison")` etc. are the same as in the GLM.
 
+## Poisson Model
+
+Very often, rather than measuring quantities we count stuff. 
+
+`r incomplete`

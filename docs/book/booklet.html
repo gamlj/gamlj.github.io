@@ -12,7 +12,7 @@
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
-  <meta name="github-repo" content="mcfanda/jmvScaffold" />
+  <meta name="github-repo" content="mcfanda/gamlj.github.io" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="GAMLj Models" />
@@ -52,6 +52,15 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KM7X6HK5HM');
+</script>
 
 
 <style type="text/css">
@@ -292,6 +301,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.6.10" data-path="gzlm.html"><a href="gzlm.html#plot-1"><i class="fa fa-check"></i><b>3.6.10</b> Plot</a></li>
 <li class="chapter" data-level="3.6.11" data-path="gzlm.html"><a href="gzlm.html#other-options-2"><i class="fa fa-check"></i><b>3.6.11</b> Other options</a></li>
 </ul></li>
+<li class="chapter" data-level="3.7" data-path="gzlm.html"><a href="gzlm.html#poisson-model"><i class="fa fa-check"></i><b>3.7</b> Poisson Model</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -361,10 +371,10 @@ div.csl-indent {
 <li><p>To install <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>, download it from the <a href='http://www.jamovi.org' target='_blank'>jamovi website</a>.</p></li>
 <li><p>Within <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>, access the library and install <span class="modulename">GAMLj</span></p></li>
 </ul>
-<p><img src="bookletpics/0_library1.png" width="202" />
-<img src="bookletpics/1_library2.png" width="704" /></p>
+<p><img src="bookletpics/0_library1.png" width="90%" /></p>
+<p><img src="bookletpics/0_library2.png" width="90%" /></p>
 <p>Installing the module produces a new icon in the icons bar, and the new icon gives access to the list of the module available analyses.</p>
-<p><img src="bookletpics/0_menu1.png" width="264" /></p>
+<p><img src="bookletpics/0_menu1.png" width="90%" /></p>
 <p>Here we always refer to <span class="version"> <span class="versiontitle"> GAMLj version ≥ </span> 3.0.0 </span>. If you need to work with previous versions, you can refer to <a href='https://gamlj.github.io/gamlj_legacy/' target='_blank'>GAMLj legacy help</a>
 We are ready to go.</p>
 </div>
@@ -374,7 +384,7 @@ We are ready to go.</p>
 <p>The first dataset containing these variables is called <code>manymodels</code> and simulates a sample of 120 cases drawn randomly for a population. We are going to use this dataset for the general linear model (Chapter <a href="glm.html#glm">2</a>) and the generalized linear models. The second dataset, named <code>clustermanymodels</code> has the same variables, but the data a simulated as drawn from 30 different clusters. We are going to use this dataset for the mixed model and the generalized mixed models.</p>
 <p>I agree with the idea that <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span> datasets are boring, and real data examples are more engaging. Nonetheless, <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span> datasets allow exploring many different situations that real data often do not (at least not with one or two datasets), and do not take away the reader’s attention from the stats. We will invent some cover story to make the examples more engaging and easier to follow.</p>
 <p>Both datasets can be opened from <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> data library.</p>
-<p><img src="bookletpics/0_datalibrary1.png" width="762" /></p>
+<p><img src="bookletpics/0_datalibrary1.png" width="90%" /></p>
 </div>
 <div id="naming" class="section level2 hasAnchor" number="1.4">
 <h2><span class="header-section-number">1.4</span> What’s in a name<a href="booklet.html#naming" class="anchor-section" aria-label="Anchor link to header"></a></h2>
