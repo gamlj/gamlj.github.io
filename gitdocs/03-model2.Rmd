@@ -104,7 +104,7 @@ $$
 Everything we can do with a linear model can be done with the logistic model, we just need to keep in mind that the interpretation of the results must consider the fact that the predicted values have a logistic scale, and not the original dependent variable scale.
 </div>
 
-### Model Estimation
+### Model Estimation {#logisticestim}
 
 We can use our _manymodels_ dataset to see an example of a logistic model. The dataset contains a dichotomous dependent variables called `ybin`, which features two groups. To keep up with our cover story, we can imaging it to represent visiting the toilet behavior. $ybin=1$ means that the customer has visited the bar restroom, $ybin=0$ means that the client has not visited the restroom that evening.
 
@@ -115,13 +115,16 @@ The aim of the model is to estimate the relationship between number of beers ($x
 
 In `r modulename()` we launch `Generalized Linear Models` menu of the `Linear Models` icon. The first part of the user interface allows selecting the appropriated model. In our case, we selected `r opt("Logistic")` because our dependent variable is a dichotomous variable. 
 
-`r pic("bookletpics/3_logistic_input1.png")`
+```{r ,echo=FALSE, out.width="90%"}
+knitr::include_graphics("bookletpics/3_logistic_input1.png")
+```
+
 
 Once we have selected the model, we can set up the variables in the variables role fields, as we did in the GLM (cf. \@ref(glminput)). 
 
 `r pic("bookletpics/3_logistic_input2.png")`
 
-### Model Recap
+### Model Recap {#logisticrecap}
 
 `r pic("bookletpics/3_logistic_output1.png")`
 

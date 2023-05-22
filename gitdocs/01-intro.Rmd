@@ -49,19 +49,19 @@ First, we need to install `r jamovi`, and within it, install `r modulename()`.
 * Within `r jamovi`, access the library and install `r modulename()`
 
 
-```{r ,echo=FALSE, out.width="90%"}
+```{r ,echo=FALSE, out.width="40%", fig.align='center'}
 knitr::include_graphics("bookletpics/0_library1.png")
 ```
 
 
-```{r ,echo=FALSE, out.width="90%"}
+```{r ,echo=FALSE, out.width="90%", fig.align='center'}
 knitr::include_graphics("bookletpics/0_library2.png")
 ```
 
 
 Installing the module produces a new icon in the icons bar, and the new icon gives access to the list of the module available analyses.
 
-```{r ,echo=FALSE, out.width="90%"}
+```{r ,echo=FALSE, out.width="50%"}
 knitr::include_graphics("bookletpics/0_menu1.png")
 ```
 
