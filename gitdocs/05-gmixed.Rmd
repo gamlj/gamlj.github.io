@@ -147,7 +147,7 @@ All other options available in the logistic generalized mixed model operate simi
 
 ## Other model charateristics
 
-As mentioned, all other model within the generalized mixed model can be estimated and interpreted based on the material of the previous chapters. When setting up the models, one can refer to the mixed model (r cap("gzlm")), and when interpreting the results, one can refer to the generalized linear model (r cap("gzlm")).
+As mentioned, all other model within the generalized mixed model can be estimated and interpreted based on the material of the previous chapters. When setting up the models, one can refer to the mixed model (`r cap("gzlm")`), and when interpreting the results, one can refer to the generalized linear model (`r cap("gzlm")`).
 
 A few notes are nonetheless interesting to mention.
 
