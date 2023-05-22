@@ -13,7 +13,7 @@
 
 <title>Generalized Mixed Models module</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -35,14 +35,14 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-110344212-1');
+  gtag('config', 'G-KM7X6HK5HM');
 </script>
 
 <style type="text/css">
@@ -71,6 +71,7 @@ if (window.hljs) {
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="helpstyle.css" type="text/css" />
 
 
 
@@ -377,7 +378,8 @@ div.tocify {
 <p><span class="version"> <span class="versiontitle"> GAMLj version ≥
 </span> 2.0.0 </span></p>
 <p><strong>Generalized Mixed Linear Models</strong> module of the GAMLj
-suite for <span class="jamovi">jamovi</span></p>
+suite for <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span></p>
 <p><img src="gzlmmixed/main.png" class="img-responsive" alt=""></p>
 <p>The module estimates generalized mixed linear models with categorial
 and/or continuous variables, with options to facilitate estimation of
@@ -447,7 +449,8 @@ custom model.</p>
 <h1>Estimates</h1>
 <p>The module provides parameter estimates of the fixed effects, the
 random variances and correlation among random coefficients.</p>
-<p>Variables definition follows <span class="jamovi">jamovi</span>
+<p>Variables definition follows <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
 standards, with categorical independent variables defined in “fixed
 factors” and continuous independent variables in “covariates”.</p>
 <p><img src="gzlmmixed/estimates.png" class="img-responsive" alt=""></p>
@@ -492,14 +495,12 @@ model. When a variable is selected in the <span
 class="option">Components</span> field, a little number appears on the
 right side of the selection. The number indicates the <em>order</em> of
 the effect.</p>
-<p><img src="commons/pics/nonlinear1.png" class="img-responsive" alt=""></p>
+<p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
 <p>By increasing that number before dragging the term into the <span
 class="option">Model Terms</span> field, one can include any high order
-effect.</p>
-<p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
-<p>Increasing the order number and combining the selection with other
-variables allows including interactions involving higher order effects
-of a variable.</p>
+effect. Increasing the order number and combining the selection with
+other variables allows including interactions involving higher order
+effects of a variable.</p>
 </div>
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
@@ -592,13 +593,31 @@ should be associated with the estimates and plots of simple effects as
 follows:</p>
 <ul>
 <li><p><span class="option">Labels</span> produces strings of the form
-<span class="math inline">\(Mean \pm SD\)</span></p></li>
+<span class="math inline">\(Mean \pm SD\)</span>.</p></li>
 <li><p><span class="option">Values</span> uses the actual values of the
-variables</p></li>
+variables, after scaling.</p></li>
 <li><p><span class="option">Labels+Values</span> produces labels of the
 form <span class="math inline">\(Mean \pm SD=XXXX\)</span>, where
 <code>XXXX</code> is the actual value.</p></li>
+<li><p><span class="option">Unscaled Values</span> produces labels
+indicating the actual value (of the mean and sd) of the original
+variable scale. This can be useful, for instance, when the user needs
+the estimates to be obtained with centered variables (because there are
+interactions, for instance), but the plot of the effects is preferred in
+the original scales of the moderators.</p></li>
+<li><p><span class="option">Unscaled Values + Labels</span> as the
+previous option, but add also the label “Mean” and “SD” to the orginal
+values.</p></li>
 </ul>
+<p>The <span class="option">Scaling on</span> option decides how the
+scaling of the variables handle missing values: First, keep in mind that
+the model will be estimated on complete cases, no matter how this option
+is set. When there are missing values, however, one can scale each
+variable only on the complete cases (the default), or scale
+<code>columnwise</code>. If <code>columnwise</code> is selected, the
+mean and standard deviation of each variable used to scale the scores
+are computed with the available data of the variable, independently of
+possible missing values in other variables.</p>
 </div>
 <div id="post-hocs" class="section level1">
 <h1>Post-hocs</h1>
@@ -619,7 +638,7 @@ interaction means plots, simple slopes, and combinations of them. The
 best plot is chosen automatically.</p>
 <p>By filling in <span class="option">Horizontal axis</span> one obtains
 the group means of the selected factor or the regression line for the
-selected covariate</p>
+selected covariate.</p>
 <p>By filling in <span class="option">Horizontal axis</span> and <span
 class="option">Separated lines</span> one obtains a different plot
 depending on the type of variables selected:</p>
@@ -638,24 +657,14 @@ simple slopes graph of the simple slopes of the variable in horizontal
 axis estimated at three different levels of the covariate.</li>
 </ul>
 <p>By filling in <span class="option">Separate plots</span> one can
-probe three-way interactions. If the selected variable is a factor, one
-obtains a two-way graph (as previously defined) for each level of the
-“Separate plots” variable. If the selected variable is a covariate, one
-obtains a two-way graph (as previously defined) for the
+probe higher-order interactions. If the selected variable is a factor,
+one obtains a two-way graph (as previously defined) for each level of
+the “Separate plots” variable. If the selected variable is a covariate,
+one obtains a two-way graph (as previously defined) for the
 <code>Separate plots</code> variable centered to conditioning values
 selected in the <span class="option">Covariates conditioning</span>
-options.</p>
-<p>Flagging the <span class="option">Display</span> options add <span
-class="option">Confidence intervals</span> (or confidence bands) or
-<span class="option">Standard errors</span> to the plots.</p>
-<p><span class="option">Plot</span> options allows to add observed data
-to the plot (<span class="option">Observed scores</span>) or to fix the
-range of the plot to the actual range of the dependent variable (<span
-class="option">Y-axis observed range</span>), without the need to plot
-the actual predicted values. When <code>Separate plots</code> are
-required, in each plot are showed only the observed scores of the
-moderator level for which the plot is done when the moderator is a
-categorical one, otherwise all data are plot in each plot.</p>
+options. Any number of plots can be obtained depending on the order of
+the interaction.</p>
 <p>By flagging <span class="option">Random effects</span> one obtains
 the random effects estimated values in the plot along with the fixed
 effects. In case of multiple cluster variables, the first cluster
@@ -668,11 +677,13 @@ the “variable role” definition.</p>
 <h1>Estimated marginal means</h1>
 <p><img src="commons/pics/emmeans.png" class="img-responsive" alt=""></p>
 <p>Print the estimate expected means, SE, df and confidence intervals of
-the precicted dependent variable by factors in the model. When `<span
-class="option">Include covariates</span> is selected, factors levels are
-crossed also with the conditiong levels of the continuous variables (if
-any). The conditioning values are selected in <span
-class="option">Covariates Scaling</span> panel.</p>
+the predicted dependent variable by factors in the model. Any
+combination available in the model (main effects, interactions,
+non-linear terms), can be requested. If the term involves categorical
+independent variables, means of each level of the variable are
+presented. If the term involves continuous variables, expected means
+computed at the levels defined in <code>Covariate Scaling</code> are
+presented.</p>
 </div>
 <div id="options" class="section level1">
 <h1>Options</h1>
@@ -696,8 +707,8 @@ manual</a></p>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
 <p>Some worked out examples of the analyses carried out with <span
-class="jamovi">jamovi</span> GAMLj Mixed models are posted here (more to
-come)</p>
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+GAMLj Mixed models are posted here (more to come)</p>
 <ul>
 <li>
 <a href="glmmixed_example1.html">Logistic mixed model in jamovi</a>

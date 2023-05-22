@@ -13,7 +13,7 @@
 
 <title>GAMLj: General Analyses for the Linear Model in Jamovi</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -32,14 +32,14 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-110344212-1');
+  gtag('config', 'G-KM7X6HK5HM');
 </script>
 
 <style type="text/css">
@@ -68,6 +68,7 @@ if (window.hljs) {
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="helpstyle.css" type="text/css" />
 
 
 
@@ -293,27 +294,49 @@ Model in Jamovi</h1>
 </div>
 
 
+<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 3.0.0 </span></p>
+<p>This documentation it is being updated toward <span
+class="modulename">GAMLj</span> version 3 and above. You still find much
+of the material suitable for <span class="modulename">GAMLj</span>
+version 2. In case you want to read documentation that applies only to
+version 2, please go to
+<a href='https://mcfanda.github.io/gamlj_legacy.github.io/' target='_blank'>Version
+2 docs</a>.</p>
+<div class="bignote">
+<p>If you are interested in more information about the statistical
+models that can be estimated by <span class="modulename">GAMLj</span>,
+and their results interpretation, you can read
+<a href='https://gamlj.github.io/book/booklet.html' target='_blank'>GAMLj
+models</a>, a (in progress) web book companion to the module.</p>
+</div>
 <p>General, Mixed and Generalized Models module for <span
-class="jamovi">jamovi</span></p>
-<p><img src="commons/pics/ui.png" class="img-responsive" alt="commons/pics/ui.png" width="400"></p>
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>.</p>
+<p><img src="commons/pics/ui.png" width="1287" /></p>
 <p>GAMLj offers tools to estimate, visualize, and interpret General
 Linear Models, Mixed Linear Models and Generalized Linear Models with
-categorial and/or continuous variables, with options to facilitate
+categorical and/or continuous variables, with options to facilitate
 estimation of interactions, simple slopes, simple effects, post-hoc
 tests, etc.</p>
 <ul>
 <li>ANOVA and Regression approach</li>
 <li>Continuous and categorical independent variables</li>
-<li>F-test and parameter estimates</li>
-<li>Confidence intervals</li>
+<li>F-test, LR tests, and parameter estimates</li>
+<li>Confidence intervals, standard, profile and bootstrap</li>
 <li>Moderation made easy</li>
 <li>Simple slopes analysis</li>
-<li>Simple effects</li>
-<li>post-hocs analysis</li>
-<li>Plots for up to three-way interactions</li>
+<li>Simple effects analysis</li>
+<li>Simple interaction analysis</li>
+<li>Post-hoc analysis</li>
+<li>Plots for any order of interactions</li>
 <li>Automatic selection of best estimation methods and degrees of
 freedom selection</li>
 <li>Type III estimation</li>
+<li>A large set of effect size indices, depending on the model being
+estimated, such as <span class="math inline">\(\eta^2\)</span>, <span
+class="math inline">\(\omega^2\)</span>, <span
+class="math inline">\(\epsilon^2\)</span>, and Cohen’s <span
+class="math inline">\(d\)</span>, both partial and not partial.</li>
 </ul>
 <p>Available models are:</p>
 <ul>
@@ -333,9 +356,23 @@ freedom selection</li>
 <li>Overdispersed Poisson regression (GZLM)</li>
 <li>Overdispersed Poisson ANOVA-like model (GZLM)</li>
 <li>Negative binomial regression (GZLM)</li>
-<li>Negative binomail ANOVA-like model (GZLM)</li>
-<li>Random coefficients logistic model (GlmMixed)</li>
-<li>Random coefficients poisson model (GlmMixed)</li>
+<li>Negative binomial ANOVA-like model (GZLM)</li>
+<li>Ordinal regression (GZLM)</li>
+<li>Ordinal ANOVA-like model (GZLM)</li>
+<li>Mixed Logistic regression (GMixed)</li>
+<li>Mixed Logistic ANOVA-like model (GMixed)</li>
+<li>Mixed Probit regression (GMixed)</li>
+<li>Mixed Probit ANOVA-like model (GMixed)</li>
+<li>Mixed Multinomial regression (GMixed)</li>
+<li>Mixed Multinomial ANOVA-like model (GMixed)</li>
+<li>Mixed Poisson regression (GMixed)</li>
+<li>Mixed Poisson ANOVA-like model (GMixed)</li>
+<li>Mixed Overdispersed Poisson regression (GMixed)</li>
+<li>Mixed Overdispersed Poisson ANOVA-like model (GMixed)</li>
+<li>Mixed Negative binomial regression (GMixed)</li>
+<li>Mixed Negative binomail ANOVA-like model (GMixed)</li>
+<li>Mixed Ordinal regression (GMixed)</li>
+<li>Mixed Ordinal ANOVA-like model (GMixed)</li>
 </ul>
 <p>Please visit the sub-modules pages for details:</p>
 <ul>
@@ -347,8 +384,8 @@ freedom selection</li>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
 <p>Some worked out examples of the analyses carried out with <span
-class="jamovi">jamovi</span> <span class="modulename">GAMLj</span> are
-posted here (more to come)</p>
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+<span class="modulename">GAMLj</span> are posted here (more to come)</p>
 <div class="littletitle">
 General Linear Model
 </div>

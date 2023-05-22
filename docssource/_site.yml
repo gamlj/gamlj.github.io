@@ -23,7 +23,9 @@ navbar:
     href: https://github.com/gamlj/gamlj
 output:
   html_document:
-    css: style.css
+    css: 
+     - style.css
+     - helpstyle.css
     theme: flatly
 
     

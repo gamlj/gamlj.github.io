@@ -9,6 +9,10 @@ output:
      toc: true
      toc_float:
         collapsed: false
+bibliography: 
+     - bib.bib
+link-citations: true
+        
 ---
 
 
@@ -19,22 +23,21 @@ mcdocs_init()
 
 **General Linear Model** module of the GAMLj suite for jamovi
 
-`r version("2.6.0")` 
+`r version("3.0.0")` 
 
-<img src="glm/main.png  " class="img-responsive" alt="">
+`r pic("glm/main.png")`
 
 The module estimates a general linear model with categorical and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, etc.
 
-# Module
 The module can estimate OLS linear models for any combination of categorical and continuous variables, thus providing an easy way for multiple regression, ANOVA, ANCOVA and moderation analysis. 
 
 # Estimates
-The module provides ANOVA tables and parameters estimates for any estimated model. Effect size indices (eta, partial eta, partial omega, partial epsilon, and beta) are optionally computed.
+The module provides ANOVA tables and parameters estimates for any estimated model. Variance-based effect size indices (eta, partial eta, partial omega, partial epsilon, and beta) and mean comparisons (Cohen's d) are optionally computed.
 
-Variables definition follows jamovi standards, with categorical independent variables defined in `r opt("Factors")` and continuous independent variables in `r opt("Covariates")`.
+Variables definition follows `r jamovi` standards, with categorical independent variables defined in `r opt("Factors")` and continuous independent variables in `r opt("Covariates")`.
 
-<img src="glm/variables.png" class="img-responsive" alt="">
-
+ `r pic("glm/variables.png")`
+ 
 Effect size indices are optionally computed by selecting the following options (see  `r link_pages("details_glm_effectsize")`):
 
   - $\beta$ : standardized regression coefficients
@@ -46,17 +49,21 @@ Effect size indices are optionally computed by selecting the following options (
   - $\epsilon^2$p : partial epsilon-squared 
 
 
-Confidence intervals of the parameters can be also selected in `r opt("Options")` tab.
+Confidence intervals of the parameters can be also selected in `r opt("Options")` tab (see below).
 
-<img src="glm/effectsize1.png" class="img-responsive" alt="">
 
 Please check the details in `r link_pages(nickname="details_glm_effectsize")`
+
+The complete set of options for this panel is:
+
+`r panel_options('gamljlm','panel_input')`
+
 
 # Model 
 
 By default, the model terms are filled in automatically for main effects and for interactions with categorical variables. 
 
-<img src="glm/model.png" class="img-responsive" alt="">
+`r pic("glm/model.png")`
 
 Interactions between continuous variables or categorical and continuous variables can be set by clicking the second arrow icon.
 
@@ -64,7 +71,17 @@ Interactions between continuous variables or categorical and continuous variable
 ```
 
 
-The option `r opt("Fixed Intercept")` includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see [here](https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/) before you do it ). 
+The option `r opt("Intercept")` includes an intercept in the model. Unflagging it estimates zero-intercept models (Regression through the origin, but see [here](https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/) before you do it ). 
+
+
+
+```{r , child='commons/fixedcomparison_chunk.Rmd'}
+```
+
+
+The other options are:
+
+`r panel_options('gamljlm','panel_model')`
 
 # Factors coding
 
@@ -78,69 +95,75 @@ More details and examples `r link_pages("ros_contrasts")`.
 
 # Covariates Scaling
 
-<img src="glm/xscoring.png" class="img-responsive" alt="">
+`r pic("glm/xscoring.png")`
 
-Continuous variables can be centered, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as they are (`r opt("none")`). The default is `r opt("centered")` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simply select `r opt("none")`.
+Continuous variables can be `r opt("Centered")`, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as they are (`r opt("none")`). The default is `r opt("centered")` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in `r modulename()` the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simply select `r opt("none")`.
 
 
 ```{r child3, child='commons/covariateScaling_chunk.Rmd'}
 ```
 
-The option `r opt("Dependent variable")`  scale allows to transform the dependent variable. The dependent variable can be centered, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as they are (`r opt("none")`). The default is `r opt("none")`, so no transformation is applied.
+The option `r opt("Dependent variable")`  scale allows to transform the dependent variable. The dependent variable can be centered, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as it is (`r opt("none")`). The default is `r opt("none")`, so no transformation is applied.
 
 # Post-hocs
-<img src="commons/pics/posthoc.png" class="img-responsive" alt="">
 
+`r pic("glm/posthoc.png")`
 
 ```{r child4, child='commons/posthoc_chunk.Rmd'}
 ```
 
+Along with the means comparisons, one can obtain also the Cohen's $d$ effect size indices. Different formulation of the Cohen's $d$ are available, and they differ in the way the pooled standard error is computed.
 
+* Cohen's d (model SD) $d_{mod}$: the means difference is divided by the estimated standard deviation computed based on the model residual variance. 
+
+* Cohen's d (sample SD) $d_{sample}$: the means difference is divided by the pooled standard deviation computed within each group. 
+
+* Hedge's g  $g_{sample}$: the means difference is divided by the pooled standard deviation computed within each group, corrected for sample bias. The correction is the one describe by @hedges2014statistical based on the Gamma function. 
 
 # Plots
 
-<img src="glm/plots.png" class="img-responsive" alt="">
-
+`r pic("glm/plot.png")`
 
 ```{r child5, child='commons/plots_chunk.Rmd'}
 ```
 
+The remaining options are defined as follows:
+
+`r panel_options('gamljlm','panel_plots')`
+
+# Simple Effects
+
+
+```{r child60, child='commons/se_chunk.Rmd'}
+```
+
+
 
 # Estimated marginal means
 
-<img src="commons/pics/emmeans.png" class="img-responsive" alt="">
+`r pic("commons/pics/emmeans.png")`
 
 ```{r child6, child='commons/emm_chunk.Rmd'}
 ```
 
 
-
-
 # Assumptions checks
 
-<img src="glm/assumptions.png" class="img-responsive" alt="">
+`r pic("glm/assumptions.png")`
 
-* `r opt("Homogeneity tests")` provides [Levene's test](https://biostats.w.uib.no/test-for-homogeneity-of-variances-levenes-test/){target="_blank"} for equal variances across groups defined by factors  (homoschedasticity).
+`r panel_options('gamljlm','panel_assumptions')`
 
-* `r opt("Test normality of residuals")` provides [Kolmogorov-Smirnov](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test){target="_blank"} and [Shapiro-Wilk](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation){target="_blank"} tests for normality of residuals.
-
-* `r opt("Q-Q plot of residuals")` outputs a Q-Q plot (observed residual quantiles on expected residual quantiles). More general info [here](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot){target="_blank"}
-
-* `r opt("Residuals histogram")` outputs the histogram of the distribution of the residuals, with an overlaying ideal normal distribution with mean and variance equal to the residuals distribution parameters.
-
-* `r opt("Residuals-Predicted plot")` produces a scatterplot with the residuals on the Y-axis and the predicted in the X-axis. It can be usufull to assess heteroschdasticity.
 
 # Options
 
-<img src="glm/options.png" class="img-responsive" alt="">
+`r pic("glm/options.png")`
 
-Additional options that do not fit elsewhere.
+`r panel_options('gamljlm','panel_options')`
 
-* __`Additional Info`__
 
-    * `r opt("On intercept")`_ provides effect size for the intercept
-    * `r opt("On Effect sizes")`: outputs a new table with all effect sizes available, with confidence intervals 
-    * see `r link_pages("details_glm_effectsize")`
+
+
+`r link_pages("details_glm_effectsize")`
 
 
 

@@ -37,7 +37,7 @@ Unfortunately, contrasts coding schemes get different names in different publica
 
 # Software
 
-We use `r jamovi`, SPSS and R. In `r jamovi` we compare the ANOVA module in `r jamovi`   `jmv` and the ``r modulename()`` module. In R we use _pure R_, meaning that we estimate the contrast comparisons by estimating a linear model (`lm()` in particular), with the categorical variable properly coded. For more straigthforward estimation we employ `emmeans` R module. In SPSS we use the `UNIVARIATE` module. 
+We use `r jamovi`, SPSS and R. In `r jamovi` we compare the ANOVA module in `r jamovi`   `jmv` and the `r modulename()` module. In R we use _pure R_, meaning that we estimate the contrast comparisons by estimating a linear model (`lm()` in particular), with the categorical variable properly coded. For more straigthforward estimation we employ `emmeans` R module. In SPSS we use the `UNIVARIATE` module. 
 
 # More technical details
 

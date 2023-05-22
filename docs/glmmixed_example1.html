@@ -14,7 +14,7 @@
 
 <title>Logistic mixed model in jamovi</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="helpstyle.css" type="text/css" />
 
 
 
@@ -371,7 +372,9 @@ div.tocify {
 jamovi, mixed models, generalized linear models, logistic mixed model,
 multilevel logist, moderated regression, interactions </span></p>
 <p>In this example we estimate a multilevel logistic regression, with
-interactions, using <span class="jamovi">jamovi</span> GAMLj module.</p>
+interactions, using <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+GAMLj module.</p>
 <p>One can follow the example by downloading the <a
 href="https://github.com/gamlj/gamlj.github.io/blob/master/data/school_exam.csv">cvs
 file</a> and open it in <a
@@ -424,10 +427,11 @@ default.</p>
 dependent variable <code>pass</code> and the covariates
 <code>math</code> and <code>activity</code>. We put the latter ones in
 <code>Covariates</code> because they are continuous variables. Notice
-that <span class="jamovi">jamovi</span> recognizes <code>activity</code>
-as a nominal variable, because it lists only integer values. GAMLj
-automatically transforms it into a numerical variable and uses it as
-covariate.</p>
+that <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+recognizes <code>activity</code> as a nominal variable, because it lists
+only integer values. GAMLj automatically transforms it into a numerical
+variable and uses it as covariate.</p>
 <p><img src="examples/gzlmmixed1/variables.png" class="img-responsive" alt=""></p>
 <div id="the-model" class="section level2">
 <h2>The model</h2>

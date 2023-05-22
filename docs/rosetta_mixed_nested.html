@@ -13,7 +13,7 @@
 
 <title>Rosetta store: Nested like in R</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -35,14 +35,14 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-110344212-1');
+  gtag('config', 'G-KM7X6HK5HM');
 </script>
 
 <style type="text/css">
@@ -71,6 +71,7 @@ if (window.hljs) {
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="helpstyle.css" type="text/css" />
 
 
 
@@ -411,7 +412,7 @@ pupils within classes. Schools are coded in variable <code>school</code>
 as <code>A</code>, <code>B</code>, and <code>C</code>. Assume you coded,
 within each school, the three classes as <code>1</code>, <code>2</code>,
 and <code>3</code>. Your dataset will look like this.
-<img src=" rosetta/mixed_nested/coding1.png " class="img-responsive" alt=""></p>
+<img src="rosetta/mixed_nested/coding1.png" width="534" /></p>
 <p>This means that the design features 3 schools, and 9 classes.
 Usually, you want to estimate the random coefficients (in this simple
 case only the intercepts) across schools and classes. If you run a model
@@ -421,8 +422,8 @@ in class <code>2</code> an so on, irrespective of their school, as if
 pupils of different schools belonged to the same class. Indeed, in <span
 class="modulename">GAMLj</span> you would have 3 schools and 3 classes
 :</p>
-<p><img src=" rosetta/mixed_nested/input1.png " class="img-responsive" alt="">
-<img src=" rosetta/mixed_nested/output1.png " class="img-responsive" alt=""></p>
+<p><img src="rosetta/mixed_nested/input1.png" width="687" />
+<img src="rosetta/mixed_nested/output1.png" width="462" /></p>
 <p>This is equivalent to run in <code>R lme4</code> command</p>
 <pre class="r"><code>library(lmerTest)
 data$school&lt;-factor(data$school)
@@ -432,7 +433,7 @@ print(mod,digits=5)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school) + (1 | class)
 ##    Data: data
-## REML criterion at convergence: 117
+## REML criterion at convergence: 117.3587
 ## Random effects:
 ##  Groups   Name        Std.Dev.
 ##  school   (Intercept) 21.1056 
@@ -452,7 +453,7 @@ print(mod,digits=5)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school/class)
 ##    Data: data
-## REML criterion at convergence: 87.6
+## REML criterion at convergence: 87.559
 ## Random effects:
 ##  Groups       Name        Std.Dev.
 ##  class:school (Intercept)  6.6144 
@@ -476,7 +477,7 @@ print(mod,digits=5)</code></pre>
 <pre><code>## Linear mixed model fit by REML [&#39;lmerModLmerTest&#39;]
 ## Formula: y ~ 1 + (1 | school) + (1 | unique_class)
 ##    Data: data
-## REML criterion at convergence: 87.6
+## REML criterion at convergence: 87.559
 ## Random effects:
 ##  Groups       Name        Std.Dev.
 ##  unique_class (Intercept)  6.6144 
@@ -486,13 +487,14 @@ print(mod,digits=5)</code></pre>
 ## Fixed Effects:
 ## (Intercept)  
 ##      27.833</code></pre>
-<p>In <span class="jamovi">jamovi</span>:</p>
-<p><img src=" rosetta/mixed_nested/compute1.png " class="img-responsive" alt="">
-<img src=" rosetta/mixed_nested/input2.png " class="img-responsive" alt="">
-<img src=" rosetta/mixed_nested/output2.png " class="img-responsive" alt=""></p>
+<p>In <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>:</p>
+<p><img src="rosetta/mixed_nested/compute1.png" width="766" />
+<img src="rosetta/mixed_nested/input2.png" width="679" />
+<img src="rosetta/mixed_nested/output2.png" width="499" /></p>
 <p>Indeed, the new variable <code>unique_class</code> is simply
 assigning unique values to the classes.</p>
-<p><img src=" rosetta/mixed_nested/coding2.png " class="img-responsive" alt=""></p>
+<p><img src="rosetta/mixed_nested/coding2.png" width="686" /></p>
 </div>
 </div>
 <div id="recap" class="section level1">

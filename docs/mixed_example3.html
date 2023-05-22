@@ -14,7 +14,7 @@
 
 <title>Mixed Models: Subjects by Stimuli random effects</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -36,14 +36,14 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-110344212-1');
+  gtag('config', 'G-KM7X6HK5HM');
 </script>
 
 <style type="text/css">
@@ -72,6 +72,7 @@ if (window.hljs) {
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="helpstyle.css" type="text/css" />
 
 
 
@@ -561,13 +562,13 @@ response (the dependent variable <em>y</em>). There are 50 participants
 in the sample. The following table shows how each stimulus is repeated
 for each condition, and it is measured 100 times, 50 per condition,
 where 50 is the number of participants.</p>
-<p><img src=" examples/mixed3/design1.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/design1.png" width="326" /></p>
 <p>The following table shows (for the first 17 participants) how each
 participant is measured 60 times, 30 times for each condition, where 30
 is the number of stimuli per condition.</p>
-<p><img src=" examples/mixed3/design2.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/design2.png" width="293" /></p>
 <p>The head of the data file, in the long format, looks like this:</p>
-<p><img src=" examples/mixed3/data1.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/data1.png" width="424" /></p>
 <p>Which stimulus is measured in each row is indicated by the variable
 <code>stimulus</code>, which participant in the variable
 <code>subj</code>. The experimental conditions are indicated by the
@@ -582,17 +583,17 @@ Then we define the clustering variables. We have two clustering
 variables: <code>subj</code> and <code>stimuli</code>. We do not have to
 specify anything about the crossing or nesting of the classifications,
 the software takes care of understanding the structure of the data.</p>
-<p><img src=" examples/mixed3/input1.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/input1.png" width="579" /></p>
 <p>The <strong>fixed effect</strong> of <code>cond</code> is
 automatically put in the model, so we do not have to do anything
 here.</p>
-<p><img src=" examples/mixed3/input2.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/input2.png" width="565" /></p>
 <p>As regards the <strong>random effects</strong>, we specify that we
 want the intercept to vary across participants
 (<code>intercept|subj</code>) and across stimuli
 (<code>intercept|stimuli</code>). For the moment, we have done with
 setting the model up.</p>
-<p><img src=" examples/mixed3/input3.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/input3.png" width="555" /></p>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
@@ -600,7 +601,7 @@ setting the model up.</p>
 were some info is given (for the R-squared interpretation see
 <a href="mixed_example1.html">Mixed Models: Random coefficients
 regression</a>).</p>
-<p><img src=" examples/mixed3/results1.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results1.png" width="380" /></p>
 <p>Then we can explore the random variances. We can see that we have
 variances larger than zero for the intercepts both across participant
 (<span class="math inline">\(\sigma=4.55\)</span>) and across stimuli
@@ -610,19 +611,19 @@ quite substantial: <span class="math inline">\(ICC=.312\)</span> and
 can say that it was a good idea to capture those portions of variance by
 including random intercepts varying across both participants and
 stimuli.</p>
-<p><img src=" examples/mixed3/results2.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results2.png" width="371" /></p>
 <p>The fixed effect can now be interpreted as in any one-way ANOVA.</p>
-<p><img src=" examples/mixed3/results3.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results3.png" width="363" /></p>
 <p>There is a strong effect of condition on the response to the stimuli.
 The direction of the effect can be evaluated with a plot.</p>
-<p><img src=" examples/mixed3/input4.png " class="img-responsive" alt=""></p>
-<p><img src=" examples/mixed3/results4.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/input4.png" width="559" /></p>
+<p><img src="examples/mixed3/results4.png" width="576" /></p>
 <p>By selecting the option <code>Random effects</code> in the plot
 options, we can see the random effects and how they vary across
 participants. Because we specified only the intercepts to be random, the
 random effects are all parallel, by they do show different heights, as
 expected by a varying intercept.</p>
-<p><img src=" examples/mixed3/results5.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results5.png" width="567" /></p>
 <p>You may have noticed that we interpreted the plot as showing the
 random effects across participants. We did that because GAMLj, up to the
 present version, does not allow to plot random effects across different
@@ -630,8 +631,8 @@ clustering variables. It plots the random effects across the levels of
 the first clustering variable defined in the input. Thus, if we want to
 see the random effects across stimuli, we simply change the order of the
 clustering variables in the input panel, and ask for the plot again.</p>
-<p><img src=" examples/mixed3/input5.png " class="img-responsive" alt="">
-<img src=" examples/mixed3/results6.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/input5.png" width="556" />
+<img src="examples/mixed3/results6.png" width="533" /></p>
 <p>In the new plot, there are 30 lines representing the effect of
 condition for each stimulus. Again, the lines are parallel but they show
 different height</p>
@@ -649,7 +650,7 @@ the effect of condition for each stimulus and evaluate the variance of
 the effect across participant.</p>
 <p>We do that in GAMLj by adding the required effects in the
 <code>Random Effects</code> tab.</p>
-<p><img src=" examples/mixed3/input7.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/input7.png" width="756" /></p>
 </div>
 <div id="results-1" class="section level2">
 <h2>Results</h2>
@@ -661,7 +662,7 @@ very little variance in the random effects of <code>cond</code> across
 stimuli, table <code>Random effects</code>, row
 <code>stimuli</code>-<code>cond1</code>, <span
 class="math inline">\(\sigma_j^2=.0043\)</span>.</p>
-<p><img src=" examples/mixed3/results7.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results7.png" width="555" /></p>
 <p>The random effect of <code>cond</code> across stimuli, furthermore,
 is perfectly correlated with the intercepts across stimuli, table
 <code>Random parameters correlation</code>, second row, <span
@@ -670,17 +671,17 @@ is reduntant. We can then remove it.</p>
 <p>In the final version of the model we have <code>cond</code> effect
 and intercept varying across participants and intercept varying across
 stimuli.</p>
-<p><img src=" examples/mixed3/results8.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results8.png" width="592" /></p>
 <p>The main fixed effect of <code>cond</code> is still there, even
 though the degrees of freedom are now much less than the ones of the
 model without the random effect of <code>cond</code>.</p>
-<p><img src=" examples/mixed3/results9.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results9.png" width="566" /></p>
 <p>If we look at the plot of fixed and random effects, we can appreciate
 the new features of this model. We now have random effects that vary
 from participant to participant, and in fact the lines representing
 individual effects are no longer parallel. The fixed effect seems to be
 equivalent to the previous model effect.</p>
-<p><img src=" examples/mixed3/results10.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results10.png" width="697" /></p>
 </div>
 </div>
 <div id="example-2-stimuli-nested-in-conditions" class="section level1">
@@ -691,7 +692,7 @@ href="https://github.com/gamlj/gamlj.github.io/blob/master/data/subjects_on_stim
 on stimuli</a> and open it in <a
 href="https://www.jamovi.org/download.html">jamovi</a>. We have 50
 participants with two repeated measures conditions (0 and 1).</p>
-<p><img src=" examples/mixed3/input10.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/input10.png" width="586" /></p>
 <div id="design-1" class="section level2">
 <h2>Design</h2>
 <p>A one-way repeated measures design has two conditions: = and 1. Each
@@ -701,12 +702,12 @@ produces a response (the dependent variable <em>y</em>). There are 50
 participants in the sample. The following table (truncated for brevity)
 shows how each stimulus is present in only one condition, and it is
 measured 50 times in total, where 50 is the number of participants.</p>
-<p><img src=" examples/mixed3/design11.png " class="img-responsive" alt="">
-<img src=" examples/mixed3/design12.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/design11.png" width="382" />
+<img src="examples/mixed3/design12.png" width="364" /></p>
 <p>The following table shows (for the first 17 participants) how each
 participant is measured 36 times, 18 times for each condition, where 18
 is the number of stimuli per condition</p>
-<p><img src=" examples/mixed3/design13.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/design13.png" width="384" /></p>
 </div>
 <div id="the-model-1" class="section level2">
 <h2>The model</h2>
@@ -717,17 +718,17 @@ Then we define the clustering variables. We have two clustering
 variables: <code>subj</code> and <code>stimuli</code>. We do not have to
 specify anything about the crossing or nesting of the classifications,
 the software takes care of understanding the structure of the data.</p>
-<p><img src=" examples/mixed3/input11.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/input11.png" width="760" /></p>
 <p>The <strong>fixed effect</strong> of <code>cond</code> is
 automatically put in the model, so we do not have to do anything
 here.</p>
-<p><img src=" examples/mixed3/input12.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/input12.png" width="748" /></p>
 <p>As regards the <strong>random effects</strong>, we specify that we
 want the intercept to vary across participants
 (<code>intercept|subj</code>) and across stimuli
 (<code>intercept|stimuli</code>). For the moment, we have repeated what
 we have done in example 1.</p>
-<p><img src=" examples/mixed3/input13.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/input13.png" width="747" /></p>
 </div>
 <div id="results-2" class="section level2">
 <h2>Results</h2>
@@ -740,13 +741,13 @@ class="math inline">\(ICC=.350\)</span>, respectively. Thus, we can say
 that it was a good idea to capture those portions of variances by
 including random intercepts varying across both participants and
 stimuli. Again, same story as in example 1.</p>
-<p><img src=" examples/mixed3/results20.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results20.png" width="503" /></p>
 <p>The fixed effect can now be interpreted as in any one-way ANOVA.</p>
-<p><img src=" examples/mixed3/results21.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results21.png" width="524" /></p>
 <p>There is an effect of condition on the response to the stimuli. The
 direction of the effect can be evaluated with a plot.</p>
-<p><img src=" examples/mixed3/results22.png " class="img-responsive" alt=""></p>
-<p><img src=" examples/mixed3/results23.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results22.png" width="714" /></p>
+<p><img src="examples/mixed3/results23.png" width="709" /></p>
 </div>
 <div id="the-model-ii-1" class="section level2">
 <h2>The model II</h2>
@@ -760,7 +761,7 @@ only one condition. Thus, we cannot test whether the effect of
 <p>As regards the effect of condition across participants, we can
 estimate it as a random coefficient. We do that in GAMLj by adding the
 required effects in the <code>Random Effects</code> tab.</p>
-<p><img src=" examples/mixed3/input14.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/input14.png" width="749" /></p>
 </div>
 <div id="results-3" class="section level2">
 <h2>Results</h2>
@@ -768,14 +769,14 @@ required effects in the <code>Random Effects</code> tab.</p>
 effects of <code>cond</code> across participants, table
 <code>Random effects</code>, row <code>subj</code>-<code>cond1</code>,
 <span class="math inline">\(\sigma_i^2=0.194\)</span>.</p>
-<p><img src=" examples/mixed3/results15.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results15.png" width="578" /></p>
 <p>The main fixed effect of <code>cond</code> is still there, and did
 not change much.</p>
-<p><img src=" examples/mixed3/results16.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results16.png" width="618" /></p>
 <p>As in the previous example (example 1), the plot of random effects
 shows non parallel effects as a consequence of the variability in the
 random effects.</p>
-<p><img src=" examples/mixed3/results17.png " class="img-responsive" alt=""></p>
+<p><img src="examples/mixed3/results17.png" width="694" /></p>
 </div>
 </div>
 <div id="conclusion" class="section level1">

@@ -14,7 +14,7 @@
 
 <title>Rosetta store: Generalized Mixed</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -36,14 +36,14 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-110344212-1');
+  gtag('config', 'G-KM7X6HK5HM');
 </script>
 
 <style type="text/css">
@@ -72,6 +72,7 @@ if (window.hljs) {
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="helpstyle.css" type="text/css" />
 
 
 
@@ -376,10 +377,11 @@ jamovi, R, SPSS, logistic, generalized mixed, mixed models </span></p>
 </span> 2.0.0 </span> <span class="draft"> Draft version, mistakes may
 be around </span></p>
 <p>Here you can find comparisons of results obtained in <span
-class="jamovi">jamovi</span> <span class="modulename">GAMLj</span>, R,
-and SPSS. When not explicitly discussed, the code of different software
-is written with the aim of obtaining identical results across programs
-(not necessarily with the most efficient strategy).</p>
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+<span class="modulename">GAMLj</span>, R, and SPSS. When not explicitly
+discussed, the code of different software is written with the aim of
+obtaining identical results across programs (not necessarily with the
+most efficient strategy).</p>
 <p>In this example we compare <span class="modulename">GAMLj</span>
 results with R results obtained by IDRE on their <a
 href="https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/">tutorial
@@ -467,8 +469,9 @@ estimates applying the simple formula <span class="math inline">\(\theta
 </div>
 <div id="gamlj" class="section level1">
 <h1>GAMLj</h1>
-<p><span class="jamovi">jamovi</span> <span
-class="modulename">GAMLj</span> module for
+<p><span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+<span class="modulename">GAMLj</span> module for
 <code>Generalized mixed models</code> can be used to estimate a random
 coefficient mixed model. First, it requires choose the specific model we
 want to run: the <code>Logistic</code> model.</p>
@@ -478,10 +481,12 @@ in the model and their type.</p>
 <p><img src="rosetta/gzlmmixed/variables.png" class="img-responsive" alt=""></p>
 <p>Please note that we put <code>LengthOfStay</code> in covariates
 because it is a continuous variable, even though <span
-class="jamovi">jamovi</span> recognizes it a categorical. By putting it
-in <span class="option">Covariates</span>, we implicitly ask the module
-to treat it a continuous variable. The opposite holds for
-<code>DID</code> (doctors ID) which <span class="jamovi">jamovi</span>
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+recognizes it a categorical. By putting it in <span
+class="option">Covariates</span>, we implicitly ask the module to treat
+it a continuous variable. The opposite holds for <code>DID</code>
+(doctors ID) which <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
 recognizes as continuous but the module treats as categorical after we
 put it in the <span class="option">Clusters</span> field.</p>
 <p>After the first setup, we need to specify the random effects.
@@ -521,7 +526,7 @@ categorical variable.</p>
 <p>Also the exp(B) and their confidence intervals are equivalent in the
 two analyses, apart from rounding.</p>
 <p>As regards the random coefficients variance, <code>lme4::glmer</code>
-produced a <code>SD</code> of 2.01, thus a variance of 4.04, which is
+produced a <code>SD</code> of 2.01, thus a variance of 4.0401, which is
 noticeably different from the GAMLj results.</p>
 <p><img src="rosetta/gzlmmixed/results_random.png" class="img-responsive" alt=""></p>
 <p>The reason of this difference is in the precision of the estimation.
@@ -623,20 +628,22 @@ This means <em>allow intercepts to vary across DID</em>.</p>
 <p><img src="rosetta/gzlmmixed/results_spss_coefs.png" class="img-responsive" alt=""></p>
 <p>As regards the fixed effects coefficients, we notice that the
 continuous predictors show B’s that are equivalent to R and <span
-class="jamovi">jamovi</span> estimates, but with opposite sign. The
-intercept and the categorical predictor are clearly very differ. Those
-differences are due to way SPSS picks the reference level of the dummy
-coding for categorical variables. In R and <span
-class="jamovi">jamovi</span>, the reference level is the first level in
-the standard ordering of the variable levels (such as the cardinal order
-or the alphabetical one). SPSS picks the last group! Thus, here we are
-predicting the probability of <em>not remission</em>, that is
-<code>remission=0</code>, because SPSS sets <code>remission=1</code> as
-the reference level. That explains the opposite sign. For the
-categorical independent variable <code>CancerStage</code>, SPSS picks
-the group <code>CancerStage=IV</code> as reference group, whereas GAMLj
-and R pick <code>CancerStage=I</code>. That explains the differences in
-the parameters.</p>
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+estimates, but with opposite sign. The intercept and the categorical
+predictor are clearly very differ. Those differences are due to way SPSS
+picks the reference level of the dummy coding for categorical variables.
+In R and <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>,
+the reference level is the first level in the standard ordering of the
+variable levels (such as the cardinal order or the alphabetical one).
+SPSS picks the last group! Thus, here we are predicting the probability
+of <em>not remission</em>, that is <code>remission=0</code>, because
+SPSS sets <code>remission=1</code> as the reference level. That explains
+the opposite sign. For the categorical independent variable
+<code>CancerStage</code>, SPSS picks the group
+<code>CancerStage=IV</code> as reference group, whereas GAMLj and R pick
+<code>CancerStage=I</code>. That explains the differences in the
+parameters.</p>
 <p>In SPSS generalized mixed models we can change the reference level in
 the <code>Build Options</code> tab, selecting <code>Descending</code> in
 the <code>Sorting Order</code> options.</p>

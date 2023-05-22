@@ -1,0 +1,11 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r, echo=FALSE, results='asis'}
+biblio <- bibtex::read.bib("~/Downloads/references.bib")
+
+biblio
+  
+```
