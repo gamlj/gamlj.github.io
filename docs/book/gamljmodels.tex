@@ -218,13 +218,13 @@ First, we need to install {jamovi}, and within it, install {GAMLj}.
   Within {jamovi}, access the library and install {GAMLj}
 \end{itemize}
 
-\includegraphics[width=0.9\linewidth]{bookletpics/0_library1}
+\begin{center}\includegraphics[width=0.4\linewidth]{bookletpics/0_library1} \end{center}
 
-\includegraphics[width=0.9\linewidth]{bookletpics/0_library2}
+\begin{center}\includegraphics[width=0.9\linewidth]{bookletpics/0_library2} \end{center}
 
 Installing the module produces a new icon in the icons bar, and the new icon gives access to the list of the module available analyses.
 
-\includegraphics[width=0.9\linewidth]{bookletpics/0_menu1}
+\includegraphics[width=0.5\linewidth]{bookletpics/0_menu1}
 
 Here we always refer to { { GAMLj version ≥ } 3.0.0 }. If you need to work with previous versions, you can refer to GAMLj legacy help
 We are ready to go.
@@ -313,8 +313,6 @@ Obviously, I did not invented any of the statistical ideas or methods that this 
 \chapter{The General Linear Model}\label{glm}}
 
 { Draft version, mistakes may be around }
-
-\begin{flushright} KEYWORDS: General Linear Model, Regression, ANOVA, Interaction, Moderation  \end{flushright}
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -879,8 +877,6 @@ The number of bootstrap resampling is set to 1000, but for reliable and replicab
 
 { Draft version, mistakes may be around }
 
-\begin{flushright} KEYWORDS: Generalized Linear Model, Logistic Regression, logit  \end{flushright}
-
 \hypertarget{gzlmintro}{%
 \section{Introduction}\label{gzlmintro}}
 
@@ -1002,8 +998,8 @@ logit(\hat{y})=a+b_1  x_1+b_2 x_2+ ...
 
 Everything we can do with a linear model can be done with the logistic model, we just need to keep in mind that the interpretation of the results must consider the fact that the predicted values have a logistic scale, and not the original dependent variable scale.
 
-\hypertarget{model-estimation}{%
-\subsection{Model Estimation}\label{model-estimation}}
+\hypertarget{logisticestim}{%
+\subsection{Model Estimation}\label{logisticestim}}
 
 We can use our \emph{manymodels} dataset to see an example of a logistic model. The dataset contains a dichotomous dependent variables called \texttt{ybin}, which features two groups. To keep up with our cover story, we can imaging it to represent visiting the toilet behavior. \(ybin=1\) means that the customer has visited the bar restroom, \(ybin=0\) means that the client has not visited the restroom that evening.
 
@@ -1013,14 +1009,14 @@ The aim of the model is to estimate the relationship between number of beers (\(
 
 In {GAMLj} we launch \texttt{Generalized\ Linear\ Models} menu of the \texttt{Linear\ Models} icon. The first part of the user interface allows selecting the appropriated model. In our case, we selected {Logistic} because our dependent variable is a dichotomous variable.
 
-\includegraphics[width=8.08in]{bookletpics/3_logistic_input1}
+\includegraphics[width=0.9\linewidth]{bookletpics/3_logistic_input1}
 
 Once we have selected the model, we can set up the variables in the variables role fields, as we did in the GLM (cf.~\ref{glminput}).
 
 \includegraphics[width=7.88in]{bookletpics/3_logistic_input2}
 
-\hypertarget{model-recap-1}{%
-\subsection{Model Recap}\label{model-recap-1}}
+\hypertarget{logisticrecap}{%
+\subsection{Model Recap}\label{logisticrecap}}
 
 \includegraphics[width=6.08in]{bookletpics/3_logistic_output1}
 
@@ -1113,8 +1109,8 @@ We are going to exemplify this model using the \texttt{manymodels} dataset, usin
 
 \includegraphics[width=5.15in]{bookletpics/3_logistic_output6}
 
-\hypertarget{model-estimation-1}{%
-\subsection{Model Estimation}\label{model-estimation-1}}
+\hypertarget{model-estimation}{%
+\subsection{Model Estimation}\label{model-estimation}}
 
 Now we want to establish possible differences among these groups in the probability of visiting the restroom (\(ybin=1\)). We set up a logistic model in which \texttt{cat2} and \texttt{cat3} are factors, meaning categorical {IVs {Independent Variables} }.
 
@@ -1259,8 +1255,8 @@ or, equivalently
 
 The overall model fit will be given by the cumulative fit of the two logistic models; the omnibus test of \(x\) will be given by testing that both \(b_1\) and \(b_2\) are zero, and the specific effects of \(x\) on the comparisons is given by the \(b_1\) and \(b_2\) coefficients. This will be repeated for \(K-1\) logistic models, where \(K\) is the number of levels of the dependent variable.
 
-\hypertarget{model-estimation-2}{%
-\subsection{Model Estimation}\label{model-estimation-2}}
+\hypertarget{model-estimation-1}{%
+\subsection{Model Estimation}\label{model-estimation-1}}
 
 To exemplify, we use our \texttt{manymodels} dataset, which has a variable named \texttt{ycat}. This variable has three levels. To give some names to its levels and keep up with the bar cover story, imagine the three levels are the choice of an activity to do in the bar: \texttt{1=play\ darts}, \texttt{2=chatting}, \texttt{3=dancing}.
 
@@ -1272,8 +1268,8 @@ We first select {Multinomial} in the model selection tab, and then set up the de
 
 \includegraphics[width=8in]{bookletpics/3_multi_input1}
 
-\hypertarget{model-recap-2}{%
-\subsection{Model Recap}\label{model-recap-2}}
+\hypertarget{model-recap-1}{%
+\subsection{Model Recap}\label{model-recap-1}}
 
 \includegraphics[width=8.06in]{bookletpics/3_multi_output2}
 
@@ -1442,15 +1438,15 @@ On the left panel, we have the cumulative probability functions for each level c
 
 {GAMLj} provides the proportional odds model as implemented by the R package \texttt{ordinal}. Details can be found in the ordinal package vignettes.
 
-\hypertarget{model-estimation-3}{%
-\subsection{Model Estimation}\label{model-estimation-3}}
+\hypertarget{model-estimation-2}{%
+\subsection{Model Estimation}\label{model-estimation-2}}
 
 We simply set the model as \texttt{Ordinal} at the top of the input variable, and set our dependent and independent variables as for any other model. Here we inserted as independent variables both a continuous (\(x\)) and a categorical variable (\(cat3\)), so we can explore more options and techniques within the ordinal model.
 
 \includegraphics[width=7.96in]{bookletpics/3_ordinal_input1}
 
-\hypertarget{model-recap-3}{%
-\subsection{Model Recap}\label{model-recap-3}}
+\hypertarget{model-recap-2}{%
+\subsection{Model Recap}\label{model-recap-2}}
 
 \includegraphics[width=6.6in]{bookletpics/3_ordinal_output1}
 
@@ -1564,6 +1560,139 @@ All other options, {Simple Interactions}, {Factor Coding}, {Covariates Scaling},
 Very often, rather than measuring quantities we count stuff.
 
 { Work in progress: incomplete version }
+
+\hypertarget{mixed}{%
+\chapter{Mixed Linear Models}\label{mixed}}
+
+{ Incomplete version, please wait for updates }
+
+\hypertarget{gmixed}{%
+\chapter{Generalized Mixed Linear Models}\label{gmixed}}
+
+{ Draft version, mistakes may be around }
+
+\hypertarget{introduction-1}{%
+\section{Introduction}\label{introduction-1}}
+
+The generalized linear model (cf.~Chapter \ref{gzlm}) is very convenient in analyzing models with categorical and non-normally distributed variables. The Mixed model (cf.~Chapter \ref{mixed}) is useful to tackle designs with multilevel sampling, where units can be correlated due to the clustering of data. The \emph{Generalized Mixed Linear Models} (GZMM) allow us to predict categorical and non-normally distributed variables when data are clustered and dependent.
+
+From a theoretical point of view, we do not need to add much to what we have seen in the previous chapter. The setup of the GZMM is carried out exactly as it is done for the Mixed Model (cf.~Section \ref{mixedbuild}). The choice of the particular application of the generalized model is carried out exactly as it is done for the generalized linear model (cf.~Chapter \ref{gzlm}). Thus, we can estimate logistic, ordinal, multinomial, Poisson and negative binomial models when the data are clustered, in repeated-measure designs or in multilevel sampling designs.
+
+Thus, we are not going to repeat the specific characteristics of each model, because they have been discussed in the previous chapters. We highlight the noticeable features that characterize each application of the generalized linear model with random coefficients and clustered data.
+
+For the remainder of this chapter, we will not cover all the possible models provided by r modulename() in the generalized mixed model. This is because, when setting up the models, one can refer to the mixed model (r cap(``gzlm'')), and when interpreting the results, one can refer to the generalized linear model (r cap(``gzlm'')). HHowever, we will explore an example using the logistic mixed model and subsequently highlight certain features of other models that may yield unexpected results.
+
+\hypertarget{examples}{%
+\section{Examples}\label{examples}}
+
+For all the examples, we will utilize the `clusteredmanymodels' dataset available in the r jamovi library. To add some appeal to the example, we will incorporate the same cover stories employed in the generalized linear model . Regarding the mixed model (see r sec(``mixeddata'')), we envision the data being collected by sampling a set of bars and, within each bar, sampling the customers.
+
+\hypertarget{mixed-logistic-model}{%
+\section{Mixed logistic model}\label{mixed-logistic-model}}
+
+The logistic model predicts a dichotomous variable by estimating the logit of belonging to one group instead of the other. This involves predicting the logarithm of the odds of belonging to that particular group rather than the other (refer to Section \ref{logistic} for more information). In the \texttt{clusteredmanymodels} dataset, we have a dichotomous dependent variable called \texttt{ybin} that includes two groups. In the cover story, \texttt{ybin} indicates whether the participant visited the restroom, with \texttt{1=YES} and \texttt{0=NO} (cf.~Section \ref{logisticestim}). So we use a \emph{Generalized Linear Mixed Model}.
+
+We have a dichotomous variable that we want to predict using a continuous variable (\(x\) for beers). However, it is important to consider that the data are not independent units drawn from a random sample. Instead, they are clustered due to bars (variable \texttt{cluster}).
+
+\hypertarget{model-estimation-3}{%
+\subsection{Model Estimation}\label{model-estimation-3}}
+
+First, we open the analysis by selecting {Generalized Mixed Models} in the {Linear Models} menu. Then, we select the \texttt{Logistic} model in the upper side of the input panel.
+
+\includegraphics[width=0.8\linewidth]{bookletpics/5_logistic_input1}
+
+Then, we can set the variables in their variable role field, as we did for any other model.
+
+\includegraphics[width=0.8\linewidth]{bookletpics/5_logistic_input2}
+
+The fixed effects are automatically included in the model, so our focus should be on the random effects. Building upon the reasoning discussed in r sec(``mixedbuild''), we can designate both the intercept and the effect of \(x\) as random coefficients. Since both coefficients can be estimated within each cluster, they have the potential to vary across clusters.
+
+\includegraphics[width=0.8\linewidth]{bookletpics/5_logistic_input3}
+
+\hypertarget{model-info}{%
+\subsection{Model Info}\label{model-info}}
+
+The usual recap table is produced and filled as soon as we set the random component of the model. Here we find the type of information required to interpret the logistic regression (cf.~Section \ref{logisticrecap}).
+{ Incomplete version, please wait for updates }
+
+\includegraphics[width=0.8\linewidth]{bookletpics/5_logistic_output1}
+
+We want to be sure that the direction of the effects are clear, so we check in the \texttt{Direction} row that we are predicting belonging to group 1 over group 0.
+
+\hypertarget{model-fit-3}{%
+\subsection{Model Fit}\label{model-fit-3}}
+
+\includegraphics[width=0.6\linewidth]{bookletpics/5_logistic_output2}
+
+Similar to the linear mixed model, in the current context, we have two indices of goodness of fit. Since we are dealing with a generalized linear model, the fit can be understood as the reduction in error or deviance attributable to the effects included in our model. The conditional \(R^2\) provides an assessment of the overall fit, encompassing both fixed and random effects. The marginal \(R^2\) informs us about the fit contributed solely by the fixed effects of the model.
+
+The inferential tests are based on the likelihood-ratio test (LRT,): For the conditional \(R^2\), the whole model is compared with a logistic model with only the intercept as parameter. So it tests all parameters of the model, fixed and random together. For the marginal \(R^2\), the whole model is compared with a logistic model with a fixed intercept and the same random coefficients of the model, so the fixed effects are tested.
+
+\hypertarget{random-component}{%
+\subsection{Random Component}\label{random-component}}
+
+\includegraphics[width=0.8\linewidth]{bookletpics/5_logistic_output3}
+
+In this analysis, our objective is to verify the accuracy of our estimated random structure, ensuring that each coefficient exhibits variance without encountering collinearity issues among them. In our specific example, we observe some variance for the intercepts (\(\sigma^2 = 0.161\)), but a negligible variance for the random coefficients associated with \(x\). This suggests that the random coefficients of \(x\) do not make a substantial contribution to the model's fit, implying that they can potentially be excluded from the random component. Furthermore, the correlation between the \(x\) coefficients and the intercepts across clusters indicate that the \(x\) coefficients are redundant, because they correlate -1 with the intercepts, so they do not bring any additional fit to the model.
+
+If the user needs to test these variances against zero, the LRT tests are available as well (cf Section \ref{mixedre}).
+
+\includegraphics[width=0.7\linewidth]{bookletpics/5_logistic_output5}
+
+As expected, the tiny variance of the \(x\) coefficients does not appear to be statistically different from zero.
+
+\hypertarget{coefficients-4}{%
+\subsection{Coefficients}\label{coefficients-4}}
+
+\includegraphics[width=0.8\linewidth]{bookletpics/5_logistic_output4}
+
+The model fixed effects can be interpreted as in a standard logistic regression. On average across \emph{bars} (clusters), for the average number of \emph{beers} drunk (\(x\)) the expected odd of visiting the restroom is \(exp(B)=1.309\). As we increases \emph{beers} (\(x\)) of one unit, the odd of visiting the restroom increases of \(exp(B)=.954\), it diminishes \footnote{Here the cover story does not hold. Despites that, what is important is to get that the interpretation of the coefficients is in line with the results}.
+
+\hypertarget{plot-2}{%
+\subsection{Plot}\label{plot-2}}
+
+A plot of the predicted probability as a function of the independent variable is always a good way to have a clear picture of the relationship between the dependent and the independent variable. Since we are dealing with a mixed model, it instructive to ask for the \texttt{random\ effects} as well, so we can say the full model predicted values. Each gray line depicts the estimated values for a specific cluster, and the solid black like the fixed effect.
+
+\includegraphics[width=0.8\linewidth]{bookletpics/5_logistic_plot1}
+
+\hypertarget{other-options-and-techniques}{%
+\subsection{Other options and techniques}\label{other-options-and-techniques}}
+
+All other options available in the logistic generalized mixed model operate similarly to those in the generalized model or the mixed model. However, it is important to note that the r opt(``Bootstrap'') option, although functional, can be extremely time-consuming for this type of model. Therefore, it is advisable to be prepared for a potentially lengthy wait if utilizing this option.
+
+\hypertarget{other-model-charateristics}{%
+\section{Other model charateristics}\label{other-model-charateristics}}
+
+As mentioned, all other model within the generalized mixed model can be estimated and interpreted based on the material of the previous chapters. When setting up the models, one can refer to the mixed model (r cap(``gzlm'')), and when interpreting the results, one can refer to the generalized linear model (r cap(``gzlm'')).
+
+A few notes are nonetheless interesting to mention.
+
+\hypertarget{multinomial-mixed-model}{%
+\subsection{Multinomial mixed model}\label{multinomial-mixed-model}}
+
+The multinomial model is undoubtedly the strangest of the linear models discussed in this book, and its mixed version is no exception. The set up poses no challenge, but in the results section one finds a different way to report the random coefficients variances.
+
+Let's use the \texttt{clusteredmanymodels} dataset to predict the dependent variable ycat, which consists of three groups, using a continuous independent variable, denoted as \(x\). Similar to the generalized multinomial model (Section \ref{multinomial}), the model estimates \(K-1\) logistic regressions, where \(K\) represents the number of groups or levels within the dependent variable. Each regression corresponds to a dummy variable required to incorporate the categorical dependent variable into the model. Consequently, the model comprises \(K-1\) intercepts and \(K-1\) effects of the independent variable.
+
+If we set the intercepts as random coefficients, we will obtain a table displaying the variances and covariances among all the random intercepts. On the other hand, if we set both intercepts and slopes as random coefficients, we will obtain a table encompassing the variances and covariances of all the intercepts and slopes.
+
+Let's see an example. The fixed effects are set as this:
+
+\includegraphics[width=0.7\linewidth]{bookletpics/5_multinomial_input1}
+
+The random effects are set as this:
+
+\includegraphics[width=0.7\linewidth]{bookletpics/5_multinomial_input2}
+
+Fixed effects results are:
+
+\includegraphics[width=0.9\linewidth]{bookletpics/5_multinomial_output1}
+
+and the random coefficients variances and covariances are:
+
+\includegraphics[width=0.5\linewidth]{bookletpics/5_multinomial_output2}
+
+For each random coefficient, its variance is located on the diagonal of the random variance-covariance matrix, while the covariances are found in the off-diagonal cells. To provide more specific details, the 2\textasciitilde1 represents the intercept of the logistic regression model predicting the dummy variable for level 2 vs level 1. Similarly, the 3\textasciitilde1 corresponds to the intercept of the logistic regression model predicting the dummy variable for level 3 vs level 1, and so forth. The coefficient x represents the random coefficient associated with the variable x. Thus, the first diagonal value denotes the variance of the first logistic intercept, the second diagonal value signifies the variance of the second logistic intercept, and so on.
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{0}{0}

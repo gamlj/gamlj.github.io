@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Generalized Mixed Linear Models | GAMLj Models</title>
+  <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Generalized Mixed Linear Models | GAMLj Models" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  <meta name="github-repo" content="mcfanda/gamlj.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Generalized Mixed Linear Models | GAMLj Models" />
+  
+  <meta name="twitter:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  
+
+<meta name="author" content="Marcello Gallucci" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mixed.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KM7X6HK5HM');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">GAMLj Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="booklet.html"><a href="booklet.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="booklet.html"><a href="booklet.html#preface"><i class="fa fa-check"></i><b>1.1</b> Preface</a></li>
+<li class="chapter" data-level="1.2" data-path="booklet.html"><a href="booklet.html#getstarted"><i class="fa fa-check"></i><b>1.2</b> Getting Started</a></li>
+<li class="chapter" data-level="1.3" data-path="booklet.html"><a href="booklet.html#data"><i class="fa fa-check"></i><b>1.3</b> Data</a></li>
+<li class="chapter" data-level="1.4" data-path="booklet.html"><a href="booklet.html#naming"><i class="fa fa-check"></i><b>1.4</b> What’s in a name</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="booklet.html"><a href="booklet.html#angles"><i class="fa fa-check"></i><b>1.4.1</b> Statistical techniques vs points of view</a></li>
+<li class="chapter" data-level="1.4.2" data-path="booklet.html"><a href="booklet.html#statistical-techniques-vs-analyses"><i class="fa fa-check"></i><b>1.4.2</b> Statistical techniques vs Analyses</a></li>
+<li class="chapter" data-level="1.4.3" data-path="booklet.html"><a href="booklet.html#terms-that-we-need-to-generalize"><i class="fa fa-check"></i><b>1.4.3</b> Terms that we need to generalize</a></li>
+<li class="chapter" data-level="1.4.4" data-path="booklet.html"><a href="booklet.html#covnames"><i class="fa fa-check"></i><b>1.4.4</b> Terms we need to cope with</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="booklet.html"><a href="booklet.html#general-references"><i class="fa fa-check"></i><b>1.5</b> General References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>2</b> The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="glm.html"><a href="glm.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="glm.html"><a href="glm.html#regression"><i class="fa fa-check"></i><b>2.2</b> One continuous IV</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="glm.html"><a href="glm.html#glminput"><i class="fa fa-check"></i><b>2.2.1</b> Input</a></li>
+<li class="chapter" data-level="2.2.2" data-path="glm.html"><a href="glm.html#model-recap"><i class="fa fa-check"></i><b>2.2.2</b> Model Recap</a></li>
+<li class="chapter" data-level="2.2.3" data-path="glm.html"><a href="glm.html#twofit"><i class="fa fa-check"></i><b>2.2.3</b> Model Fit</a></li>
+<li class="chapter" data-level="2.2.4" data-path="glm.html"><a href="glm.html#omnibus-tests"><i class="fa fa-check"></i><b>2.2.4</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="2.2.5" data-path="glm.html"><a href="glm.html#glmcoefs"><i class="fa fa-check"></i><b>2.2.5</b> Coefficients</a></li>
+<li class="chapter" data-level="2.2.6" data-path="glm.html"><a href="glm.html#pearson-correlation"><i class="fa fa-check"></i><b>2.2.6</b> Pearson Correlation</a></li>
+<li class="chapter" data-level="2.2.7" data-path="glm.html"><a href="glm.html#glmplot"><i class="fa fa-check"></i><b>2.2.7</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="glm.html"><a href="glm.html#multiregression"><i class="fa fa-check"></i><b>2.3</b> More continuous IVs</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="glm.html"><a href="glm.html#twofit2"><i class="fa fa-check"></i><b>2.3.1</b> Model Fit</a></li>
+<li class="chapter" data-level="2.3.2" data-path="glm.html"><a href="glm.html#variances"><i class="fa fa-check"></i><b>2.3.2</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="2.3.3" data-path="glm.html"><a href="glm.html#household-chores"><i class="fa fa-check"></i><b>2.3.3</b> Household Chores</a></li>
+<li class="chapter" data-level="2.3.4" data-path="glm.html"><a href="glm.html#coefficients"><i class="fa fa-check"></i><b>2.3.4</b> Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="glm.html"><a href="glm.html#moderation"><i class="fa fa-check"></i><b>2.4</b> Continuous IVs and interaction</a></li>
+<li class="chapter" data-level="2.5" data-path="glm.html"><a href="glm.html#modint"><i class="fa fa-check"></i><b>2.5</b> Moderation=interaction</a></li>
+<li class="chapter" data-level="2.6" data-path="glm.html"><a href="glm.html#simpleslopes"><i class="fa fa-check"></i><b>2.6</b> Simple Slopes</a></li>
+<li class="chapter" data-level="2.7" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>2.7</b> Categorical IVs</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="glm.html"><a href="glm.html#model-fit-and-omnibus-tests"><i class="fa fa-check"></i><b>2.7.1</b> Model Fit and Omnibus tests</a></li>
+<li class="chapter" data-level="2.7.2" data-path="glm.html"><a href="glm.html#dummies"><i class="fa fa-check"></i><b>2.7.2</b> Coefficients</a></li>
+<li class="chapter" data-level="2.7.3" data-path="glm.html"><a href="glm.html#plots"><i class="fa fa-check"></i><b>2.7.3</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="glm.html"><a href="glm.html#posthoc"><i class="fa fa-check"></i><b>2.8</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="2.9" data-path="glm.html"><a href="glm.html#cohens-d"><i class="fa fa-check"></i><b>2.9</b> Cohen’s d</a></li>
+<li class="chapter" data-level="2.10" data-path="glm.html"><a href="glm.html#estimated-marginal-means"><i class="fa fa-check"></i><b>2.10</b> Estimated marginal means</a></li>
+<li class="chapter" data-level="2.11" data-path="glm.html"><a href="glm.html#ancova"><i class="fa fa-check"></i><b>2.11</b> Categorical and Continuous IVs</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="glm.html"><a href="glm.html#results-tables"><i class="fa fa-check"></i><b>2.11.1</b> Results tables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="glm.html"><a href="glm.html#moderation2"><i class="fa fa-check"></i><b>2.12</b> Categorical and Continuous Interactions</a>
+<ul>
+<li class="chapter" data-level="2.12.1" data-path="glm.html"><a href="glm.html#plot"><i class="fa fa-check"></i><b>2.12.1</b> Plot</a></li>
+<li class="chapter" data-level="2.12.2" data-path="glm.html"><a href="glm.html#simple-effects"><i class="fa fa-check"></i><b>2.12.2</b> Simple Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.13" data-path="glm.html"><a href="glm.html#simpleinteractions"><i class="fa fa-check"></i><b>2.13</b> Simple Interactions</a></li>
+<li class="chapter" data-level="2.14" data-path="glm.html"><a href="glm.html#model-comparison-approach"><i class="fa fa-check"></i><b>2.14</b> Model-comparison approach</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="glm.html"><a href="glm.html#the-method"><i class="fa fa-check"></i><b>2.14.1</b> The Method</a></li>
+<li class="chapter" data-level="2.14.2" data-path="glm.html"><a href="glm.html#types-of-tests"><i class="fa fa-check"></i><b>2.14.2</b> Types of tests</a></li>
+<li class="chapter" data-level="2.14.3" data-path="glm.html"><a href="glm.html#not-necessary-model-comparisons"><i class="fa fa-check"></i><b>2.14.3</b> Not necessary model-comparisons</a></li>
+<li class="chapter" data-level="2.14.4" data-path="glm.html"><a href="glm.html#hierarchical-regression"><i class="fa fa-check"></i><b>2.14.4</b> Hierarchical regression</a></li>
+</ul></li>
+<li class="chapter" data-level="2.15" data-path="glm.html"><a href="glm.html#assumptions-checks"><i class="fa fa-check"></i><b>2.15</b> Assumptions checks</a>
+<ul>
+<li class="chapter" data-level="2.15.1" data-path="glm.html"><a href="glm.html#homosched"><i class="fa fa-check"></i><b>2.15.1</b> Homoschedasticity</a></li>
+<li class="chapter" data-level="2.15.2" data-path="glm.html"><a href="glm.html#normality-of-residuals"><i class="fa fa-check"></i><b>2.15.2</b> Normality of residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.16" data-path="glm.html"><a href="glm.html#violations-remedies"><i class="fa fa-check"></i><b>2.16</b> Violations Remedies</a>
+<ul>
+<li class="chapter" data-level="2.16.1" data-path="glm.html"><a href="glm.html#robust-standard-error"><i class="fa fa-check"></i><b>2.16.1</b> Robust Standard Error</a></li>
+<li class="chapter" data-level="2.16.2" data-path="glm.html"><a href="glm.html#bootstrap-confidence-intervals"><i class="fa fa-check"></i><b>2.16.2</b> Bootstrap Confidence Intervals</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="gzlm.html"><a href="gzlm.html"><i class="fa fa-check"></i><b>3</b> The Generalized Linear Model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="gzlm.html"><a href="gzlm.html#gzlmintro"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="gzlm.html"><a href="gzlm.html#logistic"><i class="fa fa-check"></i><b>3.2</b> Logistic Model</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="gzlm.html"><a href="gzlm.html#the-rationale"><i class="fa fa-check"></i><b>3.2.1</b> The rationale</a></li>
+<li class="chapter" data-level="3.2.2" data-path="gzlm.html"><a href="gzlm.html#logisticestim"><i class="fa fa-check"></i><b>3.2.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="gzlm.html"><a href="gzlm.html#logisticrecap"><i class="fa fa-check"></i><b>3.2.3</b> Model Recap</a></li>
+<li class="chapter" data-level="3.2.4" data-path="gzlm.html"><a href="gzlm.html#model-fit"><i class="fa fa-check"></i><b>3.2.4</b> Model Fit</a></li>
+<li class="chapter" data-level="3.2.5" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-1"><i class="fa fa-check"></i><b>3.2.5</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="3.2.6" data-path="gzlm.html"><a href="gzlm.html#coefficients-1"><i class="fa fa-check"></i><b>3.2.6</b> Coefficients</a></li>
+<li class="chapter" data-level="3.2.7" data-path="gzlm.html"><a href="gzlm.html#odd-ratios-expb"><i class="fa fa-check"></i><b>3.2.7</b> Odd ratios exp(B)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="gzlm.html"><a href="gzlm.html#logisticcontmarginal"><i class="fa fa-check"></i><b>3.2.8</b> Marginal effects</a></li>
+<li class="chapter" data-level="3.2.9" data-path="gzlm.html"><a href="gzlm.html#multiple-ivs"><i class="fa fa-check"></i><b>3.2.9</b> Multiple IVs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="gzlm.html"><a href="gzlm.html#gzlmanova"><i class="fa fa-check"></i><b>3.3</b> Logistic with Catecorical IVs</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="gzlm.html"><a href="gzlm.html#model-estimation"><i class="fa fa-check"></i><b>3.3.1</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="gzlm.html"><a href="gzlm.html#model-fit-1"><i class="fa fa-check"></i><b>3.3.2</b> Model Fit</a></li>
+<li class="chapter" data-level="3.3.3" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-2"><i class="fa fa-check"></i><b>3.3.3</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="3.3.4" data-path="gzlm.html"><a href="gzlm.html#plots-1"><i class="fa fa-check"></i><b>3.3.4</b> Plots</a></li>
+<li class="chapter" data-level="3.3.5" data-path="gzlm.html"><a href="gzlm.html#estimated-marginal-means-1"><i class="fa fa-check"></i><b>3.3.5</b> Estimated Marginal Means</a></li>
+<li class="chapter" data-level="3.3.6" data-path="gzlm.html"><a href="gzlm.html#relative-risk"><i class="fa fa-check"></i><b>3.3.6</b> Relative Risk</a></li>
+<li class="chapter" data-level="3.3.7" data-path="gzlm.html"><a href="gzlm.html#logisticcatmarginal"><i class="fa fa-check"></i><b>3.3.7</b> Marginal Effects</a></li>
+<li class="chapter" data-level="3.3.8" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests"><i class="fa fa-check"></i><b>3.3.8</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="3.3.9" data-path="gzlm.html"><a href="gzlm.html#other-options"><i class="fa fa-check"></i><b>3.3.9</b> Other options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="gzlm.html"><a href="gzlm.html#probit"><i class="fa fa-check"></i><b>3.4</b> Probit Model</a></li>
+<li class="chapter" data-level="3.5" data-path="gzlm.html"><a href="gzlm.html#multinomial"><i class="fa fa-check"></i><b>3.5</b> The Multinomial Model</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="gzlm.html"><a href="gzlm.html#rationale"><i class="fa fa-check"></i><b>3.5.1</b> Rationale</a></li>
+<li class="chapter" data-level="3.5.2" data-path="gzlm.html"><a href="gzlm.html#model-estimation-1"><i class="fa fa-check"></i><b>3.5.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.5.3" data-path="gzlm.html"><a href="gzlm.html#model-recap-1"><i class="fa fa-check"></i><b>3.5.3</b> Model Recap</a></li>
+<li class="chapter" data-level="3.5.4" data-path="gzlm.html"><a href="gzlm.html#overal-fit"><i class="fa fa-check"></i><b>3.5.4</b> Overal Fit</a></li>
+<li class="chapter" data-level="3.5.5" data-path="gzlm.html"><a href="gzlm.html#plots-2"><i class="fa fa-check"></i><b>3.5.5</b> Plots</a></li>
+<li class="chapter" data-level="3.5.6" data-path="gzlm.html"><a href="gzlm.html#coefficients-2"><i class="fa fa-check"></i><b>3.5.6</b> Coefficients</a></li>
+<li class="chapter" data-level="3.5.7" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests-1"><i class="fa fa-check"></i><b>3.5.7</b> Post Hoc Tests</a></li>
+<li class="chapter" data-level="3.5.8" data-path="gzlm.html"><a href="gzlm.html#marginal-effects"><i class="fa fa-check"></i><b>3.5.8</b> Marginal Effects</a></li>
+<li class="chapter" data-level="3.5.9" data-path="gzlm.html"><a href="gzlm.html#simple-effects-1"><i class="fa fa-check"></i><b>3.5.9</b> Simple Effects</a></li>
+<li class="chapter" data-level="3.5.10" data-path="gzlm.html"><a href="gzlm.html#other-options-1"><i class="fa fa-check"></i><b>3.5.10</b> Other options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="gzlm.html"><a href="gzlm.html#ordinal"><i class="fa fa-check"></i><b>3.6</b> The Ordinal Model</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="gzlm.html"><a href="gzlm.html#rationale-1"><i class="fa fa-check"></i><b>3.6.1</b> Rationale</a></li>
+<li class="chapter" data-level="3.6.2" data-path="gzlm.html"><a href="gzlm.html#model-estimation-2"><i class="fa fa-check"></i><b>3.6.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.6.3" data-path="gzlm.html"><a href="gzlm.html#model-recap-2"><i class="fa fa-check"></i><b>3.6.3</b> Model Recap</a></li>
+<li class="chapter" data-level="3.6.4" data-path="gzlm.html"><a href="gzlm.html#parallellines"><i class="fa fa-check"></i><b>3.6.4</b> Parallel Lines test</a></li>
+<li class="chapter" data-level="3.6.5" data-path="gzlm.html"><a href="gzlm.html#model-fit-2"><i class="fa fa-check"></i><b>3.6.5</b> Model Fit</a></li>
+<li class="chapter" data-level="3.6.6" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-3"><i class="fa fa-check"></i><b>3.6.6</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="3.6.7" data-path="gzlm.html"><a href="gzlm.html#coefficients-3"><i class="fa fa-check"></i><b>3.6.7</b> Coefficients</a></li>
+<li class="chapter" data-level="3.6.8" data-path="gzlm.html"><a href="gzlm.html#estimated-marginal-means-2"><i class="fa fa-check"></i><b>3.6.8</b> Estimated marginal means</a></li>
+<li class="chapter" data-level="3.6.9" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests-2"><i class="fa fa-check"></i><b>3.6.9</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="3.6.10" data-path="gzlm.html"><a href="gzlm.html#plot-1"><i class="fa fa-check"></i><b>3.6.10</b> Plot</a></li>
+<li class="chapter" data-level="3.6.11" data-path="gzlm.html"><a href="gzlm.html#other-options-2"><i class="fa fa-check"></i><b>3.6.11</b> Other options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="gzlm.html"><a href="gzlm.html#poisson-model"><i class="fa fa-check"></i><b>3.7</b> Poisson Model</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="mixed.html"><a href="mixed.html"><i class="fa fa-check"></i><b>4</b> Mixed Linear Models</a></li>
+<li class="chapter" data-level="5" data-path="gmixed.html"><a href="gmixed.html"><i class="fa fa-check"></i><b>5</b> Generalized Mixed Linear Models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="gmixed.html"><a href="gmixed.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="gmixed.html"><a href="gmixed.html#examples"><i class="fa fa-check"></i><b>5.2</b> Examples</a></li>
+<li class="chapter" data-level="5.3" data-path="gmixed.html"><a href="gmixed.html#mixed-logistic-model"><i class="fa fa-check"></i><b>5.3</b> Mixed logistic model</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="gmixed.html"><a href="gmixed.html#model-estimation-3"><i class="fa fa-check"></i><b>5.3.1</b> Model Estimation</a></li>
+<li class="chapter" data-level="5.3.2" data-path="gmixed.html"><a href="gmixed.html#model-info"><i class="fa fa-check"></i><b>5.3.2</b> Model Info</a></li>
+<li class="chapter" data-level="5.3.3" data-path="gmixed.html"><a href="gmixed.html#model-fit-3"><i class="fa fa-check"></i><b>5.3.3</b> Model Fit</a></li>
+<li class="chapter" data-level="5.3.4" data-path="gmixed.html"><a href="gmixed.html#random-component"><i class="fa fa-check"></i><b>5.3.4</b> Random Component</a></li>
+<li class="chapter" data-level="5.3.5" data-path="gmixed.html"><a href="gmixed.html#coefficients-4"><i class="fa fa-check"></i><b>5.3.5</b> Coefficients</a></li>
+<li class="chapter" data-level="5.3.6" data-path="gmixed.html"><a href="gmixed.html#plot-2"><i class="fa fa-check"></i><b>5.3.6</b> Plot</a></li>
+<li class="chapter" data-level="5.3.7" data-path="gmixed.html"><a href="gmixed.html#other-options-and-techniques"><i class="fa fa-check"></i><b>5.3.7</b> Other options and techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="gmixed.html"><a href="gmixed.html#other-model-charateristics"><i class="fa fa-check"></i><b>5.4</b> Other model charateristics</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="gmixed.html"><a href="gmixed.html#multinomial-mixed-model"><i class="fa fa-check"></i><b>5.4.1</b> Multinomial mixed model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendixa.html"><a href="appendixa.html"><i class="fa fa-check"></i><b>A</b> The <span class="math inline">\(R^2\)</span>’s</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="appendixa.html"><a href="appendixa.html#commuting-r2"><i class="fa fa-check"></i><b>A.1</b> Commuting <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="A.2" data-path="appendixa.html"><a href="appendixa.html#variance-explained"><i class="fa fa-check"></i><b>A.2</b> Variance explained</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="a1dummies.html"><a href="a1dummies.html"><i class="fa fa-check"></i><b>B</b> How many contrasts?</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="a1dummies.html"><a href="a1dummies.html#sufficiency-of-k-1-dummies"><i class="fa fa-check"></i><b>B.1</b> Sufficiency of K-1 dummies</a></li>
+<li class="chapter" data-level="B.2" data-path="a1dummies.html"><a href="a1dummies.html#zero-intercept-anova"><i class="fa fa-check"></i><b>B.2</b> Zero-intercept ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="appendixb.html"><a href="appendixb.html"><i class="fa fa-check"></i><b>C</b> Appendix Variable Types</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GAMLj Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gmixed" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Generalized Mixed Linear Models<a href="gmixed.html#gmixed" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><span class="draft"> Draft version, mistakes may be around </span></p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> Generalized Linear Model, Logistic Regression, logit, Mixed Model, Multilevel Models </span></p>
+<div id="introduction-1" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Introduction<a href="gmixed.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The generalized linear model (cf. Chapter <a href="gzlm.html#gzlm">3</a>) is very convenient in analyzing models with categorical and non-normally distributed variables. The Mixed model (cf. Chapter <a href="mixed.html#mixed">4</a>) is useful to tackle designs with multilevel sampling, where units can be correlated due to the clustering of data. The <em>Generalized Mixed Linear Models</em> (GZMM) allow us to predict categorical and non-normally distributed variables when data are clustered and dependent.</p>
+<p>From a theoretical point of view, we do not need to add much to what we have seen in the previous chapter. The setup of the GZMM is carried out exactly as it is done for the Mixed Model (cf. Section <a href="#mixedbuild"><strong>??</strong></a>). The choice of the particular application of the generalized model is carried out exactly as it is done for the generalized linear model (cf. Chapter <a href="gzlm.html#gzlm">3</a>). Thus, we can estimate logistic, ordinal, multinomial, Poisson and negative binomial models when the data are clustered, in repeated-measure designs or in multilevel sampling designs.</p>
+<p>Thus, we are not going to repeat the specific characteristics of each model, because they have been discussed in the previous chapters. We highlight the noticeable features that characterize each application of the generalized linear model with random coefficients and clustered data.</p>
+<div class="enf">
+<p>For the remainder of this chapter, we will not cover all the possible models provided by r modulename() in the generalized mixed model. This is because, when setting up the models, one can refer to the mixed model (r cap(“gzlm”)), and when interpreting the results, one can refer to the generalized linear model (r cap(“gzlm”)). HHowever, we will explore an example using the logistic mixed model and subsequently highlight certain features of other models that may yield unexpected results.</p>
+</div>
+</div>
+<div id="examples" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Examples<a href="gmixed.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For all the examples, we will utilize the ‘clusteredmanymodels’ dataset available in the r jamovi library. To add some appeal to the example, we will incorporate the same cover stories employed in the generalized linear model . Regarding the mixed model (see r sec(“mixeddata”)), we envision the data being collected by sampling a set of bars and, within each bar, sampling the customers.</p>
+</div>
+<div id="mixed-logistic-model" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Mixed logistic model<a href="gmixed.html#mixed-logistic-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The logistic model predicts a dichotomous variable by estimating the logit of belonging to one group instead of the other. This involves predicting the logarithm of the odds of belonging to that particular group rather than the other (refer to Section <a href="gzlm.html#logistic">3.2</a> for more information). In the <code>clusteredmanymodels</code> dataset, we have a dichotomous dependent variable called <code>ybin</code> that includes two groups. In the cover story, <code>ybin</code> indicates whether the participant visited the restroom, with <code>1=YES</code> and <code>0=NO</code> (cf. Section <a href="gzlm.html#logisticestim">3.2.2</a>). So we use a <em>Generalized Linear Mixed Model</em>.</p>
+<p>We have a dichotomous variable that we want to predict using a continuous variable (<span class="math inline">\(x\)</span> for beers). However, it is important to consider that the data are not independent units drawn from a random sample. Instead, they are clustered due to bars (variable <code>cluster</code>).</p>
+<div id="model-estimation-3" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Model Estimation<a href="gmixed.html#model-estimation-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First, we open the analysis by selecting <span class="option">Generalized Mixed Models</span> in the <span class="option">Linear Models</span> menu. Then, we select the <code>Logistic</code> model in the upper side of the input panel.</p>
+<div style="text-align:center">
+<p><img src="bookletpics/5_logistic_input1.png" width="80%" /></p>
+</div>
+<p>Then, we can set the variables in their variable role field, as we did for any other model.</p>
+<div style="text-align:center">
+<p><img src="bookletpics/5_logistic_input2.png" width="80%" /></p>
+</div>
+<p>The fixed effects are automatically included in the model, so our focus should be on the random effects. Building upon the reasoning discussed in r sec(“mixedbuild”), we can designate both the intercept and the effect of <span class="math inline">\(x\)</span> as random coefficients. Since both coefficients can be estimated within each cluster, they have the potential to vary across clusters.</p>
+<div style="text-align:center">
+<p><img src="bookletpics/5_logistic_input3.png" width="80%" /></p>
+</div>
+</div>
+<div id="model-info" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Model Info<a href="gmixed.html#model-info" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The usual recap table is produced and filled as soon as we set the random component of the model. Here we find the type of information required to interpret the logistic regression (cf. Section <a href="gzlm.html#logisticrecap">3.2.3</a>).
+<span class="incomplete"> Incomplete version, please wait for updates </span></p>
+<div style="text-align:center">
+<p><img src="bookletpics/5_logistic_output1.png" width="80%" /></p>
+</div>
+<p>We want to be sure that the direction of the effects are clear, so we check in the <code>Direction</code> row that we are predicting belonging to group 1 over group 0.</p>
+</div>
+<div id="model-fit-3" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Model Fit<a href="gmixed.html#model-fit-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div style="text-align:center">
+<p><img src="bookletpics/5_logistic_output2.png" width="60%" /></p>
+</div>
+<p>Similar to the linear mixed model, in the current context, we have two indices of goodness of fit. Since we are dealing with a generalized linear model, the fit can be understood as the reduction in error or deviance attributable to the effects included in our model. The conditional <span class="math inline">\(R^2\)</span> provides an assessment of the overall fit, encompassing both fixed and random effects. The marginal <span class="math inline">\(R^2\)</span> informs us about the fit contributed solely by the fixed effects of the model.</p>
+<p>The inferential tests are based on the likelihood-ratio test (<a href='https://en.wikipedia.org/wiki/Likelihood-ratio_test' target='_blank'>LRT,</a>): For the conditional <span class="math inline">\(R^2\)</span>, the whole model is compared with a logistic model with only the intercept as parameter. So it tests all parameters of the model, fixed and random together. For the marginal <span class="math inline">\(R^2\)</span>, the whole model is compared with a logistic model with a fixed intercept and the same random coefficients of the model, so the fixed effects are tested.</p>
+</div>
+<div id="random-component" class="section level3 hasAnchor" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Random Component<a href="gmixed.html#random-component" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div style="text-align:center">
+<p><img src="bookletpics/5_logistic_output3.png" width="80%" /></p>
+</div>
+<p>In this analysis, our objective is to verify the accuracy of our estimated random structure, ensuring that each coefficient exhibits variance without encountering collinearity issues among them. In our specific example, we observe some variance for the intercepts (<span class="math inline">\(\sigma^2 = 0.161\)</span>), but a negligible variance for the random coefficients associated with <span class="math inline">\(x\)</span>. This suggests that the random coefficients of <span class="math inline">\(x\)</span> do not make a substantial contribution to the model’s fit, implying that they can potentially be excluded from the random component. Furthermore, the correlation between the <span class="math inline">\(x\)</span> coefficients and the intercepts across clusters indicate that the <span class="math inline">\(x\)</span> coefficients are redundant, because they correlate -1 with the intercepts, so they do not bring any additional fit to the model.</p>
+<p>If the user needs to test these variances against zero, the LRT tests are available as well (cf Section <a href="#mixedre"><strong>??</strong></a>).</p>
+<div style="text-align:center">
+<p><img src="bookletpics/5_logistic_output5.png" width="70%" /></p>
+</div>
+<p>As expected, the tiny variance of the <span class="math inline">\(x\)</span> coefficients does not appear to be statistically different from zero.</p>
+</div>
+<div id="coefficients-4" class="section level3 hasAnchor" number="5.3.5">
+<h3><span class="header-section-number">5.3.5</span> Coefficients<a href="gmixed.html#coefficients-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div style="text-align:center">
+<p><img src="bookletpics/5_logistic_output4.png" width="80%" /></p>
+</div>
+<p>The model fixed effects can be interpreted as in a standard logistic regression. On average across <em>bars</em> (clusters), for the average number of <em>beers</em> drunk (<span class="math inline">\(x\)</span>) the expected odd of visiting the restroom is <span class="math inline">\(exp(B)=1.309\)</span>. As we increases <em>beers</em> (<span class="math inline">\(x\)</span>) of one unit, the odd of visiting the restroom increases of <span class="math inline">\(exp(B)=.954\)</span>, it diminishes <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+</div>
+<div id="plot-2" class="section level3 hasAnchor" number="5.3.6">
+<h3><span class="header-section-number">5.3.6</span> Plot<a href="gmixed.html#plot-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A plot of the predicted probability as a function of the independent variable is always a good way to have a clear picture of the relationship between the dependent and the independent variable. Since we are dealing with a mixed model, it instructive to ask for the <code>random effects</code> as well, so we can say the full model predicted values. Each gray line depicts the estimated values for a specific cluster, and the solid black like the fixed effect.</p>
+<div style="text-align:center">
+<p><img src="bookletpics/5_logistic_plot1.png" width="80%" /></p>
+</div>
+</div>
+<div id="other-options-and-techniques" class="section level3 hasAnchor" number="5.3.7">
+<h3><span class="header-section-number">5.3.7</span> Other options and techniques<a href="gmixed.html#other-options-and-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>All other options available in the logistic generalized mixed model operate similarly to those in the generalized model or the mixed model. However, it is important to note that the r opt(“Bootstrap”) option, although functional, can be extremely time-consuming for this type of model. Therefore, it is advisable to be prepared for a potentially lengthy wait if utilizing this option.</p>
+</div>
+</div>
+<div id="other-model-charateristics" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Other model charateristics<a href="gmixed.html#other-model-charateristics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As mentioned, all other model within the generalized mixed model can be estimated and interpreted based on the material of the previous chapters. When setting up the models, one can refer to the mixed model (r cap(“gzlm”)), and when interpreting the results, one can refer to the generalized linear model (r cap(“gzlm”)).</p>
+<p>A few notes are nonetheless interesting to mention.</p>
+<div id="multinomial-mixed-model" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Multinomial mixed model<a href="gmixed.html#multinomial-mixed-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The multinomial model is undoubtedly the strangest of the linear models discussed in this book, and its mixed version is no exception. The set up poses no challenge, but in the results section one finds a different way to report the random coefficients variances.</p>
+<p>Let’s use the <code>clusteredmanymodels</code> dataset to predict the dependent variable ycat, which consists of three groups, using a continuous independent variable, denoted as <span class="math inline">\(x\)</span>. Similar to the generalized multinomial model (Section <a href="gzlm.html#multinomial">3.5</a>), the model estimates <span class="math inline">\(K-1\)</span> logistic regressions, where <span class="math inline">\(K\)</span> represents the number of groups or levels within the dependent variable. Each regression corresponds to a dummy variable required to incorporate the categorical dependent variable into the model. Consequently, the model comprises <span class="math inline">\(K-1\)</span> intercepts and <span class="math inline">\(K-1\)</span> effects of the independent variable.</p>
+<div class="enf">
+<p>If we set the intercepts as random coefficients, we will obtain a table displaying the variances and covariances among all the random intercepts. On the other hand, if we set both intercepts and slopes as random coefficients, we will obtain a table encompassing the variances and covariances of all the intercepts and slopes.</p>
+</div>
+<p>Let’s see an example. The fixed effects are set as this:</p>
+<div style="text-align:center">
+<p><img src="bookletpics/5_multinomial_input1.png" width="70%" /></p>
+</div>
+<p>The random effects are set as this:</p>
+<div style="text-align:center">
+<p><img src="bookletpics/5_multinomial_input2.png" width="70%" /></p>
+</div>
+<p>Fixed effects results are:</p>
+<div style="text-align:center">
+<p><img src="bookletpics/5_multinomial_output1.png" width="90%" /></p>
+</div>
+<p>and the random coefficients variances and covariances are:</p>
+<div style="text-align:center">
+<p><img src="bookletpics/5_multinomial_output2.png" width="50%" /></p>
+</div>
+<p>For each random coefficient, its variance is located on the diagonal of the random variance-covariance matrix, while the covariances are found in the off-diagonal cells. To provide more specific details, the 2~1 represents the intercept of the logistic regression model predicting the dummy variable for level 2 vs level 1. Similarly, the 3~1 corresponds to the intercept of the logistic regression model predicting the dummy variable for level 3 vs level 1, and so forth. The coefficient x represents the random coefficient associated with the variable x. Thus, the first diagonal value denotes the variance of the first logistic intercept, the second diagonal value signifies the variance of the second logistic intercept, and so on.</p>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>Here the cover story does not hold. Despites that, what is important is to get that the interpretation of the coefficients is in line with the results<a href="gmixed.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mixed.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["gamljmodels.pdf", "gamljmodels.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
