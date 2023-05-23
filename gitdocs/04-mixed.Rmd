@@ -131,9 +131,9 @@ First, when building a mixed model, one should ask three questions:
 
 ### Clustering variables?
 
-A clustering variable is a categorical variable that represents a random selection of equivalent groups of units (such as participants or scores) taken from a larger population of groups. These clusters are formed based on shared characteristics or grouping criteria. 
+A clustering variable is a categorical variable that represents a random selection of equivalent groups of cases (such as participants or observations) taken from a larger population of groups. These clusters are formed based on shared characteristics or grouping criteria. 
 
-First, the groups of scores (or participants) defined by a clustering variables should represent a sample of a larger population. This means that the researchers did not pick any particular group on purpose, but the groups were chosen randomly (or very close to randomly). Second, the groups should be equivalent, meaning that no particular group is more interesting than others. They just alternatives that came out from the sampling process.
+First, the groups of observations (or participants) defined by a clustering variables should represent a sample of a larger population. This means that the researchers did not pick any particular group on purpose, but the groups were chosen randomly (or very close to randomly). Second, the groups should be equivalent, meaning that no particular group is more interesting than others. They are just alternatives that came out from the sampling process.
 
 Consider for instance a multinational study: the classification of the variable "country" as a clustering variable depends on the nature of the research design. If the aim is to collect data from as many countries as possible, and a sample of countries becomes available, then "country" can be considered a clustering variable. In this scenario, the focus is on capturing the variability between different countries.
 
@@ -153,7 +153,7 @@ Not all effects in a model can be considered random because not all effects exhi
 The effects that can be potentially considered random are those that may exhibit variability across clusters. To have this potential, it should be possible to compute the coefficient within each cluster. If each cluster may express a different value for the coefficient, the coefficient may vary from cluster to cluster. If this condition is met, the coefficient can be included in the list of random coefficients.
 </div>
 
-Alternatively, one can identify potentially random coefficients as those effects associated with variables that vary within-clusters. If the variable varies with a cluster, than its coefficient can be computed for that cluster, and therefore it may have a different value from cluster to cluster ^[This latter definition does not apply well to intercepts, but intercepts can always be potentially random coefficients].
+Alternatively, one can identify potentially random coefficients as those effects associated with variables that vary within-clusters. If the variable varies within a cluster, than its coefficient can be computed for that cluster, and therefore it may have a different value from cluster to cluster ^[This latter definition does not apply well to intercepts, but intercepts can always be potentially random coefficients].
 
 Let's consider an example within our cover story. Suppose in the sample we have two groups of supporters representing rival sport teams. The effect of the team variable represents the difference in the dependent variable between these two groups of supporters. This effect can be considered a fixed effect. However, whether the effect of the team should also be considered random depends on the design of the study.
 
@@ -180,11 +180,11 @@ knitr::include_graphics("bookletpics/4_simple_input2.png")
 ```
 </div>
 
-The random coefficients must be defined by the user. On the left side, all possible effects are listed, with the notation `effect | cluster`. Please notice that the listed coefficients are not only the potential random coefficients, but all possible coefficients. Thus, it is the user's responsability to pick the correct potential coefficients.  
+The random coefficients must be defined by the user. On the left side, all possible effects are listed, with the notation `coefficient | cluster`. Please notice that the listed coefficients are not only the potential random coefficients, but all possible coefficients. Thus, it is the user's responsibility to pick the correct potential random coefficients.  
 
 <div style="text-align:center" class="pic">
 ```{r ,echo=FALSE, out.width="70%"}
-knitr::include_graphics("bookletpics/4_simple_input2.png")
+knitr::include_graphics("bookletpics/4_simple_input3.png")
 ```
 </div>
 
