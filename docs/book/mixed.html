@@ -383,7 +383,7 @@ div.csl-indent {
 <div id="an-example" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> An example<a href="mixed.html#an-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let us be practical and reason about an imaginary study, in which we want to study (again) the relationship between <em>smiles</em> and <em>beers</em>. To carry out this study, imagine we sampled a set of bars in one city, and within each bar, we measured the average number of smiles and beers consumed over a given period of time. We utilized the Beers dataset, available in the <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> data library, which was specifically created to exemplify a multilevel sampling structure and its complexities.</p>
-<p>Let us inspect the scatterplot representing the relationship between <code>beers</code> and <code>smiles</code>. By eyeballing the clouds of points, it is clear that a negatively sloped line would represent the outcome of a simple regression.</p>
+<p>Let us inspect the scatterplot representing the relationship between <code>beer</code> and <code>smile</code>. By eyeballing the cloud of points, it is clear that a negatively sloped line would represent the outcome of a simple regression.</p>
 <div class="pic" style="text-align:center">
 <p><img src="bookletpics/4_theory_plot1.png" width="80%" /></p>
 </div>
@@ -401,7 +401,7 @@ div.csl-indent {
 </div>
 <div id="the-statistical-model" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> The statistical model<a href="mixed.html#the-statistical-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let us continue our representation of cluster-specific regression lines with the help of some formulas, representing a regression like for each bar:</p>
+<p>Let us continue our representation of cluster-specific regression lines with the help of some formulas, representing a regression line for each bar:</p>
 <p><span class="math display">\[
 \hat{y}_{ij}=a_j+ b_j \cdot x_{ij}
 \]</span>
@@ -428,8 +428,9 @@ and write the model again</p>
 <span class="math display">\[
 \hat{y}_{ij}=\bar{a}_j+a&#39;_j+ (\bar{b}_j+b&#39;_j)  \cdot x_{ij}
 \]</span>
+Indeed, in this model, the intercept is composed of the fixed (average) intercept plus a cluster-specific intercept deviation (random), representing the deviation from the average intercept for each particular cluster. Similarly, the effect of variable <span class="math inline">\(x\)</span> is comprised of the fixed (average) slope plus a cluster-specific (random) slope deviation, representing the deviation from the average slope for the specific effect of <span class="math inline">\(x\)</span> in each cluster.
 <div class="enf">
-<p>Indeed, in this model, the intercept is composed of the fixed (average) intercept plus a cluster-specific intercept deviation, representing the deviation from the average intercept for each particular cluster. Similarly, the effect of variable <span class="math inline">\(x\)</span> is comprised of the fixed (average) slope plus a cluster-specific slope deviation, representing the deviation from the average slope for the specific effect of <span class="math inline">\(x\)</span> in each cluster.</p>
+<p>A linear model that encompasses both fixed and random coefficients is called a <strong>Linear Mixed Model</strong></p>
 </div>
 </div>
 <div id="outcome-of-the-model" class="section level2 hasAnchor" number="4.4">

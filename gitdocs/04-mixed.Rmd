@@ -37,7 +37,7 @@ To account for this hierarchical structure and the potential dependencies among 
 
 Let us be practical and reason about an imaginary study, in which we want to study (again) the relationship between _smiles_ and _beers_. To carry out this study, imagine we sampled a set of bars in one city, and within each bar, we measured the average number of smiles and beers consumed over a given period of time. We utilized the Beers dataset, available in the `r jamovi` data library, which was specifically created to exemplify a multilevel sampling structure and its complexities.
 
-Let us inspect the scatterplot representing the relationship between `beers` and `smiles`. By eyeballing the clouds of points, it is clear that a negatively sloped line would represent the outcome of a simple regression.
+Let us inspect the scatterplot representing the relationship between `beer` and `smile`. By eyeballing the cloud of points, it is clear that a negatively sloped line would represent the outcome of a simple regression.
 
 <div style="text-align:center" class="pic">
 ```{r ,echo=FALSE, out.width="80%"}
@@ -69,7 +69,7 @@ This means, however, that a simple straight line, defined equally for all partic
 
 ## The statistical model
 
-Let us continue our representation of cluster-specific regression lines with the help of some formulas, representing a regression like for each bar: 
+Let us continue our representation of cluster-specific regression lines with the help of some formulas, representing a regression line for each bar: 
 
 $$ 
 \hat{y}_{ij}=a_j+ b_j \cdot x_{ij}
@@ -106,8 +106,9 @@ and write the model again
 $$ 
 \hat{y}_{ij}=\bar{a}_j+a'_j+ (\bar{b}_j+b'_j)  \cdot x_{ij}
 $$
+Indeed, in this model, the intercept is composed of the fixed (average) intercept plus a cluster-specific intercept deviation (random), representing the deviation from the average intercept for each particular cluster. Similarly, the effect of variable $x$ is comprised of the fixed (average) slope plus a cluster-specific (random) slope deviation, representing the deviation from the average slope for the specific effect of $x$ in each cluster.
 <div class="enf">
-Indeed, in this model, the intercept is composed of the fixed (average) intercept plus a cluster-specific intercept deviation, representing the deviation from the average intercept for each particular cluster. Similarly, the effect of variable $x$ is comprised of the fixed (average) slope plus a cluster-specific slope deviation, representing the deviation from the average slope for the specific effect of $x$ in each cluster.
+A linear model that encompasses both fixed and random coefficients is called a **Linear Mixed Model**
 </div>
 
 ## Outcome of the model
