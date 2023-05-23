@@ -335,13 +335,13 @@ The first table reports the F-tests and indices of explained variance (\@ref(var
 
 If one wants to change the levels of the moderator at which the effects are estimated and plotted, one can go to the `r opt("Covariate Scaling")` panel and change the `Covariate conditioning` setup. For instance, one may want to explore the effect of `x` at 2 SD away from the mean, so one sets the field under Mean $\pm$ SD to 2. One can also decide to condition the slopes to specific percentiles of the `z` variable, by selecting Percentiles $\pm$ SD, which conditions to 25th, 50th, 75th percentile (cf `r ext_url("GAMLj help page","https://gamlj.github.io/glm.html")`).
 
-<div style="text-align:center">
+<div style="text-align:center" class="pic">
 ```{r ,echo=FALSE, out.width="70%"}
 knitr::include_graphics("bookletpics/2_input14.png")
 ```
 </div>
 
-<div style="text-align:center">
+<div style="text-align:center" class="pic">
 ```{r ,echo=FALSE, out.width="90%"}
 knitr::include_graphics("bookletpics/2_output14.png")
 ```
@@ -356,7 +356,12 @@ We can be happy with the analysis, as we have estimated, tested, and quantified 
 
 We can now work with a model with categorical independent variables. The dataset provides `cat2` and `cat3` variables, with two groups and three groups respectively. Their combination produces the following groups.
 
-`r pic("bookletpics/2_anova_output1.png")`
+<div style="text-align:center" class="pic">
+```{r ,echo=FALSE, out.width="70%"}
+knitr::include_graphics("bookletpics/2_anova_output1.png")
+```
+</div>
+
 
 
 To put some flesh on the bones, let's imagine that cat3 be the type of beer one drinks, with levels _stout_, _IPA_ and _pilsner_. Assume `cat2` be type of bar, _music bar_ vs _sports bar_. To remember, let's put some labels on the variables levels.
