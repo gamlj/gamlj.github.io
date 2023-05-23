@@ -107,6 +107,7 @@ $$
 \hat{y}_{ij}=\bar{a}_j+a'_j+ (\bar{b}_j+b'_j)  \cdot x_{ij}
 $$
 Indeed, in this model, the intercept is composed of the fixed (average) intercept plus a cluster-specific intercept deviation (random), representing the deviation from the average intercept for each particular cluster. Similarly, the effect of variable $x$ is comprised of the fixed (average) slope plus a cluster-specific (random) slope deviation, representing the deviation from the average slope for the specific effect of $x$ in each cluster.
+
 <div class="enf">
 A linear model that encompasses both fixed and random coefficients is called a **Linear Mixed Model**
 </div>
@@ -114,6 +115,8 @@ A linear model that encompasses both fixed and random coefficients is called a *
 ## Outcome of the model
 
 Generally speaking, when a mixed model is estimated the most important results are the fixed effects. We can interpret them as the coefficients in the GLM (`r cap("glm")`), keeping in mind that they are the average of the random distribution of coefficients. We also obtain the variances and covariances of the random effects, usually refered to as _the random component_, which may be of interest for the analyst. As for any other linear model, we can look at the results from the _variance angle_ and from the _coefficients angle_, because `r modulename()` offers results for both approaches.
+
+Being the mixed model a linear model, we can operate all the techniques and methods we have explored within the GLM and the GzLM models, such as posthoc analysis, interaction,  simple effects,  model plotting, bootstrap inference etc.
 
 ## Building a Mixed Model
 

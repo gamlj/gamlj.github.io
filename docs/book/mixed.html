@@ -425,10 +425,10 @@ a&#39;_j=a_j-\bar{a}
 \end{align}
 \]</span>
 and write the model again</p>
-<span class="math display">\[
+<p><span class="math display">\[
 \hat{y}_{ij}=\bar{a}_j+a&#39;_j+ (\bar{b}_j+b&#39;_j)  \cdot x_{ij}
 \]</span>
-Indeed, in this model, the intercept is composed of the fixed (average) intercept plus a cluster-specific intercept deviation (random), representing the deviation from the average intercept for each particular cluster. Similarly, the effect of variable <span class="math inline">\(x\)</span> is comprised of the fixed (average) slope plus a cluster-specific (random) slope deviation, representing the deviation from the average slope for the specific effect of <span class="math inline">\(x\)</span> in each cluster.
+Indeed, in this model, the intercept is composed of the fixed (average) intercept plus a cluster-specific intercept deviation (random), representing the deviation from the average intercept for each particular cluster. Similarly, the effect of variable <span class="math inline">\(x\)</span> is comprised of the fixed (average) slope plus a cluster-specific (random) slope deviation, representing the deviation from the average slope for the specific effect of <span class="math inline">\(x\)</span> in each cluster.</p>
 <div class="enf">
 <p>A linear model that encompasses both fixed and random coefficients is called a <strong>Linear Mixed Model</strong></p>
 </div>
@@ -436,6 +436,7 @@ Indeed, in this model, the intercept is composed of the fixed (average) intercep
 <div id="outcome-of-the-model" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Outcome of the model<a href="mixed.html#outcome-of-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Generally speaking, when a mixed model is estimated the most important results are the fixed effects. We can interpret them as the coefficients in the GLM (Chapter <a href="glm.html#glm">2</a>), keeping in mind that they are the average of the random distribution of coefficients. We also obtain the variances and covariances of the random effects, usually refered to as <em>the random component</em>, which may be of interest for the analyst. As for any other linear model, we can look at the results from the <em>variance angle</em> and from the <em>coefficients angle</em>, because <span class="modulename">GAMLj</span> offers results for both approaches.</p>
+<p>Being the mixed model a linear model, we can operate all the techniques and methods we have explored within the GLM and the GzLM models, such as posthoc analysis, interaction, simple effects, model plotting, bootstrap inference etc.</p>
 </div>
 <div id="building-a-mixed-model" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> Building a Mixed Model<a href="mixed.html#building-a-mixed-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
