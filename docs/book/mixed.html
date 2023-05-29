@@ -465,7 +465,7 @@ First, when building a mixed model, one should ask three questions:
 <h3><span class="header-section-number">4.5.3</span> Random Effects?<a href="mixed.html#random-effects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Not all effects in a model can be considered random because not all effects exhibit variation across clusters. It is important to differentiate between potential variability and empirical variability.</p>
 <div class="enf">
-<p>The effects that can be potentially considered random are those that may exhibit variability across clusters. To have this potential, it should be possible to compute the coefficient within each cluster. If each cluster may express a different value for the coefficient, the coefficient may vary from cluster to cluster. If this condition is met, the coefficient can be included in the list of random coefficients.</p>
+<p>The effects that can be considered potential random coefficients are those that may exhibit variability across clusters. To exhibit variability across clusters, it should be possible to compute the coefficient within each cluster. If each cluster may express a different value for the coefficient, the coefficient may vary from cluster to cluster. If this condition is met, the coefficient can be included in the list of random coefficients.</p>
 </div>
 <p>Alternatively, one can identify potentially random coefficients as those effects associated with variables that vary within-clusters. If the variable varies within a cluster, than its coefficient can be computed for that cluster, and therefore it may have a different value from cluster to cluster <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <p>Let’s consider an example within our cover story. Suppose in the sample we have two groups of supporters representing rival sport teams. The effect of the team variable represents the difference in the dependent variable between these two groups of supporters. This effect can be considered a fixed effect. However, whether the effect of the team should also be considered random depends on the design of the study.</p>
@@ -491,6 +491,10 @@ First, when building a mixed model, one should ask three questions:
 </div>
 <div id="model-info" class="section level2 hasAnchor" number="4.7">
 <h2><span class="header-section-number">4.7</span> Model Info<a href="mixed.html#model-info" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="pic" style="text-align:center">
+<p><img src="bookletpics/4_simple_output1.png" width="70%" /></p>
+</div>
+<p>As we have seen for the other models estimated by <span class="modulename">GAMLj</span>.</p>
 <p><span class="incomplete"> Work in progress: incomplete version </span></p>
 
 </div>

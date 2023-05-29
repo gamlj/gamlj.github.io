@@ -150,7 +150,7 @@ The answer to this question is straightforward: all the effects of interest are 
 Not all effects in a model can be considered random because not all effects exhibit variation across clusters. It is important to differentiate between potential variability and empirical variability.
 
 <div class="enf">
-The effects that can be potentially considered random are those that may exhibit variability across clusters. To have this potential, it should be possible to compute the coefficient within each cluster. If each cluster may express a different value for the coefficient, the coefficient may vary from cluster to cluster. If this condition is met, the coefficient can be included in the list of random coefficients.
+The effects that can be  considered potential random coefficients are those that may exhibit variability across clusters. To exhibit variability across clusters, it should be possible to compute the coefficient within each cluster. If each cluster may express a different value for the coefficient, the coefficient may vary from cluster to cluster. If this condition is met, the coefficient can be included in the list of random coefficients.
 </div>
 
 Alternatively, one can identify potentially random coefficients as those effects associated with variables that vary within-clusters. If the variable varies within a cluster, than its coefficient can be computed for that cluster, and therefore it may have a different value from cluster to cluster ^[This latter definition does not apply well to intercepts, but intercepts can always be potentially random coefficients].
@@ -191,5 +191,14 @@ knitr::include_graphics("bookletpics/4_simple_input3.png")
 As soon as we define the random component, the estimation begins.
 
 ## Model Info
+
+
+<div style="text-align:center" class="pic">
+```{r ,echo=FALSE, out.width="70%"}
+knitr::include_graphics("bookletpics/4_simple_output1.png")
+```
+</div>
+
+As we have seen for the other models estimated by `r modulename()`.
 
 `r incomplete`
