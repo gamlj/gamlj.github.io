@@ -37,7 +37,7 @@ To account for this hierarchical structure and the potential dependencies among 
 
 Let us be practical and reason about an imaginary study, in which we want to study (again) the relationship between _smiles_ and _beers_. To carry out this study, imagine we sampled a set of bars in one city, and within each bar, we measured the average number of smiles and beers consumed over a given period of time. We utilized the Beers dataset, available in the `r jamovi` data library, which was specifically created to exemplify a multilevel sampling structure and its complexities.
 
-Let us inspect the scatterplot representing the relationship between `beers` and `smiles`. By eyeballing the clouds of points, it is clear that a negatively sloped line would represent the outcome of a simple regression.
+Let us inspect the scatterplot representing the relationship between `beer` and `smile`. By eyeballing the cloud of points, it is clear that a negatively sloped line would represent the outcome of a simple regression.
 
 <div style="text-align:center" class="pic">
 ```{r ,echo=FALSE, out.width="80%"}
@@ -69,7 +69,7 @@ This means, however, that a simple straight line, defined equally for all partic
 
 ## The statistical model
 
-Let us continue our representation of cluster-specific regression lines with the help of some formulas, representing a regression like for each bar: 
+Let us continue our representation of cluster-specific regression lines with the help of some formulas, representing a regression line for each bar: 
 
 $$ 
 \hat{y}_{ij}=a_j+ b_j \cdot x_{ij}
@@ -106,13 +106,17 @@ and write the model again
 $$ 
 \hat{y}_{ij}=\bar{a}_j+a'_j+ (\bar{b}_j+b'_j)  \cdot x_{ij}
 $$
+Indeed, in this model, the intercept is composed of the fixed (average) intercept plus a cluster-specific intercept deviation (random), representing the deviation from the average intercept for each particular cluster. Similarly, the effect of variable $x$ is comprised of the fixed (average) slope plus a cluster-specific (random) slope deviation, representing the deviation from the average slope for the specific effect of $x$ in each cluster.
+
 <div class="enf">
-Indeed, in this model, the intercept is composed of the fixed (average) intercept plus a cluster-specific intercept deviation, representing the deviation from the average intercept for each particular cluster. Similarly, the effect of variable $x$ is comprised of the fixed (average) slope plus a cluster-specific slope deviation, representing the deviation from the average slope for the specific effect of $x$ in each cluster.
+A linear model that encompasses both fixed and random coefficients is called a **Linear Mixed Model**
 </div>
 
 ## Outcome of the model
 
 Generally speaking, when a mixed model is estimated the most important results are the fixed effects. We can interpret them as the coefficients in the GLM (`r cap("glm")`), keeping in mind that they are the average of the random distribution of coefficients. We also obtain the variances and covariances of the random effects, usually refered to as _the random component_, which may be of interest for the analyst. As for any other linear model, we can look at the results from the _variance angle_ and from the _coefficients angle_, because `r modulename()` offers results for both approaches.
+
+Being the mixed model a linear model, we can operate all the techniques and methods we have explored within the GLM and the GzLM models, such as posthoc analysis, interaction,  simple effects,  model plotting, bootstrap inference etc.
 
 ## Building a Mixed Model
 
@@ -127,9 +131,9 @@ First, when building a mixed model, one should ask three questions:
 
 ### Clustering variables?
 
-A clustering variable is a categorical variable that represents a random selection of equivalent groups of units (such as participants or scores) taken from a larger population of groups. These clusters are formed based on shared characteristics or grouping criteria. 
+A clustering variable is a categorical variable that represents a random selection of equivalent groups of cases (such as participants or observations) taken from a larger population of groups. These clusters are formed based on shared characteristics or grouping criteria. 
 
-First, the groups of scores (or participants) defined by a clustering variables should represent a sample of a larger population. This means that the researchers did not pick any particular group on purpose, but the groups were chosen randomly (or very close to randomly). Second, the groups should be equivalent, meaning that no particular group is more interesting than others. They just alternatives that came out from the sampling process.
+First, the groups of observations (or participants) defined by a clustering variables should represent a sample of a larger population. This means that the researchers did not pick any particular group on purpose, but the groups were chosen randomly (or very close to randomly). Second, the groups should be equivalent, meaning that no particular group is more interesting than others. They are just alternatives that came out from the sampling process.
 
 Consider for instance a multinational study: the classification of the variable "country" as a clustering variable depends on the nature of the research design. If the aim is to collect data from as many countries as possible, and a sample of countries becomes available, then "country" can be considered a clustering variable. In this scenario, the focus is on capturing the variability between different countries.
 
@@ -146,10 +150,10 @@ The answer to this question is straightforward: all the effects of interest are 
 Not all effects in a model can be considered random because not all effects exhibit variation across clusters. It is important to differentiate between potential variability and empirical variability.
 
 <div class="enf">
-The effects that can be potentially considered random are those that may exhibit variability across clusters. To have this potential, it should be possible to compute the coefficient within each cluster. If each cluster may express a different value for the coefficient, the coefficient may vary from cluster to cluster. If this condition is met, the coefficient can be included in the list of random coefficients.
+The effects that can be  considered potential random coefficients are those that may exhibit variability across clusters. To exhibit variability across clusters, it should be possible to compute the coefficient within each cluster. If each cluster may express a different value for the coefficient, the coefficient may vary from cluster to cluster. If this condition is met, the coefficient can be included in the list of random coefficients.
 </div>
 
-Alternatively, one can identify potentially random coefficients as those effects associated with variables that vary within-clusters. If the variable varies with a cluster, than its coefficient can be computed for that cluster, and therefore it may have a different value from cluster to cluster ^[This latter definition does not apply well to intercepts, but intercepts can always be potentially random coefficients].
+Alternatively, one can identify potentially random coefficients as those effects associated with variables that vary within-clusters. If the variable varies within a cluster, than its coefficient can be computed for that cluster, and therefore it may have a different value from cluster to cluster ^[This latter definition does not apply well to intercepts, but intercepts can always be potentially random coefficients].
 
 Let's consider an example within our cover story. Suppose in the sample we have two groups of supporters representing rival sport teams. The effect of the team variable represents the difference in the dependent variable between these two groups of supporters. This effect can be considered a fixed effect. However, whether the effect of the team should also be considered random depends on the design of the study.
 
@@ -176,16 +180,25 @@ knitr::include_graphics("bookletpics/4_simple_input2.png")
 ```
 </div>
 
-The random coefficients must be defined by the user. On the left side, all possible effects are listed, with the notation `effect | cluster`. Please notice that the listed coefficients are not only the potential random coefficients, but all possible coefficients. Thus, it is the user's responsability to pick the correct potential coefficients.  
+The random coefficients must be defined by the user. On the left side, all possible effects are listed, with the notation `coefficient | cluster`. Please notice that the listed coefficients are not only the potential random coefficients, but all possible coefficients. Thus, it is the user's responsibility to pick the correct potential random coefficients.  
 
 <div style="text-align:center" class="pic">
 ```{r ,echo=FALSE, out.width="70%"}
-knitr::include_graphics("bookletpics/4_simple_input2.png")
+knitr::include_graphics("bookletpics/4_simple_input3.png")
 ```
 </div>
 
 As soon as we define the random component, the estimation begins.
 
 ## Model Info
+
+
+<div style="text-align:center" class="pic">
+```{r ,echo=FALSE, out.width="70%"}
+knitr::include_graphics("bookletpics/4_simple_output1.png")
+```
+</div>
+
+As we have seen for the other models estimated by `r modulename()`.
 
 `r incomplete`

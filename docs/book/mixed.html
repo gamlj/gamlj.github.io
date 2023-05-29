@@ -383,7 +383,7 @@ div.csl-indent {
 <div id="an-example" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> An example<a href="mixed.html#an-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let us be practical and reason about an imaginary study, in which we want to study (again) the relationship between <em>smiles</em> and <em>beers</em>. To carry out this study, imagine we sampled a set of bars in one city, and within each bar, we measured the average number of smiles and beers consumed over a given period of time. We utilized the Beers dataset, available in the <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> data library, which was specifically created to exemplify a multilevel sampling structure and its complexities.</p>
-<p>Let us inspect the scatterplot representing the relationship between <code>beers</code> and <code>smiles</code>. By eyeballing the clouds of points, it is clear that a negatively sloped line would represent the outcome of a simple regression.</p>
+<p>Let us inspect the scatterplot representing the relationship between <code>beer</code> and <code>smile</code>. By eyeballing the cloud of points, it is clear that a negatively sloped line would represent the outcome of a simple regression.</p>
 <div class="pic" style="text-align:center">
 <p><img src="bookletpics/4_theory_plot1.png" width="80%" /></p>
 </div>
@@ -401,7 +401,7 @@ div.csl-indent {
 </div>
 <div id="the-statistical-model" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> The statistical model<a href="mixed.html#the-statistical-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let us continue our representation of cluster-specific regression lines with the help of some formulas, representing a regression like for each bar:</p>
+<p>Let us continue our representation of cluster-specific regression lines with the help of some formulas, representing a regression line for each bar:</p>
 <p><span class="math display">\[
 \hat{y}_{ij}=a_j+ b_j \cdot x_{ij}
 \]</span>
@@ -425,16 +425,18 @@ a&#39;_j=a_j-\bar{a}
 \end{align}
 \]</span>
 and write the model again</p>
-<span class="math display">\[
+<p><span class="math display">\[
 \hat{y}_{ij}=\bar{a}_j+a&#39;_j+ (\bar{b}_j+b&#39;_j)  \cdot x_{ij}
 \]</span>
+Indeed, in this model, the intercept is composed of the fixed (average) intercept plus a cluster-specific intercept deviation (random), representing the deviation from the average intercept for each particular cluster. Similarly, the effect of variable <span class="math inline">\(x\)</span> is comprised of the fixed (average) slope plus a cluster-specific (random) slope deviation, representing the deviation from the average slope for the specific effect of <span class="math inline">\(x\)</span> in each cluster.</p>
 <div class="enf">
-<p>Indeed, in this model, the intercept is composed of the fixed (average) intercept plus a cluster-specific intercept deviation, representing the deviation from the average intercept for each particular cluster. Similarly, the effect of variable <span class="math inline">\(x\)</span> is comprised of the fixed (average) slope plus a cluster-specific slope deviation, representing the deviation from the average slope for the specific effect of <span class="math inline">\(x\)</span> in each cluster.</p>
+<p>A linear model that encompasses both fixed and random coefficients is called a <strong>Linear Mixed Model</strong></p>
 </div>
 </div>
 <div id="outcome-of-the-model" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Outcome of the model<a href="mixed.html#outcome-of-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Generally speaking, when a mixed model is estimated the most important results are the fixed effects. We can interpret them as the coefficients in the GLM (Chapter <a href="glm.html#glm">2</a>), keeping in mind that they are the average of the random distribution of coefficients. We also obtain the variances and covariances of the random effects, usually refered to as <em>the random component</em>, which may be of interest for the analyst. As for any other linear model, we can look at the results from the <em>variance angle</em> and from the <em>coefficients angle</em>, because <span class="modulename">GAMLj</span> offers results for both approaches.</p>
+<p>Being the mixed model a linear model, we can operate all the techniques and methods we have explored within the GLM and the GzLM models, such as posthoc analysis, interaction, simple effects, model plotting, bootstrap inference etc.</p>
 </div>
 <div id="building-a-mixed-model" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> Building a Mixed Model<a href="mixed.html#building-a-mixed-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -449,8 +451,8 @@ First, when building a mixed model, one should ask three questions:
 </div>
 <div id="clustering-variables" class="section level3 hasAnchor" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> Clustering variables?<a href="mixed.html#clustering-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A clustering variable is a categorical variable that represents a random selection of equivalent groups of units (such as participants or scores) taken from a larger population of groups. These clusters are formed based on shared characteristics or grouping criteria.</p>
-<p>First, the groups of scores (or participants) defined by a clustering variables should represent a sample of a larger population. This means that the researchers did not pick any particular group on purpose, but the groups were chosen randomly (or very close to randomly). Second, the groups should be equivalent, meaning that no particular group is more interesting than others. They just alternatives that came out from the sampling process.</p>
+<p>A clustering variable is a categorical variable that represents a random selection of equivalent groups of cases (such as participants or observations) taken from a larger population of groups. These clusters are formed based on shared characteristics or grouping criteria.</p>
+<p>First, the groups of observations (or participants) defined by a clustering variables should represent a sample of a larger population. This means that the researchers did not pick any particular group on purpose, but the groups were chosen randomly (or very close to randomly). Second, the groups should be equivalent, meaning that no particular group is more interesting than others. They are just alternatives that came out from the sampling process.</p>
 <p>Consider for instance a multinational study: the classification of the variable “country” as a clustering variable depends on the nature of the research design. If the aim is to collect data from as many countries as possible, and a sample of countries becomes available, then “country” can be considered a clustering variable. In this scenario, the focus is on capturing the variability between different countries.</p>
 <p>On the other hand, if the research objective is to compare two or three specific countries chosen for their distinct characteristics, “country” would not be treated as a clustering variable. Instead, it would be included in the model as a categorical independent variable. In this case, the interest lies in examining the specific effects of the chosen countries and assessing the differences between them.</p>
 <p>Finally, a clustering variable should define a sample of groups that is representative of the larger population. However, if the number of groups is insufficient to constitute a reliable sample, it may be more appropriate to designate the variable as a categorical independent variable rather than using a mixed model.</p>
@@ -463,9 +465,9 @@ First, when building a mixed model, one should ask three questions:
 <h3><span class="header-section-number">4.5.3</span> Random Effects?<a href="mixed.html#random-effects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Not all effects in a model can be considered random because not all effects exhibit variation across clusters. It is important to differentiate between potential variability and empirical variability.</p>
 <div class="enf">
-<p>The effects that can be potentially considered random are those that may exhibit variability across clusters. To have this potential, it should be possible to compute the coefficient within each cluster. If each cluster may express a different value for the coefficient, the coefficient may vary from cluster to cluster. If this condition is met, the coefficient can be included in the list of random coefficients.</p>
+<p>The effects that can be considered potential random coefficients are those that may exhibit variability across clusters. To exhibit variability across clusters, it should be possible to compute the coefficient within each cluster. If each cluster may express a different value for the coefficient, the coefficient may vary from cluster to cluster. If this condition is met, the coefficient can be included in the list of random coefficients.</p>
 </div>
-<p>Alternatively, one can identify potentially random coefficients as those effects associated with variables that vary within-clusters. If the variable varies with a cluster, than its coefficient can be computed for that cluster, and therefore it may have a different value from cluster to cluster <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>Alternatively, one can identify potentially random coefficients as those effects associated with variables that vary within-clusters. If the variable varies within a cluster, than its coefficient can be computed for that cluster, and therefore it may have a different value from cluster to cluster <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <p>Let’s consider an example within our cover story. Suppose in the sample we have two groups of supporters representing rival sport teams. The effect of the team variable represents the difference in the dependent variable between these two groups of supporters. This effect can be considered a fixed effect. However, whether the effect of the team should also be considered random depends on the design of the study.</p>
 <p>If each bar in the sample hosts supporters of both teams, it becomes possible to compute the difference between the teams within each bar. In this case, the effect of the team can potentially be treated as a random effect. On the other hand, if each bar exclusively hosts supporters of only one team, it is not feasible to compute the team effect within each bar. Consequently, the coefficient has no potential to be random and should be estimated solely as a fixed effect.</p>
 <p>Having said that, it is still possible that not all effects that are potentially random exhibit empirical variability in the data. In some cases, even though an effect could have theoretically varied, it may not show any actual variability in our dataset. Such effects that do not demonstrate empirical variation should be removed from the list of random coefficients. Including them can impede model convergence and potentially introduce bias into the results. When this is the case, the results of an initial estimation of the model would suggest which coefficients are not empirically random.</p>
@@ -481,14 +483,18 @@ First, when building a mixed model, one should ask three questions:
 <div class="pic" style="text-align:center">
 <p><img src="bookletpics/4_simple_input2.png" width="70%" /></p>
 </div>
-<p>The random coefficients must be defined by the user. On the left side, all possible effects are listed, with the notation <code>effect | cluster</code>. Please notice that the listed coefficients are not only the potential random coefficients, but all possible coefficients. Thus, it is the user’s responsability to pick the correct potential coefficients.</p>
+<p>The random coefficients must be defined by the user. On the left side, all possible effects are listed, with the notation <code>coefficient | cluster</code>. Please notice that the listed coefficients are not only the potential random coefficients, but all possible coefficients. Thus, it is the user’s responsibility to pick the correct potential random coefficients.</p>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_simple_input2.png" width="70%" /></p>
+<p><img src="bookletpics/4_simple_input3.png" width="70%" /></p>
 </div>
 <p>As soon as we define the random component, the estimation begins.</p>
 </div>
 <div id="model-info" class="section level2 hasAnchor" number="4.7">
 <h2><span class="header-section-number">4.7</span> Model Info<a href="mixed.html#model-info" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="pic" style="text-align:center">
+<p><img src="bookletpics/4_simple_output1.png" width="70%" /></p>
+</div>
+<p>As we have seen for the other models estimated by <span class="modulename">GAMLj</span>.</p>
 <p><span class="incomplete"> Work in progress: incomplete version </span></p>
 
 </div>
