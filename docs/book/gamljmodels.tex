@@ -1549,8 +1549,11 @@ Depending on the specific application, one of the two plot types may result usef
 
 All other options, {Simple Interactions}, {Factor Coding}, {Covariates Scaling}, {Bootstrap} confidence intervals, {Model comparison} etc. are the same as in the GLM.
 
-\hypertarget{poisson-model}{%
-\section{Poisson Model}\label{poisson-model}}
+\hypertarget{poisson}{%
+\section{The Poisson Model}\label{poisson}}
+
+\hypertarget{distribution}{%
+\subsection{Distribution}\label{distribution}}
 
 Very often, rather than measuring quantities we count stuff. For example, we may have a dependent variable that indicates the number of smartphones a person possesses, the count of close friends a teenager has, or the frequency of email checks per hour. These variables are referred to as count data, where the variable scores represent frequencies rather than actual quantities.''
 
@@ -1569,6 +1572,37 @@ If we now consider an environment in which checking the email is more common, sa
 \includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory3}
 
 The distribution that acount for this beavhior of count data is called the \emph{Poisson distribution} and it models count data very well when events are rare, thus when the average count is low. The Possisson distribition is a probability distribution that models the number of events that occur within a fixed interval of time or space when these events occur independently and at a constant average rate. It applies to whole numbers (integers) and its shape depends on its mean, that is the average rate of occurrence of the events within the given interval.
+
+\hypertarget{link-function}{%
+\subsection{Link function}\label{link-function}}
+
+Consider a count variable such as the one depicted in the following histogram:
+
+\includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory4}
+
+Assuming a positive correlation between the count variable and a continuous variable, when we examine the relationship on a scatterplot, it becomes evident that a straight line is insufficient to capture the pattern accurately. Specifically, when the count variable is zero, the straight line would be horizontal, failing to capture the subsequent increase reflecting the positive relationship between the variables.
+
+\includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory5}
+
+A more suitable approach would be to employ an exponential function to accurately describe the relationship between the variables.
+
+\includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory5}
+
+This would mean defining the model
+
+\[
+\hat{y}_i=e^{(a+bx_i)}
+\]
+where \(e^x\) means the exponential of \(x\). However, we prefer to work with linear models, so we linearize the model by taking the logarithm of both size, which gives (recall that \(ln(e^x)=x\)):
+
+\[
+ln(\hat{y}_i)=a+bx_i
+\]
+
+The Poisson model is a generalized linear model in which the predicted values are represented as the logarithm of the counts of the dependent variable, following a Poisson distribution. The regression coefficients in this model indicate the change in the logarithm of the expected counts, and the exponentiated form (\(exp(B)\)) of these coefficients represents the rate of change in the counts as the independent variable increases by one unit
+
+\hypertarget{estimating-the-model}{%
+\subsection{Estimating the model}\label{estimating-the-model}}
 
 { Work in progress: incomplete version }
 
