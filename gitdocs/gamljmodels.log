@@ -1,14 +1,15 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.18)  22 MAY 2023 23:50
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.12)  12 JUN 2023 18:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **gamljmodels.tex
 (./gamljmodels.tex
-LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2023-05-15> (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/base/book.cls
-Document Class: book 2022/07/02 v1.4n Standard LaTeX document class
+LaTeX2e <2023-06-01>
+L3 programming layer <2023-06-05>
+(/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2023/05/17 v1.4n Standard LaTeX document class
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/base/bk10.clo
-File: bk10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
+File: bk10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count181
 \c@chapter=\count182
@@ -23,14 +24,14 @@ File: bk10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
 ) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2022/04/08 v2.17n AMS math features
+Package: amsmath 2023/05/13 v2.17o AMS math features
 \@mathmargin=\skip50
 For additional information on amsmath, use the `?' option.
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks16
+\@emptytoks=\toks17
 \ex@=\dimen141
 )) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
@@ -68,21 +69,21 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \dotsspace@=\muskip16
 \c@parentequation=\count197
 \dspbrk@lvl=\count198
-\tag@help=\toks17
+\tag@help=\toks18
 \row@=\count199
 \column@=\count266
 \maxfields@=\count267
-\andhelp@=\toks18
+\andhelp@=\toks19
 \eqnshift@=\dimen144
 \alignsep@=\dimen145
 \tagshift@=\dimen146
 \tagwidth@=\dimen147
 \totwidth@=\dimen148
 \lineht@=\dimen149
-\@envbody=\toks19
+\@envbody=\toks20
 \multlinegap=\skip51
 \multlinetaggap=\skip52
-\mathdisplay@stack=\toks20
+\mathdisplay@stack=\toks21
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 ) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
@@ -94,44 +95,10 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
-Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
-(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
-) (/home/mcfanda/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+)) (/home/mcfanda/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2023-05-15 L3 programming layer (loader) 
+Package: expl3 2023-06-05 L3 programming layer (loader) 
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2023-04-19 L3 backend support: XeTeX
 \g__graphics_track_int=\count268
@@ -177,7 +144,41 @@ LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 \g__um_fonts_used_int=\count284
 \l__um_primecount_int=\count285
 \g__um_primekern_muskip=\muskip17
-(/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex))) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex))) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
@@ -198,7 +199,7 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
 Package: fancyvrb 2023/01/19 4.5a verbatim text (tvz,hv)
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks21
+\KV@toks@=\toks22
 )
 \FV@CodeLineNo=\count286
 \FV@InFile=\read2
@@ -230,7 +231,7 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LT@rows=\count291
 \c@LT@tables=\count292
 \c@LT@chunks=\count293
-\LT@p@ftn=\toks22
+\LT@p@ftn=\toks23
 ) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen158
@@ -255,7 +256,7 @@ Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
 \col@sep=\dimen171
 \ar@mcellbox=\box60
 \extrarowheight=\dimen172
-\NC@list=\toks23
+\NC@list=\toks24
 \extratabsurround=\skip58
 \backup@length=\skip59
 \ar@cellbox=\box61
@@ -291,21 +292,17 @@ Package graphics Info: Driver file: xetex.def on input line 107.
 )
 \Gin@req@height=\dimen176
 \Gin@req@width=\dimen177
-)
-\cslhangindent=\skip63
-\csllabelwidth=\skip64
-\cslentryspacingunit=\skip65
-(/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/amscls/amsthm.sty
+) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks24
-\thm@bodyfont=\toks25
-\thm@headfont=\toks26
-\thm@notefont=\toks27
-\thm@headpunct=\toks28
-\thm@preskip=\skip66
-\thm@postskip=\skip67
-\thm@headsep=\skip68
-\dth@everypar=\toks29
+\thm@style=\toks25
+\thm@bodyfont=\toks26
+\thm@headfont=\toks27
+\thm@notefont=\toks28
+\thm@headpunct=\toks29
+\thm@preskip=\skip63
+\thm@postskip=\skip64
+\thm@headsep=\skip65
+\dth@everypar=\toks30
 ) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
@@ -322,17 +319,15 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutheight=\dimen183
 \Gm@layouthoffset=\dimen184
 \Gm@layoutvoffset=\dimen185
-\Gm@dimlist=\toks30
+\Gm@dimlist=\toks31
 ) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip69
-\bibsep=\skip70
+\bibhang=\skip66
+\bibsep=\skip67
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count305
-) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
-Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
-(/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2023-04-22 v7.00x Hypertext links for LaTeX
+) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2023-05-16 v7.00y Hypertext links for LaTeX
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 ) (/home/mcfanda/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
@@ -356,7 +351,7 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 ) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 ) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2022-05-17 v2.50 Cross-referencing by name of section
+Package: nameref 2023-05-16 v2.51 Cross-referencing by name of section
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/home/mcfanda/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
@@ -370,28 +365,28 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 \Hy@linkcounter=\count307
 \Hy@pagecounter=\count308
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2023-04-22 v7.00x Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2023-05-16 v7.00y Hyperref: PDFDocEncoding definition (HO)
 ) (/home/mcfanda/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count309
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2023-04-22 v7.00x Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2023-05-16 v7.00y Hyperref: PDF Unicode definition (HO)
 )
-Package hyperref Info: Option `unicode' set `true' on input line 4065.
-Package hyperref Info: Hyper figures OFF on input line 4182.
-Package hyperref Info: Link nesting OFF on input line 4187.
-Package hyperref Info: Hyper index ON on input line 4190.
-Package hyperref Info: Plain pages OFF on input line 4197.
-Package hyperref Info: Backreferencing OFF on input line 4202.
+Package hyperref Info: Option `unicode' set `true' on input line 4050.
+Package hyperref Info: Hyper figures OFF on input line 4167.
+Package hyperref Info: Link nesting OFF on input line 4172.
+Package hyperref Info: Hyper index ON on input line 4175.
+Package hyperref Info: Plain pages OFF on input line 4182.
+Package hyperref Info: Backreferencing OFF on input line 4187.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4449.
+Package hyperref Info: Bookmarks ON on input line 4434.
 \c@Hy@tempcnt=\count310
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4787.
+LaTeX Info: Redefining \url on input line 4772.
 \XeTeXLinkMargin=\dimen187
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -401,13 +396,13 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 \Fld@menulength=\count311
 \Field@Width=\dimen188
 \Fld@charsize=\dimen189
-Package hyperref Info: Hyper figures OFF on input line 6066.
-Package hyperref Info: Link nesting OFF on input line 6071.
-Package hyperref Info: Hyper index ON on input line 6074.
-Package hyperref Info: backreferencing OFF on input line 6081.
-Package hyperref Info: Link coloring OFF on input line 6086.
-Package hyperref Info: Link coloring with OCG OFF on input line 6091.
-Package hyperref Info: PDF/A mode OFF on input line 6096.
+Package hyperref Info: Hyper figures OFF on input line 6051.
+Package hyperref Info: Link nesting OFF on input line 6056.
+Package hyperref Info: Hyper index ON on input line 6059.
+Package hyperref Info: backreferencing OFF on input line 6066.
+Package hyperref Info: Link coloring OFF on input line 6071.
+Package hyperref Info: Link coloring with OCG OFF on input line 6076.
+Package hyperref Info: PDF/A mode OFF on input line 6081.
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
@@ -418,7 +413,7 @@ package with kernel methods
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
-File: hxetex.def 2023-04-22 v7.00x Hyperref driver for XeTeX
+File: hxetex.def 2023-05-16 v7.00y Hyperref driver for XeTeX
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
@@ -437,47 +432,44 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip71
-) (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
-File: bkm-dvipdfm.def 2020-11-06 v1.29 bookmark driver for dvipdfm (HO)
-\BKM@id=\count319
-)) (./gamljmodels.aux)
+\Hy@SectionHShift=\skip68
+) (./gamljmodels.aux)
 \openout1 = `gamljmodels.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 140.
+LaTeX Font Info:    ... okay on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 160.
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 160.
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 160.
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 160.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 160.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 160.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 140.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 160.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 140.
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
 
@@ -503,7 +495,7 @@ Package fontspec Info: Font family 'latinmodern-math.otf(0)' created for font
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 160.
+(Font)              scaled to size 10.0pt on input line 140.
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
 
@@ -535,15 +527,15 @@ Package fontspec Info: Font family 'latinmodern-math.otf(1)' created for font
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 160.
+(Font)              scaled to size 10.0pt on input line 140.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 160.
+(Font)              `operators' in the math version `normal' on input line 140.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 160.
+(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 140.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 160.
+(Font)              `operators' in the math version `bold' on input line 140.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 160.
+(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 140.
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
 
@@ -622,13 +614,13 @@ Package fontspec Info: Font family 'latinmodern-math.otf(2)' created for font
 (fontspec)             \fontdimen 21\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 160.
+(Font)              `symbols' in the math version `normal' on input line 140.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 160.
+(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 140.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 160.
+(Font)              `symbols' in the math version `bold' on input line 140.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 160.
+(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 140.
 
 Package fontspec Info: latinmodern-math scale = 0.9999964596882403.
 
@@ -689,13 +681,13 @@ Package fontspec Info: Font family 'latinmodern-math.otf(3)' created for font
 (fontspec)             =6.0pt\relax \fontdimen 13\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 160.
+(Font)              `largesymbols' in the math version `normal' on input line 140.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 160.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 140.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 160.
+(Font)              `largesymbols' in the math version `bold' on input line 140.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 160.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 140.
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -730,34 +722,38 @@ LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 160.
+Package hyperref Info: Link coloring OFF on input line 140.
+(./gamljmodels.out) (./gamljmodels.out)
+\@outlinefile=\write4
+\openout4 = `gamljmodels.out'.
+
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 162.
+(Font)              scaled to size 12.0pt on input line 142.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 162.
+(Font)              scaled to size 8.0pt on input line 142.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 162.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 162.
+(Font)              scaled to size 6.0pt on input line 142.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 142.
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.0011pt on input line 162.
+(Font)              scaled to size 12.0011pt on input line 142.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.00073pt on input line 162.
+(Font)              scaled to size 8.00073pt on input line 142.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.00055pt on input line 162.
+(Font)              scaled to size 6.00055pt on input line 142.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.99872pt on input line 162.
+(Font)              scaled to size 11.99872pt on input line 142.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.99915pt on input line 162.
+(Font)              scaled to size 7.99915pt on input line 142.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 162.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 162.
+(Font)              scaled to size 5.99936pt on input line 142.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 142.
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 162.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 142.
 (/home/mcfanda/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -783,16 +779,16 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 4.99947pt on input line 2.
 [3])
-\tf@toc=\write4
-\openout4 = `gamljmodels.toc'.
+\tf@toc=\write5
+\openout5 = `gamljmodels.toc'.
 
 [4]
 Chapter 1.
+
+LaTeX Warning: Reference `nb' on page 5 undefined on input line 191.
+
 File: bookletpics/0_library1.png Graphic file (type bmp)
 <bookletpics/0_library1.png>
-
-Underfull \vbox (badness 1231) has occurred while \output is active []
-
 [5
 
 ]
@@ -800,16 +796,10 @@ File: bookletpics/0_library2.png Graphic file (type bmp)
 <bookletpics/0_library2.png>
 File: bookletpics/0_menu1.png Graphic file (type bmp)
 <bookletpics/0_menu1.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[6]
 Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:mapping=tex-text;!
+[6]
 File: bookletpics/0_datalibrary1.png Graphic file (type bmp)
 <bookletpics/0_datalibrary1.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [7] [8] [9] [10]
 Chapter 2.
 File: bookletpics/2_scatterplot1.png Graphic file (type bmp)
@@ -822,1028 +812,510 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ]
 File: bookletpics/2_menu1.png Graphic file (type bmp)
 <bookletpics/2_menu1.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[12]
 File: bookletpics/2_input1.png Graphic file (type bmp)
 <bookletpics/2_input1.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[13]
+[12]
 File: bookletpics/2_output1.png Graphic file (type bmp)
 <bookletpics/2_output1.png>
-[14]
 File: bookletpics/2_output2.png Graphic file (type bmp)
 <bookletpics/2_output2.png>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[13]
 File: bookletpics/2_output3.png Graphic file (type bmp)
 <bookletpics/2_output3.png>
 File: bookletpics/2_output4.png Graphic file (type bmp)
 <bookletpics/2_output4.png>
-[15]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[14]
 File: bookletpics/2_output5.png Graphic file (type bmp)
 <bookletpics/2_output5.png>
-[16]
+[15]
 File: bookletpics/2_output2.png Graphic file (type bmp)
 <bookletpics/2_output2.png>
 File: bookletpics/2_output8.png Graphic file (type bmp)
 <bookletpics/2_output8.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[17]
+[16]
 File: bookletpics/2_simple_input9.png Graphic file (type bmp)
 <bookletpics/2_simple_input9.png>
 File: bookletpics/2_simple_output9.png Graphic file (type bmp)
 <bookletpics/2_simple_output9.png>
-[18]
 File: bookletpics/2_input3.png Graphic file (type bmp)
 <bookletpics/2_input3.png>
 File: bookletpics/2_plot1.png Graphic file (type bmp)
 <bookletpics/2_plot1.png>
-[19]
+[17]
 File: bookletpics/2_input4.png Graphic file (type bmp)
 <bookletpics/2_input4.png>
-
-Overfull \hbox (157.20251pt too wide) in paragraph at lines 424--425
-[][] 
- []
-
+[18]
 File: bookletpics/2_output6.png Graphic file (type bmp)
 <bookletpics/2_output6.png>
-
-Overfull \hbox (28.93784pt too wide) in paragraph at lines 431--432
-[] 
- []
-
-
-Underfull \vbox (badness 1178) has occurred while \output is active []
-
-[20]
 File: bookletpics/2_output7.png Graphic file (type bmp)
 <bookletpics/2_output7.png>
-
-Overfull \hbox (189.52843pt too wide) in paragraph at lines 438--439
-[] 
- []
-
-[21]
+[19]
 File: bookletpics/2_output9.png Graphic file (type bmp)
 <bookletpics/2_output9.png>
-
-Overfull \hbox (218.60847pt too wide) in paragraph at lines 465--466
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[22]
+[20]
 File: bookletpics/2_input10.png Graphic file (type bmp)
 <bookletpics/2_input10.png>
-
-Overfull \hbox (137.32335pt too wide) in paragraph at lines 484--485
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[23]
 File: bookletpics/2_output10.png Graphic file (type bmp)
 <bookletpics/2_output10.png>
 
-Overfull \hbox (217.61455pt too wide) in paragraph at lines 486--487
-[][] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
+[21]
+File: bookletpics/2_input11.png Graphic file (type bmp)
+<bookletpics/2_input11.png>
+File: bookletpics/2_output11.png Graphic file (type bmp)
+<bookletpics/2_output11.png>
+[22]
+Underfull \vbox (badness 5548) has occurred while \output is active []
+
+[23]
+File: bookletpics/2_input10.png Graphic file (type bmp)
+<bookletpics/2_input10.png>
+File: bookletpics/2_output12.png Graphic file (type bmp)
+<bookletpics/2_output12.png>
+[24]
+File: bookletpics/2_input13.png Graphic file (type bmp)
+<bookletpics/2_input13.png>
+File: bookletpics/2_output13.png Graphic file (type bmp)
+<bookletpics/2_output13.png>
+File: bookletpics/2_input14.png Graphic file (type bmp)
+<bookletpics/2_input14.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[24]
-Underfull \vbox (badness 1137) has occurred while \output is active []
-
 [25]
-File: bookletpics/2_input11.png Graphic file (type bmp)
-<bookletpics/2_input11.png>
-
-Overfull \hbox (128.97086pt too wide) in paragraph at lines 496--497
-[][] 
- []
-
-File: bookletpics/2_output11.png Graphic file (type bmp)
-<bookletpics/2_output11.png>
-
-Overfull \hbox (237.4056pt too wide) in paragraph at lines 500--501
-[][] 
- []
-
+File: bookletpics/2_output14.png Graphic file (type bmp)
+<bookletpics/2_output14.png>
+File: bookletpics/2_anova_output1.png Graphic file (type bmp)
+<bookletpics/2_anova_output1.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [26]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+File: bookletpics/2_anova_input1.png Graphic file (type bmp)
+<bookletpics/2_anova_input1.png>
+File: bookletpics/2_anova_input2.png Graphic file (type bmp)
+<bookletpics/2_anova_input2.png>
+File: bookletpics/2_anova_input3.png Graphic file (type bmp)
+<bookletpics/2_anova_input3.png>
+
+Underfull \vbox (badness 7796) has occurred while \output is active []
 
 [27]
-File: bookletpics/2_input10.png Graphic file (type bmp)
-<bookletpics/2_input10.png>
-
-Overfull \hbox (137.32335pt too wide) in paragraph at lines 516--517
-[][] 
- []
-
+File: bookletpics/2_anova_output2.png Graphic file (type bmp)
+<bookletpics/2_anova_output2.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [28]
-File: bookletpics/2_output12.png Graphic file (type bmp)
-<bookletpics/2_output12.png>
-
-Overfull \hbox (203.43704pt too wide) in paragraph at lines 518--519
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+File: bookletpics/2_anova_output3.png Graphic file (type bmp)
+<bookletpics/2_anova_output3.png>
 [29]
-File: bookletpics/2_input13.png Graphic file (type bmp)
-<bookletpics/2_input13.png>
-
-Overfull \hbox (138.33577pt too wide) in paragraph at lines 524--525
-[][] 
- []
-
+File: bookletpics/2_anova_input4.png Graphic file (type bmp)
+<bookletpics/2_anova_input4.png>
+File: bookletpics/2_anova_output4.png Graphic file (type bmp)
+<bookletpics/2_anova_output4.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [30]
-File: bookletpics/2_output13.png Graphic file (type bmp)
-<bookletpics/2_output13.png>
+File: bookletpics/2_anova_input5.png Graphic file (type bmp)
+<bookletpics/2_anova_input5.png>
+File: bookletpics/2_anova_output5.png Graphic file (type bmp)
+<bookletpics/2_anova_output5.png>
 
-Overfull \hbox (312.99313pt too wide) in paragraph at lines 526--527
-[][] 
+Underfull \hbox (badness 10000) in paragraph at lines 605--607
+[][]
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [31]
-File: bookletpics/2_input14.png Graphic file (type bmp)
-<bookletpics/2_input14.png>
-
-Overfull \hbox (134.05524pt too wide) in paragraph at lines 532--533
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1783) has occurred while \output is active []
 
 [32]
-File: bookletpics/2_output14.png Graphic file (type bmp)
-<bookletpics/2_output14.png>
-
-Overfull \hbox (311.80902pt too wide) in paragraph at lines 534--535
-[][] 
- []
-
+File: bookletpics/2_anova_input6.png Graphic file (type bmp)
+<bookletpics/2_anova_input6.png>
+File: bookletpics/2_anova_output6.png Graphic file (type bmp)
+<bookletpics/2_anova_output6.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[33]
-File: bookletpics/2_anova_output1.png Graphic file (type bmp)
-<bookletpics/2_anova_output1.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[34]
-File: bookletpics/2_anova_input1.png Graphic file (type bmp)
-<bookletpics/2_anova_input1.png>
-
-Overfull \hbox (349.16469pt too wide) in paragraph at lines 549--550
-[][] 
- []
-
-File: bookletpics/2_anova_input2.png Graphic file (type bmp)
-<bookletpics/2_anova_input2.png>
-
-Overfull \hbox (329.06512pt too wide) in paragraph at lines 551--552
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+[33] [34]
+File: bookletpics/2_anova_output8.png Graphic file (type bmp)
+<bookletpics/2_anova_output8.png>
+File: bookletpics/2_anova_input7.png Graphic file (type bmp)
+<bookletpics/2_anova_input7.png>
+File: bookletpics/2_anova_output7.png Graphic file (type bmp)
+<bookletpics/2_anova_output7.png>
 [35]
-File: bookletpics/2_anova_input3.png Graphic file (type bmp)
-<bookletpics/2_anova_input3.png>
-
-Overfull \hbox (147.04562pt too wide) in paragraph at lines 557--558
-[][] 
- []
-
+File: bookletpics/2_moderation_output1.png Graphic file (type bmp)
+<bookletpics/2_moderation_output1.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [36]
-File: bookletpics/2_anova_output2.png Graphic file (type bmp)
-<bookletpics/2_anova_output2.png>
-
-Overfull \hbox (38.6419pt too wide) in paragraph at lines 564--565
-[] 
- []
-
+File: bookletpics/2_ancova_input1.png Graphic file (type bmp)
+<bookletpics/2_ancova_input1.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [37]
-File: bookletpics/2_anova_output3.png Graphic file (type bmp)
-<bookletpics/2_anova_output3.png>
-
-Overfull \hbox (467.6296pt too wide) in paragraph at lines 573--574
-[][] 
- []
-
+File: bookletpics/2_ancova_input2.png Graphic file (type bmp)
+<bookletpics/2_ancova_input2.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [38]
-File: bookletpics/2_anova_input4.png Graphic file (type bmp)
-<bookletpics/2_anova_input4.png>
+File: bookletpics/2_ancova_output1.png Graphic file (type bmp)
+<bookletpics/2_ancova_output1.png>
 
-Overfull \hbox (135.30725pt too wide) in paragraph at lines 577--578
-[][] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [39]
-File: bookletpics/2_anova_output4.png Graphic file (type bmp)
-<bookletpics/2_anova_output4.png>
-File: bookletpics/2_anova_input5.png Graphic file (type bmp)
-<bookletpics/2_anova_input5.png>
-
-Overfull \hbox (126.07097pt too wide) in paragraph at lines 594--595
-[][] 
- []
-
+File: bookletpics/2_ancova_input3.png Graphic file (type bmp)
+<bookletpics/2_ancova_input3.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [40]
-File: bookletpics/2_anova_output5.png Graphic file (type bmp)
-<bookletpics/2_anova_output5.png>
-
-Overfull \hbox (249.67256pt too wide) in paragraph at lines 596--597
-[][] 
- []
-
+File: bookletpics/2_ancova_output3.png Graphic file (type bmp)
+<bookletpics/2_ancova_output3.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[41] [42]
-File: bookletpics/2_anova_input6.png Graphic file (type bmp)
-<bookletpics/2_anova_input6.png>
-
-Overfull \hbox (145.35349pt too wide) in paragraph at lines 605--606
-[][] 
- []
-
-File: bookletpics/2_anova_output6.png Graphic file (type bmp)
-<bookletpics/2_anova_output6.png>
-
-Overfull \hbox (363.12178pt too wide) in paragraph at lines 607--608
-[][] 
- []
-
-
+[41]
+File: bookletpics/2_ancova_input4.png Graphic file (type bmp)
+<bookletpics/2_ancova_input4.png>
+File: bookletpics/2_ancova_output4a.png Graphic file (type bmp)
+<bookletpics/2_ancova_output4a.png>
+File: bookletpics/2_ancova_output4b.png Graphic file (type bmp)
+<bookletpics/2_ancova_output4b.png>
+[42]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [43]
-Underfull \vbox (badness 1354) has occurred while \output is active []
-
+File: bookletpics/2_ancova_input5.png Graphic file (type bmp)
+<bookletpics/2_ancova_input5.png>
+File: bookletpics/2_ancova_output5.png Graphic file (type bmp)
+<bookletpics/2_ancova_output5.png>
 [44]
-File: bookletpics/2_anova_output8.png Graphic file (type bmp)
-<bookletpics/2_anova_output8.png>
+File: bookletpics/2_ancova_input6.png Graphic file (type bmp)
+<bookletpics/2_ancova_input6.png>
+File: bookletpics/2_ancova_output6.png Graphic file (type bmp)
+<bookletpics/2_ancova_output6.png>
 
-Overfull \hbox (608.07233pt too wide) in paragraph at lines 633--634
-[][] 
- []
-
-
-Underfull \vbox (badness 7273) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [45]
-File: bookletpics/2_anova_input7.png Graphic file (type bmp)
-<bookletpics/2_anova_input7.png>
-
-Overfull \hbox (145.34476pt too wide) in paragraph at lines 644--645
-[][] 
- []
-
+File: bookletpics/2_modelcomparison_input1.png Graphic file (type bmp)
+<bookletpics/2_modelcomparison_input1.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [46]
-File: bookletpics/2_anova_output7.png Graphic file (type bmp)
-<bookletpics/2_anova_output7.png>
+File: bookletpics/2_modelcomparison_input2.png Graphic file (type bmp)
+<bookletpics/2_modelcomparison_input2.png>
 
-Overfull \hbox (99.19644pt too wide) in paragraph at lines 646--647
-[][] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [47]
-File: bookletpics/2_moderation_output1.png Graphic file (type bmp)
-<bookletpics/2_moderation_output1.png>
-
-Overfull \hbox (89.13487pt too wide) in paragraph at lines 654--655
-[][] 
- []
-
-File: bookletpics/2_ancova_input1.png Graphic file (type bmp)
-<bookletpics/2_ancova_input1.png>
-
-Overfull \hbox (161.46754pt too wide) in paragraph at lines 665--666
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+File: bookletpics/2_modelcomparison_output2.png Graphic file (type bmp)
+<bookletpics/2_modelcomparison_output2.png>
 [48]
-File: bookletpics/2_ancova_input2.png Graphic file (type bmp)
-<bookletpics/2_ancova_input2.png>
+File: bookletpics/2_modelcomparison_input3.png Graphic file (type bmp)
+<bookletpics/2_modelcomparison_input3.png>
+File: bookletpics/2_modelcomparison_output3.png Graphic file (type bmp)
+<bookletpics/2_modelcomparison_output3.png>
 
-Overfull \hbox (152.12354pt too wide) in paragraph at lines 669--670
-[][] 
+Underfull \hbox (badness 10000) in paragraph at lines 762--764
+[][]
+ []
+
+File: bookletpics/2_modelcomparison_input4.png Graphic file (type bmp)
+<bookletpics/2_modelcomparison_input4.png>
+File: bookletpics/2_modelcomparison_output4.png Graphic file (type bmp)
+<bookletpics/2_modelcomparison_output4.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 770--772
+[][]
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2828) has occurred while \output is active []
 
 [49]
-File: bookletpics/2_ancova_output1.png Graphic file (type bmp)
-<bookletpics/2_ancova_output1.png>
-
-Overfull \hbox (370.18417pt too wide) in paragraph at lines 674--675
-[] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [50]
+File: bookletpics/2_modelcomparison_input5.png Graphic file (type bmp)
+<bookletpics/2_modelcomparison_input5.png>
+File: bookletpics/2_modelcomparison_output5.png Graphic file (type bmp)
+<bookletpics/2_modelcomparison_output5.png>
+File: bookletpics/2_modelcomparison_input6.png Graphic file (type bmp)
+<bookletpics/2_modelcomparison_input6.png>
+File: bookletpics/2_modelcomparison_output6.png Graphic file (type bmp)
+<bookletpics/2_modelcomparison_output6.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 778--781
+[]
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[51]
-Overfull \vbox (19.78575pt too high) has occurred while \output is active []
+[51] [52]
+File: bookletpics/2_assumptions_theory1.png Graphic file (type bmp)
+<bookletpics/2_assumptions_theory1.png>
 
-[52]
-File: bookletpics/2_ancova_input3.png Graphic file (type bmp)
-<bookletpics/2_ancova_input3.png>
-
-Overfull \hbox (142.36821pt too wide) in paragraph at lines 683--684
-[][] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [53]
-File: bookletpics/2_ancova_output3.png Graphic file (type bmp)
-<bookletpics/2_ancova_output3.png>
+File: bookletpics/2_assumptions_input1.png Graphic file (type bmp)
+<bookletpics/2_assumptions_input1.png>
 
-Overfull \hbox (74.06337pt too wide) in paragraph at lines 687--688
-[][] 
- []
-
-
-Underfull \vbox (badness 2617) has occurred while \output is active []
+Underfull \vbox (badness 1789) has occurred while \output is active []
 
 [54]
-File: bookletpics/2_ancova_input4.png Graphic file (type bmp)
-<bookletpics/2_ancova_input4.png>
-
-Overfull \hbox (139.1322pt too wide) in paragraph at lines 701--702
-[][] 
- []
-
-File: bookletpics/2_ancova_output4a.png Graphic file (type bmp)
-<bookletpics/2_ancova_output4a.png>
-
-Overfull \hbox (198.36206pt too wide) in paragraph at lines 703--704
-[][] 
- []
-
+File: bookletpics/2_assumptions_output1.png Graphic file (type bmp)
+<bookletpics/2_assumptions_output1.png>
+File: bookletpics/2_assumptions_output2.png Graphic file (type bmp)
+<bookletpics/2_assumptions_output2.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [55]
-File: bookletpics/2_ancova_output4b.png Graphic file (type bmp)
-<bookletpics/2_ancova_output4b.png>
-
-Overfull \hbox (228.68578pt too wide) in paragraph at lines 705--706
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[56]
-File: bookletpics/2_ancova_input5.png Graphic file (type bmp)
-<bookletpics/2_ancova_input5.png>
-
-Overfull \hbox (137.36638pt too wide) in paragraph at lines 714--715
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[57]
-File: bookletpics/2_ancova_output5.png Graphic file (type bmp)
-<bookletpics/2_ancova_output5.png>
-
-Overfull \hbox (394.18645pt too wide) in paragraph at lines 716--717
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[58]
-File: bookletpics/2_ancova_input6.png Graphic file (type bmp)
-<bookletpics/2_ancova_input6.png>
-
-Overfull \hbox (142.37689pt too wide) in paragraph at lines 725--726
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[59]
-File: bookletpics/2_ancova_output6.png Graphic file (type bmp)
-<bookletpics/2_ancova_output6.png>
-
-Overfull \hbox (379.02112pt too wide) in paragraph at lines 727--728
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[60]
-File: bookletpics/2_modelcomparison_input1.png Graphic file (type bmp)
-<bookletpics/2_modelcomparison_input1.png>
-
-Overfull \hbox (138.31853pt too wide) in paragraph at lines 739--740
-[][] 
- []
-
-[61]
-File: bookletpics/2_modelcomparison_input2.png Graphic file (type bmp)
-<bookletpics/2_modelcomparison_input2.png>
-
-Overfull \hbox (145.35349pt too wide) in paragraph at lines 745--746
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[62]
-File: bookletpics/2_modelcomparison_output2.png Graphic file (type bmp)
-<bookletpics/2_modelcomparison_output2.png>
-
-Overfull \hbox (70.07884pt too wide) in paragraph at lines 749--750
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[63]
-File: bookletpics/2_modelcomparison_input3.png Graphic file (type bmp)
-<bookletpics/2_modelcomparison_input3.png>
-
-Overfull \hbox (134.05524pt too wide) in paragraph at lines 758--759
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[64]
-File: bookletpics/2_modelcomparison_output3.png Graphic file (type bmp)
-<bookletpics/2_modelcomparison_output3.png>
-
-Overfull \hbox (25.61557pt too wide) in paragraph at lines 760--761
-[][] 
- []
-
-[65]
-File: bookletpics/2_modelcomparison_input4.png Graphic file (type bmp)
-<bookletpics/2_modelcomparison_input4.png>
-
-Overfull \hbox (134.05524pt too wide) in paragraph at lines 767--768
-[][] 
- []
-
-File: bookletpics/2_modelcomparison_output4.png Graphic file (type bmp)
-<bookletpics/2_modelcomparison_output4.png>
-
-Overfull \hbox (84.87775pt too wide) in paragraph at lines 769--770
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[66]
-File: bookletpics/2_modelcomparison_input5.png Graphic file (type bmp)
-<bookletpics/2_modelcomparison_input5.png>
-
-Overfull \hbox (130.31403pt too wide) in paragraph at lines 773--774
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[67]
-File: bookletpics/2_modelcomparison_output5.png Graphic file (type bmp)
-<bookletpics/2_modelcomparison_output5.png>
-
-Overfull \hbox (89.14273pt too wide) in paragraph at lines 775--776
-[][] 
- []
-
-[68]
-File: bookletpics/2_modelcomparison_input6.png Graphic file (type bmp)
-<bookletpics/2_modelcomparison_input6.png>
-
-Overfull \hbox (135.30725pt too wide) in paragraph at lines 779--780
-[][] 
- []
-
-File: bookletpics/2_modelcomparison_output6.png Graphic file (type bmp)
-<bookletpics/2_modelcomparison_output6.png>
-
-Overfull \hbox (145.37967pt too wide) in paragraph at lines 781--782
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[69] [70]
-File: bookletpics/2_assumptions_theory1.png Graphic file (type bmp)
-<bookletpics/2_assumptions_theory1.png>
-
-Overfull \hbox (38.6419pt too wide) in paragraph at lines 806--807
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[71] [72]
-File: bookletpics/2_assumptions_input1.png Graphic file (type bmp)
-<bookletpics/2_assumptions_input1.png>
-
-Overfull \hbox (128.97086pt too wide) in paragraph at lines 814--815
-[][] 
- []
-
-File: bookletpics/2_assumptions_output1.png Graphic file (type bmp)
-<bookletpics/2_assumptions_output1.png>
-
-Overfull \hbox (49.98872pt too wide) in paragraph at lines 818--819
-[][] 
- []
-
-File: bookletpics/2_assumptions_output2.png Graphic file (type bmp)
-<bookletpics/2_assumptions_output2.png>
-
-Overfull \hbox (86.16278pt too wide) in paragraph at lines 826--827
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[73]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[74]
 File: bookletpics/2_assumptions_input3.png Graphic file (type bmp)
 <bookletpics/2_assumptions_input3.png>
 
-Overfull \hbox (136.2251pt too wide) in paragraph at lines 833--834
-[][] 
- []
+Underfull \vbox (badness 6268) has occurred while \output is active []
 
+[56]
 File: bookletpics/2_assumptions_output3.png Graphic file (type bmp)
 <bookletpics/2_assumptions_output3.png>
 File: bookletpics/2_assumptions_output4.png Graphic file (type bmp)
 <bookletpics/2_assumptions_output4.png>
 
-Overfull \hbox (102.20781pt too wide) in paragraph at lines 841--842
-[][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[75]
+[57]
 File: bookletpics/2_assumptions_output5.png Graphic file (type bmp)
 <bookletpics/2_assumptions_output5.png>
 
-Overfull \hbox (157.20251pt too wide) in paragraph at lines 847--848
-[][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[76]
+[58]
 File: bookletpics/2_options_input1.png Graphic file (type bmp)
 <bookletpics/2_options_input1.png>
-
-Overfull \hbox (147.04562pt too wide) in paragraph at lines 854--855
-[] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[77] [78] [79] [80
-
-]
+[59] [60]
 Chapter 3.
-[81] [82]
+[61
+
+] [62]
 File: bookletpics/3_logistic_plot1.png Graphic file (type bmp)
 <bookletpics/3_logistic_plot1.png>
 
-Overfull \hbox (178.49608pt too wide) in paragraph at lines 971--972
-[][] 
- []
-
-
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 977.
+(amsmath)                 on input line 976.
 
-[83]
+[63]
 File: bookletpics/3_logistic_freq1.png Graphic file (type bmp)
 <bookletpics/3_logistic_freq1.png>
-[84]
 File: bookletpics/3_logistic_input1.png Graphic file (type bmp)
 <bookletpics/3_logistic_input1.png>
+
+Underfull \vbox (badness 1874) has occurred while \output is active []
+
+[64]
 File: bookletpics/3_logistic_input2.png Graphic file (type bmp)
 <bookletpics/3_logistic_input2.png>
 
-Overfull \hbox (142.36821pt too wide) in paragraph at lines 1016--1017
-[][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[85]
+[65]
 File: bookletpics/3_logistic_output1.png Graphic file (type bmp)
 <bookletpics/3_logistic_output1.png>
 
-Overfull \hbox (12.62196pt too wide) in paragraph at lines 1021--1022
-[] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[86]
+[66]
 File: bookletpics/3_logistic_output2.png Graphic file (type bmp)
 <bookletpics/3_logistic_output2.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[87]
+[67]
 File: bookletpics/3_logistic_output3.png Graphic file (type bmp)
 <bookletpics/3_logistic_output3.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[88]
+[68]
 File: bookletpics/3_logistic_output4.png Graphic file (type bmp)
 <bookletpics/3_logistic_output4.png>
-
-Overfull \hbox (194.5568pt too wide) in paragraph at lines 1045--1046
-[] 
- []
-
-[89]
+[69]
 File: bookletpics/3_logistic_input3.png Graphic file (type bmp)
 <bookletpics/3_logistic_input3.png>
-
-Overfull \hbox (99.18039pt too wide) in paragraph at lines 1078--1079
-[][] 
- []
-
 File: bookletpics/3_logistic_plot2.png Graphic file (type bmp)
 <bookletpics/3_logistic_plot2.png>
 
-Overfull \hbox (205.5696pt too wide) in paragraph at lines 1085--1086
-[][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[90]
+[70]
 File: bookletpics/3_logistic_plot3.png Graphic file (type bmp)
 <bookletpics/3_logistic_plot3.png>
-
-Overfull \hbox (76.93614pt too wide) in paragraph at lines 1089--1090
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[91]
+[71]
 File: bookletpics/3_logistic_output5.png Graphic file (type bmp)
 <bookletpics/3_logistic_output5.png>
-
-Overfull \hbox (166.47775pt too wide) in paragraph at lines 1093--1094
-[][] 
- []
-
-[92]
 File: bookletpics/3_logistic_output6.png Graphic file (type bmp)
 <bookletpics/3_logistic_output6.png>
+[72]
 File: bookletpics/3_logistic_input4.png Graphic file (type bmp)
 <bookletpics/3_logistic_input4.png>
-
-Overfull \hbox (143.38075pt too wide) in paragraph at lines 1117--1118
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[93]
 File: bookletpics/3_logistic_input5.png Graphic file (type bmp)
 <bookletpics/3_logistic_input5.png>
 
-Overfull \hbox (143.36336pt too wide) in paragraph at lines 1121--1122
-[][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[94]
+[73]
 File: bookletpics/3_logistic_output7.png Graphic file (type bmp)
 <bookletpics/3_logistic_output7.png>
 
-Overfull \hbox (23.90503pt too wide) in paragraph at lines 1126--1127
-[] 
- []
+Underfull \vbox (badness 2941) has occurred while \output is active []
 
-[95]
+[74]
 File: bookletpics/3_logistic_output8.png Graphic file (type bmp)
 <bookletpics/3_logistic_output8.png>
 File: bookletpics/3_logistic_input6.png Graphic file (type bmp)
 <bookletpics/3_logistic_input6.png>
 
-Overfull \hbox (137.32335pt too wide) in paragraph at lines 1144--1145
-[][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[96]
+[75]
 File: bookletpics/3_logistic_plot4.png Graphic file (type bmp)
 <bookletpics/3_logistic_plot4.png>
-
-Overfull \hbox (231.60678pt too wide) in paragraph at lines 1146--1147
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[97]
+[76]
 File: bookletpics/3_logistic_input7.png Graphic file (type bmp)
 <bookletpics/3_logistic_input7.png>
-
-Overfull \hbox (131.14754pt too wide) in paragraph at lines 1155--1156
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[98]
 File: bookletpics/3_logistic_output9.png Graphic file (type bmp)
 <bookletpics/3_logistic_output9.png>
 File: bookletpics/3_logistic_output10.png Graphic file (type bmp)
 <bookletpics/3_logistic_output10.png>
 
-Overfull \hbox (229.42917pt too wide) in paragraph at lines 1164--1165
-[][] 
- []
+Underfull \vbox (badness 7888) has occurred while \output is active []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[99]
+[77]
 File: bookletpics/3_logistic_output11.png Graphic file (type bmp)
 <bookletpics/3_logistic_output11.png>
-
-Overfull \hbox (191.51714pt too wide) in paragraph at lines 1173--1174
-[] 
- []
-
-[100]
 File: bookletpics/3_logistic_input9.png Graphic file (type bmp)
 <bookletpics/3_logistic_input9.png>
-
-Overfull \hbox (135.3244pt too wide) in paragraph at lines 1184--1185
-[][] 
- []
-
 File: bookletpics/3_logistic_output12.png Graphic file (type bmp)
 <bookletpics/3_logistic_output12.png>
 
-Overfull \hbox (100.0796pt too wide) in paragraph at lines 1186--1187
-[][] 
+Overfull \hbox (301.4694pt too wide) in paragraph at lines 1180--1183
+[]\TU/lmr/m/n/10 As an example, here we ask for the post-hoc comparisons within \TU/lmtt/m/n/10 cat3\TU/lmr/m/n/10 . []
  []
 
-[101]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[78] [79]
 File: bookletpics/logitprobit.png Graphic file (type bmp)
 <bookletpics/logitprobit.png>
 
-Overfull \hbox (247.50058pt too wide) in paragraph at lines 1206--1207
-[][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[102]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[103] [104]
+[80] [81]
 File: bookletpics/3_multi_output1.png Graphic file (type bmp)
 <bookletpics/3_multi_output1.png>
 File: bookletpics/3_multi_input1.png Graphic file (type bmp)
 <bookletpics/3_multi_input1.png>
 
-Overfull \hbox (89.71907pt too wide) in paragraph at lines 1269--1270
-[][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[105] [106]
+[82]
 File: bookletpics/3_multi_output2.png Graphic file (type bmp)
 <bookletpics/3_multi_output2.png>
 
-Overfull \hbox (155.40886pt too wide) in paragraph at lines 1274--1275
-[] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
+[83]
 File: bookletpics/3_multi_output3.png Graphic file (type bmp)
 <bookletpics/3_multi_output3.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[107] [108]
+[84] [85]
 File: bookletpics/3_multi_plot1.png Graphic file (type bmp)
 <bookletpics/3_multi_plot1.png>
-
-Overfull \hbox (288.72777pt too wide) in paragraph at lines 1303--1304
-[][] 
- []
-
 File: bookletpics/3_multi_output4.png Graphic file (type bmp)
 <bookletpics/3_multi_output4.png>
-
-Overfull \hbox (299.96623pt too wide) in paragraph at lines 1312--1313
-[][] 
- []
-
-[109]
+[86]
 File: bookletpics/3_multi_output5.png Graphic file (type bmp)
 <bookletpics/3_multi_output5.png>
 File: bookletpics/3_multi_plot3.png Graphic file (type bmp)
 <bookletpics/3_multi_plot3.png>
 
-Overfull \hbox (255.47577pt too wide) in paragraph at lines 1325--1326
-[][] 
+Overfull \hbox (331.46889pt too wide) in paragraph at lines 1319--1321
+[][] [] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[110]
 File: bookletpics/3_multi_output6.png Graphic file (type bmp)
 <bookletpics/3_multi_output6.png>
 
-Overfull \hbox (234.5067pt too wide) in paragraph at lines 1329--1330
-[][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[111]
+[87]
 File: bookletpics/3_multi_output7.png Graphic file (type bmp)
 <bookletpics/3_multi_output7.png>
-
-Overfull \hbox (272.82071pt too wide) in paragraph at lines 1340--1341
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[112]
+[88]
 File: bookletpics/3_multi_output8.png Graphic file (type bmp)
 <bookletpics/3_multi_output8.png>
 File: bookletpics/3_multi_input2.png Graphic file (type bmp)
 <bookletpics/3_multi_input2.png>
-
-Overfull \hbox (130.28853pt too wide) in paragraph at lines 1357--1358
-[][] 
- []
-
-[113]
 File: bookletpics/3_multi_output9.png Graphic file (type bmp)
 <bookletpics/3_multi_output9.png>
-
-Overfull \hbox (177.3909pt too wide) in paragraph at lines 1361--1362
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[114]
+[89]
 File: bookletpics/3_multi_input3.png Graphic file (type bmp)
 <bookletpics/3_multi_input3.png>
-
-Overfull \hbox (126.07097pt too wide) in paragraph at lines 1365--1366
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[115]
 File: bookletpics/3_multi_output10.png Graphic file (type bmp)
 <bookletpics/3_multi_output10.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[116] [117]
+[90] [91]
 File: bookletpics/3_ordinal_probs.png Graphic file (type bmp)
 <bookletpics/3_ordinal_probs.png>
-
-Overfull \hbox (414.37479pt too wide) in paragraph at lines 1435--1436
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[118]
+[92]
 File: bookletpics/3_ordinal_input1.png Graphic file (type bmp)
 <bookletpics/3_ordinal_input1.png>
 
-Overfull \hbox (77.67366pt too wide) in paragraph at lines 1446--1447
-[][] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[119] [120]
+[93]
 File: bookletpics/3_ordinal_output1.png Graphic file (type bmp)
 <bookletpics/3_ordinal_output1.png>
 
-Overfull \hbox (49.99599pt too wide) in paragraph at lines 1451--1452
-[] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
+[94]
 File: bookletpics/3_ordinal_input2.png Graphic file (type bmp)
 <bookletpics/3_ordinal_input2.png>
 
-Overfull \hbox (147.04562pt too wide) in paragraph at lines 1464--1465
-[][] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Underfull \vbox (badness 5331) has occurred while \output is active []
-
-[121]
+[95]
 File: bookletpics/3_ordinal_output7.png Graphic file (type bmp)
 <bookletpics/3_ordinal_output7.png>
 File: bookletpics/3_ordinal_output2.png Graphic file (type bmp)
@@ -1851,75 +1323,91 @@ File: bookletpics/3_ordinal_output2.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[122]
+[96]
 File: bookletpics/3_ordinal_output3.png Graphic file (type bmp)
 <bookletpics/3_ordinal_output3.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[123]
+[97]
 File: bookletpics/3_ordinal_output4.png Graphic file (type bmp)
 <bookletpics/3_ordinal_output4.png>
-
-Overfull \hbox (327.70433pt too wide) in paragraph at lines 1492--1493
-[] 
- []
-
-[124]
 File: bookletpics/3_ordinal_output5.png Graphic file (type bmp)
 <bookletpics/3_ordinal_output5.png>
+[98]
 File: bookletpics/3_ordinal_output6.png Graphic file (type bmp)
 <bookletpics/3_ordinal_output6.png>
-
-Overfull \hbox (105.16237pt too wide) in paragraph at lines 1514--1515
-[][] 
- []
-
-[125]
+[99]
 File: bookletpics/3_ordinal_input3.png Graphic file (type bmp)
 <bookletpics/3_ordinal_input3.png>
-
-Overfull \hbox (136.2251pt too wide) in paragraph at lines 1536--1537
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[126]
 File: bookletpics/3_ordinal_plot1.png Graphic file (type bmp)
 <bookletpics/3_ordinal_plot1.png>
 
-Overfull \hbox (214.64246pt too wide) in paragraph at lines 1540--1541
-[][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[127]
+[100]
 File: bookletpics/3_ordinal_plot2.png Graphic file (type bmp)
 <bookletpics/3_ordinal_plot2.png>
 
-Overfull \hbox (201.26694pt too wide) in paragraph at lines 1546--1547
-[][] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
+[101] [102]
+File: bookletpics/3_poisson_theory1.png Graphic file (type bmp)
+<bookletpics/3_poisson_theory1.png>
+File: bookletpics/3_poisson_theory2.png Graphic file (type bmp)
+<bookletpics/3_poisson_theory2.png>
+File: bookletpics/3_poisson_theory3.png Graphic file (type bmp)
+<bookletpics/3_poisson_theory3.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[128] [129] [130
-
-]
+[103]
+File: bookletpics/3_poisson_theory4.png Graphic file (type bmp)
+<bookletpics/3_poisson_theory4.png>
+File: bookletpics/3_poisson_theory5.png Graphic file (type bmp)
+<bookletpics/3_poisson_theory5.png>
+[104]
+File: bookletpics/3_poisson_theory5.png Graphic file (type bmp)
+<bookletpics/3_poisson_theory5.png>
+[105] [106]
 Chapter 4.
-[131] [132
+[107
 
 ]
+File: bookletpics/4_theory_plot1.png Graphic file (type bmp)
+<bookletpics/4_theory_plot1.png>
+File: bookletpics/4_theory_plot2.png Graphic file (type bmp)
+<bookletpics/4_theory_plot2.png>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[108]
+File: bookletpics/4_theory_plot3.png Graphic file (type bmp)
+<bookletpics/4_theory_plot3.png>
+[109]
+File: bookletpics/4_theory_plot4.png Graphic file (type bmp)
+<bookletpics/4_theory_plot4.png>
+[110] [111] [112]
+File: bookletpics/4_simple_input1.png Graphic file (type bmp)
+<bookletpics/4_simple_input1.png>
+File: bookletpics/4_simple_input2.png Graphic file (type bmp)
+<bookletpics/4_simple_input2.png>
+File: bookletpics/4_simple_input3.png Graphic file (type bmp)
+<bookletpics/4_simple_input3.png>
+
+Underfull \vbox (badness 2134) has occurred while \output is active []
+
+[113]
+File: bookletpics/4_simple_output1.png Graphic file (type bmp)
+<bookletpics/4_simple_output1.png>
+[114]
 Chapter 5.
 
-LaTeX Warning: Reference `mixedbuild' on page 133 undefined on input line 1579.
+LaTeX Warning: Reference `mixedbuild' on page 115 undefined on input line 1778.
 
-[133]
+[115
+
+]
 File: bookletpics/5_logistic_input1.png Graphic file (type bmp)
 <bookletpics/5_logistic_input1.png>
 File: bookletpics/5_logistic_input2.png Graphic file (type bmp)
@@ -1927,7 +1415,7 @@ File: bookletpics/5_logistic_input2.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[134]
+[116]
 File: bookletpics/5_logistic_input3.png Graphic file (type bmp)
 <bookletpics/5_logistic_input3.png>
 File: bookletpics/5_logistic_output1.png Graphic file (type bmp)
@@ -1935,7 +1423,7 @@ File: bookletpics/5_logistic_output1.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[135]
+[117]
 File: bookletpics/5_logistic_output2.png Graphic file (type bmp)
 <bookletpics/5_logistic_output2.png>
 File: bookletpics/5_logistic_output3.png Graphic file (type bmp)
@@ -1943,9 +1431,9 @@ File: bookletpics/5_logistic_output3.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[136]
+[118]
 
-LaTeX Warning: Reference `mixedre' on page 137 undefined on input line 1638.
+LaTeX Warning: Reference `mixedre' on page 119 undefined on input line 1837.
 
 File: bookletpics/5_logistic_output5.png Graphic file (type bmp)
 <bookletpics/5_logistic_output5.png>
@@ -1954,96 +1442,94 @@ File: bookletpics/5_logistic_output4.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[137]
+[119]
 File: bookletpics/5_logistic_plot1.png Graphic file (type bmp)
 <bookletpics/5_logistic_plot1.png>
 
 Underfull \vbox (badness 1028) has occurred while \output is active []
 
-[138]
+[120]
 File: bookletpics/5_multinomial_input1.png Graphic file (type bmp)
 <bookletpics/5_multinomial_input1.png>
 File: bookletpics/5_multinomial_input2.png Graphic file (type bmp)
 <bookletpics/5_multinomial_input2.png>
-[139]
+[121]
 File: bookletpics/5_multinomial_output1.png Graphic file (type bmp)
 <bookletpics/5_multinomial_output1.png>
 File: bookletpics/5_multinomial_output2.png Graphic file (type bmp)
 <bookletpics/5_multinomial_output2.png>
-[140]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1904.
+[122]
 Appendix A.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 1712.
+(Font)              scaled to size 24.88pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 20.74pt on input line 1712.
+(Font)              scaled to size 20.74pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 1712.
+(Font)              scaled to size 17.28pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 24.88228pt on input line 1712.
+(Font)              scaled to size 24.88228pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 20.7419pt on input line 1712.
+(Font)              scaled to size 20.7419pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 17.28157pt on input line 1712.
+(Font)              scaled to size 17.28157pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 24.87733pt on input line 1712.
+(Font)              scaled to size 24.87733pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 20.73778pt on input line 1712.
+(Font)              scaled to size 20.73778pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 17.27815pt on input line 1712.
+(Font)              scaled to size 17.27815pt on input line 1909.
 File: bookletpics/ap_a_output1.png Graphic file (type bmp)
 <bookletpics/ap_a_output1.png>
 
-Overfull \hbox (45.86928pt too wide) in paragraph at lines 1718--1719
-[][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[141
+[123
 
-] [142]
+]
+Underfull \vbox (badness 1527) has occurred while \output is active []
+
+[124]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 1741.
+(Font)              scaled to size 14.4pt on input line 1938.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.4013pt on input line 1741.
+(Font)              scaled to size 14.4013pt on input line 1938.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 1741.
-[143] [144]
+(Font)              scaled to size 14.39845pt on input line 1938.
+[125] [126]
 Appendix B.
-[145
+[127
 
 ]
 File: bookletpics/ap_a_output2.png Graphic file (type bmp)
 <bookletpics/ap_a_output2.png>
-
-Overfull \hbox (824.90096pt too wide) in paragraph at lines 1837--1838
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[146] [147] [148
-
-]
+[128]
 Appendix C.
 File: bookletpics/a_vartypes.png Graphic file (type bmp)
 <bookletpics/a_vartypes.png>
-(./gamljmodels.bbl [149] [150
+(./gamljmodels.bbl [129
 
-] [151]) [152] (./gamljmodels.aux)
+] [130
+
+] [131]) [132] (./gamljmodels.aux)
+ ***********
+LaTeX2e <2023-06-01>
+L3 programming layer <2023-06-05>
+ ***********
 
 LaTeX Warning: There were undefined references.
 
+Package rerunfilecheck Info: File `gamljmodels.out' has not changed.
+(rerunfilecheck)             Checksum: 87A671D6EDAE932DB5143334CF918246;7586.
  ) 
 Here is how much of TeX's memory you used:
- 21319 strings out of 478759
- 437904 string characters out of 5849894
- 1864482 words of memory out of 5000000
- 40942 multiletter control sequences out of 15000+600000
- 522622 words of font info for 114 fonts, out of 8000000 for 9000
+ 20097 strings out of 478387
+ 396604 string characters out of 5840829
+ 1867390 words of memory out of 5000000
+ 40087 multiletter control sequences out of 15000+600000
+ 523730 words of font info for 117 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 86i,8n,121p,1539b,471s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,8n,120p,1539b,471s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on gamljmodels.pdf (152 pages).
+Output written on gamljmodels.pdf (132 pages).

@@ -126,7 +126,10 @@ Once we have selected the model, we can set up the variables in the variables ro
 
 ### Model Recap {#logisticrecap}
 
-`r pic("bookletpics/3_logistic_output1.png")`
+```{r ,echo=FALSE, out.width="90%"}
+knitr::include_graphics("bookletpics/3_logistic_output1.png")
+```
+
 
 In the `r tab("Model Info")` table we find a set of properties of the estimated model. The most important one to check is described in the `direction` row. When the dependent variable is dichotomous, in fact, the direction of the probability is arbitrary, so we need to know which group is predicted. `r modulename()` models the probability of being in the group with the "largest" label value, after ordering the value labels. In our case, it models the probability of being in group `ybin=1` over the probability of being in group `ybin=0`. This is indicated in the `direction` row of the table. 
 
@@ -607,8 +610,71 @@ Depending on the specific application, one of the two plot types may result usef
 
 All other options, `r opt("Simple Interactions")`, `r opt("Factor Coding")`, `r opt("Covariates Scaling")`, `r opt("Bootstrap")` confidence intervals, `r opt("Model comparison")` etc. are the same as in the GLM.
 
-## Poisson Model
+## The Poisson Model {#poisson}
 
-Very often, rather than measuring quantities we count stuff. 
+### Distribution
+
+Very often, rather than measuring quantities we count stuff. For example, we may have a dependent variable that indicates the number of smartphones a person possesses, the count of close friends a teenager has, or the frequency of email checks per hour. These variables are referred to as count data, where the variable scores represent frequencies rather than actual quantities."
+
+Frequencies exhibit their own distinct characteristics when it comes to their distributions. In general terms, count variables reflect the occurrence of events, regardless of the specific event being measured (such as having a friend, checking email, or owning a phone). The distribution of the event counts tends to vary depending on the rarity or commonality of the event. For instance, if an event is rare, like the number of smartphones a person possesses, a large proportion of individuals may have just one event (one phone), while fewer individuals may have two or three phones, and having four or five phones becomes extremely uncommon. Thus, the distribution would be highly skewed.
+
+Consider for instance checking the email. If within an working environment the checks are rare, you can have that within a given time the majority of people either do not  check the email or check it only once. Only few people checks it twice or three times per period, and so on. One ends up with a distribution as follows:
+
+```{r ,echo=FALSE, out.width="60%"}
+knitr::include_graphics("bookletpics/3_poisson_theory1.png")
+```
+
+In the previous example, people checked the email once per time period, so the mean of the distribution is 1. Assume now that we go to a different working environment, it is more customary to check the email, such that the mean frequency is now 3. Now some people will still check the email, but less likely than before, and some people may check it three or four time, more likely than before. We end up with a less skewed distribuition, such as:
+
+```{r ,echo=FALSE, out.width="60%"}
+knitr::include_graphics("bookletpics/3_poisson_theory2.png")
+```
+
+If we now consider an environment in which checking the email is more common, say 10 time per period, it is clear that we can have more variability on the right of the mean as well as variability on the left, ending up with a distribution that starts to look like a bell-shaped distrubution, such as:
+
+```{r ,echo=FALSE, out.width="60%"}
+knitr::include_graphics("bookletpics/3_poisson_theory3.png")
+```
+
+The distribution that acount for this beavhior of count data is called the _Poisson distribution_ and it models count data very well when events are rare, thus when the average count is low. The  `r ext_url("Possisson distribition","https://en.wikipedia.org/wiki/Poisson_distribution")` is a probability distribution that models the number of events that occur within a fixed interval of time or space when these events occur independently and at a constant average rate. It applies to whole numbers (integers) and its shape depends on its mean, that is the average rate of occurrence of the events within the given interval.
+
+### Link function
+
+Consider a count variable such as the one depicted in the following histogram:
+
+```{r ,echo=FALSE, out.width="60%"}
+knitr::include_graphics("bookletpics/3_poisson_theory4.png")
+```
+
+
+Assuming a positive correlation between the count variable and a continuous variable, when we examine the relationship on a scatterplot, it becomes evident that a straight line is insufficient to capture the pattern accurately. Specifically, when the count variable is zero, the straight line would be horizontal, failing to capture the subsequent increase reflecting the positive relationship between the variables.
+
+```{r ,echo=FALSE, out.width="60%"}
+knitr::include_graphics("bookletpics/3_poisson_theory5.png")
+```
+
+A more suitable approach would be to employ an exponential function to accurately describe the relationship between the variables.
+
+```{r ,echo=FALSE, out.width="60%"}
+knitr::include_graphics("bookletpics/3_poisson_theory5.png")
+```
+
+This would mean defining the model
+
+$$
+\hat{y}_i=e^{(a+bx_i)}
+$$
+where $e^x$ means the exponential of $x$. However, we prefer to work with linear models, so we linearize the model by taking the logarithm of both size, which gives (recall that $ln(e^x)=x$):
+
+$$
+ln(\hat{y}_i)=a+bx_i
+$$
+
+<div class="enf">
+The Poisson model is a generalized linear model in which the predicted values are represented as the logarithm of the counts of the dependent variable, following a Poisson distribution. The regression coefficients in this model indicate the change in the logarithm of the expected counts, and the exponentiated form ($exp(B)$) of these coefficients represents the rate of change in the counts as the independent variable increases by one unit
+</div>
+
+### Estimating the model
+
 
 `r incomplete`

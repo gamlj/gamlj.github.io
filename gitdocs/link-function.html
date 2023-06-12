@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Link function | GAMLj Models</title>
+  <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Link function | GAMLj Models" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  <meta name="github-repo" content="mcfanda/gamlj.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Link function | GAMLj Models" />
+  
+  <meta name="twitter:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  
+
+<meta name="author" content="Marcello Gallucci" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="gzlm.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KM7X6HK5HM');
+</script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">GAMLj Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="gzlm.html"><a href="gzlm.html"><i class="fa fa-check"></i><b>1</b> The Generalized Linear Model</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="gzlm.html"><a href="gzlm.html#gzlmintro"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="gzlm.html"><a href="gzlm.html#logistic"><i class="fa fa-check"></i><b>1.2</b> Logistic Model</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="gzlm.html"><a href="gzlm.html#the-rationale"><i class="fa fa-check"></i><b>1.2.1</b> The rationale</a></li>
+<li class="chapter" data-level="1.2.2" data-path="gzlm.html"><a href="gzlm.html#logisticestim"><i class="fa fa-check"></i><b>1.2.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="1.2.3" data-path="gzlm.html"><a href="gzlm.html#logisticrecap"><i class="fa fa-check"></i><b>1.2.3</b> Model Recap</a></li>
+<li class="chapter" data-level="1.2.4" data-path="gzlm.html"><a href="gzlm.html#model-fit"><i class="fa fa-check"></i><b>1.2.4</b> Model Fit</a></li>
+<li class="chapter" data-level="1.2.5" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests"><i class="fa fa-check"></i><b>1.2.5</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="1.2.6" data-path="gzlm.html"><a href="gzlm.html#coefficients"><i class="fa fa-check"></i><b>1.2.6</b> Coefficients</a></li>
+<li class="chapter" data-level="1.2.7" data-path="gzlm.html"><a href="gzlm.html#odd-ratios-expb"><i class="fa fa-check"></i><b>1.2.7</b> Odd ratios exp(B)</a></li>
+<li class="chapter" data-level="1.2.8" data-path="gzlm.html"><a href="gzlm.html#logisticcontmarginal"><i class="fa fa-check"></i><b>1.2.8</b> Marginal effects</a></li>
+<li class="chapter" data-level="1.2.9" data-path="gzlm.html"><a href="gzlm.html#multiple-ivs"><i class="fa fa-check"></i><b>1.2.9</b> Multiple IVs</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="gzlm.html"><a href="gzlm.html#gzlmanova"><i class="fa fa-check"></i><b>1.3</b> Logistic with Catecorical IVs</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="gzlm.html"><a href="gzlm.html#model-estimation"><i class="fa fa-check"></i><b>1.3.1</b> Model Estimation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="gzlm.html"><a href="gzlm.html#model-fit-1"><i class="fa fa-check"></i><b>1.3.2</b> Model Fit</a></li>
+<li class="chapter" data-level="1.3.3" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-1"><i class="fa fa-check"></i><b>1.3.3</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="1.3.4" data-path="gzlm.html"><a href="gzlm.html#plots"><i class="fa fa-check"></i><b>1.3.4</b> Plots</a></li>
+<li class="chapter" data-level="1.3.5" data-path="gzlm.html"><a href="gzlm.html#estimated-marginal-means"><i class="fa fa-check"></i><b>1.3.5</b> Estimated Marginal Means</a></li>
+<li class="chapter" data-level="1.3.6" data-path="gzlm.html"><a href="gzlm.html#relative-risk"><i class="fa fa-check"></i><b>1.3.6</b> Relative Risk</a></li>
+<li class="chapter" data-level="1.3.7" data-path="gzlm.html"><a href="gzlm.html#logisticcatmarginal"><i class="fa fa-check"></i><b>1.3.7</b> Marginal Effects</a></li>
+<li class="chapter" data-level="1.3.8" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests"><i class="fa fa-check"></i><b>1.3.8</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="1.3.9" data-path="gzlm.html"><a href="gzlm.html#other-options"><i class="fa fa-check"></i><b>1.3.9</b> Other options</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="gzlm.html"><a href="gzlm.html#probit"><i class="fa fa-check"></i><b>1.4</b> Probit Model</a></li>
+<li class="chapter" data-level="1.5" data-path="gzlm.html"><a href="gzlm.html#multinomial"><i class="fa fa-check"></i><b>1.5</b> The Multinomial Model</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="gzlm.html"><a href="gzlm.html#rationale"><i class="fa fa-check"></i><b>1.5.1</b> Rationale</a></li>
+<li class="chapter" data-level="1.5.2" data-path="gzlm.html"><a href="gzlm.html#model-estimation-1"><i class="fa fa-check"></i><b>1.5.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="1.5.3" data-path="gzlm.html"><a href="gzlm.html#model-recap"><i class="fa fa-check"></i><b>1.5.3</b> Model Recap</a></li>
+<li class="chapter" data-level="1.5.4" data-path="gzlm.html"><a href="gzlm.html#overal-fit"><i class="fa fa-check"></i><b>1.5.4</b> Overal Fit</a></li>
+<li class="chapter" data-level="1.5.5" data-path="gzlm.html"><a href="gzlm.html#plots-1"><i class="fa fa-check"></i><b>1.5.5</b> Plots</a></li>
+<li class="chapter" data-level="1.5.6" data-path="gzlm.html"><a href="gzlm.html#coefficients-1"><i class="fa fa-check"></i><b>1.5.6</b> Coefficients</a></li>
+<li class="chapter" data-level="1.5.7" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests-1"><i class="fa fa-check"></i><b>1.5.7</b> Post Hoc Tests</a></li>
+<li class="chapter" data-level="1.5.8" data-path="gzlm.html"><a href="gzlm.html#marginal-effects"><i class="fa fa-check"></i><b>1.5.8</b> Marginal Effects</a></li>
+<li class="chapter" data-level="1.5.9" data-path="gzlm.html"><a href="gzlm.html#simple-effects"><i class="fa fa-check"></i><b>1.5.9</b> Simple Effects</a></li>
+<li class="chapter" data-level="1.5.10" data-path="gzlm.html"><a href="gzlm.html#other-options-1"><i class="fa fa-check"></i><b>1.5.10</b> Other options</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="gzlm.html"><a href="gzlm.html#ordinal"><i class="fa fa-check"></i><b>1.6</b> The Ordinal Model</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="gzlm.html"><a href="gzlm.html#rationale-1"><i class="fa fa-check"></i><b>1.6.1</b> Rationale</a></li>
+<li class="chapter" data-level="1.6.2" data-path="gzlm.html"><a href="gzlm.html#model-estimation-2"><i class="fa fa-check"></i><b>1.6.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="1.6.3" data-path="gzlm.html"><a href="gzlm.html#model-recap-1"><i class="fa fa-check"></i><b>1.6.3</b> Model Recap</a></li>
+<li class="chapter" data-level="1.6.4" data-path="gzlm.html"><a href="gzlm.html#parallellines"><i class="fa fa-check"></i><b>1.6.4</b> Parallel Lines test</a></li>
+<li class="chapter" data-level="1.6.5" data-path="gzlm.html"><a href="gzlm.html#model-fit-2"><i class="fa fa-check"></i><b>1.6.5</b> Model Fit</a></li>
+<li class="chapter" data-level="1.6.6" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-2"><i class="fa fa-check"></i><b>1.6.6</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="1.6.7" data-path="gzlm.html"><a href="gzlm.html#coefficients-2"><i class="fa fa-check"></i><b>1.6.7</b> Coefficients</a></li>
+<li class="chapter" data-level="1.6.8" data-path="gzlm.html"><a href="gzlm.html#estimated-marginal-means-1"><i class="fa fa-check"></i><b>1.6.8</b> Estimated marginal means</a></li>
+<li class="chapter" data-level="1.6.9" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests-2"><i class="fa fa-check"></i><b>1.6.9</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="1.6.10" data-path="gzlm.html"><a href="gzlm.html#plot"><i class="fa fa-check"></i><b>1.6.10</b> Plot</a></li>
+<li class="chapter" data-level="1.6.11" data-path="gzlm.html"><a href="gzlm.html#other-options-2"><i class="fa fa-check"></i><b>1.6.11</b> Other options</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="gzlm.html"><a href="gzlm.html#poisson"><i class="fa fa-check"></i><b>1.7</b> The Poisson Model</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="gzlm.html"><a href="gzlm.html#distribution"><i class="fa fa-check"></i><b>1.7.1</b> Distribution</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="link-function.html"><a href="link-function.html"><i class="fa fa-check"></i><b>2</b> Link function</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GAMLj Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="link-function" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Link function<a href="link-function.html#link-function" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Consider a count variable such as the one depicted in the following histogram:</p>
+<p><img src="bookletpics/3_poisson_theory4.png" width="60%" /></p>
+<p>Assuming a positive correlation between the count variable and a continuous variable, when we examine the relationship on a scatterplot, it becomes evident that a straight line is insufficient to capture the pattern accurately. Specifically, when the count variable is zero, the straight line would be horizontal, failing to capture the subsequent increase reflecting the positive relationship between the variables.</p>
+<p><img src="bookletpics/3_poisson_theory5.png" width="60%" /></p>
+<p>A more suitable approach would be to employ an exponential function to accurately describe the relationship between the variables.</p>
+<p><img src="bookletpics/3_poisson_theory5.png" width="60%" /></p>
+<p>This would mean defining the model</p>
+<p><span class="math display">\[
+\hat{y}_i=e^{(a+bx_i)}
+\]</span>
+where <span class="math inline">\(e^x\)</span> means the exponential of <span class="math inline">\(x\)</span>. However, we prefer to work with linear models, so we linearize the model by taking the logarithm of both size, which gives (recall that <span class="math inline">\(ln(e^x)=x\)</span>):</p>
+<p><span class="math display">\[
+ln(\hat{y}_i)=a+bx_i
+\]</span></p>
+<div class="enf">
+<p>The Poisson model is a generalized linear model in which the predicted values are represented as the logarithm of the counts of the dependent variable, following a Poisson distribution. The regression coefficients in this model indicate the change in the logarithm of the expected counts, and the exponentiated form (<span class="math inline">\(exp(B)\)</span>) of these coefficients represents the rate of change in the counts as the independent variable increases by one unit</p>
+</div>
+<p><span class="incomplete"> Work in progress: incomplete version </span></p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Agresti, Alan. 2012. <em>Categorical Data Analysis</em>. Vol. 792. John Wiley &amp; Sons.
+</div>
+<div class="csl-entry">
+Agresti, Alan, and Claudia Tarantola. 2018. <span>“Simple Ways to Interpret Effects in Modeling Ordinal Categorical Data.”</span> <em>Statistica Neerlandica</em> 72 (3): 210–23.
+</div>
+<div class="csl-entry">
+Leeper, Thomas J. 2021. <em>Margins: Marginal Effects for Model Objects</em>. <a href="https://cran.r-project.org/web/packages/margins/index.html">https://cran.r-project.org/web/packages/margins/index.html</a>.
+</div>
+<div class="csl-entry">
+Likert, Rensis. 1932. <span>“A Technique for the Measurement of Attitudes.”</span> <em>Archives of Psychology</em>.
+</div>
+<div class="csl-entry">
+Stevens, Stanley Smith. 1946. <span>“On the Theory of Scales of Measurement.”</span> <em>Science</em> 103 (2684): 677–80.
+</div>
+<div class="csl-entry">
+Wu, Huiping, and Shing-On Leung. 2017. <span>“Can Likert Scales Be Treated as Interval Scales?—a Simulation Study.”</span> <em>Journal of Social Service Research</em> 43 (4): 527–32.
+</div>
+<div class="csl-entry">
+Zou, Guangyong. 2004. <span>“A Modified Poisson Regression Approach to Prospective Studies with Binary Data.”</span> <em>American Journal of Epidemiology</em> 159 (7): 702–6.
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="gzlm.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
