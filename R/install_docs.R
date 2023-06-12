@@ -12,4 +12,4 @@ pkgdown::build_site(preview = FALSE)
 #render_mcdocs()
 
 ## this update your github site
-#update_git()
+update_git()

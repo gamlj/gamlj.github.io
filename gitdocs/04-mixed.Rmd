@@ -95,10 +95,10 @@ $$
 Because in one distribution there is only one mean, we can call this a **fixed coefficient**. Now, to put everything in one model, let us express the random coefficients as a deviation from their mean, or fixed coefficient.
 
 $$
-\begin{align}
+\begin{aligned}
 b'_j=b_j-\bar{b}\\ 
 a'_j=a_j-\bar{a} 
-\end{align}
+\end{aligned}
 $$
 and write the model again
 
@@ -120,7 +120,7 @@ Being the mixed model a linear model, we can operate all the techniques and meth
 
 ## Building a Mixed Model
 
-Working through the example may not have been challenging, but when confronted with a new design and the need to establish a mixed model, difficulties can arise. These challenges typically revolve around selecting the appropriate clustering variable and determining the status of effects as random, fixed, or both. Expert opinions on these matters have sparked extensive discussions and disagreements. However, in this context, we aim to offer straightforward solutions to these dilemmas.
+When confronted with a new design and the need to build a mixed model, some difficulties can arise. These challenges typically revolve around selecting the appropriate clustering variable and determining the status of effects as random, fixed, or both. Expert opinions on these matters have sparked extensive discussions and disagreements. However, in this context, we aim to offer straightforward solutions to these dilemmas.
 
 First, when building a mixed model, one should ask three questions:
 <div class="enf">
@@ -131,7 +131,9 @@ First, when building a mixed model, one should ask three questions:
 
 ### Clustering variables?
 
+<div class="enf">
 A clustering variable is a categorical variable that represents a random selection of equivalent groups of cases (such as participants or observations) taken from a larger population of groups. These clusters are formed based on shared characteristics or grouping criteria. 
+</div>
 
 First, the groups of observations (or participants) defined by a clustering variables should represent a sample of a larger population. This means that the researchers did not pick any particular group on purpose, but the groups were chosen randomly (or very close to randomly). Second, the groups should be equivalent, meaning that no particular group is more interesting than others. They are just alternatives that came out from the sampling process.
 
