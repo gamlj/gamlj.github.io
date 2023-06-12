@@ -378,7 +378,7 @@ div.csl-indent {
 ). This assumption is essential for these models to hold, as it ensures that each observation is independent of others and that the distribution of scores remains consistent across all observations. It allows for valid statistical inferences and meaningful interpretation of the model results.</p>
 <p>Let’s zoom in on the “independent” aspect of the assumption. When we refer to “independence,” we mean that each individual score represents a case randomly sampled from a population of scores, and that each case is not influenced by the other scores in the distribution. To put it simply, if we measure a variable on a sample of people, each person is selected independently of the others, and their individual score is not influenced by the scores of others in the sample.</p>
 <p>What if, instead of directly sampling individuals, we employ a hierarchical or multilevel sampling approach? For instance, in our cover story, what if we sample a set of bars and then within each bar, we further sample a subset of customers to measure our variables on? In a educational project, for instance, we may need to sample schools, and within each school select a number of pupils. In such cases, the assumption of independence among individual observations is violated, as individuals within the same bar or school may be more similar to each other in their variable scores compared to individuals from different bars or schools. This introduces a level of dependency or clustering within the data.</p>
-<p>To account for this hierarchical structure and the potential dependencies among observations within the same cluster (e.g., customers within a bar, pupils within a school), a <strong>mixed model</strong>, also known as a <em>multilevel model</em> or <em>hierarchical model</em>, is often employed. The mixed model allows taking into account the hierarchical nature of the data and adjusting for the dependencies within clusters. By utilizing a mixed model, we can appropriately model the within-cluster dependencies and obtain accurate estimates and valid statistical inferences for our analysis <span class="citation">(<a href="#ref-verbeke2000linear" role="doc-biblioref">Verbeke and Molenberghs 2000</a>; <a href="#ref-stroup2013generalized" role="doc-biblioref">Stroup 2013</a>; <a href="#ref-mcculloch2001generalized" role="doc-biblioref">McCulloch and Searle 2001</a>)</span>.</p>
+<p>To account for this hierarchical structure and the potential dependencies among observations within the same cluster (e.g., customers within a bar, pupils within a school), a <strong>mixed model</strong>, also known as a <em>multilevel model</em> or <em>hierarchical model</em>, is often employed. The mixed model allows taking into account the hierarchical nature of the data and adjusting for the dependencies within clusters. By utilizing a mixed model, we can appropriately model the within-cluster dependencies and obtain accurate estimates and valid statistical inferences for our analysis <span class="citation">(<a href="#ref-verbeke2000linear">Verbeke and Molenberghs 2000</a>; <a href="#ref-stroup2013generalized">Stroup 2013</a>; <a href="#ref-mcculloch2001generalized">McCulloch and Searle 2001</a>)</span>.</p>
 </div>
 <div id="an-example" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> An example<a href="mixed.html#an-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -419,10 +419,10 @@ Here we have that the predicted value of participant <span class="math inline">\
 \]</span>
 Because in one distribution there is only one mean, we can call this a <strong>fixed coefficient</strong>. Now, to put everything in one model, let us express the random coefficients as a deviation from their mean, or fixed coefficient.</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 b&#39;_j=b_j-\bar{b}\\
 a&#39;_j=a_j-\bar{a}
-\end{align}
+\end{aligned}
 \]</span>
 and write the model again</p>
 <p><span class="math display">\[
@@ -440,7 +440,7 @@ Indeed, in this model, the intercept is composed of the fixed (average) intercep
 </div>
 <div id="building-a-mixed-model" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> Building a Mixed Model<a href="mixed.html#building-a-mixed-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Working through the example may not have been challenging, but when confronted with a new design and the need to establish a mixed model, difficulties can arise. These challenges typically revolve around selecting the appropriate clustering variable and determining the status of effects as random, fixed, or both. Expert opinions on these matters have sparked extensive discussions and disagreements. However, in this context, we aim to offer straightforward solutions to these dilemmas.</p>
+<p>When confronted with a new design and the need to build a mixed model, some difficulties can arise. These challenges typically revolve around selecting the appropriate clustering variable and determining the status of effects as random, fixed, or both. Expert opinions on these matters have sparked extensive discussions and disagreements. However, in this context, we aim to offer straightforward solutions to these dilemmas.</p>
 First, when building a mixed model, one should ask three questions:
 <div class="enf">
 <ol style="list-style-type: decimal">
@@ -451,7 +451,9 @@ First, when building a mixed model, one should ask three questions:
 </div>
 <div id="clustering-variables" class="section level3 hasAnchor" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> Clustering variables?<a href="mixed.html#clustering-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="enf">
 <p>A clustering variable is a categorical variable that represents a random selection of equivalent groups of cases (such as participants or observations) taken from a larger population of groups. These clusters are formed based on shared characteristics or grouping criteria.</p>
+</div>
 <p>First, the groups of observations (or participants) defined by a clustering variables should represent a sample of a larger population. This means that the researchers did not pick any particular group on purpose, but the groups were chosen randomly (or very close to randomly). Second, the groups should be equivalent, meaning that no particular group is more interesting than others. They are just alternatives that came out from the sampling process.</p>
 <p>Consider for instance a multinational study: the classification of the variable “country” as a clustering variable depends on the nature of the research design. If the aim is to collect data from as many countries as possible, and a sample of countries becomes available, then “country” can be considered a clustering variable. In this scenario, the focus is on capturing the variability between different countries.</p>
 <p>On the other hand, if the research objective is to compare two or three specific countries chosen for their distinct characteristics, “country” would not be treated as a clustering variable. Instead, it would be included in the model as a categorical independent variable. In this case, the interest lies in examining the specific effects of the chosen countries and assessing the differences between them.</p>
