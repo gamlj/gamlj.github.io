@@ -1555,23 +1555,23 @@ All other options, {Simple Interactions}, {Factor Coding}, {Covariates Scaling},
 \hypertarget{distribution}{%
 \subsection{Distribution}\label{distribution}}
 
-Very often, rather than measuring quantities we count stuff. For example, we may have a dependent variable that indicates the number of smartphones a person possesses, the count of close friends a teenager has, or the frequency of email checks per hour. These variables are referred to as count data, where the variable scores represent frequencies rather than actual quantities.''
+Very often, rather than measuring quantities we count stuff. For example, we may have a dependent variable that indicates the number of smartphones a person possesses, the count of close friends a teenager has, or the frequency of email checks per hour. These variables are referred to as count data, where the variable scores represent frequencies rather than actual quantities.
 
 Frequencies exhibit their own distinct characteristics when it comes to their distributions. In general terms, count variables reflect the occurrence of events, regardless of the specific event being measured (such as having a friend, checking email, or owning a phone). The distribution of the event counts tends to vary depending on the rarity or commonality of the event. For instance, if an event is rare, like the number of smartphones a person possesses, a large proportion of individuals may have just one event (one phone), while fewer individuals may have two or three phones, and having four or five phones becomes extremely uncommon. Thus, the distribution would be highly skewed.
 
-Consider for instance checking the email. If within an working environment the checks are rare, you can have that within a given time the majority of people either do not check the email or check it only once. Only few people checks it twice or three times per period, and so on. One ends up with a distribution as follows:
+Consider, for instance, the behavior of checking emails within a working environment. If email checks are infrequent in this context, it is likely that the majority of individuals either do not check their email or check it only once during a given time period. Only a few individuals may check their email twice or three times, and the occurrence of higher frequency checks becomes increasingly rare. One ends up with a distribution as follows:
 
 \includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory1}
 
-In the previous example, people checked the email once per time period, so the mean of the distribution is 1. Assume now that we go to a different working environment, it is more customary to check the email, such that the mean frequency is now 3. Now some people will still check the email, but less likely than before, and some people may check it three or four time, more likely than before. We end up with a less skewed distribuition, such as:
+In the previous example, where people checked their email once per time period, the mean frequency was 1. Now, let's consider a different working environment where it is more customary to check email, resulting in a higher mean frequency of 3. In this scenario, some individuals may still check their email infrequently, but it is less likely compared to before. Additionally, there will be a greater likelihood of individuals checking their email three or four times. As a result, the distribution becomes less skewed, as illustrated below:
 
 \includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory2}
 
-If we now consider an environment in which checking the email is more common, say 10 time per period, it is clear that we can have more variability on the right of the mean as well as variability on the left, ending up with a distribution that starts to look like a bell-shaped distrubution, such as:
+If we consider an environment where checking email is even more common, let's say 10 times per time period, we would observe increased variability both to the right and left of the mean. As a result, the distribution begins to resemble a bell-shaped distribution, as shown below:
 
 \includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory3}
 
-The distribution that acount for this beavhior of count data is called the \emph{Poisson distribution} and it models count data very well when events are rare, thus when the average count is low. The Possisson distribition is a probability distribution that models the number of events that occur within a fixed interval of time or space when these events occur independently and at a constant average rate. It applies to whole numbers (integers) and its shape depends on its mean, that is the average rate of occurrence of the events within the given interval.
+The distribution that accounts for this behavior of count data is called the \emph{Poisson distribution} and it models count data very well when events are rare, thus when the average count is low. The Possisson distribition is a probability distribution that models the number of events that occur within a fixed interval of time or space when these events occur independently and at a constant average rate. It applies to whole numbers (integers) and its shape depends on its mean, that is the average rate of occurrence of the events within the given interval.
 
 \hypertarget{link-function}{%
 \subsection{Link function}\label{link-function}}
@@ -1580,13 +1580,17 @@ Consider a count variable such as the one depicted in the following histogram:
 
 \includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory4}
 
-Assuming a positive correlation between the count variable and a continuous variable, when we examine the relationship on a scatterplot, it becomes evident that a straight line is insufficient to capture the pattern accurately. Specifically, when the count variable is zero, the straight line would be horizontal, failing to capture the subsequent increase reflecting the positive relationship between the variables.
+Assuming a positive correlation between the count variable and a continuous variable, when we examine the relationship on a scatterplot, it becomes evident that a straight line is insufficient to capture the pattern accurately.
 
 \includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory5}
+
+Specifically, when the count variable is zero, the straight line would be horizontal, failing to capture the subsequent increase reflecting the positive relationship between the variables.
+
+\includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory6}
 
 A more suitable approach would be to employ an exponential function to accurately describe the relationship between the variables.
 
-\includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory5}
+\includegraphics[width=0.6\linewidth]{bookletpics/3_poisson_theory7}
 
 This would mean defining the model
 
