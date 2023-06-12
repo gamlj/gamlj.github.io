@@ -301,7 +301,12 @@ div.csl-indent {
 <li class="chapter" data-level="3.6.10" data-path="gzlm.html"><a href="gzlm.html#plot-1"><i class="fa fa-check"></i><b>3.6.10</b> Plot</a></li>
 <li class="chapter" data-level="3.6.11" data-path="gzlm.html"><a href="gzlm.html#other-options-2"><i class="fa fa-check"></i><b>3.6.11</b> Other options</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="gzlm.html"><a href="gzlm.html#poisson-model"><i class="fa fa-check"></i><b>3.7</b> Poisson Model</a></li>
+<li class="chapter" data-level="3.7" data-path="gzlm.html"><a href="gzlm.html#poisson"><i class="fa fa-check"></i><b>3.7</b> The Poisson Model</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="gzlm.html"><a href="gzlm.html#distribution"><i class="fa fa-check"></i><b>3.7.1</b> Distribution</a></li>
+<li class="chapter" data-level="3.7.2" data-path="gzlm.html"><a href="gzlm.html#link-function"><i class="fa fa-check"></i><b>3.7.2</b> Link function</a></li>
+<li class="chapter" data-level="3.7.3" data-path="gzlm.html"><a href="gzlm.html#estimating-the-model"><i class="fa fa-check"></i><b>3.7.3</b> Estimating the model</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="mixed.html"><a href="mixed.html"><i class="fa fa-check"></i><b>4</b> Mixed Linear Models</a>
 <ul>
@@ -931,8 +936,10 @@ logit_k=a_k-b x
 <p>All other options, <span class="option">Simple Interactions</span>, <span class="option">Factor Coding</span>, <span class="option">Covariates Scaling</span>, <span class="option">Bootstrap</span> confidence intervals, <span class="option">Model comparison</span> etc. are the same as in the GLM.</p>
 </div>
 </div>
-<div id="poisson-model" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> Poisson Model<a href="gzlm.html#poisson-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="poisson" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> The Poisson Model<a href="gzlm.html#poisson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="distribution" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Distribution<a href="gzlm.html#distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Very often, rather than measuring quantities we count stuff. For example, we may have a dependent variable that indicates the number of smartphones a person possesses, the count of close friends a teenager has, or the frequency of email checks per hour. These variables are referred to as count data, where the variable scores represent frequencies rather than actual quantities.”</p>
 <p>Frequencies exhibit their own distinct characteristics when it comes to their distributions. In general terms, count variables reflect the occurrence of events, regardless of the specific event being measured (such as having a friend, checking email, or owning a phone). The distribution of the event counts tends to vary depending on the rarity or commonality of the event. For instance, if an event is rare, like the number of smartphones a person possesses, a large proportion of individuals may have just one event (one phone), while fewer individuals may have two or three phones, and having four or five phones becomes extremely uncommon. Thus, the distribution would be highly skewed.</p>
 <p>Consider for instance checking the email. If within an working environment the checks are rare, you can have that within a given time the majority of people either do not check the email or check it only once. Only few people checks it twice or three times per period, and so on. One ends up with a distribution as follows:</p>
@@ -942,8 +949,32 @@ logit_k=a_k-b x
 <p>If we now consider an environment in which checking the email is more common, say 10 time per period, it is clear that we can have more variability on the right of the mean as well as variability on the left, ending up with a distribution that starts to look like a bell-shaped distrubution, such as:</p>
 <p><img src="bookletpics/3_poisson_theory3.png" width="60%" /></p>
 <p>The distribution that acount for this beavhior of count data is called the <em>Poisson distribution</em> and it models count data very well when events are rare, thus when the average count is low. The <a href='https://en.wikipedia.org/wiki/Poisson_distribution' target='_blank'>Possisson distribition</a> is a probability distribution that models the number of events that occur within a fixed interval of time or space when these events occur independently and at a constant average rate. It applies to whole numbers (integers) and its shape depends on its mean, that is the average rate of occurrence of the events within the given interval.</p>
+</div>
+<div id="link-function" class="section level3 hasAnchor" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> Link function<a href="gzlm.html#link-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider a count variable such as the one depicted in the following histogram:</p>
+<p><img src="bookletpics/3_poisson_theory4.png" width="60%" /></p>
+<p>Assuming a positive correlation between the count variable and a continuous variable, when we examine the relationship on a scatterplot, it becomes evident that a straight line is insufficient to capture the pattern accurately. Specifically, when the count variable is zero, the straight line would be horizontal, failing to capture the subsequent increase reflecting the positive relationship between the variables.</p>
+<p><img src="bookletpics/3_poisson_theory5.png" width="60%" /></p>
+<p>A more suitable approach would be to employ an exponential function to accurately describe the relationship between the variables.</p>
+<p><img src="bookletpics/3_poisson_theory5.png" width="60%" /></p>
+<p>This would mean defining the model</p>
+<p><span class="math display">\[
+\hat{y}_i=e^{(a+bx_i)}
+\]</span>
+where <span class="math inline">\(e^x\)</span> means the exponential of <span class="math inline">\(x\)</span>. However, we prefer to work with linear models, so we linearize the model by taking the logarithm of both size, which gives (recall that <span class="math inline">\(ln(e^x)=x\)</span>):</p>
+<p><span class="math display">\[
+ln(\hat{y}_i)=a+bx_i
+\]</span></p>
+<div class="enf">
+<p>The Poisson model is a generalized linear model in which the predicted values are represented as the logarithm of the counts of the dependent variable, following a Poisson distribution. The regression coefficients in this model indicate the change in the logarithm of the expected counts, and the exponentiated form (<span class="math inline">\(exp(B)\)</span>) of these coefficients represents the rate of change in the counts as the independent variable increases by one unit</p>
+</div>
+</div>
+<div id="estimating-the-model" class="section level3 hasAnchor" number="3.7.3">
+<h3><span class="header-section-number">3.7.3</span> Estimating the model<a href="gzlm.html#estimating-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="incomplete"> Work in progress: incomplete version </span></p>
 
+</div>
 </div>
 </div>
 <h3>References</h3>

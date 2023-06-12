@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.12)  12 JUN 2023 17:20
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.12)  12 JUN 2023 18:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -785,9 +785,6 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 [4]
 Chapter 1.
 
-LaTeX Warning: Reference `poisson' on page 5 undefined on input line 189.
-
-
 LaTeX Warning: Reference `nb' on page 5 undefined on input line 191.
 
 File: bookletpics/0_library1.png Graphic file (type bmp)
@@ -1364,9 +1361,17 @@ File: bookletpics/3_poisson_theory3.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[103] [104]
+[103]
+File: bookletpics/3_poisson_theory4.png Graphic file (type bmp)
+<bookletpics/3_poisson_theory4.png>
+File: bookletpics/3_poisson_theory5.png Graphic file (type bmp)
+<bookletpics/3_poisson_theory5.png>
+[104]
+File: bookletpics/3_poisson_theory5.png Graphic file (type bmp)
+<bookletpics/3_poisson_theory5.png>
+[105] [106]
 Chapter 4.
-[105
+[107
 
 ]
 File: bookletpics/4_theory_plot1.png Graphic file (type bmp)
@@ -1376,13 +1381,13 @@ File: bookletpics/4_theory_plot2.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[106]
+[108]
 File: bookletpics/4_theory_plot3.png Graphic file (type bmp)
 <bookletpics/4_theory_plot3.png>
-[107]
+[109]
 File: bookletpics/4_theory_plot4.png Graphic file (type bmp)
 <bookletpics/4_theory_plot4.png>
-[108] [109] [110]
+[110] [111] [112]
 File: bookletpics/4_simple_input1.png Graphic file (type bmp)
 <bookletpics/4_simple_input1.png>
 File: bookletpics/4_simple_input2.png Graphic file (type bmp)
@@ -1392,15 +1397,15 @@ File: bookletpics/4_simple_input3.png Graphic file (type bmp)
 
 Underfull \vbox (badness 2134) has occurred while \output is active []
 
-[111]
+[113]
 File: bookletpics/4_simple_output1.png Graphic file (type bmp)
 <bookletpics/4_simple_output1.png>
-[112]
+[114]
 Chapter 5.
 
-LaTeX Warning: Reference `mixedbuild' on page 113 undefined on input line 1744.
+LaTeX Warning: Reference `mixedbuild' on page 115 undefined on input line 1778.
 
-[113
+[115
 
 ]
 File: bookletpics/5_logistic_input1.png Graphic file (type bmp)
@@ -1410,7 +1415,7 @@ File: bookletpics/5_logistic_input2.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[114]
+[116]
 File: bookletpics/5_logistic_input3.png Graphic file (type bmp)
 <bookletpics/5_logistic_input3.png>
 File: bookletpics/5_logistic_output1.png Graphic file (type bmp)
@@ -1418,7 +1423,7 @@ File: bookletpics/5_logistic_output1.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[115]
+[117]
 File: bookletpics/5_logistic_output2.png Graphic file (type bmp)
 <bookletpics/5_logistic_output2.png>
 File: bookletpics/5_logistic_output3.png Graphic file (type bmp)
@@ -1426,9 +1431,9 @@ File: bookletpics/5_logistic_output3.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[116]
+[118]
 
-LaTeX Warning: Reference `mixedre' on page 117 undefined on input line 1803.
+LaTeX Warning: Reference `mixedre' on page 119 undefined on input line 1837.
 
 File: bookletpics/5_logistic_output5.png Graphic file (type bmp)
 <bookletpics/5_logistic_output5.png>
@@ -1437,77 +1442,77 @@ File: bookletpics/5_logistic_output4.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[117]
+[119]
 File: bookletpics/5_logistic_plot1.png Graphic file (type bmp)
 <bookletpics/5_logistic_plot1.png>
 
 Underfull \vbox (badness 1028) has occurred while \output is active []
 
-[118]
+[120]
 File: bookletpics/5_multinomial_input1.png Graphic file (type bmp)
 <bookletpics/5_multinomial_input1.png>
 File: bookletpics/5_multinomial_input2.png Graphic file (type bmp)
 <bookletpics/5_multinomial_input2.png>
-[119]
+[121]
 File: bookletpics/5_multinomial_output1.png Graphic file (type bmp)
 <bookletpics/5_multinomial_output1.png>
 File: bookletpics/5_multinomial_output2.png Graphic file (type bmp)
 <bookletpics/5_multinomial_output2.png>
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1870.
-[120]
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1904.
+[122]
 Appendix A.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 1875.
+(Font)              scaled to size 24.88pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 20.74pt on input line 1875.
+(Font)              scaled to size 20.74pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 1875.
+(Font)              scaled to size 17.28pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 24.88228pt on input line 1875.
+(Font)              scaled to size 24.88228pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 20.7419pt on input line 1875.
+(Font)              scaled to size 20.7419pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 17.28157pt on input line 1875.
+(Font)              scaled to size 17.28157pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 24.87733pt on input line 1875.
+(Font)              scaled to size 24.87733pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 20.73778pt on input line 1875.
+(Font)              scaled to size 20.73778pt on input line 1909.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 17.27815pt on input line 1875.
+(Font)              scaled to size 17.27815pt on input line 1909.
 File: bookletpics/ap_a_output1.png Graphic file (type bmp)
 <bookletpics/ap_a_output1.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[121
+[123
 
 ]
 Underfull \vbox (badness 1527) has occurred while \output is active []
 
-[122]
+[124]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 1904.
+(Font)              scaled to size 14.4pt on input line 1938.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.4013pt on input line 1904.
+(Font)              scaled to size 14.4013pt on input line 1938.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 1904.
-[123] [124]
+(Font)              scaled to size 14.39845pt on input line 1938.
+[125] [126]
 Appendix B.
-[125
+[127
 
 ]
 File: bookletpics/ap_a_output2.png Graphic file (type bmp)
 <bookletpics/ap_a_output2.png>
-[126]
+[128]
 Appendix C.
 File: bookletpics/a_vartypes.png Graphic file (type bmp)
 <bookletpics/a_vartypes.png>
-(./gamljmodels.bbl [127
+(./gamljmodels.bbl [129
 
-] [128
+] [130
 
-] [129]) [130] (./gamljmodels.aux)
+] [131]) [132] (./gamljmodels.aux)
  ***********
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
@@ -1516,15 +1521,15 @@ L3 programming layer <2023-06-05>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `gamljmodels.out' has not changed.
-(rerunfilecheck)             Checksum: 5975B1892BDD3098484BB23128ABAA9E;7563.
+(rerunfilecheck)             Checksum: 87A671D6EDAE932DB5143334CF918246;7586.
  ) 
 Here is how much of TeX's memory you used:
- 20057 strings out of 478387
- 395146 string characters out of 5840829
+ 20097 strings out of 478387
+ 396604 string characters out of 5840829
  1867390 words of memory out of 5000000
- 40049 multiletter control sequences out of 15000+600000
+ 40087 multiletter control sequences out of 15000+600000
  523730 words of font info for 117 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,8n,120p,1539b,471s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on gamljmodels.pdf (130 pages).
+Output written on gamljmodels.pdf (132 pages).
