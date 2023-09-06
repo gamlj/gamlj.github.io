@@ -24,7 +24,7 @@ mcdocs_init()
 
 ## Introduction
 
-The General Linear Model and the Generalized Linear Model both rely on the crucial assumption that the units of analysis, specifically the scores of the dependent variable, are sampled independently. This requirement is often referred to as "independent and identically distributed" (`r ext_url("i.d.d,","https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables")`.
+The General Linear Model and the Generalized Linear Model both rely on the crucial assumption that the units of analysis, specifically the scores of the dependent variable, are sampled independently. This requirement is often referred to as "independent and identically distributed" observations assumption (`r ext_url("i.d.d,","https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables")`.
 ). This assumption is essential for these models to hold, as it ensures that each observation is independent of others and that the distribution of scores remains consistent across all observations. It allows for valid statistical inferences and meaningful interpretation of the model results.
 
 Let's zoom in on the "independent" aspect of the assumption. When we refer to "independence," we mean that each individual score represents a case randomly sampled from a population of scores, and that each case is not influenced by the other scores in the distribution. To put it simply, if we measure a variable on a sample of people, each person is selected independently of the others, and their individual score is not influenced by the scores of others in the sample.

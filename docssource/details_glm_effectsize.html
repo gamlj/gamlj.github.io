@@ -444,21 +444,21 @@ class="modulename">GAMLj</span> default contrast coding
 <span class="math inline">\(\beta\)</span> is the difference between the
 average z-scores of the dependent variable between the two groups.
 Assume these are the results:</p>
-<p><img src="details/glm/effectsize_example1_1.png" /><!-- --></p>
+<p><img src="details/glm/effectsize_example1_1.png" width="717" /></p>
 <p>The beta is 0.352, so it means that if we compute the mean difference
 between groups in the standardized <em>y</em>, we obtain 0.352. In
 fact.</p>
-<p><img src="details/glm/effectsize_example1_2.png" /><!-- --></p>
+<p><img src="details/glm/effectsize_example1_2.png" width="558" /></p>
 <p>However, the <span class="math inline">\(\beta\)</span> you obtain is
 not the correlation between <em>zy</em> and <em>groups</em>. The
 correlation is 0.169:</p>
-<p><img src="details/glm/effectsize_example1_3.png" /><!-- --></p>
+<p><img src="details/glm/effectsize_example1_3.png" width="413" /></p>
 <p>Why is there this discrepancy? Because the groups are not balanced,
 so when the correlation is computed, the variable <em>groups</em> is
 standardized, so the contrast coding values depend on the relative size
 of the groups. The actual groups coding values used by the Pearson’s
 correlations are the following:</p>
-<p><img src="details/glm/effectsize_example1_4.png" /><!-- --></p>
+<p><img src="details/glm/effectsize_example1_4.png" width="340" /></p>
 <p>Thus, the correlation corresponds to running a regression with
 <em>zy</em> as dependent variables and a continuous variable featuring
 either -.695 or 1.390 as values. The <span
