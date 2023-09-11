@@ -13,7 +13,7 @@
 
 <title>Details: Model goodness of fit in GAMLj</title>
 
-<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -398,9 +398,6 @@ GAMLj</h1>
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span>
-jamovi, GLM, Mixed, effect size indices, R-squared, loglikelihood ratio
-test </span></p>
 <p><span class="version"> <span class="versiontitle"> GAMLj version ≥
 </span> 3.0.0 </span></p>
 <div id="introduction" class="section level1">
@@ -416,8 +413,8 @@ It is computed as <span class="math inline">\(SS_{model}\)</span>
 divided by <span class="math inline">\(SS_{total}\)</span>. In <span
 class="modulename">GAMLj</span>, it is extracted from the R model object
 by <code>performance::r2(model)</code> (<span class="citation">Lüdecke
-(<a href="#ref-parameters" role="doc-biblioref">2020</a>)</span>). The
-adjusted R squared is computed as</p>
+(<a href="#ref-parameters">2020</a>)</span>). The adjusted R squared is
+computed as</p>
 <p><span class="math display">\[R_{adj}^2={{SS_{model}-SS_{res} \cdot
 ({df_{model}/df_{res}) \cdot }}\over{
 SS_{model}+SS_{res}(df_{res}+1)/df_{res}}}\]</span></p>

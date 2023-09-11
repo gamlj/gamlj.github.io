@@ -109,7 +109,7 @@ knitr::include_graphics("bookletpics/5_logistic_output3.png")
 ```
 </div>
 
-In this analysis, our objective is to verify the accuracy of our estimated random structure, ensuring that each coefficient exhibits variance without encountering collinearity issues among them. In our specific example, we observe some variance for the intercepts ($\sigma^2 = 0.161$), but a negligible variance for the random coefficients associated with $x$. This suggests that the random coefficients of $x$ do not make a substantial contribution to the model's fit, implying that they can potentially be excluded from the random component. Furthermore, the correlation between the $x$ coefficients and the intercepts across clusters indicate that the $x$ coefficients are redundant, because they correlate -1 with the intercepts, so they do not bring any additional fit to the model.
+In this analysis, our objective is to verify the accuracy of our estimated random structure, ensuring that each coefficient exhibits variance without encountering collinearity issues among them. In our specific example, we observe some variance for the intercepts ($\sigma^2 = 0.0865$), but a negligible variance for the random coefficients associated with $x$. This suggests that the random coefficients of $x$ do not make a substantial contribution to the model's fit, implying that they can potentially be excluded from the random component. Furthermore, the correlation between the $x$ coefficients and the intercepts across clusters indicate that the $x$ coefficients are redundant, because they correlate -1 with the intercepts, so they do not bring any additional fit to the model.
 
 If the user needs to test these variances against zero, the LRT tests are available as well (cf `r sec("mixedre")`).
 
@@ -129,7 +129,7 @@ knitr::include_graphics("bookletpics/5_logistic_output4.png")
 ```
 </div>
 
-The model fixed effects can be interpreted as in a standard logistic regression. On average across _bars_ (clusters), for the average number of _beers_ drunk ($x$) the expected odd of visiting the restroom is $exp(B)=1.309$. As we increases _beers_ ($x$) of one unit, the odd of visiting the restroom increases of $exp(B)=.954$, it diminishes ^[Here the cover story does not hold. Despites that, what is important is to get that the interpretation of the coefficients is in line with the results].
+The model fixed effects can be interpreted as in a standard logistic regression. On average across _bars_ (clusters), for the average number of _beers_ drunk ($x$) the expected odd of visiting the restroom is $exp(B)=.750$. As we increases _beers_ ($x$) of one unit, the odd of visiting the restroom increases of $exp(B)=1.052$.
 
 ### Plot 
 

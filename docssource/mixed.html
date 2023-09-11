@@ -379,7 +379,7 @@ div.tocify {
 </span> 1.5.0 </span></p>
 <p><strong>Mixed Linear Models</strong> module of the GAMLj suite for
 jamovi</p>
-<p><img src="mixed/main.png" class="img-responsive" alt=""></p>
+<p><img src="mixed/main.png" width="454" /></p>
 <p>The module estimates a mixed linear model with categorial and/or
 continuous variables, with options to facilitate estimation of
 interactions, simple slopes, simple effects, post-hoc, etc. In this page
@@ -406,11 +406,92 @@ variable(s) into <code>cluster</code>. In this version, multiple
 clustering variables are possible, but not combinations of
 classifications ( see <a href="mixed_specs.html">Technical Details</a>
 ).</p>
-<p>Confidence intervals for the parameters estimates and REML or ML can
-be chosen.</p>
 <p>The actual estimation occurs when the dependent variable, the
 clustering variable and at least one random coefficient (random effect)
 has been selected.</p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">REML</span>
+</td>
+<td>
+<code>TRUE</code> (default) or <code>FALSE</code>, should the Restricted
+ML be used rather than ML
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Do not run</span>
+</td>
+<td>
+Do not update results when options are changed. Useful to setup complex
+models without waiting for each update to conclude
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Fixed Parameters</span>
+</td>
+<td>
+<code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in
+table
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Random Variances C.I.</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), random effects CI in
+table. It could be very slow.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Confidence level</span>
+</td>
+<td>
+a number between 50 and 99.9 (default: 95) specifying the confidence
+intervals width.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Activate</span>
+</td>
+<td>
+Activate the options and fields required to conduct a model comparison
+analyses
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">More Fit Indices</span>
+</td>
+<td>
+shows AIC and BIC indices for the estimated model
+</td>
+</tr>
+</table>
+</div>
+<div id="fixed-effects-model" class="section level1">
+<h1>Fixed effects Model</h1>
+<p><img src="mixed/i3.png" class="img-responsive" alt=""></p>
+<p>By default, the model fixed effects terms are filled in automatically
+for main effects and for interactions with categorical variables.</p>
+<p>Interactions between continuous variables or categorical and
+continuous can be set by clicking the second arrow icon.</p>
+<p>Polinomial effects for continuous variables can be added to the
+model. When a variable is selected in the <span
+class="option">Components</span> field, a little number appears on the
+right side of the selection. The number indicates the <em>order</em> of
+the effect.</p>
+<p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
+<p>By increasing that number before dragging the term into the <span
+class="option">Model Terms</span> field, one can include any high order
+effect. Increasing the order number and combining the selection with
+other variables allows including interactions involving higher order
+effects of a variable.</p>
 </div>
 <div id="random-effects" class="section level1">
 <h1>Random effects</h1>
@@ -442,25 +523,52 @@ a model with <code>1|cluster)</code> random structure. If significant,
 the model with random effect <code>x</code> is significantly better (in
 terms of likelihood) than the model with <code>(1|cluster)</code>
 structure.</p>
-</div>
-<div id="fixed-effects-model" class="section level1">
-<h1>Fixed effects Model</h1>
-<p><img src="mixed/i3.png" class="img-responsive" alt=""></p>
-<p>By default, the model fixed effects terms are filled in automatically
-for main effects and for interactions with categorical variables.</p>
-<p>Interactions between continuous variables or categorical and
-continuous can be set by clicking the second arrow icon.</p>
-<p>Polinomial effects for continuous variables can be added to the
-model. When a variable is selected in the <span
-class="option">Components</span> field, a little number appears on the
-right side of the selection. The number indicates the <em>order</em> of
-the effect.</p>
-<p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
-<p>By increasing that number before dragging the term into the <span
-class="option">Model Terms</span> field, one can include any high order
-effect. Increasing the order number and combining the selection with
-other variables allows including interactions involving higher order
-effects of a variable.</p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">Model terms</span>
+</td>
+<td>
+Show the fixed effects defined in the model in the list of potential
+random coefficients
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Add</span>
+</td>
+<td>
+Show potential random effects in the <code>Components</code> field.
+<code>None</code> nothing (more than the fixed effects), the other can
+be <code>Main Effects</code>, <code>Up to 2-way</code> interactions,
+<code>Up to 3-way</code> interactions, <code>All possible</code> means
+showing in the <code>Components</code> list all possible potential
+random coefficients.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Effects correlation</span>
+</td>
+<td>
+<code>'all'</code>, <code>'none'</code> (default), or
+<code>'block'</code>. When random effects are passed as list of length
+1, it decides whether the effects should be correlated, non correlated.
+If <code>'re'</code> is a list of lists of length &gt; 1, the option is
+automatially set to <code>'block'</code>. The option is ignored if the
+model is passed using <code>formula</code>.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">LRT for Random Effects</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), LRT for the random
+effects
+</td>
+</tr>
+</table>
 </div>
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
@@ -664,6 +772,10 @@ designs</a>
 <li>
 <a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random
 effects</a>
+</li>
+<li>
+<a href="mixed_example4.html">Mixed Models: Autocorrelation in
+logitudinal data</a>
 </li>
 </ul>
 </div>

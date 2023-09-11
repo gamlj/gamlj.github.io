@@ -18,6 +18,7 @@ output:
 ```{r setup, echo=FALSE,results='hide'}
 library(mcdocs)
 mcdocs_init()
+
 ```
 
 
@@ -26,7 +27,7 @@ mcdocs_init()
 
 **Mixed Linear Models** module of the GAMLj suite for jamovi
 
-<img src="mixed/main.png" class="img-responsive" alt="">
+`r knitr::include_graphics("mixed/main.png",dpi=150)`
 
 The module estimates a mixed linear model with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc, etc. In this page you can find some hint to get started with the mixed models module. For more information about how to module works, please check the [technical details](mixed_specs.html)
  
@@ -35,6 +36,7 @@ The module estimates a mixed linear model with categorial and/or continuous vari
 The module can estimates REML and ML linear mixed models for any combination of categorical and continuous variables, thus providing an easy way of obtaining multilevel or hierarchical linear models for any combination of independent variables types.
 
 # Estimates
+
 The module provides a parameter estimates of the fixed effects, the random variances and correlation among random coefficients.
 
 Variables definition follows jamovi standards, with categorical independent variables defined in "fixed factors" and continuous independent variables in "covariates".
@@ -44,9 +46,22 @@ Variables definition follows jamovi standards, with categorical independent vari
 
 The grouping variable is simply set by putting the corresponding variable(s) into `cluster`. In this version, multiple clustering variables are possible, but not combinations of classifications ( see [Technical Details](mixed_specs.html) ). 
 
-Confidence intervals for the parameters estimates and  REML or ML can be chosen.
-
 The actual estimation occurs when the dependent variable, the clustering variable and at least one random coefficient (random effect) has been selected.
+
+`r panel_options('gamljmixed','panel_input')`
+
+# Fixed effects Model 
+<img src="mixed/i3.png" class="img-responsive" alt="">
+
+By default, the model fixed effects terms are filled in automatically for main effects and for interactions with categorical variables. 
+
+Interactions between continuous variables or categorical and continuous can be set by clicking the second arrow icon.
+
+
+```{r child1, child='commons/nonlinear_chunk.Rmd'}
+```
+
+
 
 # Random effects
 
@@ -61,17 +76,7 @@ By default the module assumes correlated random effects. All the effects varying
 
 The option `r opt("LRT for random effects")` produces a table of _Likelihood Ratio Tests_ for the random effects. The table is estimated with `lmerTest::ranova` command, documented [here](https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf). The test basically compares the likelihood of a model with the `effect` included versus a model with the `effect` excluded. For example, `x in (1+x|cluster)` means that the model with `(1+x|cluster)` random structure is compared with a model with `1|cluster)` random structure. If significant, the model with random effect `x` is significantly  better (in terms of likelihood) than the model with `(1|cluster)` structure.
 
-# Fixed effects Model 
-<img src="mixed/i3.png" class="img-responsive" alt="">
-
-By default, the model fixed effects terms are filled in automatically for main effects and for interactions with categorical variables. 
-
-Interactions between continuous variables or categorical and continuous can be set by clicking the second arrow icon.
-
-
-```{r child1, child='commons/nonlinear_chunk.Rmd'}
-```
-
+`r panel_options('gamljmixed','panel_random')`
 
 
 # Factors coding

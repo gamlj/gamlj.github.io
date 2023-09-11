@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="(Marcello Gallucci)" />
+
+
+<title>Mixed Models: Autocorrelation in logitudinal data</title>
+
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KM7X6HK5HM');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="helpstyle.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="gzlmmixed.html">Generalized Mixed Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples and Details</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+<li>
+  <a href="vignettes.html">GAMLj in R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/gamlj/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Mixed Models: Autocorrelation in
+logitudinal data</h1>
+<h4 class="author">(Marcello Gallucci)</h4>
+
+</div>
+
+
+<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
+</span> 3.0.7 </span> <span class="draft"> Draft version, mistakes may
+be around </span></p>
+<div id="intro" class="section level1">
+<h1>Intro</h1>
+<p>In this example, we conduct analyses of a repeated measures design in
+which we account for temporal autocorrelation among repeated measures.
+This means that we use a mixed model in which the random effects do not
+capture the entire dependency among measures, and an additional
+correlation should be included in the model. We utilize the GAMLj module
+in <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>.
+To follow the examples with the software, be sure to install the <span
+class="modulename">GAMLj</span> module from within the <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+library.</p>
+<p>The design and the analyses are inspired by <a
+href="https://github.com/seananderson/glmm-course">Sean Anderson’s
+course on mixed model in R</a>. If you are interested in checking the
+results with R, you can find all the R code on Anderson’s GitHub page.
+The data can be downloaded from Anderson’s glmm-course page.</p>
+<p>The data can be downloaded from <a
+href="https://github.com/seananderson/glmm-course/tree/master/data/raw/freitas-2016">Anderson’s
+github site</a></p>
+</div>
+<div id="the-research-design" class="section level1">
+<h1>The research design</h1>
+<p>The design regards the effect of ocean temperature on how deep
+individually tagged Atlantic cod dove along the Norwegian coast <span
+class="citation">(Freitas et al. 2016)</span>. The data regards 48
+tagged fish (variable <code>fish</code>), each fish measured on average
+105 times, with range [6,159]. Measures correspond to the average depth
+of the dives in a day (<code>depth_mean_day</code>). Together with this
+measures, the date (<code>date</code>) of measurement, and the
+temperature of the water (<code>Temperature_m1</code>).</p>
+<p>Statistically, we simply meed to estimate the relationship between
+temperature and dive depth, but we have clustered data, because each
+fish is repeatedly tested over several days. Interestingly, the date,
+and thus the season, may influence the temperature and also the fish
+behavior, so it is hard to believe that consecutive days measures are
+not more correlated than measures far apart in time.</p>
+</div>
+<div id="some-theory" class="section level1">
+<h1>Some Theory</h1>
+<p>One of the reasons the mixed model is used to analyze clustered data
+is that it can capture dependency in the data. Indeed, if scores
+(repeated measures) are more similar within clusters than across
+clusters, dependency arises, and the GLM assumptions of independent
+residuals are violated. However, within each cluster, we assume that the
+scores (cases) are independent, meaning that they represent a random
+sample of scores from that particular cluster. If so, the variance of
+the intercepts indicates the degree of dependency, showing how much the
+average scores of clusters differ. The mixed model can be used to model
+repeated measures because, by capturing differences in the average
+scores across individuals, one is also capturing the correlation among
+repeated measures. However, by capturing the correlation among repeated
+measures using random intercepts, one assumes that all pairs of repeated
+measures have the same correlation. This is called <em>compound
+symmetry</em>. Technically, by allowing the intercepts to vary, one
+captures the correlation among repeated measures. If this correlation is
+the same across pairs of measures, the residuals of the model will be
+independent of each other, satisfying the model assumptions</p>
+<p>When the correlation among pairs of measures is not constant across
+all pairs, the residuals will not be independent of each other,
+potentially leading to biased results. To address this, we can introduce
+an “extra correlation” among residuals to be estimated and incorporated
+into the model. However, estimating all these extra correlations among
+repeated measures can be computationally intensive and may result in
+convergence issues.</p>
+<p>For instance, if there are three repeated measures, the model must
+estimate 3⋅(3−1)/2=33⋅(3−1)/2=3 correlations. But if there are 10
+measures, the number of correlations increases to
+10⋅(10−1)/2=4510⋅(10−1)/2=45. To simplify the estimation process,
+researchers often avoid estimating all these correlations and instead
+impose certain restrictions on the structure of the correlation matrix.
+This is commonly referred to as <em>modelling covariance of
+residuals</em>.</p>
+<p>For temporally ordered data, a common restriction is referred to as
+<strong>Autoregressive of order 1</strong> (AR1). This restriction
+implies that any two consecutive measures are correlated with a
+coefficient of <span class="math inline">\(\phi\)</span>, any two
+measures that are two time points apart are correlated with a
+coefficient of <span class="math inline">\(\phi^2\)</span>, and so on.
+In other words, the correlation between any two measures that are <span
+class="math inline">\(t\)</span> time points apart is <span
+class="math inline">\(\phi^t\)</span>. This means that the model only
+needs to estimate a single value for the correlation (<span
+class="math inline">\(\phi\)</span>), regardless of the number of time
+points in the data. This simplifies the estimation process. In practice,
+we are estimating a model in which the correlation among repeated
+measures is expected to decrease as the time lags increase. It is clear
+that the AR1 error covariance requires the repeated measures to be
+ordered along time, or any other design factor that can be considered
+ordered. In the fish example, for instance, each fish is measured in
+different days, and days are naturally ordered, so it is very likely
+that a measure taken today will be more similar to the measure taken
+yesterday than a measure taken one month ago. In other words,
+consecutive measures are likely to be more correlated than measures
+taken several days apart. If this is the case, the residuals will not be
+independent and the results possibly biased. Thus, the model should be
+inspected and a AR1 error covariance matrix should be tested.</p>
+</div>
+<div id="model-without-autocorrelation" class="section level1">
+<h1>Model without autocorrelation</h1>
+<p>We start by analyzing the design with a standard mixed model, with
+<code>fish</code> as clustering variable, random intercepts and slopes
+across clusters, <code>Temperature_m1</code> as independent variable and
+dive depth as dependent variable. Following <a
+href="https://github.com/seananderson/glmm-course">Sean Anderson’s
+alysis</a>, we log-transformed the dependent variable
+<code>depth_mean_day</code>, producing `log.depth_mean_day, so our
+results can be replicated in R following Anderson’s examples.</p>
+<p><img src="examples/mixed4/data_input1.png" width="915" /></p>
+<div id="model-set-up" class="section level2">
+<h2>Model set up</h2>
+<p>The <span class="modulename">GAMLj</span> Mixed model interface is
+set up with the variables appropriated role:</p>
+<p><img src="examples/mixed4/mod1_input1.png" width="576" /></p>
+<p>Then the random coefficients:</p>
+<p><img src="examples/mixed4/mod1_input2.png" width="557" /></p>
+</div>
+<div id="results" class="section level2">
+<h2>Results</h2>
+<p>As a reference for later on, let’s review the results: The first
+table gives us a few information about the model:</p>
+<p><img src="examples/mixed4/mod1_output1.png" width="656" /></p>
+<p>Then we have the overall model <span
+class="math inline">\(R^2\)</span>’s and tests and the independent
+variable main effect test:</p>
+<p><img src="examples/mixed4/mod1_output2.png" width="473" /></p>
+<p>Then we have the regression coefficients:</p>
+<p><img src="examples/mixed4/mod1_output3.png" width="669" /></p>
+<p>and finaly the random component:</p>
+<p><img src="examples/mixed4/mod1_output4.png" width="473" /></p>
+</div>
+<div id="assumptions" class="section level2">
+<h2>Assumptions</h2>
+<p>Now we recall that the data are likely to show autocorrelation in the
+residuals, because closer in time measures may show a larger correlation
+than measures far apart. We have seen that this occurence may distort
+the residuals, and thus we can inspect the residuals within each cluster
+to see how they look.</p>
+<p><img src="examples/mixed4/mod1_input3.png" width="552" /></p>
+<p>We ask for the plot residuals vs predicted, both in one single plot
+and as a grid, with one panel for each cluster.</p>
+<p><img src="examples/mixed4/mod1_plot1.png" width="766" /></p>
+<p>The <strong>Residuals-Predicted by cluster</strong> plot shows the
+scatterplot between the residuals of the model (Y-axis) and the
+predicted values (X-axis). Independent residuals should be distributed
+randomly around the horizontal 0-line (gray line). Instead, it seems
+that for many clusters the residuals are downward oriented and
+definitily not randomly scatterted around the line.</p>
+<p>An even clear picture can be obtained by inspecting the
+<strong>Residuals-Predicted Grid</strong>:</p>
+<p><img src="examples/mixed4/mod1_plot2.png" width="758" /></p>
+<p>It is clear that for many clusters ( for instance
+<code>Cod_6755</code> or <code>Cod_6795</code>) the residuals are not
+randomly scattered around the horizontal line, but they show a clear
+download alignment crossing the 0-line. This is a clear sign that the
+model residuals are not following the independence assumption. We can
+try to remedy that including an extra-correlation for residuals in the
+model.</p>
+</div>
+</div>
+<div id="model-with-autoregressive-residuals" class="section level1">
+<h1>Model with autoregressive residuals</h1>
+<p>In <span class="modulename">GAMLj</span>, autoregressive residuals
+covariance can be chosen by simply select it in the <span
+class="option">Residuals Structure</span> panel.</p>
+<p><img src="examples/mixed4/mod2_input1.png" width="567" /></p>
+<p>The <code>Indentity</code> is the default, which is basically not
+allowing any extra-correlation among residuals, so the dependency is all
+captured by the random effects. <code>Unstructured</code> means that
+every correlation is estimated in the data, which in our example would
+be incredibly slow and non-sensical. This option is useful in repeated
+measures experiments with unordered repeated measures.
+<code>Autoregressive</code> indicates AR(1), so autoregressive of the
+first-order (see above).</p>
+<p>Now the results:</p>
+<p><img src="examples/mixed4/mod2_output1.png" width="705" /></p>
+<p>Although the new results are not substantially different as compared
+with the previous model ones, we do observe different values for the
+tests and the estimates. The standard errors are different, and so are
+the inferential tests (t-tests and F-tests). In this particular example
+the conclusions drawn from the two models would be the same, but in
+general they may not coincide.</p>
+<p>We can now look at the residuals distribution with clusters and check
+whether the new model is better than the previous one:</p>
+<p><img src="examples/mixed4/mod2_plot1.png" width="859" />
+<img src="examples/mixed4/mod2_plot2.png" width="813" /></p>
+<p>We can see that now the residuals are much more randomly scattered
+around the X-axis. There seem to be more cases on the right-side of the
+plot than on the left, but that is not an issue related with the
+correlation among residuals. They are clearly evenly distributed around
+the predicted value. The residuals seem also well distributed within the
+majority of clusters. We can then conclude that our second model is more
+accurate and go on reporting it.</p>
+</div>
+<div id="related-examples" class="section level1">
+<h1>Related examples</h1>
+<ul>
+<li>
+<a href="mixed_example1.html">Mixed Models: Random coefficients
+regression</a>
+</li>
+<li>
+<a href="mixed_example2.html">Mixed Models: Repeated measures
+designs</a>
+</li>
+<li>
+<a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random
+effects</a>
+</li>
+<li>
+<a href="mixed_example4.html">Mixed Models: Autocorrelation in
+logitudinal data</a>
+</li>
+</ul>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com
+
+">send me an email</a>
+</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-freitas2016temperature" class="csl-entry">
+Freitas, Carla, Esben M Olsen, Halvor Knutsen, Jon Albretsen, and Even
+Moland. 2016. <span>“Temperature-Associated Habitat Selection in a
+Cold-Water Marine Fish.”</span> <em>Journal of Animal Ecology</em> 85
+(3): 628–37.
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

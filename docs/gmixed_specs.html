@@ -13,7 +13,7 @@
 
 <title>Generalized mixed model module technical details</title>
 
-<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -401,10 +401,9 @@ code underlying the <span class="modulename">GAMLj</span> module.</p>
 <h2>R-squared</h2>
 <p>R-squared corresponds pseudo R-squared implemented <a
 href="http://jslefche.github.io/piecewiseSEM/">here</a> and described in
-<span class="citation">(<a href="#ref-lefcheck"
-role="doc-biblioref">Lefcheck 2016</a>)</span> and in <span
-class="citation">(<a href="#ref-nagawa2" role="doc-biblioref">Johnson
-2014</a>)</span></p>
+<span class="citation">(<a href="#ref-lefcheck">Lefcheck
+2016</a>)</span> and in <span class="citation">(<a
+href="#ref-nagawa2">Johnson 2014</a>)</span></p>
 <p>Two R-squares values are reported:</p>
 <ul>
 <li><p>Conditional: It is the estimated proportion of reduced error of
@@ -413,23 +412,23 @@ effects. It corresponds to the goodness of fit of the model due to fixed
 and random effects. In other words, conditional <span
 class="math inline">\(R^2\)</span> indicates the variance explained by
 the fixed and random effects as a proportion of the sum of all the
-variance components <span class="citation">(<a href="#ref-nagawa2"
-role="doc-biblioref">Johnson 2014</a>)</span></p></li>
+variance components <span class="citation">(<a
+href="#ref-nagawa2">Johnson 2014</a>)</span></p></li>
 <li><p>Marginal: It is the estimated proportion of reduced error of the
 model as compared with a null-model without fixed effects. It
 corresponds to the goodness of fit of the model due to the fixed
 effects. In other words, marginal <span
 class="math inline">\(R^2\)</span> indicates the variance explained by
 the fixed effects as a proportion of the sum of all the variance
-components <span class="citation">(<a href="#ref-nagawa2"
-role="doc-biblioref">Johnson 2014</a>)</span></p></li>
+components <span class="citation">(<a href="#ref-nagawa2">Johnson
+2014</a>)</span></p></li>
 </ul>
 </div>
 <div id="deviance" class="section level2">
 <h2>Deviance</h2>
 <p>The implementation follows exactly the indication of R package
-<code>lme4</code> <span class="citation">(<a href="#ref-lme4cran"
-role="doc-biblioref">Douglas Bates 2020</a>)</span>. In generalized
+<code>lme4</code> <span class="citation">(<a
+href="#ref-lme4cran">Douglas Bates 2020</a>)</span>. In generalized
 mixed models, deviance can be defined in different ways. One dichotomy
 is the reference to a saturated model. The <em>absolute deviance</em> of
 the model is simply the model deviance, the <em>relative deviance</em>
@@ -457,10 +456,9 @@ model has a better fit than another when its AIC is smaller than the
 other’s. It is implemented by simply estracting it from the R
 <code>glmer</code> estimated model:
 <code>stats::extractAIC(model)</code>. Details in <span
-class="citation">(<a href="#ref-lme4" role="doc-biblioref">Bates et al.
-2015</a>; <a href="#ref-lme4cran" role="doc-biblioref">Douglas Bates
-2020</a>)</span>. The AIC is computed based on the uncoditional absolute
-deviance.</p>
+class="citation">(<a href="#ref-lme4">Bates et al. 2015</a>; <a
+href="#ref-lme4cran">Douglas Bates 2020</a>)</span>. The AIC is computed
+based on the uncoditional absolute deviance.</p>
 </div>
 <div id="bic" class="section level2">
 <h2>BIC</h2>
@@ -468,10 +466,9 @@ deviance.</p>
 A model has a better fit than another when its BIC is smaller. It is
 implemented by simply estracting it from the R <code>glm</code>
 estimated model: <code>stats::BIC(model)</code>. Details in <span
-class="citation">(<a href="#ref-lme4" role="doc-biblioref">Bates et al.
-2015</a>; <a href="#ref-lme4cran" role="doc-biblioref">Douglas Bates
-2020</a>)</span>. The BIC is computed based on the uncoditional absolute
-deviance.</p>
+class="citation">(<a href="#ref-lme4">Bates et al. 2015</a>; <a
+href="#ref-lme4cran">Douglas Bates 2020</a>)</span>. The BIC is computed
+based on the uncoditional absolute deviance.</p>
 </div>
 <div id="residual-df" class="section level2">
 <h2>Residual DF</h2>
