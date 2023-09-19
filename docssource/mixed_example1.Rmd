@@ -34,7 +34,7 @@ Data can also be opened within jamovi in the jamovi data library, with the name 
 
 # The research design
 
-Imagine we sampled a number of bars (15 in this example) in a city, and in each bar we measured how many beers customers consumed that evening and how many smiles they were producing for a give time unit (say every minute). The aim of the analysis is to estimate the relationship between number of beers and number of smiles, expecting a positive relationship.
+Imagine we sampled a number of bars (15 in this example) in a city, and in each bar we measured how many beers customers consumed that evening and how many smiles they were producing for a given time unit (say every minute). The aim of the analysis is to estimate the relationship between number of beers and number of smiles, expecting a positive relationship.
 
 We have then 15 bars, each including a different number of customers In the data set, the classification of customers in bars is contained in the variable `bar`. The frequencies of customers in each bar is in the next table (in jamovi descriptives, tick `frequencies table`)  .
 
@@ -81,12 +81,12 @@ The coefficients that vary from cluster to cluster are defined as __random coeff
 
 Because a simple regression line has two coefficients (the intercept and the slope) we can let the intercept (or constant term) to vary across clusters, the slope, or both. Practically, we define the intercept, or the slope (of `beer`), or both as random coefficients.
 
-Because we are interested in the overall effect of `beer` on `smile`, we want the effect of beer to be **also** a fixed effect, that is a average slope estimated for across bars. If the beer slope is allowed to vary from bar to bar (i.e. it is set to be random), then the fixed effect should be interpreted as the __average slope__, averaged across clusters. If the beer slope is not random, then the fixed effect is simply the beer effect estimated across participants.
+Because we are interested in the overall effect of `beer` on `smile`, we want the effect of beer to be **also** a fixed effect, that is an average slope estimated for across bars. If the beer slope is allowed to vary from bar to bar (i.e., it is set to be random), then the fixed effect should be interpreted as the __average slope__, averaged across clusters. If the beer slope is not random, then the fixed effect is simply the beer effect estimated across participants.
 
 # Random Intercepts Model
 
 ## Set up
-We start simply by allowing only the intercepts to vary. This model is called __random intercepts_ model to signal that only the intercepts are allowed to vary from cluster to cluster. 
+We start simply by allowing only the intercepts to vary. This model is called __random intercepts__ model to signal that only the intercepts are allowed to vary from cluster to cluster. 
 
 In order to estimate the model with jamovi, we first need to set each variable in the right field. 
 
@@ -102,7 +102,7 @@ If we now look at the results panel, we see that the model definition is not com
 
 <img src="examples/mixed1/resultsnone.png" class="img-responsive" alt="">
 
-We need to specify the random component, that is we should set which coefficient are random. We do that by expanding the `Random Effects` tab.
+We need to specify the random component, that is we should set which coefficients are random. We do that by expanding the `Random Effects` tab.
 
 <img src="examples/mixed1/random.png" class="img-responsive" alt="">
 
@@ -152,13 +152,13 @@ Options are available to scale the covariates, by centering it or standardizing 
 <img src="examples/mixed1/output.model1.random.png" class="img-responsive" alt="">
 
 
-The **Random Components** table displays the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is a good variance of the intercepts (${\sigma_a}^2$=6.53), thus we did well in letting the intercepts vary from cluster to cluster. (${\sigma_a}^2$=6.53) can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variance ($\sigma^2$), that is $v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}$
+The **Random Components** table displays the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is a good variance of the intercepts (${\sigma_a}^2$=5.817), thus we did well in letting the intercepts vary from cluster to cluster. (${\sigma_a}^2$=5.817) can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variance ($\sigma^2$), that is $v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}$
 
 Finally, we can ask for the plot of the fixed and random effects together. 
 
 <img src="examples/mixed1/output.model1.plot.png" class="img-responsive" alt="">
 
-As expected, the random regression lines have different intercepts (different heights) but the all share the same slope (they are forced to be parallel).
+As expected, the random regression lines have different intercepts (different heights) but they all share the same slope (they are forced to be parallel).
 
 # Random Slopes Model
 
@@ -178,9 +178,9 @@ Notice that we have now two random effects, that can be correlated or fixed to b
 
 Results are substantially the same, showing that the variability of the slopes do no influence the interpretation of the results in a substantial way. We can notice, however, that the DF of the tests are different as compared with the random intercepts model. This is due to the fact that now the fixed slope 0.555 is computed as the average of the random slopes, and thus its inferential sample is much smaller. 
 
-In the 'Random Components' table we see a small variance of beer ${\sigma_b}^2$=0.028, indicating that slopes do not vary much. Nonetheless, their variability it is not null, so allowing them to be random increases our model fit. As they say: _if it ain't  broken, don't fix it_.
+In the 'Random Components' table we see a small variance of beer ${\sigma_b}^2$=0.028, indicating that slopes do not vary much. Nonetheless, their variability is not null, so allowing them to be random increases our model fit. As they say: _if it ain't  broken, don't fix it_.
 
-Finally, a correlation between intercepts and slopes can be observed, $r$=-.766, indicating that bars where people smile more on average (intercept) are the bars were the effect of beer is smaller.
+Finally, a correlation between intercepts and slopes can be observed, $r$=-.766, indicating that bars where people smile more on average (intercept) are the bars where the effect of beer is smaller.
 
 The final model, with random intercepts and slopes,  captures the data with very different intercepts and slightly variable slopes.
 
