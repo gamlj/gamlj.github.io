@@ -440,17 +440,17 @@ All participants see all stimuli. An example can be found
 effects</a>, using the <a
 href="https://github.com/gamlj/gamlj.github.io/blob/master/data/subjects_by_stimuli.csv">subjects_by_stimuli</a>
 dataset. Here we have 50 participants measured in two conditions using
-30 stimuli. The first cells of a contingency table <code>subj</code> by
-<code>stimuli</code> is shown here.</p>
+30 stimuli. The first cells of a contingency table <code>subj</code>(in
+columns) by <code>stimulus</code> is shown here.</p>
 <p><img src="examples/mixed4/data1_freq.png" width="531" /></p>
 <p>What is crucial here is that both <code>subj</code> and
-<code>stimuli</code> clustering variables are a the same level (or
+<code>stimulus</code> clustering variables are a the same level (or
 layer). This means that each measurement (each row) belongs to one
-combination of <code>subj</code> and <code>stimuli</code>, that is is
+combination of <code>subj</code> and <code>stimulus</code>, that is is
 measured for one particular participant and one particular stimulus. The
-classifications are __orthogonal_, meaning that they are independent one
-each other. In the experimental terminology , they create a balanced 50
-X 30 design.</p>
+classifications are <strong>orthogonal</strong>, meaning that they are
+independent one each other. In the experimental terminology , they
+create a balanced 50 X 30 design.</p>
 <p>To understand the structure of the model estimable in these designs,
 we can focus on the random intercepts (the same applies to slopes, but
 the latter depends on the specific design at hand). What random
