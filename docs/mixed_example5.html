@@ -400,6 +400,9 @@ logitudinal data</h1>
 </div>
 
 
+<p><span class="keywords"> <span class="keytitle"> keywords </span>
+Mixed models, repeated measures, multilevel models, ANOVA,
+autocorrelation </span></p>
 <p><span class="version"> <span class="versiontitle"> GAMLj version ≥
 </span> 3.0.7 </span> <span class="draft"> Draft version, mistakes may
 be around </span></p>
@@ -420,22 +423,21 @@ library.</p>
 href="https://github.com/seananderson/glmm-course">Sean Anderson’s
 course on mixed model in R</a>. If you are interested in checking the
 results with R, you can find all the R code on Anderson’s GitHub page.
-The data can be downloaded from Anderson’s glmm-course page.</p>
-<p>The data can be downloaded from <a
+The data can be downloaded from <a
 href="https://github.com/seananderson/glmm-course/tree/master/data/raw/freitas-2016">Anderson’s
 github site</a></p>
 </div>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
 <p>The design regards the effect of ocean temperature on how deep
-individually tagged Atlantic cod dove along the Norwegian coast <span
+individually tagged Atlantic cods dove along the Norwegian coast <span
 class="citation">(Freitas et al. 2016)</span>. The data regards 48
-tagged fish (variable <code>fish</code>), each fish measured on average
-105 times, with range [6,159]. Measures correspond to the average depth
-of the dives in a day (<code>depth_mean_day</code>). Together with this
-measures, the date (<code>date</code>) of measurement, and the
-temperature of the water (<code>Temperature_m1</code>).</p>
-<p>Statistically, we simply meed to estimate the relationship between
+tagged fish (variable <code>fish</code>), each fish is measured on
+average 105 times, with range [6,159]. Measures correspond to the
+average depth of the dives in a day (<code>depth_mean_day</code>).
+Together with this measure, the date (<code>date</code>) of measurement,
+and the temperature of the water (<code>Temperature_m1</code>).</p>
+<p>Statistically, we simply need to estimate the relationship between
 temperature and dive depth, but we have clustered data, because each
 fish is repeatedly tested over several days. Interestingly, the date,
 and thus the season, may influence the temperature and also the fish
@@ -461,7 +463,7 @@ measures have the same correlation. This is called <em>compound
 symmetry</em>. Technically, by allowing the intercepts to vary, one
 captures the correlation among repeated measures. If this correlation is
 the same across pairs of measures, the residuals of the model will be
-independent of each other, satisfying the model assumptions</p>
+independent of each other, satisfying the model assumptions.</p>
 <p>When the correlation among pairs of measures is not constant across
 all pairs, the residuals will not be independent of each other,
 potentially leading to biased results. To address this, we can introduce
@@ -470,13 +472,12 @@ into the model. However, estimating all these extra correlations among
 repeated measures can be computationally intensive and may result in
 convergence issues.</p>
 <p>For instance, if there are three repeated measures, the model must
-estimate 3⋅(3−1)/2=33⋅(3−1)/2=3 correlations. But if there are 10
-measures, the number of correlations increases to
-10⋅(10−1)/2=4510⋅(10−1)/2=45. To simplify the estimation process,
-researchers often avoid estimating all these correlations and instead
-impose certain restrictions on the structure of the correlation matrix.
-This is commonly referred to as <em>modelling covariance of
-residuals</em>.</p>
+estimate 3⋅(3−1)/2=3 correlations. But if there are 10 measures, the
+number of correlations increases to 10⋅(10−1)/2=90/2=45. To simplify the
+estimation process, researchers often avoid estimating all these
+correlations and instead impose certain restrictions on the structure of
+the correlation matrix. This is commonly referred to as <em>modelling
+covariance of residuals</em>.</p>
 <p>For temporally ordered data, a common restriction is referred to as
 <strong>Autoregressive of order 1</strong> (AR1). This restriction
 implies that any two consecutive measures are correlated with a
