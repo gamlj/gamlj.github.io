@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Mixed Linear Models | GAMLj Models</title>
   <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Mixed Linear Models | GAMLj Models" />
   <meta property="og:type" content="book" />
@@ -379,7 +379,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 4</span> Mixed Linear Models<a href="mixed.html#mixed" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="introduction-1" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Introduction<a href="mixed.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The General Linear Model and the Generalized Linear Model both rely on the crucial assumption that the units of analysis, specifically the scores of the dependent variable, are sampled independently. This requirement is often referred to as “independent and identically distributed” (<a href='https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables' target='_blank'>i.d.d,</a>.
+<p>The General Linear Model and the Generalized Linear Model both rely on the crucial assumption that the units of analysis, specifically the scores of the dependent variable, are sampled independently. This requirement is often referred to as “independent and identically distributed” observations assumption (<a href='https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables' target='_blank'>i.d.d,</a>.
 ). This assumption is essential for these models to hold, as it ensures that each observation is independent of others and that the distribution of scores remains consistent across all observations. It allows for valid statistical inferences and meaningful interpretation of the model results.</p>
 <p>Let’s zoom in on the “independent” aspect of the assumption. When we refer to “independence,” we mean that each individual score represents a case randomly sampled from a population of scores, and that each case is not influenced by the other scores in the distribution. To put it simply, if we measure a variable on a sample of people, each person is selected independently of the others, and their individual score is not influenced by the scores of others in the sample.</p>
 <p>What if, instead of directly sampling individuals, we employ a hierarchical or multilevel sampling approach? For instance, in our cover story, what if we sample a set of bars and then within each bar, we further sample a subset of customers to measure our variables on? In a educational project, for instance, we may need to sample schools, and within each school select a number of pupils. In such cases, the assumption of independence among individual observations is violated, as individuals within the same bar or school may be more similar to each other in their variable scores compared to individuals from different bars or schools. This introduces a level of dependency or clustering within the data.</p>

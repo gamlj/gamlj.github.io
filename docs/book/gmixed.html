@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Generalized Mixed Linear Models | GAMLj Models</title>
   <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Generalized Mixed Linear Models | GAMLj Models" />
   <meta property="og:type" content="book" />
@@ -433,7 +433,7 @@ div.csl-indent {
 <div style="text-align:center">
 <p><img src="bookletpics/5_logistic_output3.png" width="80%" /></p>
 </div>
-<p>In this analysis, our objective is to verify the accuracy of our estimated random structure, ensuring that each coefficient exhibits variance without encountering collinearity issues among them. In our specific example, we observe some variance for the intercepts (<span class="math inline">\(\sigma^2 = 0.161\)</span>), but a negligible variance for the random coefficients associated with <span class="math inline">\(x\)</span>. This suggests that the random coefficients of <span class="math inline">\(x\)</span> do not make a substantial contribution to the model’s fit, implying that they can potentially be excluded from the random component. Furthermore, the correlation between the <span class="math inline">\(x\)</span> coefficients and the intercepts across clusters indicate that the <span class="math inline">\(x\)</span> coefficients are redundant, because they correlate -1 with the intercepts, so they do not bring any additional fit to the model.</p>
+<p>In this analysis, our objective is to verify the accuracy of our estimated random structure, ensuring that each coefficient exhibits variance without encountering collinearity issues among them. In our specific example, we observe some variance for the intercepts (<span class="math inline">\(\sigma^2 = 0.0865\)</span>), but a negligible variance for the random coefficients associated with <span class="math inline">\(x\)</span>. This suggests that the random coefficients of <span class="math inline">\(x\)</span> do not make a substantial contribution to the model’s fit, implying that they can potentially be excluded from the random component. Furthermore, the correlation between the <span class="math inline">\(x\)</span> coefficients and the intercepts across clusters indicate that the <span class="math inline">\(x\)</span> coefficients are redundant, because they correlate -1 with the intercepts, so they do not bring any additional fit to the model.</p>
 <p>If the user needs to test these variances against zero, the LRT tests are available as well (cf Section <a href="#mixedre"><strong>??</strong></a>).</p>
 <div style="text-align:center">
 <p><img src="bookletpics/5_logistic_output5.png" width="70%" /></p>
@@ -445,7 +445,7 @@ div.csl-indent {
 <div style="text-align:center">
 <p><img src="bookletpics/5_logistic_output4.png" width="80%" /></p>
 </div>
-<p>The model fixed effects can be interpreted as in a standard logistic regression. On average across <em>bars</em> (clusters), for the average number of <em>beers</em> drunk (<span class="math inline">\(x\)</span>) the expected odd of visiting the restroom is <span class="math inline">\(exp(B)=1.309\)</span>. As we increases <em>beers</em> (<span class="math inline">\(x\)</span>) of one unit, the odd of visiting the restroom increases of <span class="math inline">\(exp(B)=.954\)</span>, it diminishes <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+<p>The model fixed effects can be interpreted as in a standard logistic regression. On average across <em>bars</em> (clusters), for the average number of <em>beers</em> drunk (<span class="math inline">\(x\)</span>) the expected odd of visiting the restroom is <span class="math inline">\(exp(B)=.750\)</span>. As we increases <em>beers</em> (<span class="math inline">\(x\)</span>) of one unit, the odd of visiting the restroom increases of <span class="math inline">\(exp(B)=1.052\)</span>.</p>
 </div>
 <div id="plot-2" class="section level3 hasAnchor" number="5.3.6">
 <h3><span class="header-section-number">5.3.6</span> Plot<a href="gmixed.html#plot-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -491,12 +491,6 @@ div.csl-indent {
 
 </div>
 </div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="3">
-<li id="fn3"><p>Here the cover story does not hold. Despites that, what is important is to get that the interpretation of the coefficients is in line with the results<a href="gmixed.html#fnref3" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
             </section>
 

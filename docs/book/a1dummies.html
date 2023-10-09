@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B How many contrasts? | GAMLj Models</title>
   <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B How many contrasts? | GAMLj Models" />
   <meta property="og:type" content="book" />
@@ -430,7 +430,7 @@ Is this model able to produce three predicted values? First, for all dummies equ
 <div id="zero-intercept-anova" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">B.2</span> Zero-intercept ANOVA<a href="a1dummies.html#zero-intercept-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The demonstration in Appendix <a href="a1dummies.html#a1dummies">B</a> may explain also a curious phenomenon, which often surprises users of the linear model (independently of the software used). If one estimates a GLM with categorical IVs without the intercept, the model consists of K coefficients, where K is the number of groups, and the coefficients values are the means of the dependent variable for the groups. These models are called zero-intercepts models. Using <code>manymodels</code> data, a GLM with <code>cat3</code> as independent, <code>ycont</code> as dependent, and no intercept (we unflag the <span class="option">Intercept</span> option), we get these coefficients:</p>
-<p><img src="bookletpics/ap_a_output2.png" /><!-- --></p>
+<p><img src="bookletpics/ap_a_output2.png" width="1247" /></p>
 <p>It is clear that without an intercept, the three predicted values required here can be estimated by simply recasting the model as follows:</p>
 <p><span class="math display">\[
 \hat{y_i}=\bar{y}_1 \begin{bmatrix}

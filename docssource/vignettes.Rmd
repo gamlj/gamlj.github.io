@@ -35,30 +35,30 @@ devtools::install_github("gamlj/gamlj")
 
 ```{r, echo=FALSE,results='hide'}
 
-pkg<-"gamlj"
-fn<-NULL
-
-extract_help<-function(pkg) {
-  rdbfile <- file.path(find.package(pkg), "help", pkg)
-  rdb <- tools:::fetchRdDB(rdbfile, key = fn)
-  convertor <- function(a) tools::Rd2HTML(a,fragment = F)
-  f <- function(x) {
-     if (length(Rdpack::Rdo_locate_core_section(rdo = x, sec = "\\value"))==0)
-        return(NULL)
-     good<-""
-     y<-fixRd(x)
-     res<-capture.output(convertor(y))
-     res<-res[8:(length(res)-1)]
-     for (a in res)
-        if(a!="")
-           good<-paste(good,a,"\n")
-    good
-  }
-  if(is.null(fn)) lapply(rdb, f) else f(rdb)
-}
-
-
-res<-extract_help(pkg) 
+# pkg<-"gamlj"
+# fn<-NULL
+# 
+# extract_help<-function(pkg) {
+#   rdbfile <- file.path(find.package(pkg), "help", pkg)
+#   rdb <- tools:::fetchRdDB(rdbfile, key = fn)
+#   convertor <- function(a) tools::Rd2HTML(a,fragment = F)
+#   f <- function(x) {
+#      if (length(Rdpack::Rdo_locate_core_section(rdo = x, sec = "\\value"))==0)
+#         return(NULL)
+#      good<-""
+#      y<-fixRd(x)
+#      res<-capture.output(convertor(y))
+#      res<-res[8:(length(res)-1)]
+#      for (a in res)
+#         if(a!="")
+#            good<-paste(good,a,"\n")
+#     good
+#   }
+#   if(is.null(fn)) lapply(rdb, f) else f(rdb)
+# }
+# 
+# 
+# res<-extract_help(pkg) 
 
 ### this should be fixed in mcdocs
 #for (r in seq_along(res))
@@ -69,14 +69,11 @@ res<-extract_help(pkg)
 
 ```{r, echo=FALSE,results='asis'}
 
-for (r in res)
-   cat(r)
+# for (r in res)
+#    cat(r)
 
 ```
 
-# Examples 
-
-`r link_vignettes()`
 
 
 `r issues()`

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A The \(R^2\)’s | GAMLj Models</title>
   <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A The \(R^2\)’s | GAMLj Models" />
   <meta property="og:type" content="book" />
@@ -379,7 +379,7 @@ div.csl-indent {
 <h1><span class="header-section-number">A</span> The <span class="math inline">\(R^2\)</span>’s<a href="appendixa.html#appendixa" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Contrary to what many people think, almost all effect sizes and their corresponding inferential tests in the linear model’s realm are based on some sort of model-comparison technique <span class="citation">(<a href="#ref-judd2017data">Judd, McClelland, and Ryan 2017</a>)</span>. The <span class="math inline">\(R^2\)</span> is one of them.</p>
 <p>Assume you have a dependent variable that you want to model, meaning that you want to recap its scores by expressing them with some predicted values. For the moment, assume the variable to be continuous. If you only have the variable scores available, without any other information, your best guess is to use the mean as the most likely value. Keeping up with our toy example, assume that <code>ycont</code> in the dataset was the number of smiles for a given time done by our participants in a bar. If you only have the <code>ycont</code> variable, your best bet would be that the next customer will smile, on average, <span class="math inline">\(\hat{y}=31.7\)</span> times, because that is the expected value (mean) of the variable distribution. So we say, whoever comes next in the bar, they will smile <span class="math inline">\(\hat{y}=31.7\)</span> times on average.</p>
-<p><img src="bookletpics/ap_a_output1.png" /><!-- --></p>
+<p><img src="bookletpics/ap_a_output1.png" width="478" /></p>
 <p>What I am saying translates into the most simple linear model, the mean model:</p>
 <p><span class="math display">\[ \hat{y_i}=\bar{y}\]</span></p>
 <p>If we use the mean as our expected value, that is our model, we have an approximation error (<span class="math inline">\(\sigma^2\)</span>), which amounts to the discrepancy between the predicted values (the variable mean) and the actual observed values. Because errors larger or smaller than the actual values are the same, we can square the errors, and compute the average error across cases (forget about the minus 1, it is not important now).</p>

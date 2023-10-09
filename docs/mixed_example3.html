@@ -14,7 +14,7 @@
 
 <title>Mixed Models: Subjects by Stimuli random effects</title>
 
-<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -681,114 +681,6 @@ equivalent to the previous model effect.</p>
 <p><img src="examples/mixed3/results10.png" width="697" /></p>
 </div>
 </div>
-<div id="example-2-stimuli-nested-in-conditions" class="section level1">
-<h1>Example 2: Stimuli nested in conditions</h1>
-<p>We can use the the dataset</p>
-<p>One can follow the example by downloading the file <a
-href="https://github.com/gamlj/gamlj.github.io/blob/master/data/subjects_on_stimuli.csv">subjects
-on stimuli</a> and open it in <a
-href="https://www.jamovi.org/download.html">jamovi</a>. We have 50
-participants with two repeated measures conditions (0 and 1).</p>
-<p><img src="examples/mixed3/input10.png" width="586" /></p>
-<div id="design-1" class="section level2">
-<h2>Design</h2>
-<p>A one-way repeated measures design has two conditions: = and 1. Each
-participant undergoes both conditions. In each condition, a different
-set of 18 stimuli is presented, and for each stimulus the participant
-produces a response (the dependent variable <em>y</em>). There are 50
-participants in the sample. The following table (truncated for brevity)
-shows how each stimulus is present in only one condition, and it is
-measured 50 times in total, where 50 is the number of participants.</p>
-<p><img src="examples/mixed3/design11.png" width="382" />
-<img src="examples/mixed3/design12.png" width="364" /></p>
-<p>The following table shows (for the first 17 participants) how each
-participant is measured 36 times, 18 times for each condition, where 18
-is the number of stimuli per condition</p>
-<p><img src="examples/mixed3/design13.png" width="384" /></p>
-</div>
-<div id="the-model-1" class="section level2">
-<h2>The model</h2>
-<p>We employ GAMLj mixed model module. First, we set the variables role
-by dropping <code>y</code> in the dependent field, <code>cond</code> in
-the <code>factors</code> field (i.e. categorical independent variables).
-Then we define the clustering variables. We have two clustering
-variables: <code>subj</code> and <code>stimuli</code>. We do not have to
-specify anything about the crossing or nesting of the classifications,
-the software takes care of understanding the structure of the data.</p>
-<p><img src="examples/mixed3/input11.png" width="760" /></p>
-<p>The <strong>fixed effect</strong> of <code>cond</code> is
-automatically put in the model, so we do not have to do anything
-here.</p>
-<p><img src="examples/mixed3/input12.png" width="748" /></p>
-<p>As regards the <strong>random effects</strong>, we specify that we
-want the intercept to vary across participants
-(<code>intercept|subj</code>) and across stimuli
-(<code>intercept|stimuli</code>). For the moment, we have repeated what
-we have done in example 1.</p>
-<p><img src="examples/mixed3/input13.png" width="747" /></p>
-</div>
-<div id="results-2" class="section level2">
-<h2>Results</h2>
-<p>Then go straight to the random variances. We can see that we have
-variance for the intercepts both across participant (<span
-class="math inline">\(\sigma=3.84\)</span>) and across stimuli <span
-class="math inline">\(\sigma=5.42\)</span> and their impact is quite
-substantial <span class="math inline">\(ICC=.276\)</span> and <span
-class="math inline">\(ICC=.350\)</span>, respectively. Thus, we can say
-that it was a good idea to capture those portions of variances by
-including random intercepts varying across both participants and
-stimuli. Again, same story as in example 1.</p>
-<p><img src="examples/mixed3/results20.png" width="503" /></p>
-<p>The fixed effect can now be interpreted as in any one-way ANOVA.</p>
-<p><img src="examples/mixed3/results21.png" width="524" /></p>
-<p>There is an effect of condition on the response to the stimuli. The
-direction of the effect can be evaluated with a plot.</p>
-<p><img src="examples/mixed3/results22.png" width="714" /></p>
-<p><img src="examples/mixed3/results23.png" width="709" /></p>
-</div>
-<div id="the-model-ii-1" class="section level2">
-<h2>The model II</h2>
-<p>We can now enlarge the random components by adding other random
-effects. <strong>This is the only difference between stimuli crossed
-with participants and stimuli nested in participants</strong>: When
-stimuli are nested in participants, the effect of condition cannot
-logically be random across stimuli, because each stimulus is employed in
-only one condition. Thus, we cannot test whether the effect of
-<code>cond</code> varies across across stimuli.</p>
-<p>As regards the effect of condition across participants, we can
-estimate it as a random coefficient. We do that in GAMLj by adding the
-required effects in the <code>Random Effects</code> tab.</p>
-<p><img src="examples/mixed3/input14.png" width="749" /></p>
-</div>
-<div id="results-3" class="section level2">
-<h2>Results</h2>
-<p>With the new model, we see that there is variability in the random
-effects of <code>cond</code> across participants, table
-<code>Random effects</code>, row <code>subj</code>-<code>cond1</code>,
-<span class="math inline">\(\sigma_i^2=0.194\)</span>.</p>
-<p><img src="examples/mixed3/results15.png" width="578" /></p>
-<p>The main fixed effect of <code>cond</code> is still there, and did
-not change much.</p>
-<p><img src="examples/mixed3/results16.png" width="618" /></p>
-<p>As in the previous example (example 1), the plot of random effects
-shows non parallel effects as a consequence of the variability in the
-random effects.</p>
-<p><img src="examples/mixed3/results17.png" width="694" /></p>
-</div>
-</div>
-<div id="conclusion" class="section level1">
-<h1>Conclusion</h1>
-<p>Participants and Stimuli variability can be captured in a repeated
-measures design by employing a mixed model with random coefficients
-varying across participants and across stimuli. Whether stimuli are
-nested or crossed with participants does not change the general set up
-of the mixed model. In both cases we can define the intercepts to vary
-across stimuli to capture stimuli variability. However, when stimuli are
-crossed with participants, also the condition effect may be random
-across stimuli, whereas when stimuli are nested in participants, the
-condition effect cannot be random across stimuli. In both cases, the
-condition effect can be random across participants.</p>
-</div>
 <div id="related-examples" class="section level1">
 <h1>Related examples</h1>
 <ul>
@@ -805,7 +697,11 @@ designs</a>
 effects</a>
 </li>
 <li>
-<a href="mixed_example4.html">Mixed Models: Autocorrelation in
+<a href="mixed_example4.html">Mixed Models: Crossing and Nesting Cluster
+variables</a>
+</li>
+<li>
+<a href="mixed_example5.html">Mixed Models: Autocorrelation in
 logitudinal data</a>
 </li>
 </ul>
