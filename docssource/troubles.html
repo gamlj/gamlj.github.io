@@ -9,10 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Marcello Gallucci" />
 
 
-<title>Post-hocs Details</title>
+<title>Troubleshooting GAMLj</title>
 
 <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -362,26 +361,26 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Post-hocs Details</h1>
-<h4 class="author">Marcello Gallucci</h4>
+<h1 class="title toc-ignore">Troubleshooting GAMLj</h1>
 
 </div>
 
 
-<div id="post-hocs" class="section level1">
-<h1>Post Hocs</h1>
-<p>Post-hocs tests are performed as implemented in the <a
-href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans
-package</a>. In particular, the actual implementation is as follows (for
-any given model term selected by the user) :</p>
-<pre><code>      formula &lt;- as.formula(paste(&#39;~&#39;, term))
-      referenceGrid &lt;- emmeans::emmeans(private$.model, formula)
-      bonferroni &lt;- summary(pairs(referenceGrid, adjust=&#39;bonferroni&#39;))
-      holm &lt;- summary(pairs(referenceGrid, adjust=&#39;holm&#39;))
-      tukey&lt;-summary(pairs(referenceGrid, adjust=&#39;tukey&#39;))</code></pre>
-<p>In <code>Mixed</code> module only <code>bonferroni</code> and
-<code>holm</code> methods are implemented yet, because I did not find
-enough evidence in the literature in support of other methods.</p>
+<div id="common" class="section level1">
+<h1>Common</h1>
+<p>Nothing</p>
+</div>
+<div id="general-linear-models" class="section level1">
+<h1>General linear models</h1>
+<p>Nothing</p>
+</div>
+<div id="generalized-linear-models" class="section level1">
+<h1>Generalized linear models</h1>
+<p>Nothing</p>
+</div>
+<div id="mixed-models" class="section level1">
+<h1>Mixed models</h1>
+<p>Nothing</p>
 </div>
 
 
