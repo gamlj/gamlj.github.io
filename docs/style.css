@@ -158,7 +158,6 @@ td.optionname {
 }
 
 span.option {
-    white-space: pre;
     background-color: rgba(0, 0, 0, 0.04);
     padding: 2px 4px;
     font-size: 90%;

@@ -408,22 +408,21 @@ crossing, nesting </span></p>
 be around </span></p>
 <div id="intro" class="section level1">
 <h1>Intro</h1>
-<p>In multilevel designs there are at least two layers, or levels, in
-the sample: the within-cluster level and the between-cluster levels.
-This structure is simply declared in the models by specifying a cluster
-variable and at least one random coefficients that varies across
-clusters. In many application of the mixed model, however, there are
-more than 2 levels. In a classical educational program, one can have
-pupils (layer within), classes (layer 2) and schools (layer 3). An
-experiment may have several participants that are exposed to several
-stimuli, creating two clustering variables. Clusters variables groups
-may be nested or cross-classified (we can call them crossed for
-simplicity). Whether the cluster variables groups are nested or crossed
-make a substantial difference in the model structure, and on the
-parameters that one can estimate. Therefore, it is important to make
-clear how different structure of the data can be included in the mixed
-model. Here we see the possibilites in <span
-class="modulename">GAMLj</span>.</p>
+<p>In multilevel designs, there are at least two layers or levels in the
+sample: the within-cluster level and the between-cluster level. This
+structure is simply declared in the models by specifying a cluster
+variable and at least one random coefficient that varies across
+clusters. In many applications of the mixed model, however, there are
+more than two levels. In a classical educational program, one can have
+pupils (within layer), classes (second layer), and schools (third
+layer). An experiment may involve several participants exposed to
+multiple stimuli, creating two clustering variables. Cluster variable
+groups may be nested or cross-classified (referred to as crossed for
+simplicity). Whether the cluster variable groups are nested or crossed
+makes a substantial difference in the model structure and the parameters
+that one can estimate. Therefore, it is important to clarify how
+different data structures can be included in the mixed model. Here, we
+explore the possibilities in <span class="modulename">GAMLj</span></p>
 <p>In terms of logic of defining the mixed model <span
 class="modulename">GAMLj</span> follows <span class="citation">Bates et
 al. (<a href="#ref-lme4">2015</a>)</span> R package implementation, so
@@ -439,7 +438,7 @@ All participants see all stimuli. An example can be found
 <a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random
 effects</a>, using the <a
 href="https://github.com/gamlj/gamlj.github.io/blob/master/data/subjects_by_stimuli.csv">subjects_by_stimuli</a>
-dataset. Here we have 50 participants measured in two conditions using
+dataset. There we have 50 participants measured in two conditions using
 30 stimuli. The first cells of a contingency table <code>subj</code>(in
 columns) by <code>stimulus</code> is shown here.</p>
 <p><img src="examples/mixed4/data1_freq.png" width="531" /></p>
@@ -448,53 +447,53 @@ columns) by <code>stimulus</code> is shown here.</p>
 layer). This means that each measurement (each row) belongs to one
 combination of <code>subj</code> and <code>stimulus</code>, that is is
 measured for one particular participant and one particular stimulus. The
-classifications are <strong>orthogonal</strong>, meaning that they are
+classifications are <em>orthogonal</em>, meaning that they are
 independent one each other. In the experimental terminology , they
 create a balanced 50 X 30 design.</p>
 <p>To understand the structure of the model estimable in these designs,
 we can focus on the random intercepts (the same applies to slopes, but
-the latter depends on the specific design at hand). What random
-intercepts can we estimate in this kind of designs? The random
-intercepts varying across participants, each intercept corresponding to
-the average score of the participant averaged across the 30 stimuli. The
-random intercepts varying across stimuli, each intercept corresponding
-to the average score associated with a stimulus, averaged across the 50
+the latter depend on the specific design at hand). What random
+intercepts can we estimate in this kind of design? The random intercepts
+varying across participants, each intercept corresponding to the average
+score of the participant averaged across the 30 stimuli. The random
+intercepts varying across stimuli, each intercept corresponding to the
+average score associated with a stimulus, averaged across the 50
 participants. Thus, the number of intercepts across participant will be
 N, where N is the number of participants, and the number of intercepts
 across stimuli would be K, where K is the number of stimuli.</p>
 <p>If within each combination of <code>subj</code> and
-<code>stimuli</code> there are several measurements, one can also
+<code>stimulus</code> there are several measurements, one can also
 estimate the intercepts vary across <code>subj</code> by
-<code>stimuli</code> cells. If <code>subj</code> and
-<code>stimuli</code> were factors and not clusters, one could say that
+<code>stimulus</code> cells. If <code>subj</code> and
+<code>stimulus</code> were factors and not clusters, one could say that
 the random intercepts can represent the variance of the main effect of
-<code>subj</code>, the main effect of <code>stimuli</code> and (if there
-are enough data), their interaction. For this variance, the number of
-intercepts are N X K.</p>
+<code>subj</code>, the main effect of <code>stimulus</code> and (if
+there are enough data), their interaction. For this variance, the number
+of intercepts are N X K.</p>
 <p>In terms of coding the variable, one simply needs to assign one
 unique value to each participants and one unique value to each
 stimulus.</p>
 <p><img src="examples/mixed3/data1.png" width="424" /></p>
-<p>Then one specify the random structure as for any other mixed
+<p>Then one specifies the random structure as for any other mixed
 model:</p>
 <p><img src="examples/mixed4/data1_random.png" width="561" /></p>
-<p>The results will show the correct variance in the tables</p>
+<p>The results will show the correct variances in the tables</p>
 <p><img src="examples/mixed4/output1_random.png" width="427" /></p>
 <p>See also this very well written answer on
-<a href='https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effects-how-do-they-differ-and-how-are-they-specified' target='_blank'>stackexchange</a></p>
+<a href='https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effects-how-do-they-differ-and-how-are-they-specified' target='_blank'>stackexchange</a>.</p>
 </div>
 <div id="structure-by-data-vs-by-formula" class="section level1">
 <h1>Structure by data vs by formula</h1>
-<p>What is I want to insert also a random intercept that varies across
+<p>What if I want to insert also a random intercept that varies across
 the cells representing the combinations of <code>subj</code> and
-<code>stimuli</code> (notice that in this dataset it does not make much
+<code>stimulus</code> (notice that in this dataset it does not make much
 sense because there are only two scores in each <code>subj</code> by
-<code>stimuli</code> combination, but we show this anyway as an
+<code>stimulus</code> combination, but we show this anyway as an
 example).</p>
 <p>There are two ways in <span class="modulename">GAMLj</span> to obtain
-the model structure we desire. Going by data or going by formula: they
-give exactly the same results, so which way to go depends on which way
-is more convenient from a practical point of view.</p>
+the model structure we desire. Going by data or going by formula: The
+two methods give exactly the same results, so which way to go depends on
+which way is more convenient from a practical point of view.</p>
 <div id="by-data" class="section level2">
 <h2>By data</h2>
 <p>Since we want to estimate an intercept for each combination of
@@ -504,10 +503,10 @@ this by simply using the <code>compute</code> command in
 <code>Data</code> tab.</p>
 <p><img src="examples/mixed4/input1_compute.png" width="481" /></p>
 <p>and specify the value of the new variable as a combination of the
-values of <code>subj</code> and <code>stimuli</code></p>
+values of <code>subj</code> and <code>stimulus</code></p>
 <p><img src="examples/mixed4/input1_compute2.png" width="525" /></p>
 <p>Then we can add <code>subj_stimuli</code> as a clustering variable of
-our model, and ask for the random intercept across it.</p>
+our model, and ask for the random intercepts across it.</p>
 <p><img src="examples/mixed4/data1_random2.png" width="576" /></p>
 <p>The results will now show an additional variance, which we know will
 capture the variability due to the combinations of the clustering
@@ -522,7 +521,7 @@ general idea is working)</p>
 <p>Some user may find this method tiring. For those, the module can
 create the combination variable automatically. When more than one
 cluster variables are defined, the option `<span class="option">Crossing
-by formula</span> options appears. By selecting it, we ask the module to
+by formula</span> option appears. By selecting it, we ask the module to
 list all possible crossing between clustering variables, so we can
 select the one we need</p>
 <p><img src="examples/mixed4/input1_options.png" width="560" /></p>
@@ -542,12 +541,15 @@ experimental example, stimuli are nested within participants if each
 participant is exposed to a different set of stimuli as compared with
 the other participants.</p>
 <p>An example can be found in the <a
-href="https://github.com/gamlj/gamlj.github.io/blob/master/data/subjects_on_stimuli.csv">subjects_by_stimuli</a></p>
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/subjects_on_stimuli.csv">subjects_on_stimuli</a>
+dataset.</p>
 <p>Here each participant gets their own set of stimuli, so the stimulus
 1 of participant 1 is different from stimulus 1 of participant 2. This
 is clear in the contingency table (showing only 3 participants in
 columns and 3 stimuli in rows), in which every stimulus appears only in
-combination with one participant.</p>
+combination with one participant. There are 20 participants, 600
+stimuli, 30 per participant, and each stimulus is measured over 10
+trials, for a total of 6000 observations.</p>
 <p><img src="examples/mixed4/data2_freq.png" width="288" /></p>
 <p>To understand the structure of the model estimable in these designs,
 we can focus on the random intercepts (the same applies to slopes, but
@@ -583,7 +585,7 @@ intercepts, and thus the correct variances. We simply list the
 clustering variables and their random coefficients.</p>
 <p><img src="examples/mixed4/input2_random1.png" width="573" />
 <img src="examples/mixed4/output2_random1.png" width="422" /></p>
-<p>Please notice the numerosity of the clusters. There are 600
+<p>Please notice the numerosity of the clusters. There are 6000
 observations, 600 stimuli and 20 participants.</p>
 </div>
 <div id="by-formula-1" class="section level2">
@@ -610,18 +612,19 @@ stimulus. But they are not the same, so the model is wrong.</p>
 explicitly identify different stimuli (nested groups) across participant
 (parent groups). So using a variable like <code>uni_stimulus</code> as
 we did in the <em>by data</em> approach. However, <span
-class="modulename">GAMLj</span> offers the options to do that
+class="modulename">GAMLj</span> offers the option to do that
 automatically. We can select <span class="option">Nesting by
 formula</span> and select <code>participant/within_stimulus</code>. This
-notation, which is the R notation for nested random coefficients, will
-automaticaly identifies as different stimuli with the same value in
-<code>within_stimulus</code> (the nested clustering variable) but with
-different value in <code>participant</code> (the parent clustering
+notation, which is the R notation for nested random coefficients <span
+class="citation">(<a href="#ref-lme4">Bates et al. 2015</a>)</span>,
+will automatically identifies as different stimuli with the same value
+in <code>within_stimulus</code> (the nested clustering variable) but
+with different value in <code>participant</code> (the parent clustering
 variable).</p>
 <p><img src="examples/mixed4/input2_random3.png" width="575" />
 <img src="examples/mixed4/output2_random3.png" width="484" /></p>
 <p>The numerosity is now correct and the results are the same as the
-ones obtained with the __by data_ approach.</p>
+ones obtained with the <em>by data</em> approach.</p>
 </div>
 </div>
 <div id="differences-in-notation" class="section level1">
@@ -629,12 +632,12 @@ ones obtained with the __by data_ approach.</p>
 <p>Defining the structure of the clustering groups by data assures
 control over the model being estimated and correct results. The rule is
 simple: each clustering variable or variable representing combination of
-clustering variable should have its own randomintercept (or possibly
+clustering variable should have its own random intercept (or possibly
 random slopes).</p>
 <p>When variables are not coded in order to convey the correct structure
 of the data, one can use the <span class="option">Nesting by
 formula</span> and <span class="option">Nesting by formula</span>. <span
-class="option">Nesting by formula</span> creates a clustering variable
+class="option">Crossing by formula</span> creates a clustering variable
 that combines the parent and the nested values into an unique code, and
 then estimates the random coefficients for the parent variable and for
 the combination of parent and nested. <span class="option">Crossing by
