@@ -1,0 +1,73 @@
+---
+title: "A brand new GAMLj"
+author: "Marcello Gallucci"
+date: "`r Sys.Date()`"
+output: html_document
+bibliography:
+- bib.bib
+biblio-style: apalike
+link-citations: yes
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## GAMLj3
+
+GAMLj is a jamovi module designed to estimate a wide range of linear models, including the general linear model (ANOVA/Regression), the generalized linear model (logistic, multinomial, Poisson, etc.), and random coefficients models (mixed and multilevel models) for both continuous and categorical dependent variables. Since its initial release, the module has undergone continuous updates to enhance its effectiveness for students, teachers, and analysts. However, driven by user feedback and the evolving requirements of modern statistical modeling approaches, a major update became necessary. Thus, GAMLj3 was developed.
+
+### General Improvements 
+
+The upgrade of GAMLj was guided by two main principles: the enrichment of options and the promotion of consistency across models. In terms of options, GAMLj3 has expanded its repertoire beyond the existing functions. It now includes features such as **bootstrap confidence intervals**, **robust standard errors**, and a plethora of **effect size indices**, including variance-based and standardized mean differences. The new version also offers a range of tests and plots for assessing **model assumptions** and adequacy. 
+
+Numerous options that were previously available in GAMLj have been enhanced and generalized. For instance, plots of model effects were initially restricted to three-way interactions, but they are now unlimited in the number of moderators they can visualize. A similar expansion has been applied to simple effects analysis, which is now applicable to any number of moderators and can conduct **simple interaction analysis**. This enables the evaluation of interactions at various levels of the moderators.
+
+One brand new feature is the ability to conduct **model comparisons**. Upon request, the user can specify a nested model for comparison with the target model, facilitating tests on sets of predictors. Model comparisons yield appropriate fit indices for both the target model and the nested model, along with **log-likelihood ratio tests** to support inferences from the comparison.
+
+In terms of **consistency**, considerable effort has been invested in offering the same options across all estimable models. The aim is to allow users to employ the same techniques, including post-hoc tests, simple effects, model comparisons, etc., with all types of models, be they linear, generalized, or mixed. Both the graphical user interface (GUI) and the output tables have been designed to maintain as much uniformity as possible across these models, ensuring that users can seamlessly transition from one model to another. Moreover, we have taken care to keep the GUI as similar as possible to the previous version of the module, so  users already familiar with the module do not need to learn new strategies to carry out their analyses. 
+
+To give a glance of these features and the philosophy that inspired their implementation, we can check out the model comparison feature. In the GLM, the usual interface welcomes the user setting the model variables. 
+
+`r knitr::include_graphics("blog1.png")`
+
+and the effects of the model.
+
+`r knitr::include_graphics("blog2.png")`
+
+When needed, the user can __activate__ the __Model Comparison__ option, so the GUI updates to allow specifying the terms of a nested model being compared.
+
+`r knitr::include_graphics("blog3.png")`
+
+When model comparison is active, a new table appears in the output with the **goodness of fit indices** of the two models, and the **inferential test**.
+
+`r knitr::include_graphics("blog4.png")`
+
+Thanks to the consistency principle, the module offers the same GUI and output layout for generalized linear models, mixed models, and generalized mixed models. Nonetheless, users who do not need this feature can interact with the module without additional fields or options that might distract from their work.
+
+## Specific Improvements
+
+There are several new features worth checking out specific to each available model. Here we mention the extension of the available options within the generalized linear models.
+
+`r knitr::include_graphics("blog5.png")`
+
+The generalized linear model has been expanded to include the **Beta regression model** and the **Ordinal regression (proportional odds model)**. These are applications that have been gaining popularity in the scientific community. Notably, the range of random coefficients generalized models has also been extended to encompass the *mixed effects multinomial model* and *mixed effects ordinal model*. Once again, the objective is to provide users with access to a wide array of models for both fixed effects and mixed effects applications."    
+
+In terms of the linear mixed model, a significant feature that has been implemented is the ability to specify the **form of the residual variance-covariance matrix**. Previously, GAMLj's mixed model relied on the R package 'lme4' [@lme4] to estimate the mixed model, which did not allow for defining a specific form of covariance among residuals. In GAMLj3, both the 'lme4' [@lme4] and 'nlme' packages [@nlme] are used, with the latter being utilized to shape the residual variances-covariances matrix. This enhancement greatly improves the application of the mixed model to repeated-measure designs, where residuals are often autoregressive or exhibit more correlation than expected. This feature simply entails to interact with the new panel available in the __Mixed Model__ GUI ([Refer to this for a worked-out example](https://gamlj.github.io/mixed_example5.html)).
+
+`r knitr::include_graphics("blog6.png")`
+
+As this example illustrates, the improvements in GAMLj3 have been made possible thanks to the numerous R packages provided to the public by the R community. Without the contributions of these packages, GAMLj3 would be meager. We've made an effort to cite these packages in the jamovi output whenever possible.
+
+
+
+## Availablitly
+
+GAMLj3 represents a complete rewrite of the original module. While we have striven to maintain a user experience that is similar to previous versions, it's important to note that the internal architecture has undergone significant changes. As a result, the new version of the module is not compatible with analyses conducted using older GAMLj versions (prior to 2.7). To ensure users have access to their previous analyses created with GAMLj versions prior to 2.7, GAMLj3 will coexist, at least for some time, with the older version in the jamovi library. Furthermore, we believe a beta testing period will be instrumental in ensuring its quality and robustness.
+
+## Help
+
+[GAMLj help page](https://gamlj.github.io/index.html) is now updated to provide help for the new version. We all know that writing man pages is a long and time-consuming effort, but we hope that user can find support regarding the major features of the module both in the [GAMLj help page](https://gamlj.github.io/index.html), [the examples](https://gamlj.github.io/examples.html), and in some [annotated discussion about the models being estimated](https://gamlj.github.io/book/booklet.html). Those resorces should be considered works in progress, hopefully helpfull. And do not forget to visit [jamovi forum](https://forum.jamovi.org/) to ask questions and open discussion about the software.   
+
+## References
