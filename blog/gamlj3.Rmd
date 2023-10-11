@@ -44,7 +44,7 @@ When model comparison is active, a new table appears in the output with the **go
 
 `r knitr::include_graphics("blog4.png")`
 
-Thanks to the consistency principle, the module offers the same GUI and output layout for generalized linear models, mixed models, and generalized mixed models. Nonetheless, users who do not need this feature can interact with the module without additional fields or options that might distract from their work.
+Thanks to the consistency principle, the module offers the same GUI and output layout for generalized linear models, mixed models, and generalized mixed models. Nonetheless, users who do not need this feature can interact with the module without additional fields or options that might distract from their work. Worked-out examples can be found.
 
 ## Specific Improvements
 
