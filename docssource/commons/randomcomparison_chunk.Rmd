@@ -1,0 +1,27 @@
+---
+title: "fixedcomparison_chunk"
+output: html_document
+---
+
+# Models comparison
+
+When `r opt("Model Comparison")` `r opt("Activate")` is flagged, model comparison options become visible. Both for fixed effects
+
+`r pic("commons/pics/randomcomparison1.png")`
+
+and for random effects.
+
+`r pic("commons/pics/randomcomparison2.png")`
+
+Two models will be estimated and compared. The current model defined in by the `Model Terms` and the `Random Coefficients` is compared with the the model defined in the `Nested Model` and `Nested Model Random Coefficients`. By default, the `Nested Model` terms are empty and the `Nested Model Random Coefficients` are filled with the full model random terms, so a model without fixed effects is compared with the current. When the user defines nested terms, the comparison is updated. 
+
+Consider the following example: 
+
+`r pic("commons/pics/randomcomparison3.png")`
+
+The current model is composed by three main effects (`x`, `z`) and the random coefficients for `(Intercept)` and `x`. The nested model terms are have the same fixed effects, but it has only the random intercept. Thus, the loglikelihood ratio test that it is performed to compare the models will test the significance of the random effect of `x`. The output offers a Table in which each model fit indices and tests are presented, and the two models comparison test is presented.
+
+`r pic("commons/pics/randomcomparison4.png")`
+
+
+

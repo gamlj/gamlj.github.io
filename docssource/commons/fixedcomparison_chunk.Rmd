@@ -3,7 +3,7 @@ title: "fixedcomparison_chunk"
 output: html_document
 ---
 
-## Models comparison
+# Models comparison
 
 When `r opt("Activate")` is flagged, models comparison options become visible.
 

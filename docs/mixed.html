@@ -567,12 +567,11 @@ Show the clusters in crossed formulation (cluster1:cluster2)
 <span class="option">Effects correlation</span>
 </td>
 <td>
-<code>'all'</code>, <code>'none'</code> (default), or
-<code>'block'</code>. When random effects are passed as list of length
-1, it decides whether the effects should be correlated, non correlated.
-If <code>'re'</code> is a list of lists of length &gt; 1, the option is
-automatially set to <code>'block'</code>. The option is ignored if the
-model is passed using <code>formula</code>.
+Random effects are assumed to be correlated (<code>Correlated</code>) or
+independent (<code>Not correlated</code>). If
+<code>Correlated by block</code> is selected, additional fields are
+shown to create blocks of coefficients correlated within block and
+independent between blocks.
 </td>
 </tr>
 <tr>
@@ -585,6 +584,36 @@ effects
 </td>
 </tr>
 </table>
+</div>
+<div id="models-comparison" class="section level1">
+<h1>Models comparison</h1>
+<p>When <span class="option">Model Comparison</span> <span
+class="option">Activate</span> is flagged, model comparison options
+become visible. Both for fixed effects</p>
+<p><img src="commons/pics/randomcomparison1.png" /><!-- --></p>
+<p>and for random effects.</p>
+<p><img src="commons/pics/randomcomparison2.png" /><!-- --></p>
+<p>Two models will be estimated and compared. The current model defined
+in by the <code>Model Terms</code> and the
+<code>Random Coefficients</code> is compared with the the model defined
+in the <code>Nested Model</code> and
+<code>Nested Model Random Coefficients</code>. By default, the
+<code>Nested Model</code> terms are empty and the
+<code>Nested Model Random Coefficients</code> are filled with the full
+model random terms, so a model without fixed effects is compared with
+the current. When the user defines nested terms, the comparison is
+updated.</p>
+<p>Consider the following example:</p>
+<p><img src="commons/pics/randomcomparison3.png" /><!-- --></p>
+<p>The current model is composed by three main effects (<code>x</code>,
+<code>z</code>) and the random coefficients for <code>(Intercept)</code>
+and <code>x</code>. The nested model terms are have the same fixed
+effects, but it has only the random intercept. Thus, the loglikelihood
+ratio test that it is performed to compare the models will test the
+significance of the random effect of <code>x</code>. The output offers a
+Table in which each model fit indices and tests are presented, and the
+two models comparison test is presented.</p>
+<p><img src="commons/pics/randomcomparison4.png" /><!-- --></p>
 </div>
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
@@ -759,6 +788,70 @@ case of multiple cluster variables, the first cluster variable in the
 included in the model). To change the cluster variable used to plot the
 random effects, change the order of the variables in the “variable role”
 definition.</p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">Error Bar Definition</span>
+</td>
+<td>
+<code>'none'</code> (default), <code>'ci'</code>, or <code>'se'</code>.
+Use no error bars, use confidence intervals, or use standard errors on
+the plots, respectively.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Observed scores</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), plot raw data along
+the predicted values
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Y-axis observed range</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), set the Y-axis range
+equal to the range of the observed values.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Original scale</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), use original scale
+for covariates.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Varying line types</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), use different
+linetypes per levels.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Random effects</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), add predicted values
+based on random effect in plot
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option"></span>
+</td>
+<td>
+</td>
+</tr>
+</table>
 </div>
 <div id="estimated-marginal-means" class="section level1">
 <h1>Estimated marginal means</h1>
@@ -771,6 +864,61 @@ independent variables, means of each level of the variable are
 presented. If the term involves continuous variables, expected means
 computed at the levels defined in <code>Covariate Scaling</code> are
 presented.</p>
+</div>
+<div id="options" class="section level1">
+<h1>Options</h1>
+<p><img src="mixed/options.png" class="img-responsive" alt=""></p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">CI Method</span>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Bootstrap rep.</span>
+</td>
+<td>
+a number bootstrap repetitions.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">DF Method</span>
+</td>
+<td>
+The method for computing the denominator degrees of freedom and
+F-statistics. “Satterthwaite” (default) uses Satterthwaite’s method;
+“Kenward-Roger” uses Kenward-Roger’s method, “lme4” returns the
+lme4-anova table, i.e., using the anova method for lmerMod objects as
+defined in the lme4-package
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Predicted</span>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Residuals</span>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Remove notes</span>
+</td>
+<td>
+Do not add footnotes to the tables.
+</td>
+</tr>
+</table>
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
