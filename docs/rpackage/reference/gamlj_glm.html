@@ -38,6 +38,9 @@ interaction. Model comparison is also an option."><!-- mathjax --><script src="h
       <a href="../articles/vignettes_gamlj_lm.html">Examples of gamlj_lm()</a>
     </li>
     <li>
+      <a href="../articles/vignettes_gamlj_methods.html">Examples of GAMLj Methods</a>
+    </li>
+    <li>
       <a href="../articles/vignettes_plot.html">Plots in GAMLj</a>
     </li>
   </ul></li>
@@ -77,7 +80,6 @@ interaction. Model comparison is also an option.</p>
 <span>  custom_family <span class="op">=</span> <span class="st">"gaussian"</span>,</span>
 <span>  custom_link <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>  nested_terms <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  comparison <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  omnibus <span class="op">=</span> <span class="st">"LRT"</span>,</span>
 <span>  estimates_ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  ci_method <span class="op">=</span> <span class="st">"wald"</span>,</span>
@@ -177,10 +179,6 @@ fixed intercept. Not needed if <code>formula</code> is used.</p></dd>
 <dt>nested_terms</dt>
 <dd><p>a list of character vectors describing effects terms
 for nested model. It can be passed as right-hand formula.</p></dd>
-
-
-<dt>comparison</dt>
-<dd><p>Not present in R</p></dd>
 
 
 <dt>omnibus</dt>
