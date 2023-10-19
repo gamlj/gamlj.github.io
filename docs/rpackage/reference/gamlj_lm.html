@@ -409,41 +409,75 @@ See <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovHC.html"
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'ToothGrowth'</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">gamlj</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">len</span> <span class="op">~</span> <span class="va">supp</span>,  data <span class="op">=</span> <span class="va">ToothGrowth</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu">gamlj_lm</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">len</span> <span class="op">~</span> <span class="va">supp</span>,  data <span class="op">=</span> <span class="va">ToothGrowth</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lm   #### phase init  ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INIT TIME: 0.0415520668029785  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.00118851661682129  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GPARAMETERS: default .parameters for class lm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUN TIME: 0.085906982421875  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.128925800323486  secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  GENERAL LINEAR MODEL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Info                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Info                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Estimate          Linear model fit by OLS   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Call              len ~ 1 + supp            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    R-squared                      0.05948365   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Adj. R-squared                 0.04326785   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Info                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Info                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Model Type       Linear Model    OLS Model for continuous y         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Model            lm              len ~ 1 + supp                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Distribution     Gaussian        Normal distribution of residuals   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Omnibus Tests    F                                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Sample size                60                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Converged        yes                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Y transform      none                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    C.I. method      Wald                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  MODEL RESULTS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ANOVA Omnibus tests                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 SS           df    F           p            η²p         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Model         205.3500     1    3.668253    0.0603934    0.0594836   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    supp          205.3500     1    3.668253    0.0603934    0.0594836   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Residuals    3246.8593    58                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Total        3452.2093    59                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Fit                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    R²           Adj. R²      df    df (res)    F           p           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    0.0594836    0.0432678     1          58    3.668253    0.0603934   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed Effects Parameter Estimates                                                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Names          Effect         Estimate     SE           Lower        Upper         β             df    t            p            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    (Intercept)    (Intercept)    18.813333    0.9659221    16.879830    20.7468365     0.0000000    58    19.477070    &lt; .0000001   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    supp1          VC - OJ        -3.700000    1.9318443    -7.567006     0.1670064    -0.4837034    58    -1.915268     0.0603934   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ANOVA Omnibus tests                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 SS              df    F            p            η²p         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Model         205.3500000     1    3.6682525    0.0603934    0.0594836   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    supp          205.3500000     1    3.6682525    0.0603934    0.0594836   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Residuals    3246.8593333    58                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Total        3452.2093333    59                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Parameter Estimates (Coefficients)                                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Names          Effect         Estimate      SE           Lower         Upper         β             df    t             p            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    (Intercept)    (Intercept)    18.8133333    0.9659221    16.8798301    20.7468365    -0.0000000    58    19.4770705    &lt; .0000001   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    supp1          VC - OJ        -3.7000000    1.9318443    -7.5670064     0.1670064    -0.4837034    58    -1.9152683     0.0603934   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

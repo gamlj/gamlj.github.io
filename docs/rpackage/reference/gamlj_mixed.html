@@ -429,10 +429,13 @@ option is ignored if the model is passed using <code>formula</code>.</p></dd>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">subjects_by_stimuli</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">gamlj</span><span class="fu">::</span><span class="fu">gamlj_mixed</span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu">gamlj_mixed</span><span class="op">(</span></span></span>
 <span class="r-in"><span>       formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">cond</span><span class="op">+</span><span class="op">(</span> <span class="fl">1</span><span class="op">|</span><span class="va">subj</span> <span class="op">)</span>,</span></span>
 <span class="r-in"><span>       data <span class="op">=</span> <span class="va">subjects_by_stimuli</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> 'gamlj_mixed' is not an exported object from 'namespace:gamlj'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lmer   #### phase init  ####</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in Variable$new(var, self)$checkVariable(data):</span> Cluster variable subj should be a nominal variable</span>
 </code></pre></div>
     </div>
   </div>

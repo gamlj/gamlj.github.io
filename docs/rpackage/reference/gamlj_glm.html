@@ -373,14 +373,91 @@ gives LogLikelihood ration test,  <code>'wald'</code> gives the Wald Chi-squared
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>   <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/emmeans/man/neuralgia.html" class="external-link">neuralgia</a></span></span></span>
-<span class="r-in"><span>   <span class="fu">gamlj</span><span class="fu">::</span><span class="fu">gamlj_glm</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Pain</span> <span class="op">~</span> <span class="va">Duration</span>,</span></span>
+<span class="r-in"><span>   <span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu">gamlj_glm</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Pain</span> <span class="op">~</span> <span class="va">Duration</span>,</span></span>
 <span class="r-in"><span>                    data <span class="op">=</span> <span class="va">data</span>,</span></span>
 <span class="r-in"><span>                    model_type <span class="op">=</span> <span class="st">"logistic"</span></span></span>
 <span class="r-in"><span>                    <span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Registered S3 method overwritten by 'gamlj':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   method     from  </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   plot.gamlj GAMLj3</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> 'gamlj_glm' is not an exported object from 'namespace:gamlj'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: glm logistic   #### phase init  ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INIT TIME: 0.0361614227294922  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.00329399108886719  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .glm R2 is used for object of class c("glm", "lm")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Default null model comparison is used for object of class  glm lm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUN TIME: 0.0664312839508057  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.103861093521118  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  GENERALIZED LINEAR MODEL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Info                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Info                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Model Type       Logistic Model    Model for binary y                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Model            stats::glm        Pain ~ 1 + Duration                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Distribution     Binomial          Dichotomous event distribution of y   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Link function    Logit             Log of the odd of y                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Direction        P(y=1)/P(y=0)     P( Pain = Yes ) / P( Pain = No )      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Sample size                  60                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Converged        yes                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    C.I. method      Wald                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  MODEL RESULTS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Fit                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    R²            Adj. R²        df    X²          p           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    0.01983700    0.007567546     1    1.616779    0.2035415   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Additional indices                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Info              Model Value    Comment                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    LogLikelihood      -39.943206                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    AIC                 83.886413    Less is better             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    BIC                 88.075102    Less is better             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Deviance            79.886413    Less is better             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Residual DF         58.000000                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Chi-squared/DF       1.028444    Overdispersion indicator   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Omnibus tests                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                X²          df    p           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Duration    1.616779     1    0.2035415   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Parameter Estimates (Coefficients)                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Name           Effect         Estimate       SE            Exp(B)       Lower        Upper       z            p           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    (Intercept)    (Intercept)    -0.34728878    0.26600165    0.7066012    0.4195207    1.190133    -1.305589    0.1916924   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Duration       Duration       -0.02971640    0.02390160    0.9707208    0.9262949    1.017277    -1.243281    0.2137643   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span>     </span></span>
 </code></pre></div>
     </div>
