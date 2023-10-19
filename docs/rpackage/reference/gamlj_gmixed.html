@@ -391,11 +391,80 @@ normality of residuals</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">schoolexam</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu">gamlj_gmixed</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">pass</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">math</span><span class="op">+</span><span class="op">(</span> <span class="fl">1</span><span class="op">|</span><span class="va">school</span> <span class="op">)</span>,</span></span>
-<span class="r-in"><span>                     data <span class="op">=</span> <span class="va">schoolexam</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">clustermanymodels</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">clustermanymodels</span><span class="op">$</span><span class="va">ybin</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">clustermanymodels</span><span class="op">$</span><span class="va">ybin</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu">gamlj_gmixed</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">ybin</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">x</span><span class="op">+</span><span class="op">(</span> <span class="fl">1</span><span class="op">|</span><span class="va">cluster</span> <span class="op">)</span>,</span></span>
+<span class="r-in"><span>                     data <span class="op">=</span> <span class="va">clustermanymodels</span>,</span></span>
+<span class="r-in"><span>                     model_type<span class="op">=</span><span class="st">"logistic"</span></span></span>
 <span class="r-in"><span>                     <span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in Variable$new(var, self)$checkVariable(data):</span> Cluster variable school should be a nominal variable</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  GENERALIZED MIXED MODEL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Info                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Info                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Model Type       Logistic Model    Model for binary y                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Model            lme4::glmer       ybin ~ 1 + x + ( 1 | cluster )        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Distribution     Binomial          Dichotomous event distribution of y   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Link function    Logit             Log of the odd of y                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Direction        P(y=1)/P(y=0)     P( ybin = 1 ) / P( ybin = 0 )         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Sample size                1800                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Converged        yes                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    C.I. method      Wald                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  MODEL RESULTS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Fit                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Type           R²           df           LRT X²        p            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Conditional    0.0436968    2.0000000    39.7507885    &lt; .0000001   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Marginal       0.0185754    1.0000000    26.8376082     0.0000002   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Additional Indices                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Info              Model Value      Comment                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    LogLikelihood     -1210.6506201                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    AIC                2427.3012403    Less is better             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    BIC                2443.7878661    Less is better             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Deviance           2421.3012403    Less is better             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Residual DF        1797.0000000                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Chi-squared/DF        0.9822442    Overdispersion indicator   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed Effects Omnibus Tests                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         X²          df          p           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    x    26.24380    1.000000    0.0000003   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Parameter Estimates (Fixed Coefficients)                                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Names          Effect         Estimate       SE             Exp(B)       Lower        Upper        z            p           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    (Intercept)    (Intercept)    -0.28754013    0.072358483    0.7501065    0.6509255    0.8643996    -3.973828    0.0000707   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    x              x               0.05075563    0.009907654    1.0520658    1.0318332    1.0726951     5.122871    0.0000003   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Random Components                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Groups      Name           Variance      SD           ICC          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    cluster     (Intercept)    0.08642239    0.2939769    0.02559685   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Residual                   3.28986813    1.8137994                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Number of Obs: 1800 , Number of groups: cluster 30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span>       </span></span>
 </code></pre></div>
     </div>
