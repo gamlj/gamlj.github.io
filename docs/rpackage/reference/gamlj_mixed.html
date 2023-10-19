@@ -72,10 +72,16 @@ analysis, effect size indexes and visualization of the results.</p>
 <span>  dep <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  factors <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  covs <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cluster <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  model_terms <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  re <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  reml <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  re_lrt <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  re_ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  fixed_intercept <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  nested_terms <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nested_intercept <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  nested_re <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  omnibus <span class="op">=</span> <span class="st">"LRT"</span>,</span>
 <span>  estimates_ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ci_method <span class="op">=</span> <span class="st">"wald"</span>,</span>
@@ -108,12 +114,6 @@ analysis, effect size indexes and visualization of the results.</p>
 <span>  dep_scale <span class="op">=</span> <span class="st">"none"</span>,</span>
 <span>  scale_missing <span class="op">=</span> <span class="st">"complete"</span>,</span>
 <span>  norm_test <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  cluster <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  re <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  nested_re <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  reml <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  re_lrt <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  re_ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  df_method <span class="op">=</span> <span class="st">"Satterthwaite"</span>,</span>
 <span>  norm_plot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  qq_plot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -149,9 +149,33 @@ variable must be numeric. Not needed if <code>formula</code> is used.</p></dd>
 needed if <code>formula</code> is used.</p></dd>
 
 
+<dt>cluster</dt>
+<dd><p>a vector of strings naming the clustering variables from
+<code>data</code>. Not necessary if <code>formula</code> is defined.</p></dd>
+
+
 <dt>model_terms</dt>
 <dd><p>a list of character vectors describing fixed effects
 terms. Not needed if <code>formula</code> is used.</p></dd>
+
+
+<dt>re</dt>
+<dd><p>a list of lists specifying the models random effects.</p></dd>
+
+
+<dt>reml</dt>
+<dd><p><code>TRUE</code> (default) or <code>FALSE</code>, should the Restricted ML
+be used rather than ML</p></dd>
+
+
+<dt>re_lrt</dt>
+<dd><p><code>TRUE</code> or <code>FALSE</code> (default), LRT for the random
+effects</p></dd>
+
+
+<dt>re_ci</dt>
+<dd><p><code>TRUE</code> or <code>FALSE</code> (default), confidence intervals
+for the random effects</p></dd>
 
 
 <dt>fixed_intercept</dt>
@@ -166,7 +190,11 @@ for nestet. It can be passed as right-hand formula.</p></dd>
 
 <dt>nested_intercept</dt>
 <dd><p><code>TRUE</code> (default) or <code>FALSE</code>, estimates
-fixed intercept. Not needed if <code>formula</code> is used.</p></dd>
+fixed intercept. Not needed if <code>nested_terms</code> is used.</p></dd>
+
+
+<dt>nested_re</dt>
+<dd><p>a list of lists specifying the models random effects.</p></dd>
 
 
 <dt>omnibus</dt>
@@ -334,34 +362,6 @@ Tukey and Holm Post Hoc corrections respectively.</p></dd>
 <dt>norm_test</dt>
 <dd><p><code>TRUE</code> or <code>FALSE</code> (default), provide a test for
 normality of residuals</p></dd>
-
-
-<dt>cluster</dt>
-<dd><p>a vector of strings naming the clustering variables from
-<code>data</code>. Not necessary if <code>formula</code> is defined.</p></dd>
-
-
-<dt>re</dt>
-<dd><p>a list of lists specifying the models random effects.</p></dd>
-
-
-<dt>nested_re</dt>
-<dd><p>a list of lists specifying the models random effects.</p></dd>
-
-
-<dt>reml</dt>
-<dd><p><code>TRUE</code> (default) or <code>FALSE</code>, should the Restricted ML
-be used rather than ML</p></dd>
-
-
-<dt>re_lrt</dt>
-<dd><p><code>TRUE</code> or <code>FALSE</code> (default), LRT for the random
-effects</p></dd>
-
-
-<dt>re_ci</dt>
-<dd><p><code>TRUE</code> or <code>FALSE</code> (default), confidence intervals
-for the random effects</p></dd>
 
 
 <dt>df_method</dt>

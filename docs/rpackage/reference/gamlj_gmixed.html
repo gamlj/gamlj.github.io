@@ -63,15 +63,22 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gamlj_gmixed</span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  model_type <span class="op">=</span> <span class="st">"logistic"</span>,</span>
 <span>  dep <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  factors <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  covs <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  model_terms <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  fixed_intercept <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  es <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"expb"</span><span class="op">)</span>,</span>
-<span>  expb_ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  cluster <span class="op">=</span> <span class="va">cluster</span>,</span>
+<span>  re <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  re_corr <span class="op">=</span> <span class="st">"all"</span>,</span>
+<span>  re_lrt <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  re_ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  nested_terms <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nested_intercept <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  nested_re <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  es <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"expb"</span><span class="op">)</span>,</span>
+<span>  expb_ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  estimates_ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  ci_method <span class="op">=</span> <span class="st">"wald"</span>,</span>
 <span>  boot_r <span class="op">=</span> <span class="fl">1000</span>,</span>
@@ -100,15 +107,9 @@
 <span>  ccp_value <span class="op">=</span> <span class="fl">25</span>,</span>
 <span>  covs_scale_labels <span class="op">=</span> <span class="st">"labels"</span>,</span>
 <span>  adjust <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"bonf"</span><span class="op">)</span>,</span>
-<span>  model_type <span class="op">=</span> <span class="st">"logistic"</span>,</span>
 <span>  covs_scale <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  scale_missing <span class="op">=</span> <span class="st">"complete"</span>,</span>
-<span>  norm_test <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  re <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  nested_re <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  re_corr <span class="op">=</span> <span class="st">"all"</span>,</span>
-<span>  re_lrt <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  re_ci <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  norm_test <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -120,6 +121,12 @@
 
 <dt>data</dt>
 <dd><p>the data as a data frame</p></dd>
+
+
+<dt>model_type</dt>
+<dd><p>Select the generalized linear model:
+<code>logistic</code>,<code>probit</code>,<code>nb</code> for negative binomial
+<code>poisson</code>,<code>multinomial</code>, <code>ordinal</code> for cumulative logit models.</p></dd>
 
 
 <dt>dep</dt>
@@ -145,17 +152,34 @@ terms. Not needed if <code>formula</code> is used.</p></dd>
 <dt>fixed_intercept</dt>
 <dd><p><code>TRUE</code> (default) or <code>FALSE</code>, estimates
 fixed intercept. Not needed if <code>formula</code> is used
-and "1" is passed explicitly to the formula.</p></dd>
+and "1" is passed explicitly to the formula.#'</p></dd>
 
 
-<dt>es</dt>
-<dd><p>Effect size indices. <code>expb</code> (default) exponentiates the
-coefficients. For dichotomous dependent variables relative risk indices
-(RR) can be obtained. <code>marginals</code> computes the marginal effects.</p></dd>
+<dt>cluster</dt>
+<dd><p>a vector of strings naming the clustering variables from
+<code>data</code>, not needed if <code>formula</code> is defined.</p></dd>
 
 
-<dt>expb_ci</dt>
-<dd><p><code>TRUE</code> (default) or <code>FALSE</code> , exp(B) CI in table</p></dd>
+<dt>re</dt>
+<dd><p>a list of lists specifying the models random effects.</p></dd>
+
+
+<dt>re_corr</dt>
+<dd><p><code>'all'</code>, <code>'none'</code> (default), or <code>'block'</code>.
+When random effects are passed as list of length 1, it decides whether the
+effects should be correlated,  non correlated. If <code>'re'</code> is a list of
+lists of length &gt; 1, the option is automatially set to <code>'block'</code>. The
+option is ignored if the model is passed using <code>formula</code>.</p></dd>
+
+
+<dt>re_lrt</dt>
+<dd><p><code>TRUE</code> or <code>FALSE</code> (default), LRT for the random
+effects</p></dd>
+
+
+<dt>re_ci</dt>
+<dd><p><code>TRUE</code> or <code>FALSE</code> (default), confidence intervals
+for the random effects</p></dd>
 
 
 <dt>nested_terms</dt>
@@ -168,17 +192,31 @@ for the nested model. It can be passed as right-hand formula.</p></dd>
 fixed intercept. Not needed if <code>formula</code> is used.</p></dd>
 
 
+<dt>nested_re</dt>
+<dd><p>a list of lists specifying the models random effects.</p></dd>
+
+
+<dt>es</dt>
+<dd><p>Effect size indices. <code>expb</code> (default) exponentiates the
+coefficients. For dichotomous dependent variables relative risk indices
+(RR) can be obtained. <code>marginals</code> computes the marginal effects.</p></dd>
+
+
+<dt>expb_ci</dt>
+<dd><p><code>TRUE</code> (default) or <code>FALSE</code> , exp(B) CI in table</p></dd>
+
+
 <dt>estimates_ci</dt>
 <dd><p><code>TRUE</code>  or <code>FALSE</code> (default), parameters CI
 in table</p></dd>
 
 
 <dt>ci_method</dt>
-<dd><p>The method used to compute the confidence intervals. `wald` uses the Wald method to compute standard 
+<dd><p>The method used to compute the confidence intervals. <code>'wald'</code> uses the Wald method to compute standard 
 errors and confidence intervals. `profile` computes Profile Likelihood Based Confidence Interval, in which 
 the bounds are chosen based on the percentiles of the chi-square distribution around the maximum likelihood
-estimate. `quantile` performs a non-parametric boostrap, with `boot_r` repetitions, and compute
-the CI based on the percentiles of the boostrap distribution. `bcai` implements the bias-corrected bootstrap method.</p></dd>
+estimate. <code>'quantile'</code> performs a non-parametric boostrap, with <code>boot_r</code> repetitions, and compute
+the CI based on the percentiles of the boostrap distribution. <code>'bcai'</code> implements the bias-corrected bootstrap method.</p></dd>
 
 
 <dt>boot_r</dt>
@@ -272,8 +310,8 @@ to estimate (of the form <code>'~x+x:z'</code>)</p></dd>
 <dt>posthoc</dt>
 <dd><p>a rhs formula with the terms specifying the table to apply
 the comparisons (of the form <code>'~x+x:z'</code>). The formula is not expanded,
-so '<code>x*z</code>' becomes '<code>x+z' and not '</code>x+z+x:z<code>'. It can be
-passed also as a list of the form '</code>list("x","z",c("x","z")`'</p></dd>
+so <code>'x*z'</code> becomes <code>'x+z'</code> and not <code>'x+z+x:z'</code>. It can be
+passed also as a list of the form '`list("x","z",c("x","z")`'</p></dd>
 
 
 <dt>simple_x</dt>
@@ -320,12 +358,6 @@ to the variable orginal levels, before scaling.</p></dd>
 Tukey and Holm Post Hoc corrections respectively.</p></dd>
 
 
-<dt>model_type</dt>
-<dd><p>Select the generalized linear model:
-<code>logistic</code>,<code>probit</code>,<code>nb</code> for negative binomial
-<code>poisson</code>,<code>multinomial</code>, <code>ordinal</code> for cumulative logit models.</p></dd>
-
-
 <dt>covs_scale</dt>
 <dd><p>a list of lists specifying the covariates scaling, one of
 <code>'centered to the mean'</code>, <code>'standardized'</code>, or <code>'none'</code>.
@@ -339,37 +371,6 @@ Tukey and Holm Post Hoc corrections respectively.</p></dd>
 <dt>norm_test</dt>
 <dd><p><code>TRUE</code> or <code>FALSE</code> (default), provide a test for
 normality of residuals</p></dd>
-
-
-<dt>re</dt>
-<dd><p>a list of lists specifying the models random effects.</p></dd>
-
-
-<dt>nested_re</dt>
-<dd><p>a list of lists specifying the models random effects.</p></dd>
-
-
-<dt>re_corr</dt>
-<dd><p><code>'all'</code>, <code>'none'</code> (default), or <code>'block'</code>.
-When random effects are passed as list of length 1, it decides whether the
-effects should be correlated,  non correlated. If <code>'re'</code> is a list of
-lists of length &gt; 1, the option is automatially set to <code>'block'</code>. The
-option is ignored if the model is passed using <code>formula</code>.</p></dd>
-
-
-<dt>re_lrt</dt>
-<dd><p><code>TRUE</code> or <code>FALSE</code> (default), LRT for the random
-effects</p></dd>
-
-
-<dt>re_ci</dt>
-<dd><p><code>TRUE</code> or <code>FALSE</code> (default), confidence intervals
-for the random effects</p></dd>
-
-
-<dt>cluster</dt>
-<dd><p>a vector of strings naming the clustering variables from
-<code>data</code>, not necessary if <code>formula</code> is defined.</p></dd>
 
 </dl></div>
     <div id="value">
