@@ -141,7 +141,7 @@ website</a>.</p>
 of the model and the dataframe. The formula interface is the same one
 uses in <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code> function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod1</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamljGlm.html">gamljGlm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">yendu</span><span class="op">~</span><span class="va">xage</span><span class="op">+</span><span class="va">zexer</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">mod1</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">yendu</span><span class="op">~</span><span class="va">xage</span><span class="op">+</span><span class="va">zexer</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="va">mod1</span></span></code></pre></div>
 <pre><code>
  GENERAL LINEAR MODEL
@@ -211,7 +211,7 @@ select a different scaling with the option <code>scaling</code>.</p>
 <p>Additional effect size indexes can be asked with the option
 <code>effectSize</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod2</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamljGlm.html">gamljGlm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">yendu</span><span class="op">~</span><span class="va">xage</span><span class="op">+</span><span class="va">zexer</span>, </span>
+<code class="sourceCode R"><span><span class="va">mod2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">yendu</span><span class="op">~</span><span class="va">xage</span><span class="op">+</span><span class="va">zexer</span>, </span>
 <span>              data<span class="op">=</span><span class="va">data</span>,</span>
 <span>              effectSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"beta"</span>, <span class="st">"eta"</span>,<span class="st">"etap"</span>,<span class="st">"omega"</span>,<span class="st">"epsilon"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mod2</span><span class="op">$</span><span class="va">main</span><span class="op">$</span><span class="va">anova</span></span></code></pre></div>
@@ -228,9 +228,9 @@ select a different scaling with the option <code>scaling</code>.</p>
  ─────────────────────────────────────────────────────────────────────────────────── </code></pre>
 <p>The same analysis can be done by updating the model with the
 <code><a href="https://rdrr.io/r/stats/update.html" class="external-link">update()</a></code> function. Almost all the options available in
-<code><a href="../reference/gamljGlm.html">gamljGlm()</a></code> can be added to a model by running
+<code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm()</a></code> can be added to a model by running
 <code>update(mod,...)</code> where <code>...</code> is any option or
-options accepted by <code><a href="../reference/gamljGlm.html">gamljGlm()</a></code>.</p>
+options accepted by <code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm()</a></code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod2_2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">mod1</span>,effectSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"beta"</span>, <span class="st">"eta"</span>,<span class="st">"etap"</span>,<span class="st">"omega"</span>,<span class="st">"epsilon"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mod2_2</span><span class="op">$</span><span class="va">main</span><span class="op">$</span><span class="va">anova</span></span></code></pre></div>
@@ -253,7 +253,7 @@ options accepted by <code><a href="../reference/gamljGlm.html">gamljGlm()</a></c
 <p>To include the interaction we simply add the interaction effect in
 the formula.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod3</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamljGlm.html">gamljGlm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">yendu</span><span class="op">~</span><span class="va">xage</span><span class="op">*</span><span class="va">zexer</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">mod3</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">yendu</span><span class="op">~</span><span class="va">xage</span><span class="op">*</span><span class="va">zexer</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="va">mod3</span></span></code></pre></div>
 <pre><code>
  GENERAL LINEAR MODEL
@@ -318,7 +318,7 @@ effects tables, not the full model.</p>
 <span><span class="co">#               simpleVariable = "xage",</span></span>
 <span><span class="co">#               simpleModerator = "zexer")</span></span>
 <span><span class="co">### equivalent results :</span></span>
-<span><span class="fu"><a href="../reference/gamlj_simpleEffects.html">gamlj_simpleEffects</a></span><span class="op">(</span><span class="va">mod3</span>,variable <span class="op">=</span> <span class="st">"xage"</span>,moderator <span class="op">=</span> <span class="st">"zexer"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamlj_simpleEffects.html" class="external-link">gamlj_simpleEffects</a></span><span class="op">(</span><span class="va">mod3</span>,variable <span class="op">=</span> <span class="st">"xage"</span>,moderator <span class="op">=</span> <span class="st">"zexer"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>
  SIMPLE EFFECTS
 
@@ -349,12 +349,12 @@ parameter estimates for the simple slopes. We focus on the latter table
 now.</p>
 <p>One can change the conditioning levels of the moderators with the
 <code>simpleScale</code> option (default is <code>mean_sd</code> for
-mean plus/minus one SD), either added to the <code><a href="../reference/gamljGlm.html">gamljGlm()</a></code>
-function or to the <code><a href="../reference/gamlj_simpleEffects.html">gamlj_simpleEffects()</a></code> function. If one
+mean plus/minus one SD), either added to the <code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm()</a></code>
+function or to the <code><a href="https://rdrr.io/pkg/gamlj/man/gamlj_simpleEffects.html" class="external-link">gamlj_simpleEffects()</a></code> function. If one
 wants to use the percentiles (25%,50%,75%), for instance, one can run
 the following.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/gamlj_simpleEffects.html">gamlj_simpleEffects</a></span><span class="op">(</span><span class="va">mod3</span>,variable <span class="op">=</span> <span class="st">"xage"</span>,moderator <span class="op">=</span> <span class="st">"zexer"</span>,simpleScale<span class="op">=</span><span class="st">"percent"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamlj_simpleEffects.html" class="external-link">gamlj_simpleEffects</a></span><span class="op">(</span><span class="va">mod3</span>,variable <span class="op">=</span> <span class="st">"xage"</span>,moderator <span class="op">=</span> <span class="st">"zexer"</span>,simpleScale<span class="op">=</span><span class="st">"percent"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>
  SIMPLE EFFECTS
 
@@ -383,7 +383,7 @@ different value/labels in <code>simpleScaleLabels</code> option. Options
 are “labels”, “values” and “values_labels”. The latter outputs the
 values and the labels of the conditioning values.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/gamlj_simpleEffects.html">gamlj_simpleEffects</a></span><span class="op">(</span><span class="va">mod3</span>,variable <span class="op">=</span> <span class="st">"xage"</span>,moderator <span class="op">=</span> <span class="st">"zexer"</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamlj_simpleEffects.html" class="external-link">gamlj_simpleEffects</a></span><span class="op">(</span><span class="va">mod3</span>,variable <span class="op">=</span> <span class="st">"xage"</span>,moderator <span class="op">=</span> <span class="st">"zexer"</span>,</span>
 <span>                    simpleScale<span class="op">=</span><span class="st">"percent"</span>, </span>
 <span>                    simpleScaleLabels<span class="op">=</span><span class="st">"values_labels"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>
@@ -414,13 +414,13 @@ values and the labels of the conditioning values.</p>
 <p>We can get a clear picture of the interaction by asking for a plot.
 Also the plot module takes care of centering the variables in a way that
 makes the plot clearly understandable.</p>
-<p>The options needed in <code><a href="../reference/gamljGlm.html">gamljGlm()</a></code> are
+<p>The options needed in <code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm()</a></code> are
 <code>plotHAxis</code> for the x-axis variable and
 <code>plotSepLines</code> for the moderator. At which three levels of
 the moderator the separate lines are computed is decided by the option
 <code>simpleScale</code> as for the simple effects.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod4</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamljGlm.html">gamljGlm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">yendu</span><span class="op">~</span><span class="va">xage</span><span class="op">*</span><span class="va">zexer</span>, data<span class="op">=</span><span class="va">data</span>, </span>
+<code class="sourceCode R"><span><span class="va">mod4</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">yendu</span><span class="op">~</span><span class="va">xage</span><span class="op">*</span><span class="va">zexer</span>, data<span class="op">=</span><span class="va">data</span>, </span>
 <span>               plotHAxis <span class="op">=</span> <span class="st">"xage"</span>,plotSepLines <span class="op">=</span> <span class="st">"zexer"</span>,plotError <span class="op">=</span> <span class="st">"ci"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod4</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gamljGlm_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;"></p>
@@ -438,7 +438,7 @@ add new plots or to add options to the plots.</p>
 <p>For instance, if we want to give a more honest account of the model
 fit, we can visualize the simple slopes over the the actual data. The
 function <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> produces a new plot after adding any
-options accepted by <code><a href="../reference/gamljGlm.html">gamljGlm()</a></code></p>
+options accepted by <code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm()</a></code></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod4</span>,plotRaw<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_gamljGlm_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;"></p>

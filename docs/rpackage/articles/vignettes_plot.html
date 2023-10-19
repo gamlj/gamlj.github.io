@@ -90,8 +90,8 @@ Gallucci</h4>
 <h2 id="obtaining-a-plot">Obtaining a plot<a class="anchor" aria-label="anchor" href="#obtaining-a-plot"></a>
 </h2>
 <p><code>gamlj</code> functions
-(<code><a href="../reference/gamljGlm.html">gamljGlm()</a></code>,<code><a href="../reference/gamljGzlm.html">gamljGzlm()</a></code>,<code><a href="../reference/gamljMixed.html">gamljMixed()</a></code>
-and <code><a href="../reference/gamljGlmMixed.html">gamljGlmMixed()</a></code>) can produce plots including up to
+(<code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm()</a></code>,<code><a href="https://rdrr.io/pkg/gamlj/man/gamljGzlm.html" class="external-link">gamljGzlm()</a></code>,<code><a href="https://rdrr.io/pkg/gamlj/man/gamljMixed.html" class="external-link">gamljMixed()</a></code>
+and <code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlmMixed.html" class="external-link">gamljGlmMixed()</a></code>) can produce plots including up to
 three variables. The plots portrait the model predicted values in the
 Y-axis. Using the functions, one can obtain the plots by using the
 following options:</p>
@@ -112,13 +112,13 @@ two-way interactions in multiple plots (separated plots)</li>
 <p>We use the <code>iris</code> R dataframe. Assume we want to plot the
 influence of <code>Sepal.Width</code>, <code>Petal.Length</code> and
 <code>Petal.Width</code> on <code>Sepal.Length</code>, and their
-interactions. We use <code><a href="../reference/gamljGlm.html">gamljGlm()</a></code> to estimate the model and
+interactions. We use <code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm()</a></code> to estimate the model and
 ask for the plots.</p>
 <p>First we ask for the plot of the main effect of
 <code>Sepal.Width</code>. We use <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> without any option
 to extract the plot from the galmj results object.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamljGlm.html">gamljGlm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">Sepal.Length</span><span class="op">~</span><span class="va">Sepal.Width</span><span class="op">*</span><span class="va">Petal.Length</span><span class="op">*</span><span class="va">Petal.Width</span>, </span>
+<code class="sourceCode R"><span><span class="va">mod</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">Sepal.Length</span><span class="op">~</span><span class="va">Sepal.Width</span><span class="op">*</span><span class="va">Petal.Length</span><span class="op">*</span><span class="va">Petal.Width</span>, </span>
 <span>              data<span class="op">=</span><span class="va">iris</span>,</span>
 <span>              plotHAxis <span class="op">=</span> <span class="st">"Sepal.Width"</span></span>
 <span>              <span class="op">)</span></span>
@@ -176,7 +176,7 @@ interactions plots in one call by passing
 <p>When the X-axis variable is a factor, a plot of means is
 produced.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod2</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamljGlm.html">gamljGlm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">Sepal.Length</span><span class="op">~</span><span class="va">Species</span>,  data<span class="op">=</span><span class="va">iris</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">mod2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">Sepal.Length</span><span class="op">~</span><span class="va">Species</span>,  data<span class="op">=</span><span class="va">iris</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod2</span>,formula<span class="op">=</span><span class="op">~</span><span class="va">Species</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
@@ -239,14 +239,14 @@ in a list returned by <code><a href="https://rdrr.io/r/graphics/plot.default.htm
 <h2 id="other-gamlj-functions">Other GAMLj functions<a class="anchor" aria-label="anchor" href="#other-gamlj-functions"></a>
 </h2>
 <p>All model functions in GAMLj,
-(<code><a href="../reference/gamljGlm.html">gamljGlm()</a></code>,<code><a href="../reference/gamljGzlm.html">gamljGzlm()</a></code>,<code><a href="../reference/gamljMixed.html">gamljMixed()</a></code>
-and <code><a href="../reference/gamljGlmMixed.html">gamljGlmMixed()</a></code>), can produce plots using the options
+(<code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm()</a></code>,<code><a href="https://rdrr.io/pkg/gamlj/man/gamljGzlm.html" class="external-link">gamljGzlm()</a></code>,<code><a href="https://rdrr.io/pkg/gamlj/man/gamljMixed.html" class="external-link">gamljMixed()</a></code>
+and <code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlmMixed.html" class="external-link">gamljGlmMixed()</a></code>), can produce plots using the options
 and functions described above. Here an example with a generalized
 (logistic) mixed model in which we plot the fixed and random effects
 predicted values.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"schoolexam"</span><span class="op">)</span></span>
-<span><span class="va">mod3</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamljGlmMixed.html">gamljGlmMixed</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">pass</span><span class="op">~</span><span class="va">math</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">school</span><span class="op">)</span>,data<span class="op">=</span><span class="va">schoolexam</span><span class="op">)</span></span>
+<span><span class="va">mod3</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlmMixed.html" class="external-link">gamljGlmMixed</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">pass</span><span class="op">~</span><span class="va">math</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">school</span><span class="op">)</span>,data<span class="op">=</span><span class="va">schoolexam</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod3</span>, plotHAxis <span class="op">=</span> <span class="st">"math"</span>,plotRandomEffects<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignettes_plot_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;"></p>

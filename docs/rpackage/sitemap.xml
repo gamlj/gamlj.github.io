@@ -19,55 +19,46 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/anova.html</loc>
+  </url>
+  <url>
+    <loc>/reference/assumptions.html</loc>
+  </url>
+  <url>
     <loc>/reference/beers_bars.html</loc>
+  </url>
+  <url>
+    <loc>/reference/clustermanymodels.html</loc>
   </url>
   <url>
     <loc>/reference/fivegroups.html</loc>
   </url>
   <url>
-    <loc>/reference/gamljGlm.html</loc>
+    <loc>/reference/gamlj_glm.html</loc>
   </url>
   <url>
-    <loc>/reference/gamljGlmMixed.html</loc>
+    <loc>/reference/gamlj_gmixed.html</loc>
   </url>
   <url>
-    <loc>/reference/gamljGzlm.html</loc>
+    <loc>/reference/gamlj_lm.html</loc>
   </url>
   <url>
-    <loc>/reference/gamljMixed.html</loc>
+    <loc>/reference/gamlj_mixed.html</loc>
   </url>
   <url>
-    <loc>/reference/gamlj_assumptionsPlots.html</loc>
+    <loc>/reference/get_data.html</loc>
   </url>
   <url>
-    <loc>/reference/gamlj_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gamlj_model.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gamlj_predict.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gamlj_residuals.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gamlj_simpleEffects.html</loc>
-  </url>
-  <url>
-    <loc>/reference/hsbdemo.html</loc>
+    <loc>/reference/gmixeddata.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/phdpubs.html</loc>
+    <loc>/reference/manymodels.html</loc>
   </url>
   <url>
     <loc>/reference/plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/poissonacts.html</loc>
   </url>
   <url>
     <loc>/reference/posthoc.html</loc>
@@ -85,10 +76,10 @@
     <loc>/reference/rsquared.glmm.html</loc>
   </url>
   <url>
-    <loc>/reference/schoolexam.html</loc>
+    <loc>/reference/s3methods.html</loc>
   </url>
   <url>
-    <loc>/reference/simpleeffects.html</loc>
+    <loc>/reference/simple_effects.html</loc>
   </url>
   <url>
     <loc>/reference/subjects_by_stimuli.html</loc>
@@ -98,6 +89,9 @@
   </url>
   <url>
     <loc>/reference/update.html</loc>
+  </url>
+  <url>
+    <loc>/reference/vcov.gamlj.html</loc>
   </url>
   <url>
     <loc>/reference/wicksell.html</loc>
