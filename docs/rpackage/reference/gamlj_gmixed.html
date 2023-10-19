@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.1</span>
       </span>
     </div>
 
@@ -388,63 +388,10 @@ for the random effects</p></dd>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">schoolexam</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">gamlj</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlmMixed.html" class="external-link">gamljGlmMixed</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">pass</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">math</span><span class="op">+</span><span class="op">(</span> <span class="fl">1</span><span class="op">|</span><span class="va">school</span> <span class="op">)</span>,</span></span>
+<span class="r-in"><span><span class="fu">gamlj</span><span class="fu">::</span><span class="fu">gamlj_gmixed</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">pass</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">math</span><span class="op">+</span><span class="op">(</span> <span class="fl">1</span><span class="op">|</span><span class="va">school</span> <span class="op">)</span>,</span></span>
 <span class="r-in"><span>                     data <span class="op">=</span> <span class="va">schoolexam</span></span></span>
 <span class="r-in"><span>                     <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  GENERALIZED MIXED MODEL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Info                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Info              Value             Comment                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Model Type        Logistic          Model for binary y                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Call              glm               pass ~ 1 + math + (1 | school)        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Link function     Logit             Log of the odd of y=1 over y=0        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Direction         P(y=1)/P(y=0)     P( pass = 1 ) / P( pass = 0 )         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Distribution      Binomial          Dichotomous event distribution of y   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    LogLikel.         -2826.50908247    Unconditional Log-Likelihood          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    -2*LogLikel.       5653.01816493    Unconditional absolute deviance       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Deviance           5371.74144029    Conditional relative deviance         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    R-squared             0.02027996    Marginal                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    R-squared             0.35686168    Conditional                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    AIC                5659.02000000    Less is better                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    BIC                5678.59424419    Less is better                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Residual DF        5038.00000000                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Chi-squared/DF        0.95148046    Overdispersion indicator              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Converged         yes                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Optimizer         bobyqa                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  MODEL RESULTS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed Effect Omnibus tests                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            X²          df          p            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    math    90.85464    1.000000    &lt; .0000001   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed Effects Parameter Estimates                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Names          Estimate       SE             exp(B)       Lower        Upper       z             p            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    (Intercept)    -0.01861319    0.160801240    0.9815590    0.7162129    1.345212    -0.1157527     0.9078485   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    math            0.03239378    0.003398506    1.0329242    1.0260668    1.039827     9.5317703    &lt; .0000001   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Random Components                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Groups       Name           SD          Variance    ICC         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    school       (Intercept)    1.312146    1.721728    0.3435489   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Residuals                   1.000000    1.000000    .           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Number of Obs: 5041 , groups: school 70</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> 'gamlj_gmixed' is not an exported object from 'namespace:gamlj'</span>
 <span class="r-in"><span>       </span></span>
 </code></pre></div>
     </div>
