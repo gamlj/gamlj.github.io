@@ -50,7 +50,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/vignettes_gamljGlm.html">Examples of gamljGlm()</a>
+      <a href="../articles/vignettes_gamlj_lm.html">Examples of gamlj_lm()</a>
     </li>
     <li>
       <a href="../articles/vignettes_plot.html">Plots in GAMLj</a>
@@ -85,25 +85,25 @@ Gallucci</h4>
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gamlj</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">GAMLj3</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="obtaining-a-plot">Obtaining a plot<a class="anchor" aria-label="anchor" href="#obtaining-a-plot"></a>
 </h2>
 <p><code>gamlj</code> functions
-(<code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm()</a></code>,<code><a href="https://rdrr.io/pkg/gamlj/man/gamljGzlm.html" class="external-link">gamljGzlm()</a></code>,<code><a href="https://rdrr.io/pkg/gamlj/man/gamljMixed.html" class="external-link">gamljMixed()</a></code>
-and <code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlmMixed.html" class="external-link">gamljGlmMixed()</a></code>) can produce plots including up to
-three variables. The plots portrait the model predicted values in the
-Y-axis. Using the functions, one can obtain the plots by using the
-following options:</p>
+(<code><a href="../reference/gamlj_lm.html">gamlj_lm()</a></code>,<code><a href="../reference/gamlj_glm.html">gamlj_glm()</a></code>,<code><a href="../reference/gamlj_mixed.html">gamlj_mixed()</a></code>
+and <code><a href="../reference/gamlj_gmixed.html">gamlj_gmixed()</a></code>) can produce plots including up to three
+variables. The plots portrait the model predicted values in the Y-axis.
+Using the functions, one can obtain the plots by using the following
+options:</p>
 <ul>
 <li>
-<code>plotHAxis</code> the variable in the X-axis</li>
+<code>plot_x</code> the variable in the X-axis</li>
 <li>
-<code>plotSepLines</code> the moderator variable, whose levels
-define the traces (separated lines)</li>
+<code>plot_z</code> the moderator variable, whose levels define the
+traces (separated lines)</li>
 <li>
-<code>plotSepPlots</code> the variable whose levels define the
-two-way interactions in multiple plots (separated plots)</li>
+<code>plot_by</code> the variable whose levels define the two-way
+interactions in multiple plots (separated plots)</li>
 </ul>
 </div>
 <div class="section level2">
@@ -112,19 +112,19 @@ two-way interactions in multiple plots (separated plots)</li>
 <p>We use the <code>iris</code> R dataframe. Assume we want to plot the
 influence of <code>Sepal.Width</code>, <code>Petal.Length</code> and
 <code>Petal.Width</code> on <code>Sepal.Length</code>, and their
-interactions. We use <code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm()</a></code> to estimate the model and
+interactions. We use <code><a href="../reference/gamlj_lm.html">gamlj_lm()</a></code> to estimate the model and
 ask for the plots.</p>
 <p>First we ask for the plot of the main effect of
 <code>Sepal.Width</code>. We use <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> without any option
 to extract the plot from the galmj results object.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">Sepal.Length</span><span class="op">~</span><span class="va">Sepal.Width</span><span class="op">*</span><span class="va">Petal.Length</span><span class="op">*</span><span class="va">Petal.Width</span>, </span>
+<code class="sourceCode R"><span><span class="va">mod</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">Sepal.Length</span><span class="op">~</span><span class="va">Sepal.Width</span><span class="op">*</span><span class="va">Petal.Length</span><span class="op">*</span><span class="va">Petal.Width</span>, </span>
 <span>              data<span class="op">=</span><span class="va">iris</span>,</span>
-<span>              plotHAxis <span class="op">=</span> <span class="st">"Sepal.Width"</span></span>
-<span>              <span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;"></p>
+<span>              plot_x <span class="op">=</span> <span class="st">"Sepal.Width"</span></span>
+<span>              <span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>To have additional plots, we can re-estimate the model using the
 options described above or using <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>. The function
 <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> accepts either a formula or character options. The
@@ -134,37 +134,37 @@ the (optional) moderators.</p>
 <div class="section level3">
 <h3 id="one-way-plots">One-way plots<a class="anchor" aria-label="anchor" href="#one-way-plots"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,formula <span class="op">=</span> <span class="op">~</span><span class="va">Petal.Length</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="two-way-plots">Two-way plots<a class="anchor" aria-label="anchor" href="#two-way-plots"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,formula <span class="op">=</span> <span class="op">~</span><span class="va">Sepal.Width</span><span class="op">:</span><span class="va">Petal.Length</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>Because the moderator variable <code>Petal.Length</code> is a
 continuous variable, the function plots the independent variable effect
 at three different levels of the moderator. By default, the three levels
 are the mean, the mean plus one standard deviation and the mean minus
 one standard deviation. The conditioning values can be changed with the
-option <code>simpleScale</code>. The option accepts <code>mean_sd</code>
-(default) and <code>percent</code>, for 25th,50th, and 75th
-percentiles.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,formula <span class="op">=</span> <span class="op">~</span><span class="va">Sepal.Width</span><span class="op">:</span><span class="va">Petal.Length</span>, simpleScale<span class="op">=</span><span class="st">"percent"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;"></p>
+option <code>covs_conditioning</code>. The option accepts
+<code>mean_sd</code> (default) and <code>percent</code>, for 25th,50th,
+and 75th percentiles.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,formula <span class="op">=</span> <span class="op">~</span><span class="va">Sepal.Width</span><span class="op">:</span><span class="va">Petal.Length</span>, covs_conditioning<span class="op">=</span><span class="st">"percent"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="three-way-plots">Three-way plots<a class="anchor" aria-label="anchor" href="#three-way-plots"></a>
 </h3>
 <p>A three-way plot produces one plot for each level of the last
 moderator, in this case three plots.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,formula <span class="op">=</span> <span class="op">~</span><span class="va">Sepal.Width</span><span class="op">:</span><span class="va">Petal.Length</span><span class="op">:</span><span class="va">Petal.Width</span><span class="op">)</span></span>
-<span><span class="va">print</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">plots</span>,<span class="va">print</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;"><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-2.png" width="576" style="display: block; margin: auto;"><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-3.png" width="576" style="display: block; margin: auto;"></p>
+<span><span class="va">garbage</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">plots</span>,<span class="va">print</span><span class="op">)</span></span></code></pre></div>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>Because the formula is expanded, one can obtain all main effects and
 interactions plots in one call by passing
 <code>formula=~Sepal.Width*Petal.Length*Petal.Width</code></p>
@@ -175,31 +175,31 @@ interactions plots in one call by passing
 </h2>
 <p>When the X-axis variable is a factor, a plot of means is
 produced.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">Sepal.Length</span><span class="op">~</span><span class="va">Species</span>,  data<span class="op">=</span><span class="va">iris</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod2</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">Sepal.Length</span><span class="op">~</span><span class="va">Species</span>,  data<span class="op">=</span><span class="va">iris</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod2</span>,formula<span class="op">=</span><span class="op">~</span><span class="va">Species</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="character-options">Character options<a class="anchor" aria-label="anchor" href="#character-options"></a>
 </h2>
-<p>Alternatively, the function accepts charcater options. The three
+<p>Alternatively, the function accepts characters options. The three
 options relevant here are:</p>
 <ul>
 <li>
-<code>plotHAxis</code> defining the variable in the X-axis</li>
+<code>plot_x</code> defining the variable in the X-axis</li>
 <li>
-<code>plotSepLines</code> defining the variable whose levels define
-the way the effect of the variable in the X-axis is broken down (the
+<code>plot_z</code> defining the variable whose levels define the
+way the effect of the variable in the X-axis is broken down (the
 moderator)</li>
 <li>
-<code>plotSepPlots</code> defining the variable whose levels define
-the way the two-way interaction is broken down</li>
+<code>plot_by</code> defining the variable whose levels define the
+way the two-way interaction is broken down</li>
 </ul>
 <p>A two-way plot, for instance, can be obtained as follows:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,plotHAxis<span class="op">=</span><span class="st">"Sepal.Width"</span>, plotSepLines<span class="op">=</span><span class="st">"Petal.Length"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,plot_x<span class="op">=</span><span class="st">"Sepal.Width"</span>, plot_z<span class="op">=</span><span class="st">"Petal.Length"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="other-options">Other options<a class="anchor" aria-label="anchor" href="#other-options"></a>
@@ -209,29 +209,33 @@ by <code>gaml*</code> functions. The most relevant for producing plots
 are:</p>
 <ul>
 <li>
-<code>plotRaw</code> (logical) to plot the observed scores along the
-predicted values</li>
+<code>plot_raw</code> (logical) to plot the observed scores along
+the predicted values</li>
 <li>
-<code>plotDvScale</code> (logical) to set the range of the Y-axis
-equal to the actual range of the dependent variable</li>
+<code>plot_yscale</code> (logical) to set the range of the Y-axis
+equal to the actual range of the dependent variable (it does not apply
+to generalized linear models)</li>
 <li>
-<code>plotError</code> to add confidence intervals bars
+<code>plot_xoriginal</code> (logical) to set the scale of the X-axis
+as the original variable, so not centered or standardized</li>
+<li>
+<code>plot_around</code> to add confidence intervals bars
 (<code>ci</code>) or error bars <code>se</code> along the predicted
 values. Default is <code>none</code>.</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,plotHAxis<span class="op">=</span><span class="st">"Sepal.Width"</span>, plotSepLines<span class="op">=</span><span class="st">"Petal.Length"</span>, plotRaw<span class="op">=</span><span class="cn">T</span>,plotError<span class="op">=</span><span class="st">"ci"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod2</span>,formula<span class="op">=</span><span class="op">~</span><span class="va">Species</span>,plotRaw<span class="op">=</span><span class="cn">T</span>,plotError<span class="op">=</span><span class="st">"ci"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-9-2.png" width="576" style="display: block; margin: auto;"></p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,plot_x<span class="op">=</span><span class="st">"Sepal.Width"</span>, plot_z<span class="op">=</span><span class="st">"Petal.Length"</span>, plot_raw<span class="op">=</span><span class="cn">T</span>,plot_around<span class="op">=</span><span class="st">"ci"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod2</span>,formula<span class="op">=</span><span class="op">~</span><span class="va">Species</span>,plot_raw<span class="op">=</span><span class="cn">T</span>,plot_around<span class="op">=</span><span class="st">"se"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-10-2.png" width="576" style="display: block; margin: auto;"></p>
 <p>In addition, the plot can be saved in a variable and manipulated as
 any other ggplot object, for instance to change the theme or add a
 title.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,plotHAxis<span class="op">=</span><span class="st">"Sepal.Width"</span>, plotSepLines<span class="op">=</span><span class="st">"Petal.Length"</span>, plotRaw<span class="op">=</span><span class="cn">T</span>,plotError<span class="op">=</span><span class="st">"ci"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,plot_x<span class="op">=</span><span class="st">"Sepal.Width"</span>, plot_z<span class="op">=</span><span class="st">"Petal.Length"</span>, plot_raw<span class="op">=</span><span class="cn">T</span>,plot_around<span class="op">=</span><span class="st">"ci"</span><span class="op">)</span></span>
 <span><span class="va">p</span><span class="op">+</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"A nice plot"</span><span class="op">)</span><span class="op">+</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>In case of multiple plots produced, the ggplot objects are contained
 in a list returned by <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>.</p>
 </div>
@@ -239,18 +243,20 @@ in a list returned by <code><a href="https://rdrr.io/r/graphics/plot.default.htm
 <h2 id="other-gamlj-functions">Other GAMLj functions<a class="anchor" aria-label="anchor" href="#other-gamlj-functions"></a>
 </h2>
 <p>All model functions in GAMLj,
-(<code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlm.html" class="external-link">gamljGlm()</a></code>,<code><a href="https://rdrr.io/pkg/gamlj/man/gamljGzlm.html" class="external-link">gamljGzlm()</a></code>,<code><a href="https://rdrr.io/pkg/gamlj/man/gamljMixed.html" class="external-link">gamljMixed()</a></code>
-and <code><a href="https://rdrr.io/pkg/gamlj/man/gamljGlmMixed.html" class="external-link">gamljGlmMixed()</a></code>), can produce plots using the options
+(<code><a href="../reference/gamlj_lm.html">gamlj_lm()</a></code>,<code><a href="../reference/gamlj_glm.html">gamlj_glm()</a></code>,<code><a href="../reference/gamlj_mixed.html">gamlj_mixed()</a></code>
+and <code><a href="../reference/gamlj_gmixed.html">gamlj_gmixed()</a></code>), can produce plots using the options
 and functions described above. Here an example with a generalized
 (logistic) mixed model in which we plot the fixed and random effects
 predicted values.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"schoolexam"</span><span class="op">)</span></span>
-<span><span class="va">mod3</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/gamlj/man/gamljGlmMixed.html" class="external-link">gamljGlmMixed</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">pass</span><span class="op">~</span><span class="va">math</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">school</span><span class="op">)</span>,data<span class="op">=</span><span class="va">schoolexam</span><span class="op">)</span></span>
+<span><span class="va">schoolexam</span><span class="op">$</span><span class="va">school</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">schoolexam</span><span class="op">$</span><span class="va">school</span><span class="op">)</span></span>
+<span><span class="va">schoolexam</span><span class="op">$</span><span class="va">pass</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">schoolexam</span><span class="op">$</span><span class="va">pass</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">p</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod3</span>, plotHAxis <span class="op">=</span> <span class="st">"math"</span>,plotRandomEffects<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;"></p>
-<p>…</p>
+<span><span class="va">mod3</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamlj_gmixed.html">gamlj_gmixed</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">pass</span><span class="op">~</span><span class="va">math</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">school</span><span class="op">)</span>,data<span class="op">=</span><span class="va">schoolexam</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod3</span>, plot_x <span class="op">=</span> <span class="st">"math"</span>,plot_re<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;"></p>
 <p><a href="#plots-in-gamlj">back to top</a></p>
 </div>
   </div>
