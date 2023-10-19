@@ -105,13 +105,75 @@ and print them in R style.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gmod</span><span class="op">&lt;-</span><span class="fu">gamlj</span><span class="fu">::</span><span class="fu">gamlj_lm</span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">gmod</span><span class="op">&lt;-</span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  formula <span class="op">=</span> <span class="va">Score</span> <span class="op">~</span><span class="va">Group</span>,</span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="va">fivegroups</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> 'gamlj_lm' is not an exported object from 'namespace:gamlj'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lm   #### phase init  ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INIT TIME: 0.0459704399108887  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.00174355506896973  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GPARAMETERS: default .parameters for class lm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUN TIME: 0.107601404190063  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.155374526977539  secs</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">gmod</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in summary(gmod):</span> object 'gmod' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model Info </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            info        value                            specs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Model Type Linear Model       OLS Model for continuous y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         Model           lm                Score ~ 1 + Group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  Distribution     Gaussian Normal distribution of residuals</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 Omnibus Tests            F                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   Sample size          170                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     Converged          yes                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   Y transform         none                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   C.I. method         Wald                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model Fit </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          r2       ar2 df1 df2        f            p</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.1472811 0.1318705   3 166 9.557137 7.399073e-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ANOVA Omnibus tests </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      source        ss  df        f            p    etaSqP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     Model  7.483173   3 9.557137 7.399073e-06 0.1472811</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     Group  7.483173   3 9.557137 7.399073e-06 0.1472811</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Residuals 43.325624 166       NA           NA        NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     Total 50.808798 169       NA           NA        NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Parameter Estimates (Coefficients) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        source       label   estimate         se est.ci.lower est.ci.upper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 (Intercept) (Intercept)  0.1561919 0.03935543   0.07849021    0.2338936</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      Group1       2 - 1 -0.1001010 0.11481160  -0.32678019    0.1265782</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      Group2       3 - 1  0.2435657 0.10831305   0.02971695    0.4574144</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Group3       4 - 1  0.4431212 0.10831305   0.22927250    0.6569699</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          beta  df       test            p</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.02539755 166  3.9687510 1.073436e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.18256283 166 -0.8718719 3.845375e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.44421165 166  2.2487194 2.584581e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.80815829 166  4.0911157 6.682737e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </div>

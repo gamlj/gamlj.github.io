@@ -102,13 +102,74 @@ It has prevalence on other options defining a post-hoc test via character option
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gmod</span><span class="op">&lt;-</span><span class="fu">gamlj</span><span class="fu">::</span><span class="fu">gamlj_lm</span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">gmod</span><span class="op">&lt;-</span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  formula <span class="op">=</span> <span class="va">Score</span> <span class="op">~</span><span class="va">Group</span>,</span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="va">fivegroups</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> 'gamlj_lm' is not an exported object from 'namespace:gamlj'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lm   #### phase init  ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INIT TIME: 0.0761690139770508  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.00212645530700684  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GPARAMETERS: default .parameters for class lm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUN TIME: 0.155755519866943  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.234675168991089  secs</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">posthoc</span><span class="op">(</span><span class="va">gmod</span>,formula <span class="op">=</span><span class="op">~</span><span class="va">Group</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in posthoc(gmod, formula = ~Group):</span> object 'gmod' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lm   #### phase init  ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INIT TIME: 0.130836009979248  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.00203585624694824  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GPARAMETERS: default .parameters for class lm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PROCEDURE: Posthoc</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PROCEDURE: done</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUN TIME: 0.428028106689453  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.569467544555664  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  POST HOC TESTS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Post Hoc comparison:  Group                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Group    vs    Group    Difference    SE           t             df     p-bonferroni   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1        -     2         0.1001010    0.1148116     0.8718719    166       1.0000000   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1        -     3        -0.2435657    0.1083130    -2.2487194    166       0.1550748   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1        -     4        -0.4431212    0.1083130    -4.0911157    166       0.0004010   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2        -     3        -0.3436667    0.1142361    -3.0083893    166       0.0182139   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2        -     4        -0.5432222    0.1142361    -4.7552588    166       0.0000257   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3        -     4        -0.1995556    0.1077028    -1.8528349    166       0.3940883   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </div>
