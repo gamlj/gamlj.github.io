@@ -17,13 +17,20 @@ editor_options:
 ```{r setup, echo=FALSE,results='hide'}
 library(mcdocs)
 mcdocs_init()
+
 ```
 
 `r version("2.4.0")` 
 
-# Introduction
+## R help
 
-`r modulename()` module can be installed and used in R as a standard R packages. Please check the R help for details. Here we provide some appliactions of the package in R.
+<div class="bignote">  
+
+`r modulename()` module can be installed and used in R as a standard R packages. Please check the R help for details. 
+
+`r ext_url("R help and vignettees","rpackage/reference/")`
+
+</div>
 
 # Installation
 
@@ -71,6 +78,7 @@ devtools::install_github("gamlj/gamlj")
 
 # for (r in res)
 #    cat(r)
+
 
 ```
 
