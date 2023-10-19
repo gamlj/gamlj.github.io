@@ -874,6 +874,53 @@ class="option">Boot</span>, bootstrap method, is the slowest. Details of
 the implementation can be found in <a
 href="https://cran.r-project.org/web/packages/lme4/lme4.pdf">lme4
 manual</a></p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">CI Method</span>
+</td>
+<td>
+The method used to compute the confidence intervals. Standard uses the
+Wald method to compute standard errors and confidence intervals. Profile
+computes Profile Likelihood Based Confidence Interval, in which the
+bounds are chosen based on the percentiles of the chi-square
+distribution around the maximum likelihood estimate. Bootstrap performs
+parametric bootstrap, with Bootstrap rep repetitions.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Bootstrap rep.</span>
+</td>
+<td>
+a number for bootstrap repetitions.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Predicted</span>
+</td>
+<td>
+Saves the predicted values in the dataset
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Residuals</span>
+</td>
+<td>
+Saves the residuals values in the dataset
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Remove notes</span>
+</td>
+<td>
+Remove all footnotes from the tables
+</td>
+</tr>
+</table>
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
