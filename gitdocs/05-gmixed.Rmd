@@ -37,7 +37,7 @@ From a theoretical point of view, we do not need to add much to what we have see
 Thus, we are not going to repeat the specific characteristics of each model, because they have been discussed in the previous chapters. We highlight the noticeable features that characterize each application of the generalized linear model with random coefficients and clustered data.
 
 <div class="enf">
-For the remainder of this chapter, we will not cover all the possible models provided by r modulename() in the generalized mixed model. This is because, when setting up the models, one can refer to the mixed model (r cap("gzlm")), and when interpreting the results, one can refer to the generalized linear model (r cap("gzlm")). HHowever, we will explore an example using the logistic mixed model and subsequently highlight certain features of other models that may yield unexpected results.
+For the remainder of this chapter, we will not cover all the possible models provided by `r modulename()` in the generalized mixed model. This is because, when setting up the models, one can refer to the mixed model (`r cap("gzlm")`), and when interpreting the results, one can refer to the generalized linear model (`r cap("gzlm")`). However, we will explore an example using the logistic mixed model and subsequently highlight certain features of other models that may yield unexpected results.
 </div>
 
 ## Examples
@@ -147,7 +147,7 @@ All other options available in the logistic generalized mixed model operate simi
 
 ## Other model charateristics
 
-As mentioned, all other model within the generalized mixed model can be estimated and interpreted based on the material of the previous chapters. When setting up the models, one can refer to the mixed model (`r cap("gzlm")`), and when interpreting the results, one can refer to the generalized linear model (`r cap("gzlm")`).
+As mentioned, all other models within the generalized mixed model can be estimated and interpreted based on the material of the previous chapters. When setting up the models, one can refer to the mixed model (`r cap("gzlm")`), and when interpreting the results, one can refer to the generalized linear model (`r cap("gzlm")`).
 
 A few notes are nonetheless interesting to mention.
 
@@ -194,4 +194,3 @@ knitr::include_graphics("bookletpics/5_multinomial_output2.png")
 </div>
 For each random coefficient, its variance is located on the diagonal of the random variance-covariance matrix, while the covariances are found in the off-diagonal cells. To provide more specific details, the 2~1 represents the intercept of the logistic regression model predicting the dummy variable for level 2 vs level 1. Similarly, the 3~1 corresponds to the intercept of the logistic regression model predicting the dummy variable for level 3 vs level 1, and so forth. The coefficient x~2 represents the random coefficient associated with the variable x predicting the first dummy, x~3 is the coefficient predicting the second dummy. Thus, the first diagonal value denotes the variance of the first logistic intercept, the second diagonal value signifies the variance of the second logistic intercept, and so on. 
 
-`r tobecontinued`

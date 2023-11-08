@@ -55,7 +55,7 @@
     <loc>/reference/get_data.html</loc>
   </url>
   <url>
-    <loc>/reference/gmixeddata.html</loc>
+    <loc>/reference/hsbdemo.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
@@ -65,6 +65,9 @@
   </url>
   <url>
     <loc>/reference/plot.html</loc>
+  </url>
+  <url>
+    <loc>/reference/poissonacts.html</loc>
   </url>
   <url>
     <loc>/reference/posthoc.html</loc>

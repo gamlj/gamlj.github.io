@@ -101,18 +101,39 @@ It has prevalence on other options defining a simple effects test via character 
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">winkel</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>data set ‘winkel’ not found</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">wicksell</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">wicksell</span><span class="op">$</span><span class="va">time</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">wicksell</span><span class="op">$</span><span class="va">time</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">wicksell</span><span class="op">$</span><span class="va">group</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">wicksell</span><span class="op">$</span><span class="va">group</span><span class="op">)</span> </span></span>
-<span class="r-in"><span><span class="va">gmod</span><span class="op">&lt;-</span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="alternatives.html">gamljmixed</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">wicksell</span><span class="op">$</span><span class="va">subj</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">wicksell</span><span class="op">$</span><span class="va">subj</span><span class="op">)</span> </span></span>
+<span class="r-in"><span><span class="va">gmod</span><span class="op">&lt;-</span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="gamlj_mixed.html">gamlj_mixed</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>   formula <span class="op">=</span> <span class="va">dv</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span><span class="va">group</span><span class="op">+</span> <span class="va">time</span><span class="op">:</span><span class="va">group</span><span class="op">+</span> <span class="va">time</span><span class="op">+</span><span class="op">(</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">subj</span> <span class="op">)</span>,</span></span>
 <span class="r-in"><span>   data <span class="op">=</span> <span class="va">wicksell</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in Variable$new(var, self)$checkVariable(data):</span> Cluster variable subj should be a nominal variable</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">simpleEffects</span><span class="op">(</span><span class="va">gmod</span>,formula <span class="op">=</span><span class="op">~</span><span class="va">time</span><span class="op">:</span><span class="va">group</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in simpleEffects(gmod, formula = ~time:group):</span> could not find function "simpleEffects"</span>
+<span class="r-in"><span><span class="fu">simple_effects</span><span class="op">(</span><span class="va">gmod</span>,formula <span class="op">=</span><span class="op">~</span><span class="va">time</span><span class="op">:</span><span class="va">group</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  SIMPLE EFFECTS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ANOVA for Simple Effects  of time                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    group    F           Num df      Den df      p            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1        18.86500    3.000000    66.00000    &lt; .0000001   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2        35.28400    3.000000    66.00000    &lt; .0000001   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Parameter Estimates for simple effects of time                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    group    Effect    Estimate      SE          Lower         Upper          df          t            p            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1        1 - 0      -47.66667    21.45003     -90.49303      -4.840307    66.00000    -2.222219     0.0297010   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             3 - 0      -88.58333    21.45003    -131.40969     -45.756974    66.00000    -4.129754     0.0001043   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             6 - 0     -155.50000    21.45003    -198.32636    -112.673640    66.00000    -7.249408    &lt; .0000001   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2        1 - 0     -185.91667    21.45003    -228.74303    -143.090307    66.00000    -8.667433    &lt; .0000001   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             3 - 0     -180.08333    21.45003    -222.90969    -137.256974    66.00000    -8.395483    &lt; .0000001   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             6 - 0     -173.75000    21.45003    -216.57636    -130.923640    66.00000    -8.100223    &lt; .0000001   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </div>
