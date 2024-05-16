@@ -20,7 +20,7 @@ analysis, effect size indexes and visualization of the results."><!-- mathjax --
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.1</span>
       </span>
     </div>
 
@@ -187,7 +187,9 @@ confidence interval width for the plots.</p></dd>
 
 
 <dt>ci_method</dt>
-<dd><p>.</p></dd>
+<dd><p>the method to compute the confidence intervals. It can be `wald` (default) for
+large samples confidence intervals, `quantile` for percentile bootstrap method, or `bcai`
+for bias corrected accelarated method.</p></dd>
 
 
 <dt>boot_r</dt>

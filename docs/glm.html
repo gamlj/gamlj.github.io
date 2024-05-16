@@ -549,7 +549,8 @@ and the two models comparison test is presented.</p>
 <span class="option">Intercept</span>
 </td>
 <td>
-Estimates fixed intercept if flagged
+<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
+intercept. Not needed if <code>formula</code> is used.
 </td>
 </tr>
 <tr>
@@ -815,6 +816,13 @@ If selected, a black and white theme is set for the plot, with multiple
 lines (if present) drawn in different styles.
 </td>
 </tr>
+<tr>
+<td class="optionname">
+<span class="option">Johnson-Neyman plot</span>
+</td>
+<td>
+</td>
+</tr>
 </table>
 </div>
 <div id="simple-effects" class="section level1">
@@ -879,6 +887,14 @@ href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test"
 target="_blank">Kolmogorov-Smirnov</a> and <a
 href="https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation"
 target="_blank">Shapiro-Wilk</a> tests for normality of residuals.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Collinearity tests</span>
+</td>
+<td>
+Computes VIF and tollerance for the model term of the model
 </td>
 </tr>
 <tr>

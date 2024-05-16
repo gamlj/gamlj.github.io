@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.1</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
 <div class="page-header"><h1 id="gamlj-suite-for-linear-models">GAMLj Suite for Linear Models<a class="anchor" aria-label="anchor" href="#gamlj-suite-for-linear-models"></a>
 </h1></div>
 <p>General, Mixed, Generalized, and Generalized Mixed Models</p>
-<p>version 3.0.*</p>
+<p><em id="version">Version 3.3.1 </em></p>
 <center>
 <img width="300" src="https://gamlj.github.io/commons/pics/ui.png" class="img-responsive" alt="">
 </center>
@@ -115,6 +115,13 @@
 </h1>
 <p>GAMLj has undergone a major upgrading with version 3.*. The upgrading made version 3 not compatible with previous versions of the module, meaning that analyses that are done with previous versions cannot be opened with version 3. If you need to open and work with analyses done with GAMLj version &lt; 3.0.0, you can install GAMLj legacy from the jamovi library. It will not interfere with GAMLj3.</p>
 <div class="section level2">
+<h2 id="from-github">From GitHub<a class="anchor" aria-label="anchor" href="#from-github"></a>
+</h2>
+<p>In your R script (or Rstudio) simply issue</p>
+<pre><code><span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"gamlj/gamlj"</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="section level2">
 <h2 id="from-source">From source<a class="anchor" aria-label="anchor" href="#from-source"></a>
 </h2>
 <p>You will first need to download <a href="https://www.jamovi.org/download.html" class="external-link">jamovi</a>.</p>
@@ -125,29 +132,10 @@
 </div>
 </div>
 <div class="section level1">
-<h1 id="install-in-r">Install in R<a class="anchor" aria-label="anchor" href="#install-in-r"></a>
+<h1 id="previous-version-gamlj-266-or-below">Previous Version (GAMLj 2.6.6 or below)<a class="anchor" aria-label="anchor" href="#previous-version-gamlj-266-or-below"></a>
 </h1>
-<pre><code><span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"gamlj/gamlj"</span><span class="op">)</span></span></code></pre>
-</div>
-<div class="section level1">
-<h1 id="versions">Versions<a class="anchor" aria-label="anchor" href="#versions"></a>
-</h1>
-<p>Please check out the <a href="https://gamlj.github.io/release_notes.html" class="external-link">release notes</a>.</p>
-</div>
-<div class="section level1">
-<h1 id="troubleshooting">Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"></a>
-</h1>
-<div class="section level2">
-<h2 id="installing-from-source">Installing from source<a class="anchor" aria-label="anchor" href="#installing-from-source"></a>
-</h2>
-<p>The module installs dependencies automatically, but in some R installations the process seems to fail when it comes to the dependencies. The solution is to install in the module build folder the required package that fails before installing the module. For example, if “pbkrtest” fails and you cloned the source in YOURCLONEFOLDER folder, run this before installing the module.</p>
-<pre><code><span><span class="va">package</span><span class="op">&lt;-</span><span class="st">"pbkrtest"</span></span>
-<span><span class="va">dirroot</span><span class="op">&lt;-</span><span class="va">YOURCLONEFOLDER</span></span>
-<span><span class="va">instdir</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">dirroot</span>,<span class="st">"/build/R"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="va">package</span>,lib <span class="op">=</span> <span class="va">instdir</span><span class="op">)</span></span>
-<span></span></code></pre>
-</div>
+<p>If you want to install the latest previous version of the module (Version 2.6.6) in R, run this:</p>
+<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"gamlj/gamlj"</span>,ref<span class="op">=</span><span class="st">"Version.2.6.6"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level1">
 <h1 id="programmatic-name">Programmatic name<a class="anchor" aria-label="anchor" href="#programmatic-name"></a>

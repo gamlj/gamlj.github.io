@@ -30,7 +30,7 @@ mcdocs_init()
 
 Here you can find comparisons of  results obtained in `r jamovi` `r modulename()`, `r jamovi` (jmv), pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing identical results across programs.
 
-Example data are [here](https://github.com/mcfanda/`r modulename()`_docs/blob/master/data/rosetta.contrasts.csv). One continuous dependent variable, one factor with 4 groups.
+Example data are [here](https://github.com/gamlj/gamlj/blob/master/data/fivegroups.csv) or in the `r jamovi` data library, under `General Analysis for Linear Models (3)`, named `fivegroups`. One continuous dependent variable, one factor with 4 groups.
 
 
 Unfortunately, contrasts coding schemes get different names in different publications and they are implemented in different ways across software. Things can get a bit confusing because of this.  For partially overlapping coding scheme definitions see [UCLA idre web site](https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/), [SPSS manual](https://www.ibm.com/support/knowledgecenter/en/SSLVMB_20.0.0/com.ibm.spss.statistics.help/contrasts.htm) and _Cohen, J., Cohen, P., West, S. G., & Aiken, L. S. (2013). Applied multiple regression/correlation analysis for the behavioral sciences. Routledge._  If you have familiarity with python, you can compare results also with [python statmodels results](http://www.statsmodels.org/dev/contrasts.html)
@@ -90,7 +90,7 @@ Results:
 
 The expected means of the four groups are:
 
-<img src="rosetta/contrasts/r.c1.`r modulename()`2.png" class="img-responsive" alt="">
+<img src="rosetta/contrasts/r.c1.gamlj2.png" class="img-responsive" alt="">
 
 ## SPSS
 

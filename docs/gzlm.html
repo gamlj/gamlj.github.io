@@ -509,6 +509,20 @@ This allows settings complex model options without waiting for the
 results to update every time. Unflag it when ready to go.
 </td>
 </tr>
+<tr>
+<td class="optionname">
+<span class="option">Input Method</span>
+</td>
+<td>
+The method in which the data are organized. <code>Responses</code> is
+the standard method, in which the dependent variable is a dichotomous
+variable with two levels. <code>Success/Failure</code> expect the data
+to be a table in which two columns are defined, one indicating success
+frequencies (level 1) and the other level 0 frequencies (failure
+frequencies). <code>P(Success)/Totals</code> expect a columnt of
+proportions of success and the weights (Totals) of each proportion.
+</td>
+</tr>
 </table>
 </div>
 <div id="model" class="section level1">
@@ -883,6 +897,14 @@ a number bootstrap repetitions.
 <td>
 <code>TRUE</code> or <code>FALSE</code> (default), shows coefficients
 covariances
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Classification Table</span>
+</td>
+<td>
+Produces a classification table (predicted vs observed)
 </td>
 </tr>
 <tr>
