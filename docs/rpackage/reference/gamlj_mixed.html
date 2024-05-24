@@ -20,7 +20,7 @@ analysis, effect size indexes and visualization of the results."><!-- mathjax --
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.2</span>
       </span>
     </div>
 
@@ -76,6 +76,7 @@ analysis, effect size indexes and visualization of the results.</p>
 <span>  model_terms <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  re <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  reml <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  res_struct <span class="op">=</span> <span class="st">"id"</span>,</span>
 <span>  re_lrt <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  re_ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  fixed_intercept <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -166,6 +167,13 @@ terms. Not needed if <code>formula</code> is used.</p></dd>
 <dt>reml</dt>
 <dd><p><code>TRUE</code> (default) or <code>FALSE</code>, should the Restricted ML
 be re_corrused rather than ML</p></dd>
+
+
+<dt>res_struct</dt>
+<dd><p>Residual variance-covariance matrix structure. It can be <code>'id'</code>
+(default) for identity (no correlation), <code>'cs'</code> for compound symmetry (constant correlation),
+<code>'ar1'</code> for autoregressive of order 1.
+and <code>'un'</code> for unstructured.</p></dd>
 
 
 <dt>re_lrt</dt>
@@ -434,6 +442,24 @@ option is ignored if the model is passed using <code>formula</code>.</p></dd>
 <span class="r-in"><span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu">gamlj_mixed</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">ycont</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">x</span><span class="op">+</span><span class="op">(</span> <span class="fl">1</span><span class="op">|</span><span class="va">cluster</span> <span class="op">)</span>,</span></span>
 <span class="r-in"><span>                     data <span class="op">=</span> <span class="va">clustermanymodels</span></span></span>
 <span class="r-in"><span>                     <span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lmer   #### phase init  ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lmer   #### phase run ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.0655956268310547  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: estimating variance components</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.562718868255615  secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  MIXED MODEL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

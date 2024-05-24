@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.2</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
 <div class="page-header"><h1 id="gamlj-suite-for-linear-models">GAMLj Suite for Linear Models<a class="anchor" aria-label="anchor" href="#gamlj-suite-for-linear-models"></a>
 </h1></div>
 <p>General, Mixed, Generalized, and Generalized Mixed Models</p>
-<p><em id="version">Version 3.3.1 </em></p>
+<p><em id="version">Version 3.3.2 </em></p>
 <center>
 <img width="300" src="https://gamlj.github.io/commons/pics/ui.png" class="img-responsive" alt="">
 </center>
@@ -140,7 +140,93 @@
 <div class="section level1">
 <h1 id="programmatic-name">Programmatic name<a class="anchor" aria-label="anchor" href="#programmatic-name"></a>
 </h1>
-<pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">1</span>,<span class="fl">13</span>,<span class="fl">12</span><span class="op">)</span><span class="op">]</span>,collapse <span class="op">=</span><span class="st">""</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre>
+<pre><code>paste(paste(LETTERS[c(7,1,13,12)],collapse =""),paste(letters[10]),sep="")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;center&gt;
+&lt;img width="300" src="https://gamlj.github.io/commons/pics/ui.png" class="img-responsive" alt=""&gt;
+&lt;/center&gt;
+&lt;br&gt;
+
+Estimates a General Linear Model, Mixed Linear Models, Generalized Linear Models and Generalized Mixed Models with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc etc.
+
+
+* Continuous and categorical independent and dependent variables
+* F-test and parameter estimates
+* Confidence intervals
+* Moderation made easy
+* Simple slopes analysis
+* Simple effects
+* Polynomial effects
+* post-hoc analysis
+* Plots up to three-way interactions
+* Automatic selection of best estimation methods and degrees of freedom selection
+* Type III estimation
+
+More informations can be found at [GAMLj page](https://gamlj.github.io/)
+
+# Install in jamovi
+
+Please install [jamovi](https://www.jamovi.org/download.html) and run it. Select the jamovi modules library and install GAMLj from there
+
+
+&lt;center&gt;
+&lt;img width="600" src="https://gamlj.github.io/glm/install.png" class="img-responsive" alt=""&gt;
+&lt;/center&gt;
+
+# Version 3
+
+GAMLj has undergone a major upgrading with version 3.*. The upgrading made version 3 not compatible with previous versions of the module, meaning
+that analyses that are done with previous versions cannot be opened with version 3. If you need to open and work with analyses done with GAMLj version &lt; 3.0.0, you can install GAMLj legacy from the jamovi library. It will not interfere with GAMLj3.
+
+## From GitHub
+
+In your R script (or Rstudio) simply issue 
+</code></pre>
+<p>devtools::install_github(“gamlj/gamlj”)</p>
+<pre><code>
+## From source
+
+
+You will first need to download [jamovi](https://www.jamovi.org/download.html). 
+
+You can clone this repository and compile the module within R with 
+</code></pre>
+<p>library(jmvtools)</p>
+<p>jmvtools::install()</p>
+<pre><code>
+# Previous Version (GAMLj 2.6.6 or below)
+
+If you want to install the latest previous version of the module (Version 2.6.6) in R, run this:
+</code></pre>
+<p>devtools::install_github(“gamlj/gamlj”,ref=“Version.2.6.6”)</p>
+<pre><code><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Programmatic name</span></span></code></pre>
+<p>paste(paste(LETTERS[c(7,1,13,12)],collapse =““),paste(letters[10]),sep=”“)</p>
+<p>```</p>
 </div>
 
   </div>

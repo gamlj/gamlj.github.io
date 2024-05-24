@@ -20,7 +20,7 @@ analysis, effect size indexes and visualization of the results."><!-- mathjax --
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.2</span>
       </span>
     </div>
 
@@ -103,12 +103,14 @@ analysis, effect size indexes and visualization of the results.</p>
 <span>  covs_conditioning <span class="op">=</span> <span class="st">"mean_sd"</span>,</span>
 <span>  ccm_value <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  ccp_value <span class="op">=</span> <span class="fl">25</span>,</span>
+<span>  ccra_steps <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  covs_scale_labels <span class="op">=</span> <span class="st">"labels"</span>,</span>
 <span>  adjust <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"bonf"</span><span class="op">)</span>,</span>
 <span>  posthoc_es <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"dm"</span><span class="op">)</span>,</span>
 <span>  d_ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  es <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"beta"</span>, <span class="st">"etap"</span><span class="op">)</span>,</span>
 <span>  homo_test <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  colli_test <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  qq_plot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  norm_test <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  norm_plot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -298,7 +300,7 @@ var2='type2')</code> specifying the transformation to apply to covariates, one o
 <dd><p>'<code>mean_sd</code>' (default), or '<code>percent</code>'.
 How to condition covariates in simple effects and plots. '<code>mean_sd</code>'
 for mean +/- '<code>ccp_value</code>' * sd. '<code>percent</code>' for median
-+/-'<code>ccp_value</code>' for percentiles.</p></dd>
++/-'<code>ccp_value</code>' for percentiles. <code>range</code> conditions to min and max divided in <code>ccra_steps</code> steps (aproximately).</p></dd>
 
 
 <dt>ccm_value</dt>
@@ -345,8 +347,13 @@ for epsilon-squared, <code>'epsilonp'</code> for partial epsilon-squared  and
 
 
 <dt>homo_test</dt>
-<dd><p><code>TRUE</code> or <code>FALSE</code> (default), perform homogeneity
+<dd><p><code>TRUE</code> or <code>FALSE</code> (default), performs homogeneity
 tests</p></dd>
+
+
+<dt>colli_test</dt>
+<dd><p><code>TRUE</code> or <code>FALSE</code> (default), computes VIF and Tollerance 
+for the terms in the model</p></dd>
 
 
 <dt>qq_plot</dt>
@@ -391,6 +398,11 @@ standard errors are available: <code>HC0</code>,
 <code>HC1</code>,<code>HC2</code>,<code>HC3</code>, from package <code>sandwich</code> .
 See <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovHC.html" class="external-link">vcovHC</a></code> for details.</p></dd>
 
+
+<dt>ccra_value</dt>
+<dd><p>Covariate condition min max steps (not very mnemonic): 
+At how many values between min and max should the covariate be conditioned <code>simpleScale</code>=<code>'range'</code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -412,6 +424,28 @@ See <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovHC.html"
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'ToothGrowth'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu">gamlj_lm</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">len</span> <span class="op">~</span> <span class="va">supp</span>,  data <span class="op">=</span> <span class="va">ToothGrowth</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lm   #### phase init  ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INIT TIME: 0.116954803466797  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.00199055671691895  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GPARAMETERS: default .parameters for class lm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUN TIME: 0.183114051818848  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.30299973487854  secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  GENERAL LINEAR MODEL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
