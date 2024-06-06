@@ -5,10 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="pandoc" />
 
-        <meta name="author" content="(by Marcello Gallucci)" />
+        <meta name="author" content="Marcello Gallucci" />
     
     
-    <title>Simple frequencies analysis with Poisson models</title>
+    <title>Poisson models for frequencies</title>
 
         <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -193,15 +193,16 @@
         </div><!--/.container -->
       </div><!--/.navbar -->
         
-      <h1 class="title">Simple frequencies analysis with Poisson
-models</h1>
+      <h1 class="title">Poisson models for frequencies</h1>
       
          <!-- readthedown authors -->
    <div id="sidebar">
-    <h2><a href="#content">Simple frequencies analysis with Poisson
-models</a></h2>
+    <h2><a href="#content">Poisson models for frequencies</a></h2>
     <div id="toc">
       <ul>
+      <li><a href="#simple-frequencies-analysis-with"
+      id="toc-simple-frequencies-analysis-with">Simple frequencies
+      analysis with</a></li>
       <li><a href="#the-research-design"
       id="toc-the-research-design">The research design</a></li>
       <li><a href="#understanding-the-problem"
@@ -233,14 +234,13 @@ models</a></h2>
       <li><a href="#plot-1" id="toc-plot-1">Plot</a></li>
       </ul></li>
       <li><a href="#related-examples" id="toc-related-examples">Related
-      examples</a></li>
-      <li><a href="#examples" id="toc-examples">Examples</a></li>
+      Examples</a></li>
       <li><a href="#comments" id="toc-comments">Comments?</a></li>
       </ul>
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
-                  <p class="author"><span class="glyphicon glyphicon-user"></span> (by
-Marcello Gallucci)</p>
+                  <p class="author"><span class="glyphicon glyphicon-user"></span> Marcello
+Gallucci</p>
                       </div>
    </div>
      
@@ -250,16 +250,16 @@ Marcello Gallucci)</p>
    
 <!-- Don't indent these lines or it will mess pre blocks indentation --> 
 <div id="main">
-<p><span class="keywords"> <span class="keytitle"> keywords </span>
-jamovi, Poisson models, generalized linear models, odd-ratios,
-regression, frequencies, count data, log-linear models </span></p>
+<span class="keywords"> <span class="keytitle"> keywords </span> jamovi,
+Poisson models, generalized linear models, odd-ratios, regression,
+frequencies, count data, log-linear models </span>
 <div class="version">
 <p>
-0.9.4
+3.0.0
 </p>
 </div>
-<p><span class="draft"> Draft version, mistakes may be around
-</span></p>
+<div id="simple-frequencies-analysis-with" class="section level1">
+<h1>Simple frequencies analysis with</h1>
 <p>In this example we analyze a dependent variable featuring frequency
 of events, or count data. The indipendent variables are one continuous
 and one dichotomous. We employ a poisson regression model.</p>
@@ -274,6 +274,7 @@ Poisson model assumptions are surely met, so some of the difficulties of
 dealing with count data and frequencies are not present. For more
 elaborated examples see <a href="gzlm_example4.html">Frequencies
 analysis with overdispersed models</a>.</p>
+</div>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
 <p>Imagine a hypothetical study about addiction to mobile phones.
@@ -484,24 +485,31 @@ contrast, which does exactly that.</p>
 <p>This concludes these set of analyses.</p>
 </div>
 </div>
-<div id="related-examples" class="section level1">
-<h1>Related examples</h1>
-</div>
-<div id="examples" class="section level1 adm adm-seealso">
-<h1>Examples</h1>
+<div id="related-examples" class="section level1 adm adm-seealso">
+<h1>Related Examples</h1>
 <p>
 Some worked out practical examples can be found here
 </p>
 <ul>
 <li>
-<a href="gzlm_example1.html">Multinomial analysis in jamovi</a>
+<a href="mixed_example1.html">Mixed Models: Random coefficients
+regression</a>
 </li>
 <li>
-<a href="gzlm_example2.html">Logistic analysis in jamovi</a>
+<a href="mixed_example2.html">Mixed Models: Repeated measures
+designs</a>
 </li>
 <li>
-<a href="gzlm_example4.html">Frequencies analysis with overdispersed
-models</a>
+<a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random
+effects</a>
+</li>
+<li>
+<a href="mixed_example4.html">Mixed Models: Crossing and Nesting Cluster
+variables</a>
+</li>
+<li>
+<a href="mixed_example5.html">Mixed Models: Autocorrelation in
+logitudinal data</a>
 </li>
 </ul>
 </div>
@@ -514,6 +522,13 @@ at github</a> or <a href="mailto:mcfanda@gmail.com
 
 ">send me an email</a>
 </p>
+</div>
+<div class="adm adm-seealso">
+<p>
+Return to main help pages
+</p>
+<a class='backto' href='index.html'>Main page</a>
+<a class="backto" href="gzlm.html">Generalized linear models</a>
 </div>
 </div>
 

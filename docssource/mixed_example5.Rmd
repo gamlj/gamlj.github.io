@@ -132,7 +132,9 @@ We can now look at the residuals distribution with clusters and check whether th
 We can see that now the residuals are much more randomly scattered around the X-axis. There seem to be more cases on the right-side of the plot than on the left, but that is not an issue related with the correlation among residuals. They are clearly evenly distributed around the predicted value. The residuals seem also  well distributed within the majority of clusters. We can then conclude that our second model is more accurate and go on reporting it. 
 
 
-# Related examples
-`r include_examples("mixed")`
+
+`r include_examples("mixed",title="Related")`
 
 `r issues()`
+
+`r backto("mixed")`

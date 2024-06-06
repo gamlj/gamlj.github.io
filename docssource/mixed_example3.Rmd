@@ -179,7 +179,9 @@ If we look at the plot of fixed and random effects, we can appreciate the new fe
 
 
 
-# Related examples
-`r include_examples("mixed")`
+
+`r include_examples("mixed",title="Related")`
 
 `r issues()`
+
+`r backto("mixed")`

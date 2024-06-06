@@ -169,14 +169,8 @@ In practice, if `uni_stimulus` uniquely identifies the levels of a nested variab
 
 
 
-
-
-
-
-
-
-
-# Related examples
-`r include_examples("mixed")`
+`r include_examples("mixed",title="Related")`
 
 `r issues()`
+
+`r backto("mixed")`

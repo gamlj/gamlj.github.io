@@ -1,6 +1,6 @@
 ---
 title: "Multinomial analysis in jamovi"
-author: "(by Marcello Gallucci)"
+author: "Marcello Gallucci"
 topic: gzlm
 category: example
 nickname: multinomial
@@ -153,4 +153,9 @@ Results show very weak support for an interaction, because the Chi-square is low
 <img src="examples/gzlm1/model2.moderation.plot.results2.png" class="img-responsive" alt="">
 <img src="examples/gzlm1/model2.moderation.plot.results3.png" class="img-responsive" alt="">
 
+
+`r include_examples("mixed",title="Related")`
+
 `r issues()`
+
+`r backto("gzlm")`

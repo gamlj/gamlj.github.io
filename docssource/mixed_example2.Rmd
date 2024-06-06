@@ -238,7 +238,9 @@ Which yields:
 
 <img src="examples/mixed2/r.emmeans1.png" class="img-responsive" alt="">
 
-# Related examples
-`r include_examples("mixed")`
+
+`r include_examples("mixed",title="Related")`
 
 `r issues()`
+
+`r backto("mixed")`

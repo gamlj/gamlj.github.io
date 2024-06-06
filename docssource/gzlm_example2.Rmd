@@ -1,6 +1,6 @@
 ---
 title: "Logistic analysis in jamovi"
-author: "(by Marcello Gallucci)"
+author: "Marcello Gallucci"
 nickname: logistic
 topic: gzlm
 category: example
@@ -196,7 +196,8 @@ First, the placebo group reports high rates of pain independently of age (blue l
 
 This may very well conclude the analyses.
 
-# Related examples
-`r include_examples("gzlm")`
+`r include_examples("mixed",title="Related")`
 
 `r issues()`
+
+`r backto("gzlm")`
