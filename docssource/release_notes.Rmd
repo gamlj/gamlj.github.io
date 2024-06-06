@@ -11,7 +11,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-#Releases and changes
 
 
 ```{r echo=FALSE,results='asis',warning=FALSE,message=FALSE}

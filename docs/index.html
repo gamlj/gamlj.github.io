@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="pandoc" />
+
+    
+    
+    <title>GAMLj</title>
+
+        <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+        <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="site_libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="site_libs/navigation-1.1/tabsets.js"></script>
+        <link href="site_libs/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
+        <script src="site_libs/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
+        <link href="site_libs/readthedown-0.1/readthedown.css" rel="stylesheet" />
+        <link href="site_libs/readthedown-0.1/readthedown_fonts_embed.css" rel="stylesheet" />
+        <script src="site_libs/readthedown-0.1/readthedown.js"></script>
+        <script>
+        $(document).ready(function () {
+
+            if ($(".root")[0]){
+              return
+            };
+            $('.navbar-toggle').show();
+            $('.navbar').css('display', 'none');
+            $('#sidebar > h2 ').append("<a id='navbut' href=''><i class='fa fa-bars'></i></a>");
+            $('#navbut').on( "click", function(e) {
+                       $('.navbar').toggle();
+                       e.preventDefault();
+               } );
+              $('.navbar-toggle').on('click', function(e) {
+                       $('.navbar').toggle();
+                       e.preventDefault();
+              });       
+            $(window).scroll(function (event) {
+                $('.navbar').css('display', 'none');
+            });       
+        });
+        </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-KM7X6HK5HM');
+        </script>
+    
+    
+    
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css" />
+        <link rel="stylesheet" href="style.css" type="text/css" />
+        <link rel="stylesheet" href="down.css" type="text/css" />
+    
+    <!-- tabsets -->
+    <script>
+      $(document).ready(function () {
+	  window.buildTabsets("toc");
+      });
+      $(document).ready(function () {
+	  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+	      $(this).parent().toggleClass('nav-tabs-open')
+	  });
+      });
+    </script>
+
+    <!-- code folding -->
+    
+    <!-- code download -->
+    
+    <!-- tabsets dropdown -->
+
+    <style type="text/css">
+      .tabset-dropdown > .nav-tabs {
+	  display: inline-table;
+	  max-height: 500px;
+	  min-height: 44px;
+	  overflow-y: auto;
+	  background: white;
+	  border: 1px solid #ddd;
+	  border-radius: 4px;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+	  content: "&#xe258;";
+	  border: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active {
+	  display: block;
+      }
+
+      .tabset-dropdown > .nav-tabs > li.active a {
+  	  padding: 0 15px !important;
+      }
+
+      .tabset-dropdown > .nav-tabs > li > a,
+      .tabset-dropdown > .nav-tabs > li > a:focus,
+      .tabset-dropdown > .nav-tabs > li > a:hover {
+	  border: none;
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: transparent;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+	  display: block;
+	  float: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li {
+	  display: none;
+	  margin-left: 0 !important;
+      }
+    </style>
+    
+</head>
+
+<body class="preload">
+
+   	
+         <!-- readthedown start -->   
+   <div id="content" data-toggle="wy-nav-shift">
+     <nav id="nav-top" role="navigation" aria-label="top navigation">
+       <a role="button" href="#" data-toggle="wy-nav-top"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+     </nav>
+         
+   
+      
+      <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">GAMLj</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li>
+        <a href="glm.html">GLM</a>
+      </li>
+      <li>
+        <a href="mixed.html">Mixed</a>
+      </li>
+      <li>
+        <a href="gzlm.html">Generalized</a>
+      </li>
+      <li>
+        <a href="gzlmmixed.html">Generalized Mixed</a>
+      </li>
+      <li>
+        <a href="examples.html">Examples</a>
+      </li>
+      <li>
+        <a href="release_notes.html">Release notes</a>
+      </li>
+      <li>
+        <a href="vignettes.html">GAMLj in R</a>
+      </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+        <a href="https://github.com/gamlj/gamlj">View on Github</a>
+      </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container -->
+      </div><!--/.navbar -->
+        
+      <h1 class="title">GAMLj</h1>
+      
+         <!-- readthedown authors -->
+   <div id="sidebar">
+    <h2><a href="#content">GAMLj</a></h2>
+    <div id="toc">
+      <ul>
+      <li><a href="#general-analyses-for-the-linear-model-in-jamovi"
+      id="toc-general-analyses-for-the-linear-model-in-jamovi">General
+      Analyses for the Linear Model in Jamovi</a></li>
+      <li><a href="#main-sub-modules" id="toc-main-sub-modules">Main
+      Sub-Modules</a></li>
+      <li><a href="#examples" id="toc-examples">Examples</a>
+      <ul>
+      <li><a href="#general-linear-models-examples"
+      id="toc-general-linear-models-examples">General Linear Models
+      Examples</a></li>
+      <li><a href="#linear-mixed-models-examples"
+      id="toc-linear-mixed-models-examples">Linear Mixed Models
+      Examples</a></li>
+      <li><a href="#generalized-linear-models-examples"
+      id="toc-generalized-linear-models-examples">Generalized Linear
+      Models Examples</a></li>
+      <li><a href="#generalized-mixed-models-examples"
+      id="toc-generalized-mixed-models-examples">Generalized Mixed
+      Models Examples</a></li>
+      </ul></li>
+      <li><a href="#details" id="toc-details">Details</a></li>
+      <li><a href="#quality-control" id="toc-quality-control">Quality
+      control</a></li>
+      <li><a href="#installation"
+      id="toc-installation">Installation</a></li>
+      <li><a href="#install-in-r" id="toc-install-in-r">Install in
+      R</a></li>
+      <li><a href="#release-notes" id="toc-release-notes">Release
+      notes</a></li>
+      <li><a href="#comments" id="toc-comments">Comments?</a></li>
+      </ul>
+    </div>
+    <div id="postamble" data-toggle="wy-nav-shift" class="status">
+                </div>
+   </div>
+     
+
+   
+      
+   
+<!-- Don't indent these lines or it will mess pre blocks indentation --> 
+<div id="main">
+<div class="root">
+
+</div>
+<div class="version">
+<p>
+3.0.0
+</p>
+</div>
+<div id="general-analyses-for-the-linear-model-in-jamovi"
+class="section level1">
+<h1>General Analyses for the Linear Model in Jamovi</h1>
+<p>This documentation it is being updated toward <span
+class="modulename">GAMLj</span> version 3 and above. You still find much
+of the material suitable for <span class="modulename">GAMLj</span>
+version 2. In case you want to read documentation that applies only to
+version 2, please go to
+<a href='https://mcfanda.github.io/gamlj_legacy.github.io/' target='_blank'>Version
+2 docs</a>.</p>
+<div class="adm adm-seealso">
+<p>More Info</p>
+<p>If you are interested in more information about the statistical
+models that can be estimated by <span class="modulename">GAMLj</span>,
+and their results interpretation, you can read
+<a href='https://gamlj.github.io/book/booklet.html' target='_blank'>GAMLj
+models</a>, a (in progress) web book companion to the module.</p>
+</div>
+<p>General, Mixed and Generalized and Generalized Mixed Models module
+for <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>.</p>
+<p><img src="commons/pics/ui.png" width="787" /></p>
+<p>GAMLj offers tools to estimate, visualize, and interpret General
+Linear Models, Mixed Linear Models and Generalized Linear Models with
+categorical and/or continuous variables, with options to facilitate
+estimation of interactions, simple slopes, simple effects, post-hoc
+tests, etc.</p>
+<ul>
+<li>ANOVA and Regression approach</li>
+<li>Continuous and categorical independent variables</li>
+<li>F-test, LR tests, and parameter estimates</li>
+<li>Confidence intervals, standard, profile and bootstrap</li>
+<li>Moderation made easy</li>
+<li>Simple slopes analysis</li>
+<li>Simple effects analysis</li>
+<li>Simple interaction analysis</li>
+<li>Post-hoc analysis</li>
+<li>Plots for any order of interactions</li>
+<li>Automatic selection of best estimation methods and degrees of
+freedom selection</li>
+<li>Type III estimation</li>
+<li>A large set of effect size indices, depending on the model being
+estimated, such as <span class="math inline">\(\eta^2\)</span>, <span
+class="math inline">\(\omega^2\)</span>, <span
+class="math inline">\(\epsilon^2\)</span>, and Cohen’s <span
+class="math inline">\(d\)</span>, both partial and not partial.</li>
+</ul>
+<p>Available models are:</p>
+<ul>
+<li>OLS Regression (GLM)</li>
+<li>OLS ANOVA (GLM)</li>
+<li>OLS ANCOVA (GLM)</li>
+<li>Random coefficients regression (Mixed)</li>
+<li>Random coefficients ANOVA-ANCOVA (Mixed)</li>
+<li>Logistic regression (GZLM)</li>
+<li>Logistic ANOVA-like model (GZLM)</li>
+<li>Probit regression (GZLM)</li>
+<li>Probit ANOVA-like model (GZLM)</li>
+<li>Multinomial regression (GZLM)</li>
+<li>Multinomial ANOVA-like model (GZLM)</li>
+<li>Poisson regression (GZLM)</li>
+<li>Poisson ANOVA-like model (GZLM)</li>
+<li>Overdispersed Poisson regression (GZLM)</li>
+<li>Overdispersed Poisson ANOVA-like model (GZLM)</li>
+<li>Negative binomial regression (GZLM)</li>
+<li>Negative binomial ANOVA-like model (GZLM)</li>
+<li>Ordinal regression (GZLM)</li>
+<li>Ordinal ANOVA-like model (GZLM)</li>
+<li>Mixed Logistic regression (GMixed)</li>
+<li>Mixed Logistic ANOVA-like model (GMixed)</li>
+<li>Mixed Probit regression (GMixed)</li>
+<li>Mixed Probit ANOVA-like model (GMixed)</li>
+<li>Mixed Multinomial regression (GMixed)</li>
+<li>Mixed Multinomial ANOVA-like model (GMixed)</li>
+<li>Mixed Poisson regression (GMixed)</li>
+<li>Mixed Poisson ANOVA-like model (GMixed)</li>
+<li>Mixed Overdispersed Poisson regression (GMixed)</li>
+<li>Mixed Overdispersed Poisson ANOVA-like model (GMixed)</li>
+<li>Mixed Negative binomial regression (GMixed)</li>
+<li>Mixed Negative binomail ANOVA-like model (GMixed)</li>
+<li>Mixed Ordinal regression (GMixed)</li>
+<li>Mixed Ordinal ANOVA-like model (GMixed)</li>
+</ul>
+<p>Please visit the sub-modules pages for details:</p>
+</div>
+<div id="main-sub-modules" class="section level1 adm adm-seealso">
+<h1>Main Sub-Modules</h1>
+<ul>
+<li><a href="glm.html">GAMLj GLM</a></li>
+<li><a href="mixed.html">GAMLj Mixed models</a></li>
+<li><a href="gzlm.html">GAMLj Generalized Models</a></li>
+<li><a href="gzlmmixed.html">GAMLj Generalized Mixed Models</a></li>
+</ul>
+</div>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<p>Some worked out examples of the analyses carried out with <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+<span class="modulename">GAMLj</span> are posted here (more to come)</p>
+<div class="littletitle">
+General Linear Model
+</div>
+<div id="general-linear-models-examples"
+class="section level2 adm adm-seealso">
+<h2>General Linear Models Examples</h2>
+<ul>
+<li>
+<a href="glm_example1.html">GLM: Multiple regression, moderated
+regression, and simple slopes</a>
+</li>
+<li>
+<a href="glm_example2.html">Polynomial Effects</a>
+</li>
+</ul>
+</div>
+<div id="linear-mixed-models-examples"
+class="section level2 adm adm-seealso">
+<h2>Linear Mixed Models Examples</h2>
+<ul>
+<li>
+<a href="mixed_example1.html">Mixed Models: Random coefficients
+regression</a>
+</li>
+<li>
+<a href="mixed_example2.html">Mixed Models: Repeated measures
+designs</a>
+</li>
+<li>
+<a href="mixed_example3.html">Mixed Models: Subjects by Stimuli random
+effects</a>
+</li>
+<li>
+<a href="mixed_example4.html">Mixed Models: Crossing and Nesting Cluster
+variables</a>
+</li>
+<li>
+<a href="mixed_example5.html">Mixed Models: Autocorrelation in
+logitudinal data</a>
+</li>
+</ul>
+</div>
+<div id="generalized-linear-models-examples"
+class="section level2 adm adm-seealso">
+<h2>Generalized Linear Models Examples</h2>
+<ul>
+<li>
+<a href="gzlm_example1.html">Multinomial analysis in jamovi</a>
+</li>
+<li>
+<a href="gzlm_example2.html">Logistic analysis in jamovi</a>
+</li>
+<li>
+<a href="gzlm_example4.html">Frequencies analysis with overdispersed
+models</a>
+</li>
+</ul>
+</div>
+<div id="generalized-mixed-models-examples"
+class="section level2 adm adm-seealso">
+<h2>Generalized Mixed Models Examples</h2>
+<ul>
+<li>
+<a href="glmmixed_example1.html">Logistic mixed model in jamovi</a>
+</li>
+<li>
+<a href="glmmixed_example2.html">Poisson and Negative Binomial mixed
+models in jamovi</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="details" class="section level1 adm adm-seealso">
+<h1>Details</h1>
+<p>
+Some more information about the module specs can be found here
+</p>
+<ul>
+<li>
+<a href="details_glm_effectsize.html">Details: GLM effect size
+indices</a>
+</li>
+<li>
+<a href="details_goodness.html">Details: Model goodness of fit in
+GAMLj</a>
+</li>
+<li>
+<a href="gmixed_specs.html">Generalized mixed model module technical
+details</a>
+</li>
+<li>
+<a href="gzlm_specs.html">Generalized linear model module technical
+details</a>
+</li>
+<li>
+<a href="mixed_specs.html">Mixed Models module technical details</a>
+</li>
+<li>
+<a href="posthoc_specs.html">Post-hocs Details</a>
+</li>
+</ul>
+</div>
+<div id="quality-control" class="section level1">
+<h1>Quality control</h1>
+<p>Please check the <a href="rosetta.html">rosetta store</a> for
+alignment with other software results and possible discrepancies.</p>
+<div class="adm adm-seealso">
+<p>Links</p>
+<ul>
+<li>
+<a href="rosetta_contrasts.html">Rosetta store: contrasts</a>
+</li>
+<li>
+<a href="rosetta_gzlmmixed1.html">Rosetta store: Generalized Mixed</a>
+</li>
+<li>
+<a href="rosetta_moderation.html">Rosetta store: moderation</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="installation" class="section level1">
+<h1>Installation</h1>
+<p>If you didn’t already, install <a
+href="https://www.jamovi.org/download.html">jamovi</a> and run it.
+Select the jamovi modules library and install GAMLj from there</p>
+<p><img src="glm/install.png" class="img-responsive" alt=""></p>
+<p>You will first need to download <a
+href="https://www.jamovi.org/download.html">Jamovi</a>.</p>
+</div>
+<div id="install-in-r" class="section level1">
+<h1>Install in R</h1>
+<p>To install it in R, simple use:</p>
+<pre><code>
+devtools::install_github(&quot;gamlj/gamlj&quot;)
+</code></pre>
+</div>
+<div id="release-notes" class="section level1">
+<h1>Release notes</h1>
+<p>Please check out the <a href="release_notes.html">Release
+notes</a>.</p>
+</div>
+<div id="comments" class="section level1 adm adm-warning">
+<h1>Comments?</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues " target="_blank"> GAMLj
+at github</a> or <a href="mailto:mcfanda@gmail.com
+
+">send me an email</a>
+</p>
+</div>
+</div>
+
+   
+   
+            
+      
+
+  <script>
+    $(document).ready(function () {
+
+			
+ 		
+		$('#content img:not(.no-lightbox)').addClass("image-lb");
+	$('#content').magnificPopup({
+	    type:'image',
+	    closeOnContentClick: false,
+	    closeBtnInside: false,
+	    delegate: '.image-lb',
+	    gallery: {enabled: false },
+	    image: {
+	        verticalFit: true,
+		titleSrc: 'alt'
+	    }
+ 	});
+ 	    });
+  </script>
+
+
+
+    <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+	document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  
+</body>
+</html>
