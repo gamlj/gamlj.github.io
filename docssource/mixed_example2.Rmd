@@ -1,6 +1,6 @@
 ---
 title: "Mixed Models: Repeated measures designs"
-author: "(by Marcello Gallucci)"
+author: "Marcello Gallucci"
 topic: mixed
 nickname: mixedrepeated
 category: example
