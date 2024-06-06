@@ -1,5 +1,6 @@
 ---
 title: "Generalized linear model module technical details"
+author: Marcello Gallucci
 output: 
   html_document:
      toc: true

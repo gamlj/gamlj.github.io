@@ -1,9 +1,9 @@
 ---
 title: "Rosetta store: Generalized Mixed"
 category: rosetta
-topic: gzlmmixed
+topic: gmixed
 nickname: ros_gzlmmixed
-author: "(Marcello Gallucci)"
+author: "Marcello Gallucci"
 output: 
   html_document:
     

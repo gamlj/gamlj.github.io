@@ -3,14 +3,6 @@ title: "Mixed Models module"
 topic: mixed
 category: help
 
-output: 
-  html_document:
-     includes:
-         in_header: ganalytics.txt
-     toc: true
-     toc_float:
-        collapsed: false
-
 
 ---
 
@@ -22,7 +14,7 @@ mcdocs_init()
 ```
 
 
-`r version("1.5.0")` 
+`r version("3.0.0")` 
 
 
 **Mixed Linear Models** module of the GAMLj suite for jamovi
@@ -146,14 +138,20 @@ By flagging `Random effects` one obtains the random effects estimated values in 
 
 
 
-# Examples
-
-Some worked out examples of the analyses carried out with jamovi GAMLj Mixed models are posted here (more to come)
-
 `r include_examples("mixed")`
 
-# Details
-
-Some more information about the module specs can be found here
 
 `r include_details("mixed")`
+
+:::{ .adm .adm-seealso}
+
+# Comparison with other software
+
+
+`r list_pages(category="rosetta", topic="mixed")`
+
+:::
+
+`r issues()`
+
+`r backto()`

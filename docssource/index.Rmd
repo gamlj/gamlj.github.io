@@ -1,5 +1,5 @@
 ---
-title: "GAMLj: General Analyses for the Linear Model in Jamovi"
+title: "GAMLj"
 output: 
   html_document:
     includes:
@@ -7,6 +7,8 @@ output:
 
 ---
   
+:::{ .root }
+:::
 
 ```{r echo=FALSE,results='hide'}
 library(mcdocs)
@@ -16,13 +18,16 @@ mcdocs_init()
   
 `r version("3.0.0")`
 
+# General Analyses for the Linear Model in Jamovi
+
 This documentation it is being updated toward `r modulename()` version 3 and above. You still find much of the material suitable for `r modulename()` version 2. In case you want to read documentation that applies only to version 2, please go to `r ext_url("Version 2 docs","https://mcfanda.github.io/gamlj_legacy.github.io/")`.
 
 <div class="bignote">  
 If you are interested in more information about the statistical models that can be estimated by `r modulename()`, and their results interpretation, you can read  `r ext_url("GAMLj models","https://gamlj.github.io/book/booklet.html")`, a (in progress) web book companion to the module.
 </div>
 
-General, Mixed and Generalized Models module for `r jamovi`.
+
+General, Mixed and Generalized and Generalized Mixed Models module for `r jamovi`.
 
 `r pic("commons/pics/ui.png")`
 
@@ -79,33 +84,44 @@ Available models are:
 * Mixed Ordinal ANOVA-like model (GMixed)
 
 
+
 Please visit the sub-modules pages for details:
+
+:::{ .adm .adm-seealso}
+# Main Sub-Modules
 
 * [GAMLj GLM](glm.html)
 * [GAMLj Mixed models](mixed.html)
 * [GAMLj Generalized Models](gzlm.html)
 * [GAMLj Generalized Mixed Models](gzlmmixed.html)
 
+:::
+
 # Examples
 
 Some worked out examples of the analyses carried out with `r jamovi` `r modulename()` are posted here (more to come)
 
 <div class="littletitle">General Linear Model</div>
-`r list_pages(topic="glm",category = "example")`
-<div class="littletitle">Mixed models</div>
-`r include_examples("mixed")`
-<div class="littletitle">Generalized Linear Models</div>
-`r include_examples("gzlm")`
+`r include_examples("glm",mute=T,title="General Linear Models", level=2)`
 
-<div class="littletitle">Generalized Mixed Models</div>
+`r include_examples("mixed",mute=T,title="Linear Mixed Models", level=2)`
 
-`r include_examples("gmixed")`
+`r include_examples("gzlm",mute=T,title="Generalized Linear Models", level=2)`
 
+`r include_examples("gmixed",mute=T,title="Generalized Mixed Models", level=2)`
 
-# Details
 
 `r  include_details(NULL)`
 
+# Quality control
+
+Please check the [rosetta store](rosetta.html) for alignment with other software results and possible discrepancies.
+
+:::{ .adm .adm-seealso}
+Links
+
+`r list_pages(category="rosetta")`
+:::
 
 
 # Installation
@@ -114,24 +130,8 @@ If you didn't already, install [jamovi](https://www.jamovi.org/download.html) an
 
 <img src="glm/install.png" class="img-responsive" alt="">
 
-## Linux
-
-If you are working in linux you can download [Jamovi](https://www.jamovi.org/download.html), then download the .jmo from this link [gamlj binaries](https://github.com/mcfanda/binaries/blob/master/gamlj_linux.jmo).
-
-
-## Others
 
 You will first need to download [Jamovi](https://www.jamovi.org/download.html). 
-
-
-You can clone this repository and compile the module within R with 
-
-```
-library(jmvtools)
-
-jmvtools::install()
-
-```
 
 # Install in R
 
@@ -143,6 +143,8 @@ devtools::install_github("gamlj/gamlj")
 
 ```
 
+
+
 # Troubleshooting
 
 Please check out the  [troubleshooting page](https://mcfanda.github.io/gamlj_docs/troubles.html). 
@@ -151,13 +153,7 @@ Please check out the  [troubleshooting page](https://mcfanda.github.io/gamlj_doc
 
 Please check out the  [Release notes](release_notes.html). 
 
-# Quality control
 
-Please check the [rosetta store](rosetta.html) for alignment with other software results and possible discrepancies.
-
-# Specs
-
-`r list_pages(category="details")`
 
   
 `r issues()`

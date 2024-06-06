@@ -154,21 +154,19 @@ The `r opt("CI method")` decides which method is used for computing confidence i
 
 `r panel_options('gamljgmixed','panel_options')`
 
-
-
-# Examples
-
-Some worked out examples of the analyses carried out with `r jamovi` GAMLj Mixed models are posted here (more to come)
-
 `r include_examples("gmixed")`
 
-# Details
 
-Some more information about the module specs can be found here
+`r include_details("gmmixed")`
 
-`r include_details("gmixed")`
-
+:::{ .adm .adm-seealso}
 
 # Comparison with other software
 
-`r list_pages(category="rosetta", topic="gzlmmixed")`
+`r list_pages(category="rosetta", topic="gmixed")`
+
+:::
+
+`r issues()`
+
+`r backto()`

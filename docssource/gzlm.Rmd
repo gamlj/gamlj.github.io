@@ -2,13 +2,6 @@
 title: "Generalized linear models"
 topic: gzlm
 category: help
-output: 
-  html_document:
-     includes:
-         in_header: ganalytics.txt
-     toc: true
-     toc_float:
-        collapsed: false
 ---
 
 
@@ -162,18 +155,20 @@ The options are:
 `r panel_options('gamljglm','panel_options')`
 
 
-# Examples
-
-Some worked out examples of the analyses carried out with jamovi GAMLj GZLM are posted here (more to come)
-
 `r include_examples("gzlm")`
 
 
-# Details
-
-Some more information about the module specs can be found here
-
 `r include_details("gzlm")`
 
+:::{ .adm .adm-seealso}
+
+# Comparison with other software
+
+Not yet present
+`r list_pages(category="rosetta", topic="gzlm")`
+
+:::
 
 `r issues()`
+
+`r backto()`

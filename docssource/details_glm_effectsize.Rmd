@@ -1,5 +1,6 @@
 ---
 title: 'Details: GLM effect size indices'
+author: Marcello Gallucci
 nickname: details_glm_effectsize
 bibliography: 
      - bib.bib
@@ -210,7 +211,9 @@ Details for the confidence intervals computation can be found in [Ben-Shachar, M
 
 `r issues()`
 
+`r backto("glm")`
+
 <script type="text/javascript" src="local.js"></script>
 
 
-# Additional references
+# References

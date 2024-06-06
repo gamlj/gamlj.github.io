@@ -1,12 +1,6 @@
 ---
 title: "Post-hocs Details"
 author: "Marcello Gallucci"
-output: 
-  html_document:
-     toc: true
-     toc_float:
-        collapsed: false
-
 topic: glm
 category: details
 
@@ -22,7 +16,10 @@ Post-hocs tests are performed as implemented in the [emmeans package](https://cr
       bonferroni <- summary(pairs(referenceGrid, adjust='bonferroni'))
       holm <- summary(pairs(referenceGrid, adjust='holm'))
       tukey<-summary(pairs(referenceGrid, adjust='tukey'))
+      scheffe<-summary(pairs(referenceGrid, adjust='scheffe'))
+      sidak<-summary(pairs(referenceGrid, adjust='sidak'))
+
+      
 ```
 
-In `Mixed` module only `bonferroni` and `holm` methods are implemented yet, because I did not find enough evidence in the literature in support of other methods. 
 

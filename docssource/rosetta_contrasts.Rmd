@@ -5,7 +5,6 @@ category: rosetta
 nickname: ros_contrasts
 output: 
   html_document:
-    
     includes:
          in_header: ganalytics.txt
     toc: true
@@ -774,10 +773,9 @@ contrast(emm,"helmert",adjust="none")
 
 and we get the contrast estimates as expected. For the `difference` contrast we can use `con_weights<-contr.helmert(n)` in the function and we get the correct codes.
 
+:::{ .adm .adm-seealso}
 # Rosetta's files
-
 `r list_pages(category="rosetta")`
-
-
+:::
 
 `r issues()`

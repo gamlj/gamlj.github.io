@@ -7,11 +7,11 @@ navbar:
     href:  glm.html
   - text: "Mixed"
     href: mixed.html
-  - text: "Generalized Models"
+  - text: "Generalized"
     href:  gzlm.html
-  - text: "Generalized Mixed Models"
+  - text: "Generalized Mixed"
     href:  gzlmmixed.html
-  - text: "Examples and Details"
+  - text: "Examples"
     href:  examples.html
   - text: "Release notes"
     href:  release_notes.html
@@ -21,11 +21,18 @@ navbar:
   right: 
   - text: "View on Github"
     href: https://github.com/gamlj/gamlj
-output:
-  html_document:
-    css: 
-     - style.css
-     - helpstyle.css
-    theme: flatly
 
+output:
+    rmdformats::readthedown:
+       highlight: kate
+       lightbox: true
+       toc: 3
+       css: 
+          - https://use.fontawesome.com/releases/v5.15.4/css/all.css
+          - style.css
+          - down.css
+       includes:
+           in_header: 
+                     - my.js
+                     - ganalytics.txt
     

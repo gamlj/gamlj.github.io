@@ -108,8 +108,48 @@ It has prevalence on other options defining a simple effects test via character 
 <span class="r-in"><span><span class="va">gmod</span><span class="op">&lt;-</span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="gamlj_mixed.html">gamlj_mixed</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>   formula <span class="op">=</span> <span class="va">dv</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span><span class="va">group</span><span class="op">+</span> <span class="va">time</span><span class="op">:</span><span class="va">group</span><span class="op">+</span> <span class="va">time</span><span class="op">+</span><span class="op">(</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">subj</span> <span class="op">)</span>,</span></span>
 <span class="r-in"><span>   data <span class="op">=</span> <span class="va">wicksell</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lmer   #### phase init  ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lmer   #### phase run ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.0300307273864746  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: estimating variance components</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.646080493927002  secs</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">simple_effects</span><span class="op">(</span><span class="va">gmod</span>,formula <span class="op">=</span><span class="op">~</span><span class="va">time</span><span class="op">:</span><span class="va">group</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lmer   #### phase init  ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lmer   #### phase run ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.0233566761016846  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: estimating variance components</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PROCEDURE: Simple Effects estimated</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PROCEDURE: done</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.446419954299927  secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  SIMPLE EFFECTS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

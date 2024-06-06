@@ -1,7 +1,9 @@
 ---
 title: "General Linear Model"
+author: Marcello Gallucci
 topic: glm
 category: help
+nickname: glm
 output: 
   html_document:
      includes:
@@ -161,23 +163,7 @@ The remaining options are defined as follows:
 `r panel_options('gamljlm','panel_options')`
 
 
-
-
-`r link_pages("details_glm_effectsize")`
-
-
-
-
-# Examples
-
-Some worked out examples of the analyses carried out with jamovi GAMLj are posted here (more to come)
-
 `r include_examples("glm")`
-
-# Details
-
-Some more information about the module specs can be found here
-# Specs
 
 
 `r include_details("glm")`
@@ -185,4 +171,4 @@ Some more information about the module specs can be found here
 
 `r issues()`
 
-'
+# References

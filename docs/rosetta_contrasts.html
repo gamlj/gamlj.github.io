@@ -1,379 +1,398 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="pandoc" />
 
-<html>
+    
+    
+    <title>Rosetta store: contrasts</title>
 
-<head>
+        <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+        <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="site_libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="site_libs/navigation-1.1/tabsets.js"></script>
+        <link href="site_libs/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
+        <script src="site_libs/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
+        <link href="site_libs/readthedown-0.1/readthedown.css" rel="stylesheet" />
+        <link href="site_libs/readthedown-0.1/readthedown_fonts_embed.css" rel="stylesheet" />
+        <script src="site_libs/readthedown-0.1/readthedown.js"></script>
+        <script>
+        $(document).ready(function () {
 
-<meta charset="utf-8" />
-<meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+            if ($(".root")[0]){
+              return
+            };
+            $('.navbar-toggle').show();
+            $('.navbar').css('display', 'none');
+            $('#sidebar > h2 ').append("<a id='navbut' href=''><i class='fa fa-bars'></i></a>");
+            $('#navbut').on( "click", function(e) {
+                       $('.navbar').toggle();
+                       e.preventDefault();
+               } );
+              $('.navbar-toggle').on('click', function(e) {
+                       $('.navbar').toggle();
+                       e.preventDefault();
+              });       
+            $(window).scroll(function (event) {
+                $('.navbar').css('display', 'none');
+            });       
+        });
+        </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-
-
-
-<title>Rosetta store: contrasts</title>
-
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KM7X6HK5HM');
-</script>
-
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
+          gtag('config', 'G-KM7X6HK5HM');
+        </script>
+    
+    
+        <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+      pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      .sourceCode { overflow: visible; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+          background-color: #ffffff;
+          color: #a0a0a0;
+        }
+      pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+      div.sourceCode
+        { color: #1f1c1b; background-color: #ffffff; }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+      code span { color: #1f1c1b; } /* Normal */
+      code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+      code span.an { color: #ca60ca; } /* Annotation */
+      code span.at { color: #0057ae; } /* Attribute */
+      code span.bn { color: #b08000; } /* BaseN */
+      code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+      code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+      code span.ch { color: #924c9d; } /* Char */
+      code span.cn { color: #aa5500; } /* Constant */
+      code span.co { color: #898887; } /* Comment */
+      code span.cv { color: #0095ff; } /* CommentVar */
+      code span.do { color: #607880; } /* Documentation */
+      code span.dt { color: #0057ae; } /* DataType */
+      code span.dv { color: #b08000; } /* DecVal */
+      code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+      code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+      code span.fl { color: #b08000; } /* Float */
+      code span.fu { color: #644a9b; } /* Function */
+      code span.im { color: #ff5500; } /* Import */
+      code span.in { color: #b08000; } /* Information */
+      code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+      code span.op { color: #1f1c1b; } /* Operator */
+      code span.ot { color: #006e28; } /* Other */
+      code span.pp { color: #006e28; } /* Preprocessor */
+      code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+      code span.sc { color: #3daee9; } /* SpecialChar */
+      code span.ss { color: #ff5500; } /* SpecialString */
+      code span.st { color: #bf0303; } /* String */
+      code span.va { color: #0057ae; } /* Variable */
+      code span.vs { color: #bf0303; } /* VerbatimString */
+      code span.wa { color: #bf0303; } /* Warning */
     </style>
+    
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css" />
+        <link rel="stylesheet" href="style.css" type="text/css" />
+        <link rel="stylesheet" href="down.css" type="text/css" />
+    
+    <!-- tabsets -->
+    <script>
+      $(document).ready(function () {
+	  window.buildTabsets("toc");
+      });
+      $(document).ready(function () {
+	  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+	      $(this).parent().toggleClass('nav-tabs-open')
+	  });
+      });
+    </script>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
+    <!-- code folding -->
+    
+    <!-- code download -->
+    
+    <!-- tabsets dropdown -->
 
+    <style type="text/css">
+      .tabset-dropdown > .nav-tabs {
+	  display: inline-table;
+	  max-height: 500px;
+	  min-height: 44px;
+	  overflow-y: auto;
+	  background: white;
+	  border: 1px solid #ddd;
+	  border-radius: 4px;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+	  content: "&#xe258;";
+	  border: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active {
+	  display: block;
+      }
 
+      .tabset-dropdown > .nav-tabs > li.active a {
+  	  padding: 0 15px !important;
+      }
 
-
-
-
-<link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="stylesheet" href="helpstyle.css" type="text/css" />
-
-
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-img {
-  max-width:100%;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-summary {
-  display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
-}
-pre code {
-  padding: 0;
-}
-</style>
-
-
-<style type="text/css">
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
-}
-</style>
-
-<script type="text/javascript">
-// manage active state of menu based on current page
-$(document).ready(function () {
-  // active menu anchor
-  href = window.location.pathname
-  href = href.substr(href.lastIndexOf('/') + 1)
-  if (href === "")
-    href = "index.html";
-  var menuAnchor = $('a[href="' + href + '"]');
-
-  // mark the anchor link active (and if it's in a dropdown, also mark that active)
-  var dropdown = menuAnchor.closest('li.dropdown');
-  if (window.bootstrap) { // Bootstrap 4+
-    menuAnchor.addClass('active');
-    dropdown.find('> .dropdown-toggle').addClass('active');
-  } else { // Bootstrap 3
-    menuAnchor.parent().addClass('active');
-    dropdown.addClass('active');
-  }
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
-});
-</script>
-
-<!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "\e259";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "\e258";
-  font-family: 'Glyphicons Halflings';
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-  background-color: transparent;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
-<!-- code folding -->
-
-
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
-
+      .tabset-dropdown > .nav-tabs > li > a,
+      .tabset-dropdown > .nav-tabs > li > a:focus,
+      .tabset-dropdown > .nav-tabs > li > a:hover {
+	  border: none;
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: transparent;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+	  display: block;
+	  float: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li {
+	  display: none;
+	  margin-left: 0 !important;
+      }
+    </style>
+    
 </head>
 
-<body>
+<body class="preload">
 
-
-<div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
-
-
-
-
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">GAMLj</a>
+   	
+         <!-- readthedown start -->   
+   <div id="content" data-toggle="wy-nav-shift">
+     <nav id="nav-top" role="navigation" aria-label="top navigation">
+       <a role="button" href="#" data-toggle="wy-nav-top"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+     </nav>
+         
+   
+      
+      <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">GAMLj</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li>
+        <a href="glm.html">GLM</a>
+      </li>
+      <li>
+        <a href="mixed.html">Mixed</a>
+      </li>
+      <li>
+        <a href="gzlm.html">Generalized</a>
+      </li>
+      <li>
+        <a href="gzlmmixed.html">Generalized Mixed</a>
+      </li>
+      <li>
+        <a href="examples.html">Examples</a>
+      </li>
+      <li>
+        <a href="release_notes.html">Release notes</a>
+      </li>
+      <li>
+        <a href="vignettes.html">GAMLj in R</a>
+      </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+        <a href="https://github.com/gamlj/gamlj">View on Github</a>
+      </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container -->
+      </div><!--/.navbar -->
+        
+      <h1 class="title">Rosetta store: contrasts</h1>
+      
+         <!-- readthedown authors -->
+   <div id="sidebar">
+    <h2><a href="#content">Rosetta store: contrasts</a></h2>
+    <div id="toc">
+      <ul>
+      <li><a href="#introduction"
+      id="toc-introduction">Introduction</a></li>
+      <li><a href="#software" id="toc-software">Software</a></li>
+      <li><a href="#more-technical-details"
+      id="toc-more-technical-details">More technical details</a></li>
+      <li><a href="#terminology"
+      id="toc-terminology">Terminology</a></li>
+      <li><a href="#contrast-deviation"
+      id="toc-contrast-deviation">Contrast: Deviation</a>
+      <ul>
+      <li><a href="#meaning" id="toc-meaning">Meaning</a></li>
+      <li><a href="#jamovi-anova" id="toc-jamovi-anova"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      ANOVA</a></li>
+      <li><a href="#jamovi-gamlj-glm" id="toc-jamovi-gamlj-glm"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      <span class="modulename">GAMLj</span> GLM</a></li>
+      <li><a href="#spss" id="toc-spss">SPSS</a></li>
+      <li><a href="#r" id="toc-r">R</a></li>
+      <li><a href="#r-emmeans" id="toc-r-emmeans">R emmeans</a></li>
+      </ul></li>
+      <li><a href="#contrast-simple-dummy"
+      id="toc-contrast-simple-dummy">Contrast: Simple &amp; Dummy</a>
+      <ul>
+      <li><a href="#meaning-1" id="toc-meaning-1">Meaning</a></li>
+      <li><a href="#jamovi-anova-1" id="toc-jamovi-anova-1"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      ANOVA</a></li>
+      <li><a href="#jamovi-gamlj-glm-1"
+      id="toc-jamovi-gamlj-glm-1"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      <span class="modulename">GAMLj</span> GLM</a></li>
+      <li><a href="#spss-1" id="toc-spss-1">SPSS</a></li>
+      <li><a href="#r-1" id="toc-r-1">R</a></li>
+      <li><a href="#r-emmeans-1" id="toc-r-emmeans-1">R emmeans</a></li>
+      <li><a href="#simple-vs-dummy" id="toc-simple-vs-dummy">Simple vs
+      Dummy</a></li>
+      </ul></li>
+      <li><a href="#contrast-repeated"
+      id="toc-contrast-repeated">Contrast: Repeated</a>
+      <ul>
+      <li><a href="#jamovi-anova-2" id="toc-jamovi-anova-2"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      ANOVA</a></li>
+      <li><a href="#jamovi-gamlj-glm-2"
+      id="toc-jamovi-gamlj-glm-2"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      <span class="modulename">GAMLj</span> GLM</a></li>
+      <li><a href="#spss-2" id="toc-spss-2">SPSS</a></li>
+      <li><a href="#r-2" id="toc-r-2">R</a></li>
+      <li><a href="#r-emmeans-2" id="toc-r-emmeans-2">R emmeans</a></li>
+      </ul></li>
+      <li><a href="#contrast-polynomial"
+      id="toc-contrast-polynomial">Contrast: Polynomial</a>
+      <ul>
+      <li><a href="#jamovi-anova-3" id="toc-jamovi-anova-3"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      ANOVA</a></li>
+      <li><a href="#jamovi-gamlj-glm-3"
+      id="toc-jamovi-gamlj-glm-3"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      <span class="modulename">GAMLj</span> GLM</a></li>
+      <li><a href="#spss-3" id="toc-spss-3">SPSS</a></li>
+      <li><a href="#r-3" id="toc-r-3">R</a></li>
+      <li><a href="#r-emmeans-3" id="toc-r-emmeans-3">R emmeans</a></li>
+      </ul></li>
+      <li><a href="#contrast-difference"
+      id="toc-contrast-difference">Contrast: Difference</a>
+      <ul>
+      <li><a href="#jamovi-anova-4" id="toc-jamovi-anova-4"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      ANOVA</a></li>
+      <li><a href="#jamovi-gamlj-glm-4"
+      id="toc-jamovi-gamlj-glm-4"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      <span class="modulename">GAMLj</span> GLM</a></li>
+      <li><a href="#spss-4" id="toc-spss-4">SPSS</a></li>
+      <li><a href="#r-4" id="toc-r-4">R</a></li>
+      <li><a href="#r-emmeans-4" id="toc-r-emmeans-4">R emmeans</a></li>
+      </ul></li>
+      <li><a href="#contrast-helmert"
+      id="toc-contrast-helmert">Contrast: Helmert</a>
+      <ul>
+      <li><a href="#jamovi-anova-5" id="toc-jamovi-anova-5"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      ANOVA</a></li>
+      <li><a href="#jamovi-gamlj-glm-5"
+      id="toc-jamovi-gamlj-glm-5"><span
+      class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+      <span class="modulename">GAMLj</span> GLM</a></li>
+      <li><a href="#spss-5" id="toc-spss-5">SPSS</a></li>
+      <li><a href="#r-5" id="toc-r-5">R</a></li>
+      <li><a href="#r-emmeans-5" id="toc-r-emmeans-5">R emmeans</a></li>
+      </ul></li>
+      <li><a href="#contrast-matrix-vs-model-matrix"
+      id="toc-contrast-matrix-vs-model-matrix">Contrast matrix vs model
+      matrix</a>
+      <ul>
+      <li><a href="#building-custom-contrast-in-emmeans"
+      id="toc-building-custom-contrast-in-emmeans">Building custom
+      contrast in emmeans</a></li>
+      </ul></li>
+      <li><a href="#rosettas-files" id="toc-rosettas-files">Rosetta’s
+      files</a></li>
+      <li><a href="#comments" id="toc-comments">Comments?</a></li>
+      </ul>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="glm.html">GLM</a>
-</li>
-<li>
-  <a href="mixed.html">Mixed</a>
-</li>
-<li>
-  <a href="gzlm.html">Generalized Models</a>
-</li>
-<li>
-  <a href="gzlmmixed.html">Generalized Mixed Models</a>
-</li>
-<li>
-  <a href="examples.html">Examples and Details</a>
-</li>
-<li>
-  <a href="release_notes.html">Release notes</a>
-</li>
-<li>
-  <a href="vignettes.html">GAMLj in R</a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/gamlj/gamlj">View on Github</a>
-</li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
+    <div id="postamble" data-toggle="wy-nav-shift" class="status">
+                </div>
+   </div>
+     
 
-<div id="header">
-
-
-
-<h1 class="title toc-ignore">Rosetta store: contrasts</h1>
-
-</div>
-
-
+   
+      
+   
+<!-- Don't indent these lines or it will mess pre blocks indentation --> 
+<div id="main">
 <p><span class="keywords"> <span class="keytitle"> keywords </span>
 jamovi, SPSS, R, contrasts, comparisons, planned comparisons, LMATRIX,
 contr.sum, emmeans </span></p>
-<p><span class="version"> <span class="versiontitle"> GAMLj version ≥
-</span> 0.9.5 </span></p>
+<div class="version">
+<p>
+0.9.5
+</p>
+</div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Here you can find comparisons of results obtained in <span
@@ -519,20 +538,20 @@ which corresponds to”first” in the GUI options.</p>
 <p>In R, deviation contrast is called <code>contr.sum</code>. The
 function defaults to omitting the last group, so we reverse it to omit
 the first.</p>
-<pre class="r"><code>file&lt;-&quot;../data/rosetta.contrasts.csv&quot;
-dat&lt;-read.csv2(file,stringsAsFactors = F)
-dat$Group&lt;-factor(dat$Group)
-dat$Score&lt;-as.numeric(dat$Score)
-### reverse contrast sum ###
-contrasts(dat$Group)&lt;-matrix(rev(contr.sum(4)),ncol=3)
-contrasts(dat$Group)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>file<span class="ot">&lt;-</span><span class="st">&quot;../data/rosetta.contrasts.csv&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>dat<span class="ot">&lt;-</span><span class="fu">read.csv2</span>(file,<span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>dat<span class="sc">$</span>Group<span class="ot">&lt;-</span><span class="fu">factor</span>(dat<span class="sc">$</span>Group)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>dat<span class="sc">$</span>Score<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(dat<span class="sc">$</span>Score)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="do">### reverse contrast sum </span><span class="al">###</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rev</span>(<span class="fu">contr.sum</span>(<span class="dv">4</span>)),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)</span></code></pre></div>
 <pre><code>##   [,1] [,2] [,3]
 ## 1   -1   -1   -1
 ## 2    1    0    0
 ## 3    0    1    0
 ## 4    0    0    1</code></pre>
-<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
-summary(model)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Score ~ Group, data = dat)
@@ -553,8 +572,8 @@ summary(model)</code></pre>
 ## Residual standard error: 0.5109 on 166 degrees of freedom
 ## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
 ## F-statistic: 9.557 on 3 and 166 DF,  p-value: 0.000007399</code></pre>
-<pre class="r"><code>## means
-(mm&lt;-tapply(dat$Score, dat$Group, mean))</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="do">## means</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>(mm<span class="ot">&lt;-</span><span class="fu">tapply</span>(dat<span class="sc">$</span>Score, dat<span class="sc">$</span>Group, mean))</span></code></pre></div>
 <pre><code>##            1            2            3            4 
 ##  0.009545455 -0.090555556  0.253111111  0.452666667</code></pre>
 </div>
@@ -575,10 +594,10 @@ href="https://www.google.it/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&
 package</a>.</p>
 <p>The <code>deviation</code> contrast it is named <code>eff</code> in
 emmeans.</p>
-<pre class="r"><code>library(emmeans)
-model&lt;-lm(Score~Group,data=dat)
-emm&lt;-emmeans(model,~Group)
-contrast(emm,&quot;eff&quot;,reverse=T,adjust = &quot;none&quot;)</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>emm<span class="ot">&lt;-</span><span class="fu">emmeans</span>(model,<span class="sc">~</span>Group)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">contrast</span>(emm,<span class="st">&quot;eff&quot;</span>,<span class="at">reverse=</span>T,<span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>##  contrast      estimate     SE  df t.ratio p.value
 ##  Group1 effect  -0.1466 0.0672 166  -2.183  0.0305
 ##  Group2 effect  -0.2467 0.0719 166  -3.430  0.0008
@@ -637,18 +656,18 @@ corresponds to”first” in the GUI options.</p>
 <div id="r-1" class="section level2">
 <h2>R</h2>
 <p>In R, simple contrast can be obtained as follows:</p>
-<pre class="r"><code>#### contrast=simple #######
-dat$Group&lt;-factor(dat$Group)
-k&lt;-4 # number of levels
-contrasts(dat$Group)&lt;-contr.treatment(k)-(1/k)
-contrasts(dat$Group)</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="do">#### contrast=simple #######</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>dat<span class="sc">$</span>Group<span class="ot">&lt;-</span><span class="fu">factor</span>(dat<span class="sc">$</span>Group)</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>k<span class="ot">&lt;-</span><span class="dv">4</span> <span class="co"># number of levels</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)<span class="ot">&lt;-</span><span class="fu">contr.treatment</span>(k)<span class="sc">-</span>(<span class="dv">1</span><span class="sc">/</span>k)</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)</span></code></pre></div>
 <pre><code>##       2     3     4
 ## 1 -0.25 -0.25 -0.25
 ## 2  0.75 -0.25 -0.25
 ## 3 -0.25  0.75 -0.25
 ## 4 -0.25 -0.25  0.75</code></pre>
-<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
-summary(model)</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Score ~ Group, data = dat)
@@ -676,9 +695,9 @@ in R using <code>contr.treatment(k)</code>.</p>
 <h2>R emmeans</h2>
 <p>The <code>simple</code> contrast can be achieved in emmeans with
 <code>dunnett</code>.</p>
-<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
-emm&lt;-emmeans(model,~Group)
-contrast(emm,&quot;dunnett&quot;,adjust = &quot;none&quot;)</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>emm<span class="ot">&lt;-</span><span class="fu">emmeans</span>(model,<span class="sc">~</span>Group)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">contrast</span>(emm,<span class="st">&quot;dunnett&quot;</span>,<span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>##  contrast        estimate    SE  df t.ratio p.value
 ##  Group2 - Group1   -0.100 0.115 166  -0.872  0.3845
 ##  Group3 - Group1    0.244 0.108 166   2.249  0.0258
@@ -739,16 +758,16 @@ class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
 and SPSS the comparisons are in the opposite direction, so we simply
 multiply the code by -1 (t-tests and p-values do not depend on
 this):</p>
-<pre class="r"><code>library(MASS)
-repeated&lt;-(-1)*contr.sdif(4) 
-repeated</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>repeated<span class="ot">&lt;-</span>(<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="fu">contr.sdif</span>(<span class="dv">4</span>) </span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>repeated</span></code></pre></div>
 <pre><code>##     2-1  3-2   4-3
 ## 1  0.75  0.5  0.25
 ## 2 -0.25  0.5  0.25
 ## 3 -0.25 -0.5  0.25
 ## 4 -0.25 -0.5 -0.75</code></pre>
-<pre class="r"><code>contrasts(dat$Group)&lt;-repeated
-summary(lm(Score~Group,data=dat))</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)<span class="ot">&lt;-</span>repeated</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Score ~ Group, data = dat)
@@ -778,9 +797,9 @@ summary(lm(Score~Group,data=dat))</code></pre>
 class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
 SPSS, we should reverse the contrast coding, with the option
 <code>reverse</code>.</p>
-<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
-emm&lt;-emmeans(model,~Group)
-contrast(emm,&quot;consec&quot;,adjust = &quot;none&quot;,reverse=T)</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat)</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>emm<span class="ot">&lt;-</span><span class="fu">emmeans</span>(model,<span class="sc">~</span>Group)</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="fu">contrast</span>(emm,<span class="st">&quot;consec&quot;</span>,<span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>,<span class="at">reverse=</span>T)</span></code></pre></div>
 <pre><code>##  contrast        estimate    SE  df t.ratio p.value
 ##  Group1 - Group2    0.100 0.115 166   0.872  0.3845
 ##  Group2 - Group3   -0.344 0.114 166  -3.008  0.0030
@@ -822,8 +841,8 @@ class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
 <h2>R</h2>
 <p>R has an out-of-the-box contrast named <code>contr.poly()</code>
 contrast. It works like a sharm.</p>
-<pre class="r"><code>contrasts(dat$Group)&lt;-contr.poly(4)
-summary(lm(Score~Group,data=dat))</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)<span class="ot">&lt;-</span><span class="fu">contr.poly</span>(<span class="dv">4</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Score ~ Group, data = dat)
@@ -850,9 +869,9 @@ summary(lm(Score~Group,data=dat))</code></pre>
 <h2>R emmeans</h2>
 <p>The <code>poly</code> contrast has a direct implementation in
 <code>emmeans</code> with <code>poly</code>.</p>
-<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
-emm&lt;-emmeans(model,~Group)
-contrast(emm,&quot;poly&quot;,adjust = &quot;none&quot;)</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat)</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>emm<span class="ot">&lt;-</span><span class="fu">emmeans</span>(model,<span class="sc">~</span>Group)</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="fu">contrast</span>(emm,<span class="st">&quot;poly&quot;</span>,<span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>##  contrast  estimate    SE  df t.ratio p.value
 ##  linear       1.673 0.344 166   4.857  &lt;.0001
 ##  quadratic    0.300 0.157 166   1.904  0.0587
@@ -916,16 +935,16 @@ ones obtained in <span
 class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
 and SPSS, but they are proportional to them (that is why the t-tests are
 the same).</p>
-<pre class="r"><code>dat$Group&lt;-factor(dat$Group)
-contrasts(dat$Group)&lt;-contr.helmert(4)
-contrasts(dat$Group)</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>dat<span class="sc">$</span>Group<span class="ot">&lt;-</span><span class="fu">factor</span>(dat<span class="sc">$</span>Group)</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)<span class="ot">&lt;-</span><span class="fu">contr.helmert</span>(<span class="dv">4</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)</span></code></pre></div>
 <pre><code>##   [,1] [,2] [,3]
 ## 1   -1   -1   -1
 ## 2    1   -1   -1
 ## 3    0    2   -1
 ## 4    0    0    3</code></pre>
-<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
-summary(model)</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat)</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Score ~ Group, data = dat)
@@ -956,29 +975,29 @@ contrasts. Let the <em>conversion vector</em> be <span
 class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, where <span
 class="math inline">\(c_i\)</span> is a column of the contrast
 matrix.</p>
-<pre class="r"><code>cv&lt;-apply(contr.helmert(4),2,max)+1
-cv</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>cv<span class="ot">&lt;-</span><span class="fu">apply</span>(<span class="fu">contr.helmert</span>(<span class="dv">4</span>),<span class="dv">2</span>,max)<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>cv</span></code></pre></div>
 <pre><code>## [1] 2 3 4</code></pre>
 <p>To obtain the same coefficients in R and in <span
 class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>/SPSS,
 we can multiply the model coefficients by <span
 class="math inline">\(\mathbf{cv}\)</span></p>
-<pre class="r"><code>coef(model)[c(2:4)]*cv</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">coef</span>(model)[<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>)]<span class="sc">*</span>cv</span></code></pre></div>
 <pre><code>##     Group1     Group2     Group3 
 ## -0.1001010  0.2936162  0.3952997</code></pre>
 <p>Or divide the contrast weights by <span
 class="math inline">\(\mathbf{cv}\)</span></p>
-<pre class="r"><code>### make a diagonal matrix with cv in the diagonal ##########
-diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
-contrasts(dat$Group)&lt;-contr.helmert(4)/diag_cv
-contrasts(dat$Group)</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="do">### make a diagonal matrix with cv in the diagonal ##########</span></span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>diag_cv<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(cv,<span class="at">each=</span><span class="dv">4</span>),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)<span class="ot">&lt;-</span><span class="fu">contr.helmert</span>(<span class="dv">4</span>)<span class="sc">/</span>diag_cv</span>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)</span></code></pre></div>
 <pre><code>##   [,1]       [,2]  [,3]
 ## 1 -0.5 -0.3333333 -0.25
 ## 2  0.5 -0.3333333 -0.25
 ## 3  0.0  0.6666667 -0.25
 ## 4  0.0  0.0000000  0.75</code></pre>
-<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
-summary(model)</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat)</span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Score ~ Group, data = dat)
@@ -1013,32 +1032,32 @@ it to <code>emmeans</code> <code>contrasts</code> function. The coding
 weights are the one of the contrast matrix used in SPSS (see <a
 href="#contrast_matrix_and_model_matrix_details">contrast matrix vs
 model matrix</a> for details).</p>
-<pre class="r"><code>library(MASS) ## needed for ginv(), see below 
-
-difference.emmc&lt;&lt;-function(levs) {
-  n&lt;-length(levs)
-  #### model matrix ########
-  con_weights&lt;-contr.helmert(n)
-  cv&lt;-apply(con_weights,2,max)+1
-  diag_cv&lt;-matrix(rep(cv,each=n),ncol=n-1)
-  model_mat&lt;-con_weights/diag_cv
-
-  ##### contrast matrix ########
-  cont_mat&lt;-ginv(t(model_mat))
-  M &lt;- as.data.frame(cont_mat)
-  names(M) &lt;- paste(levs[-1],&quot;vs previous&quot;)
-  attr(M, &quot;desc&quot;) &lt;- &quot;Difference contrasts&quot;
-  M
-}
-#### contrast matrix #########
-round(difference.emmc(levels(dat$Group)),digits = 3)</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="fu">library</span>(MASS) <span class="do">## needed for ginv(), see below </span></span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>difference.emmc<span class="ot">&lt;&lt;-</span><span class="cf">function</span>(levs) {</span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a>  n<span class="ot">&lt;-</span><span class="fu">length</span>(levs)</span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a>  <span class="do">#### model matrix ########</span></span>
+<span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a>  con_weights<span class="ot">&lt;-</span><span class="fu">contr.helmert</span>(n)</span>
+<span id="cb42-7"><a href="#cb42-7" tabindex="-1"></a>  cv<span class="ot">&lt;-</span><span class="fu">apply</span>(con_weights,<span class="dv">2</span>,max)<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb42-8"><a href="#cb42-8" tabindex="-1"></a>  diag_cv<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(cv,<span class="at">each=</span>n),<span class="at">ncol=</span>n<span class="dv">-1</span>)</span>
+<span id="cb42-9"><a href="#cb42-9" tabindex="-1"></a>  model_mat<span class="ot">&lt;-</span>con_weights<span class="sc">/</span>diag_cv</span>
+<span id="cb42-10"><a href="#cb42-10" tabindex="-1"></a></span>
+<span id="cb42-11"><a href="#cb42-11" tabindex="-1"></a>  <span class="do">##### contrast matrix ########</span></span>
+<span id="cb42-12"><a href="#cb42-12" tabindex="-1"></a>  cont_mat<span class="ot">&lt;-</span><span class="fu">ginv</span>(<span class="fu">t</span>(model_mat))</span>
+<span id="cb42-13"><a href="#cb42-13" tabindex="-1"></a>  M <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cont_mat)</span>
+<span id="cb42-14"><a href="#cb42-14" tabindex="-1"></a>  <span class="fu">names</span>(M) <span class="ot">&lt;-</span> <span class="fu">paste</span>(levs[<span class="sc">-</span><span class="dv">1</span>],<span class="st">&quot;vs previous&quot;</span>)</span>
+<span id="cb42-15"><a href="#cb42-15" tabindex="-1"></a>  <span class="fu">attr</span>(M, <span class="st">&quot;desc&quot;</span>) <span class="ot">&lt;-</span> <span class="st">&quot;Difference contrasts&quot;</span></span>
+<span id="cb42-16"><a href="#cb42-16" tabindex="-1"></a>  M</span>
+<span id="cb42-17"><a href="#cb42-17" tabindex="-1"></a>}</span>
+<span id="cb42-18"><a href="#cb42-18" tabindex="-1"></a><span class="do">#### contrast matrix #########</span></span>
+<span id="cb42-19"><a href="#cb42-19" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">difference.emmc</span>(<span class="fu">levels</span>(dat<span class="sc">$</span>Group)),<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   2 vs previous 3 vs previous 4 vs previous
 ## 1            -1          -0.5        -0.333
 ## 2             1          -0.5        -0.333
 ## 3             0           1.0        -0.333
 ## 4             0           0.0         1.000</code></pre>
-<pre class="r"><code>#### results ##############
-contrast(emm,method=&quot;difference&quot;,adjust=&quot;none&quot;)</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="do">#### results ##############</span></span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="fu">contrast</span>(emm,<span class="at">method=</span><span class="st">&quot;difference&quot;</span>,<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>##  contrast           estimate     SE  df t.ratio p.value
 ##  Group2 vs previous   -0.100 0.1148 166  -0.872  0.3845
 ##  Group3 vs previous    0.294 0.0954 166   3.079  0.0024
@@ -1088,18 +1107,18 @@ as it is was defined above, we should reverse
 p-values are the same as in <span
 class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>/spss,
 but the estimated values are different (but proportional).</p>
-<pre class="r"><code>dat$Group&lt;-factor(dat$Group)
-contrasts(dat$Group)&lt;-matrix(rev(contr.helmert(4)),ncol=3)
-con_weights&lt;-contrasts(dat$Group)
-#### not scaled contrast weights ######
-con_weights</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a>dat<span class="sc">$</span>Group<span class="ot">&lt;-</span><span class="fu">factor</span>(dat<span class="sc">$</span>Group)</span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rev</span>(<span class="fu">contr.helmert</span>(<span class="dv">4</span>)),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a>con_weights<span class="ot">&lt;-</span><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)</span>
+<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a><span class="do">#### not scaled contrast weights ######</span></span>
+<span id="cb47-5"><a href="#cb47-5" tabindex="-1"></a>con_weights</span></code></pre></div>
 <pre><code>##   [,1] [,2] [,3]
 ## 1    3    0    0
 ## 2   -1    2    0
 ## 3   -1   -1    1
 ## 4   -1   -1   -1</code></pre>
-<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
-summary(model)</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat)</span>
+<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Score ~ Group, data = dat)
@@ -1125,29 +1144,29 @@ class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
 values in R, we should compute <span
 class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, and multiply it
 by the model coefficients.</p>
-<pre class="r"><code>cv&lt;-apply(con_weights,2,max)+1
-cv</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a>cv<span class="ot">&lt;-</span><span class="fu">apply</span>(con_weights,<span class="dv">2</span>,max)<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a>cv</span></code></pre></div>
 <pre><code>## [1] 4 3 2</code></pre>
-<pre class="r"><code>coef(model)[c(2:4)]*cv</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="fu">coef</span>(model)[<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>)]<span class="sc">*</span>cv</span></code></pre></div>
 <pre><code>##     Group1     Group2     Group3 
 ## -0.1955286 -0.4434444 -0.1995556</code></pre>
 <p>or divide the contrast weights by <span
 class="math inline">\(\mathbf{cv}\)</span></p>
-<pre class="r"><code>### make a diagonal matrix with cv in the diagonal ##########
-diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
-########  divide the contrast weights ##########
-helm&lt;-con_weights/diag_cv
-
-### scaled contrast weights ############
-helm</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="do">### make a diagonal matrix with cv in the diagonal ##########</span></span>
+<span id="cb55-2"><a href="#cb55-2" tabindex="-1"></a>diag_cv<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(cv,<span class="at">each=</span><span class="dv">4</span>),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" tabindex="-1"></a><span class="do">########  divide the contrast weights ##########</span></span>
+<span id="cb55-4"><a href="#cb55-4" tabindex="-1"></a>helm<span class="ot">&lt;-</span>con_weights<span class="sc">/</span>diag_cv</span>
+<span id="cb55-5"><a href="#cb55-5" tabindex="-1"></a></span>
+<span id="cb55-6"><a href="#cb55-6" tabindex="-1"></a><span class="do">### scaled contrast weights ############</span></span>
+<span id="cb55-7"><a href="#cb55-7" tabindex="-1"></a>helm</span></code></pre></div>
 <pre><code>##    [,1]       [,2] [,3]
 ## 1  0.75  0.0000000  0.0
 ## 2 -0.25  0.6666667  0.0
 ## 3 -0.25 -0.3333333  0.5
 ## 4 -0.25 -0.3333333 -0.5</code></pre>
-<pre class="r"><code>contrasts(dat$Group)&lt;-helm
-model&lt;-lm(Score~Group,data=dat)
-summary(model)</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)<span class="ot">&lt;-</span>helm</span>
+<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat)</span>
+<span id="cb57-3"><a href="#cb57-3" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Score ~ Group, data = dat)
@@ -1178,30 +1197,30 @@ which returns the contrast matrix, and then pass it to emmeans
 can be obtained from the model matrix used in standard R (see <a
 href="#contrast_matrix_vs_model_matrix">contrast matrix vs model
 matrix</a> for details).</p>
-<pre class="r"><code>library(MASS) # needed for ginv(), see below
-helmert.emmc&lt;&lt;-function(levs) {
-  n&lt;-length(levs)
-  #### build model matricx ######
-  con_weights&lt;-matrix(rev(contr.helmert(n)),ncol=n-1)
-  cv&lt;-apply(con_weights,2,max)+1
-  diag_cv&lt;-matrix(rep(cv,each=n),ncol=n-1)
-  model_mat&lt;-con_weights/diag_cv
-  #### obtain contrast matrix #######
-  cont_mat&lt;-ginv(t(model_mat))
-  
-  M &lt;- as.data.frame(cont_mat)
-  names(M) &lt;- paste(levs[1:(length(levs)-1)],&quot;vs subsequent&quot;)
-  attr(M, &quot;desc&quot;) &lt;- &quot;Helmert contrasts&quot;
-  M
-}
-
-helmert.emmc(levels(dat$Group))</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a><span class="fu">library</span>(MASS) <span class="co"># needed for ginv(), see below</span></span>
+<span id="cb59-2"><a href="#cb59-2" tabindex="-1"></a>helmert.emmc<span class="ot">&lt;&lt;-</span><span class="cf">function</span>(levs) {</span>
+<span id="cb59-3"><a href="#cb59-3" tabindex="-1"></a>  n<span class="ot">&lt;-</span><span class="fu">length</span>(levs)</span>
+<span id="cb59-4"><a href="#cb59-4" tabindex="-1"></a>  <span class="do">#### build model matricx ######</span></span>
+<span id="cb59-5"><a href="#cb59-5" tabindex="-1"></a>  con_weights<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rev</span>(<span class="fu">contr.helmert</span>(n)),<span class="at">ncol=</span>n<span class="dv">-1</span>)</span>
+<span id="cb59-6"><a href="#cb59-6" tabindex="-1"></a>  cv<span class="ot">&lt;-</span><span class="fu">apply</span>(con_weights,<span class="dv">2</span>,max)<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb59-7"><a href="#cb59-7" tabindex="-1"></a>  diag_cv<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(cv,<span class="at">each=</span>n),<span class="at">ncol=</span>n<span class="dv">-1</span>)</span>
+<span id="cb59-8"><a href="#cb59-8" tabindex="-1"></a>  model_mat<span class="ot">&lt;-</span>con_weights<span class="sc">/</span>diag_cv</span>
+<span id="cb59-9"><a href="#cb59-9" tabindex="-1"></a>  <span class="do">#### obtain contrast matrix #######</span></span>
+<span id="cb59-10"><a href="#cb59-10" tabindex="-1"></a>  cont_mat<span class="ot">&lt;-</span><span class="fu">ginv</span>(<span class="fu">t</span>(model_mat))</span>
+<span id="cb59-11"><a href="#cb59-11" tabindex="-1"></a>  </span>
+<span id="cb59-12"><a href="#cb59-12" tabindex="-1"></a>  M <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cont_mat)</span>
+<span id="cb59-13"><a href="#cb59-13" tabindex="-1"></a>  <span class="fu">names</span>(M) <span class="ot">&lt;-</span> <span class="fu">paste</span>(levs[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(levs)<span class="sc">-</span><span class="dv">1</span>)],<span class="st">&quot;vs subsequent&quot;</span>)</span>
+<span id="cb59-14"><a href="#cb59-14" tabindex="-1"></a>  <span class="fu">attr</span>(M, <span class="st">&quot;desc&quot;</span>) <span class="ot">&lt;-</span> <span class="st">&quot;Helmert contrasts&quot;</span></span>
+<span id="cb59-15"><a href="#cb59-15" tabindex="-1"></a>  M</span>
+<span id="cb59-16"><a href="#cb59-16" tabindex="-1"></a>}</span>
+<span id="cb59-17"><a href="#cb59-17" tabindex="-1"></a></span>
+<span id="cb59-18"><a href="#cb59-18" tabindex="-1"></a><span class="fu">helmert.emmc</span>(<span class="fu">levels</span>(dat<span class="sc">$</span>Group))</span></code></pre></div>
 <pre><code>##   1 vs subsequent            2 vs subsequent           3 vs subsequent
 ## 1       1.0000000 -0.00000000000000006343273 -0.0000000000000001098687
 ## 2      -0.3333333  1.00000000000000000000000 -0.0000000000000001256066
 ## 3      -0.3333333 -0.50000000000000011102230  0.9999999999999995559108
 ## 4      -0.3333333 -0.50000000000000011102230 -0.9999999999999997779554</code></pre>
-<pre class="r"><code>contrast(emm,&quot;helmert&quot;,adjust=&quot;none&quot;)</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="fu">contrast</span>(emm,<span class="st">&quot;helmert&quot;</span>,<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>##  contrast             estimate     SE  df t.ratio p.value
 ##  Group1 vs subsequent   -0.196 0.0896 166  -2.183  0.0305
 ##  Group2 vs subsequent   -0.443 0.1007 166  -4.402  &lt;.0001
@@ -1227,11 +1246,11 @@ the <code>contrast()</code> function.</p>
 <p><img src="rosetta/contrasts/r.c7.spss1.png" class="img-responsive" alt=""></p>
 <p>and this is the contrast matrix one gets from
 <code>emmeans</code>:</p>
-<pre class="r"><code>library(emmeans)
-model&lt;-lm(Score~Group,data=dat)
-emm&lt;-emmeans(model,~Group)
-cont&lt;-contrast(emm,&quot;consec&quot;,reverse=T,adjust = &quot;none&quot;)
-coef(cont)</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb63-2"><a href="#cb63-2" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(Score<span class="sc">~</span>Group,<span class="at">data=</span>dat)</span>
+<span id="cb63-3"><a href="#cb63-3" tabindex="-1"></a>emm<span class="ot">&lt;-</span><span class="fu">emmeans</span>(model,<span class="sc">~</span>Group)</span>
+<span id="cb63-4"><a href="#cb63-4" tabindex="-1"></a>cont<span class="ot">&lt;-</span><span class="fu">contrast</span>(emm,<span class="st">&quot;consec&quot;</span>,<span class="at">reverse=</span>T,<span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb63-5"><a href="#cb63-5" tabindex="-1"></a><span class="fu">coef</span>(cont)</span></code></pre></div>
 <pre><code>##        Group c.1 c.2 c.3
 ## Group1     1   1   0   0
 ## Group2     2  -1   1   0
@@ -1247,7 +1266,7 @@ that’s the way it is.</p>
 <code>contr.*</code> functions, one see that the coding does not
 correspond to the <em>contrast matrix</em> seen before.</p>
 <p>For <code>repeated</code> contrasts in R we use:</p>
-<pre class="r"><code>(-1)*contr.sdif(4)</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a>(<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="fu">contr.sdif</span>(<span class="dv">4</span>)</span></code></pre></div>
 <pre><code>##     2-1  3-2   4-3
 ## 1  0.75  0.5  0.25
 ## 2 -0.25  0.5  0.25
@@ -1259,15 +1278,15 @@ coding seems different.</p>
 <p>Now, if you try to use the SPSS LMATRIX in R, you are not going to
 get the results expected by the <code>repeated</code> contrast. Indeed
 (coefficients were <code>.100,-.344,-.200</code>) :</p>
-<pre class="r"><code>ones&lt;-matrix(c(1,-1,0,0,0,1,-1,0,0,0,1,-1),ncol=3)
-ones</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a>ones<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" tabindex="-1"></a>ones</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    0    0
 ## [2,]   -1    1    0
 ## [3,]    0   -1    1
 ## [4,]    0    0   -1</code></pre>
-<pre class="r"><code>contrasts(dat$Group)&lt;-ones
-summary(model)</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="fu">contrasts</span>(dat<span class="sc">$</span>Group)<span class="ot">&lt;-</span>ones</span>
+<span id="cb69-2"><a href="#cb69-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Score ~ Group, data = dat)
@@ -1306,17 +1325,17 @@ model matrix? or even better: How do I get from the contrast matrix to
 the R model matrix? Just <strong>take the inverse of the contrast matrix
 and traspose it</strong>. In R, one can take the inverse of a matrix by
 using <code>MASS::ginv()</code> function. Let’s see:</p>
-<pre class="r"><code>##### SPSS LMATRIX ####
-ones</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="do">##### SPSS LMATRIX ####</span></span>
+<span id="cb71-2"><a href="#cb71-2" tabindex="-1"></a>ones</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    0    0
 ## [2,]   -1    1    0
 ## [3,]    0   -1    1
 ## [4,]    0    0   -1</code></pre>
-<pre class="r"><code>### take the inverse ####
-iones&lt;-ginv(ones)
-### transpose it ###
-t(iones)</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a><span class="do">### take the inverse ####</span></span>
+<span id="cb73-2"><a href="#cb73-2" tabindex="-1"></a>iones<span class="ot">&lt;-</span><span class="fu">ginv</span>(ones)</span>
+<span id="cb73-3"><a href="#cb73-3" tabindex="-1"></a><span class="do">### transpose it </span><span class="al">###</span></span>
+<span id="cb73-4"><a href="#cb73-4" tabindex="-1"></a><span class="fu">t</span>(iones)</span></code></pre></div>
 <pre><code>##       [,1] [,2]  [,3]
 ## [1,]  0.75  0.5  0.25
 ## [2,] -0.25  0.5  0.25
@@ -1328,7 +1347,7 @@ with group 1 omitted.</p>
 <p>SPSS LMATRIX is:
 <img src="rosetta/contrasts/r.c7.spss2.png" class="img-responsive" alt=""></p>
 <p>and R model matrix we have seen before:</p>
-<pre class="r"><code>(deviation&lt;-matrix(rev(contr.sum(4)),ncol=3))</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a>(deviation<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rev</span>(<span class="fu">contr.sum</span>(<span class="dv">4</span>)),<span class="at">ncol=</span><span class="dv">3</span>))</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]   -1   -1   -1
 ## [2,]    1    0    0
@@ -1336,21 +1355,21 @@ with group 1 omitted.</p>
 ## [4,]    0    0    1</code></pre>
 <p>They seem different, but taking the inverse of the LMATRIX and
 transposing it, we get the R coding system.</p>
-<pre class="r"><code>##### SPSS LMATRIX ####
-lmat&lt;-matrix(rep(-.25,12),ncol=3)
-lmat[2,1]&lt;-.75
-lmat[3,2]&lt;-.75
-lmat[4,3]&lt;-.75
-lmat</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a><span class="do">##### SPSS LMATRIX ####</span></span>
+<span id="cb77-2"><a href="#cb77-2" tabindex="-1"></a>lmat<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="sc">-</span>.<span class="dv">25</span>,<span class="dv">12</span>),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb77-3"><a href="#cb77-3" tabindex="-1"></a>lmat[<span class="dv">2</span>,<span class="dv">1</span>]<span class="ot">&lt;-</span>.<span class="dv">75</span></span>
+<span id="cb77-4"><a href="#cb77-4" tabindex="-1"></a>lmat[<span class="dv">3</span>,<span class="dv">2</span>]<span class="ot">&lt;-</span>.<span class="dv">75</span></span>
+<span id="cb77-5"><a href="#cb77-5" tabindex="-1"></a>lmat[<span class="dv">4</span>,<span class="dv">3</span>]<span class="ot">&lt;-</span>.<span class="dv">75</span></span>
+<span id="cb77-6"><a href="#cb77-6" tabindex="-1"></a>lmat</span></code></pre></div>
 <pre><code>##       [,1]  [,2]  [,3]
 ## [1,] -0.25 -0.25 -0.25
 ## [2,]  0.75 -0.25 -0.25
 ## [3,] -0.25  0.75 -0.25
 ## [4,] -0.25 -0.25  0.75</code></pre>
-<pre class="r"><code>### take the inverse ####
-ilmat&lt;-ginv(lmat)
-### transpose it ###
-round(t(ilmat),digits = 3)</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" tabindex="-1"></a><span class="do">### take the inverse ####</span></span>
+<span id="cb79-2"><a href="#cb79-2" tabindex="-1"></a>ilmat<span class="ot">&lt;-</span><span class="fu">ginv</span>(lmat)</span>
+<span id="cb79-3"><a href="#cb79-3" tabindex="-1"></a><span class="do">### transpose it </span><span class="al">###</span></span>
+<span id="cb79-4"><a href="#cb79-4" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">t</span>(ilmat),<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]   -1   -1   -1
 ## [2,]    1    0    0
@@ -1361,7 +1380,7 @@ round(t(ilmat),digits = 3)</code></pre>
 <p>SPSS LMATRIX is:
 <img src="rosetta/contrasts/r.c7.spss3.png" class="img-responsive" alt=""></p>
 <p>R model matrix:</p>
-<pre class="r"><code>(polynom&lt;-contr.poly(4))</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a>(polynom<span class="ot">&lt;-</span><span class="fu">contr.poly</span>(<span class="dv">4</span>))</span></code></pre></div>
 <pre><code>##              .L   .Q         .C
 ## [1,] -0.6708204  0.5 -0.2236068
 ## [2,] -0.2236068 -0.5  0.6708204
@@ -1374,8 +1393,8 @@ matrix is equal to the transpose of the contrast matrix, thus taking the
 inverse and then transpose it gives back the same matrix (cf <a
 href="https://en.wikipedia.org/wiki/Orthogonal_matrix">orthogonal
 matrix</a>)</p>
-<pre class="r"><code>ipoly&lt;-ginv(polynom)
-t(ipoly)</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" tabindex="-1"></a>ipoly<span class="ot">&lt;-</span><span class="fu">ginv</span>(polynom)</span>
+<span id="cb83-2"><a href="#cb83-2" tabindex="-1"></a><span class="fu">t</span>(ipoly)</span></code></pre></div>
 <pre><code>##            [,1] [,2]       [,3]
 ## [1,] -0.6708204  0.5 -0.2236068
 ## [2,] -0.2236068 -0.5  0.6708204
@@ -1387,15 +1406,15 @@ t(ipoly)</code></pre>
 contrast coding. When we do that, we should remember that we need to
 define the contrast matrix, <strong>not</strong> the model matrix. Thus,
 for repeated contrast, in R we used <code>(-1)*contr.sdif(n)</code>:</p>
-<pre class="r"><code>(rcodes&lt;-(-1)*contr.sdif(4))</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" tabindex="-1"></a>(rcodes<span class="ot">&lt;-</span>(<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="fu">contr.sdif</span>(<span class="dv">4</span>))</span></code></pre></div>
 <pre><code>##     2-1  3-2   4-3
 ## 1  0.75  0.5  0.25
 ## 2 -0.25  0.5  0.25
 ## 3 -0.25 -0.5  0.25
 ## 4 -0.25 -0.5 -0.75</code></pre>
 <p>and <code>emmeans</code> uses:</p>
-<pre class="r"><code>cont&lt;-contrast(emm,&quot;consec&quot;,referse=T,adjust = &quot;none&quot;)
-(weigths&lt;-coef(cont)[,2:4])</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" tabindex="-1"></a>cont<span class="ot">&lt;-</span><span class="fu">contrast</span>(emm,<span class="st">&quot;consec&quot;</span>,<span class="at">referse=</span>T,<span class="at">adjust =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb87-2"><a href="#cb87-2" tabindex="-1"></a>(weigths<span class="ot">&lt;-</span><span class="fu">coef</span>(cont)[,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>])</span></code></pre></div>
 <pre><code>##        c.1 c.2 c.3
 ## Group1  -1   0   0
 ## Group2   1  -1   0
@@ -1403,17 +1422,17 @@ for repeated contrast, in R we used <code>(-1)*contr.sdif(n)</code>:</p>
 ## Group4   0   0   1</code></pre>
 <p>To get the contrast matrix from the model matrix we neet to get the
 <strong>inverse of the transpose</strong>:</p>
-<pre class="r"><code>#### model matrix ######
-rcodes</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" tabindex="-1"></a><span class="do">#### model matrix ######</span></span>
+<span id="cb89-2"><a href="#cb89-2" tabindex="-1"></a>rcodes</span></code></pre></div>
 <pre><code>##     2-1  3-2   4-3
 ## 1  0.75  0.5  0.25
 ## 2 -0.25  0.5  0.25
 ## 3 -0.25 -0.5  0.25
 ## 4 -0.25 -0.5 -0.75</code></pre>
-<pre class="r"><code>#### transpose the R model matrix ######
-tcodes&lt;-t(rcodes)
-#### invert it #####
-round(ginv(tcodes),digits = 3)</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a><span class="do">#### transpose the R model matrix ######</span></span>
+<span id="cb91-2"><a href="#cb91-2" tabindex="-1"></a>tcodes<span class="ot">&lt;-</span><span class="fu">t</span>(rcodes)</span>
+<span id="cb91-3"><a href="#cb91-3" tabindex="-1"></a><span class="do">#### invert it #####</span></span>
+<span id="cb91-4"><a href="#cb91-4" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">ginv</span>(tcodes),<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    0    0
 ## [2,]   -1    1    0
@@ -1422,18 +1441,18 @@ round(ginv(tcodes),digits = 3)</code></pre>
 <p>Now we can build a custom contrast function for <code>emmeans</code>:
 let’s do <code>helmert</code> as we defined above.</p>
 <p>Let’s start with the model matrix used in R.</p>
-<pre class="r"><code>con_weights&lt;-matrix(rev(contr.helmert(4)),ncol=3)
-cv&lt;-apply(con_weights,2,max)+1
-diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
-helm&lt;-con_weights/diag_cv
-helm</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" tabindex="-1"></a>con_weights<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rev</span>(<span class="fu">contr.helmert</span>(<span class="dv">4</span>)),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb93-2"><a href="#cb93-2" tabindex="-1"></a>cv<span class="ot">&lt;-</span><span class="fu">apply</span>(con_weights,<span class="dv">2</span>,max)<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb93-3"><a href="#cb93-3" tabindex="-1"></a>diag_cv<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(cv,<span class="at">each=</span><span class="dv">4</span>),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb93-4"><a href="#cb93-4" tabindex="-1"></a>helm<span class="ot">&lt;-</span>con_weights<span class="sc">/</span>diag_cv</span>
+<span id="cb93-5"><a href="#cb93-5" tabindex="-1"></a>helm</span></code></pre></div>
 <pre><code>##       [,1]       [,2] [,3]
 ## [1,]  0.75  0.0000000  0.0
 ## [2,] -0.25  0.6666667  0.0
 ## [3,] -0.25 -0.3333333  0.5
 ## [4,] -0.25 -0.3333333 -0.5</code></pre>
 <p>Take the inverse of the transpose of it</p>
-<pre class="r"><code>(contr_mat&lt;-ginv(t(helm)))</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" tabindex="-1"></a>(contr_mat<span class="ot">&lt;-</span><span class="fu">ginv</span>(<span class="fu">t</span>(helm)))</span></code></pre></div>
 <pre><code>##            [,1]                       [,2]                      [,3]
 ## [1,]  1.0000000 -0.00000000000000006343273 -0.0000000000000001098687
 ## [2,] -0.3333333  1.00000000000000000000000 -0.0000000000000001256066
@@ -1442,25 +1461,25 @@ helm</code></pre>
 <p>This is the contrast matrix we can pass to <code>emmeans</code>. We
 just need to wrap it up in a function with <code>.emmc()</code>
 reference class and <code>levels</code> as input.</p>
-<pre class="r"><code>helmert.emmc&lt;&lt;-function(levs) {
-  n&lt;-length(levs)
-  con_weights&lt;-matrix(rev(contr.helmert(n)),ncol=n-1)
-  cv&lt;-apply(con_weights,2,max)+1
-  diag_cv&lt;-matrix(rep(cv,each=n),ncol=n-1)
-  helm&lt;-con_weights/diag_cv
-  model_mat&lt;-ginv(t(helm))
-  M &lt;- as.data.frame(model_mat)
-  names(M) &lt;- paste(levs[1:(length(levs)-1)],&quot;vs subsequent&quot;)
-  attr(M, &quot;desc&quot;) &lt;- &quot;Helmert contrasts&quot;
-  M
-}
-helmert.emmc(levels(dat$Group))</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a>helmert.emmc<span class="ot">&lt;&lt;-</span><span class="cf">function</span>(levs) {</span>
+<span id="cb97-2"><a href="#cb97-2" tabindex="-1"></a>  n<span class="ot">&lt;-</span><span class="fu">length</span>(levs)</span>
+<span id="cb97-3"><a href="#cb97-3" tabindex="-1"></a>  con_weights<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rev</span>(<span class="fu">contr.helmert</span>(n)),<span class="at">ncol=</span>n<span class="dv">-1</span>)</span>
+<span id="cb97-4"><a href="#cb97-4" tabindex="-1"></a>  cv<span class="ot">&lt;-</span><span class="fu">apply</span>(con_weights,<span class="dv">2</span>,max)<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb97-5"><a href="#cb97-5" tabindex="-1"></a>  diag_cv<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(cv,<span class="at">each=</span>n),<span class="at">ncol=</span>n<span class="dv">-1</span>)</span>
+<span id="cb97-6"><a href="#cb97-6" tabindex="-1"></a>  helm<span class="ot">&lt;-</span>con_weights<span class="sc">/</span>diag_cv</span>
+<span id="cb97-7"><a href="#cb97-7" tabindex="-1"></a>  model_mat<span class="ot">&lt;-</span><span class="fu">ginv</span>(<span class="fu">t</span>(helm))</span>
+<span id="cb97-8"><a href="#cb97-8" tabindex="-1"></a>  M <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(model_mat)</span>
+<span id="cb97-9"><a href="#cb97-9" tabindex="-1"></a>  <span class="fu">names</span>(M) <span class="ot">&lt;-</span> <span class="fu">paste</span>(levs[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(levs)<span class="sc">-</span><span class="dv">1</span>)],<span class="st">&quot;vs subsequent&quot;</span>)</span>
+<span id="cb97-10"><a href="#cb97-10" tabindex="-1"></a>  <span class="fu">attr</span>(M, <span class="st">&quot;desc&quot;</span>) <span class="ot">&lt;-</span> <span class="st">&quot;Helmert contrasts&quot;</span></span>
+<span id="cb97-11"><a href="#cb97-11" tabindex="-1"></a>  M</span>
+<span id="cb97-12"><a href="#cb97-12" tabindex="-1"></a>}</span>
+<span id="cb97-13"><a href="#cb97-13" tabindex="-1"></a><span class="fu">helmert.emmc</span>(<span class="fu">levels</span>(dat<span class="sc">$</span>Group))</span></code></pre></div>
 <pre><code>##   1 vs subsequent            2 vs subsequent           3 vs subsequent
 ## 1       1.0000000 -0.00000000000000006343273 -0.0000000000000001098687
 ## 2      -0.3333333  1.00000000000000000000000 -0.0000000000000001256066
 ## 3      -0.3333333 -0.50000000000000011102230  0.9999999999999995559108
 ## 4      -0.3333333 -0.50000000000000011102230 -0.9999999999999997779554</code></pre>
-<pre class="r"><code>contrast(emm,&quot;helmert&quot;,adjust=&quot;none&quot;)</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a><span class="fu">contrast</span>(emm,<span class="st">&quot;helmert&quot;</span>,<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>##  contrast             estimate     SE  df t.ratio p.value
 ##  Group1 vs subsequent   -0.196 0.0896 166  -2.183  0.0305
 ##  Group2 vs subsequent   -0.443 0.1007 166  -4.402  &lt;.0001
@@ -1471,7 +1490,7 @@ helmert.emmc(levels(dat$Group))</code></pre>
 the correct codes.</p>
 </div>
 </div>
-<div id="rosettas-files" class="section level1">
+<div id="rosettas-files" class="section level1 adm adm-seealso">
 <h1>Rosetta’s files</h1>
 <ul>
 <li>
@@ -1484,93 +1503,55 @@ the correct codes.</p>
 <a href="rosetta_moderation.html">Rosetta store: moderation</a>
 </li>
 </ul>
-<h1>
-Comments?
-</h1>
+</div>
+<div id="comments" class="section level1 adm adm-warning">
+<h1>Comments?</h1>
 <p>
 Got comments, issues or spotted a bug? Please open an issue on
-<a href="https://github.com/gamlj/gamlj//issues "> GAMLj at github</a>
-or <a href="mailto:mcfanda@gmail.com
+<a href="https://github.com/gamlj/gamlj//issues " target="_blank"> GAMLj
+at github</a> or <a href="mailto:mcfanda@gmail.com
 
 ">send me an email</a>
 </p>
 </div>
-
-
-
-</div>
 </div>
 
-</div>
+   
+   
+            
+      
 
-<script>
+  <script>
+    $(document).ready(function () {
 
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
+			
+ 		
+		$('#content img:not(.no-lightbox)').addClass("image-lb");
+	$('#content').magnificPopup({
+	    type:'image',
+	    closeOnContentClick: false,
+	    closeBtnInside: false,
+	    delegate: '.image-lb',
+	    gallery: {enabled: false },
+	    image: {
+	        verticalFit: true,
+		titleSrc: 'alt'
+	    }
+ 	});
+ 	    });
+  </script>
 
 
-</script>
 
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
-  });
-});
-</script>
-
-<!-- code folding -->
-
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
-
+    <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+	document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  
 </body>
 </html>

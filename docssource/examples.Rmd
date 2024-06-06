@@ -1,6 +1,6 @@
 ---
 title: "Infos"
-author: (Marcello Gallucci)
+author: Marcello Gallucci
 output: 
   html_document:
     includes:
@@ -22,36 +22,33 @@ mcdocs_init()
 
 Here you can find some explanation about how GALMj module does things.
 
-`r  include_details(NULL)`
+`r  include_details(NULL,TRUE)`
 
 
 # Examples
 Here you can find some applications of GALMj module.
 
 
-## GLM
 
-`r  include_examples("glm")`
+`r  include_examples("glm",mute=TRUE,title="GLM")`
 
-## Mixed model
+`r include_examples("mixed",mute=TRUE,title="Mixed Model")`
 
-`r include_examples("mixed")`
 
-## Generalized Linear Model
+`r include_examples("gzlm",mute=TRUE,title="Generalized Linear Model")`
 
-`r include_examples("gzlm")`
-
-## Generalized Mixed Models
-
-`r include_examples("gmixed")`
+`r include_examples("gmixed",mute=TRUE,title="Generalized Mixed Models")`
 
 # Rosetta store: results across software
 
 Comparisons with other software: Here you can find comparisons of  results obtained in jamovi GAMLj,  and other software, usually jamovi (jmv), pure R, and SPSS. The pages are primarily meant to test convergence between GAMLj and well-established packages, but they can be useful also to check how to get equivalent results across different programs.
 
+:::{ .adm .adm-seealso}
+Links
 
 `r list_pages(category="rosetta")`
-
-
+:::
 
 `r issues()`
+
+`r backto()`
