@@ -1,10 +1,6 @@
 ---
 title: "GAMLj"
-output: 
-  html_document:
-    includes:
-         in_header: ganalytics.txt
-
+author: Marcello Gallucci
 ---
   
 :::{ .root }
@@ -143,7 +139,6 @@ To install it in R, simple use:
 devtools::install_github("gamlj/gamlj")
 
 ```
-
 
 
 # Release notes
