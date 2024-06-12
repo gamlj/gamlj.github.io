@@ -1,0 +1,122 @@
+---
+title: "Simple Effects and Simple Interactions"
+author: "Marcello Gallucci"
+nickname: simple_effects
+topic: glm
+category: example
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r echo=FALSE,results='hide'}
+library(mcdocs)
+mcdocs_init()
+
+```
+
+
+`r keywords("moderated regression, simple effects, simple interaction, linear model")`
+
+`r version("3.0.0")`
+
+In this example we work out some analysis involving simple effects and simple interaction, using jamovi `r modulename()`. We will replicate the results using some R packages. The type of problem to solve are inspired by this very instructive webpage [Implementation of Three-factor Between-group Analysis of Variance](https://bcdudek.net/3wayanova/3way_factorial_Rmarkdown.htm) by **Bruce Dudek**. To make our analyses easier to follow, we are not going to replicate exactly Dudek's results. However, a technical comparison (for validation purposes) can be found here [to be done].
+
+
+# The research design
+
+The dataset has a dependent variable, number of words recalled from a memorized list. Three independent variables defined as factors 1) _Grade_,  either fifth or twelfth graders 2) _Feedback_ conditions: control (none), praise, or negative. _WordType_, that is the type of words used: HF_HE, HF_LE, LF_LE
+
+
+
+# GLM
+
+## Input
+
+We first set up a general linear model to obtain an overall ANOVA  We launch `General Linear Model` from the `Linear Models` menu and set up the model 
+
+`r pic("examples/glm3/input.1.png")`
+
+And we get (among other tables) the ANOVA results.
+
+`r pic("examples/glm3/output.1.png")`
+
+In R, we can use:
+
+```{r}
+data<-read.csv("../data/keppel_3way_pg466.csv",stringsAsFactors=T)
+head(data)
+data$Feedback <- car::recode(data$Feedback, "'none'='None'; 'pos'='Positive'; 'neg'='Negative'")
+data$Feedback<-factor(data$Feedback,levels=c("None","Positive","Negative"))
+data$WordType <- factor(data$WordType,
+                    levels=c("LF_LE","HF_LE","HF_HE"))                  
+contrasts(data$Grade)<-c(0,1)
+model<-lm(numrecall~Feedback*WordType*Grade,data=data)
+car::Anova(model,type=3)
+emmeans::emmeans(model,specs=~Feedback*WordType)
+```
+
+Contrasts
+
+In Dudek's analysis, both _Feedback_ and _WordType_ are coded with custom orthogonal contrasts. The first contrast is a quadratic contrast (-1,-1,2) for _Feedback_ (2,-1,-1) for _WordType_. The second contrast is a linear contrast, (-1,-1,0) for _Feedback_ and (0,-1,1) for _WordType_.  Both in R and `r modulename()` we employ polynomial contrasts that, opportunely re-arranged, yield the same results (same F-test, same t-test and p-values). Recall, in fact, that the scale and the sign of the contrasts are usually immaterial for the test results. In R, we can achieve this by changing the contrasts definition for the variables. For _Feedback_:
+
+```{r}
+contrasts(data$Feedback)<-contr.poly(3)
+zapsmall(contrasts(data$Feedback))
+```
+
+However, the order of the contrasts codes, and thus the comparisons, is different (in Dudek's "Negative" as code 0 for the linear contrast and None has codes of the same sign). We can rearrange the coding as follows:
+
+```{r}
+poly<-contr.poly(3)
+contrasts(data$Feedback)<- poly[c(3,2,1),]
+zapsmall(contrasts(data$Feedback))
+```
+
+The same goes for _WordType_:
+
+
+```{r}
+contrasts(data$WordType)<-contr.poly(3)
+zapsmall(contrasts(data$WordType))
+```
+In Dudek's, "LF_LE" is the zero-code level in linear, so we re-arrange:
+
+```{r}
+contrasts(data$WordType) <- poly[c(2,3,1),]
+zapsmall(contrasts(data$WordType))
+
+```
+
+Finally, although this would not be recomanded in standard analysis, the variable _Grade_ is coded with treatment code. This is not recommended because the contrasts coefficients for all factors are estimated for $Grade=0$, in the example "Grade 12th".
+
+```{r}
+(contrasts(data$Grad) <- c(1,0))
+
+```
+
+## Contrast coefficients
+
+```{r }
+model<-lm(numrecall~Feedback*WordType*Grade,data=data)
+summary(model)
+```
+
+It can be verified that the results are identical to Dudek's results, with the exception of the sign and scale of the estimates, but all t-test and p-values are identical. 
+
+
+
+
+# Simple effects
+
+Assume we want to probe the _WordType*Grade_ interaction to evaluate the effect of 
+
+`r include_examples("glm")`
+
+`r issues()`
