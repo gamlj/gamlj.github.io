@@ -51,7 +51,6 @@ In R, we can use:
 
 ```{r}
 data<-read.csv("../data/keppel_3way_pg466.csv",stringsAsFactors=T)
-head(data)
 data$Feedback <- car::recode(data$Feedback, "'none'='None'; 'pos'='Positive'; 'neg'='Negative'")
 data$Feedback<-factor(data$Feedback,levels=c("None","Positive","Negative"))
 data$WordType <- factor(data$WordType,
@@ -59,7 +58,7 @@ data$WordType <- factor(data$WordType,
 contrasts(data$Grade)<-c(0,1)
 model<-lm(numrecall~Feedback*WordType*Grade,data=data)
 car::Anova(model,type=3)
-emmeans::emmeans(model,specs=~Feedback*WordType)
+
 ```
 
 # Contrasts
