@@ -355,20 +355,19 @@ the <code>Linear Models</code> menu and set up the model</p>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>                    <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;LF_LE&quot;</span>,<span class="st">&quot;HF_LE&quot;</span>,<span class="st">&quot;HF_HE&quot;</span>))                  </span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">contrasts</span>(data<span class="sc">$</span>Grade)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(numrecall<span class="sc">~</span>Feedback<span class="sc">*</span>WordType<span class="sc">*</span>Grade,<span class="at">data=</span>data)</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(model,<span class="at">type=</span><span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## Anova Table (Type III tests)
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(model)</span></code></pre></div>
+<pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: numrecall
-##                         Sum Sq Df  F value              Pr(&gt;F)    
-## (Intercept)             352.80  1 186.7765 &lt;0.0000000000000002 ***
-## Feedback                  0.53  2   0.1412              0.8686    
-## WordType                  2.53  2   0.6706              0.5146    
-## Grade                     0.00  1   0.0000              1.0000    
-## Feedback:WordType         1.33  4   0.1765              0.9498    
-## Feedback:Grade            0.20  2   0.0529              0.9485    
-## WordType:Grade            0.07  2   0.0176              0.9825    
-## Feedback:WordType:Grade  10.00  4   1.3235              0.2695    
-## Residuals               136.00 72                                 
+##                          Sum Sq Df F value       Pr(&gt;F)    
+## Feedback                 26.867  2  7.1118     0.001519 ** 
+## WordType                 64.867  2 17.1706 0.0000007993 ***
+## Grade                    14.400  1  7.6235     0.007304 ** 
+## Feedback:WordType        14.667  4  1.9412     0.112829    
+## Feedback:Grade            8.600  2  2.2765     0.109987    
+## WordType:Grade           16.200  2  4.2882     0.017397 *  
+## Feedback:WordType:Grade  10.000  4  1.3235     0.269461    
+## Residuals               136.000 72                         
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
