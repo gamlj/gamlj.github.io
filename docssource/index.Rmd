@@ -92,6 +92,7 @@ Please visit the sub-modules pages for details:
 * [GAMLj Mixed models](mixed.html)
 * [GAMLj Generalized Models](gzlm.html)
 * [GAMLj Generalized Mixed Models](gzlmmixed.html)
+* [GAMLj in R](vignettes.html)
 
 :::
 
