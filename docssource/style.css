@@ -132,6 +132,8 @@ figcaption {
 
 td.optionname {
   vertical-align: top;
+  white-space: nowrap;
+
 }
 
 span.option {
