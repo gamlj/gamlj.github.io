@@ -92,7 +92,7 @@ The other options are:
 ```{r child2, child='commons/factorCoding_chunk.Rmd'}
 ```
 
-More details and examples `r link_pages("ros_contrasts")`.
+More details regarding custom contrasts can be found in `r link_pages("custom_contrasts")`. More details and examples for contrasts in general can be found in `r link_pages("ros_contrasts")`.
 
 
 # Covariates Scaling

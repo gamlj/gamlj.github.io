@@ -476,10 +476,10 @@ The default coding schema is <span class="option">simple</span>, which
 is centered to zero and compares each means with the reference category
 mean. The reference category is the first appearing in the variable
 levels.</p>
-<p>Note that all contrasts but <span class="option">dummy</span>
-guarantee to be centered to zero (intercept being the grand mean), so
-when involved in interactions the other variables coefficients can be
-interpret as (main) average effects. If contrast <span
+<p>Note that all contrasts but <span class="option">dummy</span> (and
+custom) guarantee to be centered to zero (intercept being the grand
+mean), so when involved in interactions the other variables coefficients
+can be interpret as (main) average effects. If contrast <span
 class="option">dummy</span> is set, the intercept and the effects of
 other variables in interactions are estimated for the first group of the
 categorical IV.</p>
@@ -492,13 +492,22 @@ always named with the name of the factor and progressive numbers from 1
 to K-1, where K is the number of levels of the factor.</p>
 <p>In reading the contrast labels, one should interpret the
 <code>(1,2,3)</code> code as meaning “the mean of the levels 1,2, and 3
-pooled toghether”. If factor levels 1,2 and 3 are all levels of the
+pooled together”. If factor levels 1,2 and 3 are all levels of the
 factor in the samples, <code>(1,2,3)</code> is equivalent to “the mean
 of the sample”. For example, for a three levels factor, a contrast
 labeled <code>1-(1,2,3)</code> means that the contrast is comparing the
 mean of level 1 against the mean of the sample. For the same factor, a
 contrast labeled <code>1-(2,3)</code> indicates a comparison between
 level 1 mean and the subsequent levels means pooled together.</p>
+<p>Custom contrasts weights can be defined by first selecting <span
+class="option">custom</span> for the variable of interest. Upon choosing
+<span class="option">custom</span> for a variable, a new field appears
+and we can input the contrast weights we wish to test. Only one contrast
+per variable can be defined, but if more contrasts are required one can
+always run different analyses, one for each contrast. The coding weights
+are input with the simple syntax <code>w1,w2,w3</code>. The other of the
+weights follow the other of the factor levels in the datasheet.</p>
+<p><img src="commons/pics/customcontrasts.png" /><!-- --></p>
 <p>More details and examples <a href="rosetta_contrasts.html">Rosetta
 store: contrasts</a>.</p>
 </div>

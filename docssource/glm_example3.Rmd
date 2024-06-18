@@ -1,7 +1,7 @@
 ---
 title: "Contrasts analysis"
 author: "Marcello Gallucci"
-nickname: polynomial
+nickname: custom_contrasts
 topic: glm
 category: example
 output: 
@@ -46,7 +46,7 @@ We now wish to test the custom contrasts for _WordType_ comparing group _A_ agai
 
 `r pic("examples/glm3/input.4.png")`
 
-Upon choosing `custom` for a variable, a new field appears and we can input the contrast weights we wish to test. Only one contrast per variable can be defined, but if more contrasts are required one can always run different analyses, one for each contrast. The coding weights are input with the simple syntax `w1,w2,w3`.  The other of the weights follow the other of the factor levels in the datasheet. In our case, the following:
+Upon choosing `custom` for a variable, a new field appears and we can input the contrast weights we wish to test. Only one contrast per variable can be defined, but if more contrasts are required one can always run different analyses, one for each contrast. The coding weights are input with the simple syntax `w1,w2,w3`.  The order of the weights follow the other of the factor levels in the datasheet. In our case, the following:
 
 `r pic("examples/glm3/output.6.png")`
 
