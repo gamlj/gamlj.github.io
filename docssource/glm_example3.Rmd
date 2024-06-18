@@ -111,7 +111,7 @@ The reaming of the tables can be interpreted as we did above. The only caveat to
 The parameters table show the interaction custom contrast of _WordType_ with the other contrast of _Feedback_, including the custom contrast of the latter variable. The ANOVA table tests that these interactions combined per level of _Grade_ are statistical significant.
 
 
-`r include_pages(topic="glm",category="examples",title="Other examples")`
+`r include_examples("glm")`
 
 `r backto("glm")`
 

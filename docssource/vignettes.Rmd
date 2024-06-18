@@ -20,7 +20,7 @@ mcdocs_init()
 
 ```
 
-`r version("2.4.0")` 
+`r version("3.0.0")` 
 
 ## R help
 

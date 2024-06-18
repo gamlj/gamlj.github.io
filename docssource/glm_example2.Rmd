@@ -132,7 +132,8 @@ To visualize what we are doing, let's see the plot after standardizing the IV.
 In practice, the simple effects tests we have seen tested the difference between the blue and the yellow curve at `hours` equal to -1, 0, and 1 . Because we standardized `hours`, those values correspond to -1SD, mean, and +1SD of training hours.
 
 
-# Related examples
 `r include_examples("glm")`
+
+`r backto("glm")`
 
 `r issues()`

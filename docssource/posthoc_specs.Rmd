@@ -1,5 +1,5 @@
 ---
-title: "Post-hocs Details"
+title: "Details: Post-hocs"
 author: "Marcello Gallucci"
 topic: glm
 category: details
