@@ -394,8 +394,7 @@ and the two models comparison test is presented.</p>
 <span class="option">Intercept</span>
 </td>
 <td>
-<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
-intercept. Not needed if <code>formula</code> is used.
+Estimates fixed intercept if flagged
 </td>
 </tr>
 <tr>
@@ -858,7 +857,10 @@ covariances
 <span class="option">Predicted</span>
 </td>
 <td>
-Saves in the dataset the predicted values of the model
+Saves the predicted values of the model. Predicted values are always
+scaled in the dependent variable original scale, that in the majority of
+cases is the probability scale. For <code>Poisson</code> models and
+<code>Negative Binomial</code> the count scale is used.
 </td>
 </tr>
 <tr>
@@ -866,7 +868,7 @@ Saves in the dataset the predicted values of the model
 <span class="option">Residuals</span>
 </td>
 <td>
-Saves in the dataset the residual values of the model
+Saves the residual values of the model. The response scale is used.
 </td>
 </tr>
 <tr>
@@ -892,6 +894,9 @@ regression, and simple slopes</a>
 </li>
 <li>
 <a href="glm_example2.html">Polynomial Effects</a>
+</li>
+<li>
+<a href="glm_example3.html">Contrasts analysis</a>
 </li>
 </ul>
 </div>

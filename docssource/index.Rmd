@@ -39,6 +39,7 @@ GAMLj offers tools to estimate, visualize, and interpret General Linear Models, 
 * Simple effects analysis
 * Simple interaction analysis
 * Post-hoc analysis
+* Contrasts analysis
 * Plots for any order of interactions
 * Automatic selection of best estimation methods and degrees of freedom selection
 * Type III estimation

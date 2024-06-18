@@ -351,7 +351,8 @@ model allows).
 </td>
 <td>
 <code>TRUE</code> or <code>FALSE</code> (default), coefficients CI in
-tables
+tables<br />
+
 </td>
 </tr>
 <tr>
@@ -438,8 +439,7 @@ and the two models comparison test is presented.</p>
 <span class="option">Intercept</span>
 </td>
 <td>
-<code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
-intercept. Not needed if <code>formula</code> is used.
+Estimates fixed intercept if flagged
 </td>
 </tr>
 <tr>
@@ -456,7 +456,7 @@ intercept. Not needed if <code>formula</code> is used.
 <span class="option">Activate</span>
 </td>
 <td>
-Not present in R
+Activates models comparison
 </td>
 </tr>
 <tr>
@@ -633,12 +633,12 @@ discussion.</p>
 <table class="options">
 <tr>
 <td class="optionname">
-<span class="option">Error Bar Definition</span>
+<span class="option">Display</span>
 </td>
 <td>
-<code>'none'</code> (default), <code>'ci'</code>, or <code>'se'</code>.
-Use no error bars, use confidence intervals, or use standard errors on
-the plots, respectively.
+<code>'None'</code> (default), <code>Confidence Intervals</code>, or
+<code>Standard Error</code>. Display on plots no error bars, use
+confidence intervals, or use standard errors on the plots, respectively.
 </td>
 </tr>
 <tr>
@@ -673,8 +673,9 @@ equal to the range of the observed values.
 <span class="option">X original scale</span>
 </td>
 <td>
-<code>TRUE</code> or <code>FALSE</code> (default), use original scale
-for covariates.
+If selected, the X-axis variable is scaled with the orginal scale of the
+variable, independently to the scaling set is the
+<code>Covariates Scaling</code>.
 </td>
 </tr>
 <tr>
@@ -682,8 +683,15 @@ for covariates.
 <span class="option">Varying line types</span>
 </td>
 <td>
-<code>TRUE</code> or <code>FALSE</code> (default), use different
-linetypes per levels.
+If selected, a black and white theme is set for the plot, with multiple
+lines (if present) drawn in different styles.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Johnson-Neyman plot</span>
+</td>
+<td>
 </td>
 </tr>
 </table>
@@ -751,7 +759,7 @@ bootstrap method.
 <span class="option">Bootstrap rep.</span>
 </td>
 <td>
-a number bootstrap repetitions.
+The number bootstrap repetitions.
 </td>
 </tr>
 <tr>
@@ -804,7 +812,7 @@ Saves the residual values of the model. The response scale is used.
 <span class="option">Remove notes</span>
 </td>
 <td>
-Remove all notes and warning from the Tables. Useful to produce
+Removes all notes and warnings from the Tables. Useful to produce
 pubblication quality tables.
 </td>
 </tr>

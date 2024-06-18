@@ -83,6 +83,8 @@ analysis, effect size indexes and visualization of the results.</p>
 <span>  ci_method <span class="op">=</span> <span class="st">"wald"</span>,</span>
 <span>  boot_r <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  contrasts <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  contrast_custom_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  contrast_custom_focus <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  show_contrastnames <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_contrastcodes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -202,9 +204,22 @@ for bias corrected accelarated method.</p></dd>
 <dd><p>a named vector of the form <code>c(var1="type",
 var2="type2")</code> specifying the type of contrast to use, one of
 <code>'deviation'</code>, <code>'simple'</code>, <code>'dummy'</code>, <code>'difference'</code>,
-<code>'helmert'</code>, <code>'repeated'</code> or <code>'polynomial'</code>. If NULL,
+<code>'helmert'</code>, <code>'repeated'</code>, <code>'polynomial'</code> <code>'custom'</code>. If NULL,
 <code>simple</code> is used. Can also be passed as a list of list of the form
-list(list(var="var1",type="type1")).</p></dd>
+list(list(var="var1",type="type1")). If any factor contrast is defined as <code>'custom'</code>,
+a named list of the form <code>list(factorname=numeric vector)</code>, for instance <code>list(factorname=c(1,1,-2))</code> should be passed
+to the option <code>contrast_custom_values</code>.</p></dd>
+
+
+<dt>contrast_custom_values</dt>
+<dd><p>a named list with the custom contrast weights, of the form <code>list(factorname=numeric vector)</code>, for instance <code>list(factorname=c(1,1,-2))</code>.
+only one constrast per variable is allowed.</p></dd>
+
+
+<dt>contrast_custom_focus</dt>
+<dd><p>if any factor is coded with <code>'custom'</code>, when <code>TRUE</code> or <code>NULL </code> (default) the coefficients, simple effects and simple interactions
+are focused on the custom contrast. If <code>FALSE</code> , variables are coded accordingly to the passed contrast, but
+no special table or test is devoted to the contrast.</p></dd>
 
 
 <dt>show_contrastnames</dt>
@@ -424,28 +439,6 @@ At how many values between min and max should the covariate be conditioned <code
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'ToothGrowth'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu">gamlj_lm</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">len</span> <span class="op">~</span> <span class="va">supp</span>,  data <span class="op">=</span> <span class="va">ToothGrowth</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lm   #### phase init  ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INIT TIME: 0.0454494953155518  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.00154018402099609  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GPARAMETERS: default .parameters for class lm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUN TIME: 0.106746435165405  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.162185430526733  secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  GENERAL LINEAR MODEL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

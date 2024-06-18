@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="pandoc" />
+
+        <meta name="author" content="Marcello Gallucci" />
+    
+    
+    <title>Contrasts analysis</title>
+
+        <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+        <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="site_libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="site_libs/navigation-1.1/tabsets.js"></script>
+        <link href="site_libs/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
+        <script src="site_libs/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
+        <link href="site_libs/readthedown-0.1/readthedown.css" rel="stylesheet" />
+        <link href="site_libs/readthedown-0.1/readthedown_fonts_embed.css" rel="stylesheet" />
+        <script src="site_libs/readthedown-0.1/readthedown.js"></script>
+        <script>
+        $(document).ready(function () {
+
+            if ($(".root")[0]){
+              return
+            };
+            $('.navbar-toggle').show();
+            $('.navbar').css('display', 'none');
+            $('#sidebar > h2 ').append("<a id='navbut' href=''><i class='fa fa-bars'></i></a>");
+            $('#navbut').on( "click", function(e) {
+                       $('.navbar').toggle();
+                       e.preventDefault();
+               } );
+              $('.navbar-toggle').on('click', function(e) {
+                       $('.navbar').toggle();
+                       e.preventDefault();
+              });       
+            $(window).scroll(function (event) {
+                $('.navbar').css('display', 'none');
+            });       
+        });
+        </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-KM7X6HK5HM');
+        </script>
+    
+    
+    
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css" />
+        <link rel="stylesheet" href="style.css" type="text/css" />
+        <link rel="stylesheet" href="down.css" type="text/css" />
+    
+    <!-- tabsets -->
+    <script>
+      $(document).ready(function () {
+	  window.buildTabsets("toc");
+      });
+      $(document).ready(function () {
+	  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+	      $(this).parent().toggleClass('nav-tabs-open')
+	  });
+      });
+    </script>
+
+    <!-- code folding -->
+    
+    <!-- code download -->
+    
+    <!-- tabsets dropdown -->
+
+    <style type="text/css">
+      .tabset-dropdown > .nav-tabs {
+	  display: inline-table;
+	  max-height: 500px;
+	  min-height: 44px;
+	  overflow-y: auto;
+	  background: white;
+	  border: 1px solid #ddd;
+	  border-radius: 4px;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+	  content: "&#xe258;";
+	  border: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active {
+	  display: block;
+      }
+
+      .tabset-dropdown > .nav-tabs > li.active a {
+  	  padding: 0 15px !important;
+      }
+
+      .tabset-dropdown > .nav-tabs > li > a,
+      .tabset-dropdown > .nav-tabs > li > a:focus,
+      .tabset-dropdown > .nav-tabs > li > a:hover {
+	  border: none;
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: transparent;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+	  display: block;
+	  float: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li {
+	  display: none;
+	  margin-left: 0 !important;
+      }
+    </style>
+    
+</head>
+
+<body class="preload">
+
+   	
+         <!-- readthedown start -->   
+   <div id="content" data-toggle="wy-nav-shift">
+     <nav id="nav-top" role="navigation" aria-label="top navigation">
+       <a role="button" href="#" data-toggle="wy-nav-top"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+     </nav>
+         
+   
+      
+      <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">GAMLj</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li>
+        <a href="glm.html">GLM</a>
+      </li>
+      <li>
+        <a href="mixed.html">Mixed</a>
+      </li>
+      <li>
+        <a href="gzlm.html">Generalized</a>
+      </li>
+      <li>
+        <a href="gzlmmixed.html">Generalized Mixed</a>
+      </li>
+      <li>
+        <a href="examples.html">Examples</a>
+      </li>
+      <li>
+        <a href="release_notes.html">Release notes</a>
+      </li>
+      <li>
+        <a href="vignettes.html">GAMLj in R</a>
+      </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+        <a href="https://github.com/gamlj/gamlj">View on Github</a>
+      </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container -->
+      </div><!--/.navbar -->
+        
+      <h1 class="title">Contrasts analysis</h1>
+      
+         <!-- readthedown authors -->
+   <div id="sidebar">
+    <h2><a href="#content">Contrasts analysis</a></h2>
+    <div id="toc">
+      <ul>
+      <li><a href="#the-research-design"
+      id="toc-the-research-design">The research design</a></li>
+      <li><a href="#custom-contrast" id="toc-custom-contrast">Custom
+      contrast</a></li>
+      <li><a href="#simple-effects" id="toc-simple-effects">Simple
+      effects</a></li>
+      <li><a href="#simple-interactions"
+      id="toc-simple-interactions">Simple interactions</a></li>
+      <li><a href="#more-custom-contrasts"
+      id="toc-more-custom-contrasts">More custom contrasts</a></li>
+      <li><a href="#other-examples" id="toc-other-examples">Other
+      examples</a></li>
+      <li><a href="#comments" id="toc-comments">Comments?</a></li>
+      </ul>
+    </div>
+    <div id="postamble" data-toggle="wy-nav-shift" class="status">
+                  <p class="author"><span class="glyphicon glyphicon-user"></span> Marcello
+Gallucci</p>
+                      </div>
+   </div>
+     
+
+   
+      
+   
+<!-- Don't indent these lines or it will mess pre blocks indentation --> 
+<div id="main">
+<div class="version">
+<p>
+3.3.2
+</p>
+</div>
+<div style="clear:both">
+
+</div>
+<p>In this page we work out an example of contrasts analysis in the GLM,
+using jamovi <span class="modulename">GAMLj</span>. In <span
+class="modulename">GAMLj</span> custom contrasts work in the same way
+for all models (generalized, mixed and generalized mixed). We use GLM
+here for simplicity. We employ data from Keppel and Wickens, pg 466 data
+set, a 3x3x2 design in <a
+href="https://github.com/gamlj/gamlj/blob/master/data/keppel_3way_pg466.csv">keppel_3way_pg466.csv
+file</a>. Some comparisons of contrasts analysis with other software can
+be found in <a href="rosetta_simpleint.html">Simple Effects and Simple
+Interactions</a>.</p>
+<div id="the-research-design" class="section level1">
+<h1>The research design</h1>
+<p>The dataset has a dependent variable, number of words recalled from a
+memorized list. Three independent variables defined as factors 1)
+<em>Grade</em>, either fifth or twelfth graders 2) <em>Feedback</em>
+conditions: control (none), positive, or negative. <em>WordType</em>,
+that is the type of words used: A, B, C (we renamed the level for
+simplicity)</p>
+<p><img src="examples/glm3/output.1.png" width="437" /></p>
+<p>Running the model with the three factors and <em>numcall</em> as
+dependent variable, we obtain the following results.</p>
+<p><img src="examples/glm3/output.2.png" width="606" />
+<img src="examples/glm3/output.3.png" width="980" /></p>
+<p><code>Parameter Estimates</code> table reports all tested
+coefficients for the contrasts used to cast the factor variables in the
+linear model. However, by default the factor are coded using
+<code>simple coding</code>, which implying comparing the last level with
+all other levels.</p>
+</div>
+<div id="custom-contrast" class="section level1">
+<h1>Custom contrast</h1>
+<p>We now wish to test the custom contrasts for <em>WordType</em>
+comparing group <em>A</em> against the pooled means of group <em>B</em>
+and <em>C</em>. We go to <code>Factors Coding</code> and we choose
+<code>custom</code> for the variable <em>WordType</em>.</p>
+<p><img src="examples/glm3/input.4.png" width="552" /></p>
+<p>Upon choosing <code>custom</code> for a variable, a new field appears
+and we can input the contrast weights we wish to test. Only one contrast
+per variable can be defined, but if more contrasts are required one can
+always run different analyses, one for each contrast. The coding weights
+are input with the simple syntax <code>w1,w2,w3</code>. The other of the
+weights follow the other of the factor levels in the datasheet. In our
+case, the following:</p>
+<p><img src="examples/glm3/output.6.png" width="763" /></p>
+<p>We also flag the option <code>Focus on custom contrast</code>, which
+produces a table singling out the results for the contrast (this options
+has other implications, see below).</p>
+<p><img src="examples/glm3/output.4.png" width="873" /></p>
+<p>The table reports the estimate of the contrast, the Cohen’s d, t-test
+and p-value of the contrast.</p>
+<p>More results can be found in the <code>Parameter Estimates</code>
+table.</p>
+<p><img src="examples/glm3/output.5.png" width="1100" /></p>
+<p>Here we see all model coefficients, including the ones associated
+with the custom contrast. For instance, row
+<code>Feedback1 * WordType1</code> informs us on the interaction between
+our contrast and the comparison <em>none</em> vs <em>negative</em> of
+<em>feedback</em>, telling whether our contrast is different for
+Feedback=none as compared with Feedback=neg. The row
+<code>wordType1 * Grade1</code> informs us on the interaction between
+our contrast and the comparison 5th vs 12th <em>Grade</em>, telling
+whether our contrast is different at grade 5th as compared with grade
+12th.</p>
+<p>In the table there is also a second contrast for <em>WordType</em>,
+named <em>tech2</em>. That is a <em>technical</em> contrast necessary to
+correctly estimate the model. Recall, in fact, that to cast a
+categorical variable with <span class="math inline">\(K\)</span> levels
+into a linear model, we need <span class="math inline">\(K-1\)</span>
+contrasts. However, <code>tech2</code> is automatically coded to be
+orthogonal (uncorrelated) with our custom contrast, so custom contrast
+results are completely unaffected by the <em>technical</em> contrasts.
+We can ignore them.</p>
+</div>
+<div id="simple-effects" class="section level1">
+<h1>Simple effects</h1>
+<p>We can further probe the results by asking for simple effects. Since
+we have a significant interaction between our contrast and
+<em>Grade</em> (see <code>WordType1 * Grade1</code> above) we can probe
+it.</p>
+<p><img src="examples/glm3/input.7.png" width="564" /></p>
+<p><img src="examples/glm3/output.7.png" width="800" /></p>
+<p><img src="examples/glm3/input.8.png" width="521" /></p>
+<p><img src="examples/glm3/output.8.png" width="819" /></p>
+<p>The results of both table refer exclusively to the custom contrast.
+So, the F-test in the ANOVA table tests the contrast at each level of
+grade, and so does the
+<code>Parameter Estimates for simple effects</code> table. However, if
+one wants the F-tests for the whole effect of the factor, so not only
+the custom contrasts, one can simply unflag the
+<code>Focus on custom contrast</code>.</p>
+</div>
+<div id="simple-interactions" class="section level1">
+<h1>Simple interactions</h1>
+<p>Although the 3-way interaction is not statistically significant, as
+an exercise we can ask for the <code>Simple interactions</code></p>
+<p><img src="examples/glm3/input.9.png" width="552" /></p>
+<p><img src="examples/glm3/output.9.png" width="946" /></p>
+<p>It is important to recall that in the presence of a custom contrast,
+and with he <code>Focus on custom contrast</code> flagged, the results
+pertain only to the custom contrast. Thus, the ANOVA table informs as
+whether the interaction contrast X feedback is significant at grade 5th
+and at grade 12th. The <code>Parameter Estimates</code> table breaks
+down these interactions into their single contrast interactions, namely
+custom * (none-neg) and custom * (pos-neg).</p>
+<p>Unflagging <code>Focus on custom contrast</code> would return
+standard simple interactions, involving all contrast in the model.</p>
+</div>
+<div id="more-custom-contrasts" class="section level1">
+<h1>More custom contrasts</h1>
+<p>We can set one custom contrast per variable in the same model.
+Assume, for instance, we also want to test the contrast for
+<em>Feedback</em> comparing group <em>negative</em> against group
+<em>none</em>. Because the <em>Feedback</em> levels are ordered
+<em>neg</em>,<em>none</em>, and <em>pos</em>, our contrast weights
+should be <span class="math inline">\(c=[1,-1,0]\)</span>.</p>
+<p><img src="examples/glm3/input.10.png" width="556" /></p>
+<p><img src="examples/glm3/output.10.png" width="871" /></p>
+<p>We can see in the output the results for both contrasts defined in
+input.</p>
+<p>The reaming of the tables can be interpreted as we did above. The
+only caveat to mention is for the simple interactions. When simple
+interactions involve factors with custom contrast, the results pertain
+the interactions between the target variable custom and the other
+factor. Thus, setting <em>WordType</em> as the target variable</p>
+<p><img src="examples/glm3/input.11.png" width="553" /></p>
+<p><img src="examples/glm3/output.11.png" width="927" /></p>
+<p>The parameters table show the interaction custom contrast of
+<em>WordType</em> with the other contrast of <em>Feedback</em>,
+including the custom contrast of the latter variable. The ANOVA table
+tests that these interactions combined per level of <em>Grade</em> are
+statistical significant.</p>
+</div>
+<div id="other-examples" class="section level1 adm adm-seealso">
+<h1>Other examples</h1>
+</div>
+<div class="adm adm-seealso backto">
+<p>
+Return to main help pages
+</p>
+<a class='backto' href='index.html'>Main page</a>
+<a class="backto" href="glm.html">General Linear Model</a>
+</div>
+<div id="comments" class="section level1 adm adm-warning">
+<h1>Comments?</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues " target="_blank"> GAMLj
+at github</a> or <a href="mailto:mcfanda@gmail.com
+
+">send me an email</a>
+</p>
+</div>
+</div>
+
+   
+   
+            
+      
+
+  <script>
+    $(document).ready(function () {
+
+			
+ 		
+		$('#content img:not(.no-lightbox)').addClass("image-lb");
+	$('#content').magnificPopup({
+	    type:'image',
+	    closeOnContentClick: false,
+	    closeBtnInside: false,
+	    delegate: '.image-lb',
+	    gallery: {enabled: false },
+	    image: {
+	        verticalFit: true,
+		titleSrc: 'alt'
+	    }
+ 	});
+ 	    });
+  </script>
+
+
+
+    <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+	document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  
+</body>
+</html>

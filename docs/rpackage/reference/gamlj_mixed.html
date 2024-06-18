@@ -89,6 +89,8 @@ analysis, effect size indexes and visualization of the results.</p>
 <span>  boot_r <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  ci_width <span class="op">=</span> <span class="fl">95</span>,</span>
 <span>  contrasts <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  contrast_custom_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  contrast_custom_focus <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  show_contrastnames <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_contrastcodes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  plot_x <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -232,9 +234,22 @@ confidence interval width for the plots.</p></dd>
 <dd><p>a named vector of the form <code>c(var1="type",
 var2="type2")</code> specifying the type of contrast to use, one of
 <code>'deviation'</code>, <code>'simple'</code>, <code>'dummy'</code>, <code>'difference'</code>,
-<code>'helmert'</code>, <code>'repeated'</code> or <code>'polynomial'</code>. If NULL,
+<code>'helmert'</code>, <code>'repeated'</code>, <code>'polynomial'</code> <code>'custom'</code>. If NULL,
 <code>simple</code> is used. Can also be passed as a list of list of the form
-list(list(var="var1",type="type1")).</p></dd>
+list(list(var="var1",type="type1")). If any factor contrast is defined as <code>'custom'</code>,
+a named list of the form <code>list(factorname=numeric vector)</code>, for instance <code>list(factorname=c(1,1,-2))</code> should be passed
+to the option <code>contrast_custom_values</code>.</p></dd>
+
+
+<dt>contrast_custom_values</dt>
+<dd><p>a named list with the custom contrast weights, of the form <code>list(factorname=numeric vector)</code>, for instance <code>list(factorname=c(1,1,-2))</code>.
+only one constrast per variable is allowed.</p></dd>
+
+
+<dt>contrast_custom_focus</dt>
+<dd><p>if any factor is coded with <code>'custom'</code>, when <code>TRUE</code> or <code>NULL </code> (default) the coefficients, simple effects and simple interactions
+are focused on the custom contrast. If <code>FALSE</code> , variables are coded accordingly to the passed contrast, but
+no special table or test is devoted to the contrast.</p></dd>
 
 
 <dt>show_contrastnames</dt>
@@ -442,24 +457,6 @@ option is ignored if the model is passed using <code>formula</code>.</p></dd>
 <span class="r-in"><span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu">gamlj_mixed</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">ycont</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">x</span><span class="op">+</span><span class="op">(</span> <span class="fl">1</span><span class="op">|</span><span class="va">cluster</span> <span class="op">)</span>,</span></span>
 <span class="r-in"><span>                     data <span class="op">=</span> <span class="va">clustermanymodels</span></span></span>
 <span class="r-in"><span>                     <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lmer   #### phase init  ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lmer   #### phase run ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.0410909652709961  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: estimating variance components</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.470866680145264  secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  MIXED MODEL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

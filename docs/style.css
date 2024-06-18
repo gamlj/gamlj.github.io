@@ -104,6 +104,13 @@ span.little {
 
 
 
+span.modulename {
+  font-weight: bold;
+  color:   #3E6DA9;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+
 
 pre.jamovitable {
   color:black;

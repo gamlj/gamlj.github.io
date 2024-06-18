@@ -1,0 +1,121 @@
+---
+title: "Contrasts analysis"
+author: "Marcello Gallucci"
+nickname: polynomial
+topic: glm
+category: example
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+---
+
+```{r echo=FALSE,results='hide'}
+library(mcdocs)
+mcdocs_init()
+
+
+```
+
+
+`r keywords("Contrasts analysis, ANOVA, linear model")`
+
+`r version("3.3.2")`
+
+In this page we work out an example of contrasts analysis in the GLM, using jamovi `r modulename()`. In `r modulename()` custom contrasts work in the same way for all models (generalized, mixed and generalized mixed). We use GLM here for simplicity. We employ data from Keppel and Wickens, pg 466 data set, a 3x3x2 design  in [keppel_3way_pg466.csv file](https://github.com/gamlj/gamlj/blob/master/data/keppel_3way_pg466.csv). Some comparisons of contrasts analysis with other software can be found in `r link_pages(nickname="simple_effects")`.
+
+# The research design
+
+The dataset has a dependent variable, number of words recalled from a memorized list. Three independent variables defined as factors 1) _Grade_,  either fifth or twelfth graders 2) _Feedback_ conditions: control (none), positive, or negative. _WordType_, that is the type of words used: A, B, C (we renamed the level for simplicity)
+
+`r pic("examples/glm3/output.1.png")`
+
+Running the model with the three factors and _numcall_ as dependent variable, we obtain the following results.
+
+`r pic("examples/glm3/output.2.png")`
+`r pic("examples/glm3/output.3.png")`
+
+`Parameter Estimates` table reports all tested coefficients for the contrasts used to cast the factor variables in the linear model. However, by default the factor are coded using `simple coding`, which implying comparing the last level with all other levels.
+
+# Custom contrast
+
+We now wish to test the custom contrasts for _WordType_ comparing group _A_ against the pooled means of group _B_ and _C_. We go to `Factors Coding` and we choose `custom` for the variable _WordType_.
+
+`r pic("examples/glm3/input.4.png")`
+
+Upon choosing `custom` for a variable, a new field appears and we can input the contrast weights we wish to test. Only one contrast per variable can be defined, but if more contrasts are required one can always run different analyses, one for each contrast. The coding weights are input with the simple syntax `w1,w2,w3`.  The other of the weights follow the other of the factor levels in the datasheet. In our case, the following:
+
+`r pic("examples/glm3/output.6.png")`
+
+We also flag the option `Focus on custom contrast`, which produces a table singling out the results for the contrast (this options has other implications, see below).
+
+`r pic("examples/glm3/output.4.png")`
+
+The table reports the estimate of the contrast, the Cohen's d, t-test and p-value of the contrast. 
+
+More results can be found in the `Parameter Estimates` table.
+
+`r pic("examples/glm3/output.5.png")`
+
+Here we see all model coefficients, including the ones associated with the custom contrast. For instance, row `Feedback1 * WordType1` informs us on the interaction between our contrast and the comparison _none_ vs _negative_ of _feedback_, telling whether our contrast is different for Feedback=none as compared with Feedback=neg. The row `wordType1 * Grade1` informs us on the interaction between our contrast and the comparison 5th vs 12th  _Grade_, telling whether our contrast is different at grade 5th as compared with grade 12th. 
+
+In the table there is also a second contrast for _WordType_, named _tech2_. That is a _technical_ contrast necessary to correctly estimate the model. Recall, in fact, that to cast a categorical variable with $K$ levels into a linear model, we need $K-1$ contrasts. However, `tech2` is automatically coded to be orthogonal (uncorrelated) with our custom contrast, so custom contrast results are completely unaffected by the _technical_ contrasts. We can ignore them.
+
+
+# Simple effects
+
+We can further probe the results by asking for simple effects. Since we have a significant interaction between our contrast and _Grade_ (see `WordType1 * Grade1` above) we can probe it.
+
+
+`r pic("examples/glm3/input.7.png")`
+
+`r pic("examples/glm3/output.7.png")`
+
+`r pic("examples/glm3/input.8.png")`
+
+`r pic("examples/glm3/output.8.png")`
+
+The results of both table refer exclusively to the custom contrast. So, the F-test in the ANOVA table tests the contrast at each level of grade, and so does the `Parameter Estimates for simple effects` table. However, if one wants the F-tests for the whole effect of the factor, so not only the custom contrasts, one can simply unflag the `Focus on custom contrast`.
+
+# Simple interactions
+
+Although the 3-way interaction is not statistically significant, as an exercise we can ask for the `Simple interactions` 
+
+`r pic("examples/glm3/input.9.png")`
+
+`r pic("examples/glm3/output.9.png")`
+
+It is important to recall that in the presence of a custom contrast, and with he `Focus on custom contrast` flagged, the results pertain only to the custom contrast. Thus, the ANOVA table informs as whether the interaction contrast X feedback is significant at grade 5th and at grade 12th. The `Parameter Estimates` table breaks down these interactions into their single contrast interactions, namely custom * (none-neg) and custom * (pos-neg). 
+
+Unflagging `Focus on custom contrast` would return standard simple interactions, involving all contrast in the model. 
+
+# More custom contrasts
+
+We can set one custom contrast per variable in the same model. Assume, for instance, we also want to test the contrast for _Feedback_ comparing group _negative_ against group  _none_. Because the _Feedback_ levels are ordered _neg_,_none_, and _pos_, our contrast weights should be $c=[1,-1,0]$.
+
+`r pic("examples/glm3/input.10.png")`
+
+`r pic("examples/glm3/output.10.png")`
+
+We can see in the output the results for both contrasts defined in input.
+
+The reaming of the tables can be interpreted as we did above. The only caveat to mention is for the simple interactions. When simple interactions involve factors with custom contrast, the results pertain the interactions between the target variable custom and the other factor. Thus, setting _WordType_ as the target variable
+
+`r pic("examples/glm3/input.11.png")`
+
+`r pic("examples/glm3/output.11.png")`
+
+The parameters table show the interaction custom contrast of _WordType_ with the other contrast of _Feedback_, including the custom contrast of the latter variable. The ANOVA table tests that these interactions combined per level of _Grade_ are statistical significant.
+
+
+`r include_pages(topic="glm",category="examples",title="Other examples")`
+
+`r backto("glm")`
+
+
+`r issues()`
+
+

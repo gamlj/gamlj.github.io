@@ -301,9 +301,6 @@ Gallucci</p>
    
 <!-- Don't indent these lines or it will mess pre blocks indentation --> 
 <div id="main">
-<p><span class="keywords"> <span class="keytitle"> keywords </span>
-moderated regression, simple effects, simple interaction, linear model
-</span></p>
 <div class="version">
 <p>
 3.0.0
@@ -321,12 +318,13 @@ Dudek</strong>. In particular, the analyses on <a
 href="https://bcdudek.net/3wayanova/3way_factorial_Rmarkdown.html#use-of-the-phia-package-for-contrasts-and-simple-effects">simple
 effects and interactions</a>. We employ data from Keppel and Wickens, pg
 466 data set, a 3x3x2 design <a
-href="link%20to%20file">keppel_3way_pg466.csv file</a>. Dudek’s page
-employes a variaty of R commands and packages to obtain the results, so
-we can compare <span class="modulename">GAMLj</span> with different
-source of results. The aim of these analyses is to validate the results
-obtained with <span class="modulename">GAMLj</span> with the ones
-obtained with different software.</p>
+href="https://github.com/gamlj/gamlj/blob/master/data/keppel_3way_pg466.csv">keppel_3way_pg466.csv
+file</a>. Dudek’s page employes a variaty of R commands and packages to
+obtain the results, so we can compare <span
+class="modulename">GAMLj</span> with different source of results. The
+aim of these analyses is to validate the results obtained with <span
+class="modulename">GAMLj</span> with the ones obtained with different
+software.</p>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
 <p>The dataset has a dependent variable, number of words recalled from a
@@ -344,9 +342,9 @@ presented in <a
 href="https://bcdudek.net/3wayanova/3way_factorial_Rmarkdown.html#way-factorial-design.-a-completely-randomized-between-subjects-factorial-design">Dudek’s
 page, par 3.1.2</a>. We launch <code>General Linear Model</code> from
 the <code>Linear Models</code> menu and set up the model</p>
-<p><img src="examples/glm3/input.1.png" width="584" /></p>
+<p><img src="rosetta/simpleinteractions/input.1.png" width="584" /></p>
 <p>And we get (among other tables) the ANOVA results.</p>
-<p><img src="examples/glm3/output.1.png" width="587" /></p>
+<p><img src="rosetta/simpleinteractions/output.1.png" width="587" /></p>
 <p>In R, we can use:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;../data/keppel_3way_pg466.csv&quot;</span>,<span class="at">stringsAsFactors=</span>T)</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>data<span class="sc">$</span>Feedback <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data<span class="sc">$</span>Feedback, <span class="st">&quot;&#39;none&#39;=&#39;None&#39;; &#39;pos&#39;=&#39;Positive&#39;; &#39;neg&#39;=&#39;Negative&#39;&quot;</span>)</span>
@@ -451,11 +449,11 @@ contrasts are always:</p>
 <li><p>Feedback: Positive Negative None</p></li>
 <li><p>WordType: HF_HE LF_LE HF_LE</p></li>
 </ul>
-<p><img src="examples/glm3/input.2.png" width="665" /></p>
-<p><img src="examples/glm3/input.3.png" width="731" /></p>
+<p><img src="rosetta/simpleinteractions/input.2.png" width="665" /></p>
+<p><img src="rosetta/simpleinteractions/input.3.png" width="731" /></p>
 <p>At this point, we can set the correct coding system for the
 factors</p>
-<p><img src="examples/glm3/input.4.png" width="556" /></p>
+<p><img src="rosetta/simpleinteractions/input.4.png" width="556" /></p>
 <div id="contrast-coefficients" class="section level2">
 <h2>Contrast coefficients</h2>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(numrecall<span class="sc">~</span>Feedback<span class="sc">*</span>WordType<span class="sc">*</span>Grade,<span class="at">data=</span>data)</span>
@@ -500,7 +498,7 @@ t-test and p-values are identical. The order of the effects in the table
 is different, but all terms are present.</p>
 <p>Exactly the same results are obtained in <span
 class="modulename">GAMLj</span></p>
-<p><img src="examples/glm3/output.2.png" width="1012" /></p>
+<p><img src="rosetta/simpleinteractions/output.2.png" width="1012" /></p>
 <p>Having established that the model results are the same, we need to
 code <code>Grade</code> with a centered coding system, so the results of
 the R <code>lm()</code> command are in line with the one expected from a
@@ -508,7 +506,7 @@ standard ANOVA.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">contrasts</span>(data<span class="sc">$</span>Grade)<span class="ot">&lt;-</span><span class="fu">contr.sum</span>(<span class="dv">2</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(numrecall<span class="sc">~</span>Feedback<span class="sc">*</span>WordType<span class="sc">*</span>Grade,<span class="at">data=</span>data)</span></code></pre></div>
 <p>In <span class="modulename">GAMLj</span>, we have</p>
-<p><img src="examples/glm3/input.7.png" width="554" /></p>
+<p><img src="rosetta/simpleinteractions/input.7.png" width="554" /></p>
 </div>
 </div>
 <div id="simple-interactions" class="section level1">
@@ -520,14 +518,10 @@ levels of grade (cf. Dudek’s page, par 6.1). In R we can employ
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>phia<span class="sc">::</span><span class="fu">testInteractions</span>(model,<span class="at">fixed=</span><span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>), <span class="at">across=</span><span class="fu">c</span>(<span class="st">&quot;Feedback&quot;</span>, <span class="st">&quot;WordType&quot;</span>),<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>## F Test: 
 ## P-value adjustment method: none
-##           Feedback1:WordType1 Feedback2:WordType1 Feedback1:WordType2 Feedback2:WordType2    SE1     SE2     SE3     SE4 Df Sum of Sq      F
-## 12th                      0.0             0.11547             0.46188                -0.2  0.615   0.615 0.61464 0.61464  4    1.3333 0.1765
-##  5th                     -1.5            -0.75056             1.32791                 0.3  0.615   0.615 0.61464 0.61464  4   23.3333 3.0882
-## Residuals                                                                                 72.000 136.000                                    
-##            Pr(&gt;F)  
-## 12th      0.94983  
-##  5th      0.02098 *
-## Residuals          
+##           Feedback1:WordType1 Feedback2:WordType1 Feedback1:WordType2 Feedback2:WordType2    SE1     SE2     SE3     SE4 Df Sum of Sq      F  Pr(&gt;F)  
+## 12th                      0.0             0.11547             0.46188                -0.2  0.615   0.615 0.61464 0.61464  4    1.3333 0.1765 0.94983  
+##  5th                     -1.5            -0.75056             1.32791                 0.3  0.615   0.615 0.61464 0.61464  4   23.3333 3.0882 0.02098 *
+## Residuals                                                                                 72.000 136.000                                              
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>In <span class="modulename">GAMLj</span> we ask for the
@@ -535,11 +529,11 @@ levels of grade (cf. Dudek’s page, par 6.1). In R we can employ
 <code>Moderators</code> both <code>WordType</code> and
 <code>Grade</code>, and select the option
 <code>Simple Interactions</code>.</p>
-<p><img src="examples/glm3/input.5.png" width="562" /></p>
+<p><img src="rosetta/simpleinteractions/input.5.png" width="562" /></p>
 <p>The results show the F-test associated with the simple interactions
 at each level of <em>Grade</em>, and the individual interaction
 contrasts that inform the simple interactions.</p>
-<p><img src="examples/glm3/output.5.png" width="788" /></p>
+<p><img src="rosetta/simpleinteractions/output.5.png" width="788" /></p>
 <p>Another possible set of simple interactions can be the interaction
 _WordType*Grade_ at different levels of <em>Feedback</em>.</p>
 <p>In R we have</p>
@@ -556,8 +550,8 @@ _WordType*Grade_ at different levels of <em>Feedback</em>.</p>
 <p>In <span class="modulename">GAMLj</span>, we simply change the input
 of the <code>Simple Effect</code> options, putting <em>Feedback</em> as
 the last moderator.</p>
-<p><img src="examples/glm3/input.6.png" width="565" /></p>
-<p><img src="examples/glm3/output.6.png" width="829" /></p>
+<p><img src="rosetta/simpleinteractions/input.6.png" width="565" /></p>
+<p><img src="rosetta/simpleinteractions/output.6.png" width="829" /></p>
 </div>
 <div id="simple-effects" class="section level1">
 <h1>Simple Effects</h1>
@@ -582,8 +576,8 @@ instance, the simple effect of <em>Feedback</em> at different levels of
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>In <span class="modulename">GAMLj</span>, we set the input of the
 <code>Simple Effect</code> option as required:</p>
-<p><img src="examples/glm3/input.8.png" width="565" /></p>
-<p><img src="examples/glm3/output.8.png" width="742" /></p>
+<p><img src="rosetta/simpleinteractions/input.8.png" width="565" /></p>
+<p><img src="rosetta/simpleinteractions/output.8.png" width="742" /></p>
 <p>Again, the same results.</p>
 <p>We now check that the results of Simple effects with more than one
 moderators. For instance, one can estimate the effect of
@@ -604,8 +598,8 @@ moderators. For instance, one can estimate the effect of
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>In <span class="modulename">GAMLj</span>:</p>
-<p><img src="examples/glm3/input.6.png" width="565" /></p>
-<p><img src="examples/glm3/input.7.png" width="554" /></p>
+<p><img src="rosetta/simpleinteractions/input.6.png" width="565" /></p>
+<p><img src="rosetta/simpleinteractions/input.7.png" width="554" /></p>
 <p>Obtaining the same results.</p>
 </div>
 <div id="examples" class="section level1 adm adm-seealso">
@@ -620,6 +614,9 @@ regression, and simple slopes</a>
 </li>
 <li>
 <a href="glm_example2.html">Polynomial Effects</a>
+</li>
+<li>
+<a href="glm_example3.html">Contrasts analysis</a>
 </li>
 </ul>
 </div>

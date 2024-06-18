@@ -1303,3 +1303,11 @@ div.version:after {
     content:"";
     clear: both;
 }
+
+
+span.jamovi a {
+  font-weight: bold !important;
+  color:   #3E6DA9 !important;
+  font-family: Tahoma, Geneva, sans-serif !important;
+  text-transform: lowercase;
+}

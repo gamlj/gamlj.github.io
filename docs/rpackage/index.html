@@ -86,20 +86,63 @@
 <img width="300" src="https://gamlj.github.io/commons/pics/ui.png" class="img-responsive" alt="">
 </center>
 <p><br></p>
-<p>Estimates a General Linear Model, Mixed Linear Models, Generalized Linear Models and Generalized Mixed Models with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc etc.</p>
+<p>Estimates a General Linear Model, Mixed Linear Models, Generalized Linear Models and Generalized Mixed Models with categorical and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc etc.</p>
 <ul>
-<li>Continuous and categorical independent and dependent variables</li>
-<li>F-test and parameter estimates</li>
-<li>Confidence intervals</li>
+<li>ANOVA and Regression approach</li>
+<li>Continuous and categorical independent variables</li>
+<li>F-test, LR tests, and parameter estimates</li>
+<li>Confidence intervals, standard, profile and bootstrap</li>
 <li>Moderation made easy</li>
 <li>Simple slopes analysis</li>
-<li>Simple effects</li>
-<li>Polynomial effects</li>
-<li>post-hoc analysis</li>
-<li>Plots up to three-way interactions</li>
+<li>Simple effects analysis</li>
+<li>Simple interaction analysis</li>
+<li>Post-hoc analysis</li>
+<li>Contrasts analysis</li>
+<li>Plots for any order of interactions</li>
 <li>Automatic selection of best estimation methods and degrees of freedom selection</li>
 <li>Type III estimation</li>
+<li>A large set of effect size indices, depending on the model being estimated, such as <span class="math inline"><em>η</em><sup>2</sup></span>, <span class="math inline"><em>ω</em><sup>2</sup></span>, <span class="math inline"><em>ϵ</em><sup>2</sup></span>, and Cohen’s <span class="math inline"><em>d</em></span>, both partial and not partial.</li>
 </ul>
+<p>Available models are:</p>
+<ul>
+<li>OLS Regression (GLM)</li>
+<li>OLS ANOVA (GLM)</li>
+<li>OLS ANCOVA (GLM)</li>
+<li>Random coefficients regression (Mixed)</li>
+<li>Random coefficients ANOVA-ANCOVA (Mixed)</li>
+<li>Logistic regression (GZLM)</li>
+<li>Logistic ANOVA-like model (GZLM)</li>
+<li>Probit regression (GZLM)</li>
+<li>Probit ANOVA-like model (GZLM)</li>
+<li>Multinomial regression (GZLM)</li>
+<li>Multinomial ANOVA-like model (GZLM)</li>
+<li>Poisson regression (GZLM)</li>
+<li>Poisson ANOVA-like model (GZLM)</li>
+<li>Overdispersed Poisson regression (GZLM)</li>
+<li>Overdispersed Poisson ANOVA-like model (GZLM)</li>
+<li>Negative binomial regression (GZLM)</li>
+<li>Negative binomial ANOVA-like model (GZLM)</li>
+<li>Ordinal regression (GZLM)</li>
+<li>Ordinal ANOVA-like model (GZLM)</li>
+<li>Mixed Logistic regression (GMixed)</li>
+<li>Mixed Logistic ANOVA-like model (GMixed)</li>
+<li>Mixed Probit regression (GMixed)</li>
+<li>Mixed Probit ANOVA-like model (GMixed)</li>
+<li>Mixed Multinomial regression (GMixed)</li>
+<li>Mixed Multinomial ANOVA-like model (GMixed)</li>
+<li>Mixed Poisson regression (GMixed)</li>
+<li>Mixed Poisson ANOVA-like model (GMixed)</li>
+<li>Mixed Overdispersed Poisson regression (GMixed)</li>
+<li>Mixed Overdispersed Poisson ANOVA-like model (GMixed)</li>
+<li>Mixed Negative binomial regression (GMixed)</li>
+<li>Mixed Negative binomail ANOVA-like model (GMixed)</li>
+<li>Mixed Ordinal regression (GMixed)</li>
+<li>Mixed Ordinal ANOVA-like model (GMixed)</li>
+</ul>
+</div>
+<div class="section level1">
+<h1 id="docs">Docs<a class="anchor" aria-label="anchor" href="#docs"></a>
+</h1>
 <p>More informations can be found at <a href="https://gamlj.github.io/" class="external-link">GAMLj page</a></p>
 </div>
 <div class="section level1">
@@ -141,6 +184,417 @@
 <h1 id="programmatic-name">Programmatic name<a class="anchor" aria-label="anchor" href="#programmatic-name"></a>
 </h1>
 <pre><code>paste(paste(LETTERS[c(7,1,13,12)],collapse =""),paste(letters[10]),sep="")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -226,7 +680,65 @@ If you want to install the latest previous version of the module (Version 2.6.6)
 <span></span>
 <span><span class="co"># Programmatic name</span></span></code></pre>
 <p>paste(paste(LETTERS[c(7,1,13,12)],collapse =““),paste(letters[10]),sep=”“)</p>
-<p>```</p>
+<center>
+<img width="300" src="https://gamlj.github.io/commons/pics/ui.png" class="img-responsive" alt="">
+</center>
+<p><br></p>
+<p>Estimates a General Linear Model, Mixed Linear Models, Generalized Linear Models and Generalized Mixed Models with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc etc.</p>
+<ul>
+<li>Continuous and categorical independent and dependent variables</li>
+<li>F-test and parameter estimates</li>
+<li>Confidence intervals</li>
+<li>Moderation made easy</li>
+<li>Simple slopes analysis</li>
+<li>Simple effects</li>
+<li>Polynomial effects</li>
+<li>post-hoc analysis</li>
+<li>Plots up to three-way interactions</li>
+<li>Automatic selection of best estimation methods and degrees of freedom selection</li>
+<li>Type III estimation</li>
+</ul>
+<p>More informations can be found at <a href="https://gamlj.github.io/" class="external-link">GAMLj page</a></p>
+</div>
+<div class="section level1">
+<h1 id="install-in-jamovi-1">Install in jamovi<a class="anchor" aria-label="anchor" href="#install-in-jamovi-1"></a>
+</h1>
+<p>Please install <a href="https://www.jamovi.org/download.html" class="external-link">jamovi</a> and run it. Select the jamovi modules library and install GAMLj from there</p>
+<center>
+<img width="600" src="https://gamlj.github.io/glm/install.png" class="img-responsive" alt="">
+</center>
+</div>
+<div class="section level1">
+<h1 id="version-3-1">Version 3<a class="anchor" aria-label="anchor" href="#version-3-1"></a>
+</h1>
+<p>GAMLj has undergone a major upgrading with version 3.*. The upgrading made version 3 not compatible with previous versions of the module, meaning that analyses that are done with previous versions cannot be opened with version 3. If you need to open and work with analyses done with GAMLj version &lt; 3.0.0, you can install GAMLj legacy from the jamovi library. It will not interfere with GAMLj3.</p>
+<div class="section level2">
+<h2 id="from-github-1">From GitHub<a class="anchor" aria-label="anchor" href="#from-github-1"></a>
+</h2>
+<p>In your R script (or Rstudio) simply issue</p>
+<pre><code><span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"gamlj/gamlj"</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="from-source-1">From source<a class="anchor" aria-label="anchor" href="#from-source-1"></a>
+</h2>
+<p>You will first need to download <a href="https://www.jamovi.org/download.html" class="external-link">jamovi</a>.</p>
+<p>You can clone this repository and compile the module within R with</p>
+<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">jmvtools</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">jmvtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jmvtools/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+<div class="section level1">
+<h1 id="previous-version-gamlj-266-or-below-1">Previous Version (GAMLj 2.6.6 or below)<a class="anchor" aria-label="anchor" href="#previous-version-gamlj-266-or-below-1"></a>
+</h1>
+<p>If you want to install the latest previous version of the module (Version 2.6.6) in R, run this:</p>
+<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"gamlj/gamlj"</span>,ref<span class="op">=</span><span class="st">"Version.2.6.6"</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="section level1">
+<h1 id="programmatic-name-1">Programmatic name<a class="anchor" aria-label="anchor" href="#programmatic-name-1"></a>
+</h1>
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">1</span>,<span class="fl">13</span>,<span class="fl">12</span><span class="op">)</span><span class="op">]</span>,collapse <span class="op">=</span><span class="st">""</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre>
 </div>
 
   </div>

@@ -297,8 +297,9 @@ has been selected.</p>
 <span class="option">Do not run</span>
 </td>
 <td>
-Do not update the results when options are changed in the GUI. Unselect
-to run the analysis.
+If flagged, the results are not updated each time an option is changed.
+This allows settings complex model options without waiting for the
+results to update every time. Unflag it when ready to go.
 </td>
 </tr>
 <tr>
@@ -306,7 +307,7 @@ to run the analysis.
 <span class="option">Activate</span>
 </td>
 <td>
-Activate the model comparison fields and options.
+Activates models comparison
 </td>
 </tr>
 <tr>
@@ -639,12 +640,12 @@ the “variable role” definition.</p>
 <table class="options">
 <tr>
 <td class="optionname">
-<span class="option">Error Bar Definition</span>
+<span class="option">Display</span>
 </td>
 <td>
-<code>'none'</code> (default), <code>'ci'</code>, or <code>'se'</code>.
-Use no error bars, use confidence intervals, or use standard errors on
-the plots, respectively.
+<code>'None'</code> (default), <code>Confidence Intervals</code>, or
+<code>Standard Error</code>. Display on plots no error bars, use
+confidence intervals, or use standard errors on the plots, respectively.
 </td>
 </tr>
 <tr>
@@ -676,11 +677,12 @@ equal to the range of the observed values.
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Original scale</span>
+<span class="option">X original scale</span>
 </td>
 <td>
-<code>TRUE</code> or <code>FALSE</code> (default), use original scale
-for covariates.
+If selected, the X-axis variable is scaled with the orginal scale of the
+variable, independently to the scaling set is the
+<code>Covariates Scaling</code>.
 </td>
 </tr>
 <tr>
@@ -688,8 +690,8 @@ for covariates.
 <span class="option">Varying line types</span>
 </td>
 <td>
-<code>TRUE</code> or <code>FALSE</code> (default), use different
-linetypes per levels.
+If selected, a black and white theme is set for the plot, with multiple
+lines (if present) drawn in different styles.
 </td>
 </tr>
 <tr>
@@ -759,7 +761,7 @@ parametric bootstrap, with Bootstrap rep repetitions.
 <span class="option">Bootstrap rep.</span>
 </td>
 <td>
-a number for bootstrap repetitions.
+The number bootstrap repetitions.
 </td>
 </tr>
 <tr>
@@ -767,7 +769,10 @@ a number for bootstrap repetitions.
 <span class="option">Predicted</span>
 </td>
 <td>
-Saves the predicted values in the dataset
+Saves the predicted values of the model. Predicted values are always
+scaled in the dependent variable original scale, that in the majority of
+cases is the probability scale. For <code>Poisson</code> models and
+<code>Negative Binomial</code> the count scale is used.
 </td>
 </tr>
 <tr>
@@ -775,7 +780,7 @@ Saves the predicted values in the dataset
 <span class="option">Residuals</span>
 </td>
 <td>
-Saves the residuals values in the dataset
+Saves the residual values of the model. The response scale is used.
 </td>
 </tr>
 <tr>
@@ -783,7 +788,8 @@ Saves the residuals values in the dataset
 <span class="option">Remove notes</span>
 </td>
 <td>
-Remove all footnotes from the tables
+Removes all notes and warnings from the Tables. Useful to produce
+pubblication quality tables.
 </td>
 </tr>
 </table>

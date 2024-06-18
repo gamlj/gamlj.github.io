@@ -150,7 +150,8 @@ Finally, in order to give a more honest account of the model fit, we can visuali
 
 <img src="examples/glm1/data.plots.png" class="img-responsive" alt="">
 
-# Related examples
-`r include_examples("glm")`
+`r include_pages(topic="glm",category="examples",title="Other examples")`
+
+`r backto("glm")`
 
 `r issues()`

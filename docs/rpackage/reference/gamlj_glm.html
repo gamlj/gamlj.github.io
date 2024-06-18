@@ -86,6 +86,8 @@ interaction. Model comparison is also an option.</p>
 <span>  boot_r <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  ci_width <span class="op">=</span> <span class="fl">95</span>,</span>
 <span>  contrasts <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  contrast_custom_values <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  contrast_custom_focus <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  show_contrastnames <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_contrastcodes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -214,6 +216,17 @@ var2="type2")</code> specifying the type of contrast to use, one of
 <code>helmert</code>, <code>repeated</code> or <code>'polynomial'</code>. If NULL,
 <code>simple</code> is used. Can also be passed as a list of list of the form
 list(list(var="var1",type="type1")).</p></dd>
+
+
+<dt>contrast_custom_values</dt>
+<dd><p>a named list with the custom contrast weights, of the form <code>list(factorname=numeric vector)</code>, for instance <code>list(factorname=c(1,1,-2))</code>.
+only one constrast per variable is allowed.</p></dd>
+
+
+<dt>contrast_custom_focus</dt>
+<dd><p>if any factor is coded with <code>'custom'</code>, when <code>TRUE</code> or <code>NULL </code> (default) the coefficients, simple effects and simple interactions
+are focused on the custom contrast. If <code>FALSE</code> , variables are coded accordingly to the passed contrast, but
+no special table or test is devoted to the contrast.</p></dd>
 
 
 <dt>show_contrastnames</dt>
@@ -377,26 +390,6 @@ gives LogLikelihood ration test,  <code>'wald'</code> gives the Wald Chi-squared
 <span class="r-in"><span>                    data <span class="op">=</span> <span class="va">data</span>,</span></span>
 <span class="r-in"><span>                    model_type <span class="op">=</span> <span class="st">"logistic"</span></span></span>
 <span class="r-in"><span>                    <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: glm logistic   #### phase init  ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INIT TIME: 0.0318081378936768  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.00467109680175781  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUN TIME: 0.0600759983062744  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.0930161476135254  secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  GENERALIZED LINEAR MODEL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

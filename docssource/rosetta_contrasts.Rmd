@@ -27,7 +27,7 @@ mcdocs_init()
   
 # Introduction
 
-Here you can find comparisons of  results obtained in `r jamovi` `r modulename()`, `r jamovi` (jmv), pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing identical results across programs.
+Here you can find comparisons of  results obtained in `r modulename()`, `r jamovi` (jmv), pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing identical results across programs.
 
 Example data are [here](https://github.com/gamlj/gamlj/blob/master/data/fivegroups.csv) or in the `r jamovi` data library, under `General Analysis for Linear Models (3)`, named `fivegroups`. One continuous dependent variable, one factor with 4 groups.
 
@@ -583,9 +583,6 @@ contrast(emm,"helmert",adjust="none")
 ```
 
 Same results!
-
-
-
 
 
 
