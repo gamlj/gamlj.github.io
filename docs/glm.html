@@ -505,8 +505,8 @@ the <span class="math inline">\(median+k P\)</span>, and the <span
 class="math inline">\(median-k\cdot P\)</span>, where <span
 class="math inline">\(P\)</span> is the offset of percentile one needs.
 Again, the <span class="math inline">\(P\)</span> is ruled by the white
-field below the option. Default is 25%. The default conditions the model
-to:</p>
+field below the option. The offset should be within 5 and 50, default is
+25%. The default conditions the model to:</p>
 <ul>
 <li><p><span class="math inline">\(50^{th}-25^{th}=25^{th}\)</span>
 percentile</p></li>
@@ -514,10 +514,14 @@ percentile</p></li>
 <li><p><span class="math inline">\(50^{th}+25^{th}=75^{th}\)</span>
 percentile</p></li>
 </ul></li>
+<li><p><span class="option">Min to Max</span>: The IV is conditioned to
+its <span class="math inline">\(min\)</span>, <span
+class="math inline">\(max\)</span> and a number of values in between,
+ruled by <code>Steps</code>. For <code>Steps=1</code> only <span
+class="math inline">\(min\)</span> and <span
+class="math inline">\(max\)</span> are used. For <code>Steps=2</code>,
+one value in the middle is also used, and so on.</p></li>
 </ul>
-<p>The offset should be within 5 and 50.</p>
-<p>Note that with either of these two options, one can estimate simple
-effects and plots for any value of the continuous IV.</p>
 <p><span class="option">Covariates labeling</span> decides which label
 should be associated with the estimates and plots of simple effects as
 follows:</p>
@@ -536,7 +540,7 @@ the estimates to be obtained with centered variables (because there are
 interactions, for instance), but the plot of the effects is preferred in
 the original scales of the moderators.</p></li>
 <li><p><span class="option">Unscaled Values + Labels</span> as the
-previous option, but add also the label “Mean” and “SD” to the orginal
+previous option, but add also the label “Mean” and “SD” to the original
 values.</p></li>
 </ul>
 <p>The <span class="option">Scaling on</span> option decides how the

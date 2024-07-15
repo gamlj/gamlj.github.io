@@ -14,17 +14,17 @@ library(mcdocs)
 
 * `r opt("Mean+SD")`: means that the IV is conditioned to the $mean$,  to $mean+k \cdot sd$, and to  $mean-k\cdot sd$, where $k$ is ruled by the white field below the option. Default is 1 SD.
 
-* `r opt("Percentile 50 +offset")`: means that the IV is conditioned to the $median$, the  $median+k P$, and the $median-k\cdot P$, where $P$ is the offset of percentile one needs. Again, the $P$ is ruled by the white field below the option. Default is 25%. The default conditions the model to: 
+* `r opt("Percentile 50 +offset")`: means that the IV is conditioned to the $median$, the  $median+k P$, and the $median-k\cdot P$, where $P$ is the offset of percentile one needs. Again, the $P$ is ruled by the white field below the option. The offset should be within 5 and 50, default is 25%. The default conditions the model to: 
 
     + $50^{th}-25^{th}=25^{th}$ percentile
     
     + $50^{th}$ percentile 
     
-    + $50^{th}+25^{th}=75^{th}$ percentile 
+    + $50^{th}+25^{th}=75^{th}$ percentile
 
-The offset should be within 5 and 50.
 
-Note that with either of these two options, one can estimate simple effects and plots for any value of the continuous IV.
+* `r opt("Min to Max")`: The IV is conditioned to its $min$, $max$ and a number of values in between, ruled by `Steps`. For `Steps=1` only $min$ and $max$ are
+used. For `Steps=2`, one value in the middle is also used, and so on.
 
 `r opt("Covariates labeling")` decides which label should be associated with the estimates and plots of simple effects as follows:
 
@@ -36,7 +36,7 @@ Note that with either of these two options, one can estimate simple effects and 
 
 * `r opt("Unscaled Values")` produces labels indicating the actual value (of the mean and sd) of the original variable scale. This can be useful, for instance, when the user needs the estimates to be obtained with centered variables (because there are interactions, for instance), but the plot of the effects is preferred in the original scales of the moderators.
 
-* `r opt("Unscaled Values + Labels")` as the previous option, but add also the label "Mean" and "SD" to the orginal values.
+* `r opt("Unscaled Values + Labels")` as the previous option, but add also the label "Mean" and "SD" to the original values.
 
 The `r opt("Scaling on")` option decides how the scaling of the variables handle missing values: First, keep in mind that the model will be estimated on complete cases, no matter how this option is set. When there are missing values, however, one can scale each variable only on the complete cases (the default), or scale `columnwise`. If `columnwise` is selected, the mean and standard deviation of each variable used to scale the scores are computed with the available data of the variable, independently of possible missing values in other variables.
 
