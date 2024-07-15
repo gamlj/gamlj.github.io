@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAMLj Suite for linear models • GAMLj3</title>
+<title>GAMLj Suite for Linear Models • GAMLj3</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="GAMLj Suite for linear models">
+<script src="pkgdown.js"></script><meta property="og:title" content="GAMLj Suite for Linear Models">
 <meta property="og:description" content="A suite for estimating linear models, such as the general linear model, linear mixed models,
              generalized linear models and generalized mixed models. For each family, models can be estimated
              with categorical and/or continuous variables, with options to facilitate estimation of 
@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.4</span>
       </span>
     </div>
 
@@ -81,63 +81,25 @@
 <div class="page-header"><h1 id="gamlj-suite-for-linear-models">GAMLj Suite for Linear Models<a class="anchor" aria-label="anchor" href="#gamlj-suite-for-linear-models"></a>
 </h1></div>
 <p>General, Mixed, Generalized, and Generalized Mixed Models</p>
-<p><em id="version">Version 3.3.2 </em></p>
+<p><em id="version">Version 3.3.4 </em></p>
 <center>
 <img width="300" src="https://gamlj.github.io/commons/pics/ui.png" class="img-responsive" alt="">
 </center>
 <p><br></p>
 <p>Estimates a General Linear Model, Mixed Linear Models, Generalized Linear Models and Generalized Mixed Models with categorical and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc etc.</p>
 <ul>
-<li>ANOVA and Regression approach</li>
-<li>Continuous and categorical independent variables</li>
-<li>F-test, LR tests, and parameter estimates</li>
-<li>Confidence intervals, standard, profile and bootstrap</li>
+<li>Continuous and categorical independent and dependent variables</li>
+<li>F-test and parameter estimates</li>
+<li>Confidence intervals</li>
 <li>Moderation made easy</li>
 <li>Simple slopes analysis</li>
-<li>Simple effects analysis</li>
-<li>Simple interaction analysis</li>
-<li>Post-hoc analysis</li>
+<li>Simple effects</li>
+<li>Polynomial effects</li>
+<li>post-hoc analysis</li>
 <li>Contrasts analysis</li>
-<li>Plots for any order of interactions</li>
+<li>Plots up to three-way interactions</li>
 <li>Automatic selection of best estimation methods and degrees of freedom selection</li>
 <li>Type III estimation</li>
-<li>A large set of effect size indices, depending on the model being estimated, such as <span class="math inline"><em>η</em><sup>2</sup></span>, <span class="math inline"><em>ω</em><sup>2</sup></span>, <span class="math inline"><em>ϵ</em><sup>2</sup></span>, and Cohen’s <span class="math inline"><em>d</em></span>, both partial and not partial.</li>
-</ul>
-<p>Available models are:</p>
-<ul>
-<li>OLS Regression (GLM)</li>
-<li>OLS ANOVA (GLM)</li>
-<li>OLS ANCOVA (GLM)</li>
-<li>Random coefficients regression (Mixed)</li>
-<li>Random coefficients ANOVA-ANCOVA (Mixed)</li>
-<li>Logistic regression (GZLM)</li>
-<li>Logistic ANOVA-like model (GZLM)</li>
-<li>Probit regression (GZLM)</li>
-<li>Probit ANOVA-like model (GZLM)</li>
-<li>Multinomial regression (GZLM)</li>
-<li>Multinomial ANOVA-like model (GZLM)</li>
-<li>Poisson regression (GZLM)</li>
-<li>Poisson ANOVA-like model (GZLM)</li>
-<li>Overdispersed Poisson regression (GZLM)</li>
-<li>Overdispersed Poisson ANOVA-like model (GZLM)</li>
-<li>Negative binomial regression (GZLM)</li>
-<li>Negative binomial ANOVA-like model (GZLM)</li>
-<li>Ordinal regression (GZLM)</li>
-<li>Ordinal ANOVA-like model (GZLM)</li>
-<li>Mixed Logistic regression (GMixed)</li>
-<li>Mixed Logistic ANOVA-like model (GMixed)</li>
-<li>Mixed Probit regression (GMixed)</li>
-<li>Mixed Probit ANOVA-like model (GMixed)</li>
-<li>Mixed Multinomial regression (GMixed)</li>
-<li>Mixed Multinomial ANOVA-like model (GMixed)</li>
-<li>Mixed Poisson regression (GMixed)</li>
-<li>Mixed Poisson ANOVA-like model (GMixed)</li>
-<li>Mixed Overdispersed Poisson regression (GMixed)</li>
-<li>Mixed Overdispersed Poisson ANOVA-like model (GMixed)</li>
-<li>Mixed Negative binomial regression (GMixed)</li>
-<li>Mixed Negative binomail ANOVA-like model (GMixed)</li>
-<li>Mixed Ordinal regression (GMixed)</li>
-<li>Mixed Ordinal ANOVA-like model (GMixed)</li>
 </ul>
 </div>
 <div class="section level1">

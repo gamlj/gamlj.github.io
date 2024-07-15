@@ -20,7 +20,7 @@ analysis, effect size indexes and visualization of the results."><!-- mathjax --
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.4</span>
       </span>
     </div>
 
@@ -329,6 +329,11 @@ condition simple effects and plots. Used if
 <code>simpleScale</code>=<code>'percent'</code></p></dd>
 
 
+<dt>ccra_steps</dt>
+<dd><p>Covariate condition  steps from min to max: 
+At how many values between min and max should the covariate be conditioned <code>simpleScale</code>=<code>'range'</code></p></dd>
+
+
 <dt>covs_scale_labels</dt>
 <dd><p>how the levels of a continuous moderator should
 appear in tables and plots: <code>labels</code>, <code>values</code> and
@@ -412,11 +417,6 @@ Four methods for  heteroschedasticy-consistent
 standard errors are available: <code>HC0</code>,
 <code>HC1</code>,<code>HC2</code>,<code>HC3</code>, from package <code>sandwich</code> .
 See <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovHC.html" class="external-link">vcovHC</a></code> for details.</p></dd>
-
-
-<dt>ccra_value</dt>
-<dd><p>Covariate condition min max steps (not very mnemonic): 
-At how many values between min and max should the covariate be conditioned <code>simpleScale</code>=<code>'range'</code></p></dd>
 
 </dl></div>
     <div id="value">

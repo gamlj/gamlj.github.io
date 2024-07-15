@@ -37,6 +37,9 @@
     <loc>/reference/clustermanymodels.html</loc>
   </url>
   <url>
+    <loc>/reference/deviance.clm.html</loc>
+  </url>
+  <url>
     <loc>/reference/em_means.html</loc>
   </url>
   <url>
@@ -83,9 +86,6 @@
   </url>
   <url>
     <loc>/reference/residuals.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rsquared.glmm.html</loc>
   </url>
   <url>
     <loc>/reference/s3methods.html</loc>

@@ -20,7 +20,7 @@ analysis, effect size indexes and visualization of the results."><!-- mathjax --
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.4</span>
       </span>
     </div>
 
@@ -79,6 +79,7 @@ analysis, effect size indexes and visualization of the results.</p>
 <span>  res_struct <span class="op">=</span> <span class="st">"id"</span>,</span>
 <span>  re_lrt <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  re_ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  re_corr <span class="op">=</span> <span class="st">"block"</span>,</span>
 <span>  fixed_intercept <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  nested_terms <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nested_intercept <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -134,7 +135,7 @@ analysis, effect size indexes and visualization of the results.</p>
 
 
 <dt>data</dt>
-<dd><p>the data as a data frame</p></dd>
+<dd><p>the data as a data frame.</p></dd>
 
 
 <dt>dep</dt>
@@ -186,6 +187,14 @@ effects</p></dd>
 <dt>re_ci</dt>
 <dd><p><code>TRUE</code> or <code>FALSE</code> (default), confidence intervals
 for the random effects</p></dd>
+
+
+<dt>re_corr</dt>
+<dd><p><code>'all'</code>, <code>'none'</code> (default), or <code>'block'</code>.
+When random effects are passed as list of length 1, it decides whether the
+effects should be correlated,  non correlated. If <code>'re'</code> is a list of
+lists of length &gt; 1, the option is automatically set to <code>'block'</code>. The
+option is ignored if the model is passed using <code>formula</code>.</p></dd>
 
 
 <dt>fixed_intercept</dt>
@@ -425,14 +434,6 @@ predicted by the first defined clustering variable</p></dd>
 <dt>rand_hist</dt>
 <dd><p><code>TRUE</code> or <code>FALSE</code> (default), provide histogram
 of random Coefficients</p></dd>
-
-
-<dt>re_corr</dt>
-<dd><p><code>'all'</code>, <code>'none'</code> (default), or <code>'block'</code>.
-When random effects are passed as list of length 1, it decides whether the
-effects should be correlated,  non correlated. If <code>'re'</code> is a list of
-lists of length &gt; 1, the option is automatially set to <code>'block'</code>. The
-option is ignored if the model is passed using <code>formula</code>.</p></dd>
 
 </dl></div>
     <div id="value">
