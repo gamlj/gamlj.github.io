@@ -1,5 +1,5 @@
 ---
-title: "GLM: Multiple regression, moderated regression, and simple slopes"
+title: "Multiple regression, moderated regression, and simple slopes"
 author: "(Marcello Gallucci)"
 nickname: exercise
 topic: glm
