@@ -84,7 +84,7 @@ That's the Johnson-Neyman plot.
 
 # Simple Johnson-Neyman plots
 
-One nice feature of `r modulename()` is that allows for estimating the simple Johnson-Neyman plot at different levels of a third (or in general higher orders) moderator. Assume, for instance, that in these data there was a grouping variables, say `nationality`. The variable is not in the data so we simulate one for didactic purposes by randomly assigning the participants to two groups. 
+One nice feature of `r modulename()` is that allows estimating the simple Johnson-Neyman plot at different levels of a third (or in general higher orders) moderator. Assume, for instance, that in these data there was a grouping variable, say `nationality`. The variable is not in the data so we simulate one for didactic purposes by randomly assigning the participants to two groups. 
 
 `r pic("examples/glm4/input.1.png")`
 
