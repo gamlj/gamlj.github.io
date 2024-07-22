@@ -1,5 +1,6 @@
 ---
-title: "Generalized Mixed Models module"
+title: "Generalized Mixed Models"
+nickname: gmixed
 topic: gmixed
 category: help
 output: 

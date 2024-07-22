@@ -21,7 +21,7 @@ mcdocs_init()
 
 `r keywords("Multiple regression, moderated regression, simple slopes")`
 
-In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from   [Cohen et al 2003](http://psycnet.apa.org/record/2002-18109-000) and can be downloaded  [here](https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv). A detailed comparison between the following results and results obtained with other software (SPSS, PROCESS, and R) can be found in `r link_pages(nickname="ros_exercise")`.
+In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from   [Cohen et al 2003](http://psycnet.apa.org/record/2002-18109-000) and can be downloaded  [here](https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv). A detailed comparison between the following results and results obtained with other software (SPSS, PROCESS, and R) can be found in `r link_pages(nickname="ros_exercise")`. We are going to show how to estimate and interpret interactions with continuous variables employing a General Linear Model, but the same reasoning (and software options) can be applied to interactions in  `r link_pages(nickname="gzlm")`,`r link_pages(nickname="mixed")`, and `r link_pages(nickname="gmixed")`. 
 
 # The research design
 
@@ -149,6 +149,8 @@ The nice plot we get shows the simple effects (simple equations to be precise) w
 Finally, in order to give a more honest account of the model fit, we can visualize the simple slopes over the the actual data. 
 
 <img src="examples/glm1/data.plots.png" class="img-responsive" alt="">
+
+Starting from version 3.3.4 one can also estimate  `r link_pages(nickname="jnplot")`
 
 `r include_examples("glm")`
 

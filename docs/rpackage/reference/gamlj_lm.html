@@ -96,6 +96,7 @@ analysis, effect size indexes and visualization of the results.</p>
 <span>  plot_xoriginal <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  plot_black <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  plot_around <span class="op">=</span> <span class="st">"ci"</span>,</span>
+<span>  plot_jn <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  emmeans <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  posthoc <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  simple_x <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -276,6 +277,11 @@ linetypes per levels.</p></dd>
 <dd><p><code>'none'</code> (default), <code>'ci'</code>, or <code>'se'</code>.
 Use no error bars, use confidence intervals, or use standard errors on the
 plots, respectively.</p></dd>
+
+
+<dt>plot_jn</dt>
+<dd><p><code>'FALSE'</code> (default), <code>'TRUE'</code>.
+produces Johnson-Neyman plots for the variables specified in the main plot.</p></dd>
 
 
 <dt>emmeans</dt>

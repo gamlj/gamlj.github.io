@@ -1,5 +1,6 @@
 ---
 title: "Generalized linear models"
+nickname: "gzlm"
 topic: gzlm
 category: help
 ---

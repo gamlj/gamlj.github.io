@@ -571,17 +571,18 @@ a table.</p>
 <div id="simple-slopes-plot-1" class="section level2">
 <h2>Simple slopes plot</h2>
 <p><code>ggplot2</code> is required for a nice graph.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> xage, <span class="at">y =</span> yendu)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">&quot;gray&quot;</span>) </span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">color =</span><span class="st">&quot;exer -SD&quot;</span>,<span class="at">intercept =</span> sumr_zl<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],<span class="at">slope =</span>sumr_zl<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] ))</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">color =</span><span class="st">&quot;exer at mean&quot;</span>,<span class="at">intercept =</span> sumr<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],<span class="at">slope =</span>sumr<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] ))</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">color =</span><span class="st">&quot;exer at +SD&quot;</span>,<span class="at">intercept =</span> sumr_zh<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],<span class="at">slope =</span>sumr_zh<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] ))</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>p                                                                              </span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<pre><code>## Learn more about the underlying theory at https://ggplot2-book.org/</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> xage, <span class="at">y =</span> yendu)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">&quot;gray&quot;</span>) </span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">color =</span><span class="st">&quot;exer -SD&quot;</span>,<span class="at">intercept =</span> sumr_zl<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],<span class="at">slope =</span>sumr_zl<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] ))</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">color =</span><span class="st">&quot;exer at mean&quot;</span>,<span class="at">intercept =</span> sumr<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],<span class="at">slope =</span>sumr<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] ))</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">color =</span><span class="st">&quot;exer at +SD&quot;</span>,<span class="at">intercept =</span> sumr_zh<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],<span class="at">slope =</span>sumr_zh<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] ))</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>p                                                                              </span></code></pre></div>
 <p><img src="rosetta_moderation_files/figure-html/unnamed-chunk-6-1.png" width="768" /></p>
 <p>You can embellish the plots as any ggplot graph. For example:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">library</span>(ggthemes) </span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>p<span class="sc">+</span><span class="fu">theme_tufte</span>()<span class="sc">+</span><span class="fu">geom_rangeframe</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">library</span>(ggthemes) </span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>p<span class="sc">+</span><span class="fu">theme_tufte</span>()<span class="sc">+</span><span class="fu">geom_rangeframe</span>() </span></code></pre></div>
 <p><img src="rosetta_moderation_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
 </div>
 </div>
@@ -595,12 +596,12 @@ is really worth mentioning. Furthermore, <code>emmeans</code> (the
 offspring of lsmeans) is very powerfull, and does a lot of cool things,
 so getting to know it is always a good idea. Details <a
 href="https://cran.r-project.org/web/packages/emmeans/emmeans.pdf">here</a>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="do">### define the levels at which we want the simple slope #####</span></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="do">### in this case, -SD, mean, -SD</span></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>zlevels<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="sc">-</span><span class="fu">sd</span>(dat<span class="sc">$</span>zexer),<span class="fu">mean</span>(dat<span class="sc">$</span>zexer),<span class="sc">+</span><span class="fu">sd</span>(dat<span class="sc">$</span>zexer))</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="do">### then we run emtrends where specs is the moderator, var= the IV, and &quot;at&quot; the levels ##</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>emmeans<span class="sc">::</span><span class="fu">emtrends</span>(model,<span class="at">specs =</span> <span class="st">&quot;zexer&quot;</span>,<span class="at">var =</span> <span class="st">&quot;xage&quot;</span>,<span class="at">at=</span><span class="fu">list</span>(<span class="at">zexer=</span>zlevels))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="do">### define the levels at which we want the simple slope #####</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="do">### in this case, -SD, mean, -SD</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>zlevels<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="sc">-</span><span class="fu">sd</span>(dat<span class="sc">$</span>zexer),<span class="fu">mean</span>(dat<span class="sc">$</span>zexer),<span class="sc">+</span><span class="fu">sd</span>(dat<span class="sc">$</span>zexer))</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="do">### then we run emtrends where specs is the moderator, var= the IV, and &quot;at&quot; the levels ##</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>emmeans<span class="sc">::</span><span class="fu">emtrends</span>(model,<span class="at">specs =</span> <span class="st">&quot;zexer&quot;</span>,<span class="at">var =</span> <span class="st">&quot;xage&quot;</span>,<span class="at">at=</span><span class="fu">list</span>(<span class="at">zexer=</span>zlevels))</span></code></pre></div>
 <pre><code>##  zexer xage.trend     SE  df lower.CL upper.CL
 ##  -4.78    -0.4873 0.0921 241   -0.669   -0.306
 ##   0.00    -0.2617 0.0641 241   -0.388   -0.135
@@ -610,14 +611,14 @@ href="https://cran.r-project.org/web/packages/emmeans/emmeans.pdf">here</a>.</p>
 <p>Pretty sleek!</p>
 <p>By the way, you can condition the simple slopes to any value you
 want. Percentile? let’s do it:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="do">### define the levels at which we want the simple slope #####</span></span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="do">### in this case, 0, 25th, 50th, and 75th and 10oth percentile</span></span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>(perc<span class="ot">&lt;-</span><span class="fu">quantile</span>(dat<span class="sc">$</span>zexer))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="do">### define the levels at which we want the simple slope #####</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="do">### in this case, 0, 25th, 50th, and 75th and 10oth percentile</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>(perc<span class="ot">&lt;-</span><span class="fu">quantile</span>(dat<span class="sc">$</span>zexer))</span></code></pre></div>
 <pre><code>##          0%         25%         50%         75%        100% 
 ## -10.6734698  -3.6734698   0.3265302   3.3265302  15.3265302</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="do">### then we run emtrends where specs is the moderator, var= the IV, and &quot;at&quot; the levels ##</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>emmeans<span class="sc">::</span><span class="fu">emtrends</span>(model,<span class="at">specs =</span> <span class="st">&quot;zexer&quot;</span>,<span class="at">var =</span> <span class="st">&quot;xage&quot;</span>,<span class="at">at=</span><span class="fu">list</span>(<span class="at">zexer=</span>perc))</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="do">### then we run emtrends where specs is the moderator, var= the IV, and &quot;at&quot; the levels ##</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>emmeans<span class="sc">::</span><span class="fu">emtrends</span>(model,<span class="at">specs =</span> <span class="st">&quot;zexer&quot;</span>,<span class="at">var =</span> <span class="st">&quot;xage&quot;</span>,<span class="at">at=</span><span class="fu">list</span>(<span class="at">zexer=</span>perc))</span></code></pre></div>
 <pre><code>##    zexer xage.trend     SE  df lower.CL upper.CL
 ##  -10.673     -0.766 0.1598 241  -1.0807  -0.4512
 ##   -3.673     -0.435 0.0820 241  -0.5968  -0.2736

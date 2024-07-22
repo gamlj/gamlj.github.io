@@ -1,5 +1,6 @@
 ---
-title: "Mixed Models module"
+title: "Mixed Models"
+nickname: mixed
 topic: mixed
 category: help
 

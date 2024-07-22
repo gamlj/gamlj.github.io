@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Marcello
 Gallucci</h4>
             
-            <h4 data-toc-skip class="date">2024-07-15</h4>
+            <h4 data-toc-skip class="date">2024-07-22</h4>
       
       
       <div class="hidden name"><code>vignettes_plot.Rmd</code></div>
@@ -167,7 +167,7 @@ moderator, in this case three plots.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,formula <span class="op">=</span> <span class="op">~</span><span class="va">Sepal.Width</span><span class="op">:</span><span class="va">Petal.Length</span><span class="op">:</span><span class="va">Petal.Width</span><span class="op">)</span></span>
 <span><span class="va">garbage</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">plots</span>,<span class="va">print</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;"><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-2.png" width="576" style="display: block; margin: auto;"><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-3.png" width="576" style="display: block; margin: auto;"></p>
 <p>Because the formula is expanded, one can obtain all main effects and
 interactions plots in one call by passing
 <code>formula=~Sepal.Width*Petal.Length*Petal.Width</code></p>
