@@ -44,7 +44,7 @@ Two or more clustering variables are said to be crossed when each level (group) 
 What is crucial here is that both `subj` and `stimulus` clustering variables are a the same level (or layer). This means that each measurement (each row) belongs to one combination of `subj` and `stimulus`, that is is measured for one particular participant and one particular stimulus. The classifications are _orthogonal_, meaning that they are independent one each other. In the experimental terminology , they create a balanced 50 X 30 design. 
  
 To understand the structure of the model estimable in these designs, we can focus on the random intercepts (the same applies to slopes, but the latter depend on the specific design at hand). What random intercepts can we estimate in this kind of design? The random intercepts varying across participants, each intercept corresponding to the average score of the participant averaged across the 30 stimuli. The random intercepts varying across stimuli, each intercept corresponding to the average score associated with a stimulus, averaged across the 50 participants.
-Thus, the number of intercepts across participant will be N, where N is the number of participants, and the number of intercepts across stimuli would be K, where K is the number of stimuli.
+Thus, the number of intercepts across participants will be N, where N is the number of participants, and the number of intercepts across stimuli would be K, where K is the number of stimuli.
 
 If within each combination of `subj` and `stimulus` there are several measurements, one can also estimate the intercepts vary across `subj` by `stimulus` cells. If `subj` and `stimulus` were factors and not clusters, one could say that the random intercepts can represent the variance of the main effect of `subj`, the main effect of `stimulus` and (if there are enough data), their interaction. For this variance, the number of intercepts are N X K.
 
@@ -111,7 +111,7 @@ Here each participant gets their own set of stimuli, so the stimulus 1 of partic
 
 `r pic("examples/mixed4/data2_freq.png")`
 
-To understand the structure of the model estimable in these designs, we can focus on the random intercepts (the same applies to slopes, but the latter depends on the specific design at hand). What random intercepts can we estimate in this kind of designs? The random intercepts varying across participants, each intercepts representing the average score of the participant, averaged across the stimuli, and the random intercepts of each particular stimuli by participant combination.  Thus, the number of intercepts across participant will be N=20, where N is the number of participants, and the number of intercepts across stimuli would be N=20 X K=30, where K is the number of stimuli, thus 600.
+To understand the structure of the model estimable in these designs, we can focus on the random intercepts (the same applies to slopes, but the latter depends on the specific design at hand). What random intercepts can we estimate in this kind of designs? The random intercepts varying across participants, each intercept representing the average score of the participant, averaged across the stimuli, and the random intercepts of each particular stimuli by participant combination.  Thus, the number of intercepts across participant will be N=20, where N is the number of participants, and the number of intercepts across stimuli would be N=20 X K=30, where K is the number of stimuli, thus 600.
 
 
 # Structure by data vs by formula
@@ -157,7 +157,7 @@ The numerosity is now correct and the results are the same as the ones obtained 
 
 # Differences in notation
 
-Defining the structure of the clustering groups by data assures control over the model being estimated and correct results. The rule is simple: each clustering variable or variable representing combination of clustering variable should have its own random intercept (or possibly random slopes).
+Defining the structure of the clustering groups by data assures control over the model being estimated and correct results. The rule is simple: each clustering variable, or a clustering variable representing combinations of other clustering variables, should have its own random intercept (or possibly random slopes).
 
 When variables are not coded in order to convey the correct structure of the data, one can use the `r opt("Nesting by formula")` and `r opt("Nesting by formula")`. `r opt("Crossing by formula")` creates a clustering variable that combines the parent and the nested values into an unique code, and then estimates the random coefficients for the parent variable and for the combination of parent and nested. `r opt("Crossing by formula")` creates a clustering variable that combines the levels (groups) of two or more clustering variables and estimates the coefficients across this new variable levels. 
 
@@ -168,6 +168,9 @@ In practice, if `uni_stimulus` uniquely identifies the levels of a nested variab
 `r pic("examples/mixed4/final2.png")`
 
 
+# Buttom line
+
+The reccomended method is to code every cluster with a unique code, so the model random structure will be always correct. If this is inconvenient (for some reason), one can ask the software to reshape the clustering values, obtaining exactly the same results.
 
 `r include_examples("mixed",title="Related")`
 

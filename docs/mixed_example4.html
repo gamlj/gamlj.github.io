@@ -225,6 +225,8 @@ variables</a></h2>
       </ul></li>
       <li><a href="#differences-in-notation"
       id="toc-differences-in-notation">Differences in notation</a></li>
+      <li><a href="#buttom-line" id="toc-buttom-line">Buttom
+      line</a></li>
       <li><a href="#related-examples" id="toc-related-examples">Related
       Examples</a></li>
       <li><a href="#comments" id="toc-comments">Comments?</a></li>
@@ -307,7 +309,7 @@ varying across participants, each intercept corresponding to the average
 score of the participant averaged across the 30 stimuli. The random
 intercepts varying across stimuli, each intercept corresponding to the
 average score associated with a stimulus, averaged across the 50
-participants. Thus, the number of intercepts across participant will be
+participants. Thus, the number of intercepts across participants will be
 N, where N is the number of participants, and the number of intercepts
 across stimuli would be K, where K is the number of stimuli.</p>
 <p>If within each combination of <code>subj</code> and
@@ -404,7 +406,7 @@ trials, for a total of 6000 observations.</p>
 we can focus on the random intercepts (the same applies to slopes, but
 the latter depends on the specific design at hand). What random
 intercepts can we estimate in this kind of designs? The random
-intercepts varying across participants, each intercepts representing the
+intercepts varying across participants, each intercept representing the
 average score of the participant, averaged across the stimuli, and the
 random intercepts of each particular stimuli by participant combination.
 Thus, the number of intercepts across participant will be N=20, where N
@@ -480,9 +482,9 @@ ones obtained with the <em>by data</em> approach.</p>
 <h1>Differences in notation</h1>
 <p>Defining the structure of the clustering groups by data assures
 control over the model being estimated and correct results. The rule is
-simple: each clustering variable or variable representing combination of
-clustering variable should have its own random intercept (or possibly
-random slopes).</p>
+simple: each clustering variable, or a clustering variable representing
+combinations of other clustering variables, should have its own random
+intercept (or possibly random slopes).</p>
 <p>When variables are not coded in order to convey the correct structure
 of the data, one can use the <span class="option">Nesting by
 formula</span> and <span class="option">Nesting by formula</span>. <span
@@ -500,6 +502,13 @@ exactly the same results.</p>
 <p><img src="examples/mixed4/final3.png" width="563" />
 <img src="examples/mixed4/final1.png" width="562" />
 <img src="examples/mixed4/final2.png" width="566" /></p>
+</div>
+<div id="buttom-line" class="section level1">
+<h1>Buttom line</h1>
+<p>The reccomended method is to code every cluster with a unique code,
+so the model random structure will be always correct. If this is
+inconvenient (for some reason), one can ask the software to reshape the
+clustering values, obtaining exactly the same results.</p>
 </div>
 <div id="related-examples" class="section level1 adm adm-seealso">
 <h1>Related Examples</h1>
