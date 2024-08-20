@@ -151,3 +151,5 @@ Please check out the  [Release notes](release_notes.html).
 
   
 `r issues()`
+
+<div class="update"> Last update `r Sys.time()` <div>
