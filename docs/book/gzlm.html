@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 The Generalized Linear Model | GAMLj Models</title>
+  <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 The Generalized Linear Model | GAMLj Models" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  <meta name="github-repo" content="mcfanda/gamlj.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 The Generalized Linear Model | GAMLj Models" />
+  
+  <meta name="twitter:description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
+  
+
+<meta name="author" content="Marcello Gallucci" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="glm.html"/>
+<link rel="next" href="mixed.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KM7X6HK5HM');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">GAMLj Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="booklet.html"><a href="booklet.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="booklet.html"><a href="booklet.html#preface"><i class="fa fa-check"></i><b>1.1</b> Preface</a></li>
+<li class="chapter" data-level="1.2" data-path="booklet.html"><a href="booklet.html#getstarted"><i class="fa fa-check"></i><b>1.2</b> Getting Started</a></li>
+<li class="chapter" data-level="1.3" data-path="booklet.html"><a href="booklet.html#data"><i class="fa fa-check"></i><b>1.3</b> Data</a></li>
+<li class="chapter" data-level="1.4" data-path="booklet.html"><a href="booklet.html#naming"><i class="fa fa-check"></i><b>1.4</b> What’s in a name</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="booklet.html"><a href="booklet.html#angles"><i class="fa fa-check"></i><b>1.4.1</b> Statistical techniques vs points of view</a></li>
+<li class="chapter" data-level="1.4.2" data-path="booklet.html"><a href="booklet.html#statistical-techniques-vs-analyses"><i class="fa fa-check"></i><b>1.4.2</b> Statistical techniques vs Analyses</a></li>
+<li class="chapter" data-level="1.4.3" data-path="booklet.html"><a href="booklet.html#terms-that-we-need-to-generalize"><i class="fa fa-check"></i><b>1.4.3</b> Terms that we need to generalize</a></li>
+<li class="chapter" data-level="1.4.4" data-path="booklet.html"><a href="booklet.html#covnames"><i class="fa fa-check"></i><b>1.4.4</b> Terms we need to cope with</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="booklet.html"><a href="booklet.html#general-references"><i class="fa fa-check"></i><b>1.5</b> General References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>2</b> The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="glm.html"><a href="glm.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="glm.html"><a href="glm.html#regression"><i class="fa fa-check"></i><b>2.2</b> One continuous IV</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="glm.html"><a href="glm.html#glminput"><i class="fa fa-check"></i><b>2.2.1</b> Input</a></li>
+<li class="chapter" data-level="2.2.2" data-path="glm.html"><a href="glm.html#model-recap"><i class="fa fa-check"></i><b>2.2.2</b> Model Recap</a></li>
+<li class="chapter" data-level="2.2.3" data-path="glm.html"><a href="glm.html#twofit"><i class="fa fa-check"></i><b>2.2.3</b> Model Fit</a></li>
+<li class="chapter" data-level="2.2.4" data-path="glm.html"><a href="glm.html#omnibus-tests"><i class="fa fa-check"></i><b>2.2.4</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="2.2.5" data-path="glm.html"><a href="glm.html#glmcoefs"><i class="fa fa-check"></i><b>2.2.5</b> Coefficients</a></li>
+<li class="chapter" data-level="2.2.6" data-path="glm.html"><a href="glm.html#pearson-correlation"><i class="fa fa-check"></i><b>2.2.6</b> Pearson Correlation</a></li>
+<li class="chapter" data-level="2.2.7" data-path="glm.html"><a href="glm.html#glmplot"><i class="fa fa-check"></i><b>2.2.7</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="glm.html"><a href="glm.html#multiregression"><i class="fa fa-check"></i><b>2.3</b> More continuous IVs</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="glm.html"><a href="glm.html#twofit2"><i class="fa fa-check"></i><b>2.3.1</b> Model Fit</a></li>
+<li class="chapter" data-level="2.3.2" data-path="glm.html"><a href="glm.html#variances"><i class="fa fa-check"></i><b>2.3.2</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="2.3.3" data-path="glm.html"><a href="glm.html#household-chores"><i class="fa fa-check"></i><b>2.3.3</b> Household Chores</a></li>
+<li class="chapter" data-level="2.3.4" data-path="glm.html"><a href="glm.html#coefficients"><i class="fa fa-check"></i><b>2.3.4</b> Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="glm.html"><a href="glm.html#moderation"><i class="fa fa-check"></i><b>2.4</b> Continuous IVs and interaction</a></li>
+<li class="chapter" data-level="2.5" data-path="glm.html"><a href="glm.html#modint"><i class="fa fa-check"></i><b>2.5</b> Moderation=interaction</a></li>
+<li class="chapter" data-level="2.6" data-path="glm.html"><a href="glm.html#simpleslopes"><i class="fa fa-check"></i><b>2.6</b> Simple Slopes</a></li>
+<li class="chapter" data-level="2.7" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>2.7</b> Categorical IVs</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="glm.html"><a href="glm.html#model-fit-and-omnibus-tests"><i class="fa fa-check"></i><b>2.7.1</b> Model Fit and Omnibus tests</a></li>
+<li class="chapter" data-level="2.7.2" data-path="glm.html"><a href="glm.html#dummies"><i class="fa fa-check"></i><b>2.7.2</b> Coefficients</a></li>
+<li class="chapter" data-level="2.7.3" data-path="glm.html"><a href="glm.html#plots"><i class="fa fa-check"></i><b>2.7.3</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="glm.html"><a href="glm.html#posthoc"><i class="fa fa-check"></i><b>2.8</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="2.9" data-path="glm.html"><a href="glm.html#cohens-d"><i class="fa fa-check"></i><b>2.9</b> Cohen’s d</a></li>
+<li class="chapter" data-level="2.10" data-path="glm.html"><a href="glm.html#estimated-marginal-means"><i class="fa fa-check"></i><b>2.10</b> Estimated marginal means</a></li>
+<li class="chapter" data-level="2.11" data-path="glm.html"><a href="glm.html#ancova"><i class="fa fa-check"></i><b>2.11</b> Categorical and Continuous IVs</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="glm.html"><a href="glm.html#results-tables"><i class="fa fa-check"></i><b>2.11.1</b> Results tables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="glm.html"><a href="glm.html#moderation2"><i class="fa fa-check"></i><b>2.12</b> Categorical and Continuous Interactions</a>
+<ul>
+<li class="chapter" data-level="2.12.1" data-path="glm.html"><a href="glm.html#plot"><i class="fa fa-check"></i><b>2.12.1</b> Plot</a></li>
+<li class="chapter" data-level="2.12.2" data-path="glm.html"><a href="glm.html#simple-effects"><i class="fa fa-check"></i><b>2.12.2</b> Simple Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.13" data-path="glm.html"><a href="glm.html#simpleinteractions"><i class="fa fa-check"></i><b>2.13</b> Simple Interactions</a></li>
+<li class="chapter" data-level="2.14" data-path="glm.html"><a href="glm.html#model-comparison-approach"><i class="fa fa-check"></i><b>2.14</b> Model-comparison approach</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="glm.html"><a href="glm.html#the-method"><i class="fa fa-check"></i><b>2.14.1</b> The Method</a></li>
+<li class="chapter" data-level="2.14.2" data-path="glm.html"><a href="glm.html#types-of-tests"><i class="fa fa-check"></i><b>2.14.2</b> Types of tests</a></li>
+<li class="chapter" data-level="2.14.3" data-path="glm.html"><a href="glm.html#not-necessary-model-comparisons"><i class="fa fa-check"></i><b>2.14.3</b> Not necessary model-comparisons</a></li>
+<li class="chapter" data-level="2.14.4" data-path="glm.html"><a href="glm.html#hierarchical-regression"><i class="fa fa-check"></i><b>2.14.4</b> Hierarchical regression</a></li>
+</ul></li>
+<li class="chapter" data-level="2.15" data-path="glm.html"><a href="glm.html#assumptions-checks"><i class="fa fa-check"></i><b>2.15</b> Assumptions checks</a>
+<ul>
+<li class="chapter" data-level="2.15.1" data-path="glm.html"><a href="glm.html#homosched"><i class="fa fa-check"></i><b>2.15.1</b> Homoschedasticity</a></li>
+<li class="chapter" data-level="2.15.2" data-path="glm.html"><a href="glm.html#normality-of-residuals"><i class="fa fa-check"></i><b>2.15.2</b> Normality of residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.16" data-path="glm.html"><a href="glm.html#violations-remedies"><i class="fa fa-check"></i><b>2.16</b> Violations Remedies</a>
+<ul>
+<li class="chapter" data-level="2.16.1" data-path="glm.html"><a href="glm.html#robust-standard-error"><i class="fa fa-check"></i><b>2.16.1</b> Robust Standard Error</a></li>
+<li class="chapter" data-level="2.16.2" data-path="glm.html"><a href="glm.html#bootstrap-confidence-intervals"><i class="fa fa-check"></i><b>2.16.2</b> Bootstrap Confidence Intervals</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="gzlm.html"><a href="gzlm.html"><i class="fa fa-check"></i><b>3</b> The Generalized Linear Model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="gzlm.html"><a href="gzlm.html#gzlmintro"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="gzlm.html"><a href="gzlm.html#logistic"><i class="fa fa-check"></i><b>3.2</b> Logistic Model</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="gzlm.html"><a href="gzlm.html#the-rationale"><i class="fa fa-check"></i><b>3.2.1</b> The rationale</a></li>
+<li class="chapter" data-level="3.2.2" data-path="gzlm.html"><a href="gzlm.html#logisticestim"><i class="fa fa-check"></i><b>3.2.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="gzlm.html"><a href="gzlm.html#logisticrecap"><i class="fa fa-check"></i><b>3.2.3</b> Model Recap</a></li>
+<li class="chapter" data-level="3.2.4" data-path="gzlm.html"><a href="gzlm.html#model-fit"><i class="fa fa-check"></i><b>3.2.4</b> Model Fit</a></li>
+<li class="chapter" data-level="3.2.5" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-1"><i class="fa fa-check"></i><b>3.2.5</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="3.2.6" data-path="gzlm.html"><a href="gzlm.html#coefficients-1"><i class="fa fa-check"></i><b>3.2.6</b> Coefficients</a></li>
+<li class="chapter" data-level="3.2.7" data-path="gzlm.html"><a href="gzlm.html#odd-ratios-expb"><i class="fa fa-check"></i><b>3.2.7</b> Odd ratios exp(B)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="gzlm.html"><a href="gzlm.html#logisticcontmarginal"><i class="fa fa-check"></i><b>3.2.8</b> Marginal effects</a></li>
+<li class="chapter" data-level="3.2.9" data-path="gzlm.html"><a href="gzlm.html#multiple-ivs"><i class="fa fa-check"></i><b>3.2.9</b> Multiple IVs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="gzlm.html"><a href="gzlm.html#gzlmanova"><i class="fa fa-check"></i><b>3.3</b> Logistic with Catecorical IVs</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="gzlm.html"><a href="gzlm.html#model-estimation"><i class="fa fa-check"></i><b>3.3.1</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="gzlm.html"><a href="gzlm.html#model-fit-1"><i class="fa fa-check"></i><b>3.3.2</b> Model Fit</a></li>
+<li class="chapter" data-level="3.3.3" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-2"><i class="fa fa-check"></i><b>3.3.3</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="3.3.4" data-path="gzlm.html"><a href="gzlm.html#plots-1"><i class="fa fa-check"></i><b>3.3.4</b> Plots</a></li>
+<li class="chapter" data-level="3.3.5" data-path="gzlm.html"><a href="gzlm.html#estimated-marginal-means-1"><i class="fa fa-check"></i><b>3.3.5</b> Estimated Marginal Means</a></li>
+<li class="chapter" data-level="3.3.6" data-path="gzlm.html"><a href="gzlm.html#relative-risk"><i class="fa fa-check"></i><b>3.3.6</b> Relative Risk</a></li>
+<li class="chapter" data-level="3.3.7" data-path="gzlm.html"><a href="gzlm.html#logisticcatmarginal"><i class="fa fa-check"></i><b>3.3.7</b> Marginal Effects</a></li>
+<li class="chapter" data-level="3.3.8" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests"><i class="fa fa-check"></i><b>3.3.8</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="3.3.9" data-path="gzlm.html"><a href="gzlm.html#other-options"><i class="fa fa-check"></i><b>3.3.9</b> Other options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="gzlm.html"><a href="gzlm.html#probit"><i class="fa fa-check"></i><b>3.4</b> Probit Model</a></li>
+<li class="chapter" data-level="3.5" data-path="gzlm.html"><a href="gzlm.html#multinomial"><i class="fa fa-check"></i><b>3.5</b> The Multinomial Model</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="gzlm.html"><a href="gzlm.html#rationale"><i class="fa fa-check"></i><b>3.5.1</b> Rationale</a></li>
+<li class="chapter" data-level="3.5.2" data-path="gzlm.html"><a href="gzlm.html#model-estimation-1"><i class="fa fa-check"></i><b>3.5.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.5.3" data-path="gzlm.html"><a href="gzlm.html#model-recap-1"><i class="fa fa-check"></i><b>3.5.3</b> Model Recap</a></li>
+<li class="chapter" data-level="3.5.4" data-path="gzlm.html"><a href="gzlm.html#overal-fit"><i class="fa fa-check"></i><b>3.5.4</b> Overal Fit</a></li>
+<li class="chapter" data-level="3.5.5" data-path="gzlm.html"><a href="gzlm.html#plots-2"><i class="fa fa-check"></i><b>3.5.5</b> Plots</a></li>
+<li class="chapter" data-level="3.5.6" data-path="gzlm.html"><a href="gzlm.html#coefficients-2"><i class="fa fa-check"></i><b>3.5.6</b> Coefficients</a></li>
+<li class="chapter" data-level="3.5.7" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests-1"><i class="fa fa-check"></i><b>3.5.7</b> Post Hoc Tests</a></li>
+<li class="chapter" data-level="3.5.8" data-path="gzlm.html"><a href="gzlm.html#marginal-effects"><i class="fa fa-check"></i><b>3.5.8</b> Marginal Effects</a></li>
+<li class="chapter" data-level="3.5.9" data-path="gzlm.html"><a href="gzlm.html#simple-effects-1"><i class="fa fa-check"></i><b>3.5.9</b> Simple Effects</a></li>
+<li class="chapter" data-level="3.5.10" data-path="gzlm.html"><a href="gzlm.html#other-options-1"><i class="fa fa-check"></i><b>3.5.10</b> Other options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="gzlm.html"><a href="gzlm.html#ordinal"><i class="fa fa-check"></i><b>3.6</b> The Ordinal Model</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="gzlm.html"><a href="gzlm.html#rationale-1"><i class="fa fa-check"></i><b>3.6.1</b> Rationale</a></li>
+<li class="chapter" data-level="3.6.2" data-path="gzlm.html"><a href="gzlm.html#model-estimation-2"><i class="fa fa-check"></i><b>3.6.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.6.3" data-path="gzlm.html"><a href="gzlm.html#model-recap-2"><i class="fa fa-check"></i><b>3.6.3</b> Model Recap</a></li>
+<li class="chapter" data-level="3.6.4" data-path="gzlm.html"><a href="gzlm.html#parallellines"><i class="fa fa-check"></i><b>3.6.4</b> Parallel Lines test</a></li>
+<li class="chapter" data-level="3.6.5" data-path="gzlm.html"><a href="gzlm.html#model-fit-2"><i class="fa fa-check"></i><b>3.6.5</b> Model Fit</a></li>
+<li class="chapter" data-level="3.6.6" data-path="gzlm.html"><a href="gzlm.html#omnibus-tests-3"><i class="fa fa-check"></i><b>3.6.6</b> Omnibus Tests</a></li>
+<li class="chapter" data-level="3.6.7" data-path="gzlm.html"><a href="gzlm.html#coefficients-3"><i class="fa fa-check"></i><b>3.6.7</b> Coefficients</a></li>
+<li class="chapter" data-level="3.6.8" data-path="gzlm.html"><a href="gzlm.html#estimated-marginal-means-2"><i class="fa fa-check"></i><b>3.6.8</b> Estimated marginal means</a></li>
+<li class="chapter" data-level="3.6.9" data-path="gzlm.html"><a href="gzlm.html#post-hoc-tests-2"><i class="fa fa-check"></i><b>3.6.9</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="3.6.10" data-path="gzlm.html"><a href="gzlm.html#plot-1"><i class="fa fa-check"></i><b>3.6.10</b> Plot</a></li>
+<li class="chapter" data-level="3.6.11" data-path="gzlm.html"><a href="gzlm.html#other-options-2"><i class="fa fa-check"></i><b>3.6.11</b> Other options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="gzlm.html"><a href="gzlm.html#poisson"><i class="fa fa-check"></i><b>3.7</b> The Poisson Model</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="gzlm.html"><a href="gzlm.html#distribution"><i class="fa fa-check"></i><b>3.7.1</b> Distribution</a></li>
+<li class="chapter" data-level="3.7.2" data-path="gzlm.html"><a href="gzlm.html#link-function"><i class="fa fa-check"></i><b>3.7.2</b> Link function</a></li>
+<li class="chapter" data-level="3.7.3" data-path="gzlm.html"><a href="gzlm.html#estimating-the-model"><i class="fa fa-check"></i><b>3.7.3</b> Estimating the model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="mixed.html"><a href="mixed.html"><i class="fa fa-check"></i><b>4</b> Mixed Linear Models</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="mixed.html"><a href="mixed.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="mixed.html"><a href="mixed.html#an-example"><i class="fa fa-check"></i><b>4.2</b> An example</a></li>
+<li class="chapter" data-level="4.3" data-path="mixed.html"><a href="mixed.html#the-statistical-model"><i class="fa fa-check"></i><b>4.3</b> The statistical model</a></li>
+<li class="chapter" data-level="4.4" data-path="mixed.html"><a href="mixed.html#outcome-of-the-model"><i class="fa fa-check"></i><b>4.4</b> Outcome of the model</a></li>
+<li class="chapter" data-level="4.5" data-path="mixed.html"><a href="mixed.html#building-a-mixed-model"><i class="fa fa-check"></i><b>4.5</b> Building a Mixed Model</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="mixed.html"><a href="mixed.html#clustering-variables"><i class="fa fa-check"></i><b>4.5.1</b> Clustering variables?</a></li>
+<li class="chapter" data-level="4.5.2" data-path="mixed.html"><a href="mixed.html#fixed-effects"><i class="fa fa-check"></i><b>4.5.2</b> Fixed effects?</a></li>
+<li class="chapter" data-level="4.5.3" data-path="mixed.html"><a href="mixed.html#random-effects"><i class="fa fa-check"></i><b>4.5.3</b> Random Effects?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="mixed.html"><a href="mixed.html#model-estimation-3"><i class="fa fa-check"></i><b>4.6</b> Model Estimation</a></li>
+<li class="chapter" data-level="4.7" data-path="mixed.html"><a href="mixed.html#model-info"><i class="fa fa-check"></i><b>4.7</b> Model Info</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gmixed.html"><a href="gmixed.html"><i class="fa fa-check"></i><b>5</b> Generalized Mixed Linear Models</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="gmixed.html"><a href="gmixed.html#introduction-2"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="gmixed.html"><a href="gmixed.html#examples"><i class="fa fa-check"></i><b>5.2</b> Examples</a></li>
+<li class="chapter" data-level="5.3" data-path="gmixed.html"><a href="gmixed.html#mixed-logistic-model"><i class="fa fa-check"></i><b>5.3</b> Mixed logistic model</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="gmixed.html"><a href="gmixed.html#model-estimation-4"><i class="fa fa-check"></i><b>5.3.1</b> Model Estimation</a></li>
+<li class="chapter" data-level="5.3.2" data-path="gmixed.html"><a href="gmixed.html#model-info-1"><i class="fa fa-check"></i><b>5.3.2</b> Model Info</a></li>
+<li class="chapter" data-level="5.3.3" data-path="gmixed.html"><a href="gmixed.html#model-fit-3"><i class="fa fa-check"></i><b>5.3.3</b> Model Fit</a></li>
+<li class="chapter" data-level="5.3.4" data-path="gmixed.html"><a href="gmixed.html#random-component"><i class="fa fa-check"></i><b>5.3.4</b> Random Component</a></li>
+<li class="chapter" data-level="5.3.5" data-path="gmixed.html"><a href="gmixed.html#coefficients-4"><i class="fa fa-check"></i><b>5.3.5</b> Coefficients</a></li>
+<li class="chapter" data-level="5.3.6" data-path="gmixed.html"><a href="gmixed.html#plot-2"><i class="fa fa-check"></i><b>5.3.6</b> Plot</a></li>
+<li class="chapter" data-level="5.3.7" data-path="gmixed.html"><a href="gmixed.html#other-options-and-techniques"><i class="fa fa-check"></i><b>5.3.7</b> Other options and techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="gmixed.html"><a href="gmixed.html#other-model-charateristics"><i class="fa fa-check"></i><b>5.4</b> Other model charateristics</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="gmixed.html"><a href="gmixed.html#multinomial-mixed-model"><i class="fa fa-check"></i><b>5.4.1</b> Multinomial mixed model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendixa.html"><a href="appendixa.html"><i class="fa fa-check"></i><b>A</b> The <span class="math inline">\(R^2\)</span>’s</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="appendixa.html"><a href="appendixa.html#commuting-r2"><i class="fa fa-check"></i><b>A.1</b> Commuting <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="A.2" data-path="appendixa.html"><a href="appendixa.html#variance-explained"><i class="fa fa-check"></i><b>A.2</b> Variance explained</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="a1dummies.html"><a href="a1dummies.html"><i class="fa fa-check"></i><b>B</b> How many contrasts?</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="a1dummies.html"><a href="a1dummies.html#sufficiency-of-k-1-dummies"><i class="fa fa-check"></i><b>B.1</b> Sufficiency of K-1 dummies</a></li>
+<li class="chapter" data-level="B.2" data-path="a1dummies.html"><a href="a1dummies.html#zero-intercept-anova"><i class="fa fa-check"></i><b>B.2</b> Zero-intercept ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="appendixb.html"><a href="appendixb.html"><i class="fa fa-check"></i><b>C</b> Appendix Variable Types</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GAMLj Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gzlm" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> The Generalized Linear Model<a href="gzlm.html#gzlm" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><span class="draft"> Draft version, mistakes may be around </span></p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> Generalized Linear Model, Logistic Regression, logit </span></p>
+<div id="gzlmintro" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introduction<a href="gzlm.html#gzlmintro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the general linear model (cf. <a href="glm.html#glm">2</a>) the dependent variable must be a quantitative variable: It should express quantities, such that its values can retain all properties of the numbers: 1 is less than 2, 4 is 2*2. In this way, the mean, the variances and all the estimates can make sense. We have also seen that the GLM assumes the residuals being normally distributed, which is akin to saying that the dependent variable is normally distribute (a part from the <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span> influence). There are many research designs that require the dependent variable to be not-normally distributed or not even quantitative. One may want to predict the vote in a referendum, the number of smartphone owned by individuals, the sex of the offspring of a herd, a choice between two or more product colors in a marketing study. In all these circumstances, the GLM cannot be applied.</p>
+<p>We still want to use a linear model, though, because we know very well how to estimate it and interpret it. So, instead of forgoing the linear model, we change the way the linear model predicts the dependent variable, such that the estimates are unbiased and reasonable even when the dependent variable values are not quantities, or they are clearly not normally distributed.</p>
+<p>Here comes the <em>generalized linear model</em>. Consider the standard regression model.</p>
+<p><span class="math display">\[
+\hat{y_i}=a+b x_i
+\]</span>
+The <span class="math inline">\(\hat{y_i}\)</span> are the predicted values, meaning the points lying on the regression line, that correspond to the expected (average) values of <span class="math inline">\(y\)</span> for any possible value of <span class="math inline">\(x\)</span>. In the GLM, the predicted values have the same scale of the observed values: This is because <span class="math inline">\(\hat{y_i}\)</span> can take any value (the straight line is defined for any possible value in the Y-axis), and so can <span class="math inline">\(y_i\)</span>, the observed values. When the variable is not quantitative, or it has a weird distribution, we cannot be sure that the predicted values will make sense. If one is predicting a probability, for instance, the observed values vary from 0 to 1, and thus the predicted values of a GLM will surely be nonsense, because the line will overcome the 0-1 boundaries and predicts probabilities of, say, 10 or -30, that are not admissible. If the predicted values make no sense, the model make no sense.</p>
+<p>If we, however, express the predicted values as a transformation of the dependent variable, we can choose the right transformation to be sure that the predicted values will make sense. The transformation is called the <em>link function</em> (<span class="math inline">\(f()\)</span>), and one can pick different link functions to accommodate different types of dependent variables. The <em>generalized linear model</em> is a linear model in which the predicted values are expressed as a transformation of the dependent variable:</p>
+<p><span class="math display">\[
+f(\hat{y_i})=a+b x_i
+\]</span>
+In addition to predicting a transformation of the dependent variable, the generalized linear model does not assume the dependent variable to be normally distributed, but allows assuming different families of distribution: <a href='https://en.wikipedia.org/wiki/Binomial_distribution' target='_blank'>Binomial</a>, <a href='https://en.wikipedia.org/wiki/Multinomial_distribution' target='_blank'>multinomial</a>, <a href='Poisson distribution' target='_blank'>Poisson</a>, etc.</p>
+<p>Combining a particular link function with a distribution makes a particular application of the generalized linear model. The combination of link function and distribution makes a particular application a model suitable for predicting a particular type of dependent variable. Here is a brief recap of the generalized linear models that can be estimated with <span class="modulename">GAMLj</span>.</p>
+<table class="gmisc_table" style="border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
+<thead>
+<tr>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+Model
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+Link Function
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+Distribution
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+DV type
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">
+Logistic Model
+</td>
+<td style="text-align: center;">
+Logit
+</td>
+<td style="text-align: center;">
+Binomial
+</td>
+<td style="text-align: center;">
+Dichotomous
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+Probit Model
+</td>
+<td style="text-align: center;">
+Inverse cumulative normal
+</td>
+<td style="text-align: center;">
+Binomial
+</td>
+<td style="text-align: center;">
+Dichotomous
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+Multinomial Model
+</td>
+<td style="text-align: center;">
+Logit
+</td>
+<td style="text-align: center;">
+Multinomial
+</td>
+<td style="text-align: center;">
+Categorical
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+Ordinal Model
+</td>
+<td style="text-align: center;">
+Cumulative Logit
+</td>
+<td style="text-align: center;">
+Logit
+</td>
+<td style="text-align: center;">
+Ordinal
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+Poisson Model
+</td>
+<td style="text-align: center;">
+Log
+</td>
+<td style="text-align: center;">
+Poisson
+</td>
+<td style="text-align: center;">
+Count (frequencies)
+</td>
+</tr>
+<tr>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+Negative Binomial Model
+</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+Log
+</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+Negative binomial
+</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+Count (frequencies)
+</td>
+</tr>
+</tbody>
+</table>
+<p>We are going to explore all these models, highlighting their specificity but keeping in mind that all techiques and methods doable to the GLM (cf. <a href="glm.html#glm">2</a>) can be applied also to the models within the generalized linear model.</p>
+<p>As a general reference for the material discussed in this chapter, the book <span class="citation">Agresti (<a href="#ref-agresticategorical">2012</a>)</span> is a great source of information and a precise guide to the statistical details.</p>
+</div>
+<div id="logistic" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Logistic Model<a href="gzlm.html#logistic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-rationale" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> The rationale<a href="gzlm.html#the-rationale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A logistic model can be estimated when the dependent variable features two groups, or two levels. The necessity to change the GLM into a different linear model becomes clear by inspecting a scatterplot between a continuous independent variable and a dichotomous dependent variable.</p>
+<p><img src="bookletpics/3_logistic_plot1.png" width="603" /></p>
+<p>It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a cloud that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in <a href="glm.html#homosched">2.15.1</a>), because the line will cross a strip once (so residual is zero) and depart from it everafter (increasing the residual variance).</p>
+<p>The solution is to change the form of predicted values such that any values can be a sensible predicted value. To achieve this, we should first notice that when one has a dichotomous dependent variable, what one is predicting is the probability of being in the group scoring 1. Indeed, the predicted values are the expected (average) values of <span class="math inline">\(y\)</span> for each given <span class="math inline">\(x_i\)</span>. The average value of a dichotomous variable is
+<span class="math display">\[
+E(y)={n_1 \over N}
+\]</span>
+where <span class="math inline">\(n_1\)</span> is the number of cases in group 1, and N is the total sample. <span class="math inline">\(E(y)\)</span>, however, is the probability of being in group 1. Thus, <span class="math inline">\(p(x=1)=E(y)\)</span>, which we simply call <span class="math inline">\(p\)</span>.</p>
+<p>So, the aim of the logistic model is to estimate how the probability of being in group 1 rather than 0 depends on the <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span> scores. The probability scale, varying from 0 to 1, is not suitable to be fit by a straight line. We can change this by predicting the <em>odd</em> of the probability, namely:</p>
+<p><span class="math display">\[
+odd={p \over {1-p}}
+\]</span></p>
+<p>The odd frees us from the upper boundary of 1, because any positive value expressed in odd can be sensible predicted value. For each positive value, one can always transform it back and get back a probability. The problems are negative values, that a straight line will always yield. Since the odd cannot be negative, we need to apply to it another transformation, namely the logarithm transformation. A logarithmic transformation transforms a positively-valued variable into a variable with all possible values, positive and negative. The function that expresses a probability into a variable admitting all possible values is the logit function:</p>
+<p><span class="math display">\[
+logit(y)={log \left( {p \over 1-p} \right)}
+\]</span></p>
+<p>The logistic model is a linear model predicted the logit</p>
+<span class="math display">\[
+logit(\hat{y})=a+b_1  x_1+b_2 x_2+ ...
+\]</span>
+<div class="enf">
+<p>Everything we can do with a linear model can be done with the logistic model, we just need to keep in mind that the interpretation of the results must consider the fact that the predicted values have a logistic scale, and not the original dependent variable scale.</p>
+</div>
+</div>
+<div id="logisticestim" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Model Estimation<a href="gzlm.html#logisticestim" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can use our <em>manymodels</em> dataset to see an example of a logistic model. The dataset contains a dichotomous dependent variables called <code>ybin</code>, which features two groups. To keep up with our cover story, we can imaging it to represent visiting the toilet behavior. <span class="math inline">\(ybin=1\)</span> means that the customer has visited the bar restroom, <span class="math inline">\(ybin=0\)</span> means that the client has not visited the restroom that evening.</p>
+<p><img src="bookletpics/3_logistic_freq1.png" width="381" /></p>
+<p>The aim of the model is to estimate the relationship between number of beers (<span class="math inline">\(x\)</span>) and the probability of visiting the restroom (<span class="math inline">\(ybin\)</span>).</p>
+<p>In <span class="modulename">GAMLj</span> we launch <code>Generalized Linear Models</code> menu of the <code>Linear Models</code> icon. The first part of the user interface allows selecting the appropriated model. In our case, we selected <span class="option">Logistic</span> because our dependent variable is a dichotomous variable.</p>
+<p><img src="bookletpics/3_logistic_input1.png" width="90%" /></p>
+<p>Once we have selected the model, we can set up the variables in the variables role fields, as we did in the GLM (cf. <a href="glm.html#glminput">2.2.1</a>).</p>
+<p><img src="bookletpics/3_logistic_input2.png" width="567" /></p>
+</div>
+<div id="logisticrecap" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Model Recap<a href="gzlm.html#logisticrecap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="bookletpics/3_logistic_output1.png" width="90%" /></p>
+<p>In the <span class="tablename">Model Info</span> table we find a set of properties of the estimated model. The most important one to check is described in the <code>direction</code> row. When the dependent variable is dichotomous, in fact, the direction of the probability is arbitrary, so we need to know which group is predicted. <span class="modulename">GAMLj</span> models the probability of being in the group with the “largest” label value, after ordering the value labels. In our case, it models the probability of being in group <code>ybin=1</code> over the probability of being in group <code>ybin=0</code>. This is indicated in the <code>direction</code> row of the table.</p>
+</div>
+<div id="model-fit" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Model Fit<a href="gzlm.html#model-fit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="bookletpics/3_logistic_output2.png" width="424" /></p>
+<p>First, the model R-squared is produced with its inferential test, in this case a Chi-square test. This provides a test of the ability of the model to predict the dependent variable better than chances. The R-squared is the McFadden’s pseudo R squared (cf <a href='https://gamlj.github.io/details_goodness.html' target='_blank'>GAMLj help</a>
+). We can interpret it as the proportion of reduction of error, or the proportion of increased accuracy in predicting the dependent variable using our model as compared with a model without independent variables (cf. Appendix <a href="appendixa.html#appendixa">A</a>). The adjusted <span class="math inline">\(R^2\)</span> is the population <span class="math inline">\(R^2\)</span> estimate.</p>
+<p>The additional indices reported in <span class="tablename">Additional indices</span> reports other indices useful for model comparisons or evaluation of models, especially for other types of generalized linear models. They are rather technical, and we’ll not discuss them here.</p>
+</div>
+<div id="omnibus-tests-1" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Omnibus Tests<a href="gzlm.html#omnibus-tests-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As for the GLM, we have omnibus tests for the effects of our <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>. They are expecially useful when dealing with categorical independent variables, because with continuous independent variables they are redundant as compare with the coefficients tests. With one <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span>, the omnibus test is equivalent to the model fit test.</p>
+<p><img src="bookletpics/3_logistic_output3.png" width="333" /></p>
+</div>
+<div id="coefficients-1" class="section level3 hasAnchor" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> Coefficients<a href="gzlm.html#coefficients-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="bookletpics/3_logistic_output4.png" width="619" /></p>
+<p>With continuous <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>, the coefficients <code>Estimates</code> are the most interesting parameters.
+The <code>Estimate</code> column reports the regression coefficients. Their interpretation should be based on the fact that the predicted values scale is the logit scale. Thus, as regard the effect of <span class="math inline">\(x\)</span>, we can say that for one unit more in <span class="math inline">\(x\)</span>, the logit of the probability of being in the group <span class="math inline">\(ybin=1\)</span> increases of one 1.53 units. In our cover story, for one more beer the logit of visiting the restroom increases of one unit. Being positive, we can conclude that the more you drink, the higher the probability of visiting the restroom. Being statistically significant (z-test=4.73, p.&lt;.001), we can conclude tha the effect is different from zero.</p>
+</div>
+<div id="odd-ratios-expb" class="section level3 hasAnchor" number="3.2.7">
+<h3><span class="header-section-number">3.2.7</span> Odd ratios exp(B)<a href="gzlm.html#odd-ratios-expb" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The issue here is that it is very difficult to fathom the practical size of the effect. Is<br />
+1.53 units increase in the logit scale a big or small increase? Honestly, nobody knows, because the logarithm scale is difficult to master, and even if one could, the readers of the results would probably not. So, we interpret the <code>exp(B)</code> parameter, which is the logit after removing the logarithm scale. The logarithm scale is removed by simply passing the logit to the exponential function, hence the notation <code>exp(B)</code>. If we remove the logarithm scale, we are left with the odd scale. However, we should pay attention to what happens to the coefficients when the scale is changed from the logit to the odd. Two pieces of information are important here. First, recall that the <span class="math inline">\(b\)</span> coefficient in a linear model (any linear model) is the difference in the predicted values for two consecutive values of the independent variable. That is</p>
+<p><span class="math display">\[
+b=\hat{y}_{(x=1)}-\hat{y}_{(x=0)}
+\]</span>
+In the logistic model, we have
+<span class="math display">\[
+b=log(odd_{(x=1)})-log(odd_{(x=0)})
+\]</span>
+The second piece of information is that when you take the exponential function of a difference between two logarithms, the result is the ratio between the logarithms arguments. That is</p>
+<p><span class="math display">\[
+exp(log(a)-log(b))={a \over b}
+\]</span>
+Thus, if we take the exponential function of the logit B, we obtain the ratio between two odds</p>
+<span class="math display">\[
+exp(b)={odd_{(x=1)} \over odd_{(x=0)}}
+\]</span>
+<div class="enf">
+<p>Therefore, <code>exp(B)</code> is a ratio between two odds, computed at two consecutive values of the independent variable. That is why it is called the <em>odd ratio</em>. It is <em>the rate of change of the odd as you increase the independent variable of one unit</em>. In other words, it indicates how many times the odd changes as one increases the exponential function of one unit. In our example <code>exp(B)=4.62</code>, so, for every beer more, the odd of going to the restroom increases of 4.62 times.</p>
+</div>
+<p>The odd ratio is the standard effect size used in logistic regression, but it is not the only one. In different disciplines other ways to quantify the logistic effects are used. <span class="modulename">GAMLj</span> provides the most common ones: <em>Marginal effects</em> and <em>Relative Risk</em>. Now we discuss the former because it is more appropriate with continuous <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>. We discuss the RR when we deal with categorical <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span> (cf <a href="gzlm.html#gzlmanova">3.3</a>)</p>
+<p><img src="bookletpics/3_logistic_input3.png" width="524" /></p>
+</div>
+<div id="logisticcontmarginal" class="section level3 hasAnchor" number="3.2.8">
+<h3><span class="header-section-number">3.2.8</span> Marginal effects<a href="gzlm.html#logisticcontmarginal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the same way that the <code>exp(B)</code> gets rid of the log scale, marginal effects get rid of the odd scale <span class="citation">(<a href="#ref-agresti2018simple">Agresti and Tarantola 2018</a>)</span>. If we get rid of the odd scale, we are back in the probability scale. Let’s see our model in probability scale, by asking the plot of the predicted values in the <span class="option">Plots</span> panel (as we did in GLM <a href="glm.html#glmplot">2.2.7</a>).</p>
+<p><img src="bookletpics/3_logistic_plot2.png" width="630" /></p>
+<p>First, notice that our model is not linear, because the logistic model is linear for the logit outcome. The plots represents the predicted values in probabilities, so the linearity is lost, but the predicted values make sense. Second, recall that the coefficient of a regression tells us in which direction and how steep is the change in the predicted values as one increases the independent variables. The problem with probability-scaled predicted values is that the direction and size of the change is not constant along the independent variable scores.</p>
+<p><img src="bookletpics/3_logistic_plot3.png" width="502" /></p>
+<p>In the model above, for instance, for <span class="math inline">\(x=-2\)</span> we can see a mildly positive increase, whereas for <span class="math inline">\(x=0\)</span> the increase is very steep, which becomes almost flat for <span class="math inline">\(x=2\)</span>. Each of this possible increases (or change in probability) is a marginal effect. However, if we want to quantify the increase (or change) in probability due to the increase in the <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span>, we have a different marginal effect for each value of <span class="math inline">\(x\)</span>. But we can compute them all (for all observed values of <span class="math inline">\(x\)</span>) and take the average: This is the average marginal effects (AME) produced by <span class="modulename">GAMLj</span>.</p>
+<p><img src="bookletpics/3_logistic_output5.png" width="591" /></p>
+<p>Thus, we can say that on average, the probability of visiting the restroom (<span class="math inline">\(ybin=1\)</span>) increases of .271 as you increase beer (<span class="math inline">\(x\)</span>) of one unit.
+Please consult <span class="citation">Leeper (<a href="#ref-thomas">2021</a>)</span> for more details and technical information.</p>
+</div>
+<div id="multiple-ivs" class="section level3 hasAnchor" number="3.2.9">
+<h3><span class="header-section-number">3.2.9</span> Multiple IVs<a href="gzlm.html#multiple-ivs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Adding independent variables in the logistic regression, as well as interaction terms, follows the same principles used for the GLM (<a href="glm.html#glm">2</a>). The coefficients are interpreted as partial coefficients, keeping constant the other independent variables. If interactions are included, the linear effects are interpreted as <em>main effects</em> (averaged across leves of the moderator). Simple effects analysis and simple slopes plots can be obtained as we did in the GLM applications.</p>
+</div>
+</div>
+<div id="gzlmanova" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Logistic with Catecorical IVs<a href="gzlm.html#gzlmanova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We know that the GLM can accommodate categorical <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>, and so does the logistic model. Categorical <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span> are cast into the model using contrast variables (cf. <a href="glm.html#dummies">2.7.2</a>), their coefficients represent group comparisons, and their omnibus tests inform us on the effect of the categorical variable on the probability of being in the group <span class="math inline">\(y=1\)</span> rather than the group <span class="math inline">\(y=0\)</span>.</p>
+<p>We are going to exemplify this model using the <code>manymodels</code> dataset, using <code>cat2</code> and <code>cat3</code> as our categorical <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>. Recall we use as a cover story the type of beer drunk for <code>cat3</code> and the type of bar for <code>cat2</code>.</p>
+<p><img src="bookletpics/3_logistic_output6.png" width="371" /></p>
+<div id="model-estimation" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Model Estimation<a href="gzlm.html#model-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now we want to establish possible differences among these groups in the probability of visiting the restroom (<span class="math inline">\(ybin=1\)</span>). We set up a logistic model in which <code>cat2</code> and <code>cat3</code> are factors, meaning categorical <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>.</p>
+<p><img src="bookletpics/3_logistic_input4.png" width="568" /></p>
+<p>As usual in <span class="modulename">GAMLj</span>, in the presence of categorical <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span> the model is automatically set up with main effects and interactions.</p>
+<p><img src="bookletpics/3_logistic_input5.png" width="568" /></p>
+</div>
+<div id="model-fit-1" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Model Fit<a href="gzlm.html#model-fit-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="bookletpics/3_logistic_output7.png" width="449" /></p>
+<p>The output tables concerning the fit of the model do not really change when the independent variables are categorical. The <span class="math inline">\(R^2\)</span> indicates the advantage of fit of our model as compared with a intercept-only model, the <span class="math inline">\(R^2_{adj}\)</span> estimate the quantity in the population, and the inferential test (<span class="math inline">\(\chi^2\)</span>) indicates whether our model predicts the dependent variable better than chances. More precisely, the model fit indicates if and how much our model predicts the probability of group membership better than just saying that the probability of being in group 1 is equal for every case and it is the number of cases in group 1 divided by the total number of cases.</p>
+</div>
+<div id="omnibus-tests-2" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Omnibus Tests<a href="gzlm.html#omnibus-tests-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>With categorical <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>, the crucial table is the <span class="tablename">Omnibus Tests</span> table. Here we find the inferential tests for the main effects and the interactions.</p>
+<p><img src="bookletpics/3_logistic_output8.png" width="312" /></p>
+<p>We can see that we obtain a non significant main effect for <code>cat3</code> indicating that there is not enough evidence to show that the three groups defined by <code>cat3</code> have different probabilities to go to the restroom (<span class="math inline">\(y=1\)</span>). The lack of interaction indicates that the effect of <code>cat3</code> is not different across levels of <code>cat2</code>. We do find a main effects of <code>cat2</code>, with <span class="math inline">\(\chi^2(1)=15.73\)</span>, p.&lt;.001. This means that the probability of being in <span class="math inline">\(ybin=1\)</span> group is different in the two groups defined by <code>cat2</code>. People in the two types of bar visit the restroom with different probability. To interpret the direction of the effect, we can look at the plot</p>
+</div>
+<div id="plots-1" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Plots<a href="gzlm.html#plots-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The plot depicts the average probability of <span class="math inline">\(ybin=1\)</span> for the groups defined by the variables we ask the plot for. In our case, we ask the plot for <code>cat2</code>.</p>
+<p><img src="bookletpics/3_logistic_input6.png" width="562" /></p>
+<p><img src="bookletpics/3_logistic_plot4.png" width="656" /></p>
+<p>We can see that the group <code>music</code> has a higher probability of visiting the restroom than the group <code>sport</code>. We can see the same information in the <em>Estimated Marginal Means</em></p>
+</div>
+<div id="estimated-marginal-means-1" class="section level3 hasAnchor" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> Estimated Marginal Means<a href="gzlm.html#estimated-marginal-means-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Estimated marginal means gives us the average probabilities of <span class="math inline">\(ybin=1\)</span> for the groups. They are expressed in probabilities.</p>
+<p><img src="bookletpics/3_logistic_input7.png" width="556" />
+<img src="bookletpics/3_logistic_output9.png" width="401" /></p>
+</div>
+<div id="relative-risk" class="section level3 hasAnchor" number="3.3.6">
+<h3><span class="header-section-number">3.3.6</span> Relative Risk<a href="gzlm.html#relative-risk" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The relative risk (RR) indices are often used when the <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span> are categorical. Set aside some technical details (cf. <span class="citation">Zou (<a href="#ref-zou2004modified">2004</a>)</span>), you can think of the relative risk as the rate of change in the probability when comparing two groups.</p>
+<p><img src="bookletpics/3_logistic_output10.png" width="654" /></p>
+<p>When comparing <code>IPA</code> with <code>pilsner</code> group, we have that the probability of visiting the restroom is 1.532 times larger in <code>IPA</code> than in <code>pilsner</code>. The probability is 1.342 times larger in <code>stout</code> than in <code>pilsner</code>. And so on. In <code>music</code> group, the probability is 1.937 times larger than in <code>sports</code> group.</p>
+<p>A caveat is in order here. If one computes these values based on the estimated marginal means, they do not correspond exactly: <span class="math inline">\(.768/.409=1.89\)</span>, whereas the RR of cat2 is <span class="math inline">\(1.937\)</span>. Close, but not equal. The reason is the presence of the interactions, so it has to do with the way probabilities are averaged across the levels of other variables. The difference, however, is always rather small. For models with only one <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span>, the computations correspond exactly.</p>
+</div>
+<div id="logisticcatmarginal" class="section level3 hasAnchor" number="3.3.7">
+<h3><span class="header-section-number">3.3.7</span> Marginal Effects<a href="gzlm.html#logisticcatmarginal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="bookletpics/3_logistic_output11.png" width="616" /></p>
+<p>For categorical variables, the marginal means are the expected differences between groups probabilities. As for the RR, in presence of interactions the estimated difference may be slightly different as compared with the EMM difference. For models with only one <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span>, the computations correspond exactly.</p>
+</div>
+<div id="post-hoc-tests" class="section level3 hasAnchor" number="3.3.8">
+<h3><span class="header-section-number">3.3.8</span> Post-hoc tests<a href="gzlm.html#post-hoc-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As for the GLM (cf <a href="glm.html#posthoc">2.8</a>), one can perform a series of groups comparisons using a post-hoc tests technique. The method is equivalent to the one discussed in the GLM, so we do not need to add much here. The only noticible point here is that the comparisons are estimated and tested as <em>odd ratios</em>, so the comparison is based on the odd in one group over the odd in the other group.</p>
+<p>As an example, here we ask for the post-hoc comparisons within <code>cat3</code>.
+<img src="bookletpics/3_logistic_input9.png" width="560" />
+<img src="bookletpics/3_logistic_output12.png" width="525" /></p>
+<p>The first comparison shows an <span class="math inline">\(OR=.452\)</span>, meaning that the ratio of the pilsner group odd and the IPA group odd is .452. In other words, the pilsner group odd is .452 times the odd of the IPA group. Significance and inferential tests are interpreted as usual, keeping in mind that the p-values are adjusted for the number of comparisons carried out.</p>
+</div>
+<div id="other-options" class="section level3 hasAnchor" number="3.3.9">
+<h3><span class="header-section-number">3.3.9</span> Other options<a href="gzlm.html#other-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>All other options, <span class="option">Simple Effects</span>, <span class="option">Factor Coding</span>, <span class="option">Covariates Scaling</span>, <span class="option">Bootstrap</span> confidence intervals, etc. are the same as in the GLM.</p>
+</div>
+</div>
+<div id="probit" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Probit Model<a href="gzlm.html#probit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The probit model (cf <a href='https://en.wikipedia.org/wiki/Probit_model' target='_blank'>Wiki</a>) is practically equivalent to the logistic model. All examples, options and interpretations are the same, so we are not going to explore it in details. The reason <span class="modulename">GAMLj</span> offers the probit model is because there are several disciplines in which this model is more commonly used than the logistic model. The aim of the two models is the same: Predicting a dichotomous dependent by its relations with a set of <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>.</p>
+<div class="enf">
+<p>The only difference between the logistic and the probit model is the link function (<a href="gzlm.html#gzlmintro">3.1</a>). Rather than predicting the <em>logit</em> of the probability, the probit model uses the <em>probit</em> of the probability.</p>
+</div>
+<p>The <em>probit</em> function uses the inverse of the cumulative distribution function of the normal distribution. In a nutshell, imagine a histogram: The cumulative distribution function of the normal distribution associates a probability to any possible value of the X-axis. Its inverse return the X-axis value for any probability value, yielding the predicted values in a scale that admits any positive or negative value. In other words, it does what the logit does, with a different function.</p>
+<p>The fact that the logit and the probit models give almost identical results can be easily understood by looking at the way the two link functions transform probabilities in real values: practically in the same way.</p>
+<p><img src="bookletpics/logitprobit.png" width="672" /></p>
+</div>
+<div id="multinomial" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> The Multinomial Model<a href="gzlm.html#multinomial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="rationale" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Rationale<a href="gzlm.html#rationale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sooner or later a dependent variable with more than two groups will cross our path. A choice may be added to the experimental outcome, a third group may be necessary to exhaust a classification, a set of products needs to be tested. When the dependent variable features more than two groups, the logistic or probit model cannot be used. It must be generalized into the <em>Multinomial Model</em>. A multinomial model is logically equivalent to estimating a set of logistic regressions, one for each dummy variable (cf. <a href="glm.html#dummies">2.7.2</a> and <a href="a1dummies.html#a1dummies">B</a>) representing the categorical dependent variable.</p>
+<p>Consider a three group variable, with levels A, B and C. To represent it with a set of dummy variables we need 2 dummies.</p>
+<table class="gmisc_table" style="border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
+<thead>
+<tr>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+Levels
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+D1
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+D2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">
+A
+</td>
+<td style="text-align: center;">
+0
+</td>
+<td style="text-align: center;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+B
+</td>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+0
+</td>
+</tr>
+<tr>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+C
+</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+0
+</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p><code>D1</code> compares level B with level A, and <code>D2</code> compares level C with level A. We do not need any other comparison to exhaust the variability in the dependent variable (cf Appendix <a href="a1dummies.html#a1dummies">B</a>). If now we use a logistic model to predict each of these dummies with the independent variables, we can estimate the effects of the independent variables on the probability of belonging to a group rather than another. Thus, a set of logistic regressions would do the job.</p>
+<p><span class="math display">\[\begin{align*}
+logit(D1)  &amp;= a_1 + b_1 \cdot x   \\
+logit(D2)  &amp;= a_2 + b_2 \cdot x   \\
+\end{align*}\]</span></p>
+<p>or, equivalently</p>
+<p><span class="math display">\[\begin{align*}
+log({p(B) \over p(A)})  &amp;= a_1 + b_1 \cdot x   \\
+log({p(C) \over p(A)})  &amp;= a_2 + b_2 \cdot x   \\
+\end{align*}\]</span></p>
+<p>The overall model fit will be given by the cumulative fit of the two logistic models; the omnibus test of <span class="math inline">\(x\)</span> will be given by testing that both <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span> are zero, and the specific effects of <span class="math inline">\(x\)</span> on the comparisons is given by the <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span> coefficients. This will be repeated for <span class="math inline">\(K-1\)</span> logistic models, where <span class="math inline">\(K\)</span> is the number of levels of the dependent variable.</p>
+</div>
+<div id="model-estimation-1" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Model Estimation<a href="gzlm.html#model-estimation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To exemplify, we use our <code>manymodels</code> dataset, which has a variable named <code>ycat</code>. This variable has three levels. To give some names to its levels and keep up with the bar cover story, imagine the three levels are the choice of an activity to do in the bar: <code>1=play darts</code>, <code>2=chatting</code>, <code>3=dancing</code>.</p>
+<p><img src="bookletpics/3_multi_output1.png" width="370" /></p>
+<p>Thus, we want to estimate how the number of beer drunk (<span class="math inline">\(x\)</span>) influences the probability of being in any of these three groups (<span class="math inline">\(ycat\)</span>).</p>
+<p>We first select <span class="option">Multinomial</span> in the model selection tab, and then set up the dependent variable and the independent variable.</p>
+<p><img src="bookletpics/3_multi_input1.png" width="576" /></p>
+</div>
+<div id="model-recap-1" class="section level3 hasAnchor" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Model Recap<a href="gzlm.html#model-recap-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="bookletpics/3_multi_output2.png" width="580" /></p>
+<p>This table is useful to remind us what we are estimating in particular, so our interpretation will be correct. In the row <code>direction</code>, we can see
+<span class="math display">\[
+P(Y=j)/P(Y=0)
+\]</span>
+This means that we are predicting the (log of) the odd of each level <span class="math inline">\(j\)</span> against level 0. The specification of the levels is in the adjacent column. Here we see
+<span class="math display">\[
+P(ycat=chat)/P(ycat=darts), P(ycat=dance)/P(ycat=darts)
+\]</span></p>
+<p>meaning that the first logistic we meet would predict the odd of being in group <code>chat</code> rather than <code>darts</code>, the second predicts the odd of being in <code>dance</code> rather than <code>darts</code>.</p>
+<p>Before looking at the specific comparisons, we have the overall fit and tests.</p>
+</div>
+<div id="overal-fit" class="section level3 hasAnchor" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> Overal Fit<a href="gzlm.html#overal-fit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="bookletpics/3_multi_output3.png" width="419" /></p>
+<p>As usual, the <span class="math inline">\(R^2\)</span> tells us the improvement in fit due to our independent variables, and its inferential test provides a test of the hypothesis that our model predicts the dependent variable better than chances. The Ominibus tests are interesting here: They test the null hypothesis that the independent variable(s) has no effect on the probabilities of belonging to the three groups, thus they provide an overall test across the logistic models predicting the dummies. In our case, we can say that <em>beers</em> (<span class="math inline">\(x\)</span>) influences the choice of the activity (<span class="math inline">\(ycat\)</span>), with <span class="math inline">\(\chi^2(2)=15.9\)</span>, <span class="math inline">\(p.&lt;.001\)</span>.</p>
+<p>How the independent variable influences the group probabilities can be seen with a plot and by inspecting the coefficients.</p>
+</div>
+<div id="plots-2" class="section level3 hasAnchor" number="3.5.5">
+<h3><span class="header-section-number">3.5.5</span> Plots<a href="gzlm.html#plots-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Plot of probabilities are very useful to interpret multinomial models. For multinomial models, the plot depicts one line for each level of the dependent variable. Each line depicts the expected probability of being in that group as a function of the independent variables (plots are produced like for any other model, so it is not shown here. <code>original X-scale</code> option is selected as well).</p>
+<p><img src="bookletpics/3_multi_plot1.png" width="713" /></p>
+<p>Here we see how the effect of <em>beers</em> (<span class="math inline">\(x\)</span>) unfolds into probabilities differences. For low level of beers, it is very unlikely to dance, but this group becomes more likely as <em>beers</em> (<span class="math inline">\(x\)</span>) increases. <code>chats</code> and <code>darts</code> start at the same level of probability, they diverge as <em>beers</em> (<span class="math inline">\(x\)</span>) increases: <code>darts</code> becomes less and less likely, whereas <code>chats</code> increases to decrease again for high levels of <em>beers</em> (<span class="math inline">\(x\)</span>). With the plot, a full picture of the effect can be obtained and a clear interpretation of the results can be given.</p>
+</div>
+<div id="coefficients-2" class="section level3 hasAnchor" number="3.5.6">
+<h3><span class="header-section-number">3.5.6</span> Coefficients<a href="gzlm.html#coefficients-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One can also examine the specific effects of the independent variable(s) on the groups comparisons in the <span class="tablename">Parameter Estimates (Coefficients)</span> table. Here there are the individual logistic models predicting the dummies representing the dependent variable.</p>
+<p><img src="bookletpics/3_multi_output4.png" width="724" /></p>
+<p>Focusing on the effect of <span class="math inline">\(x\)</span>, we can say that as <span class="math inline">\(x\)</span> increases, the odd of <code>chatting</code> rather than <code>playing darts</code> increases of 3.76 times, <span class="math inline">\(exp(B)=3.75\)</span>, a significant increase (<span class="math inline">\(z=2.42\)</span>,<span class="math inline">\(p=.017\)</span>). Even stronger is the effect of <span class="math inline">\(x\)</span> on the odd of being <code>dancing</code> rather than <code>playing darts</code>. The odd increases of 8.21 times for each unit more of <span class="math inline">\(x\)</span>.</p>
+<p>The other options of the multinomial models are logically equivalent to the options one can use with the GLM (<a href="glm.html#glm">2</a>) or the logistic model (<a href="gzlm.html#logistic">3.2</a>). However, there are some peculiar features that are worth mentioning.</p>
+</div>
+<div id="post-hoc-tests-1" class="section level3 hasAnchor" number="3.5.7">
+<h3><span class="header-section-number">3.5.7</span> Post Hoc Tests<a href="gzlm.html#post-hoc-tests-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s introduce a categorical variable <code>cat3</code> (the type of beer in the story), so we can see the post-hoc tests.</p>
+<p><img src="bookletpics/3_multi_output5.png" width="328" />
+<img src="bookletpics/3_multi_plot3.png" width="680" /></p>
+<p>The omnibus test suggest a main effect of <code>cat3</code> on the probability of <code>ycat</code>, the plot suggests that for the <code>darts</code> group there is not much of a difference due to <code>cat3</code>, which is a little stronger for the <code>dance</code> group and for the <code>chat</code> group. This is the logic of the post hoc tests in multinomial models: the probability of each group of the dependent variable is compared between each pair of groups of the independent variable (for input, see <a href="glm.html#posthoc">2.8</a>).</p>
+<p><img src="bookletpics/3_multi_output6.png" width="659" /></p>
+<p>The <code>cat3</code> groups do not differ in the probability of being in the <code>darts</code> group. The <code>cat3</code> groups do not differ in the probability of being in the <code>chat</code> group, although some difference can be seen for the comparison <code>pilsner-stout</code>. The <code>cat3</code> groups do not differ in the probability of being in the <code>dance</code> group, although some difference can be seen for the comparison <code>pilsner-stout</code>, again.</p>
+<p>We noticed that <code>cat3</code> had a significant effect on the dependent variable (<span class="tablename">Omnibus Test</span>), but no post hoc test reaches a significant level. That is not an error, it could happen because of the correction for multiplicity. Because in multinomial models the comparisons are usually many, the adjustment may result in very under-powered comparisons. The indication is to use the post-hoc only when strictly necessary, namely when one has really no idea of what to expect from our data.</p>
+</div>
+<div id="marginal-effects" class="section level3 hasAnchor" number="3.5.8">
+<h3><span class="header-section-number">3.5.8</span> Marginal Effects<a href="gzlm.html#marginal-effects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recall the marginal effects in the logistic model (cf. <a href="gzlm.html#logisticcontmarginal">3.2.8</a> and <a href="gzlm.html#logisticcatmarginal">3.3.7</a>). They are the average change in probability (probabilities differences) along a continuous <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span> or between two groups defined by a categorical <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span>. In multinomial models, they have the same interpretation, but they are produced for each comparison (dummy) between the dependent variable groups. In our example with <code>x</code> and <code>cat3</code> <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>, we have the following marginal effects.</p>
+<p><img src="bookletpics/3_multi_output7.png" width="697" /></p>
+<p>The first row presents the average marginal effect, <span class="math inline">\(AME=.082\)</span> of x on the comparison between <code>chat</code> and <code>darts</code>: that is, the average change in probability of being in the <code>chat</code> group rather than the <code>darts</code> group along the values of <code>x</code>. The second row (<span class="math inline">\(AME=.677\)</span>) is the difference in the probability of being in group <code>chat</code> rather than <code>darts</code> between the group <code>stout</code> and group <code>pilsner</code>. The third row indicates the difference in the probability of being in group <code>chat</code> rather than <code>darts</code> between the group <code>stout</code> and group <code>pilsner</code>.</p>
+<p>The following three rows are the same comparisons, but operated on the probability of being in group <code>dance</code> rather than in group <code>darts</code>.</p>
+</div>
+<div id="simple-effects-1" class="section level3 hasAnchor" number="3.5.9">
+<h3><span class="header-section-number">3.5.9</span> Simple Effects<a href="gzlm.html#simple-effects-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We now examine a multinomial model with <code>z</code> (remember <em>extraversion</em>) and <code>cat3</code> as independent variables, with the addition of their interaction as a term in the model.</p>
+<p>The omnibus tests are the following:</p>
+<p><img src="bookletpics/3_multi_output8.png" width="361" /></p>
+<p>We find an interaction between the continuous variable <code>z</code> and the categorical variable <code>cat3</code>. To explore this interaction we can estimate and test the simple slopes of <code>z</code> at different levels of <code>cat3</code>. This estimation provides the numerical version of a simple <em>slopes</em> plot, that we can obtain in <span class="option">Plots</span> as usual</p>
+<p><img src="bookletpics/3_multi_input2.png" width="555" /></p>
+<p>The plots (rearanged) looks like this:</p>
+<p><img src="bookletpics/3_multi_output9.png" width="602" /></p>
+<p>These are the effects (difference in probability) of <code>z</code> on <code>ycat</code> estimated for the thee groups defined by <code>cat3</code>. To know where the effects are or are not present, we can ask for the simple effects.</p>
+<p><img src="bookletpics/3_multi_input3.png" width="551" /></p>
+<p><img src="bookletpics/3_multi_output10.png" width="403" /></p>
+<p>It is clear that the effect of <code>z</code> is different from zero for the group <code>pilsner</code>, <span class="math inline">\(\chi^2(2)=6.55\)</span>,<span class="math inline">\(p.=.038\)</span>, it is very weak and not significant for the group <code>IPA</code>, <span class="math inline">\(\chi^2(2)=1.59\)</span>,<span class="math inline">\(p.=.450\)</span>, and is significant and strong for the group <code>stout</code>, <span class="math inline">\(\chi^2(2)=18.44\)</span>,<span class="math inline">\(p.&lt;.001\)</span>.</p>
+</div>
+<div id="other-options-1" class="section level3 hasAnchor" number="3.5.10">
+<h3><span class="header-section-number">3.5.10</span> Other options<a href="gzlm.html#other-options-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>All other options, <span class="option">Simple Interactions</span>, <span class="option">Factor Coding</span>, <span class="option">Covariates Scaling</span>, <span class="option">Bootstrap</span> confidence intervals, etc. are the same as in the GLM.</p>
+</div>
+</div>
+<div id="ordinal" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> The Ordinal Model<a href="gzlm.html#ordinal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consider now a different type of variable: immagine we asked the people at the bar to express their appreciation for the bar. We gave them 5 options</p>
+<ul>
+<li>I will never come back</li>
+<li>I may come back sometime</li>
+<li>I will come back once in while</li>
+<li>I will come back often</li>
+<li>I would like to be here every day</li>
+</ul>
+<p>Silly as it may seems, this variable represents a very common type of variable in science. It produces 5 possible values, that are clearly ordered in terms of preferences for the bar. Despite that, we cannot honestly assume that this is a continuous variable, because the distance between, say, <em>I will never come back</em> and <em>I may come back sometime</em> cannot confidently be assumed to be the same as the distance between <em>I will come back often</em> and <em>I would like to be here every day</em>. Nevertheless, It is plain to see that <em>I will never come back</em> conveys much less appreciation than <em>I will come back often</em>, which is in turn less appreciative than <em>I would like to be here every day</em> . So, this is an <em>ordinal</em> variable <span class="citation">(<a href="#ref-stevens1946theory">Stevens 1946</a>)</span>. The argument become more serious if we focus on the Likert scale <span class="citation">(<a href="#ref-likert1932technique">Likert 1932</a>)</span>, one of the most frequently used measurement instrument in social science. Different authors have claimed that a Likert scale is an ordinal variable and it cannot be considered a continuous scale, whereas other have claimed that the assumption of continuity does not really bias the results of parametric analyses. See for instance <span class="citation">Wu and Leung (<a href="#ref-wu2017can">2017</a>)</span> and the references there. We are not going to solve this conundrum here. We assume one has decided that the dependent variable is of the ordinal type.</p>
+<div id="rationale-1" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Rationale<a href="gzlm.html#rationale-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Assume we treat an ordinal variable as a multinomial variable,featuring <span class="math inline">\(K\)</span> levels. If we do that, we treat the levels as completely unordered, and thus the only information that we are using to estimate the generalized model is that the <span class="math inline">\(K\)</span> levels are different. As we have seen in the discussion of multinomial regression (<a href="gzlm.html#multinomial">3.5</a>), we would need K-1 logistic models to obtain our results. In doing that, however, we over-parameterize the model, because we do not need so many coefficients to describe the effect of an <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span> on the dependent variable. We can take advantage of the order of the levels to simplify the model (its results, not really its logic).</p>
+<p>Consider our ordinal <span class="math inline">\(y=\{1,2,3,4,5\}\)</span>, and say that each <span class="math inline">\(i\)</span> level (the choice made by the participant in the example) has probability <span class="math inline">\(\pi_i\)</span>. We can ask what is the probability of choosing <em>I will never come back </em>, or the probability of choosing either <em>I will never come back</em> or <em>I may come back sometime</em>, or the probability of choosing <em>I will come back once in while</em> or lover levels, etc. In other words, we can focus on the probability of choosing <em>up to a level</em>, or equivalently, a level or any other below it. This is called <em>cumulative probability</em>, and it can be written like this:</p>
+<p><span class="math display">\[
+p(y\le k)=\sum_{i=1}^k \pi_i
+\]</span>
+meaning: the probability to choose any level up to <span class="math inline">\(k\)</span> is the sum of the probabilities of the levels less or equal to <span class="math inline">\(k\)</span>. As we have seen above (<a href="gzlm.html#logistic">3.2</a>), the linear model does not work well in predicting probabilities, so let express these probabilities as logits:</p>
+<p><span class="math display">\[
+logit_k=log \left( {p(y\le k) \over p(y &gt; k)}\right)=log \left({\sum_{i=1}^k \pi_i \over \sum_{i=k+1}^K \pi_i} \right)
+\]</span>
+which translates into predicting the log of the odd of choosing up to one level over choosing any other higher levels. That can be done with a linear model</p>
+<p><span class="math display">\[
+logit_k=a_k+b_k x
+\]</span></p>
+<p>In this set of models, each <span class="math inline">\(b_k\)</span> coefficient would tell us the effect of <span class="math inline">\(x\)</span> on the (logit) probability of choosing up to one level over choosing any other higher level. However, that would not be much of simplification, because we still have <span class="math inline">\(K-1\)</span> linear models, one for each levels, apart from the last one. But we can assume, and check, that the effect of <span class="math inline">\(x\)</span> on the logit is the same for each level <span class="math inline">\(k\)</span>, so we end up with only one regression coefficient:</p>
+<p><span class="math display">\[
+logit_k=a_k+b x
+\]</span>
+This is the <em>proportional odds</em> assumption, which often gives its name to the model: <em>the propotional odds model</em>. Thus, the ordinal regression is a generalized linear model that uses the <em>cumulative-logit</em> as link function and assumes proportional odds.</p>
+<p>To interpret the coefficients, however, we need an extra step. So far , the <span class="math inline">\(b\)</span> is the influence of <span class="math inline">\(x\)</span> in choosing <span class="math inline">\(k\)</span> or below, so a positive value means that as you increase <span class="math inline">\(x\)</span> it is more likely to choose a lower level. That is counter-intuitive, therefore the model is estimated reversing the sign of <span class="math inline">\(b\)</span>, so that the interpretation comes more natural.</p>
+<p><span class="math display">\[
+logit_k=a_k-b x
+\]</span></p>
+<div class="enf">
+<p>In this model, intercepts are the log-odds of choosing a level or below that level. The regression coefficient describes the increase in log-odds of choosing a level or above associated with a one unit increase in <span class="math inline">\(x\)</span>. In other words, the <span class="math inline">\(b\)</span> coefficient indicates how much the independent variable increases the probability of choosing a higher level, so taking a step up on the ordinal scale.</p>
+</div>
+<p>Another way to see how the model works, is to consider the following plots.</p>
+<p><img src="bookletpics/3_ordinal_probs.png" width="838" /></p>
+<p>On the left panel, we have the cumulative probability functions for each level compared with any other higher level. When the probability is predicted as a logit, its relationship with the independent variable is linearized (right panel), so we are fitting regression lines, with different intercept but the same slope (lines are parallel). This is the proportional odds model.</p>
+<p><span class="modulename">GAMLj</span> provides the proportional odds model as implemented by the R package <code>ordinal</code>. Details can be found in the <a href='https://cran.r-project.org/web/packages/ordinal/vignettes/clm_article.pdf' target='_blank'>ordinal package vignettes</a>.</p>
+</div>
+<div id="model-estimation-2" class="section level3 hasAnchor" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Model Estimation<a href="gzlm.html#model-estimation-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We simply set the model as <code>Ordinal</code> at the top of the input variable, and set our dependent and independent variables as for any other model. Here we inserted as independent variables both a continuous (<span class="math inline">\(x\)</span>) and a categorical variable (<span class="math inline">\(cat3\)</span>), so we can explore more options and techniques within the ordinal model.</p>
+<p><img src="bookletpics/3_ordinal_input1.png" width="573" /></p>
+</div>
+<div id="model-recap-2" class="section level3 hasAnchor" number="3.6.3">
+<h3><span class="header-section-number">3.6.3</span> Model Recap<a href="gzlm.html#model-recap-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="bookletpics/3_ordinal_output1.png" width="475" /></p>
+<p>In the <span class="tablename">Model Info</span> table we find a set of properties of the estimated model, as we have seen for all the other generalized linear models. The <code>direction</code> row indicates how the levels of the dependent variables are ordered, in this example as 1|2|3|4|5. This is usually obvious, but in some cases it is important to check that the order of the dependent variable levels is indeed how intended by the user.</p>
+</div>
+<div id="parallellines" class="section level3 hasAnchor" number="3.6.4">
+<h3><span class="header-section-number">3.6.4</span> Parallel Lines test<a href="gzlm.html#parallellines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before looking at the results of the model estimation, we should remember that the ordinal model estimated by <span class="modulename">GAMLj</span> is a <em>proportional odds model</em>, in which we assume that the coefficient associated with an independent variable is the same for all logit estimated along the dependent variable scale (cf <a href="gzlm.html#ordinal">3.6</a>). <span class="modulename">GAMLj</span> provides a test for this assumption, usually named <em>parallel lines test</em>. It is named like that because proportional odds functions, when estimated in the logit scale, are equivalent to parallel lines.</p>
+<p>The logic of the test is simple: the model with all coefficients of an independent variable set equal is compared with a model in which the coefficients are allowed to vary from logit to logit. The two models are compared with a log-likelihood ratio test. If the test is not significant, we have indication that the assumption of proportional odd is met. When significant, we have indication that a breach to the assumption may be in place.</p>
+<p>The test can be found in the input <span class="option">Options</span> panel.</p>
+<p><img src="bookletpics/3_ordinal_input2.png" width="572" /></p>
+<p><img src="bookletpics/3_ordinal_output7.png" width="421" /></p>
+<p>The test is performed for each independent variable effect. We can see that no problem arises with <span class="math inline">\(x\)</span>, because the <span class="math inline">\(\chi^2\)</span> is clearly not significant. A doubt can be cast on <code>cat3</code>, that show that the assumption of proportional odds does not perfectly apply to its effects (<span class="math inline">\(\chi^2=16.48\)</span>, <span class="math inline">\(p=.011\)</span>). It should be said, however, that this tests are quite conservative, so one should be very lenient in their interpretation. One can argue, for instance, that the deviation from the assumption does not seem very strong, so the model can be saved and the results interpreted anyway.</p>
+</div>
+<div id="model-fit-2" class="section level3 hasAnchor" number="3.6.5">
+<h3><span class="header-section-number">3.6.5</span> Model Fit<a href="gzlm.html#model-fit-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="bookletpics/3_ordinal_output2.png" width="374" /></p>
+<p>The model R-squared is produced with its inferential test, the Chi-square test. This provides a test of the ability of the model to predict the dependent variable better than chances. The R-squared is the McFadden’s pseudo R squared (cf <a href='https://gamlj.github.io/details_goodness.html' target='_blank'>GAMLj help</a>
+). We can interpret it as the proportion of reduction of error, or the proportion of increased accuracy in predicting the dependent variable using our model as compared with a model without independent variables (cf. Appendix <a href="appendixa.html#appendixa">A</a>). The adjusted <span class="math inline">\(R^2\)</span> is not produced for the ordinal model.</p>
+<p>The additional indices reported in <span class="tablename">Additional indices</span> reports other indices useful for model comparisons or evaluation of models.</p>
+</div>
+<div id="omnibus-tests-3" class="section level3 hasAnchor" number="3.6.6">
+<h3><span class="header-section-number">3.6.6</span> Omnibus Tests<a href="gzlm.html#omnibus-tests-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As for all the other generalized linear models, we have omnibus tests for the effects of our <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span>. They are especially useful when dealing with categorical independent variables, because with continuous independent variables they are redundant as compare with the coefficients tests.</p>
+<p><img src="bookletpics/3_ordinal_output3.png" width="351" /></p>
+<p>We noticed in our example that both variables show significant effects. Thus, while keeping the other constant, each variable is able to influence the probability of choosing a higher level of the ordinal variable. We can now examine these effects to understand their size and direction.</p>
+</div>
+<div id="coefficients-3" class="section level3 hasAnchor" number="3.6.7">
+<h3><span class="header-section-number">3.6.7</span> Coefficients<a href="gzlm.html#coefficients-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="bookletpics/3_ordinal_output4.png" width="752" /></p>
+<p>The first rows of the table report the intercepts, in this context called <em>thresholds</em>. Those are the expected logit (under <code>Estimate</code> column) or the expected odd (under <code>exp(b)</code> column) of the regression fitted for each logit. They are seldom interpreted, but they are basically the odds of choosing a level or lower over choosing any higher level, for all <span class="tooltip">IVs <span class="tooltiptext">Independent Variables</span> </span> equal to zero.</p>
+<p>The <span class="math inline">\(x\)</span> effect <span class="math inline">\(b=1.343\)</span> and its <span class="math inline">\(exp(B)=3.831\)</span> indicate the effect of the independent variable on the probability of choosing an higher level: for one unit more in <span class="math inline">\(x\)</span>, the odd of passing from one level to the higher level increases of <span class="math inline">\(3.831\)</span> times. Thus, the more beers one drinks (<span class="math inline">\(x\)</span>), the higher is the appreciation of the bar. As regards the effects of <code>cat3</code>, as compared with <code>pilsner</code> group, the <code>IPA</code> group has an odd of increasing the chosen level .630 times smaller, whereas for the <code>stout</code> group the odd is 1.097 times larger. The latter comparison is significant.</p>
+<p>We can probe the categorical variable effect by displaying and evaluating the expected means.</p>
+</div>
+<div id="estimated-marginal-means-2" class="section level3 hasAnchor" number="3.6.8">
+<h3><span class="header-section-number">3.6.8</span> Estimated marginal means<a href="gzlm.html#estimated-marginal-means-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Obtained as for any other model in the input (cf <a href="glm.html#estimated-marginal-means">2.10</a>), the estimated marginal means for the ordered model are expected mean classes: the expected mean level chosen, broken down by groups defined by the independent variable.</p>
+<p><img src="bookletpics/3_ordinal_output5.png" width="394" /></p>
+<p>In this example, we see that the group <code>pilsner</code>, on average, is choosing level 3, that in our example means, <em>I will come back once in while</em>, whereas both group <code>IPA</code> and <code>stout</code> tend to be between <em>I will come back once in while</em> and <em>I will come back often</em>. Classes are always marked from 1 to <span class="math inline">\(K\)</span>, where <span class="math inline">\(K\)</span> is the number of levels in the dependent variable. The correspondence between class and mark is illustrated in the footnote of the table.</p>
+</div>
+<div id="post-hoc-tests-2" class="section level3 hasAnchor" number="3.6.9">
+<h3><span class="header-section-number">3.6.9</span> Post-hoc tests<a href="gzlm.html#post-hoc-tests-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Post-hoc tests are asked in the input and interpreted as for any other model (cf. <a href="glm.html#posthoc">2.8</a>)</p>
+<p><img src="bookletpics/3_ordinal_output6.png" width="530" /></p>
+<p>The only remark needed here is that for ordinal models, the group comparisons are conducted using the logit, testing them as comparisons of groups based on the difference in logit. However, in the table, these comparisons are reported as odds ratios, where the difference in logit is exponentiated before being displayed.</p>
+<p>In our example, we can see that <code>IPA</code> group shows an odd of increasing the dependent variable level <span class="math inline">\(Ratio=1.88\)</span> times larger than the <code>pilsner</code>, not significantly different, <span class="math inline">\(z=1.363\)</span>, <span class="math inline">\(p.=518\)</span>. The <code>stout</code> group shows an odd of increasing the dependent variable level <span class="math inline">\(Ratio=2.97\)</span> times larger than the <code>pilsner</code> group, not significantly different, <span class="math inline">\(z=2.265\)</span>, <span class="math inline">\(p.=0.070\)</span>, whereas <code>stout</code> group shows an odd of increasing the dependent variable level <span class="math inline">\(Ratio=1.58\)</span> times larger than the <code>pilsner</code>, again not significantly different, <span class="math inline">\(z=0.980\)</span>, <span class="math inline">\(p.=.982\)</span>. We can notice that the same odd ratios were reported in the <span class="tablename">Parameter Estimates (Coefficients)</span> table, with different p-values because no adjustment was operated there.</p>
+</div>
+<div id="plot-1" class="section level3 hasAnchor" number="3.6.10">
+<h3><span class="header-section-number">3.6.10</span> Plot<a href="gzlm.html#plot-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When dealing with generalized linear model, it is always a good idea to have a look at the effects in terms association of the predicted values with the independent variables. For ordinal models, we can choose two types of predicted values:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Response</strong>, the predicted values are expressed in probability of belonging to a level of the dependent variable. In our example, the plot diplays the probability of choosing any of the response level as a function of the independent variables.</li>
+<li><strong>Mean class</strong>, the predicted values are the expected classes, coded from 1 to <span class="math inline">\(K\)</span>. In our example it would display the expected average classes as a funtion of the independent variable values. Let us see both versions.</li>
+</ol>
+<p>The input is as usual.</p>
+<p><img src="bookletpics/3_ordinal_input3.png" width="561" /></p>
+<p>By default we have the <span class="option">Response</span> option, so the type is the probability of being in any of the dependent variable level.</p>
+<p><img src="bookletpics/3_ordinal_plot1.png" width="639" /></p>
+<p>Here, we can track the probability function to observe the likelihood of different levels as we increase the independent variable. It is evident that the higher levels (4 and 5) become increasingly likely as we increase <span class="math inline">\(x\)</span>, while the lower levels (1 and 2) become less probable.</p>
+<p>A similar information can be obtained if we select <span class="option">Mean class</span> in <span class="option">Plot type</span>.</p>
+<p><img src="bookletpics/3_ordinal_plot2.png" width="626" /></p>
+<p>Here we see what is the average expected level as a function of <span class="math inline">\(x\)</span>. For low values of <span class="math inline">\(x\)</span>, participants pick level 2 on average, where as you increase <span class="math inline">\(x\)</span>, the level chosen increases such that for high level of <span class="math inline">\(x\)</span>, the average level is between 4 and 5.</p>
+<p>Depending on the specific application, one of the two plot types may result useful.</p>
+</div>
+<div id="other-options-2" class="section level3 hasAnchor" number="3.6.11">
+<h3><span class="header-section-number">3.6.11</span> Other options<a href="gzlm.html#other-options-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>All other options, <span class="option">Simple Interactions</span>, <span class="option">Factor Coding</span>, <span class="option">Covariates Scaling</span>, <span class="option">Bootstrap</span> confidence intervals, <span class="option">Model comparison</span> etc. are the same as in the GLM.</p>
+</div>
+</div>
+<div id="poisson" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> The Poisson Model<a href="gzlm.html#poisson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="distribution" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Distribution<a href="gzlm.html#distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Very often, rather than measuring quantities we count stuff. For example, we may have a dependent variable that indicates the number of smartphones a person possesses, the count of close friends a teenager has, or the frequency of email checks per hour. These variables are referred to as count data, where the variable scores represent frequencies rather than actual quantities.</p>
+<p>Frequencies exhibit their own distinct characteristics when it comes to their distributions. In general terms, count variables reflect the occurrence of events, regardless of the specific event being measured (such as having a friend, checking email, or owning a phone). The distribution of the event counts tends to vary depending on the rarity or commonality of the event. For instance, if an event is rare, like the number of smartphones a person possesses, a large proportion of individuals may have just one event (one phone), while fewer individuals may have two or three phones, and having four or five phones becomes extremely uncommon. Thus, the distribution would be highly skewed.</p>
+<p>Consider, for instance, the behavior of checking emails within a working environment. If email checks are infrequent in this context, it is likely that the majority of individuals either do not check their email or check it only once during a given time period. Only a few individuals may check their email twice or three times, and the occurrence of higher frequency checks becomes increasingly rare. One ends up with a distribution as follows:</p>
+<p><img src="bookletpics/3_poisson_theory1.png" width="60%" /></p>
+<p>In the previous example, where people checked their email once per time period, the mean frequency was 1. Now, let’s consider a different working environment where it is more customary to check email, resulting in a higher mean frequency of 3. In this scenario, some individuals may still check their email infrequently, but it is less likely compared to before. Additionally, there will be a greater likelihood of individuals checking their email three or four times. As a result, the distribution becomes less skewed, as illustrated below:</p>
+<p><img src="bookletpics/3_poisson_theory2.png" width="60%" /></p>
+<p>If we consider an environment where checking email is even more common, let’s say 10 times per time period, we would observe increased variability both to the right and left of the mean. As a result, the distribution begins to resemble a bell-shaped distribution, as shown below:</p>
+<p><img src="bookletpics/3_poisson_theory3.png" width="60%" /></p>
+<div class="enf">
+<p>The distribution that accounts for this behavior of count data is called the <em>Poisson distribution</em> and it models count data very well when events are rare, thus when the average count is low. The <a href='https://en.wikipedia.org/wiki/Poisson_distribution' target='_blank'>Possisson distribition</a> is a probability distribution that models the number of events that occur within a fixed interval of time or space when these events occur independently and at a constant average rate. It applies to whole numbers (integers) and its shape depends on its mean, that is the average rate of occurrence of the events within the given interval.</p>
+</div>
+</div>
+<div id="link-function" class="section level3 hasAnchor" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> Link function<a href="gzlm.html#link-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider a count variable such as the one depicted in the following histogram:</p>
+<p><img src="bookletpics/3_poisson_theory4.png" width="60%" /></p>
+<p>Assuming a positive correlation between the count variable and a continuous variable, when we examine the relationship on a scatterplot, it becomes evident that a straight line is insufficient to capture the pattern accurately.</p>
+<p><img src="bookletpics/3_poisson_theory5.png" width="60%" /></p>
+<p>Specifically, when the count variable is zero, the straight line would be horizontal, failing to capture the subsequent increase reflecting the positive relationship between the variables.</p>
+<p><img src="bookletpics/3_poisson_theory6.png" width="60%" /></p>
+<p>A more suitable approach would be to employ an exponential function to accurately describe the relationship between the variables.</p>
+<p><img src="bookletpics/3_poisson_theory7.png" width="60%" /></p>
+<p>This would mean defining the model</p>
+<p><span class="math display">\[
+\hat{y}_i=e^{(a+bx_i)}
+\]</span>
+where <span class="math inline">\(e^x\)</span> means the exponential of <span class="math inline">\(x\)</span>. However, we prefer to work with linear models, so we linearize the model by taking the logarithm of both size, which gives (recall that <span class="math inline">\(ln(e^x)=x\)</span>):</p>
+<p><span class="math display">\[
+ln(\hat{y}_i)=a+bx_i
+\]</span></p>
+<div class="enf">
+<p>The Poisson model is a generalized linear model in which the predicted values are represented as the logarithm of the counts of the dependent variable, following a Poisson distribution. The regression coefficients in this model indicate the change in the logarithm of the expected counts, and the exponentiated form (<span class="math inline">\(exp(B)\)</span>) of these coefficients represents the rate of change in the counts as the independent variable increases by one unit</p>
+</div>
+</div>
+<div id="estimating-the-model" class="section level3 hasAnchor" number="3.7.3">
+<h3><span class="header-section-number">3.7.3</span> Estimating the model<a href="gzlm.html#estimating-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="incomplete"> Work in progress: incomplete version </span></p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-agresticategorical" class="csl-entry">
+Agresti, Alan. 2012. <em>Categorical Data Analysis</em>. Vol. 792. John Wiley &amp; Sons.
+</div>
+<div id="ref-agresti2018simple" class="csl-entry">
+Agresti, Alan, and Claudia Tarantola. 2018. <span>“Simple Ways to Interpret Effects in Modeling Ordinal Categorical Data.”</span> <em>Statistica Neerlandica</em> 72 (3): 210–23.
+</div>
+<div id="ref-thomas" class="csl-entry">
+Leeper, Thomas J. 2021. <em>Margins: Marginal Effects for Model Objects</em>. <a href="https://cran.r-project.org/web/packages/margins/index.html">https://cran.r-project.org/web/packages/margins/index.html</a>.
+</div>
+<div id="ref-likert1932technique" class="csl-entry">
+Likert, Rensis. 1932. <span>“A Technique for the Measurement of Attitudes.”</span> <em>Archives of Psychology</em>.
+</div>
+<div id="ref-stevens1946theory" class="csl-entry">
+Stevens, Stanley Smith. 1946. <span>“On the Theory of Scales of Measurement.”</span> <em>Science</em> 103 (2684): 677–80.
+</div>
+<div id="ref-wu2017can" class="csl-entry">
+Wu, Huiping, and Shing-On Leung. 2017. <span>“Can Likert Scales Be Treated as Interval Scales?—a Simulation Study.”</span> <em>Journal of Social Service Research</em> 43 (4): 527–32.
+</div>
+<div id="ref-zou2004modified" class="csl-entry">
+Zou, Guangyong. 2004. <span>“A Modified Poisson Regression Approach to Prospective Studies with Binary Data.”</span> <em>American Journal of Epidemiology</em> 159 (7): 702–6.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="glm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mixed.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["gamljmodels.pdf", "gamljmodels.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
