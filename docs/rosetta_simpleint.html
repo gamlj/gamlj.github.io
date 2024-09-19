@@ -521,10 +521,14 @@ levels of grade (cf. Dudek’s page, par 6.1). In R we can employ
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>phia<span class="sc">::</span><span class="fu">testInteractions</span>(model,<span class="at">fixed=</span><span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>), <span class="at">across=</span><span class="fu">c</span>(<span class="st">&quot;Feedback&quot;</span>, <span class="st">&quot;WordType&quot;</span>),<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>## F Test: 
 ## P-value adjustment method: none
-##           Feedback1:WordType1 Feedback2:WordType1 Feedback1:WordType2 Feedback2:WordType2    SE1     SE2     SE3     SE4 Df Sum of Sq      F  Pr(&gt;F)  
-## 12th                      0.0             0.11547             0.46188                -0.2  0.615   0.615 0.61464 0.61464  4    1.3333 0.1765 0.94983  
-##  5th                     -1.5            -0.75056             1.32791                 0.3  0.615   0.615 0.61464 0.61464  4   23.3333 3.0882 0.02098 *
-## Residuals                                                                                 72.000 136.000                                              
+##           Feedback1:WordType1 Feedback2:WordType1 Feedback1:WordType2 Feedback2:WordType2    SE1     SE2     SE3     SE4 Df Sum of Sq      F
+## 12th                      0.0             0.11547             0.46188                -0.2  0.615   0.615 0.61464 0.61464  4    1.3333 0.1765
+##  5th                     -1.5            -0.75056             1.32791                 0.3  0.615   0.615 0.61464 0.61464  4   23.3333 3.0882
+## Residuals                                                                                 72.000 136.000                                    
+##            Pr(&gt;F)  
+## 12th      0.94983  
+##  5th      0.02098 *
+## Residuals          
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>In <span class="modulename">GAMLj</span> we ask for the
@@ -612,17 +616,17 @@ Some worked out practical examples can be found here
 </p>
 <ul>
 <li>
-<a href="glm_example1.html">Multiple regression, moderated regression,
+<a href="./glm_example1.html">Multiple regression, moderated regression,
 and simple slopes</a>
 </li>
 <li>
-<a href="glm_example2.html">Polynomial Effects</a>
+<a href="./glm_example2.html">Polynomial Effects</a>
 </li>
 <li>
-<a href="glm_example3.html">Contrasts analysis</a>
+<a href="./glm_example3.html">Contrasts analysis</a>
 </li>
 <li>
-<a href="glm_example4.html">Johnson-Neyman plot</a>
+<a href="./glm_example4.html">Johnson-Neyman plot</a>
 </li>
 </ul>
 </div>

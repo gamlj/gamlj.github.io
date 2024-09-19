@@ -1036,7 +1036,7 @@ href="#contrast_matrix_and_model_matrix_details">contrast matrix vs
 model matrix</a> for details).</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="fu">library</span>(MASS) <span class="do">## needed for ginv(), see below </span></span>
 <span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a></span>
-<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>difference.emmc<span class="ot">&lt;&lt;-</span><span class="cf">function</span>(levs) {</span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>difference.emmc<span class="ot">&lt;&lt;-</span><span class="cf">function</span>(levs,wts) {</span>
 <span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a>  n<span class="ot">&lt;-</span><span class="fu">length</span>(levs)</span>
 <span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a>  <span class="do">#### model matrix ########</span></span>
 <span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a>  con_weights<span class="ot">&lt;-</span><span class="fu">contr.helmert</span>(n)</span>
@@ -1200,7 +1200,7 @@ can be obtained from the model matrix used in standard R (see <a
 href="#contrast_matrix_vs_model_matrix">contrast matrix vs model
 matrix</a> for details).</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a><span class="fu">library</span>(MASS) <span class="co"># needed for ginv(), see below</span></span>
-<span id="cb59-2"><a href="#cb59-2" tabindex="-1"></a>helmert.emmc<span class="ot">&lt;&lt;-</span><span class="cf">function</span>(levs) {</span>
+<span id="cb59-2"><a href="#cb59-2" tabindex="-1"></a>helmert.emmc<span class="ot">&lt;&lt;-</span><span class="cf">function</span>(levs, wts) {</span>
 <span id="cb59-3"><a href="#cb59-3" tabindex="-1"></a>  n<span class="ot">&lt;-</span><span class="fu">length</span>(levs)</span>
 <span id="cb59-4"><a href="#cb59-4" tabindex="-1"></a>  <span class="do">#### build model matricx ######</span></span>
 <span id="cb59-5"><a href="#cb59-5" tabindex="-1"></a>  con_weights<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rev</span>(<span class="fu">contr.helmert</span>(n)),<span class="at">ncol=</span>n<span class="dv">-1</span>)</span>
@@ -1463,7 +1463,7 @@ let’s do <code>helmert</code> as we defined above.</p>
 <p>This is the contrast matrix we can pass to <code>emmeans</code>. We
 just need to wrap it up in a function with <code>.emmc()</code>
 reference class and <code>levels</code> as input.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a>helmert.emmc<span class="ot">&lt;&lt;-</span><span class="cf">function</span>(levs) {</span>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a>helmert.emmc<span class="ot">&lt;&lt;-</span><span class="cf">function</span>(levs,wts) {</span>
 <span id="cb97-2"><a href="#cb97-2" tabindex="-1"></a>  n<span class="ot">&lt;-</span><span class="fu">length</span>(levs)</span>
 <span id="cb97-3"><a href="#cb97-3" tabindex="-1"></a>  con_weights<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rev</span>(<span class="fu">contr.helmert</span>(n)),<span class="at">ncol=</span>n<span class="dv">-1</span>)</span>
 <span id="cb97-4"><a href="#cb97-4" tabindex="-1"></a>  cv<span class="ot">&lt;-</span><span class="fu">apply</span>(con_weights,<span class="dv">2</span>,max)<span class="sc">+</span><span class="dv">1</span></span>
@@ -1496,17 +1496,17 @@ the correct codes.</p>
 <h1>Rosetta’s files</h1>
 <ul>
 <li>
-<a href="rosetta_contrasts.html">Rosetta store: contrasts</a>
+<a href="./rosetta_contrasts.html">Rosetta store: contrasts</a>
 </li>
 <li>
-<a href="rosetta_simpleint.html">Simple Effects and Simple
+<a href="./rosetta_simpleint.html">Simple Effects and Simple
 Interactions</a>
 </li>
 <li>
-<a href="rosetta_gzlmmixed1.html">Rosetta store: Generalized Mixed</a>
+<a href="./rosetta_gzlmmixed1.html">Rosetta store: Generalized Mixed</a>
 </li>
 <li>
-<a href="rosetta_moderation.html">Rosetta store: moderation</a>
+<a href="./rosetta_moderation.html">Rosetta store: moderation</a>
 </li>
 </ul>
 </div>

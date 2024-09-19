@@ -5,10 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="pandoc" />
 
-        <meta name="author" content="Marcello Gallucci" />
     
     
-    <title>Generalized linear model module technical details</title>
+    <title>Bootstrap details</title>
 
         <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -193,33 +192,16 @@
         </div><!--/.container -->
       </div><!--/.navbar -->
         
-      <h1 class="title">Generalized linear model module technical
-details</h1>
+      <h1 class="title">Bootstrap details</h1>
       
          <!-- readthedown authors -->
    <div id="sidebar">
-    <h2><a href="#content">Generalized linear model module technical
-details</a></h2>
+    <h2><a href="#content">Bootstrap details</a></h2>
     <div id="toc">
-      <ul>
-      <li><a href="#model-info" id="toc-model-info">Model info</a>
-      <ul>
-      <li><a href="#r-squared" id="toc-r-squared">R-squared</a></li>
-      <li><a href="#aic" id="toc-aic">AIC</a></li>
-      <li><a href="#bic" id="toc-bic">BIC</a></li>
-      <li><a href="#deviance" id="toc-deviance">Deviance</a></li>
-      <li><a href="#residual-df" id="toc-residual-df">Residual
-      DF</a></li>
-      <li><a href="#valuedf" id="toc-valuedf">Value/DF</a></li>
-      </ul></li>
-      <li><a href="#post-hocs" id="toc-post-hocs">Post-Hocs</a></li>
-      <li><a href="#comments" id="toc-comments">Comments?</a></li>
-      </ul>
+      
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
-                  <p class="author"><span class="glyphicon glyphicon-user"></span> Marcello
-Gallucci</p>
-                      </div>
+                </div>
    </div>
      
 
@@ -228,143 +210,41 @@ Gallucci</p>
    
 <!-- Don't indent these lines or it will mess pre blocks indentation --> 
 <div id="main">
-<div class="version">
-<p>
-2.5.0
-</p>
-</div>
-<div style="clear:both">
-
-</div>
-<p>In this page some details about the GAMLj GZLM (Generalized linear
-model) implementation are given. When the code is showed, it is meant to
-be R code underlying the GAMLj module.</p>
-<div id="model-info" class="section level1">
-<h1>Model info</h1>
-<div id="r-squared" class="section level2">
-<h2>R-squared</h2>
-<p>R-squared corresponds to McFadden’s R squared <a
-href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/">ref
-info</a> for logistic regression. However, it is not computed as
-McFadden’s R, because of some oddities arising when computed across
-different generalized models.</p>
-<p>It is implemented by taking the model deviance and compare it with
-the null-model deviance:</p>
-<pre><code>    1- (model$deviance/model$null.deviance)</code></pre>
-<p>When the <span class="math inline">\(R^2\)</span> is computed like
-this, it corresponds to McFadden’s R in logistic regression, and to the
-OLS <span class="math inline">\(R^2\)</span> for guassian models. It
-also yields a result for Poisson models.</p>
-<p>It can be considered a measure of fit, or, equivalently, a measure of
-reduction of error.</p>
-</div>
-<div id="aic" class="section level2">
-<h2>AIC</h2>
-<p>Aikake Information Criterion: it can be used for model comparisons. A
-model has a better fit than another when its AIC is smaller. It is
-implemented by simply estracting it from the R <code>glm</code>
-estimated model: <code>stats::extractAIC(model)</code></p>
-</div>
-<div id="bic" class="section level2">
-<h2>BIC</h2>
-<p>Bayesian Information Criterion: it can be used for model comparisons.
-A model has a better fit than another when its BIC is smaller. It is
-implemented by simply estracting it from the R <code>glm</code>
-estimated model: <code>stats::BIC(model)</code></p>
-</div>
-<div id="deviance" class="section level2">
-<h2>Deviance</h2>
-<p>This is the residual deviance of the model, usefull to judge goodness
-of fit in comparison with alternative (usually nested) models. It is</p>
-<p><span class="math inline">\(2 ( \ell (M_s) - \ell (M_e)
-)\)</span></p>
-<p>Where <span class="math inline">\(\ell\)</span> is the
-log-likelihood, <span class="math inline">\(M_s\)</span> is the
-saturated model and <span class="math inline">\(M_e\)</span> is the
-estimated model.</p>
-</div>
-<div id="residual-df" class="section level2">
-<h2>Residual DF</h2>
-<p>Residual variance degrees of freedom: <span
-class="math inline">\(DF_{M_s} -DF_{M_e}\)</span>, where <span
-class="math inline">\(M_s\)</span> is the saturated model and <span
-class="math inline">\(M_e\)</span> is the estimated model.</p>
-</div>
-<div id="valuedf" class="section level2">
-<h2>Value/DF</h2>
-<p>a measure of dispersion for Poisson-like model and binomial models.
-It is given by the Pearson <span class="math inline">\(\chi^2\)</span>
-statistics divided by the residual degrees of freedom. It is expected to
-be 1, thus larger number (usually &gt; 3) indicate overdispersion.
-Values smaller than 1 (usually &lt; .333) indicate underdispersion. It
-is useful to decide whether the Poisson model is presenting
-overdispersion, in which case <code>Quasipoisson</code> or
-<code>negative binomial</code> models may be preferred.</p>
-<p>It is implemented as follows:</p>
-<pre><code>  value &lt;- sum(residuals(model, type = &quot;pearson&quot;)^2)
-  result &lt;- value/model$df.residual
-</code></pre>
-</div>
-</div>
-<div id="post-hocs" class="section level1">
-<h1>Post-Hocs</h1>
-<p>Post-hoc tests are model-based: Each comparison comparares two groups
-means using the standard error derived from the model error. This means
-that the comparisons are consisistent to the model they belong to and
-that different models may produce different results for the same set of
-comparisons.</p>
-<p>Post-hocs tests are performed as implemented in the <a
-href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans
-package</a>. For all GZLM models estimated with <a
-href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html">glm
-function</a> (all but the multinomial model) post hoc are implemented as
-follows (for any given <code>model</code> and <code>term</code> selected
-by the user) :</p>
-<pre><code>          referenceGrid &lt;- emmeans::emmeans(model, formula)
-          none &lt;- summary(pairs(referenceGrid, adjust=&#39;none&#39;))
-          tukey &lt;- summary(pairs(referenceGrid, adjust=&#39;tukey&#39;))
-          scheffe &lt;- summary(pairs(referenceGrid, adjust=&#39;scheffe&#39;))
-          bonferroni &lt;- summary(pairs(referenceGrid, adjust=&#39;bonferroni&#39;))
-          holm &lt;- summary(pairs(referenceGrid, adjust=&#39;holm&#39;))
-      </code></pre>
-<p>For the multinomial model, the estimation is slightly different.
-Following <a
-href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans
-package</a> docs, the comparisons are carried out on the linear
-predictor recentered so that it averages to zero over the levels of the
-response variable (similar to sum-to-zero contrasts). Thus, each latent
-variable can be regarded as the log probability at one level minus the
-average log probability over all levels.</p>
-<p>The comparisons are implemented as follows:</p>
-<pre><code>
-model&lt;-multinom(dependent ~term*otherterms, data = data, model = TRUE)
-lsm = emmeans::emmeans(model, ~ dependent|term, mode = &quot;latent&quot;)
-cmp = pairs(lsm,  by=&quot;dependent&quot;,interaction=F) 
-
-</code></pre>
-<p><a
-href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans
-package</a> manual explains that because dependent variable categories
-probabilities sum to 1 (recall that the latent values sum to 0) over the
-multivariate-response levels, all sensible results from emmeans must
-involve dependent variable as one of the factors.</p>
+<p>All models are bootstrapped using
+<code>parameters::bootstap_model()</code> function, which in turn
+employs <code>boot:boot()</code> for the linear and generalized models,
+and <code>lme4::bootMer()</code> for the mixed and generalized
+mixed.</p>
+<p>For linear and generalized models a nonparameteric bootstrap method
+is used. For each bootstrap estimate, data are sampled with replacement,
+a new model is estimated, and the parameters are saved. Confidence
+intervals are then constructed for the resulting distributions of
+estimates. The number of repetitions (bootstrap samples) can be set in
+<span class="panel"> <i class="fa fa-chevron-down"></i> | Options</span>
+panel, <span class="option">Bootstrap rep.</span>, default is 1000.
+Confidence intervals can be constructed using the bootstrap percentile
+method (<span class="option">Bootstrap (percent)</span>) or adjusted,
+bias corrected and accelerated bootstrap method, (<span
+class="option">Bootstrap (bca)</span>).</p>
+<p>For mixed and generalized mixed models a parametric bootstrap method
+is used. Each simulation generates new values of both the random effects
+and errors, using a normal distribution, with fixed parameters
+corresponding to the fitted model. The number of repetitions (bootstrap
+models) can be set in <span class="panel">
+<i class="fa fa-chevron-down"></i> | Options</span> panel, <span
+class="option">Bootstrap rep.</span>, default is 1000. Confidence
+intervals can be constructed using the bootstrap percentile method
+(<span class="option">Bootstrap (percent)</span>).</p>
+<p>In linux and MacOS, parallel computations is used with
+<code>multicore</code> strategy. In Windows parallel computation is not
+used.</p>
 <div class="adm adm-seealso backto">
 <p>
 Return to main help pages
 </p>
 <a class='backto' href='index.html'>Main page</a>
-<a class="backto" href="./gzlm.html">Generalized linear models</a>
-</div>
-</div>
-<div id="comments" class="section level1 adm adm-warning">
-<h1>Comments?</h1>
-<p>
-Got comments, issues or spotted a bug? Please open an issue on
-<a href="https://github.com/gamlj/gamlj//issues " target="_blank"> GAMLj
-at github</a> or <a href="mailto:mcfanda@gmail.com
-
-">send me an email</a>
-</p>
+<a class="backto" href="./mixed.html">Mixed Models</a>
+<a class="backto" href="./gzlmmixed.html">Generalized Mixed Models</a>
 </div>
 </div>
 

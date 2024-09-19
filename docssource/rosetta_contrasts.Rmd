@@ -118,6 +118,7 @@ In R, deviation contrast is called `contr.sum`. The function defaults to omittin
 
 
 ```{r}
+
 file<-"../data/rosetta.contrasts.csv"
 dat<-read.csv2(file,stringsAsFactors = F)
 dat$Group<-factor(dat$Group)
@@ -452,7 +453,7 @@ Difference and helmert are not implemented in emmeans package, but `emmeans` has
 ```{r dif_emm}
 library(MASS) ## needed for ginv(), see below 
 
-difference.emmc<<-function(levs) {
+difference.emmc<<-function(levs,wts) {
   n<-length(levs)
   #### model matrix ########
   con_weights<-contr.helmert(n)
@@ -560,7 +561,7 @@ We need to define a funtion whose name ends with `.emmc` which returns the contr
 
 ```{r}
 library(MASS) # needed for ginv(), see below
-helmert.emmc<<-function(levs) {
+helmert.emmc<<-function(levs, wts) {
   n<-length(levs)
   #### build model matricx ######
   con_weights<-matrix(rev(contr.helmert(n)),ncol=n-1)
@@ -751,7 +752,7 @@ This is the contrast matrix we can pass to `emmeans`. We just need to wrap it up
 
 ```{r}
 
-helmert.emmc<<-function(levs) {
+helmert.emmc<<-function(levs,wts) {
   n<-length(levs)
   con_weights<-matrix(rev(contr.helmert(n)),ncol=n-1)
   cv<-apply(con_weights,2,max)+1

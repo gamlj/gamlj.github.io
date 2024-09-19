@@ -98,3 +98,37 @@ span.little {
 .navbar-nav {
   font-size: .9em !important;
 }
+
+
+td {
+    text-align: center;
+}
+th {
+   text-align: center;
+    border-bottom: 2px solid black;
+}
+
+
+.backto {
+    
+    margin-top: 10em;
+    
+}
+
+span.option {
+    
+    background-color: #E6E6E6;
+    padding-right: 5px;
+    padding-left: 5px;
+    color: black;
+    
+}
+
+span.panel {
+    background-color: #E6E6E6;
+    padding-right: 5px;
+    padding-left: 5px;
+    color: black;
+    
+}
+

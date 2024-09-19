@@ -1,0 +1,34 @@
+---
+title: "Bootstrap details"
+topic: all
+category: details
+nickname: boot_specs
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+
+---
+
+
+```{r echo=FALSE,results='hide'}
+library(mcdocs)
+mcdocs_init()
+```
+
+
+All models are bootstrapped using `parameters::bootstap_model()` function, which in turn employs `boot:boot()` for the linear and generalized models, and `lme4::bootMer()` for the mixed and generalized mixed.
+
+For linear and generalized models a nonparameteric bootstrap method is used. For each bootstrap estimate, data are sampled with replacement, a new model is estimated, and the parameters are saved. Confidence intervals are then constructed for the resulting distributions of estimates.  The number of repetitions (bootstrap samples) can be set in `r opt_panel("Options")`, `r opt("Bootstrap rep.")`, default is 1000. Confidence intervals can be constructed using the bootstrap percentile method (`r opt("Bootstrap (percent)")`) or adjusted, bias corrected and accelerated bootstrap method, (`r opt("Bootstrap (bca)")`).
+
+For mixed and generalized mixed models a parametric bootstrap method is used. Each simulation generates new values of both the random effects  and errors, using a normal distribution, with fixed parameters corresponding to the fitted model.  The number of repetitions (bootstrap models) can be set in `r opt_panel("Options")`, `r opt("Bootstrap rep.")`, default is 1000. Confidence intervals can be constructed using the bootstrap percentile method (`r opt("Bootstrap (percent)")`).
+
+In linux and MacOS, parallel computations is used with `multicore` strategy. In Windows parallel computation is not used.
+
+
+
+`r backto("mixed","gmixed")`
+
