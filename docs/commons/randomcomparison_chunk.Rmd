@@ -19,7 +19,7 @@ Consider the following example:
 
 `r pic("commons/pics/randomcomparison3.png")`
 
-The current model is composed by three main effects (`x`, `z`) and the random coefficients for `(Intercept)` and `x`. The nested model terms are have the same fixed effects, but it has only the random intercept. Thus, the loglikelihood ratio test that it is performed to compare the models will test the significance of the random effect of `x`. The output offers a Table in which each model fit indices and tests are presented, and the two models comparison test is presented.
+The current model is composed by three main effects (`x`, `z`) and the random coefficients for `(Intercept)` and `x`. The nested model terms are have the same fixed effects, but it has only the random intercept. Thus, the loglikelihood ratio test that is performed to compare the models will test the significance of the random effect of `x`. The output offers a Table in which each model fit indices and tests are presented, and the two models comparison test is presented.
 
 `r pic("commons/pics/randomcomparison4.png")`
 
