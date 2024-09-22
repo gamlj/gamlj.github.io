@@ -420,26 +420,85 @@ normality of residuals</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: glmer logistic   #### phase init  ####</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ______begin________</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> classes </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Runner Operator Scaffold R6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> _____end_______</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Setting class(x) to multiple strings ("glmerMod", "logistic", ...); result will no longer be an S4 object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.136865615844727  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.145087718963623  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SOURCE: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> .converged.glmerMerMod(model)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CALLER: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: <span style="color: #0000BB;">^private$.estimator[[fun]]()</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> env:  <span style="color: #0000BB;">0x5dd0baf77c20</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ERROR: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> trying to get slot "optinfo" from an object (class "glmerMod") that is not an S4 object  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> `r2()` does not support models of class `glmerMod`.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SOURCE: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CALLER: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: <span style="color: #0000BB;">^r2(self$operator$model, self$operator)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> env:  <span style="color: #0000BB;">0x5dd0bca702f0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ERROR: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> object of type 'S4' is not subsettable </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SOURCE: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> UseMethod("logLik")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CALLER: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: <span style="color: #0000BB;">^private$.estimator[[fun]]()</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> env:  <span style="color: #0000BB;">0x5dd0bdbe47f0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ERROR: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> no applicable method for 'logLik' applied to an object of class "c('glmerMod', 'logistic')" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GANOVA: glmerMod for class glmerMod</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GANOVA: glmerMod for class c("glmerMod", "logistic")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GANOVA: car::Anova is used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SOURCE: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> .car.anova(model)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CALLER: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: <span style="color: #0000BB;">^private$.estimator[[fun]]()</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> env:  <span style="color: #0000BB;">0x5dd0be0a9c88</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ERROR: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> trying to get slot "devcomp" from an object (class "glmerMod") that is not an S4 object  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GPARAMETERS: glmerMod .parameters for class glmerMod</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GPARAMETERS: glmerMod .parameters for class c("glmerMod", "logistic")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SOURCE: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CALLER: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: <span style="color: #0000BB;">^private$.estimator[[fun]]()</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> env:  <span style="color: #0000BB;">0x5dd0be65c610</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ERROR: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sorry, `model_parameters()` failed with the following error (possible</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   class `glmerMod` not supported):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   $ operator is invalid for atomic vectors </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: estimating variance components</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SOURCE: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> UseMethod("VarCorr")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CALLER: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> expr: <span style="color: #0000BB;">^private$.estimator[[fun]]()</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> env:  <span style="color: #0000BB;">0x5dd0bed67820</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ERROR: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> no applicable method for 'VarCorr' applied to an object of class "c('glmerMod', 'logistic')" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.69803786277771  secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.361941337585449  secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  GENERALIZED MIXED MODEL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -452,61 +511,61 @@ normality of residuals</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Distribution     Binomial          Dichotomous event distribution of y   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Link function    Logit             Log of the odd of y                   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Direction        P(y=1)/P(y=0)     P( ybin = 1 ) / P( ybin = 0 )         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Sample size                1800                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Converged        yes                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Sample size                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Converged        no yet                                                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    C.I. method      Wald                                                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────── </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  MODEL RESULTS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Fit                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Type           R²           df           LRT X²        p            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Conditional    0.0436968    2.0000000    39.7507885    &lt; .0000001   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Marginal       0.0185754    1.0000000    26.8376082     0.0000002   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Fit                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Type           R²           df           LRT X²       p           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Marginal       .            .            .            .           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Conditional    .            .            .            .           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Model R2 cannot be computed.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Additional Indices                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Info              Model Value      Comment                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    LogLikelihood     -1210.6506201                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    AIC                2427.3012403    Less is better             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    BIC                2443.7878661    Less is better             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Deviance           2421.3012403    Less is better             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Residual DF        1797.0000000                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Chi-squared/DF        0.9822442    Overdispersion indicator   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Additional Indices                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Info              Model Value    Comment                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    LogLikelihood     .                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    AIC               .              Less is better             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    BIC               .              Less is better             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Deviance          .              Less is better             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Residual DF       .                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Chi-squared/DF    .              Overdispersion indicator   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────── </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed Effects Omnibus Tests                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         X²          df          p           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    x    26.24380    1.000000    0.0000003   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Fixed Effects Omnibus Tests    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         X²    df    p           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    x    .     .     .           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────── </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Parameter Estimates (Fixed Coefficients)                                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Names          Effect         Estimate       SE             Exp(B)       Lower        Upper        z            p           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    (Intercept)    (Intercept)    -0.28754013    0.072358483    0.7501065    0.6509255    0.8643996    -3.973828    0.0000707   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    x              x               0.05075563    0.009907654    1.0520658    1.0318332    1.0726951     5.122871    0.0000003   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Parameter Estimates (Fixed Coefficients)                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Names    Effect    Estimate    SE    Exp(B)    Lower    Upper    z    p           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             .         .           .     .         .        .        .    .           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             .         .           .     .         .        .        .    .           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────────────────────────────────────────────── </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Random Components                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Groups      Name           Variance      SD           ICC          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    cluster     (Intercept)    0.08642239    0.2939769    0.02559685   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Residual                   3.28986813    1.8137994                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Number of Obs: 1800 , Number of groups: cluster 30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Random Components                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Groups    Name    Variance    SD    ICC   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    .         .       .           .     .     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              .       .           .     .     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ─────────────────────────────────────────── </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span>       </span></span>
 </code></pre></div>

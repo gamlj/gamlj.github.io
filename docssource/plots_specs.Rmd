@@ -1,0 +1,127 @@
+---
+title: "Customize Plots"
+topic: all
+category: details
+nickname: plots_specs
+
+---
+
+
+```{r echo=FALSE,results='hide'}
+library(mcdocs)
+mcdocs_init()
+```
+
+`r keywords("jamovi, plots")`
+
+`r version("3.0.0")` 
+
+
+
+
+
+`r modulename()` produces several plots, whose style follows the `r jamovi` theme. To change the plot's theme (colors and style), one can simply modify the `r jamovi` default theme. However, there may be instances where more substantial alterations to the plot are desired, so a different method should be used. Here, we demonstrate how to achieve this. We use `r modulename()` GLM as an example, but the methods outlined here can be applied to almost any plot in `r jamovi`.
+
+First, let's produce a plot in GLM using the dataset `clustermanymodels` in `r jamovi` data library.
+
+`r pic("details/plots/input.1.1.png")`
+
+`r pic("details/plots/input.1.2.png")`
+
+`r pic("details/plots/input.1.3.png")`
+
+`r pic("details/plots/output.1.png")`
+
+# Colors and themes
+
+To change colors and theme of the plot, we simply go to `r jamovi` options (the three dots icon on the upper-right corner) and select the combination that we prefer.
+
+`r pic("details/plots/input.2.1.png")`
+
+There are several themes to choose from
+
+`r pic("details/plots/input.2.2.png")`
+
+and some palettes for the colors
+
+`r pic("details/plots/input.2.3.png")`
+
+Here I choose `Minimal` theme and `Greys` palettes, yielding a new plot
+
+`r pic("details/plots/output.2.png")`
+
+# Labelling
+
+Recall that to change the labels of the plots, one can simply change variables names and level names. Because `r jamovi` poses almost no restriction to  variables names, one can achieve nice labeling by choosing nice names.
+
+For instance, in the example one can show more explicative labels for variable `cat3` by simply changing its name and level labels.
+
+`r pic("details/plots/input.3.png")`
+
+`r pic("details/plots/output.3.png")`
+
+Furthemore, in `r modulename()` there are a few options to change the plot and the labeling (see [GLM plots help](https://gamlj.github.io/glm.html#plots))
+
+
+
+# Advanced customization
+
+There are cases in which one really needs to alter the plot beyond colors and themes, or the available themes are not suitable for the user's purpose. For those, we need to take advantage of `Rj` package, which allows to submit R code. Thanks to `Rj` we can produce the plot as a [ggplot2](https://ggplot2.tidyverse.org/) object, that can be manipulated with great precision. Obviously, the same code can be run in R with any interface, such as Rstudio. Here are the steps. 
+
+* First, we need to get the syntax that produces our analysis: In options, select `Syntax mode`, go to the analysis and copy the syntax (right click on the syntax)
+
+`r pic("details/plots/output.4.png")`
+
+* Open `Rj Editor +` module (install it if not already available): In the module, select the variables involved in the model and paste the syntax you just copied
+
+`r pic("details/plots/input.5.1.png")`
+
+Notice that we also load `ggplot2` package, and save the `gamljGlm` into `amodel` variable. Then we applied the function `plot()` to the model, which returns the plot as a `ggplot` object. Now, we can do all the alteration we want, following  [ggplot2](https://ggplot2.tidyverse.org/) command and syntax. 
+
+Note, furthermore, that to obtain results you need to have run `r modulename()` command, otherwise `Rj` would not find GAMLj3 package. If you get the error
+
+`r pic("details/plots/output.4.png")`
+
+simply re-run `r modulename()` analysis in the user interface (just change an option and it re-runs). When you are dealing with plots produced by `r jamovi` default functions, such as `ANOVA` or `Regression`, you do not need to run the analysis before applying these techniques. 
+
+Running the syntax, we get the same plot obtained with the interactive function (do not mind the odd proportions, we are going to fix it).
+
+`r pic("details/plots/output.5.png")`
+
+Assume now that we need to change the theme applying `ggplot2` `theme_linedraw()`, change the Y-axis range, change the plot title, change the legend description and add a red note inside the plot.
+
+To apply a new theme, just sum it to the plot object 
+
+`r pic("details/plots/input.6.1.png")`
+
+Then add new Y-axis limits
+
+`r pic("details/plots/input.6.2.png")`
+
+change the title
+
+`r pic("details/plots/input.6.3.png")`
+
+add the note 
+
+`r pic("details/plots/input.6.4.png")`
+
+and change the legend description
+
+`r pic("details/plots/input.6.5.png")`
+
+
+Running the code produce the altered plot
+
+`r pic("details/plots/input.6.6.png")`
+
+`r pic("details/plots/output.6.png")`
+
+that can be exported (righ click on the plot) and used as one wishes. Here is an example of PDF rendering. 
+
+`r pic("details/plots/output.7.png")`
+
+
+
+`r backto()`
+

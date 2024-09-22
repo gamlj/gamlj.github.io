@@ -5,14 +5,7 @@ bibliography:
      - bib.bib
      - bib.yaml
 link-citations: true
-output: 
-  html_document:
-     includes:
-         in_header: ganalytics.txt
-     toc: true
-     toc_float:
-        collapsed: false
-topic: glm
+topic: all
 category: details
 editor_options: 
   chunk_output_type: console
