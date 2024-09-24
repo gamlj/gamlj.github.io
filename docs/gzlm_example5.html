@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="pandoc" />
+
+        <meta name="author" content="Marcello Gallucci" />
+    
+    
+    <title>Different imput styles fo logistic analysis</title>
+
+        <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+        <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="site_libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="site_libs/navigation-1.1/tabsets.js"></script>
+        <link href="site_libs/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
+        <script src="site_libs/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
+        <link href="site_libs/readthedown-0.1/readthedown.css" rel="stylesheet" />
+        <link href="site_libs/readthedown-0.1/readthedown_fonts_embed.css" rel="stylesheet" />
+        <script src="site_libs/readthedown-0.1/readthedown.js"></script>
+        <script>
+        $(document).ready(function () {
+
+            if ($(".root")[0]){
+              return
+            };
+            $('.navbar-toggle').show();
+            $('.navbar').css('display', 'none');
+            $('#sidebar > h2 ').append("<a id='navbut' href=''><i class='fa fa-bars'></i></a>");
+            $('#navbut').on( "click", function(e) {
+                       $('.navbar').toggle();
+                       e.preventDefault();
+               } );
+              $('.navbar-toggle').on('click', function(e) {
+                       $('.navbar').toggle();
+                       e.preventDefault();
+              });       
+            $(window).scroll(function (event) {
+                $('.navbar').css('display', 'none');
+            });       
+        });
+        </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KM7X6HK5HM"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-KM7X6HK5HM');
+        </script>
+    
+    
+    
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css" />
+        <link rel="stylesheet" href="style.css" type="text/css" />
+        <link rel="stylesheet" href="down.css" type="text/css" />
+    
+    <!-- tabsets -->
+    <script>
+      $(document).ready(function () {
+	  window.buildTabsets("toc");
+      });
+      $(document).ready(function () {
+	  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+	      $(this).parent().toggleClass('nav-tabs-open')
+	  });
+      });
+    </script>
+
+    <!-- code folding -->
+    
+    <!-- code download -->
+    
+    <!-- tabsets dropdown -->
+
+    <style type="text/css">
+      .tabset-dropdown > .nav-tabs {
+	  display: inline-table;
+	  max-height: 500px;
+	  min-height: 44px;
+	  overflow-y: auto;
+	  background: white;
+	  border: 1px solid #ddd;
+	  border-radius: 4px;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+	  content: "&#xe258;";
+	  border: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active {
+	  display: block;
+      }
+
+      .tabset-dropdown > .nav-tabs > li.active a {
+  	  padding: 0 15px !important;
+      }
+
+      .tabset-dropdown > .nav-tabs > li > a,
+      .tabset-dropdown > .nav-tabs > li > a:focus,
+      .tabset-dropdown > .nav-tabs > li > a:hover {
+	  border: none;
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: transparent;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+	  display: block;
+	  float: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li {
+	  display: none;
+	  margin-left: 0 !important;
+      }
+    </style>
+    
+</head>
+
+<body class="preload">
+
+   	
+         <!-- readthedown start -->   
+   <div id="content" data-toggle="wy-nav-shift">
+     <nav id="nav-top" role="navigation" aria-label="top navigation">
+       <a role="button" href="#" data-toggle="wy-nav-top"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+     </nav>
+         
+   
+      
+      <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">GAMLj</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li>
+        <a href="glm.html">GLM</a>
+      </li>
+      <li>
+        <a href="mixed.html">Mixed</a>
+      </li>
+      <li>
+        <a href="gzlm.html">Generalized</a>
+      </li>
+      <li>
+        <a href="gzlmmixed.html">Generalized Mixed</a>
+      </li>
+      <li>
+        <a href="examples.html">Examples</a>
+      </li>
+      <li>
+        <a href="release_notes.html">Release notes</a>
+      </li>
+      <li>
+        <a href="vignettes.html">GAMLj in R</a>
+      </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+        <a href="https://github.com/gamlj/gamlj">View on Github</a>
+      </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container -->
+      </div><!--/.navbar -->
+        
+      <h1 class="title">Different imput styles fo logistic analysis</h1>
+      
+         <!-- readthedown authors -->
+   <div id="sidebar">
+    <h2><a href="#content">Different imput styles fo logistic
+analysis</a></h2>
+    <div id="toc">
+      <ul>
+      <li><a href="#long-format-data" id="toc-long-format-data">Long
+      format data</a></li>
+      <li><a href="#weighted-long-format"
+      id="toc-weighted-long-format">Weighted Long format</a></li>
+      <li><a href="#success-failure-format"
+      id="toc-success-failure-format">success/ failure format</a></li>
+      <li><a href="#probability-over-totals"
+      id="toc-probability-over-totals">Probability over totals</a></li>
+      <li><a href="#related-examples" id="toc-related-examples">Related
+      Examples</a></li>
+      <li><a href="#comments" id="toc-comments">Comments?</a></li>
+      </ul>
+    </div>
+    <div id="postamble" data-toggle="wy-nav-shift" class="status">
+                  <p class="author"><span class="glyphicon glyphicon-user"></span> Marcello
+Gallucci</p>
+                      </div>
+   </div>
+     
+
+   
+      
+   
+<!-- Don't indent these lines or it will mess pre blocks indentation --> 
+<div id="main">
+<p><span class="keywords"> <span class="keytitle"> keywords </span>
+jamovi, logistic models, generalized linear models, weighted data,
+success/fails </span></p>
+<div class="version">
+<p>
+3.4.0
+</p>
+</div>
+<div style="clear:both">
+
+</div>
+<p>Data suitable for running a logistic model may come in different
+shapes. Statistical software may allow to analyze the data the way they
+are or a reshape of the data might be necessary. In <span
+class="modulename">GAMLj</span>, logistic models may be estimated with
+different types of data shapes, so here we show how to. We focus on the
+<strong>Logistic Model</strong>, but exactely the same procedures can be
+used for the <strong>Probit model</strong>.</p>
+<p>There are five ways one can setup a logistic model in <span
+class="modulename">GAMLj</span>. To demonstrate how they are, we are
+going to use a different versions of datasets of an hypothetical study
+in which there is an independent variable <span
+class="math inline">\(X\)</span> and one dichotomous dependent variable
+indicating <strong>success</strong> with <span
+class="math inline">\(Y=1\)</span> and fail with <span
+class="math inline">\(Y=0\)</span>. All datasets contain the same data,
+only formatted in different ways.</p>
+<ul>
+<li><strong>Long format data</strong>: Each row is a case, and every
+case has either 1 or 0 in the dependent variable. In this page, we are
+going to use the file <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/wlogistic_verylong.omv"
+target="_blank">wlogistic_verylong.omv</a> which has 5500 rows for 5500
+cases.</li>
+</ul>
+<p>The head of the file looks like this:</p>
+<p><img src="examples/gzlm5/data.1.png" width="362" /></p>
+<p>We have two variables, <span class="math inline">\(X\)</span> and
+<span class="math inline">\(Y\)</span>, that contain the individual
+values for the independent and dependent variable, respectively. There
+are 5500 cases in the 2693 of which show <span
+class="math inline">\(Y=1\)</span>, implying that 49% of the sample has
+a <span class="math inline">\(Y=1\)</span>.</p>
+<p><img src="examples/gzlm5/desc.1.png" width="458" /></p>
+<ul>
+<li><strong>Weighted long format</strong>: Each row represents a
+combination of values for the dependent and independent variables, and
+each combination is associated with the count of times it appears in the
+sample. The dependent variable is either 1 or 0. In this example, we
+will use the file <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/wlogistic_verylong.omv"
+target="_blank">wlogistic_long.omv</a>, which has 22 rows, with <span
+class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span> as variables, plus a <span
+class="math inline">\(Counts\)</span> column that indicates the
+<strong>weight</strong> of the row—essentially the number of cases in
+which this combination occurs.</li>
+</ul>
+<p><img src="examples/gzlm5/data.2.png" width="377" /></p>
+<p>For instance, the first row shows that <span
+class="math inline">\(Y=1\)</span> and <span
+class="math inline">\(X=5\)</span> occurred 100 times in the sample,
+while the combination <span class="math inline">\(Y=0\)</span> and <span
+class="math inline">\(X=5\)</span> (row 2) occurred 400 times. It is
+worth noting that the sum of the weights for each level of <span
+class="math inline">\(X\)</span> always equals 500. This constant sum of
+weights is not a requirement of logistic regression; it just happens to
+be the case in this file.</p>
+<ul>
+<li><strong>Success/failure</strong>: In this format, each row
+represents a distinct value of the independent variable. One column
+indicates the number of successes (<span
+class="math inline">\(Y=1\)</span>) and another column indicates the
+number of failures (<span class="math inline">\(Y=0\)</span>). We will
+use the file <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/wlogistic_wide.omv"
+target="_blank">wlogistic_wide.omv</a>, which contains 11 rows, with
+<span class="math inline">\(X\)</span>, <span
+class="math inline">\(Counts.1\)</span> indicating the number of
+successes, and <span class="math inline">\(Counts.0\)</span> indicating
+the number of failures.</li>
+</ul>
+<p><img src="examples/gzlm5/data.3.png" width="648" /></p>
+<p>For example, the first row shows that <span
+class="math inline">\(Y=1\)</span> and <span
+class="math inline">\(X=5\)</span> occurred 100 times in the sample,
+while <span class="math inline">\(Y=0\)</span> and <span
+class="math inline">\(X=5\)</span> (row 2) occurred 400 times. The <span
+class="math inline">\(N\)</span> variable is not relevant here, but we
+will use it later. The same pattern applies to the other rows in the
+dataset.</p>
+<ul>
+<li><strong>Probability over totals</strong>: This format is equivalent
+to <strong>success/failure</strong>, but the dependent variable is
+expressed as the probability of success (the <span
+class="math inline">\(p\)</span> variable in the file above), and the
+<strong>weights</strong> represent the total number of cases for each
+row. In our example, this is <span class="math inline">\(tot\)</span>,
+which equals 500 for each row. In other words, in this format, one would
+say that, for instance, for <span class="math inline">\(X=5\)</span>,
+there is a probability of .200 for success, and this holds for 500
+cases.</li>
+</ul>
+<div id="long-format-data" class="section level1">
+<h1>Long format data</h1>
+<p>File <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/wlogistic_verylong.omv"
+target="_blank">wlogistic_verylong.omv</a></p>
+<p>For long format data, we simply estimate the model setting the
+dependent and the independent variable.</p>
+<p><img src="examples/gzlm5/input.1.png" width="580" /></p>
+<p>Notice at the bottom of the UI the <span class="option">Input
+Method</span> option. By default is <code>Responses</code>, indating
+that the dependent variable represent each case response to the
+dichotomous variable.</p>
+<p>Let’s take a note of some results, so we can compare them with the
+results of other input methods. Here we have</p>
+<p><img src="examples/gzlm5/output.1.1.png" width="420" />
+<img src="examples/gzlm5/output.1.2.png" width="681" /></p>
+<p>an <span class="math inline">\(R^2=.114\)</span>, <span
+class="math inline">\(\chi^=871\)</span>, and <span
+class="math inline">\(exp(B)=1.145\)</span>.</p>
+<p>finally, we can appreciate that the sample size is indeed 5500
+cases</p>
+<p><img src="examples/gzlm5/output.1.3.png" width="407" /></p>
+</div>
+<div id="weighted-long-format" class="section level1">
+<h1>Weighted Long format</h1>
+<p>File <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/wlogistic_verylong.omv"
+target="_blank">wlogistic_long.omv</a></p>
+<p>The <strong>weighted long format</strong> features a dichotomous
+dependent variable, with weights used to assign the frequency of
+responses. To run the model, we need to utilize the <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+weighting tool. First, we set up the dataset to be weighted by the
+variable <span class="math inline">\(Counts\)</span>.</p>
+<p><img src="examples/gzlm5/input.2.png" width="595" /></p>
+<p>Next, we run the model exactly as we did before:</p>
+<p><img src="examples/gzlm5/input.3.png" width="579" /></p>
+<p>And we obtain the same results:</p>
+<p><img src="examples/gzlm5/output.3.1.png" width="372" /><br />
+<img src="examples/gzlm5/output.3.2.png" width="643" /></p>
+<p>Note that the sample size is now 22 (the number of rows), but the
+software recognizes that the analysis is equivalent to one run on 5,500
+cases.</p>
+<p><img src="examples/gzlm5/output.3.3.png" width="402" /></p>
+</div>
+<div id="success-failure-format" class="section level1">
+<h1>success/ failure format</h1>
+<p>File <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/wlogistic_wide.omv"
+target="_blank">wlogistic_wide.omv</a></p>
+<p>The <strong>success/failure format</strong> works with two key
+columns: one for the number of successes (<span
+class="math inline">\(Y=1\)</span>) and the other for the number of
+failures (<span class="math inline">\(Y=0\)</span>), represented as
+counts. To run the model, you don’t need to apply weights; instead,
+select the <code>Success/Failure</code> option in <span
+class="option">Input Method</span>. This will provide two input fields
+for the dependent variable, where you assign the columns that represent
+the counts of successes and failures.</p>
+<p><img src="examples/gzlm5/input.4.png" width="572" /></p>
+<p>Once that’s done, you’ll get the same reliable results:</p>
+<p><img src="examples/gzlm5/output.4.1.png" width="367" /><br />
+<img src="examples/gzlm5/output.4.2.png" width="639" /></p>
+<p>What’s worth noting is the footnote in the <code>Model Fit</code>
+table, which reminds you that the <span
+class="math inline">\(R^2\)</span> is calculated as if the full long
+format were available. This is a crucial distinction because, in other
+software, calculating the <span class="math inline">\(R^2\)</span> using
+this format can sometimes lead to discrepancies—often producing an
+incorrect value.</p>
+</div>
+<div id="probability-over-totals" class="section level1">
+<h1>Probability over totals</h1>
+<p>Alternative, one can use the probability of <span
+class="math inline">\(Y=1\)</span> along with the total number of cases
+represented in each row. File <a
+href="https://github.com/gamlj/gamlj.github.io/blob/master/data/wlogistic_wide.omv"
+target="_blank">wlogistic_wide.omv</a>. As compare with the example
+above, it entails simply to select <code>P(success)/Totals</code> in the
+<span class="option">Input Method</span> option.</p>
+<p><img src="examples/gzlm5/input.5.png" width="572" /></p>
+<p>Results are as expected.</p>
+<p><img src="examples/gzlm5/output.4.1.png" width="367" /><br />
+<img src="examples/gzlm5/output.4.2.png" width="639" /></p>
+</div>
+<div id="related-examples" class="section level1 adm adm-seealso">
+<h1>Related Examples</h1>
+<p>
+Some worked out practical examples can be found here
+</p>
+<ul>
+<li>
+<a href="./gzlm_example1.html">Multinomial analysis in jamovi</a>
+</li>
+<li>
+<a href="./gzlm_example2.html">Logistic analysis in jamovi</a>
+</li>
+<li>
+<a href="./gzlm_example4.html">Frequencies analysis with overdispersed
+models</a>
+</li>
+<li>
+<a href="./gzlm_example5.html">Different imput styles fo logistic
+analysis</a>
+</li>
+</ul>
+</div>
+<div id="comments" class="section level1 adm adm-warning">
+<h1>Comments?</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/gamlj/gamlj//issues " target="_blank"> GAMLj
+at github</a> or <a href="mailto:mcfanda@gmail.com
+
+">send me an email</a>
+</p>
+</div>
+<div class="adm adm-seealso backto">
+<p>
+Return to main help pages
+</p>
+<a class='backto' href='index.html'>Main page</a>
+<a class="backto" href="./gzlm.html">Generalized linear models</a>
+</div>
+</div>
+
+   
+   
+            
+      
+
+  <script>
+    $(document).ready(function () {
+
+			
+ 		
+		$('#content img:not(.no-lightbox)').addClass("image-lb");
+	$('#content').magnificPopup({
+	    type:'image',
+	    closeOnContentClick: false,
+	    closeBtnInside: false,
+	    delegate: '.image-lb',
+	    gallery: {enabled: false },
+	    image: {
+	        verticalFit: true,
+		titleSrc: 'alt'
+	    }
+ 	});
+ 	    });
+  </script>
+
+
+
+    <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+	document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  
+</body>
+</html>

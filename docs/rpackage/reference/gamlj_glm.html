@@ -20,7 +20,7 @@ interaction. Model comparison is also an option."><!-- mathjax --><script src="h
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.4.0</span>
       </span>
     </div>
 
@@ -391,32 +391,6 @@ gives LogLikelihood ration test,  <code>'wald'</code> gives the Wald Chi-squared
 <span class="r-in"><span>                    model_type <span class="op">=</span> <span class="st">"logistic"</span></span></span>
 <span class="r-in"><span>                    <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: glm logistic   #### phase init  ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INIT TIME: 0.0859806537628174  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ______begin________</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> classes </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Runner Operator Scaffold R6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> _____end_______</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.00454449653625488  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUN TIME: 0.093250036239624  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.181023359298706  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  GENERALIZED LINEAR MODEL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Model Info                                                                 </span>
@@ -432,16 +406,17 @@ gives LogLikelihood ration test,  <code>'wald'</code> gives the Wald Chi-squared
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Converged        yes                                                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    C.I. method      Wald                                                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ────────────────────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Note. All covariates are centered to the mean</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  MODEL RESULTS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Fit                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    R²           Adj. R²      df    X²          p           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────── </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    0.0198370    0.0075675     1    1.616779    0.2035415   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ───────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Model Fit                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    R²            Adj. R²        df    X²          p           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────── </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    0.01983700    0.007567546     1    1.616779    0.2035415   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────── </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Additional indices                                            </span>

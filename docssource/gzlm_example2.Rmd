@@ -196,7 +196,7 @@ First, the placebo group reports high rates of pain independently of age (blue l
 
 This may very well conclude the analyses.
 
-`r include_examples("mixed",title="Related")`
+`r include_examples("gzlm",title="Related")`
 
 `r issues()`
 

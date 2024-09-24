@@ -18,7 +18,7 @@ custom contrast."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.3.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.4.0</span>
       </span>
     </div>
 
@@ -98,68 +98,8 @@ contrasts for the same factor can be tested. In this case, each contrast is test
 <span class="r-in"><span><span class="va">gmod</span><span class="op">&lt;-</span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  formula <span class="op">=</span> <span class="va">Score</span> <span class="op">~</span><span class="va">Group</span>,</span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="va">fivegroups</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lm   #### phase init  ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INIT TIME: 0.0824804306030273  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ______begin________</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> classes </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Runner Operator Scaffold R6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> _____end_______</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.00159192085266113  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GPARAMETERS: default .parameters for class c("lm", "lm")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUN TIME: 0.113800764083862  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.198106527328491  secs</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="em_means.html">em_means</a></span><span class="op">(</span><span class="va">gmod</span>,formula <span class="op">=</span><span class="op">~</span><span class="va">Group</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: lm   #### phase init  ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INIT TIME: 0.0558600425720215  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase run ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ______begin________</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> classes </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Runner Operator Scaffold R6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> _____end_______</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: checking</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: making options</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE: Estimating the model: running</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUNNER: initial estimation done,  0.0015265941619873  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GPARAMETERS: default .parameters for class c("lm", "lm")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PROCEDURE: Estimated Marginal Means</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PROCEDURE: done</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MODULE:  #### phase end ####</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RUN TIME: 0.150432825088501  secs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TIME: 0.208101987838745  secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ESTIMATED MARGINAL MEANS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
