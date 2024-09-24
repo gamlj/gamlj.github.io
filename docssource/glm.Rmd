@@ -99,7 +99,7 @@ More details regarding custom contrasts can be found in `r link_pages("custom_co
 
 `r pic("glm/xscoring.png")`
 
-Continuous variables can be `r opt("Centered")`, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as they are (`r opt("none")`). The default is `r opt("centered")` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in `r modulename()` the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simply select `r opt("none")`.
+Continuous variables can be `r opt("Centered")`, standardized (`r opt("z-scores")`), log-transformed (`r opt("Log")`) or used as they are (`r opt("Original")`). The default is `r opt("centered")` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in `r modulename()` the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simply select `r opt("Original")`.
 
 
 ```{r child3, child='commons/covariateScaling_chunk.Rmd'}

@@ -530,7 +530,7 @@ store: contrasts</a>.</p>
 <p><img src="commons/pics/dscoring.png" class="img-responsive" alt=""></p>
 <p>Continuous variables can be centered, standardized, cluster-based
 centered, cluster-based standardized, log-transformed or used as they
-are (<code>none</code>). The default is <span
+are (<code>Original</code>). The default is <span
 class="option">centered</span> because it makes our lives much easier
 when there are interactions in the model, and do not affect the B
 coefficients when there are none. Thus, if one is comparing results with
@@ -539,7 +539,7 @@ interactions in the model one would find only a discrepancy in the
 intercept, because in GAMLj the intercept represents the expected value
 of the dependent variable for the average value of the independent
 variable. If one needs to <em>unscale</em> the variable, simple select
-<span class="option">none</span>.</p>
+<span class="option">Original</span>.</p>
 <p><span class="option">Centered clusterwise</span> and <span
 class="option">z-scores clusterwise</span> center each score using the
 mean of the cluster in which the score belongs. For <span

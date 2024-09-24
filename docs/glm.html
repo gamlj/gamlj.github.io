@@ -477,7 +477,7 @@ examples for contrasts in general can be found in
 <p>Continuous variables can be <span class="option">Centered</span>,
 standardized (<span class="option">z-scores</span>), log-transformed
 (<span class="option">Log</span>) or used as they are (<span
-class="option">none</span>). The default is <span
+class="option">Original</span>). The default is <span
 class="option">centered</span> because it makes our lives much easier
 when there are interactions in the model, and do not affect the B
 coefficients when there are none. Thus, if one is comparing results with
@@ -487,7 +487,7 @@ intercept, because in <span class="modulename">GAMLj</span> the
 intercept represents the expected value of the dependent variable for
 the average value of the independent variable. If one needs to
 <em>unscale</em> the variable, simply select <span
-class="option">none</span>.</p>
+class="option">Original</span>.</p>
 <p><span class="option">Covariates conditioning</span> rules how the
 model is conditioned to different values of the continuous independent
 variables in the <em>simple effects</em> estimation and in the
