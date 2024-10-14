@@ -10,7 +10,7 @@
     
     <title>Simple Effects and Simple Interactions</title>
 
-        <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -125,7 +125,7 @@
     </style>
     
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css" />
-        <link rel="stylesheet" href="style.css" type="text/css" />
+        <link rel="stylesheet" href="mcdocs.css" type="text/css" />
         <link rel="stylesheet" href="down.css" type="text/css" />
     
     <!-- tabsets -->
@@ -470,44 +470,63 @@ factors</p>
 ##   -2.2   -1.0    0.1    1.0    2.2 
 ## 
 ## Coefficients:
-##                                           Estimate            Std. Error
-## (Intercept)                   7.999999999999995559  0.204878765717619815
-## Feedback.L                    0.377123616632824177  0.354860431614917871
-## Feedback.Q                    0.163299316185545329  0.354860431614918093
-## WordType.L                    0.659966329107443794  0.354860431614918259
-## WordType.Q                   -0.326598632371090047  0.354860431614918204
-## Grade1                       -0.799999999999999822  0.289742329120117659
-## Feedback.L:WordType.L        -0.000000000000001743  0.614636297152859168
-## Feedback.Q:WordType.L         0.115470053837925510  0.614636297152859057
-## Feedback.L:WordType.Q         0.461880215351699652  0.614636297152859279
-## Feedback.Q:WordType.Q        -0.200000000000002093  0.614636297152859945
-## Feedback.L:Grade1             0.989949493661164581  0.501848435139387483
-## Feedback.Q:Grade1             0.408248290463861574  0.501848435139387372
-## WordType.L:Grade1             1.272792206135786808  0.501848435139387816
-## WordType.Q:Grade1            -0.734846922834951566  0.501848435139387705
-## Feedback.L:WordType.L:Grade1 -1.499999999999997335  0.869226987360353531
-## Feedback.Q:WordType.L:Grade1 -0.866025403784438486  0.869226987360353309
-## Feedback.L:WordType.Q:Grade1  0.866025403784444592  0.869226987360354086
-## Feedback.Q:WordType.Q:Grade1  0.500000000000005440  0.869226987360353531
-##                              t value            Pr(&gt;|t|)    
-## (Intercept)                   39.047 &lt;0.0000000000000002 ***
-## Feedback.L                     1.063              0.2915    
-## Feedback.Q                     0.460              0.6468    
-## WordType.L                     1.860              0.0670 .  
-## WordType.Q                    -0.920              0.3605    
-## Grade1                        -2.761              0.0073 ** 
-## Feedback.L:WordType.L          0.000              1.0000    
-## Feedback.Q:WordType.L          0.188              0.8515    
-## Feedback.L:WordType.Q          0.751              0.4548    
-## Feedback.Q:WordType.Q         -0.325              0.7458    
-## Feedback.L:Grade1              1.973              0.0524 .  
-## Feedback.Q:Grade1              0.813              0.4186    
-## WordType.L:Grade1              2.536              0.0134 *  
-## WordType.Q:Grade1             -1.464              0.1475    
-## Feedback.L:WordType.L:Grade1  -1.726              0.0887 .  
-## Feedback.Q:WordType.L:Grade1  -0.996              0.3224    
-## Feedback.L:WordType.Q:Grade1   0.996              0.3224    
-## Feedback.Q:WordType.Q:Grade1   0.575              0.5669    
+##                                           Estimate
+## (Intercept)                   7.999999999999995559
+## Feedback.L                    0.377123616632824177
+## Feedback.Q                    0.163299316185545329
+## WordType.L                    0.659966329107443794
+## WordType.Q                   -0.326598632371090047
+## Grade1                       -0.799999999999999822
+## Feedback.L:WordType.L        -0.000000000000001743
+## Feedback.Q:WordType.L         0.115470053837925510
+## Feedback.L:WordType.Q         0.461880215351699652
+## Feedback.Q:WordType.Q        -0.200000000000002093
+## Feedback.L:Grade1             0.989949493661164581
+## Feedback.Q:Grade1             0.408248290463861574
+## WordType.L:Grade1             1.272792206135786808
+## WordType.Q:Grade1            -0.734846922834951566
+## Feedback.L:WordType.L:Grade1 -1.499999999999997335
+## Feedback.Q:WordType.L:Grade1 -0.866025403784438486
+## Feedback.L:WordType.Q:Grade1  0.866025403784444592
+## Feedback.Q:WordType.Q:Grade1  0.500000000000005440
+##                                         Std. Error t value
+## (Intercept)                   0.204878765717619815  39.047
+## Feedback.L                    0.354860431614917871   1.063
+## Feedback.Q                    0.354860431614918093   0.460
+## WordType.L                    0.354860431614918259   1.860
+## WordType.Q                    0.354860431614918204  -0.920
+## Grade1                        0.289742329120117659  -2.761
+## Feedback.L:WordType.L         0.614636297152859168   0.000
+## Feedback.Q:WordType.L         0.614636297152859057   0.188
+## Feedback.L:WordType.Q         0.614636297152859279   0.751
+## Feedback.Q:WordType.Q         0.614636297152859945  -0.325
+## Feedback.L:Grade1             0.501848435139387483   1.973
+## Feedback.Q:Grade1             0.501848435139387372   0.813
+## WordType.L:Grade1             0.501848435139387816   2.536
+## WordType.Q:Grade1             0.501848435139387705  -1.464
+## Feedback.L:WordType.L:Grade1  0.869226987360353531  -1.726
+## Feedback.Q:WordType.L:Grade1  0.869226987360353309  -0.996
+## Feedback.L:WordType.Q:Grade1  0.869226987360354086   0.996
+## Feedback.Q:WordType.Q:Grade1  0.869226987360353531   0.575
+##                                         Pr(&gt;|t|)    
+## (Intercept)                  &lt;0.0000000000000002 ***
+## Feedback.L                                0.2915    
+## Feedback.Q                                0.6468    
+## WordType.L                                0.0670 .  
+## WordType.Q                                0.3605    
+## Grade1                                    0.0073 ** 
+## Feedback.L:WordType.L                     1.0000    
+## Feedback.Q:WordType.L                     0.8515    
+## Feedback.L:WordType.Q                     0.4548    
+## Feedback.Q:WordType.Q                     0.7458    
+## Feedback.L:Grade1                         0.0524 .  
+## Feedback.Q:Grade1                         0.4186    
+## WordType.L:Grade1                         0.0134 *  
+## WordType.Q:Grade1                         0.1475    
+## Feedback.L:WordType.L:Grade1              0.0887 .  
+## Feedback.Q:WordType.L:Grade1              0.3224    
+## Feedback.L:WordType.Q:Grade1              0.3224    
+## Feedback.Q:WordType.Q:Grade1              0.5669    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -540,18 +559,18 @@ levels of grade (cf. Dudek’s page, par 6.1). In R we can employ
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>phia<span class="sc">::</span><span class="fu">testInteractions</span>(model,<span class="at">fixed=</span><span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>), <span class="at">across=</span><span class="fu">c</span>(<span class="st">&quot;Feedback&quot;</span>, <span class="st">&quot;WordType&quot;</span>),<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>## F Test: 
 ## P-value adjustment method: none
-##           Feedback1:WordType1 Feedback2:WordType1 Feedback1:WordType2
-## 12th                      0.0             0.11547             0.46188
-##  5th                     -1.5            -0.75056             1.32791
-## Residuals                                                            
-##           Feedback2:WordType2    SE1     SE2     SE3     SE4 Df Sum of Sq
-## 12th                     -0.2  0.615   0.615 0.61464 0.61464  4    1.3333
-##  5th                      0.3  0.615   0.615 0.61464 0.61464  4   23.3333
-## Residuals                     72.000 136.000                             
-##                F  Pr(&gt;F)  
-## 12th      0.1765 0.94983  
-##  5th      3.0882 0.02098 *
-## Residuals                 
+##           Feedback1:WordType1 Feedback2:WordType1
+## 12th                      0.0             0.11547
+##  5th                     -1.5            -0.75056
+## Residuals                                        
+##           Feedback1:WordType2 Feedback2:WordType2    SE1     SE2
+## 12th                  0.46188                -0.2  0.615   0.615
+##  5th                  1.32791                 0.3  0.615   0.615
+## Residuals                                         72.000 136.000
+##               SE3     SE4 Df Sum of Sq      F  Pr(&gt;F)  
+## 12th      0.61464 0.61464  4    1.3333 0.1765 0.94983  
+##  5th      0.61464 0.61464  4   23.3333 3.0882 0.02098 *
+## Residuals                                              
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>In <span class="modulename">GAMLj</span> we ask for the
@@ -570,11 +589,16 @@ _WordType*Grade_ at different levels of <em>Feedback</em>.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>phia<span class="sc">::</span><span class="fu">testInteractions</span>(model,<span class="at">fixed=</span><span class="fu">c</span>(<span class="st">&quot;Feedback&quot;</span>), <span class="at">across=</span><span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;WordType&quot;</span>),<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>## F Test: 
 ## P-value adjustment method: none
-##           WordType1 WordType2    SE1     SE2 Df Sum of Sq      F  Pr(&gt;F)  
-##     None    0.14142  -0.08165  0.869   0.869  2    0.0667 0.0176 0.98251  
-## Positive   -1.97990   1.14310  0.869   0.869  2   13.0667 3.4588 0.03679 *
-## Negative   -1.97990   1.14310  0.869   0.869  2   13.0667 3.4588 0.03679 *
-## Residuals                     72.000 136.000                              
+##           WordType1 WordType2    SE1     SE2 Df Sum of Sq      F
+##     None    0.14142  -0.08165  0.869   0.869  2    0.0667 0.0176
+## Positive   -1.97990   1.14310  0.869   0.869  2   13.0667 3.4588
+## Negative   -1.97990   1.14310  0.869   0.869  2   13.0667 3.4588
+## Residuals                     72.000 136.000                    
+##            Pr(&gt;F)  
+##     None  0.98251  
+## Positive  0.03679 *
+## Negative  0.03679 *
+## Residuals          
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>In <span class="modulename">GAMLj</span>, we simply change the input
@@ -597,16 +621,16 @@ instance, the simple effect of <em>Feedback</em> at different levels of
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>phia<span class="sc">::</span><span class="fu">testInteractions</span>(model,<span class="at">fixed=</span><span class="fu">c</span>(<span class="st">&quot;Feedback&quot;</span>), <span class="at">across=</span><span class="fu">c</span>(<span class="st">&quot;WordType&quot;</span>),<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>## F Test: 
 ## P-value adjustment method: none
-##           WordType1 WordType2    SE1     SE2 Df Sum of Sq       F     Pr(&gt;F)
-##     None     0.6364  -0.04082  0.435   0.435  2     4.067  1.0765  0.3462168
-## Positive     1.5556  -0.73485  0.435   0.435  2    29.600  7.8353  0.0008341
-## Negative     1.6971  -1.30639  0.435   0.435  2    45.867 12.1412 0.00002859
-## Residuals                     72.000 136.000                                
-##              
-##     None     
-## Positive  ***
-## Negative  ***
-## Residuals    
+##           WordType1 WordType2    SE1     SE2 Df Sum of Sq       F
+##     None     0.6364  -0.04082  0.435   0.435  2     4.067  1.0765
+## Positive     1.5556  -0.73485  0.435   0.435  2    29.600  7.8353
+## Negative     1.6971  -1.30639  0.435   0.435  2    45.867 12.1412
+## Residuals                     72.000 136.000                     
+##               Pr(&gt;F)    
+##     None   0.3462168    
+## Positive   0.0008341 ***
+## Negative  0.00002859 ***
+## Residuals               
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>In <span class="modulename">GAMLj</span>, we set the input of the
@@ -622,22 +646,22 @@ moderators. For instance, one can estimate the effect of
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>phia<span class="sc">::</span><span class="fu">testInteractions</span>(model,<span class="at">fixed=</span><span class="fu">c</span>(<span class="st">&quot;Feedback&quot;</span>,<span class="st">&quot;Grade&quot;</span>), <span class="at">across=</span><span class="st">&quot;WordType&quot;</span>,<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>## F Test: 
 ## P-value adjustment method: none
-##                 WordType1 WordType2    SE1     SE2 Df Sum of Sq       F
-##     None : 12th   0.70711  -0.08165  0.615   0.615  2     2.533  0.6706
-## Positive : 12th   0.56569  -0.16330  0.615   0.615  2     1.733  0.4588
-## Negative : 12th   0.70711  -0.73485  0.615   0.615  2     5.200  1.3765
-##     None :  5th   0.56569   0.00000  0.615   0.615  2     1.600  0.4235
-## Positive :  5th   2.54558  -1.30639  0.615   0.615  2    40.933 10.8353
-## Negative :  5th   2.68701  -1.87794  0.615   0.615  2    53.733 14.2235
-## Residuals                           72.000 136.000                     
-##                      Pr(&gt;F)    
-##     None : 12th      0.5146    
-## Positive : 12th      0.6339    
-## Negative : 12th      0.2590    
-##     None :  5th      0.6564    
-## Positive :  5th 0.000076958 ***
-## Negative :  5th 0.000006226 ***
-## Residuals                      
+##                 WordType1 WordType2    SE1     SE2 Df Sum of Sq
+##     None : 12th   0.70711  -0.08165  0.615   0.615  2     2.533
+## Positive : 12th   0.56569  -0.16330  0.615   0.615  2     1.733
+## Negative : 12th   0.70711  -0.73485  0.615   0.615  2     5.200
+##     None :  5th   0.56569   0.00000  0.615   0.615  2     1.600
+## Positive :  5th   2.54558  -1.30639  0.615   0.615  2    40.933
+## Negative :  5th   2.68701  -1.87794  0.615   0.615  2    53.733
+## Residuals                           72.000 136.000             
+##                       F      Pr(&gt;F)    
+##     None : 12th  0.6706      0.5146    
+## Positive : 12th  0.4588      0.6339    
+## Negative : 12th  1.3765      0.2590    
+##     None :  5th  0.4235      0.6564    
+## Positive :  5th 10.8353 0.000076958 ***
+## Negative :  5th 14.2235 0.000006226 ***
+## Residuals                              
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>In <span class="modulename">GAMLj</span>:</p>

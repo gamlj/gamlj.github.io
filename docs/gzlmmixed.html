@@ -9,7 +9,7 @@
     
     <title>Generalized Mixed Models</title>
 
-        <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -55,7 +55,7 @@
     
     
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css" />
-        <link rel="stylesheet" href="style.css" type="text/css" />
+        <link rel="stylesheet" href="mcdocs.css" type="text/css" />
         <link rel="stylesheet" href="down.css" type="text/css" />
     
     <!-- tabsets -->
@@ -296,7 +296,7 @@ has been selected.</p>
 <td class="optionname">
 <span class="option">Do not run</span>
 </td>
-<td>
+<td class="optionvalue">
 If flagged, the results are not updated each time an option is changed.
 This allows settings complex model options without waiting for the
 results to update every time. Unflag it when ready to go.
@@ -306,7 +306,7 @@ results to update every time. Unflag it when ready to go.
 <td class="optionname">
 <span class="option">Activate</span>
 </td>
-<td>
+<td class="optionvalue">
 Activates models comparison
 </td>
 </tr>
@@ -314,7 +314,7 @@ Activates models comparison
 <td class="optionname">
 <span class="option">Effect Size</span>
 </td>
-<td>
+<td class="optionvalue">
 Effect size indices. <code>Odd Rations</code> (default) exponentiates
 the coefficients. For dichotomous dependent variables
 <code>Relative Risk</code> indices can be obtained.
@@ -326,7 +326,7 @@ model allows).
 <td class="optionname">
 <span class="option">Coefficients</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in
 table
 </td>
@@ -335,7 +335,7 @@ table
 <td class="optionname">
 <span class="option">For exp(B)</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> (default) or <code>FALSE</code> , exp(B) CI in table
 </td>
 </tr>
@@ -343,7 +343,7 @@ table
 <td class="optionname">
 <span class="option">Random Variances C.I.</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), random effects CI in
 table. It could be very slow.
 </td>
@@ -352,7 +352,7 @@ table. It could be very slow.
 <td class="optionname">
 <span class="option">Confidence level</span>
 </td>
-<td>
+<td class="optionvalue">
 a number between 50 and 99.9 (default: 95) specifying the confidence
 interval width for the plots.
 </td>
@@ -401,7 +401,7 @@ effect of <code>x</code> to be correlated, whereas the effect of
 <td class="optionname">
 <span class="option">Model terms</span>
 </td>
-<td>
+<td class="optionvalue">
 List in the random coefficients supplier the terms included as fixed
 effects
 </td>
@@ -410,7 +410,7 @@ effects
 <td class="optionname">
 <span class="option">Add</span>
 </td>
-<td>
+<td class="optionvalue">
 Listing of random coefficients in the supplier: <code>none</code> do not
 add any term, otherwise add the selected terms.
 </td>
@@ -419,7 +419,7 @@ add any term, otherwise add the selected terms.
 <td class="optionname">
 <span class="option">Effects correlation</span>
 </td>
-<td>
+<td class="optionvalue">
 Random effects are assumed to be correlated (<code>Correlated</code>) or
 independent (<code>Not correlated</code>). If
 <code>Correlated by block</code> is selected, additional fields are
@@ -431,7 +431,7 @@ independent between blocks.
 <td class="optionname">
 <span class="option">LRT for Random Effects</span>
 </td>
-<td>
+<td class="optionvalue">
 Compute LRT for the random effects
 </td>
 </tr>
@@ -655,7 +655,7 @@ the “variable role” definition.</p>
 <td class="optionname">
 <span class="option">Display</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>'None'</code> (default), <code>Confidence Intervals</code>, or
 <code>Standard Error</code>. Display on plots no error bars, use
 confidence intervals, or use standard errors on the plots, respectively.
@@ -665,7 +665,7 @@ confidence intervals, or use standard errors on the plots, respectively.
 <td class="optionname">
 <span class="option">Y-axis scale</span>
 </td>
-<td>
+<td class="optionvalue">
 Plot ordinal model predicted values in as probabilities
 (<code>response</code>) or predicted class (<code>mean.class</code>)
 </td>
@@ -674,7 +674,7 @@ Plot ordinal model predicted values in as probabilities
 <td class="optionname">
 <span class="option">Observed scores</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), plot raw data along
 the predicted values
 </td>
@@ -683,7 +683,7 @@ the predicted values
 <td class="optionname">
 <span class="option">Y-axis observed range</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), set the Y-axis range
 equal to the range of the observed values.
 </td>
@@ -692,7 +692,7 @@ equal to the range of the observed values.
 <td class="optionname">
 <span class="option">X original scale</span>
 </td>
-<td>
+<td class="optionvalue">
 If selected, the X-axis variable is scaled with the orginal scale of the
 variable, independently to the scaling set is the
 <code>Covariates Scaling</code>.
@@ -702,7 +702,7 @@ variable, independently to the scaling set is the
 <td class="optionname">
 <span class="option">Varying line types</span>
 </td>
-<td>
+<td class="optionvalue">
 If selected, a black and white theme is set for the plot, with multiple
 lines (if present) drawn in different styles.
 </td>
@@ -711,23 +711,23 @@ lines (if present) drawn in different styles.
 <td class="optionname">
 <span class="option">Random effects</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), add predicted values
 based on random effect in plot
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option"></span>
+<span class="option">Random Effects</span>
 </td>
-<td>
+<td class="optionvalue">
 </td>
 </tr>
 <tr>
 <td class="optionname">
 <span class="option">Johnson-Neyman plot</span>
 </td>
-<td>
+<td class="optionvalue">
 Produces the Johnson-Neyman plot for simple slopes significance.
 </td>
 </tr>
@@ -735,7 +735,7 @@ Produces the Johnson-Neyman plot for simple slopes significance.
 <td class="optionname">
 <span class="option">exp(B) scale</span>
 </td>
-<td>
+<td class="optionvalue">
 plots the the exp(B) (odd-ratio) in the Johnson-Neyman plot.
 </td>
 </tr>
@@ -771,12 +771,15 @@ class="option">Boot</span>, bootstrap method, is the slowest. Details of
 the implementation can be found in <a
 href="https://cran.r-project.org/web/packages/lme4/lme4.pdf">lme4
 manual</a></p>
+<h4>
+<span class="option"> <b>CI Method </b></span>
+</h4>
 <table class="options">
 <tr>
 <td class="optionname">
 <span class="option">CI Method</span>
 </td>
-<td>
+<td class="optionvalue">
 The method used to compute the confidence intervals. Standard uses the
 Wald method to compute standard errors and confidence intervals. Profile
 computes Profile Likelihood Based Confidence Interval, in which the
@@ -789,15 +792,20 @@ parametric bootstrap, with Bootstrap rep repetitions.
 <td class="optionname">
 <span class="option">Bootstrap rep.</span>
 </td>
-<td>
+<td class="optionvalue">
 The number bootstrap repetitions.
 </td>
 </tr>
+</table>
+<h4>
+<span class="option"> <b>Save </b></span>
+</h4>
+<table class="options">
 <tr>
 <td class="optionname">
 <span class="option">Predicted</span>
 </td>
-<td>
+<td class="optionvalue">
 Saves the predicted values of the model. Predicted values are always
 scaled in the dependent variable original scale, that in the majority of
 cases is the probability scale. For <code>Poisson</code> models and
@@ -808,15 +816,20 @@ cases is the probability scale. For <code>Poisson</code> models and
 <td class="optionname">
 <span class="option">Residuals</span>
 </td>
-<td>
+<td class="optionvalue">
 Saves the residual values of the model. The response scale is used.
 </td>
 </tr>
+</table>
+<h4>
+<span class="option"> <b>Table </b></span>
+</h4>
+<table class="options">
 <tr>
 <td class="optionname">
 <span class="option">Remove notes</span>
 </td>
-<td>
+<td class="optionvalue">
 Removes all notes and warnings from the Tables. Useful to produce
 pubblication quality tables.
 </td>

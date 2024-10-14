@@ -9,7 +9,7 @@
     
     <title>Mixed Models</title>
 
-        <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -55,7 +55,7 @@
     
     
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css" />
-        <link rel="stylesheet" href="style.css" type="text/css" />
+        <link rel="stylesheet" href="mcdocs.css" type="text/css" />
         <link rel="stylesheet" href="down.css" type="text/css" />
     
     <!-- tabsets -->
@@ -280,7 +280,7 @@ has been selected.</p>
 <td class="optionname">
 <span class="option">REML</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> (default) or <code>FALSE</code>, should the Restricted
 ML be used rather than ML
 </td>
@@ -289,7 +289,7 @@ ML be used rather than ML
 <td class="optionname">
 <span class="option">Do not run</span>
 </td>
-<td>
+<td class="optionvalue">
 If flagged, the results are not updated each time an option is changed.
 This allows settings complex model options without waiting for the
 results to update every time. Unflag it when ready to go.
@@ -299,7 +299,7 @@ results to update every time. Unflag it when ready to go.
 <td class="optionname">
 <span class="option">Fixed Parameters</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> (default) or <code>FALSE</code> , parameters CI in
 table
 </td>
@@ -308,7 +308,7 @@ table
 <td class="optionname">
 <span class="option">Random Variances C.I.</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), random effects CI in
 table. It could be very slow.
 </td>
@@ -317,7 +317,7 @@ table. It could be very slow.
 <td class="optionname">
 <span class="option">Confidence level</span>
 </td>
-<td>
+<td class="optionvalue">
 a number between 50 and 99.9 (default: 95) specifying the confidence
 interval width for the plots.
 </td>
@@ -326,7 +326,7 @@ interval width for the plots.
 <td class="optionname">
 <span class="option">Activate</span>
 </td>
-<td>
+<td class="optionvalue">
 Activates models comparison
 </td>
 </tr>
@@ -334,7 +334,7 @@ Activates models comparison
 <td class="optionname">
 <span class="option">More Fit Indices</span>
 </td>
-<td>
+<td class="optionvalue">
 shows AIC and BIC indices for the estimated model
 </td>
 </tr>
@@ -394,7 +394,7 @@ structure.</p>
 <td class="optionname">
 <span class="option">Model terms</span>
 </td>
-<td>
+<td class="optionvalue">
 Show the fixed effects defined in the model in the list of potential
 random coefficients
 </td>
@@ -403,7 +403,7 @@ random coefficients
 <td class="optionname">
 <span class="option">Add</span>
 </td>
-<td>
+<td class="optionvalue">
 Show potential random effects in the <code>Components</code> field.
 <code>None</code> nothing (more than the fixed effects), the other can
 be <code>Main Effects</code>, <code>Up to 2-way</code> interactions,
@@ -416,7 +416,7 @@ random coefficients.
 <td class="optionname">
 <span class="option">Nesting by formula</span>
 </td>
-<td>
+<td class="optionvalue">
 Show the clusters in nested formulation (cluster1/cluster2)
 </td>
 </tr>
@@ -424,7 +424,7 @@ Show the clusters in nested formulation (cluster1/cluster2)
 <td class="optionname">
 <span class="option">Crossing by formula</span>
 </td>
-<td>
+<td class="optionvalue">
 Show the clusters in crossed formulation (cluster1:cluster2)
 </td>
 </tr>
@@ -432,7 +432,7 @@ Show the clusters in crossed formulation (cluster1:cluster2)
 <td class="optionname">
 <span class="option">Effects correlation</span>
 </td>
-<td>
+<td class="optionvalue">
 Random effects are assumed to be correlated (<code>Correlated</code>) or
 independent (<code>Not correlated</code>). If
 <code>Correlated by block</code> is selected, additional fields are
@@ -444,7 +444,7 @@ independent between blocks.
 <td class="optionname">
 <span class="option">LRT for Random Effects</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), LRT for the random
 effects
 </td>
@@ -672,7 +672,7 @@ definition.</p>
 <td class="optionname">
 <span class="option">Display</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>'None'</code> (default), <code>Confidence Intervals</code>, or
 <code>Standard Error</code>. Display on plots no error bars, use
 confidence intervals, or use standard errors on the plots, respectively.
@@ -682,7 +682,7 @@ confidence intervals, or use standard errors on the plots, respectively.
 <td class="optionname">
 <span class="option">Observed scores</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), plot raw data along
 the predicted values
 </td>
@@ -691,7 +691,7 @@ the predicted values
 <td class="optionname">
 <span class="option">Y-axis observed range</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), set the Y-axis range
 equal to the range of the observed values.
 </td>
@@ -700,7 +700,7 @@ equal to the range of the observed values.
 <td class="optionname">
 <span class="option">X original scale</span>
 </td>
-<td>
+<td class="optionvalue">
 If selected, the X-axis variable is scaled with the orginal scale of the
 variable, independently to the scaling set is the
 <code>Covariates Scaling</code>.
@@ -710,7 +710,7 @@ variable, independently to the scaling set is the
 <td class="optionname">
 <span class="option">Varying line types</span>
 </td>
-<td>
+<td class="optionvalue">
 If selected, a black and white theme is set for the plot, with multiple
 lines (if present) drawn in different styles.
 </td>
@@ -719,23 +719,23 @@ lines (if present) drawn in different styles.
 <td class="optionname">
 <span class="option">Random effects</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), add predicted values
 based on random effect in plot
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option"></span>
+<span class="option">Random effects</span>
 </td>
-<td>
+<td class="optionvalue">
 </td>
 </tr>
 <tr>
 <td class="optionname">
 <span class="option">Johnson-Neyman plot</span>
 </td>
-<td>
+<td class="optionvalue">
 Produces the Johnson-Neyman plot for simple slopes significance.
 </td>
 </tr>
@@ -761,14 +761,14 @@ presented.</p>
 <td class="optionname">
 <span class="option">CI Method</span>
 </td>
-<td>
+<td class="optionvalue">
 </td>
 </tr>
 <tr>
 <td class="optionname">
 <span class="option">Bootstrap rep.</span>
 </td>
-<td>
+<td class="optionvalue">
 The number bootstrap repetitions.
 </td>
 </tr>
@@ -776,7 +776,7 @@ The number bootstrap repetitions.
 <td class="optionname">
 <span class="option">DF Method</span>
 </td>
-<td>
+<td class="optionvalue">
 The method for computing the denominator degrees of freedom and
 F-statistics. “Satterthwaite” (default) uses Satterthwaite’s method;
 “Kenward-Roger” uses Kenward-Roger’s method, “lme4” returns the
@@ -788,7 +788,7 @@ defined in the lme4-package
 <td class="optionname">
 <span class="option">Predicted</span>
 </td>
-<td>
+<td class="optionvalue">
 Saves the predicted values of the model. Predicted values are always
 scaled in the dependent variable original scale, that in the majority of
 cases is the probability scale. For <code>Poisson</code> models and
@@ -799,7 +799,7 @@ cases is the probability scale. For <code>Poisson</code> models and
 <td class="optionname">
 <span class="option">Residuals</span>
 </td>
-<td>
+<td class="optionvalue">
 Saves the residual values of the model. The response scale is used.
 </td>
 </tr>
@@ -807,7 +807,7 @@ Saves the residual values of the model. The response scale is used.
 <td class="optionname">
 <span class="option">Remove notes</span>
 </td>
-<td>
+<td class="optionvalue">
 Removes all notes and warnings from the Tables. Useful to produce
 pubblication quality tables.
 </td>

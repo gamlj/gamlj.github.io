@@ -177,7 +177,7 @@ h1,h2,h3,h4,h5,h6,legend{
 }
 
 h1{
-    font-size:2rem;
+    font-size:1.8rem;
     margin-top: 1em;
     margin-bottom: 1.2em;
 }
@@ -187,8 +187,8 @@ h1.title {
 }
 h1.title,
 h1.title p {
-  font-size: 2.3rem;
-  line-height: 2.7rem;
+  font-size: 2rem;
+  line-height: 2.6rem;
 }
 
 
@@ -198,14 +198,14 @@ h1.subtitle {
 }
 h1.subtitle,
 h1.subtitle p {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: 2rem;
 }
 
 h2{
   margin-top: 1em;
   margin-bottom: 1.2em;
-  font-size:1.6rem;
+  font-size:1.4rem;
 }
 
 h3{

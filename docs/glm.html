@@ -10,7 +10,7 @@
     
     <title>General Linear Model</title>
 
-        <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -56,7 +56,7 @@
     
     
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css" />
-        <link rel="stylesheet" href="style.css" type="text/css" />
+        <link rel="stylesheet" href="mcdocs.css" type="text/css" />
         <link rel="stylesheet" href="down.css" type="text/css" />
     
     <!-- tabsets -->
@@ -294,7 +294,7 @@ indices</a></p>
 <td class="optionname">
 <span class="option">Effect Size</span>
 </td>
-<td>
+<td class="optionvalue">
 The effect size to show in tables. They can be: <code>"eta"</code> for
 eta-squared, <code>partial eta'</code> for partial eta-squared,
 <code>'omega'</code> for omega-squared, <code>'omega partial'</code> for
@@ -308,7 +308,7 @@ partial omega-squared, <code>'epsilon'</code> for epsilon-squared,
 <td class="optionname">
 <span class="option">Estimates C.I.</span>
 </td>
-<td>
+<td class="optionvalue">
 Non standardized coefficients (estimastes) CI in tables if flagged
 </td>
 </tr>
@@ -316,7 +316,7 @@ Non standardized coefficients (estimastes) CI in tables if flagged
 <td class="optionname">
 <span class="option">β C.I.</span>
 </td>
-<td>
+<td class="optionvalue">
 Standardized coefficients CI in tables if flagged
 </td>
 </tr>
@@ -324,7 +324,7 @@ Standardized coefficients CI in tables if flagged
 <td class="optionname">
 <span class="option">Confidence level</span>
 </td>
-<td>
+<td class="optionvalue">
 a number between 50 and 99.9 (default: 95) specifying the confidence
 interval width for the plots.
 </td>
@@ -333,7 +333,7 @@ interval width for the plots.
 <td class="optionname">
 <span class="option">Do not run</span>
 </td>
-<td>
+<td class="optionvalue">
 If flagged, the results are not updated each time an option is changed.
 This allows settings complex model options without waiting for the
 results to update every time. Unflag it when ready to go.
@@ -393,7 +393,7 @@ and the two models comparison test is presented.</p>
 <td class="optionname">
 <span class="option">Intercept</span>
 </td>
-<td>
+<td class="optionvalue">
 Estimates fixed intercept if flagged
 </td>
 </tr>
@@ -401,7 +401,7 @@ Estimates fixed intercept if flagged
 <td class="optionname">
 <span class="option">Nested intercept</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> (default) or <code>FALSE</code>, estimates fixed
 intercept. Not needed if <code>formula</code> is used.
 </td>
@@ -410,7 +410,7 @@ intercept. Not needed if <code>formula</code> is used.
 <td class="optionname">
 <span class="option">Activate</span>
 </td>
-<td>
+<td class="optionvalue">
 Activates models comparison
 </td>
 </tr>
@@ -418,7 +418,7 @@ Activates models comparison
 <td class="optionname">
 <span class="option">Test</span>
 </td>
-<td>
+<td class="optionvalue">
 Omnibus test of the model is based on F-test (default) or loglikelihood
 ration test <code>LRT</code>.
 </td>
@@ -632,7 +632,7 @@ the interaction.</p>
 <td class="optionname">
 <span class="option">Display</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>'None'</code> (default), <code>Confidence Intervals</code>, or
 <code>Standard Error</code>. Display on plots no error bars, use
 confidence intervals, or use standard errors on the plots, respectively.
@@ -642,7 +642,7 @@ confidence intervals, or use standard errors on the plots, respectively.
 <td class="optionname">
 <span class="option">Observed scores</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), plot raw data along
 the predicted values
 </td>
@@ -651,7 +651,7 @@ the predicted values
 <td class="optionname">
 <span class="option">Y-axis observed range</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), set the Y-axis range
 equal to the range of the observed values.
 </td>
@@ -660,7 +660,7 @@ equal to the range of the observed values.
 <td class="optionname">
 <span class="option">X original scale</span>
 </td>
-<td>
+<td class="optionvalue">
 If selected, the X-axis variable is scaled with the orginal scale of the
 variable, independently to the scaling set is the
 <code>Covariates Scaling</code>.
@@ -670,7 +670,7 @@ variable, independently to the scaling set is the
 <td class="optionname">
 <span class="option">Varying line types</span>
 </td>
-<td>
+<td class="optionvalue">
 If selected, a black and white theme is set for the plot, with multiple
 lines (if present) drawn in different styles.
 </td>
@@ -679,7 +679,7 @@ lines (if present) drawn in different styles.
 <td class="optionname">
 <span class="option">Johnson-Neyman plot</span>
 </td>
-<td>
+<td class="optionvalue">
 Produces the Johnson-Neyman plot for simple slopes significance.
 </td>
 </tr>
@@ -730,7 +730,7 @@ presented.</p>
 <td class="optionname">
 <span class="option">Homogeneity tests</span>
 </td>
-<td>
+<td class="optionvalue">
 Provides <a
 href="https://biostats.w.uib.no/test-for-homogeneity-of-variances-levenes-test/"
 target="_blank">Levene’s test</a> for equal variances across groups
@@ -741,7 +741,7 @@ defined by factors (homoschedasticity).
 <td class="optionname">
 <span class="option">Normality of residuals</span>
 </td>
-<td>
+<td class="optionvalue">
 Provides <a
 href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test"
 target="_blank">Kolmogorov-Smirnov</a> and <a
@@ -753,7 +753,7 @@ target="_blank">Shapiro-Wilk</a> tests for normality of residuals.
 <td class="optionname">
 <span class="option">Collinearity tests</span>
 </td>
-<td>
+<td class="optionvalue">
 Computes VIF and tollerance for the model term of the model
 </td>
 </tr>
@@ -761,7 +761,7 @@ Computes VIF and tollerance for the model term of the model
 <td class="optionname">
 <span class="option">Q-Q plot of residuals</span>
 </td>
-<td>
+<td class="optionvalue">
 Outputs a Q-Q plot (observed residual quantiles on expected residual
 quantiles). More general info <a
 href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot"
@@ -772,7 +772,7 @@ target="_blank">here</a>
 <td class="optionname">
 <span class="option">Residuals Histogram</span>
 </td>
-<td>
+<td class="optionvalue">
 Outputs the histogram of the distribution of the residuals, with an
 overlaying ideal normal distribution with mean and variance equal to the
 residuals distribution parameters.
@@ -782,7 +782,7 @@ residuals distribution parameters.
 <td class="optionname">
 <span class="option">Residuals-Predicted plot</span>
 </td>
-<td>
+<td class="optionvalue">
 Produces a scatterplot with the residuals on the Y-axis and the
 predicted in the X-axis. It can be usufull to assess heteroschdasticity.
 </td>
@@ -791,7 +791,7 @@ predicted in the X-axis. It can be usufull to assess heteroschdasticity.
 <td class="optionname">
 <span class="option">Identify extremes</span>
 </td>
-<td>
+<td class="optionvalue">
 Indentify 1% and 99% extreme values in the plots by marking them with
 their rown number in the dataset
 </td>
@@ -806,7 +806,7 @@ their rown number in the dataset
 <td class="optionname">
 <span class="option">CI Method</span>
 </td>
-<td>
+<td class="optionvalue">
 The method to estimate the confidence intervals. Standard method
 (<code>Wald</code>) or bootstrap methods. For bootstrap,
 <code>Quantile</code> computes the confidence intervals based on the
@@ -818,7 +818,7 @@ bias corrected accelerated intervals.
 <td class="optionname">
 <span class="option">Bootstrap rep.</span>
 </td>
-<td>
+<td class="optionvalue">
 The number bootstrap repetitions.
 </td>
 </tr>
@@ -826,7 +826,7 @@ The number bootstrap repetitions.
 <td class="optionname">
 <span class="option">SE Method</span>
 </td>
-<td>
+<td class="optionvalue">
 The method to estimate the standard errors. <code>Standard</code> for
 Wald’s method or <code>Robust</code> for robust method.
 </td>
@@ -835,7 +835,7 @@ Wald’s method or <code>Robust</code> for robust method.
 <td class="optionname">
 <span class="option">Method</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>HC1</code> to <code>HC3</code> sets the
 heteroschedasticity-consistent robust standard error. See <a
 href="https://cran.r-project.org/web/packages/sandwich/sandwich.pdf">sandwich
@@ -846,7 +846,7 @@ R package</a> for deatils.
 <td class="optionname">
 <span class="option">On intercept</span>
 </td>
-<td>
+<td class="optionvalue">
 If selected provides ìnformation about the intercept (F test, effect
 size indexes)
 </td>
@@ -855,7 +855,7 @@ size indexes)
 <td class="optionname">
 <span class="option">On Effect sizes</span>
 </td>
-<td>
+<td class="optionvalue">
 If selected, provides ìnformation about the effect size indexes
 </td>
 </tr>
@@ -863,7 +863,7 @@ If selected, provides ìnformation about the effect size indexes
 <td class="optionname">
 <span class="option">Coefficients Covariances</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), shows coefficients
 covariances
 </td>
@@ -872,7 +872,7 @@ covariances
 <td class="optionname">
 <span class="option">Predicted</span>
 </td>
-<td>
+<td class="optionvalue">
 Saves the predicted values of the model. Predicted values are always
 scaled in the dependent variable original scale, that in the majority of
 cases is the probability scale. For <code>Poisson</code> models and
@@ -883,7 +883,7 @@ cases is the probability scale. For <code>Poisson</code> models and
 <td class="optionname">
 <span class="option">Residuals</span>
 </td>
-<td>
+<td class="optionvalue">
 Saves the residual values of the model. The response scale is used.
 </td>
 </tr>
@@ -891,7 +891,7 @@ Saves the residual values of the model. The response scale is used.
 <td class="optionname">
 <span class="option">Remove notes</span>
 </td>
-<td>
+<td class="optionvalue">
 Removes all notes and warnings from the Tables. Useful to produce
 pubblication quality tables.
 </td>

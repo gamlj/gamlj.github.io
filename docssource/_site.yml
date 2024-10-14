@@ -29,7 +29,7 @@ output:
        toc: 3
        css: 
           - https://use.fontawesome.com/releases/v5.15.4/css/all.css
-          - style.css
+          - mcdocs.css
           - down.css
        includes:
            in_header: 
