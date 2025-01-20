@@ -9,7 +9,7 @@
     
     <title>Rosetta store: contrasts</title>
 
-        <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -1061,7 +1061,7 @@ model matrix</a> for details).</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="do">#### results ##############</span></span>
 <span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="fu">contrast</span>(emm,<span class="at">method=</span><span class="st">&quot;difference&quot;</span>,<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>##  contrast           estimate     SE  df t.ratio p.value
-##  Group2 vs previous   -0.100 0.1148 166  -0.872  0.3845
+##  Group2 vs previous   -0.100 0.1150 166  -0.872  0.3845
 ##  Group3 vs previous    0.294 0.0954 166   3.079  0.0024
 ##  Group4 vs previous    0.395 0.0889 166   4.445  &lt;.0001</code></pre>
 <p>Same results as before.</p>
@@ -1217,21 +1217,16 @@ matrix</a> for details).</p>
 <span id="cb59-16"><a href="#cb59-16" tabindex="-1"></a>}</span>
 <span id="cb59-17"><a href="#cb59-17" tabindex="-1"></a></span>
 <span id="cb59-18"><a href="#cb59-18" tabindex="-1"></a><span class="fu">helmert.emmc</span>(<span class="fu">levels</span>(dat<span class="sc">$</span>Group))</span></code></pre></div>
-<pre><code>##   1 vs subsequent            2 vs subsequent
-## 1       1.0000000 -0.00000000000000006343273
-## 2      -0.3333333  1.00000000000000000000000
-## 3      -0.3333333 -0.50000000000000011102230
-## 4      -0.3333333 -0.50000000000000011102230
-##             3 vs subsequent
-## 1 -0.0000000000000001098687
-## 2 -0.0000000000000001256066
-## 3  0.9999999999999995559108
-## 4 -0.9999999999999997779554</code></pre>
+<pre><code>##   1 vs subsequent            2 vs subsequent           3 vs subsequent
+## 1       1.0000000 -0.00000000000000006343273 -0.0000000000000001098687
+## 2      -0.3333333  1.00000000000000000000000 -0.0000000000000001256066
+## 3      -0.3333333 -0.50000000000000011102230  0.9999999999999995559108
+## 4      -0.3333333 -0.50000000000000011102230 -0.9999999999999997779554</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="fu">contrast</span>(emm,<span class="st">&quot;helmert&quot;</span>,<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>##  contrast             estimate     SE  df t.ratio p.value
 ##  Group1 vs subsequent   -0.196 0.0896 166  -2.183  0.0305
-##  Group2 vs subsequent   -0.443 0.1007 166  -4.402  &lt;.0001
-##  Group3 vs subsequent   -0.200 0.1077 166  -1.853  0.0657</code></pre>
+##  Group2 vs subsequent   -0.443 0.1010 166  -4.402  &lt;.0001
+##  Group3 vs subsequent   -0.200 0.1080 166  -1.853  0.0657</code></pre>
 <p>Same results!</p>
 </div>
 </div>
@@ -1460,16 +1455,11 @@ let’s do <code>helmert</code> as we defined above.</p>
 ## [4,] -0.25 -0.3333333 -0.5</code></pre>
 <p>Take the inverse of the transpose of it</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" tabindex="-1"></a>(contr_mat<span class="ot">&lt;-</span><span class="fu">ginv</span>(<span class="fu">t</span>(helm)))</span></code></pre></div>
-<pre><code>##            [,1]                       [,2]
-## [1,]  1.0000000 -0.00000000000000006343273
-## [2,] -0.3333333  1.00000000000000000000000
-## [3,] -0.3333333 -0.50000000000000011102230
-## [4,] -0.3333333 -0.50000000000000011102230
-##                           [,3]
-## [1,] -0.0000000000000001098687
-## [2,] -0.0000000000000001256066
-## [3,]  0.9999999999999995559108
-## [4,] -0.9999999999999997779554</code></pre>
+<pre><code>##            [,1]                       [,2]                      [,3]
+## [1,]  1.0000000 -0.00000000000000006343273 -0.0000000000000001098687
+## [2,] -0.3333333  1.00000000000000000000000 -0.0000000000000001256066
+## [3,] -0.3333333 -0.50000000000000011102230  0.9999999999999995559108
+## [4,] -0.3333333 -0.50000000000000011102230 -0.9999999999999997779554</code></pre>
 <p>This is the contrast matrix we can pass to <code>emmeans</code>. We
 just need to wrap it up in a function with <code>.emmc()</code>
 reference class and <code>levels</code> as input.</p>
@@ -1486,21 +1476,16 @@ reference class and <code>levels</code> as input.</p>
 <span id="cb97-11"><a href="#cb97-11" tabindex="-1"></a>  M</span>
 <span id="cb97-12"><a href="#cb97-12" tabindex="-1"></a>}</span>
 <span id="cb97-13"><a href="#cb97-13" tabindex="-1"></a><span class="fu">helmert.emmc</span>(<span class="fu">levels</span>(dat<span class="sc">$</span>Group))</span></code></pre></div>
-<pre><code>##   1 vs subsequent            2 vs subsequent
-## 1       1.0000000 -0.00000000000000006343273
-## 2      -0.3333333  1.00000000000000000000000
-## 3      -0.3333333 -0.50000000000000011102230
-## 4      -0.3333333 -0.50000000000000011102230
-##             3 vs subsequent
-## 1 -0.0000000000000001098687
-## 2 -0.0000000000000001256066
-## 3  0.9999999999999995559108
-## 4 -0.9999999999999997779554</code></pre>
+<pre><code>##   1 vs subsequent            2 vs subsequent           3 vs subsequent
+## 1       1.0000000 -0.00000000000000006343273 -0.0000000000000001098687
+## 2      -0.3333333  1.00000000000000000000000 -0.0000000000000001256066
+## 3      -0.3333333 -0.50000000000000011102230  0.9999999999999995559108
+## 4      -0.3333333 -0.50000000000000011102230 -0.9999999999999997779554</code></pre>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a><span class="fu">contrast</span>(emm,<span class="st">&quot;helmert&quot;</span>,<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <pre><code>##  contrast             estimate     SE  df t.ratio p.value
 ##  Group1 vs subsequent   -0.196 0.0896 166  -2.183  0.0305
-##  Group2 vs subsequent   -0.443 0.1007 166  -4.402  &lt;.0001
-##  Group3 vs subsequent   -0.200 0.1077 166  -1.853  0.0657</code></pre>
+##  Group2 vs subsequent   -0.443 0.1010 166  -4.402  &lt;.0001
+##  Group3 vs subsequent   -0.200 0.1080 166  -1.853  0.0657</code></pre>
 <p>and we get the contrast estimates as expected. For the
 <code>difference</code> contrast we can use
 <code>con_weights&lt;-contr.helmert(n)</code> in the function and we get

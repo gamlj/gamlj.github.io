@@ -75,7 +75,7 @@ A logistic model can be estimated when the dependent variable features two group
 
 `r pic("bookletpics/3_logistic_plot1.png")`
 
-It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a cloud that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in \@ref(homosched)), because the line will cross a strip once (so residual is zero) and depart from it everafter (increasing the residual variance).
+It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a cloud that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in \@ref(homosched)), because the line will cross a strip once (so residual is zero) and depart from it ever after (increasing the residual variance).
 
 The solution is to change the form of predicted values such that any values can be a sensible predicted value. To achieve this, we should first notice that when one has a dichotomous dependent variable, what one is predicting is the probability of being in the group scoring 1. Indeed, the predicted values are the expected (average) values of $y$ for each given $x_i$. The average value of a dichotomous variable is
 $$
@@ -464,7 +464,7 @@ Silly as it may seems, this variable represents a very common type of variable i
 
 Assume we treat an ordinal variable as a multinomial variable,featuring $K$ levels. If we do that, we treat the levels as completely unordered, and thus the only information that we are using to estimate the generalized model is that the $K$ levels are different. As we have seen in the discussion of multinomial regression (\@ref(multinomial)), we would need K-1 logistic models to obtain our results. In doing that, however, we over-parameterize the model, because we do not need so many coefficients to describe the effect of an `r IV` on the dependent variable. We can take advantage of the order of the levels to simplify the model (its results,  not really its logic).
 
-Consider our ordinal $y=\{1,2,3,4,5\}$, and say that each $i$ level (the choice made by the participant in the example) has probability $\pi_i$. We can ask what is the probability of choosing _I will never come back _, or the probability of choosing either _I will never come back_ or  _I may come back sometime_, or the probability of choosing _I will come back once in while_ or lover levels, etc. In other words, we can focus on the probability of choosing _up to a level_, or equivalently, a level or any other below it. This is called _cumulative probability_, and it can be written like this:
+Consider our ordinal $y=\{1,2,3,4,5\}$, and say that each $i$ level (the choice made by the participant in the example) has probability $\pi_i$. We can ask what is the probability of choosing _I will never come back _, or the probability of choosing either _I will never come back_ or  _I may come back sometime_, or the probability of choosing _I will come back once in while_ or lower levels, etc. In other words, we can focus on the probability of choosing _up to a level_, or equivalently, a level or any other below it. This is called _cumulative probability_, and it can be written like this:
 
 $$
 p(y\le k)=\sum_{i=1}^k \pi_i
@@ -521,7 +521,7 @@ In the `r tab("Model Info")` table we find a set of properties of the estimated 
 
 ### Parallel Lines test {#parallellines}
 
-Before looking at the results of the model estimation, we should remember that the ordinal model estimated by `r modulename()` is a _proportional odds model_, in which we assume that the coefficient associated with an independent variable is the same for all logit estimated along the dependent variable scale (cf \@ref(ordinal)). `r modulename()` provides a test for this assumption, usually named _parallel lines test_. It is named like that because proportional odds functions, when estimated in the logit scale, are equivalent to parallel lines.
+Before looking at the results of the model estimation, we should remember that the ordinal model estimated by `r modulename()` is a _proportional odds model_, in which we assume that the coefficient associated with an independent variable is the same for all logits estimated along the dependent variable scale (cf \@ref(ordinal)). `r modulename()` provides a test for this assumption, named _parallel lines test_. It is named like that because proportional odds functions, when estimated in the logit scale, are equivalent to parallel lines.
 
 The logic of the test is simple: the model with all coefficients of an independent variable set equal is compared with a model in which the coefficients are allowed to vary from logit to logit. The two models are compared with a log-likelihood ratio test. If the test is not significant, we have indication that the assumption of proportional odd is met. When significant, we have indication that a breach to the assumption may be in place.
 
@@ -531,7 +531,7 @@ The test can be found in the input  `r opt("Options")` panel.
 
 `r pic("bookletpics/3_ordinal_output7.png")`
 
-The test is performed for each independent variable effect. We can see that no problem arises with $x$, because the $\chi^2$ is clearly not significant. A doubt can be cast on `cat3`, that show that the assumption of proportional odds does not perfectly apply to its effects ($\chi^2=16.48$, $p=.011$). It should be said, however, that this tests are quite conservative, so one should be very lenient in their interpretation. One can argue, for instance, that the deviation from the assumption does not seem very strong, so the model can be saved and the results interpreted anyway.
+The test is performed for each independent variable effect. We can see that no problem arises with $x$, because the $\chi^2$ is clearly not significant. A doubt can be cast on `cat3`, that shows that the assumption of proportional odds does not perfectly apply to its effects ($\chi^2=16.48$, $p=.011$). It should be said, however, that this tests are quite conservative, so one should be very lenient in their interpretation. One can argue, for instance, that the deviation from the assumption does not seem very strong, so the model can be saved and the results interpreted anyway.
 
 ### Model Fit
 

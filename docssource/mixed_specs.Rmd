@@ -33,5 +33,13 @@ As far as it is possible, inferential tests are based on an automatic selection 
 ```{r child="posthoc_specs.Rmd"}
 ```
 
+
+# Optimizer
+
+Estimating a mixed model requires to minimize several quantities and to refine the numerical solution is several ways. These operations are based on an algorithm that optimize the minimization. Different algorithms are available in R package `lme4` provides different algorithms, among which the `bobyqa`, the `Nelder_Mead` and the `nloptwrap` algorithm [see lme4 vignettes](https://cran.r-project.org/web/packages/lme4/vignettes/lmerperf.html). `r modulename()` automatically starts the estimation using the `bobyqa` algorithm. If the model does not converge, it move to  `Nelder_Mead`, and, upon a new failure, tries `nloptwrap`. If none converges, the first estimation is provided and a warning is issued.
+
+
+
+
 `r backto("mixed","gmixed")`
 

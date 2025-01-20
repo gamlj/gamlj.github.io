@@ -1,7 +1,7 @@
 --- 
 title: "GAMLj Models"
 author: "Marcello Gallucci"
-date: '2023'
+date: '2025'
 output: pdf_document
 documentclass: book
 bibliography:
@@ -18,6 +18,11 @@ site: bookdown::bookdown_site
 ```{r results='hide', echo=FALSE}
 library(mcdocs)
 mcdocs_init()
+
+IV   <-  tooltip("IV","Independent Variable")
+IVs  <-  tooltip("IVs","Independent Variables")
+DV   <-  tooltip("DV","Dependent Variable")
+
 ```
 
 # Mixed Linear Models {#mixed}
@@ -192,8 +197,7 @@ knitr::include_graphics("bookletpics/4_simple_input3.png")
 
 As soon as we define the random component, the estimation begins.
 
-## Model Info
-
+## Results
 
 <div style="text-align:center" class="pic">
 ```{r ,echo=FALSE, out.width="70%"}
@@ -201,6 +205,66 @@ knitr::include_graphics("bookletpics/4_simple_output1.png")
 ```
 </div>
 
-As we have seen for the other models estimated by `r modulename()`.
+As observed with other models estimated using `r modulename()`, the `r tab("Model Info")` table provides a summary of information about the estimated model. One key statistic is \( N \), which indicates the number of units used in the analysis, corresponding to the non-missing rows in the dataset. In this specific example, \( N \) represents the number of individuals in the sample. However, in other applications, \( N \) might refer to the number of measurements or the total number of trials in an experiment.
+
+The other pieces of information should be self-explanatory. For the `optimizer` row, it indicates what algorithm has been used to optimize the solution. Info about this can be found in `r  link_pages(nickname="mixed_specs", path="../docssource/")`.
+
+Degrees of freedom refers to the method used to estimate the $DF$ of the effects. Again, details are in `r  link_pages(nickname="mixed_specs", path="../docssource/")`.
+
+## Random component
+
+
+Although the `r tab("Random component")` table is not at the top of the output panel, it is a good idea to examine it first. This table contains the variances of the random coefficients and the error variance. Checking these values is important because we need to ensure that each random coefficient has a positive variance, indicating that the model has identified some variability. If no variance is found for a random coefficient, the model may fail to converge. When this occurs—often due to a lack of variance in a random coefficient—we should remove the coefficient from the list of random coefficients and re-estimate the model. This step ensures that all remaining coefficients have meaningful variances. Variances of the random coefficients are typically reported in papers and statistical reports.
+
+<div style="text-align:center" class="pic">
+```{r ,echo=FALSE, out.width="70%"}
+knitr::include_graphics("bookletpics/4_simple_output4.png")
+```
+</div>
+
+
+Another crucial check is to verify that the correlations among random coefficients are not $1$ or $-1$. If a correlation equals $1$ or $-1$, it indicates redundancy between random coefficients. In such cases, the redundant coefficient should be removed from the list. When deciding which coefficient to remove, prioritize removing the higher-order coefficient. If the correlated coefficients are of the same order, remove the one with the smallest variance.
+
+
+## R-squares
+
+R-marginal and R-conditional are proportion of reduced error, or pseudo-R2.
+
+<div style="text-align:center" class="pic">
+```{r ,echo=FALSE, out.width="100%"}
+knitr::include_graphics("bookletpics/4_simple_output2.png")
+```
+</div>
+
+
+They are described in @nagawa2  and implemented in piecewiseSEM R package. For our purposes, we can interpret them as follows: R-marginal is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The R-conditional is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects do not explain much (.090), but the overall model (fixed+random) captures a fairly big share of the variance (.822).
+
+## Independent Variable effect
+
+<div style="text-align:center" class="pic">
+```{r ,echo=FALSE, out.width="100%"}
+knitr::include_graphics("bookletpics/4_simple_output3.png")
+```
+</div>
+
+Next, we examine the `Omnibus Tests` and the `Parameter Estimates` tables, which provide the model's coefficients. Since we have only one continuous variable, `r IV`, we can focus on the parameter estimates table. The `Estimate` column reports the \( B \) coefficient of the model. From this, we see that the expected number of smiles increases by \( 0.555 \) units for every one-unit increase in `beer`, averaging across _bars_. This averaging is necessary to include in the interpretation because the fixed effect of _beer_ was estimated as the average of the random effects across bars. 
+
+The `t-test`, `df`, and `p-value` can be interpreted as usual. Essentially, we interpret the \( B \) coefficient associated with `r IV` as in a simple regression, while understanding that the fixed effect represents the average result from a distribution of possible effects across clusters.
+
+## Plots
+
+Even for simple models such as the one in this example, it is helpful to visualize the effects by plotting them. This allows us to display both the fixed-effect line and the random-coefficient lines, providing a complete picture of the estimated model.
+
+<div style="text-align:center" class="pic">
+```{r ,echo=FALSE, out.width="70%"}
+knitr::include_graphics("bookletpics/4_simple_output5.png")
+```
+</div>
+
+In this example, we can observe that bars generally exhibit a positive relationship between `beer` and `smile`, although the strength of the effect varies across bars. Additionally, the intercepts (i.e., the heights of the lines) differ substantially across bars, indicating significant variation in the average value of the dependent variable across clusters.
+
+
+
+
 
 `r incomplete`

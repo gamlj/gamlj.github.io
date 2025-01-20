@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Mixed Linear Models | GAMLj Models</title>
   <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Mixed Linear Models | GAMLj Models" />
   <meta property="og:type" content="book" />
@@ -321,7 +321,11 @@ div.csl-indent {
 <li class="chapter" data-level="4.5.3" data-path="mixed.html"><a href="mixed.html#random-effects"><i class="fa fa-check"></i><b>4.5.3</b> Random Effects?</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="mixed.html"><a href="mixed.html#model-estimation-3"><i class="fa fa-check"></i><b>4.6</b> Model Estimation</a></li>
-<li class="chapter" data-level="4.7" data-path="mixed.html"><a href="mixed.html#model-info"><i class="fa fa-check"></i><b>4.7</b> Model Info</a></li>
+<li class="chapter" data-level="4.7" data-path="mixed.html"><a href="mixed.html#results"><i class="fa fa-check"></i><b>4.7</b> Results</a></li>
+<li class="chapter" data-level="4.8" data-path="mixed.html"><a href="mixed.html#random-component"><i class="fa fa-check"></i><b>4.8</b> Random component</a></li>
+<li class="chapter" data-level="4.9" data-path="mixed.html"><a href="mixed.html#r-squares"><i class="fa fa-check"></i><b>4.9</b> R-squares</a></li>
+<li class="chapter" data-level="4.10" data-path="mixed.html"><a href="mixed.html#independent-variable-effect"><i class="fa fa-check"></i><b>4.10</b> Independent Variable effect</a></li>
+<li class="chapter" data-level="4.11" data-path="mixed.html"><a href="mixed.html#plots-3"><i class="fa fa-check"></i><b>4.11</b> Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="gmixed.html"><a href="gmixed.html"><i class="fa fa-check"></i><b>5</b> Generalized Mixed Linear Models</a>
 <ul>
@@ -330,9 +334,9 @@ div.csl-indent {
 <li class="chapter" data-level="5.3" data-path="gmixed.html"><a href="gmixed.html#mixed-logistic-model"><i class="fa fa-check"></i><b>5.3</b> Mixed logistic model</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="gmixed.html"><a href="gmixed.html#model-estimation-4"><i class="fa fa-check"></i><b>5.3.1</b> Model Estimation</a></li>
-<li class="chapter" data-level="5.3.2" data-path="gmixed.html"><a href="gmixed.html#model-info-1"><i class="fa fa-check"></i><b>5.3.2</b> Model Info</a></li>
+<li class="chapter" data-level="5.3.2" data-path="gmixed.html"><a href="gmixed.html#model-info"><i class="fa fa-check"></i><b>5.3.2</b> Model Info</a></li>
 <li class="chapter" data-level="5.3.3" data-path="gmixed.html"><a href="gmixed.html#model-fit-3"><i class="fa fa-check"></i><b>5.3.3</b> Model Fit</a></li>
-<li class="chapter" data-level="5.3.4" data-path="gmixed.html"><a href="gmixed.html#random-component"><i class="fa fa-check"></i><b>5.3.4</b> Random Component</a></li>
+<li class="chapter" data-level="5.3.4" data-path="gmixed.html"><a href="gmixed.html#random-component-1"><i class="fa fa-check"></i><b>5.3.4</b> Random Component</a></li>
 <li class="chapter" data-level="5.3.5" data-path="gmixed.html"><a href="gmixed.html#coefficients-4"><i class="fa fa-check"></i><b>5.3.5</b> Coefficients</a></li>
 <li class="chapter" data-level="5.3.6" data-path="gmixed.html"><a href="gmixed.html#plot-2"><i class="fa fa-check"></i><b>5.3.6</b> Plot</a></li>
 <li class="chapter" data-level="5.3.7" data-path="gmixed.html"><a href="gmixed.html#other-options-and-techniques"><i class="fa fa-check"></i><b>5.3.7</b> Other options and techniques</a></li>
@@ -496,18 +500,55 @@ First, when building a mixed model, one should ask three questions:
 </div>
 <p>As soon as we define the random component, the estimation begins.</p>
 </div>
-<div id="model-info" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> Model Info<a href="mixed.html#model-info" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="results" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Results<a href="mixed.html#results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="pic" style="text-align:center">
 <p><img src="bookletpics/4_simple_output1.png" width="70%" /></p>
 </div>
-<p>As we have seen for the other models estimated by <span class="modulename">GAMLj</span>.</p>
+<p>As observed with other models estimated using <span class="modulename">GAMLj</span>, the <span class="tablename">Model Info</span> table provides a summary of information about the estimated model. One key statistic is <span class="math inline">\(N\)</span>, which indicates the number of units used in the analysis, corresponding to the non-missing rows in the dataset. In this specific example, <span class="math inline">\(N\)</span> represents the number of individuals in the sample. However, in other applications, <span class="math inline">\(N\)</span> might refer to the number of measurements or the total number of trials in an experiment.</p>
+<p>The other pieces of information should be self-explanatory. For the <code>optimizer</code> row, it indicates what algorithm has been used to optimize the solution. Info about this can be found in <a href="../docssource//mixed_specs.html">Mixed Models module technical details</a>.</p>
+<p>Degrees of freedom refers to the method used to estimate the <span class="math inline">\(DF\)</span> of the effects. Again, details are in <a href="../docssource//mixed_specs.html">Mixed Models module technical details</a>.</p>
+</div>
+<div id="random-component" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Random component<a href="mixed.html#random-component" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Although the <span class="tablename">Random component</span> table is not at the top of the output panel, it is a good idea to examine it first. This table contains the variances of the random coefficients and the error variance. Checking these values is important because we need to ensure that each random coefficient has a positive variance, indicating that the model has identified some variability. If no variance is found for a random coefficient, the model may fail to converge. When this occurs—often due to a lack of variance in a random coefficient—we should remove the coefficient from the list of random coefficients and re-estimate the model. This step ensures that all remaining coefficients have meaningful variances. Variances of the random coefficients are typically reported in papers and statistical reports.</p>
+<div class="pic" style="text-align:center">
+<p><img src="bookletpics/4_simple_output4.png" width="70%" /></p>
+</div>
+<p>Another crucial check is to verify that the correlations among random coefficients are not <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span>. If a correlation equals <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span>, it indicates redundancy between random coefficients. In such cases, the redundant coefficient should be removed from the list. When deciding which coefficient to remove, prioritize removing the higher-order coefficient. If the correlated coefficients are of the same order, remove the one with the smallest variance.</p>
+</div>
+<div id="r-squares" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> R-squares<a href="mixed.html#r-squares" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R-marginal and R-conditional are proportion of reduced error, or pseudo-R2.</p>
+<div class="pic" style="text-align:center">
+<p><img src="bookletpics/4_simple_output2.png" width="100%" /></p>
+</div>
+<p>They are described in <span class="citation">Johnson (<a href="#ref-nagawa2">2014</a>)</span> and implemented in piecewiseSEM R package. For our purposes, we can interpret them as follows: R-marginal is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The R-conditional is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects do not explain much (.090), but the overall model (fixed+random) captures a fairly big share of the variance (.822).</p>
+</div>
+<div id="independent-variable-effect" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Independent Variable effect<a href="mixed.html#independent-variable-effect" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="pic" style="text-align:center">
+<p><img src="bookletpics/4_simple_output3.png" width="100%" /></p>
+</div>
+<p>Next, we examine the <code>Omnibus Tests</code> and the <code>Parameter Estimates</code> tables, which provide the model’s coefficients. Since we have only one continuous variable, <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span>, we can focus on the parameter estimates table. The <code>Estimate</code> column reports the <span class="math inline">\(B\)</span> coefficient of the model. From this, we see that the expected number of smiles increases by <span class="math inline">\(0.555\)</span> units for every one-unit increase in <code>beer</code>, averaging across <em>bars</em>. This averaging is necessary to include in the interpretation because the fixed effect of <em>beer</em> was estimated as the average of the random effects across bars.</p>
+<p>The <code>t-test</code>, <code>df</code>, and <code>p-value</code> can be interpreted as usual. Essentially, we interpret the <span class="math inline">\(B\)</span> coefficient associated with <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span> as in a simple regression, while understanding that the fixed effect represents the average result from a distribution of possible effects across clusters.</p>
+</div>
+<div id="plots-3" class="section level2 hasAnchor" number="4.11">
+<h2><span class="header-section-number">4.11</span> Plots<a href="mixed.html#plots-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Even for simple models such as the one in this example, it is helpful to visualize the effects by plotting them. This allows us to display both the fixed-effect line and the random-coefficient lines, providing a complete picture of the estimated model.</p>
+<div class="pic" style="text-align:center">
+<p><img src="bookletpics/4_simple_output5.png" width="70%" /></p>
+</div>
+<p>In this example, we can observe that bars generally exhibit a positive relationship between <code>beer</code> and <code>smile</code>, although the strength of the effect varies across bars. Additionally, the intercepts (i.e., the heights of the lines) differ substantially across bars, indicating significant variation in the average value of the dependent variable across clusters.</p>
 <p><span class="incomplete"> Work in progress: incomplete version </span></p>
 
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-nagawa2" class="csl-entry">
+Johnson, Paul C. D. 2014. <span>“Extension of Nakagawa &amp; Schielzeth’s R2GLMM to Random Slopes Models.”</span> <em>Methods in Ecology and Evolution</em> 5 (9): 944–46. https://doi.org/<a href="https://doi.org/10.1111/2041-210X.12225">https://doi.org/10.1111/2041-210X.12225</a>.
+</div>
 <div id="ref-mcculloch2001generalized" class="csl-entry">
 McCulloch, Charles E., and Shayle R. Searle. 2001. <em>Generalized, Linear, and Mixed Models</em>. Wiley-Interscience.
 </div>

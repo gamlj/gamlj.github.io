@@ -9,7 +9,7 @@
     
     <title>Mixed Models module technical details</title>
 
-        <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -203,6 +203,7 @@ details</a></h2>
       <li><a href="#degrees-of-freedom"
       id="toc-degrees-of-freedom">Degrees of freedom</a></li>
       <li><a href="#post-hocs" id="toc-post-hocs">Post Hocs</a></li>
+      <li><a href="#optimizer" id="toc-optimizer">Optimizer</a></li>
       </ul>
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
@@ -269,6 +270,21 @@ any given model term selected by the user) :</p>
       sidak&lt;-summary(pairs(referenceGrid, adjust=&#39;sidak&#39;))
 
       </code></pre>
+</div>
+<div id="optimizer" class="section level1">
+<h1>Optimizer</h1>
+<p>Estimating a mixed model requires to minimize several quantities and
+to refine the numerical solution is several ways. These operations are
+based on an algorithm that optimize the minimization. Different
+algorithms are available in R package <code>lme4</code> provides
+different algorithms, among which the <code>bobyqa</code>, the
+<code>Nelder_Mead</code> and the <code>nloptwrap</code> algorithm <a
+href="https://cran.r-project.org/web/packages/lme4/vignettes/lmerperf.html">see
+lme4 vignettes</a>. <span class="modulename">GAMLj</span> automatically
+starts the estimation using the <code>bobyqa</code> algorithm. If the
+model does not converge, it move to <code>Nelder_Mead</code>, and, upon
+a new failure, tries <code>nloptwrap</code>. If none converges, the
+first estimation is provided and a warning is issued.</p>
 <div class="adm adm-seealso backto">
 <p>
 Return to main help pages

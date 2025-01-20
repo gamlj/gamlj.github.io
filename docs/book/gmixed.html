@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Generalized Mixed Linear Models | GAMLj Models</title>
   <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Generalized Mixed Linear Models | GAMLj Models" />
   <meta property="og:type" content="book" />
@@ -321,7 +321,11 @@ div.csl-indent {
 <li class="chapter" data-level="4.5.3" data-path="mixed.html"><a href="mixed.html#random-effects"><i class="fa fa-check"></i><b>4.5.3</b> Random Effects?</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="mixed.html"><a href="mixed.html#model-estimation-3"><i class="fa fa-check"></i><b>4.6</b> Model Estimation</a></li>
-<li class="chapter" data-level="4.7" data-path="mixed.html"><a href="mixed.html#model-info"><i class="fa fa-check"></i><b>4.7</b> Model Info</a></li>
+<li class="chapter" data-level="4.7" data-path="mixed.html"><a href="mixed.html#results"><i class="fa fa-check"></i><b>4.7</b> Results</a></li>
+<li class="chapter" data-level="4.8" data-path="mixed.html"><a href="mixed.html#random-component"><i class="fa fa-check"></i><b>4.8</b> Random component</a></li>
+<li class="chapter" data-level="4.9" data-path="mixed.html"><a href="mixed.html#r-squares"><i class="fa fa-check"></i><b>4.9</b> R-squares</a></li>
+<li class="chapter" data-level="4.10" data-path="mixed.html"><a href="mixed.html#independent-variable-effect"><i class="fa fa-check"></i><b>4.10</b> Independent Variable effect</a></li>
+<li class="chapter" data-level="4.11" data-path="mixed.html"><a href="mixed.html#plots-3"><i class="fa fa-check"></i><b>4.11</b> Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="gmixed.html"><a href="gmixed.html"><i class="fa fa-check"></i><b>5</b> Generalized Mixed Linear Models</a>
 <ul>
@@ -330,9 +334,9 @@ div.csl-indent {
 <li class="chapter" data-level="5.3" data-path="gmixed.html"><a href="gmixed.html#mixed-logistic-model"><i class="fa fa-check"></i><b>5.3</b> Mixed logistic model</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="gmixed.html"><a href="gmixed.html#model-estimation-4"><i class="fa fa-check"></i><b>5.3.1</b> Model Estimation</a></li>
-<li class="chapter" data-level="5.3.2" data-path="gmixed.html"><a href="gmixed.html#model-info-1"><i class="fa fa-check"></i><b>5.3.2</b> Model Info</a></li>
+<li class="chapter" data-level="5.3.2" data-path="gmixed.html"><a href="gmixed.html#model-info"><i class="fa fa-check"></i><b>5.3.2</b> Model Info</a></li>
 <li class="chapter" data-level="5.3.3" data-path="gmixed.html"><a href="gmixed.html#model-fit-3"><i class="fa fa-check"></i><b>5.3.3</b> Model Fit</a></li>
-<li class="chapter" data-level="5.3.4" data-path="gmixed.html"><a href="gmixed.html#random-component"><i class="fa fa-check"></i><b>5.3.4</b> Random Component</a></li>
+<li class="chapter" data-level="5.3.4" data-path="gmixed.html"><a href="gmixed.html#random-component-1"><i class="fa fa-check"></i><b>5.3.4</b> Random Component</a></li>
 <li class="chapter" data-level="5.3.5" data-path="gmixed.html"><a href="gmixed.html#coefficients-4"><i class="fa fa-check"></i><b>5.3.5</b> Coefficients</a></li>
 <li class="chapter" data-level="5.3.6" data-path="gmixed.html"><a href="gmixed.html#plot-2"><i class="fa fa-check"></i><b>5.3.6</b> Plot</a></li>
 <li class="chapter" data-level="5.3.7" data-path="gmixed.html"><a href="gmixed.html#other-options-and-techniques"><i class="fa fa-check"></i><b>5.3.7</b> Other options and techniques</a></li>
@@ -411,8 +415,8 @@ div.csl-indent {
 <p><img src="bookletpics/5_logistic_input3.png" width="80%" /></p>
 </div>
 </div>
-<div id="model-info-1" class="section level3 hasAnchor" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Model Info<a href="gmixed.html#model-info-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="model-info" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Model Info<a href="gmixed.html#model-info" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The usual recap table is produced and filled as soon as we set the random component of the model. Here we find the type of information required to interpret the logistic regression (cf. Section <a href="gzlm.html#logisticrecap">3.2.3</a>).
 <span class="incomplete"> Incomplete version, please wait for updates </span></p>
 <div style="text-align:center">
@@ -428,8 +432,8 @@ div.csl-indent {
 <p>Similar to the linear mixed model, in the current context, we have two indices of goodness of fit. Since we are dealing with a generalized linear model, the fit can be understood as the reduction in error or deviance attributable to the effects included in our model. The conditional <span class="math inline">\(R^2\)</span> provides an assessment of the overall fit, encompassing both fixed and random effects. The marginal <span class="math inline">\(R^2\)</span> informs us about the fit contributed solely by the fixed effects of the model.</p>
 <p>The inferential tests are based on the likelihood-ratio test (<a href='https://en.wikipedia.org/wiki/Likelihood-ratio_test' target='_blank'>LRT,</a>): For the conditional <span class="math inline">\(R^2\)</span>, the whole model is compared with a logistic model with only the intercept as parameter. So it tests all parameters of the model, fixed and random together. For the marginal <span class="math inline">\(R^2\)</span>, the whole model is compared with a logistic model with a fixed intercept and the same random coefficients of the model, so the fixed effects are tested.</p>
 </div>
-<div id="random-component" class="section level3 hasAnchor" number="5.3.4">
-<h3><span class="header-section-number">5.3.4</span> Random Component<a href="gmixed.html#random-component" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="random-component-1" class="section level3 hasAnchor" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Random Component<a href="gmixed.html#random-component-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div style="text-align:center">
 <p><img src="bookletpics/5_logistic_output3.png" width="80%" /></p>
 </div>

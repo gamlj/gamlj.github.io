@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 The Generalized Linear Model | GAMLj Models</title>
   <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 The Generalized Linear Model | GAMLj Models" />
   <meta property="og:type" content="book" />
@@ -321,7 +321,11 @@ div.csl-indent {
 <li class="chapter" data-level="4.5.3" data-path="mixed.html"><a href="mixed.html#random-effects"><i class="fa fa-check"></i><b>4.5.3</b> Random Effects?</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="mixed.html"><a href="mixed.html#model-estimation-3"><i class="fa fa-check"></i><b>4.6</b> Model Estimation</a></li>
-<li class="chapter" data-level="4.7" data-path="mixed.html"><a href="mixed.html#model-info"><i class="fa fa-check"></i><b>4.7</b> Model Info</a></li>
+<li class="chapter" data-level="4.7" data-path="mixed.html"><a href="mixed.html#results"><i class="fa fa-check"></i><b>4.7</b> Results</a></li>
+<li class="chapter" data-level="4.8" data-path="mixed.html"><a href="mixed.html#random-component"><i class="fa fa-check"></i><b>4.8</b> Random component</a></li>
+<li class="chapter" data-level="4.9" data-path="mixed.html"><a href="mixed.html#r-squares"><i class="fa fa-check"></i><b>4.9</b> R-squares</a></li>
+<li class="chapter" data-level="4.10" data-path="mixed.html"><a href="mixed.html#independent-variable-effect"><i class="fa fa-check"></i><b>4.10</b> Independent Variable effect</a></li>
+<li class="chapter" data-level="4.11" data-path="mixed.html"><a href="mixed.html#plots-3"><i class="fa fa-check"></i><b>4.11</b> Plots</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="gmixed.html"><a href="gmixed.html"><i class="fa fa-check"></i><b>5</b> Generalized Mixed Linear Models</a>
 <ul>
@@ -330,9 +334,9 @@ div.csl-indent {
 <li class="chapter" data-level="5.3" data-path="gmixed.html"><a href="gmixed.html#mixed-logistic-model"><i class="fa fa-check"></i><b>5.3</b> Mixed logistic model</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="gmixed.html"><a href="gmixed.html#model-estimation-4"><i class="fa fa-check"></i><b>5.3.1</b> Model Estimation</a></li>
-<li class="chapter" data-level="5.3.2" data-path="gmixed.html"><a href="gmixed.html#model-info-1"><i class="fa fa-check"></i><b>5.3.2</b> Model Info</a></li>
+<li class="chapter" data-level="5.3.2" data-path="gmixed.html"><a href="gmixed.html#model-info"><i class="fa fa-check"></i><b>5.3.2</b> Model Info</a></li>
 <li class="chapter" data-level="5.3.3" data-path="gmixed.html"><a href="gmixed.html#model-fit-3"><i class="fa fa-check"></i><b>5.3.3</b> Model Fit</a></li>
-<li class="chapter" data-level="5.3.4" data-path="gmixed.html"><a href="gmixed.html#random-component"><i class="fa fa-check"></i><b>5.3.4</b> Random Component</a></li>
+<li class="chapter" data-level="5.3.4" data-path="gmixed.html"><a href="gmixed.html#random-component-1"><i class="fa fa-check"></i><b>5.3.4</b> Random Component</a></li>
 <li class="chapter" data-level="5.3.5" data-path="gmixed.html"><a href="gmixed.html#coefficients-4"><i class="fa fa-check"></i><b>5.3.5</b> Coefficients</a></li>
 <li class="chapter" data-level="5.3.6" data-path="gmixed.html"><a href="gmixed.html#plot-2"><i class="fa fa-check"></i><b>5.3.6</b> Plot</a></li>
 <li class="chapter" data-level="5.3.7" data-path="gmixed.html"><a href="gmixed.html#other-options-and-techniques"><i class="fa fa-check"></i><b>5.3.7</b> Other options and techniques</a></li>
@@ -394,51 +398,107 @@ f(\hat{y_i})=a+b x_i
 \]</span>
 In addition to predicting a transformation of the dependent variable, the generalized linear model does not assume the dependent variable to be normally distributed, but allows assuming different families of distribution: <a href='https://en.wikipedia.org/wiki/Binomial_distribution' target='_blank'>Binomial</a>, <a href='https://en.wikipedia.org/wiki/Multinomial_distribution' target='_blank'>multinomial</a>, <a href='Poisson distribution' target='_blank'>Poisson</a>, etc.</p>
 <p>Combining a particular link function with a distribution makes a particular application of the generalized linear model. The combination of link function and distribution makes a particular application a model suitable for predicting a particular type of dependent variable. Here is a brief recap of the generalized linear models that can be estimated with <span class="modulename">GAMLj</span>.</p>
-<table class='gmisc_table' style='border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;' >
+<table class="gmisc_table" style="border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
 <thead>
 <tr>
-<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>Model</th>
-<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>Link Function</th>
-<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>Distribution</th>
-<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>DV type</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+Model
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+Link Function
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+Distribution
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+DV type
+</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style='text-align: center;'>Logistic Model</td>
-<td style='text-align: center;'>Logit</td>
-<td style='text-align: center;'>Binomial</td>
-<td style='text-align: center;'>Dichotomous</td>
+<td style="text-align: center;">
+Logistic Model
+</td>
+<td style="text-align: center;">
+Logit
+</td>
+<td style="text-align: center;">
+Binomial
+</td>
+<td style="text-align: center;">
+Dichotomous
+</td>
 </tr>
 <tr>
-<td style='text-align: center;'>Probit Model</td>
-<td style='text-align: center;'>Inverse cumulative normal</td>
-<td style='text-align: center;'>Binomial</td>
-<td style='text-align: center;'>Dichotomous</td>
+<td style="text-align: center;">
+Probit Model
+</td>
+<td style="text-align: center;">
+Inverse cumulative normal
+</td>
+<td style="text-align: center;">
+Binomial
+</td>
+<td style="text-align: center;">
+Dichotomous
+</td>
 </tr>
 <tr>
-<td style='text-align: center;'>Multinomial Model</td>
-<td style='text-align: center;'>Logit</td>
-<td style='text-align: center;'>Multinomial</td>
-<td style='text-align: center;'>Categorical</td>
+<td style="text-align: center;">
+Multinomial Model
+</td>
+<td style="text-align: center;">
+Logit
+</td>
+<td style="text-align: center;">
+Multinomial
+</td>
+<td style="text-align: center;">
+Categorical
+</td>
 </tr>
 <tr>
-<td style='text-align: center;'>Ordinal Model</td>
-<td style='text-align: center;'>Cumulative Logit</td>
-<td style='text-align: center;'>Logit</td>
-<td style='text-align: center;'>Ordinal</td>
+<td style="text-align: center;">
+Ordinal Model
+</td>
+<td style="text-align: center;">
+Cumulative Logit
+</td>
+<td style="text-align: center;">
+Logit
+</td>
+<td style="text-align: center;">
+Ordinal
+</td>
 </tr>
 <tr>
-<td style='text-align: center;'>Poisson Model</td>
-<td style='text-align: center;'>Log</td>
-<td style='text-align: center;'>Poisson</td>
-<td style='text-align: center;'>Count (frequencies)</td>
+<td style="text-align: center;">
+Poisson Model
+</td>
+<td style="text-align: center;">
+Log
+</td>
+<td style="text-align: center;">
+Poisson
+</td>
+<td style="text-align: center;">
+Count (frequencies)
+</td>
 </tr>
 <tr>
-<td style='border-bottom: 2px solid grey; text-align: center;'>Negative Binomial Model</td>
-<td style='border-bottom: 2px solid grey; text-align: center;'>Log</td>
-<td style='border-bottom: 2px solid grey; text-align: center;'>Negative binomial</td>
-<td style='border-bottom: 2px solid grey; text-align: center;'>Count (frequencies)</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+Negative Binomial Model
+</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+Log
+</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+Negative binomial
+</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+Count (frequencies)
+</td>
 </tr>
 </tbody>
 </table>
@@ -451,7 +511,7 @@ In addition to predicting a transformation of the dependent variable, the genera
 <h3><span class="header-section-number">3.2.1</span> The rationale<a href="gzlm.html#the-rationale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A logistic model can be estimated when the dependent variable features two groups, or two levels. The necessity to change the GLM into a different linear model becomes clear by inspecting a scatterplot between a continuous independent variable and a dichotomous dependent variable.</p>
 <p><img src="bookletpics/3_logistic_plot1.png" width="603" /></p>
-<p>It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a cloud that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in <a href="glm.html#homosched">2.15.1</a>), because the line will cross a strip once (so residual is zero) and depart from it everafter (increasing the residual variance).</p>
+<p>It is clear that the dependent variable scores can only be 0 or 1, and that the scatterplot will always present two horizontal stripes points, forming a cloud that cannot be represented well by a straight line. A straight line that will feature predicted values surely above 1 and below 0, providing nonsensical predicted values. The residuals, furthermore, will depend on the predicted values (cf heteroschedasticity in <a href="glm.html#homosched">2.15.1</a>), because the line will cross a strip once (so residual is zero) and depart from it ever after (increasing the residual variance).</p>
 <p>The solution is to change the form of predicted values such that any values can be a sensible predicted value. To achieve this, we should first notice that when one has a dichotomous dependent variable, what one is predicting is the probability of being in the group scoring 1. Indeed, the predicted values are the expected (average) values of <span class="math inline">\(y\)</span> for each given <span class="math inline">\(x_i\)</span>. The average value of a dichotomous variable is
 <span class="math display">\[
 E(y)={n_1 \over N}
@@ -624,29 +684,53 @@ Please consult <span class="citation">Leeper (<a href="#ref-thomas">2021</a>)</s
 <h3><span class="header-section-number">3.5.1</span> Rationale<a href="gzlm.html#rationale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sooner or later a dependent variable with more than two groups will cross our path. A choice may be added to the experimental outcome, a third group may be necessary to exhaust a classification, a set of products needs to be tested. When the dependent variable features more than two groups, the logistic or probit model cannot be used. It must be generalized into the <em>Multinomial Model</em>. A multinomial model is logically equivalent to estimating a set of logistic regressions, one for each dummy variable (cf. <a href="glm.html#dummies">2.7.2</a> and <a href="a1dummies.html#a1dummies">B</a>) representing the categorical dependent variable.</p>
 <p>Consider a three group variable, with levels A, B and C. To represent it with a set of dummy variables we need 2 dummies.</p>
-<table class='gmisc_table' style='border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;' >
+<table class="gmisc_table" style="border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
 <thead>
 <tr>
-<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>Levels</th>
-<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>D1</th>
-<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>D2</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+Levels
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+D1
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+D2
+</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style='text-align: center;'>A</td>
-<td style='text-align: center;'>0</td>
-<td style='text-align: center;'>0</td>
+<td style="text-align: center;">
+A
+</td>
+<td style="text-align: center;">
+0
+</td>
+<td style="text-align: center;">
+0
+</td>
 </tr>
 <tr>
-<td style='text-align: center;'>B</td>
-<td style='text-align: center;'>1</td>
-<td style='text-align: center;'>0</td>
+<td style="text-align: center;">
+B
+</td>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+0
+</td>
 </tr>
 <tr>
-<td style='border-bottom: 2px solid grey; text-align: center;'>C</td>
-<td style='border-bottom: 2px solid grey; text-align: center;'>0</td>
-<td style='border-bottom: 2px solid grey; text-align: center;'>1</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+C
+</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+0
+</td>
+<td style="border-bottom: 2px solid grey; text-align: center;">
+1
+</td>
 </tr>
 </tbody>
 </table>
@@ -753,7 +837,7 @@ P(ycat=chat)/P(ycat=darts), P(ycat=dance)/P(ycat=darts)
 <div id="rationale-1" class="section level3 hasAnchor" number="3.6.1">
 <h3><span class="header-section-number">3.6.1</span> Rationale<a href="gzlm.html#rationale-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Assume we treat an ordinal variable as a multinomial variable,featuring <span class="math inline">\(K\)</span> levels. If we do that, we treat the levels as completely unordered, and thus the only information that we are using to estimate the generalized model is that the <span class="math inline">\(K\)</span> levels are different. As we have seen in the discussion of multinomial regression (<a href="gzlm.html#multinomial">3.5</a>), we would need K-1 logistic models to obtain our results. In doing that, however, we over-parameterize the model, because we do not need so many coefficients to describe the effect of an <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span> on the dependent variable. We can take advantage of the order of the levels to simplify the model (its results, not really its logic).</p>
-<p>Consider our ordinal <span class="math inline">\(y=\{1,2,3,4,5\}\)</span>, and say that each <span class="math inline">\(i\)</span> level (the choice made by the participant in the example) has probability <span class="math inline">\(\pi_i\)</span>. We can ask what is the probability of choosing <em>I will never come back </em>, or the probability of choosing either <em>I will never come back</em> or <em>I may come back sometime</em>, or the probability of choosing <em>I will come back once in while</em> or lover levels, etc. In other words, we can focus on the probability of choosing <em>up to a level</em>, or equivalently, a level or any other below it. This is called <em>cumulative probability</em>, and it can be written like this:</p>
+<p>Consider our ordinal <span class="math inline">\(y=\{1,2,3,4,5\}\)</span>, and say that each <span class="math inline">\(i\)</span> level (the choice made by the participant in the example) has probability <span class="math inline">\(\pi_i\)</span>. We can ask what is the probability of choosing <em>I will never come back </em>, or the probability of choosing either <em>I will never come back</em> or <em>I may come back sometime</em>, or the probability of choosing <em>I will come back once in while</em> or lower levels, etc. In other words, we can focus on the probability of choosing <em>up to a level</em>, or equivalently, a level or any other below it. This is called <em>cumulative probability</em>, and it can be written like this:</p>
 <p><span class="math display">\[
 p(y\le k)=\sum_{i=1}^k \pi_i
 \]</span>
@@ -794,12 +878,12 @@ logit_k=a_k-b x
 </div>
 <div id="parallellines" class="section level3 hasAnchor" number="3.6.4">
 <h3><span class="header-section-number">3.6.4</span> Parallel Lines test<a href="gzlm.html#parallellines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Before looking at the results of the model estimation, we should remember that the ordinal model estimated by <span class="modulename">GAMLj</span> is a <em>proportional odds model</em>, in which we assume that the coefficient associated with an independent variable is the same for all logit estimated along the dependent variable scale (cf <a href="gzlm.html#ordinal">3.6</a>). <span class="modulename">GAMLj</span> provides a test for this assumption, usually named <em>parallel lines test</em>. It is named like that because proportional odds functions, when estimated in the logit scale, are equivalent to parallel lines.</p>
+<p>Before looking at the results of the model estimation, we should remember that the ordinal model estimated by <span class="modulename">GAMLj</span> is a <em>proportional odds model</em>, in which we assume that the coefficient associated with an independent variable is the same for all logits estimated along the dependent variable scale (cf <a href="gzlm.html#ordinal">3.6</a>). <span class="modulename">GAMLj</span> provides a test for this assumption, named <em>parallel lines test</em>. It is named like that because proportional odds functions, when estimated in the logit scale, are equivalent to parallel lines.</p>
 <p>The logic of the test is simple: the model with all coefficients of an independent variable set equal is compared with a model in which the coefficients are allowed to vary from logit to logit. The two models are compared with a log-likelihood ratio test. If the test is not significant, we have indication that the assumption of proportional odd is met. When significant, we have indication that a breach to the assumption may be in place.</p>
 <p>The test can be found in the input <span class="option">Options</span> panel.</p>
 <p><img src="bookletpics/3_ordinal_input2.png" width="572" /></p>
 <p><img src="bookletpics/3_ordinal_output7.png" width="421" /></p>
-<p>The test is performed for each independent variable effect. We can see that no problem arises with <span class="math inline">\(x\)</span>, because the <span class="math inline">\(\chi^2\)</span> is clearly not significant. A doubt can be cast on <code>cat3</code>, that show that the assumption of proportional odds does not perfectly apply to its effects (<span class="math inline">\(\chi^2=16.48\)</span>, <span class="math inline">\(p=.011\)</span>). It should be said, however, that this tests are quite conservative, so one should be very lenient in their interpretation. One can argue, for instance, that the deviation from the assumption does not seem very strong, so the model can be saved and the results interpreted anyway.</p>
+<p>The test is performed for each independent variable effect. We can see that no problem arises with <span class="math inline">\(x\)</span>, because the <span class="math inline">\(\chi^2\)</span> is clearly not significant. A doubt can be cast on <code>cat3</code>, that shows that the assumption of proportional odds does not perfectly apply to its effects (<span class="math inline">\(\chi^2=16.48\)</span>, <span class="math inline">\(p=.011\)</span>). It should be said, however, that this tests are quite conservative, so one should be very lenient in their interpretation. One can argue, for instance, that the deviation from the assumption does not seem very strong, so the model can be saved and the results interpreted anyway.</p>
 </div>
 <div id="model-fit-2" class="section level3 hasAnchor" number="3.6.5">
 <h3><span class="header-section-number">3.6.5</span> Model Fit<a href="gzlm.html#model-fit-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>

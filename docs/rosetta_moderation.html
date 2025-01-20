@@ -10,7 +10,7 @@
     
     <title>Rosetta store: moderation</title>
 
-        <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -523,16 +523,11 @@ centering the moderator to that value.</p>
 ## -21.165  -6.939   0.269   6.300  21.299 
 ## 
 ## Coefficients:
-##                 Estimate Std. Error t value             Pr(&gt;|t|)
-## (Intercept)     30.53366    0.90253  33.831 &lt; 0.0000000000000002
-## xage            -0.03609    0.09025  -0.400             0.689641
-## zexer_high       0.97272    0.13653   7.124       0.000000000012
-## xage:zexer_high  0.04724    0.01359   3.476             0.000604
-##                    
-## (Intercept)     ***
-## xage               
-## zexer_high      ***
-## xage:zexer_high ***
+##                 Estimate Std. Error t value             Pr(&gt;|t|)    
+## (Intercept)     30.53366    0.90253  33.831 &lt; 0.0000000000000002 ***
+## xage            -0.03609    0.09025  -0.400             0.689641    
+## zexer_high       0.97272    0.13653   7.124       0.000000000012 ***
+## xage:zexer_high  0.04724    0.01359   3.476             0.000604 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -550,16 +545,11 @@ centering the moderator to that value.</p>
 ## -21.165  -6.939   0.269   6.300  21.299 
 ## 
 ## Coefficients:
-##                Estimate Std. Error t value             Pr(&gt;|t|)
-## (Intercept)    21.24379    0.93371  22.752 &lt; 0.0000000000000002
-## xage           -0.48729    0.09214  -5.289       0.000000276122
-## zexer_low       0.97272    0.13653   7.124       0.000000000012
-## xage:zexer_low  0.04724    0.01359   3.476             0.000604
-##                   
-## (Intercept)    ***
-## xage           ***
-## zexer_low      ***
-## xage:zexer_low ***
+##                Estimate Std. Error t value             Pr(&gt;|t|)    
+## (Intercept)    21.24379    0.93371  22.752 &lt; 0.0000000000000002 ***
+## xage           -0.48729    0.09214  -5.289       0.000000276122 ***
+## zexer_low       0.97272    0.13653   7.124       0.000000000012 ***
+## xage:zexer_low  0.04724    0.01359   3.476             0.000604 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -629,11 +619,11 @@ want. Percentile? let’s do it:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="do">### then we run emtrends where specs is the moderator, var= the IV, and &quot;at&quot; the levels ##</span></span>
 <span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>emmeans<span class="sc">::</span><span class="fu">emtrends</span>(model,<span class="at">specs =</span> <span class="st">&quot;zexer&quot;</span>,<span class="at">var =</span> <span class="st">&quot;xage&quot;</span>,<span class="at">at=</span><span class="fu">list</span>(<span class="at">zexer=</span>perc))</span></code></pre></div>
 <pre><code>##    zexer xage.trend     SE  df lower.CL upper.CL
-##  -10.673     -0.766 0.1598 241  -1.0807  -0.4512
+##  -10.673     -0.766 0.1600 241  -1.0807  -0.4512
 ##   -3.673     -0.435 0.0820 241  -0.5968  -0.2736
 ##    0.327     -0.246 0.0641 241  -0.3726  -0.1199
 ##    3.327     -0.105 0.0776 241  -0.2575   0.0484
-##   15.327      0.462 0.2167 241   0.0356   0.8893
+##   15.327      0.462 0.2170 241   0.0356   0.8893
 ## 
 ## Confidence level used: 0.95</code></pre>
 </div>
