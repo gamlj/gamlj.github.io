@@ -218,6 +218,8 @@
       <li><a href="#assumptions-checks"
       id="toc-assumptions-checks">Assumptions checks</a></li>
       <li><a href="#options" id="toc-options">Options</a></li>
+      <li><a href="#saving-and-exports"
+      id="toc-saving-and-exports">Saving and exports</a></li>
       <li><a href="#examples" id="toc-examples">Examples</a></li>
       <li><a href="#details" id="toc-details">Details</a></li>
       <li><a href="#comments" id="toc-comments">Comments?</a></li>
@@ -800,74 +802,84 @@ their rown number in the dataset
 </div>
 <div id="options" class="section level1">
 <h1>Options</h1>
-<p><img src="glm/options.png" width="560" /></p>
+<p><img src="glm/assumptions.png" width="557" /></p>
 <table class="options">
 <tr>
 <td class="optionname">
-<span class="option">CI Method</span>
+<span class="option">Homogeneity tests</span>
 </td>
 <td class="optionvalue">
-The method to estimate the confidence intervals. Standard method
-(<code>Wald</code>) or bootstrap methods. For bootstrap,
-<code>Quantile</code> computes the confidence intervals based on the
-bootstrap distribution, whereas <code>BCAi</code> computes the bootstrap
-bias corrected accelerated intervals.
+Provides <a
+href="https://biostats.w.uib.no/test-for-homogeneity-of-variances-levenes-test/"
+target="_blank">Levene’s test</a> for equal variances across groups
+defined by factors (homoschedasticity).
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Bootstrap rep.</span>
+<span class="option">Normality of residuals</span>
 </td>
 <td class="optionvalue">
-The number bootstrap repetitions.
+Provides <a
+href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test"
+target="_blank">Kolmogorov-Smirnov</a> and <a
+href="https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation"
+target="_blank">Shapiro-Wilk</a> tests for normality of residuals.
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">SE Method</span>
+<span class="option">Collinearity tests</span>
 </td>
 <td class="optionvalue">
-The method to estimate the standard errors. <code>Standard</code> for
-Wald’s method or <code>Robust</code> for robust method.
+Computes VIF and tollerance for the model term of the model
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Method</span>
+<span class="option">Q-Q plot of residuals</span>
 </td>
 <td class="optionvalue">
-<code>HC1</code> to <code>HC3</code> sets the
-heteroschedasticity-consistent robust standard error. See <a
-href="https://cran.r-project.org/web/packages/sandwich/sandwich.pdf">sandwich
-R package</a> for deatils.
+Outputs a Q-Q plot (observed residual quantiles on expected residual
+quantiles). More general info <a
+href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot"
+target="_blank">here</a>
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">On intercept</span>
+<span class="option">Residuals Histogram</span>
 </td>
 <td class="optionvalue">
-If selected provides ìnformation about the intercept (F test, effect
-size indexes)
+Outputs the histogram of the distribution of the residuals, with an
+overlaying ideal normal distribution with mean and variance equal to the
+residuals distribution parameters.
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">On Effect sizes</span>
+<span class="option">Residuals-Predicted plot</span>
 </td>
 <td class="optionvalue">
-If selected, provides ìnformation about the effect size indexes
+Produces a scatterplot with the residuals on the Y-axis and the
+predicted in the X-axis. It can be usufull to assess heteroschdasticity.
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Coefficients Covariances</span>
+<span class="option">Identify extremes</span>
 </td>
 <td class="optionvalue">
-<code>TRUE</code> or <code>FALSE</code> (default), shows coefficients
-covariances
+Indentify 1% and 99% extreme values in the plots by marking them with
+their rown number in the dataset
 </td>
 </tr>
+</table>
+</div>
+<div id="saving-and-exports" class="section level1">
+<h1>Saving and exports</h1>
+<p><img src="glm/save.png" width="565" /></p>
+<table class="options">
 <tr>
 <td class="optionname">
 <span class="option">Predicted</span>
@@ -889,11 +901,19 @@ Saves the residual values of the model. The response scale is used.
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Remove notes</span>
+<span class="option">Estimated Marginal Means</span>
 </td>
 <td class="optionvalue">
-Removes all notes and warnings from the Tables. Useful to produce
-pubblication quality tables.
+Export estimated marginal means in a new jamovi file, one dataset for
+each table
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Plot data</span>
+</td>
+<td class="optionvalue">
+Export data displayed in the plots, one dataset for each plot.
 </td>
 </tr>
 </table>

@@ -151,6 +151,15 @@ By flagging `r opt("Random effects")` one obtains the random effects estimated v
 
 The `r opt("CI method")` decides which method is used for computing confidence intervals. `r opt("Wald")` uses Wald statistics and it is less precise than the other methods, but it is significantly faster. `r opt("Profile")` is more precise but slower. `r opt("Boot")`, bootstrap method, is the slowest. Details of the implementation can be found in [lme4 manual](https://cran.r-project.org/web/packages/lme4/lme4.pdf)
 
+
+# Saving and exports
+
+`r pic("mixed/save.png")`
+
+`r panel_options('gamljgmixed','panel_save')`
+
+
+
 `r panel_options('gamljgmixed','panel_options',labels=TRUE)`
 
 `r include_examples("gmixed")`

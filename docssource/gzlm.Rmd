@@ -155,6 +155,13 @@ The options are:
 
 `r panel_options('gamljglm','panel_options')`
 
+# Saving and exports
+
+`r pic("glm/save.png")`
+
+`r panel_options('gamljglm','panel_save')`
+
+
 
 `r include_examples("gzlm")`
 

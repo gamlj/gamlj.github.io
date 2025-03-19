@@ -137,6 +137,12 @@ By flagging `Random effects` one obtains the random effects estimated values in 
 
 `r panel_options('gamljmixed','panel_options')`
 
+# Saving and exports
+
+`r pic("mixed/save.png")`
+
+`r panel_options('gamljmixed','panel_save')`
+
 
 
 `r include_examples("mixed")`

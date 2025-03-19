@@ -217,6 +217,8 @@
       id="toc-estimated-marginal-means">Estimated marginal
       means</a></li>
       <li><a href="#options" id="toc-options">Options</a></li>
+      <li><a href="#saving-and-exports"
+      id="toc-saving-and-exports">Saving and exports</a></li>
       <li><a href="#examples" id="toc-examples">Examples</a></li>
       <li><a href="#details" id="toc-details">Details</a></li>
       <li><a href="#comparison-with-other-software"
@@ -765,6 +767,56 @@ class="option">Boot</span>, bootstrap method, is the slowest. Details of
 the implementation can be found in <a
 href="https://cran.r-project.org/web/packages/lme4/lme4.pdf">lme4
 manual</a></p>
+</div>
+<div id="saving-and-exports" class="section level1">
+<h1>Saving and exports</h1>
+<p><img src="mixed/save.png" width="567" /></p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">Predicted</span>
+</td>
+<td class="optionvalue">
+Saves the predicted values of the model. Predicted values are always
+scaled in the dependent variable original scale, that in the majority of
+cases is the probability scale. For <code>Poisson</code> models and
+<code>Negative Binomial</code> the count scale is used.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Residuals</span>
+</td>
+<td class="optionvalue">
+Saves the residual values of the model. The response scale is used.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Estimated Marginal Means</span>
+</td>
+<td class="optionvalue">
+Export estimated marginal means in a new jamovi file, one dataset for
+each table
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Plot data</span>
+</td>
+<td class="optionvalue">
+Export data displayed in the plots, one dataset for each plot.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Random coefficients</span>
+</td>
+<td class="optionvalue">
+Export random coefficients, one dataset for each cluster
+</td>
+</tr>
+</table>
 <h4>
 <span class="option"> <b>CI Method </b></span>
 </h4>
@@ -788,30 +840,6 @@ parametric bootstrap, with Bootstrap rep repetitions.
 </td>
 <td class="optionvalue">
 The number bootstrap repetitions.
-</td>
-</tr>
-</table>
-<h4>
-<span class="option"> <b>Save </b></span>
-</h4>
-<table class="options">
-<tr>
-<td class="optionname">
-<span class="option">Predicted</span>
-</td>
-<td class="optionvalue">
-Saves the predicted values of the model. Predicted values are always
-scaled in the dependent variable original scale, that in the majority of
-cases is the probability scale. For <code>Poisson</code> models and
-<code>Negative Binomial</code> the count scale is used.
-</td>
-</tr>
-<tr>
-<td class="optionname">
-<span class="option">Residuals</span>
-</td>
-<td class="optionvalue">
-Saves the residual values of the model. The response scale is used.
 </td>
 </tr>
 </table>
