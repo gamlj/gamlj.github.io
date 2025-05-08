@@ -704,6 +704,61 @@ lines (if present) drawn in different styles.
 </tr>
 <tr>
 <td class="optionname">
+<span class="option">More options</span>
+</td>
+<td class="optionvalue">
+show more graphical options
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">X-axis min</span>
+</td>
+<td class="optionvalue">
+set the minimum value of the Y-axis
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">X-axis max</span>
+</td>
+<td class="optionvalue">
+set the max value of the Y-axis
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">X-axis ticks</span>
+</td>
+<td class="optionvalue">
+set the number of Y-axis ticks. Number of ticks is only approximate,
+because the algorithm may choose a slightly different number to ensure
+nice break labels. Select <code>Exact ticks</code> to obtain an exact
+number of ticks.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Exact ticks</span>
+</td>
+<td class="optionvalue">
+set X-axis ticks to exact values (min,..n.ticks..,max).
+<code>Y ticks</code> should be provided.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Extrapolate</span>
+</td>
+<td class="optionvalue">
+When <code>X-axis</code> min is smaller than the x min in the data or if
+<code>X-axis</code> max is larger than the x max in the data, whether to
+extrapolate (to project) the predicted values in the plot beyond the
+observed values.
+</td>
+</tr>
+<tr>
+<td class="optionname">
 <span class="option">Johnson-Neyman plot</span>
 </td>
 <td class="optionvalue">
@@ -814,6 +869,21 @@ regression)
 </tr>
 <tr>
 <td class="optionname">
+<span class="option">Remove notes</span>
+</td>
+<td class="optionvalue">
+Removes all notes and warnings from the Tables. Useful to produce
+pubblication quality tables.
+</td>
+</tr>
+</table>
+</div>
+<div id="saving-and-exports" class="section level1">
+<h1>Saving and exports</h1>
+<p><img src="glm/save.png" width="565" /></p>
+<table class="options">
+<tr>
+<td class="optionname">
 <span class="option">Predicted</span>
 </td>
 <td class="optionvalue">
@@ -833,18 +903,22 @@ Saves the residual values of the model. The response scale is used.
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Remove notes</span>
+<span class="option">Estimated Marginal Means</span>
 </td>
 <td class="optionvalue">
-Removes all notes and warnings from the Tables. Useful to produce
-pubblication quality tables.
+Export estimated marginal means in a new jamovi file, one dataset for
+each table
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Plot data</span>
+</td>
+<td class="optionvalue">
+Export data displayed in the plots, one dataset for each plot.
 </td>
 </tr>
 </table>
-</div>
-<div id="saving-and-exports" class="section level1">
-<h1>Saving and exports</h1>
-<p><img src="glm/save.png" width="565" /></p>
 </div>
 <div id="examples" class="section level1 adm adm-seealso">
 <h1>Examples</h1>

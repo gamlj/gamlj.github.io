@@ -660,6 +660,14 @@ equal to the range of the observed values.
 </tr>
 <tr>
 <td class="optionname">
+<span class="option">More options</span>
+</td>
+<td class="optionvalue">
+show more graphical options
+</td>
+</tr>
+<tr>
+<td class="optionname">
 <span class="option">X original scale</span>
 </td>
 <td class="optionvalue">
@@ -683,6 +691,89 @@ lines (if present) drawn in different styles.
 </td>
 <td class="optionvalue">
 Produces the Johnson-Neyman plot for simple slopes significance.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Y-axis min</span>
+</td>
+<td class="optionvalue">
+set the minimum value of the Y-axis
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Y-axis max</span>
+</td>
+<td class="optionvalue">
+set the max value of the Y-axis
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Y-axis ticks</span>
+</td>
+<td class="optionvalue">
+set the number of Y-axis ticks. Number of ticks is only approximate,
+because the algorithm may choose a slightly different number to ensure
+nice break labels. Select <code>Exact ticks</code> to obtain an exact
+number of ticks.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Exact ticks</span>
+</td>
+<td class="optionvalue">
+set Y-axis ticks to exact values (min,..n.ticks..,max).
+<code>Y ticks</code> should be provided.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">X-axis min</span>
+</td>
+<td class="optionvalue">
+set the minimum value of the Y-axis
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">X-axis max</span>
+</td>
+<td class="optionvalue">
+set the max value of the Y-axis
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">X-axis ticks</span>
+</td>
+<td class="optionvalue">
+set the number of Y-axis ticks. Number of ticks is only approximate,
+because the algorithm may choose a slightly different number to ensure
+nice break labels. Select <code>Exact ticks</code> to obtain an exact
+number of ticks.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Exact ticks</span>
+</td>
+<td class="optionvalue">
+set X-axis ticks to exact values (min,..n.ticks..,max).
+<code>Y ticks</code> should be provided.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Extrapolate</span>
+</td>
+<td class="optionvalue">
+When <code>X-axis</code> min is smaller than the x min in the data or if
+<code>X-axis</code> max is larger than the x max in the data, whether to
+extrapolate (to project) the predicted values in the plot beyond the
+observed values.
 </td>
 </tr>
 </table>
@@ -879,6 +970,44 @@ their rown number in the dataset
 <div id="saving-and-exports" class="section level1">
 <h1>Saving and exports</h1>
 <p><img src="glm/save.png" width="565" /></p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">Predicted</span>
+</td>
+<td class="optionvalue">
+Saves the predicted values of the model. Predicted values are always
+scaled in the dependent variable original scale, that in the majority of
+cases is the probability scale. For <code>Poisson</code> models and
+<code>Negative Binomial</code> the count scale is used.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Residuals</span>
+</td>
+<td class="optionvalue">
+Saves the residual values of the model. The response scale is used.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Estimated Marginal Means</span>
+</td>
+<td class="optionvalue">
+Export estimated marginal means in a new jamovi file, one dataset for
+each table
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Plot data</span>
+</td>
+<td class="optionvalue">
+Export data displayed in the plots, one dataset for each plot.
+</td>
+</tr>
+</table>
 </div>
 <div id="examples" class="section level1 adm adm-seealso">
 <h1>Examples</h1>
