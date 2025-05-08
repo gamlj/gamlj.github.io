@@ -212,7 +212,11 @@
       <li><a href="#covariates-scaling"
       id="toc-covariates-scaling">Covariates Scaling</a></li>
       <li><a href="#post-hocs" id="toc-post-hocs">Post-hocs</a></li>
-      <li><a href="#plots" id="toc-plots">Plots</a></li>
+      <li><a href="#plots" id="toc-plots">Plots</a>
+      <ul>
+      <li><a href="#one-plot" id="toc-one-plot">One plot</a></li>
+      <li><a href="#multiple" id="toc-multiple">Multiple</a></li>
+      </ul></li>
       <li><a href="#estimated-marginal-means"
       id="toc-estimated-marginal-means">Estimated marginal
       means</a></li>
@@ -611,11 +615,19 @@ href="https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html
 </div>
 <div id="plots" class="section level1">
 <h1>Plots</h1>
-<p><img src="gzlmmixed/plots.png" class="img-responsive" alt=""></p>
+<p><img src="gzlmmixed/plot.png" width="555" /></p>
 <p>The “plots” menu allows for plotting main effects and interactions
 for any combination of types of variables, making it easy to plot
 interaction means plots, simple slopes, and combinations of them. The
 best plot is chosen automatically.</p>
+<p>There are two tabs. <span class="option_mode"> One plot </span> is
+intended for defining a main plot with all options and details. <span
+class="option_mode"> Multiple </span> allows you to specify a series of
+plots to generate. The two tabs offer different interfaces, which users
+may prefer depending on their needs.</p>
+<div id="one-plot" class="section level2">
+<h2>One plot</h2>
+<p><img src="commons/pics/oneplot.png" /><!-- --></p>
 <p>By filling in <span class="option">Horizontal axis</span> one obtains
 the group means of the selected factor or the regression line for the
 selected covariate.</p>
@@ -645,6 +657,16 @@ one obtains a two-way graph (as previously defined) for the
 selected in the <span class="option">Covariates conditioning</span>
 options. Any number of plots can be obtained depending on the order of
 the interaction.</p>
+</div>
+<div id="multiple" class="section level2">
+<h2>Multiple</h2>
+<p><img src="commons/pics/multiplot.png" /><!-- --></p>
+<p>Under <span class="option"> <b>Plot terms </b></span>, each field
+(rectangle) represents a different plot. Dragging terms into a field
+generates a plot. The first variable in the field is placed on the
+horizontal axis; the second (if present) creates separate lines; the
+fourth and subsequent variables produce additional plots at each level
+or combinations of levels of the variables.</p>
 <p>By flagging <span class="option">Random effects</span> one obtains
 the random effects estimated values in the plot along with the fixed
 effects. In case of multiple cluster variables, the first cluster
@@ -797,6 +819,7 @@ observed values.
 </td>
 </tr>
 </table>
+</div>
 </div>
 <div id="estimated-marginal-means" class="section level1">
 <h1>Estimated marginal means</h1>

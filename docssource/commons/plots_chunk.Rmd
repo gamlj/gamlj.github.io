@@ -7,6 +7,12 @@ output: html_document
 
 The "plots" menu allows for plotting  main effects and interactions for any combination of types of variables, making it easy to plot interaction means plots, simple slopes, and combinations of them. The best plot is chosen automatically.
 
+There are two tabs. `r opt_mode("One plot")` is intended for defining a main plot with all options and details. `r opt_mode("Multiple")` allows you to specify a series of plots to generate. The two tabs offer different interfaces, which users may prefer depending on their needs.
+
+## One plot
+
+`r pic("commons/pics/oneplot.png")`
+
 By filling in `r opt("Horizontal axis")` one obtains the group means of the selected factor or the regression line for the selected covariate.
 
 By filling in `r opt("Horizontal axis")` and `r opt("Separated lines")` one obtains a different plot depending on the type of variables selected:
@@ -17,4 +23,9 @@ By filling in `r opt("Horizontal axis")` and `r opt("Separated lines")` one obta
   
 By filling in `r opt("Separate plots")` one can probe higher-order interactions. If the selected variable is a factor, one obtains a two-way graph (as previously defined) for each level of the "Separate plots" variable. If the selected variable is a covariate, one obtains a two-way graph (as previously defined) for the `Separate plots` variable centered to conditioning values selected in the `r opt("Covariates conditioning")` options. Any number of plots can be obtained depending on the order of the interaction.
 
+## Multiple
+
+`r pic("commons/pics/multiplot.png")`
+
+Under `r opt_label("Plot terms")`, each field (rectangle) represents a different plot. Dragging terms into a field generates a plot. The first variable in the field is placed on the horizontal axis; the second (if present) creates separate lines; the fourth and subsequent variables produce additional plots at each level or combinations of levels of the variables.
 

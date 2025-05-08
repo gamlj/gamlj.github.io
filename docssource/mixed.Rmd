@@ -113,13 +113,13 @@ The same transformations can be applied to the dependent variable by selecting a
 
 # Plots
 
-<img src="mixed/plots.png" class="img-responsive" alt="">
+`r pic("mixed/plot.png")`
 
 
 ```{r child5, child='commons/plots_chunk.Rmd'}
 ```
 
-By flagging `Random effects` one obtains the random effects estimated values in the plot along with the fixed effects. In case of multiple cluster variables, the first cluster variable in the `cluster` field of "variable role" panel is used (if it is included in the model). To change the cluster variable used to plot the random effects, change the order of the variables in the "variable role" definition.
+By flagging `r opt("Random effects")` one obtains the random effects estimated values in the plot along with the fixed effects. In case of multiple cluster variables, the first cluster variable in the `cluster` field of "variable role" panel is used (if it is included in the model). To change the cluster variable used to plot the random effects, change the order of the variables in the "variable role" definition.
 
 `r panel_options('gamljmixed','panel_plots')`
 

@@ -126,7 +126,8 @@ Continuous variables can be centered, standardized, cluster-based centered, clus
 
 # Plots
 
-<img src="gzlmmixed/plots.png" class="img-responsive" alt="">
+`r pic("gzlmmixed/plot.png")`
+
 
 
 ```{r child5, child='commons/plots_chunk.Rmd'}
