@@ -157,9 +157,9 @@ The remaining options are defined as follows:
 
 # Options
 
-`r pic("glm/assumptions.png")`
+`r pic("glm/options.png")`
 
-`r panel_options('gamljlm','panel_assumptions')`
+`r panel_options('gamljlm','panel_options')`
 
 # Saving and exports
 

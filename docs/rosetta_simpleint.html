@@ -56,8 +56,9 @@
     
         <style type="text/css">code{white-space: pre;}</style>
     <style type="text/css">
+      html { -webkit-text-size-adjust: 100%; }
       pre > code.sourceCode { white-space: pre; position: relative; }
-      pre > code.sourceCode > span { line-height: 1.25; }
+      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
       pre > code.sourceCode > span:empty { height: 1.2em; }
       .sourceCode { overflow: visible; }
       code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -470,44 +471,25 @@ factors</p>
 ##   -2.2   -1.0    0.1    1.0    2.2 
 ## 
 ## Coefficients:
-##                                            Estimate             Std. Error t value
-## (Intercept)                   8.0000000000000000000  0.2048787657176197596  39.047
-## Feedback.L                    0.3771236166328249539  0.3548604316149180926   1.063
-## Feedback.Q                    0.1632993161855454678  0.3548604316149178706   0.460
-## WordType.L                    0.6599663291074440163  0.3548604316149180926   1.860
-## WordType.Q                   -0.3265986323710902695  0.3548604316149180926  -0.920
-## Grade1                       -0.7999999999999999334  0.2897423291201177697  -2.761
-## Feedback.L:WordType.L        -0.0000000000000003743  0.6146362971528592789   0.000
-## Feedback.Q:WordType.L         0.1154700538379251767  0.6146362971528592789   0.188
-## Feedback.L:WordType.Q         0.4618802153517004294  0.6146362971528592789   0.751
-## Feedback.Q:WordType.Q        -0.2000000000000005107  0.6146362971528595009  -0.325
-## Feedback.L:Grade1             0.9899494936611658025  0.5018484351393873721   1.973
-## Feedback.Q:Grade1             0.4082482904638624621  0.5018484351393873721   0.813
-## WordType.L:Grade1             1.2727922061357856975  0.5018484351393873721   2.536
-## WordType.Q:Grade1            -0.7348469228349525650  0.5018484351393873721  -1.464
-## Feedback.L:WordType.L:Grade1 -1.4999999999999993339  0.8692269873603534203  -1.726
-## Feedback.Q:WordType.L:Grade1 -0.8660254037844390407  0.8692269873603534203  -0.996
-## Feedback.L:WordType.Q:Grade1  0.8660254037844409281  0.8692269873603534203   0.996
-## Feedback.Q:WordType.Q:Grade1  0.5000000000000019984  0.8692269873603534203   0.575
-##                                         Pr(&gt;|t|)    
-## (Intercept)                  &lt;0.0000000000000002 ***
-## Feedback.L                                0.2915    
-## Feedback.Q                                0.6468    
-## WordType.L                                0.0670 .  
-## WordType.Q                                0.3605    
-## Grade1                                    0.0073 ** 
-## Feedback.L:WordType.L                     1.0000    
-## Feedback.Q:WordType.L                     0.8515    
-## Feedback.L:WordType.Q                     0.4548    
-## Feedback.Q:WordType.Q                     0.7458    
-## Feedback.L:Grade1                         0.0524 .  
-## Feedback.Q:Grade1                         0.4186    
-## WordType.L:Grade1                         0.0134 *  
-## WordType.Q:Grade1                         0.1475    
-## Feedback.L:WordType.L:Grade1              0.0887 .  
-## Feedback.Q:WordType.L:Grade1              0.3224    
-## Feedback.L:WordType.Q:Grade1              0.3224    
-## Feedback.Q:WordType.Q:Grade1              0.5669    
+##                                            Estimate             Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)                   8.0000000000000000000  0.2048787657176197596  39.047 &lt;0.0000000000000002 ***
+## Feedback.L                    0.3771236166328249539  0.3548604316149180926   1.063              0.2915    
+## Feedback.Q                    0.1632993161855454678  0.3548604316149178706   0.460              0.6468    
+## WordType.L                    0.6599663291074440163  0.3548604316149180926   1.860              0.0670 .  
+## WordType.Q                   -0.3265986323710902695  0.3548604316149180926  -0.920              0.3605    
+## Grade1                       -0.7999999999999999334  0.2897423291201177697  -2.761              0.0073 ** 
+## Feedback.L:WordType.L        -0.0000000000000003743  0.6146362971528592789   0.000              1.0000    
+## Feedback.Q:WordType.L         0.1154700538379251767  0.6146362971528592789   0.188              0.8515    
+## Feedback.L:WordType.Q         0.4618802153517004294  0.6146362971528592789   0.751              0.4548    
+## Feedback.Q:WordType.Q        -0.2000000000000005107  0.6146362971528595009  -0.325              0.7458    
+## Feedback.L:Grade1             0.9899494936611658025  0.5018484351393873721   1.973              0.0524 .  
+## Feedback.Q:Grade1             0.4082482904638624621  0.5018484351393873721   0.813              0.4186    
+## WordType.L:Grade1             1.2727922061357856975  0.5018484351393873721   2.536              0.0134 *  
+## WordType.Q:Grade1            -0.7348469228349525650  0.5018484351393873721  -1.464              0.1475    
+## Feedback.L:WordType.L:Grade1 -1.4999999999999993339  0.8692269873603534203  -1.726              0.0887 .  
+## Feedback.Q:WordType.L:Grade1 -0.8660254037844390407  0.8692269873603534203  -0.996              0.3224    
+## Feedback.L:WordType.Q:Grade1  0.8660254037844409281  0.8692269873603534203   0.996              0.3224    
+## Feedback.Q:WordType.Q:Grade1  0.5000000000000019984  0.8692269873603534203   0.575              0.5669    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -538,18 +520,13 @@ levels of grade (cf. Dudek’s page, par 6.1). In R we can employ
 <code>testInteractions</code> command from
 <code>phia Package</code>.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>phia<span class="sc">::</span><span class="fu">testInteractions</span>(model,<span class="at">fixed=</span><span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>), <span class="at">across=</span><span class="fu">c</span>(<span class="st">&quot;Feedback&quot;</span>, <span class="st">&quot;WordType&quot;</span>),<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in rbind(deparse.level, ...): number of columns of result, 12, is not a multiple of
-## vector length 8 of arg 2</code></pre>
+<pre><code>## Warning in rbind(deparse.level, ...): number of columns of result, 12, is not a multiple of vector length 8 of arg 2</code></pre>
 <pre><code>## F Test: 
 ## P-value adjustment method: none
-##           Feedback1:WordType1 Feedback2:WordType1 Feedback1:WordType2 Feedback2:WordType2
-## 12th                      0.0             0.11547             0.46188                -0.2
-##  5th                     -1.5            -0.75056             1.32791                 0.3
-## Residuals                                                                                
-##              SE1     SE2     SE3     SE4 Df Sum of Sq      F  Pr(&gt;F)  
-## 12th       0.615   0.615 0.61464 0.61464  4    1.3333 0.1765 0.94983  
-##  5th       0.615   0.615 0.61464 0.61464  4   23.3333 3.0882 0.02098 *
-## Residuals 72.000 136.000                                              
+##           Feedback1:WordType1 Feedback2:WordType1 Feedback1:WordType2 Feedback2:WordType2    SE1     SE2     SE3     SE4 Df Sum of Sq      F  Pr(&gt;F)  
+## 12th                      0.0             0.11547             0.46188                -0.2  0.615   0.615 0.61464 0.61464  4    1.3333 0.1765 0.94983  
+##  5th                     -1.5            -0.75056             1.32791                 0.3  0.615   0.615 0.61464 0.61464  4   23.3333 3.0882 0.02098 *
+## Residuals                                                                                 72.000 136.000                                              
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>In <span class="modulename">GAMLj</span> we ask for the
@@ -566,8 +543,7 @@ contrasts that inform the simple interactions.</p>
 _WordType*Grade_ at different levels of <em>Feedback</em>.</p>
 <p>In R we have</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>phia<span class="sc">::</span><span class="fu">testInteractions</span>(model,<span class="at">fixed=</span><span class="fu">c</span>(<span class="st">&quot;Feedback&quot;</span>), <span class="at">across=</span><span class="fu">c</span>(<span class="st">&quot;Grade&quot;</span>, <span class="st">&quot;WordType&quot;</span>),<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in rbind(deparse.level, ...): number of columns of result, 8, is not a multiple of
-## vector length 6 of arg 2</code></pre>
+<pre><code>## Warning in rbind(deparse.level, ...): number of columns of result, 8, is not a multiple of vector length 6 of arg 2</code></pre>
 <pre><code>## F Test: 
 ## P-value adjustment method: none
 ##           WordType1 WordType2    SE1     SE2 Df Sum of Sq      F  Pr(&gt;F)  
@@ -595,8 +571,7 @@ instance, the simple effect of <em>Feedback</em> at different levels of
 <em>WordType</em>.</p>
 <p>In R:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>phia<span class="sc">::</span><span class="fu">testInteractions</span>(model,<span class="at">fixed=</span><span class="fu">c</span>(<span class="st">&quot;Feedback&quot;</span>), <span class="at">across=</span><span class="fu">c</span>(<span class="st">&quot;WordType&quot;</span>),<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in rbind(deparse.level, ...): number of columns of result, 8, is not a multiple of
-## vector length 6 of arg 2</code></pre>
+<pre><code>## Warning in rbind(deparse.level, ...): number of columns of result, 8, is not a multiple of vector length 6 of arg 2</code></pre>
 <pre><code>## F Test: 
 ## P-value adjustment method: none
 ##           WordType1 WordType2    SE1     SE2 Df Sum of Sq       F     Pr(&gt;F)    
@@ -617,8 +592,7 @@ moderators. For instance, one can estimate the effect of
 <em>Grade</em> levels.</p>
 <p>In R:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>phia<span class="sc">::</span><span class="fu">testInteractions</span>(model,<span class="at">fixed=</span><span class="fu">c</span>(<span class="st">&quot;Feedback&quot;</span>,<span class="st">&quot;Grade&quot;</span>), <span class="at">across=</span><span class="st">&quot;WordType&quot;</span>,<span class="at">adjust=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in rbind(deparse.level, ...): number of columns of result, 8, is not a multiple of
-## vector length 6 of arg 2</code></pre>
+<pre><code>## Warning in rbind(deparse.level, ...): number of columns of result, 8, is not a multiple of vector length 6 of arg 2</code></pre>
 <pre><code>## F Test: 
 ## P-value adjustment method: none
 ##                 WordType1 WordType2    SE1     SE2 Df Sum of Sq       F      Pr(&gt;F)    

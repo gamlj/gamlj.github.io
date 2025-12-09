@@ -18,7 +18,7 @@ custom contrast."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.6.6</span>
       </span>
     </div>
 
@@ -97,12 +97,13 @@ contrasts for the same factor can be tested. In this case, each contrast is test
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gmod</span><span class="op">&lt;-</span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  formula <span class="op">=</span> <span class="va">Score</span> <span class="op">~</span><span class="va">Group</span>,</span></span>
-<span class="r-in"><span>  data <span class="op">=</span> <span class="va">fivegroups</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">gmod</span> <span class="op">&lt;-</span> <span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    formula <span class="op">=</span> <span class="va">Score</span> <span class="op">~</span> <span class="va">Group</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">fivegroups</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="em_means.html">em_means</a></span><span class="op">(</span><span class="va">gmod</span>,formula <span class="op">=</span><span class="op">~</span><span class="va">Group</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="em_means.html">em_means</a></span><span class="op">(</span><span class="va">gmod</span>, formula <span class="op">=</span> <span class="op">~</span><span class="va">Group</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ESTIMATED MARGINAL MEANS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

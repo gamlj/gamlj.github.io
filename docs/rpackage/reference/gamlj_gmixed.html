@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.6.6</span>
       </span>
     </div>
 
@@ -94,6 +94,7 @@
 <span>  plot_x <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  plot_z <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  plot_by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  plot_terms <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  plot_raw <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  plot_yscale <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  plot_xoriginal <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -267,18 +268,24 @@ contrast coefficients tables</p></dd>
 
 
 <dt id="arg-plot-x">plot_x<a class="anchor" aria-label="anchor" href="#arg-plot-x"></a></dt>
-<dd><p>a string naming the variable placed on the horizontal axis of
+<dd><p>a variable name for the variable placed on the horizontal axis of
 the plot</p></dd>
 
 
 <dt id="arg-plot-z">plot_z<a class="anchor" aria-label="anchor" href="#arg-plot-z"></a></dt>
-<dd><p>a string naming the variable represented as separate lines in
+<dd><p>a variable name the variable represented as separate lines in
 the plot</p></dd>
 
 
 <dt id="arg-plot-by">plot_by<a class="anchor" aria-label="anchor" href="#arg-plot-by"></a></dt>
 <dd><p>a list of string naming the variables defining the levels
 for multiple plots</p></dd>
+
+
+<dt id="arg-plot-terms">plot_terms<a class="anchor" aria-label="anchor" href="#arg-plot-terms"></a></dt>
+<dd><p>a RHS formulas. It is an alternative way to
+produce plots. <code>plot_terms=~x+z:x</code> produces two plots, one with
+`x` as x-axis and one with z as x-axis and x defining different lines.</p></dd>
 
 
 <dt id="arg-plot-raw">plot_raw<a class="anchor" aria-label="anchor" href="#arg-plot-raw"></a></dt>
@@ -407,11 +414,12 @@ normality of residuals</p></dd>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">clustermanymodels</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">clustermanymodels</span><span class="op">$</span><span class="va">ybin</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">clustermanymodels</span><span class="op">$</span><span class="va">ybin</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu">gamlj_gmixed</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">ybin</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">x</span><span class="op">+</span><span class="op">(</span> <span class="fl">1</span><span class="op">|</span><span class="va">cluster</span> <span class="op">)</span>,</span></span>
-<span class="r-in"><span>                     data <span class="op">=</span> <span class="va">clustermanymodels</span>,</span></span>
-<span class="r-in"><span>                     model_type<span class="op">=</span><span class="st">"logistic"</span></span></span>
-<span class="r-in"><span>                     <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">clustermanymodels</span><span class="op">$</span><span class="va">ybin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">clustermanymodels</span><span class="op">$</span><span class="va">ybin</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu">gamlj_gmixed</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    formula <span class="op">=</span> <span class="va">ybin</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">x</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">cluster</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">clustermanymodels</span>,</span></span>
+<span class="r-in"><span>    model_type <span class="op">=</span> <span class="st">"logistic"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  GENERALIZED MIXED MODEL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -481,7 +489,7 @@ normality of residuals</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ──────────────────────────────────────────────────────────────────── </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Note. Number of Obs: 1800 , Number of groups: cluster 30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span>       </span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>

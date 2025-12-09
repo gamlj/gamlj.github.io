@@ -20,7 +20,7 @@ and print them in R style."><!-- mathjax --><script src="https://cdnjs.cloudflar
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.6.6</span>
       </span>
     </div>
 
@@ -129,10 +129,11 @@ and print them in R style.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gmod</span><span class="op">&lt;-</span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  formula <span class="op">=</span> <span class="va">Score</span> <span class="op">~</span><span class="va">Group</span>,</span></span>
-<span class="r-in"><span>  data <span class="op">=</span> <span class="va">fivegroups</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">gmod</span> <span class="op">&lt;-</span> <span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    formula <span class="op">=</span> <span class="va">Score</span> <span class="op">~</span> <span class="va">Group</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">fivegroups</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">gmod</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model Info </span>
@@ -156,11 +157,16 @@ and print them in R style.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ANOVA Omnibus tests </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      source        ss  df        f            p    etaSqP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     Model  7.483173   3 9.557137 7.399073e-06 0.1472811</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     Group  7.483173   3 9.557137 7.399073e-06 0.1472811</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Residuals 43.325624 166       NA           NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     Total 50.808798 169       NA           NA        NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      source        ss  df                f                    p</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     Model  7.483173   3 9.55713704372494 7.39907334064265e-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     Group  7.483173   3 9.55713704372494  7.3990733406427e-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Residuals 43.325624 166                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     Total 50.808798 169                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              etaSqP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.147281056651175</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.147281056651175</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Parameter Estimates (Coefficients) </span>
@@ -178,10 +184,11 @@ and print them in R style.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">gmod</span><span class="op">&lt;-</span><span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  formula <span class="op">=</span> <span class="va">Score</span> <span class="op">~</span><span class="va">Group</span>,</span></span>
-<span class="r-in"><span>  data <span class="op">=</span> <span class="va">fivegroups</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">fivegroups</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">gmod</span> <span class="op">&lt;-</span> <span class="fu">GAMLj3</span><span class="fu">::</span><span class="fu"><a href="gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    formula <span class="op">=</span> <span class="va">Score</span> <span class="op">~</span> <span class="va">Group</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">fivegroups</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">gmod</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model Info </span>
@@ -205,11 +212,16 @@ and print them in R style.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ANOVA Omnibus tests </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      source        ss  df        f            p    etaSqP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     Model  7.483173   3 9.557137 7.399073e-06 0.1472811</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     Group  7.483173   3 9.557137 7.399073e-06 0.1472811</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Residuals 43.325624 166       NA           NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     Total 50.808798 169       NA           NA        NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      source        ss  df                f                    p</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     Model  7.483173   3 9.55713704372494 7.39907334064265e-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     Group  7.483173   3 9.55713704372494  7.3990733406427e-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Residuals 43.325624 166                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     Total 50.808798 169                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              etaSqP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.147281056651175</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.147281056651175</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Parameter Estimates (Coefficients) </span>

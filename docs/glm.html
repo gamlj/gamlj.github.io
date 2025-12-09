@@ -774,8 +774,8 @@ set the max value of the Y-axis
 <td class="optionvalue">
 set the number of Y-axis ticks. Number of ticks is only approximate,
 because the algorithm may choose a slightly different number to ensure
-nice break labels. Select <code>Exact ticks</code> to obtain an exact
-number of ticks.
+nice break labels. Use <code>plot_y_ticks=TRUE</code> to obtain an exact
+number of ticks. Leave empty for automatic X-axis scale.
 </td>
 </tr>
 <tr>
@@ -784,7 +784,7 @@ number of ticks.
 </td>
 <td class="optionvalue">
 set X-axis ticks to exact values (min,..n.ticks..,max).
-<code>Y ticks</code> should be provided.
+<code>X ticks</code> should be provided
 </td>
 </tr>
 <tr>
@@ -916,76 +916,81 @@ their rown number in the dataset
 </div>
 <div id="options" class="section level1">
 <h1>Options</h1>
-<p><img src="glm/assumptions.png" width="557" /></p>
+<p><img src="glm/options.png" width="557" /></p>
 <table class="options">
 <tr>
 <td class="optionname">
-<span class="option">Homogeneity tests</span>
+<span class="option">CI Method</span>
 </td>
 <td class="optionvalue">
-Provides <a
-href="https://biostats.w.uib.no/test-for-homogeneity-of-variances-levenes-test/"
-target="_blank">Levene’s test</a> for equal variances across groups
-defined by factors (homoschedasticity).
+The method to estimate the confidence intervals. Standard method
+(<code>Wald</code>) or bootstrap methods. For bootstrap,
+<code>Quantile</code> computes the confidence intervals based on the
+bootstrap distribution, whereas <code>BCAi</code> computes the bootstrap
+bias corrected accelerated intervals.
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Normality of residuals</span>
+<span class="option">Bootstrap rep.</span>
 </td>
 <td class="optionvalue">
-Provides <a
-href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test"
-target="_blank">Kolmogorov-Smirnov</a> and <a
-href="https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation"
-target="_blank">Shapiro-Wilk</a> tests for normality of residuals.
+The number bootstrap repetitions.
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Collinearity tests</span>
+<span class="option">SE Method</span>
 </td>
 <td class="optionvalue">
-Computes VIF and tollerance for the model term of the model
+The method to estimate the standard errors. <code>Standard</code> for
+Wald’s method or <code>Robust</code> for robust method.
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Q-Q plot of residuals</span>
+<span class="option">Method</span>
 </td>
 <td class="optionvalue">
-Outputs a Q-Q plot (observed residual quantiles on expected residual
-quantiles). More general info <a
-href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot"
-target="_blank">here</a>
+<code>HC1</code> to <code>HC3</code> sets the
+heteroschedasticity-consistent robust standard error. See <a
+href="https://cran.r-project.org/web/packages/sandwich/sandwich.pdf">sandwich
+R package</a> for deatils.
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Residuals Histogram</span>
+<span class="option">On intercept</span>
 </td>
 <td class="optionvalue">
-Outputs the histogram of the distribution of the residuals, with an
-overlaying ideal normal distribution with mean and variance equal to the
-residuals distribution parameters.
+If selected provides ìnformation about the intercept (F test, effect
+size indexes)
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Residuals-Predicted plot</span>
+<span class="option">On Effect sizes</span>
 </td>
 <td class="optionvalue">
-Produces a scatterplot with the residuals on the Y-axis and the
-predicted in the X-axis. It can be usufull to assess heteroschdasticity.
+If selected, provides ìnformation about the effect size indexes
 </td>
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">Identify extremes</span>
+<span class="option">Coefficients Covariances</span>
 </td>
 <td class="optionvalue">
-Indentify 1% and 99% extreme values in the plots by marking them with
-their rown number in the dataset
+<code>TRUE</code> or <code>FALSE</code> (default), shows coefficients
+covariances
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Remove notes</span>
+</td>
+<td class="optionvalue">
+Removes all notes and warnings from the Tables. Useful to produce
+pubblication quality tables.
 </td>
 </tr>
 </table>
@@ -1080,7 +1085,8 @@ at github</a> or <a href="mailto:mcfanda@gmail.com
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="unnumbered">References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 <div id="ref-hedges2014statistical" class="csl-entry">
 Hedges, Larry V, and Ingram Olkin. 2014. <em>Statistical Methods for
 Meta-Analysis</em>. Academic press.

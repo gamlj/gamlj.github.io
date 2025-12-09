@@ -448,11 +448,20 @@ independent between blocks.
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">LRT for Random Effects</span>
+<span class="option">LRT for Random effects</span>
 </td>
 <td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), LRT for the random
 effects
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Random coefficients</span>
+</td>
+<td class="optionvalue">
+<code>TRUE</code> or <code>FALSE</code> (default), output a table with
+the estimated random coefficients
 </td>
 </tr>
 </table>
@@ -830,8 +839,8 @@ set the max value of the Y-axis
 <td class="optionvalue">
 set the number of Y-axis ticks. Number of ticks is only approximate,
 because the algorithm may choose a slightly different number to ensure
-nice break labels. Select <code>Exact ticks</code> to obtain an exact
-number of ticks.
+nice break labels. Use <code>plot_y_ticks=TRUE</code> to obtain an exact
+number of ticks. Leave empty for automatic X-axis scale.
 </td>
 </tr>
 <tr>
@@ -840,7 +849,7 @@ number of ticks.
 </td>
 <td class="optionvalue">
 set X-axis ticks to exact values (min,..n.ticks..,max).
-<code>Y ticks</code> should be provided.
+<code>X ticks</code> should be provided
 </td>
 </tr>
 <tr>
