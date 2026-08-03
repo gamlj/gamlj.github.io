@@ -10,7 +10,7 @@
     
     <title>Different imput styles fo logistic analysis</title>
 
-        <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -262,14 +262,14 @@ target="_blank">wlogistic_verylong.omv</a> which has 5500 rows for 5500
 cases.</li>
 </ul>
 <p>The head of the file looks like this:</p>
-<p><img src="examples/gzlm5/data.1.png" width="362" /></p>
+<p><img src="examples/gzlm5/data.1.png" alt="" width="362" /></p>
 <p>We have two variables, <span class="math inline">\(X\)</span> and
 <span class="math inline">\(Y\)</span>, that contain the individual
 values for the independent and dependent variable, respectively. There
 are 5500 cases in the 2693 of which show <span
 class="math inline">\(Y=1\)</span>, implying that 49% of the sample has
 a <span class="math inline">\(Y=1\)</span>.</p>
-<p><img src="examples/gzlm5/desc.1.png" width="458" /></p>
+<p><img src="examples/gzlm5/desc.1.png" alt="" width="458" /></p>
 <ul>
 <li><strong>Weighted long format</strong>: Each row represents a
 combination of values for the dependent and independent variables, and
@@ -284,7 +284,7 @@ class="math inline">\(Counts\)</span> column that indicates the
 <strong>weight</strong> of the row—essentially the number of cases in
 which this combination occurs.</li>
 </ul>
-<p><img src="examples/gzlm5/data.2.png" width="377" /></p>
+<p><img src="examples/gzlm5/data.2.png" alt="" width="377" /></p>
 <p>For instance, the first row shows that <span
 class="math inline">\(Y=1\)</span> and <span
 class="math inline">\(X=5\)</span> occurred 100 times in the sample,
@@ -308,7 +308,7 @@ class="math inline">\(Counts.1\)</span> indicating the number of
 successes, and <span class="math inline">\(Counts.0\)</span> indicating
 the number of failures.</li>
 </ul>
-<p><img src="examples/gzlm5/data.3.png" width="648" /></p>
+<p><img src="examples/gzlm5/data.3.png" alt="" width="648" /></p>
 <p>For example, the first row shows that <span
 class="math inline">\(Y=1\)</span> and <span
 class="math inline">\(X=5\)</span> occurred 100 times in the sample,
@@ -336,21 +336,21 @@ href="https://github.com/gamlj/gamlj.github.io/blob/master/data/wlogistic_verylo
 target="_blank">wlogistic_verylong.omv</a></p>
 <p>For long format data, we simply estimate the model setting the
 dependent and the independent variable.</p>
-<p><img src="examples/gzlm5/input.1.png" width="580" /></p>
+<p><img src="examples/gzlm5/input.1.png" alt="" width="580" /></p>
 <p>Notice at the bottom of the UI the <span class="option">Input
 Method</span> option. By default is <code>Responses</code>, indating
 that the dependent variable represent each case response to the
 dichotomous variable.</p>
 <p>Let’s take a note of some results, so we can compare them with the
 results of other input methods. Here we have</p>
-<p><img src="examples/gzlm5/output.1.1.png" width="420" />
-<img src="examples/gzlm5/output.1.2.png" width="681" /></p>
+<p><img src="examples/gzlm5/output.1.1.png" alt="" width="420" />
+<img src="examples/gzlm5/output.1.2.png" alt="" width="681" /></p>
 <p>an <span class="math inline">\(R^2=.114\)</span>, <span
 class="math inline">\(\chi^=871\)</span>, and <span
 class="math inline">\(exp(B)=1.145\)</span>.</p>
 <p>finally, we can appreciate that the sample size is indeed 5500
 cases</p>
-<p><img src="examples/gzlm5/output.1.3.png" width="407" /></p>
+<p><img src="examples/gzlm5/output.1.3.png" alt="" width="407" /></p>
 </div>
 <div id="weighted-long-format" class="section level1">
 <h1>Weighted Long format</h1>
@@ -363,16 +363,16 @@ responses. To run the model, we need to utilize the <span
 class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
 weighting tool. First, we set up the dataset to be weighted by the
 variable <span class="math inline">\(Counts\)</span>.</p>
-<p><img src="examples/gzlm5/input.2.png" width="595" /></p>
+<p><img src="examples/gzlm5/input.2.png" alt="" width="595" /></p>
 <p>Next, we run the model exactly as we did before:</p>
-<p><img src="examples/gzlm5/input.3.png" width="579" /></p>
+<p><img src="examples/gzlm5/input.3.png" alt="" width="579" /></p>
 <p>And we obtain the same results:</p>
-<p><img src="examples/gzlm5/output.3.1.png" width="372" /><br />
-<img src="examples/gzlm5/output.3.2.png" width="643" /></p>
+<p><img src="examples/gzlm5/output.3.1.png" alt="" width="372" /><br />
+<img src="examples/gzlm5/output.3.2.png" alt="" width="643" /></p>
 <p>Note that the sample size is now 22 (the number of rows), but the
 software recognizes that the analysis is equivalent to one run on 5,500
 cases.</p>
-<p><img src="examples/gzlm5/output.3.3.png" width="402" /></p>
+<p><img src="examples/gzlm5/output.3.3.png" alt="" width="402" /></p>
 </div>
 <div id="success-failure-format" class="section level1">
 <h1>success/ failure format</h1>
@@ -388,10 +388,10 @@ select the <code>Success/Failure</code> option in <span
 class="option">Input Method</span>. This will provide two input fields
 for the dependent variable, where you assign the columns that represent
 the counts of successes and failures.</p>
-<p><img src="examples/gzlm5/input.4.png" width="572" /></p>
+<p><img src="examples/gzlm5/input.4.png" alt="" width="572" /></p>
 <p>Once that’s done, you’ll get the same reliable results:</p>
-<p><img src="examples/gzlm5/output.4.1.png" width="367" /><br />
-<img src="examples/gzlm5/output.4.2.png" width="639" /></p>
+<p><img src="examples/gzlm5/output.4.1.png" alt="" width="367" /><br />
+<img src="examples/gzlm5/output.4.2.png" alt="" width="639" /></p>
 <p>What’s worth noting is the footnote in the <code>Model Fit</code>
 table, which reminds you that the <span
 class="math inline">\(R^2\)</span> is calculated as if the full long
@@ -409,10 +409,10 @@ href="https://github.com/gamlj/gamlj.github.io/blob/master/data/wlogistic_wide.o
 target="_blank">wlogistic_wide.omv</a>. As compare with the example
 above, it entails simply to select <code>P(success)/Totals</code> in the
 <span class="option">Input Method</span> option.</p>
-<p><img src="examples/gzlm5/input.5.png" width="572" /></p>
+<p><img src="examples/gzlm5/input.5.png" alt="" width="572" /></p>
 <p>Results are as expected.</p>
-<p><img src="examples/gzlm5/output.4.1.png" width="367" /><br />
-<img src="examples/gzlm5/output.4.2.png" width="639" /></p>
+<p><img src="examples/gzlm5/output.4.1.png" alt="" width="367" /><br />
+<img src="examples/gzlm5/output.4.2.png" alt="" width="639" /></p>
 </div>
 <div id="related-examples" class="section level1 adm adm-seealso">
 <h1>Related Examples</h1>

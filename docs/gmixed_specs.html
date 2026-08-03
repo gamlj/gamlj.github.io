@@ -9,7 +9,7 @@
     
     <title>Generalized mixed model module technical details</title>
 
-        <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -270,8 +270,8 @@ components <span class="citation">(<a href="#ref-nagawa2">Johnson
 <div id="deviance" class="section level2">
 <h2>Deviance</h2>
 <p>The implementation follows exactly the indication of R package
-<code>lme4</code> <span class="citation">(<a
-href="#ref-lme4cran">Douglas Bates 2020</a>)</span>. In generalized
+<code>lme4</code> <span class="citation">(<a href="#ref-lme4cran"><span
+class="nocase">Douglas Bates</span> 2020</a>)</span>. In generalized
 mixed models, deviance can be defined in different ways. One dichotomy
 is the reference to a saturated model. The <em>absolute deviance</em> of
 the model is simply the model deviance, the <em>relative deviance</em>
@@ -300,8 +300,9 @@ other’s. It is implemented by simply estracting it from the R
 <code>glmer</code> estimated model:
 <code>stats::extractAIC(model)</code>. Details in <span
 class="citation">(<a href="#ref-lme4">Bates et al. 2015</a>; <a
-href="#ref-lme4cran">Douglas Bates 2020</a>)</span>. The AIC is computed
-based on the uncoditional absolute deviance.</p>
+href="#ref-lme4cran"><span class="nocase">Douglas Bates</span>
+2020</a>)</span>. The AIC is computed based on the uncoditional absolute
+deviance.</p>
 </div>
 <div id="bic" class="section level2">
 <h2>BIC</h2>
@@ -310,8 +311,9 @@ A model has a better fit than another when its BIC is smaller. It is
 implemented by simply estracting it from the R <code>glm</code>
 estimated model: <code>stats::BIC(model)</code>. Details in <span
 class="citation">(<a href="#ref-lme4">Bates et al. 2015</a>; <a
-href="#ref-lme4cran">Douglas Bates 2020</a>)</span>. The BIC is computed
-based on the uncoditional absolute deviance.</p>
+href="#ref-lme4cran"><span class="nocase">Douglas Bates</span>
+2020</a>)</span>. The BIC is computed based on the uncoditional absolute
+deviance.</p>
 </div>
 <div id="residual-df" class="section level2">
 <h2>Residual DF</h2>
@@ -377,8 +379,7 @@ at github</a> or <a href="mailto:mcfanda@gmail.com
 </div>
 <div id="reference" class="section level1 unnumbered">
 <h1 class="unnumbered">Reference</h1>
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-lme4" class="csl-entry">
 Bates, Douglas, Martin Mächler, Ben Bolker, and Steve Walker. 2015.
 <span>“Fitting Linear Mixed-Effects Models Using <span
@@ -387,7 +388,8 @@ Software</em> 67 (1): 1–48. <a
 href="https://doi.org/10.18637/jss.v067.i01">https://doi.org/10.18637/jss.v067.i01</a>.
 </div>
 <div id="ref-lme4cran" class="csl-entry">
-Douglas Bates, et al. 2020. <em>Lme4 r Package</em>. <a
+<span class="nocase">Douglas Bates, et al</span>. 2020. <em>Lme4 r
+Package</em>. <a
 href="https://cran.r-project.org/package=lme4">https://cran.r-project.org/package=lme4</a>.
 </div>
 <div id="ref-nagawa2" class="csl-entry">

@@ -10,7 +10,7 @@
     
     <title>Mixed Models: Autocorrelation in logitudinal data</title>
 
-        <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -357,28 +357,28 @@ href="https://github.com/seananderson/glmm-course">Sean Anderson’s
 alysis</a>, we log-transformed the dependent variable
 <code>depth_mean_day</code>, producing `log.depth_mean_day, so our
 results can be replicated in R following Anderson’s examples.</p>
-<p><img src="examples/mixed5/data_input1.png" width="915" /></p>
+<p><img src="examples/mixed5/data_input1.png" alt="" width="915" /></p>
 <div id="model-set-up" class="section level2">
 <h2>Model set up</h2>
 <p>The <span class="modulename">GAMLj</span> Mixed model interface is
 set up with the variables appropriated role:</p>
-<p><img src="examples/mixed5/mod1_input1.png" width="576" /></p>
+<p><img src="examples/mixed5/mod1_input1.png" alt="" width="576" /></p>
 <p>Then the random coefficients:</p>
-<p><img src="examples/mixed5/mod1_input2.png" width="557" /></p>
+<p><img src="examples/mixed5/mod1_input2.png" alt="" width="557" /></p>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
 <p>As a reference for later on, let’s review the results: The first
 table gives us a few information about the model:</p>
-<p><img src="examples/mixed5/mod1_output1.png" width="656" /></p>
+<p><img src="examples/mixed5/mod1_output1.png" alt="" width="656" /></p>
 <p>Then we have the overall model <span
 class="math inline">\(R^2\)</span>’s and tests and the independent
 variable main effect test:</p>
-<p><img src="examples/mixed5/mod1_output2.png" width="473" /></p>
+<p><img src="examples/mixed5/mod1_output2.png" alt="" width="473" /></p>
 <p>Then we have the regression coefficients:</p>
-<p><img src="examples/mixed5/mod1_output3.png" width="669" /></p>
+<p><img src="examples/mixed5/mod1_output3.png" alt="" width="669" /></p>
 <p>and finaly the random component:</p>
-<p><img src="examples/mixed5/mod1_output4.png" width="473" /></p>
+<p><img src="examples/mixed5/mod1_output4.png" alt="" width="473" /></p>
 </div>
 <div id="assumptions" class="section level2">
 <h2>Assumptions</h2>
@@ -387,10 +387,10 @@ residuals, because closer in time measures may show a larger correlation
 than measures far apart. We have seen that this occurence may distort
 the residuals, and thus we can inspect the residuals within each cluster
 to see how they look.</p>
-<p><img src="examples/mixed5/mod1_input3.png" width="552" /></p>
+<p><img src="examples/mixed5/mod1_input3.png" alt="" width="552" /></p>
 <p>We ask for the plot residuals vs predicted, both in one single plot
 and as a grid, with one panel for each cluster.</p>
-<p><img src="examples/mixed5/mod1_plot1.png" width="766" /></p>
+<p><img src="examples/mixed5/mod1_plot1.png" alt="" width="766" /></p>
 <p>The <strong>Residuals-Predicted by cluster</strong> plot shows the
 scatterplot between the residuals of the model (Y-axis) and the
 predicted values (X-axis). Independent residuals should be distributed
@@ -399,7 +399,7 @@ that for many clusters the residuals are downward oriented and
 definitily not randomly scatterted around the line.</p>
 <p>An even clear picture can be obtained by inspecting the
 <strong>Residuals-Predicted Grid</strong>:</p>
-<p><img src="examples/mixed5/mod1_plot2.png" width="758" /></p>
+<p><img src="examples/mixed5/mod1_plot2.png" alt="" width="758" /></p>
 <p>It is clear that for many clusters ( for instance
 <code>Cod_6755</code> or <code>Cod_6795</code>) the residuals are not
 randomly scattered around the horizontal line, but they show a clear
@@ -414,7 +414,7 @@ model.</p>
 <p>In <span class="modulename">GAMLj</span>, autoregressive residuals
 covariance can be chosen by simply select it in the <span
 class="option">Residuals Structure</span> panel.</p>
-<p><img src="examples/mixed5/mod2_input1.png" width="567" /></p>
+<p><img src="examples/mixed5/mod2_input1.png" alt="" width="567" /></p>
 <p>The <code>Indentity</code> is the default, which is basically not
 allowing any extra-correlation among residuals, so the dependency is all
 captured by the random effects. <code>Unstructured</code> means that
@@ -424,7 +424,7 @@ measures experiments with unordered repeated measures.
 <code>Autoregressive</code> indicates AR(1), so autoregressive of the
 first-order (see above).</p>
 <p>Now the results:</p>
-<p><img src="examples/mixed5/mod2_output1.png" width="705" /></p>
+<p><img src="examples/mixed5/mod2_output1.png" alt="" width="705" /></p>
 <p>Although the new results are not substantially different as compared
 with the previous model ones, we do observe different values for the
 tests and the estimates. The standard errors are different, and so are
@@ -433,8 +433,8 @@ the conclusions drawn from the two models would be the same, but in
 general they may not coincide.</p>
 <p>We can now look at the residuals distribution with clusters and check
 whether the new model is better than the previous one:</p>
-<p><img src="examples/mixed5/mod2_plot1.png" width="859" />
-<img src="examples/mixed5/mod2_plot2.png" width="813" /></p>
+<p><img src="examples/mixed5/mod2_plot1.png" alt="" width="859" />
+<img src="examples/mixed5/mod2_plot2.png" alt="" width="813" /></p>
 <p>We can see that now the residuals are much more randomly scattered
 around the X-axis. There seem to be more cases on the right-side of the
 plot than on the left, but that is not an issue related with the
@@ -488,8 +488,7 @@ Return to main help pages
 <a class='backto' href='index.html'>Main page</a>
 <a class="backto" href="./mixed.html">Mixed Models</a>
 </div>
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-freitas2016temperature" class="csl-entry">
 Freitas, Carla, Esben M Olsen, Halvor Knutsen, Jon Albretsen, and Even
 Moland. 2016. <span>“Temperature-Associated Habitat Selection in a

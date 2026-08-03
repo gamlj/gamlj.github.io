@@ -10,7 +10,7 @@
     
     <title>General Linear Model</title>
 
-        <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -252,7 +252,7 @@ jamovi</p>
 <div style="clear:both">
 
 </div>
-<p><img src="glm/main.png" width="1163" /></p>
+<p><img src="glm/main.png" alt="" width="1163" /></p>
 <p>The module estimates a general linear model with categorical and/or
 continuous variables, with options to facilitate estimation of
 interactions, simple slopes, simple effects, etc.</p>
@@ -270,7 +270,7 @@ class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
 standards, with categorical independent variables defined in <span
 class="option">Factors</span> and continuous independent variables in
 <span class="option">Covariates</span>.</p>
-<p><img src="glm/variables.png" width="564" /></p>
+<p><img src="glm/variables.png" alt="" width="564" /></p>
 <p>Effect size indices are optionally computed by selecting the
 following options (see <a href="./details_glm_effectsize.html">Details:
 GLM effect size indices</a>):</p>
@@ -328,6 +328,15 @@ Standardized coefficients CI in tables if flagged
 </tr>
 <tr>
 <td class="optionname">
+<span class="option">For effect size indices</span>
+</td>
+<td class="optionvalue">
+<code>TRUE</code> (default) or <code>FALSE</code> , anova effect size CI
+in table
+</td>
+</tr>
+<tr>
+<td class="optionname">
 <span class="option">Confidence level</span>
 </td>
 <td class="optionvalue">
@@ -351,7 +360,7 @@ results to update every time. Unflag it when ready to go.
 <h1>Model</h1>
 <p>By default, the model terms are filled in automatically for main
 effects and for interactions with categorical variables.</p>
-<p><img src="glm/model.png" width="564" /></p>
+<p><img src="glm/model.png" alt="" width="564" /></p>
 <p>Interactions between continuous variables or categorical and
 continuous variables can be set by clicking the second arrow icon.</p>
 <p>Polynomial effects for continuous variables can be added to the
@@ -479,7 +488,7 @@ examples for contrasts in general can be found in
 </div>
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
-<p><img src="glm/xscoring.png" width="546" /></p>
+<p><img src="glm/xscoring.png" alt="" width="546" /></p>
 <p>Continuous variables can be <span class="option">Centered</span>,
 standardized (<span class="option">z-scores</span>), log-transformed
 (<span class="option">Log</span>) or used as they are (<span
@@ -567,7 +576,7 @@ class="option">none</span>, so no transformation is applied.</p>
 </div>
 <div id="post-hocs" class="section level1">
 <h1>Post-hocs</h1>
-<p><img src="glm/posthoc.png" width="567" /></p>
+<p><img src="glm/posthoc.png" alt="" width="567" /></p>
 <p>Post-hoc tests can be accomplished for the categorical variables
 groups by selecting the appropriated factor and flag the required
 tests</p>
@@ -598,7 +607,7 @@ function.</p></li>
 </div>
 <div id="plots" class="section level1">
 <h1>Plots</h1>
-<p><img src="glm/plot.png" width="575" /></p>
+<p><img src="glm/plot.png" alt="" width="575" /></p>
 <p>The “plots” menu allows for plotting main effects and interactions
 for any combination of types of variables, making it easy to plot
 interaction means plots, simple slopes, and combinations of them. The
@@ -828,7 +837,7 @@ estimated and tested at different levels of <code>z</code>.</p>
 </div>
 <div id="estimated-marginal-means" class="section level1">
 <h1>Estimated marginal means</h1>
-<p><img src="commons/pics/emmeans.png" width="568" /></p>
+<p><img src="commons/pics/emmeans.png" alt="" width="568" /></p>
 <p>Print the estimate expected means, SE, df and confidence intervals of
 the predicted dependent variable by factors in the model. Any
 combination available in the model (main effects, interactions,
@@ -840,7 +849,7 @@ presented.</p>
 </div>
 <div id="assumptions-checks" class="section level1">
 <h1>Assumptions checks</h1>
-<p><img src="glm/assumptions.png" width="557" /></p>
+<p><img src="glm/assumptions.png" alt="" width="557" /></p>
 <table class="options">
 <tr>
 <td class="optionname">
@@ -916,7 +925,7 @@ their rown number in the dataset
 </div>
 <div id="options" class="section level1">
 <h1>Options</h1>
-<p><img src="glm/options.png" width="557" /></p>
+<p><img src="glm/options.png" alt="" width="557" /></p>
 <table class="options">
 <tr>
 <td class="optionname">
@@ -969,14 +978,6 @@ size indexes)
 </tr>
 <tr>
 <td class="optionname">
-<span class="option">On Effect sizes</span>
-</td>
-<td class="optionvalue">
-If selected, provides ìnformation about the effect size indexes
-</td>
-</tr>
-<tr>
-<td class="optionname">
 <span class="option">Coefficients Covariances</span>
 </td>
 <td class="optionvalue">
@@ -997,7 +998,7 @@ pubblication quality tables.
 </div>
 <div id="saving-and-exports" class="section level1">
 <h1>Saving and exports</h1>
-<p><img src="glm/save.png" width="565" /></p>
+<p><img src="glm/save.png" alt="" width="565" /></p>
 <table class="options">
 <tr>
 <td class="optionname">
@@ -1085,8 +1086,7 @@ at github</a> or <a href="mailto:mcfanda@gmail.com
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="unnumbered">References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-hedges2014statistical" class="csl-entry">
 Hedges, Larry V, and Ingram Olkin. 2014. <em>Statistical Methods for
 Meta-Analysis</em>. Academic press.

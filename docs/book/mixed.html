@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Mixed Linear Models | GAMLj Models</title>
   <meta name="description" content="Examples of using GAMLj jamovi module to estimates different types of linear models" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Mixed Linear Models | GAMLj Models" />
   <meta property="og:type" content="book" />
@@ -138,7 +138,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -396,16 +395,16 @@ div.csl-indent {
 <p>Let us be practical and reason about an imaginary study, in which we want to study (again) the relationship between <em>smiles</em> and <em>beers</em>. To carry out this study, imagine we sampled a set of bars in one city, and within each bar, we measured the average number of smiles and beers consumed over a given period of time. We utilized the Beers dataset, available in the <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> data library, which was specifically created to exemplify a multilevel sampling structure and its complexities.</p>
 <p>Let us inspect the scatterplot representing the relationship between <code>beer</code> and <code>smile</code>. By eyeballing the cloud of points, it is clear that a negatively sloped line would represent the outcome of a simple regression.</p>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_theory_plot1.png" width="80%" /></p>
+<p><img src="bookletpics/4_theory_plot1.png" alt="" width="80%" /></p>
 </div>
 <p>Indeed, the correlation between <em>beer</em> and <em>smile</em> would be <span class="math inline">\(r=-.320\)</span>. However, this representation does not consider the fact that the sample is not a random sample of people, but a sample of bars, within each a sample of people is selected. Why should it matter? Well, being in a particular bar may influence the amount of smiles one smiles, for instance, or may influence the relationship between the two variables.</p>
 <p>To visualize this relationship, we can examine a scatterplot depicting the two variables, with the colors of the dots representing the bars.</p>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_theory_plot2.png" width="80%" /></p>
+<p><img src="bookletpics/4_theory_plot2.png" alt="" width="80%" /></p>
 </div>
 <p>It appears that the choice of bar does influence the results, as certain bars tend to have higher average scores in terms of smiles. Additionally, within each bar, there seems to be a positive relationship between the number of smiles and beers consumed. This can be observed by plotting individual regression lines, estimated separately for each bar, which would exhibit a positive trend between the variables.</p>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_theory_plot3.png" width="80%" /></p>
+<p><img src="bookletpics/4_theory_plot3.png" alt="" width="80%" /></p>
 </div>
 <p>Indeed, when fitting a separate straight line for each bar, we can achieve a more accurate fit to the data. However, it appears that these regression lines have varying intercepts (starting heights) and different slopes (steepness), indicating differences between bars in terms of their average number of smiles and beers consumed.</p>
 <p>This means, however, that a simple straight line, defined equally for all participants in the sample, would not work. We need to model the clustering created by bars as well.</p>
@@ -419,7 +418,7 @@ div.csl-indent {
 Here we have that the predicted value of participant <span class="math inline">\(i\)</span> in bar <span class="math inline">\(j\)</span> is predicted with an intercept of the bar (<span class="math inline">\(a_j\)</span>) the participant belong to, and the participant score <span class="math inline">\(x_{ij}\)</span> multiplied by the cluster-specific coefficient <span class="math inline">\(b_{j}\)</span>. In other words, the coefficient of the regression line vary from cluster to cluster.</p>
 <p>Now, if we estimate this model, we will have a set of intercepts, one for each bar (cluster), and a set of slope coefficients, again one per bar. Since the bars represent a random sample of bar, also their coefficients would represent a random sample of coefficients. So, the coefficients have their own distribution. For instance.</p>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_theory_plot4.png" width="80%" /></p>
+<p><img src="bookletpics/4_theory_plot4.png" alt="" width="80%" /></p>
 </div>
 <div class="enf">
 <p>The coefficients in this case are referred to as <strong>random coefficients</strong> since they vary from cluster to cluster, with each cluster representing a sample from the population. These random coefficients capture the variability in the relationship between the variables across different clusters, specifically bars in this context</p>
@@ -490,22 +489,22 @@ First, when building a mixed model, one should ask three questions:
 <h2><span class="header-section-number">4.6</span> Model Estimation<a href="mixed.html#model-estimation-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We now show how to estimate a simple model with one continuous independent variable. The clustering variable is the <span class="math inline">\(bar\)</span> variable,featuring 15 clusters. After selecting <span class="option">Linear Models -&gt; Mixed Model</span> menu, we can set the variables and their roles.</p>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_simple_input1.png" width="70%" /></p>
+<p><img src="bookletpics/4_simple_input1.png" alt="" width="70%" /></p>
 </div>
 <p>We notice that we insert <span class="math inline">\(bar\)</span> in the clustering variables. Now the model needs to be defined. The fixed effects are inserted by defaults as the effects of the independent variables.</p>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_simple_input2.png" width="70%" /></p>
+<p><img src="bookletpics/4_simple_input2.png" alt="" width="70%" /></p>
 </div>
 <p>The random coefficients must be defined by the user. On the left side, all possible effects are listed, with the notation <code>coefficient | cluster</code>. Please notice that the listed coefficients are not only the potential random coefficients, but all possible coefficients. Thus, it is the user’s responsibility to pick the correct potential random coefficients.</p>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_simple_input3.png" width="70%" /></p>
+<p><img src="bookletpics/4_simple_input3.png" alt="" width="70%" /></p>
 </div>
 <p>As soon as we define the random component, the estimation begins.</p>
 </div>
 <div id="results" class="section level2 hasAnchor" number="4.7">
 <h2><span class="header-section-number">4.7</span> Results<a href="mixed.html#results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_simple_output1.png" width="70%" /></p>
+<p><img src="bookletpics/4_simple_output1.png" alt="" width="70%" /></p>
 </div>
 <p>As observed with other models estimated using <span class="modulename">GAMLj</span>, the <span class="tablename">Model Info</span> table provides a summary of information about the estimated model. One key statistic is <span class="math inline">\(N\)</span>, which indicates the number of units used in the analysis, corresponding to the non-missing rows in the dataset. In this specific example, <span class="math inline">\(N\)</span> represents the number of individuals in the sample. However, in other applications, <span class="math inline">\(N\)</span> might refer to the number of measurements or the total number of trials in an experiment.</p>
 <p>The other pieces of information should be self-explanatory. For the <code>optimizer</code> row, it indicates what algorithm has been used to optimize the solution. Info about this can be found in <a href="../docssource//mixed_specs.html">Mixed Models module technical details</a>.</p>
@@ -515,7 +514,7 @@ First, when building a mixed model, one should ask three questions:
 <h2><span class="header-section-number">4.8</span> Random component<a href="mixed.html#random-component" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Although the <span class="tablename">Random Components</span> table is not at the top of the output panel, it is a good idea to examine it first. This table contains the variances of the random coefficients and the error variance. Checking these values is important because we need to ensure that each random coefficient has a positive variance, indicating that the model has identified some variability. If no variance is found for a random coefficient, the model may fail to converge. When this occurs—often due to a lack of variance in a random coefficient—we should remove the coefficient from the list of random coefficients and re-estimate the model. This step ensures that all remaining coefficients have meaningful variances. Variances of the random coefficients are typically reported in papers and statistical reports.</p>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_simple_output4.png" width="70%" /></p>
+<p><img src="bookletpics/4_simple_output4.png" alt="" width="70%" /></p>
 </div>
 <p>Another crucial check is to verify that the correlations among random coefficients are not <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span>. If a correlation equals <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span>, it indicates redundancy between random coefficients. In such cases, the redundant coefficient should be removed from the list. When deciding which coefficient to remove, prioritize removing the higher-order coefficient. If the correlated coefficients are of the same order, remove the one with the smallest variance.</p>
 </div>
@@ -523,14 +522,14 @@ First, when building a mixed model, one should ask three questions:
 <h2><span class="header-section-number">4.9</span> R-squares<a href="mixed.html#r-squares" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R-marginal and R-conditional are proportion of reduced error, or pseudo-R2.</p>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_simple_output2.png" width="100%" /></p>
+<p><img src="bookletpics/4_simple_output2.png" alt="" width="100%" /></p>
 </div>
 <p>They are described in <span class="citation">Johnson (<a href="#ref-nagawa2">2014</a>)</span> and implemented in piecewiseSEM R package. For our purposes, we can interpret them as follows: R-marginal is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The R-conditional is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects do not explain much (.090), but the overall model (fixed+random) captures a fairly big share of the variance (.822).</p>
 </div>
 <div id="independent-variable-effect" class="section level2 hasAnchor" number="4.10">
 <h2><span class="header-section-number">4.10</span> Independent Variable effect<a href="mixed.html#independent-variable-effect" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_simple_output3.png" width="100%" /></p>
+<p><img src="bookletpics/4_simple_output3.png" alt="" width="100%" /></p>
 </div>
 <p>Next, we examine the <code>Omnibus Tests</code> and the <code>Parameter Estimates</code> tables, which provide the model’s coefficients. Since we have only one continuous variable, <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span>, we can focus on the parameter estimates table. The <code>Estimate</code> column reports the <span class="math inline">\(B\)</span> coefficient of the model. From this, we see that the expected number of smiles increases by <span class="math inline">\(0.555\)</span> units for every one-unit increase in <code>beer</code>, averaging across <em>bars</em>. This averaging is necessary to include in the interpretation because the fixed effect of <em>beer</em> was estimated as the average of the random effects across bars.</p>
 <p>The <code>t-test</code>, <code>df</code>, and <code>p-value</code> can be interpreted as usual. Essentially, we interpret the <span class="math inline">\(B\)</span> coefficient associated with <span class="tooltip">IV <span class="tooltiptext">Independent Variable</span> </span> as in a simple regression, while understanding that the fixed effect represents the average result from a distribution of possible effects across clusters.</p>
@@ -539,7 +538,7 @@ First, when building a mixed model, one should ask three questions:
 <h2><span class="header-section-number">4.11</span> Plots<a href="mixed.html#plots-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Even for simple models such as the one in this example, it is helpful to visualize the effects by plotting them. This allows us to display both the fixed-effect line and the random-coefficient lines, providing a complete picture of the estimated model.</p>
 <div class="pic" style="text-align:center">
-<p><img src="bookletpics/4_simple_output5.png" width="70%" /></p>
+<p><img src="bookletpics/4_simple_output5.png" alt="" width="70%" /></p>
 </div>
 <p>In this example, we can observe that bars generally exhibit a positive relationship between <code>beer</code> and <code>smile</code>, although the strength of the effect varies across bars. Additionally, the intercepts (i.e., the heights of the lines) differ substantially across bars, indicating significant variation in the average value of the dependent variable across clusters.</p>
 <p><span class="incomplete"> Work in progress: incomplete version </span></p>
@@ -547,7 +546,7 @@ First, when building a mixed model, one should ask three questions:
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-nagawa2" class="csl-entry">
 Johnson, Paul C. D. 2014. <span>“Extension of Nakagawa &amp; Schielzeth’s R2GLMM to Random Slopes Models.”</span> <em>Methods in Ecology and Evolution</em> 5 (9): 944–46. https://doi.org/<a href="https://doi.org/10.1111/2041-210X.12225">https://doi.org/10.1111/2041-210X.12225</a>.
 </div>
@@ -587,42 +586,42 @@ Verbeke, Geert, and Geert Molenberghs. 2000. <em>Linear Mixed Models for Longitu
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["gamljmodels.pdf", "gamljmodels.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["gamljmodels.pdf", "gamljmodels.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

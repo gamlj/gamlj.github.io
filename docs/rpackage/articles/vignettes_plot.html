@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GAMLj3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.6.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.6.7</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
                         <h4 data-toc-skip class="author">Marcello
 Gallucci</h4>
             
-            <h4 data-toc-skip class="date">2025-12-09</h4>
+            <h4 data-toc-skip class="date">2026-08-03</h4>
       
 
       <div class="hidden name"><code>vignettes_plot.Rmd</code></div>
@@ -129,7 +129,7 @@ to extract the plot from the galmj results object.</p>
 <span>              <span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 <p>To have additional plots, we can re-estimate the model using the
 options described above or using <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>. The function
 <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> accepts either a formula or character options. The
@@ -141,14 +141,14 @@ the (optional) moderators.</p>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,formula <span class="op">=</span> <span class="op">~</span><span class="va">Petal.Length</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="two-way-plots">Two-way plots<a class="anchor" aria-label="anchor" href="#two-way-plots"></a>
 </h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,formula <span class="op">=</span> <span class="op">~</span><span class="va">Sepal.Width</span><span class="op">:</span><span class="va">Petal.Length</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 <p>Because the moderator variable <code>Petal.Length</code> is a
 continuous variable, the function plots the independent variable effect
 at three different levels of the moderator. By default, the three levels
@@ -159,7 +159,7 @@ option <code>covs_conditioning</code>. The option accepts
 and 75th percentiles.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,formula <span class="op">=</span> <span class="op">~</span><span class="va">Sepal.Width</span><span class="op">:</span><span class="va">Petal.Length</span>, covs_conditioning<span class="op">=</span><span class="st">"percent"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="three-way-plots">Three-way plots<a class="anchor" aria-label="anchor" href="#three-way-plots"></a>
@@ -169,7 +169,7 @@ moderator, in this case three plots.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,formula <span class="op">=</span> <span class="op">~</span><span class="va">Sepal.Width</span><span class="op">:</span><span class="va">Petal.Length</span><span class="op">:</span><span class="va">Petal.Width</span><span class="op">)</span></span>
 <span><span class="va">garbage</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">plots</span>,<span class="va">print</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;"><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-2.png" width="576" style="display: block; margin: auto;"><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-3.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-2.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"><img src="vignettes_plot_files/figure-html/unnamed-chunk-7-3.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 <p>Because the formula is expanded, one can obtain all main effects and
 interactions plots in one call by passing
 <code>formula=~Sepal.Width*Petal.Length*Petal.Width</code></p>
@@ -183,7 +183,7 @@ produced.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod2</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamlj_lm.html">gamlj_lm</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">Sepal.Length</span><span class="op">~</span><span class="va">Species</span>,  data<span class="op">=</span><span class="va">iris</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod2</span>,formula<span class="op">=</span><span class="op">~</span><span class="va">Species</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="character-options">Character options<a class="anchor" aria-label="anchor" href="#character-options"></a>
@@ -204,7 +204,7 @@ way the two-way interaction is broken down</li>
 <p>A two-way plot, for instance, can be obtained as follows:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,plot_x<span class="op">=</span><span class="st">"Sepal.Width"</span>, plot_z<span class="op">=</span><span class="st">"Petal.Length"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="other-options">Other options<a class="anchor" aria-label="anchor" href="#other-options"></a>
@@ -230,17 +230,17 @@ values. Default is <code>none</code>.</li>
 </ul>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,plot_x<span class="op">=</span><span class="st">"Sepal.Width"</span>, plot_z<span class="op">=</span><span class="st">"Petal.Length"</span>, plot_raw<span class="op">=</span><span class="cn">T</span>,plot_around<span class="op">=</span><span class="st">"ci"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod2</span>,formula<span class="op">=</span><span class="op">~</span><span class="va">Species</span>,plot_raw<span class="op">=</span><span class="cn">T</span>,plot_around<span class="op">=</span><span class="st">"se"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-10-2.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-10-2.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 <p>In addition, the plot can be saved in a variable and manipulated as
 any other ggplot object, for instance to change the theme or add a
 title.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>,plot_x<span class="op">=</span><span class="st">"Sepal.Width"</span>, plot_z<span class="op">=</span><span class="st">"Petal.Length"</span>, plot_raw<span class="op">=</span><span class="cn">T</span>,plot_around<span class="op">=</span><span class="st">"ci"</span><span class="op">)</span></span>
 <span><span class="va">p</span><span class="op">+</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"A nice plot"</span><span class="op">)</span><span class="op">+</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 <p>In case of multiple plots produced, the ggplot objects are contained
 in a list returned by <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>.</p>
 </div>
@@ -260,7 +260,7 @@ predicted values.</p>
 <span><span class="va">mod3</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/gamlj_gmixed.html">gamlj_gmixed</a></span><span class="op">(</span>formula<span class="op">=</span><span class="va">ybin</span><span class="op">~</span><span class="va">z</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="va">z</span><span class="op">|</span><span class="va">cluster</span><span class="op">)</span>,data<span class="op">=</span><span class="va">clustermanymodels</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod3</span>, plot_x <span class="op">=</span> <span class="st">"z"</span>,plot_re<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="vignettes_plot_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 <p><a href="#plots-in-gamlj">back to top</a></p>
 </div>
   </div>
@@ -280,7 +280,7 @@ predicted values.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>

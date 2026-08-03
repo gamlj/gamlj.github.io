@@ -10,7 +10,7 @@
     
     <title>Poisson and Negative Binomial mixed models in jamovi</title>
 
-        <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -284,19 +284,19 @@ three years based on the available predictors.</p>
 issues to take into the account to decide which linear model to use: The
 dependent variable distribution and the structure of the data.</p>
 <p>The distribition of the dependent variable is as follows:</p>
-<p><img src="glmmixed_example2_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
+<p><img src="glmmixed_example2_files/figure-html/unnamed-chunk-2-1.png" alt="" width="768" /></p>
 <p>Glancing at the histogram makes it clear that the distribution is not
 normal, but it roughly resembles the Poisson distribution. Here is an
 example of Poisson distribution with equivalent mean.</p>
-<p><img src="glmmixed_example2_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
+<p><img src="glmmixed_example2_files/figure-html/unnamed-chunk-3-1.png" alt="" width="768" /></p>
 <p>We can see that the shape of our distribution is not qualitatively
 very different as compared with a theoretical Poisson distribution, so a
 Generalized Linear Model with Poisson distribition may work. However, we
 can check wheather our distribution is in line with the features of the
 Poisson dist by checking its mean and variance. The Poisson distribution
 has variance equal to the mean, in fact the simulated distribution in
-the histogram has <span class="math inline">\(\bar{x}=1.75\)</span> and
-<span class="math inline">\(s^2=1.815\)</span>. The <code>art</code>
+the histogram has <span class="math inline">\(\bar{x}=1.726\)</span> and
+<span class="math inline">\(s^2=1.749\)</span>. The <code>art</code>
 variable distribution has <span
 class="math inline">\(\bar{x}=1.693\)</span> and <span
 class="math inline">\(s^2=3.71\)</span>, with a ratio variance/mean of
@@ -307,7 +307,7 @@ for details</a>. We will than consider a Negative Binomial model to
 account for possible overdispersion.</p>
 <p>An example of Negative Binomial distribution with equivalent mean and
 variance is here.</p>
-<p><img src="glmmixed_example2_files/figure-html/unnamed-chunk-4-1.png" width="768" /></p>
+<p><img src="glmmixed_example2_files/figure-html/unnamed-chunk-4-1.png" alt="" width="768" /></p>
 <p>The second issue one needs to deal with is the structure of the data.
 We have seen that the students are not a random sample of students drawn
 independently one each other, but they are grouped by the program they
@@ -332,20 +332,20 @@ and <code>ment</code> (# of pubs of the mentor) as covariates
 (continuous independent variables). Crucially, we select
 <code>program</code> as the clustering variable by moving it to the
 <code>Cluster Variables</code> field.</p>
-<p><img src="examples/gzlmmixed2/input_model1.png" width="569" /></p>
+<p><img src="examples/gzlmmixed2/input_model1.png" alt="" width="569" /></p>
 <p>Fixed effects are defined automatically, with all main effects and
 the interactions between the factors.</p>
-<p><img src="examples/gzlmmixed2/input_fixed1.png" width="554" /></p>
+<p><img src="examples/gzlmmixed2/input_fixed1.png" alt="" width="554" /></p>
 <p>As for the random effects, we need to move the intercepts in the
 field of <code>Random Coefficients</code>.</p>
-<p><img src="examples/gzlmmixed2/input_random1.png" width="563" /></p>
+<p><img src="examples/gzlmmixed2/input_random1.png" alt="" width="563" /></p>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
 <div id="general-info" class="section level2">
 <h2>General Info</h2>
 <p>We first have a look at the model info table.</p>
-<p><img src="examples/gzlmmixed2/output_info1.png" width="610" /></p>
+<p><img src="examples/gzlmmixed2/output_info1.png" alt="" width="610" /></p>
 <p>The first four rows tell us info about the model set up, which should
 be as we intended (those are useful if we share our results, the reader
 understands what we have done). The remaning rows inform us about the
@@ -368,14 +368,14 @@ with the Poisson model’s and see whether we can do better.</p>
 <p>The second table we need to evaluate is the random component. Here we
 find the variance of the random effects, in this case the intercept
 varying across <code>program</code>.</p>
-<p><img src="examples/gzlmmixed2/output_random1.png" width="383" /></p>
+<p><img src="examples/gzlmmixed2/output_random1.png" alt="" width="383" /></p>
 <p>We can see that there are 915 students clustered in 83 different
 programs. Programs intercepts show a tiny variance, corresponding to a
 ICC (intra-class correlation) of .048, about 5% of the variance. Tiny as
 it may be, it is not zero, so we keep the intercepts as a random
 coefficient.</p>
 <p>We can now look at the overall effects.</p>
-<p><img src="examples/gzlmmixed2/output_anova1.png" width="346" /></p>
+<p><img src="examples/gzlmmixed2/output_anova1.png" alt="" width="346" /></p>
 <p>We found a main effect of gender (<code>fem</code>), of kids
 (<code>kid5</code>) and mentor productivity (<code>ment</code>). To
 interpret the effects, for gender we can explore the means of the two
@@ -384,7 +384,7 @@ independent variables we can look at the coefficients to understand the
 direction and size of the effects.</p>
 <p>Means can be obtained in the <code>Estimated Marginal Means</code>
 panel.</p>
-<p><img src="examples/gzlmmixed2/output_means1.png" width="487" /></p>
+<p><img src="examples/gzlmmixed2/output_means1.png" alt="" width="487" /></p>
 <p>We should recall that in GAMLj Generalized models, the expected means
 are always reported transformed back in the original scale of the
 dependent variable, so we can see that <code>Men</code> show a higher
@@ -392,7 +392,7 @@ expected number of publications (1.75) than <code>Women</code>
 (1.38).</p>
 <p>As for the continuous independent variables, we look at the fixed
 effects coefficients.</p>
-<p><img src="examples/gzlmmixed2/output_fixed1.png" width="845" /></p>
+<p><img src="examples/gzlmmixed2/output_fixed1.png" alt="" width="845" /></p>
 <p>We can look at the <code>exp(B)</code> coefficients because they are
 easier to interpret than the <code>Estimate</code>s. The latter are the
 liner coefficients, and are expressed in the scale of the liner
@@ -411,8 +411,8 @@ expected value <em>decreases</em>.</p>
 <p>As a final touch, we can visualize the results by asking the plot of
 the expected number of articles by number of kids or number of mentor’s
 papers.</p>
-<p><img src="examples/gzlmmixed2/output_plot1.png" width="542" /></p>
-<p><img src="examples/gzlmmixed2/output_plot2.png" width="542" /></p>
+<p><img src="examples/gzlmmixed2/output_plot1.png" alt="" width="542" /></p>
+<p><img src="examples/gzlmmixed2/output_plot2.png" alt="" width="542" /></p>
 </div>
 </div>
 <div id="related-example" class="section level1">
